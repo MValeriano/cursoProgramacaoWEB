@@ -706,7 +706,7 @@ $produtos = buscarProdutos($categoriaFiltro, $buscaFiltro);
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Feirinha Virtual - Todos os direitos reservados</p>
+                <p>&copy; 2025 Feirinha Virtual - Todos os direitos reservados</p>
             </div>
         </div>
     </footer>
