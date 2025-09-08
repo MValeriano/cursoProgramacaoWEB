@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feirinha Virtual - Talentos Locais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --primary-light: #9b45f0;
+            --secondary: #FF4081;
+            --dark: #2D2B35;
+            --light: #F8F9FA;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(141, 43, 226, 0.05), rgba(255, 64, 129, 0.05)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f8f9fa" width="100" height="100"/><path d="M0,50 L100,50" stroke="%23e9ecef" stroke-width="1"/><path d="M50,0 L50,100" stroke="%23e9ecef" stroke-width="1"/></svg>');
+            background-size: 30px 30px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: var(--light);
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-light);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-info p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .product-contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-contact a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Add Product Section */
+        .add-product {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-column {
+                flex: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    Feirinha Virtual
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#adicionar">Adicionar Produto</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#" class="btn">Entrar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Feirinha Virtual de Talentos Locais</h1>
+            <p>Descubra e divulgue produtos e serviços feitos por mulheres talentosas da nossa comunidade</p>
+            <a href="#adicionar" class="btn">Quero divulgar meu talento</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produtos" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Talentos</h2>
+                <p>Conheça os produtos e serviços oferecidos por mulheres da nossa comunidade</p>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Buscar produtos ou serviços...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="artesanato">Artesanato</button>
+                <button class="filter-btn" data-filter="culinaria">Culinária</button>
+                <button class="filter-btn" data-filter="costura">Costura</button>
+                <button class="filter-btn" data-filter="servicos">Serviços</button>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Produtos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Section -->
+    <section id="adicionar" class="add-product">
+        <div class="container">
+            <div class="section-title">
+                <h2>Divulgue seu Talento</h2>
+                <p>Cadastre seu produto ou serviço para aparecer em nossa feirinha virtual</p>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="product-name">Nome do Produto/Serviço *</label>
+                    <input type="text" id="product-name" class="form-control" placeholder="Ex: Bolsas artesanais em crochê">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category">Categoria *</label>
+                    <select id="product-category" class="form-control">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="artesanato">Artesanato</option>
+                        <option value="culinaria">Culinária</option>
+                        <option value="costura">Costura</option>
+                        <option value="servicos">Serviços</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-description">Descrição *</label>
+                    <textarea id="product-description" class="form-control" placeholder="Descreva seu produto ou serviço..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-price">Preço (opcional)</label>
+                    <input type="text" id="product-price" class="form-control" placeholder="Ex: R$ 50,00 ou A combinar">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-contact">Contato *</label>
+                    <input type="text" id="product-contact" class="form-control" placeholder="WhatsApp, Instagram, telefone...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-image">Imagem (URL)</label>
+                    <input type="text" id="product-image" class="form-control" placeholder="Cole o link de uma imagem do seu produto">
+                    <small>Ou deixe em branco para usar uma imagem padrão</small>
+                </div>
+                
+                <button id="add-product-btn" class="btn">Cadastrar Produto</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Feirinha Virtual</h3>
+                    <p>Conectando talentos femininos da comunidade com pessoas que valorizam produtos e serviços artesanais.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#produtos">Ver Produtos</a></li>
+                        <li><a href="#adicionar">Divulgar Talento</a></li>
+                        <li><a href="#sobre">Sobre o Projeto</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categorias</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-filter="artesanato">Artesanato</a></li>
+                        <li><a href="#" data-filter="culinaria">Culinária</a></li>
+                        <li><a href="#" data-filter="costura">Costura</a></li>
+                        <li><a href="#" data-filter="servicos">Serviços</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Feirinha Virtual - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <img id="modal-image" src="" alt="Produto" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+            <h2 id="modal-title">Nome do Produto</h2>
+            <p><strong>Categoria:</strong> <span id="modal-category">Artesanato</span></p>
+            <p><strong>Descrição:</strong> <span id="modal-description">Descrição detalhada do produto.</span></p>
+            <p><strong>Preço:</strong> <span id="modal-price">R$ 50,00</span></p>
+            <p><strong>Contato:</strong> <span id="modal-contact">(11) 99999-9999</span></p>
+            <div class="actions" style="margin-top: 20px;">
+                <button class="btn" id="modal-contact-btn">Entrar em Contato</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados de exemplo (substituir por conexão com backend em PHP)
+        let products = [
+            {
+                id: 1,
+                name: "Bolsas de Crochê Personalizadas",
+                category: "artesanato",
+                description: "Bolsas artesanais feitas com fio de algodão e muito carinho. Vários modelos e cores disponíveis.",
+                price: "R$ 45,00 - R$ 80,00",
+                contact: "@artes.maria (Instagram)",
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvY2hldCUyMGJhZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 2,
+                name: "Doces Caseiros",
+                category: "culinaria",
+                description: "Doces caseiros variados: brigadeiros, beijinhos, cajuzinhos e bolos personalizados. Encomendas com 48h de antecedência.",
+                price: "R$ 3,50 (unidade)",
+                contact: "(11) 98888-7777 (WhatsApp)",
+                image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2FuZHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 3,
+                name: "Consertos de Roupas",
+                category: "costura",
+                description: "Serviço de conserto e ajuste de roupas. Barrado de calças, ajuste de blusas, conserto de zíperes e muito mais.",
+                price: "A partir de R$ 15,00",
+                contact: "(11) 97777-6666",
+                image: "https://images.unsplash.com/photo-1506629905877-52a5ca6d63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNld2luZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 4,
+                name: "Aulas de Culinária Vegana",
+                category: "servicos",
+                description: "Aulas particulares de culinária vegana para iniciantes. Aprenda a fazer pratos saborosos e nutritivos.",
+                price: "R$ 80,00 (aula de 2h)",
+                contact: "culinaria.vegana@gmail.com",
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmVnYW4lMjBjb29raW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 5,
+                name: "Bonecas de Pano Personalizadas",
+                category: "artesanato",
+                description: "Bonecas de pano feitas à mão com detalhes cuidadosamente costurados. Perfeitas para presentear crianças.",
+                price: "R$ 65,00",
+                contact: "@bonecas.artesanais (Instagram)",
+                image: "https://images.unsplash.com/photo-1530651788726-1c463a092d5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZG9sbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 6,
+                name: "Salgados para Festas",
+                category: "culinaria",
+                description: "Salgados congelados para festas e eventos. Coxinhas, empadinhas, risoles e mais. Entrega gratuita na região.",
+                price: "R$ 0,90 (unidade) - mínimo 50 unidades",
+                contact: "(11) 95555-4444 (WhatsApp)",
+                image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c25hY2tzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            }
+        ];
+
+        // Função para exibir produtos na grade
+        function displayProducts(productsToShow = products) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            if (productsToShow.length === 0) {
+                productsGrid.innerHTML = '<p class="no-results">Nenhum produto encontrado</p>';
+                return;
+            }
+            
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvcHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'}" alt="${product.name}">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-contact">
+                            <a href="#"><i class="fas fa-share-alt"></i> Compartilhar</a>
+                            <a href="#" class="view-details" data-id="${product.id}"><i class="fas fa-eye"></i> Ver detalhes</a>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Adicionar event listeners para os botões de ver detalhes
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = parseInt(this.dataset.id);
+                    const product = products.find(p => p.id === productId);
+                    if (product) {
+                        showProductDetails(product);
+                    }
+                });
+            });
+        }
+        
+        // Função para obter o nome da categoria
+        function getCategoryName(category) {
+            const categories = {
+                'artesanato': 'Artesanato',
+                'culinaria': 'Culinária',
+                'costura': 'Costura',
+                'servicos': 'Serviços',
+                'outros': 'Outros'
+            };
+            
+            return categories[category] || 'Outros';
+        }
+        
+        // Função para mostrar detalhes do produto
+        function showProductDetails(product) {
+            const modal = document.getElementById('product-modal');
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-category').textContent = getCategoryName(product.category);
+            document.getElementById('modal-description').textContent = product.description;
+            document.getElementById('modal-price').textContent = product.price;
+            document.getElementById('modal-contact').textContent = product.contact;
+            
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = product.image || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvcHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60';
+            modalImage.alt = product.name;
+            
+            // Configurar botão de contato
+            document.getElementById('modal-contact-btn').onclick = function() {
+                alert(`Entre em contato através de: ${product.contact}`);
+            };
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Função para filtrar produtos
+        function filterProducts(category) {
+            if (category === 'todos') {
+                displayProducts();
+            } else {
+                const filteredProducts = products.filter(product => product.category === category);
+                displayProducts(filteredProducts);
+            }
+        }
+        
+        // Função para buscar produtos
+        function searchProducts(query) {
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) || 
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            displayProducts(filteredProducts);
+        }
+        
+        // Função para adicionar um novo produto
+        function addNewProduct(productData) {
+            // Gerar um ID único (em uma aplicação real, isso seria feito pelo backend)
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            
+            const newProduct = {
+                id: newId,
+                ...productData
+            };
+            
+            products.push(newProduct);
+            displayProducts();
+            alert('Produto adicionado com sucesso!');
+            
+            // Limpar formulário
+            document.getElementById('product-name').value = '';
+            document.getElementById('product-category').value = '';
+            document.getElementById('product-description').value = '';
+            document.getElementById('product-price').value = '';
+            document.getElementById('product-contact').value = '';
+            document.getElementById('product-image').value = '';
+        }
+        
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Exibir produtos iniciais
+            displayProducts();
+            
+            // Configurar filtros
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    filterProducts(filter);
+                });
+            });
+            
+            // Configurar busca
+            document.querySelector('.search-btn').addEventListener('click', function() {
+                const query = document.querySelector('.search-input').value;
+                if (query.trim() !== '') {
+                    searchProducts(query);
+                } else {
+                    displayProducts();
+                }
+            });
+            
+            // Permitir busca com Enter
+            document.querySelector('.search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.querySelector('.search-btn').click();
+                }
+            });
+            
+            // Configurar links de categoria no footer
+            document.querySelectorAll('.footer-links a[data-filter]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const filter = this.dataset.filter;
+                    
+                    // Ativar o filtro correspondente
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        if (btn.dataset.filter === filter) {
+                            btn.classList.add('active');
+                            filterProducts(filter);
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    // Scroll para a seção de produtos
+                    document.getElementById('produtos').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Configurar formulário de adição de produto
+            document.getElementById('add-product-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const productData = {
+                    name: document.getElementById('product-name').value,
+                    category: document.getElementById('product-category').value,
+                    description: document.getElementById('product-description').value,
+                    price: document.getElementById('product-price').value || 'A combinar',
+                    contact: document.getElementById('product-contact').value,
+                    image: document.getElementById('product-image').value
+                };
+                
+                // Validação básica
+                if (!productData.name || !productData.category || !productData.description || !productData.contact) {
+                    alert('Por favor, preencha os campos obrigatórios: Nome, Categoria, Descrição e Contato');
+                    return;
+                }
+                
+                addNewProduct(productData);
+            });
+            
+            // Fechar modal
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('product-modal').style.display = 'none';
+            });
+            
+            // Fechar modal clicando fora dele
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('product-modal')) {
+                    document.getElementById('product-modal').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Fundamentos e Gerenciamento de Dados em SQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .join-box {
+            background-color: #00A6A6;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-width: 150px;
+            text-align: center;
+        }
+        .join-connector {
+            font-size: 2rem;
+            color: #F2A104;
+            margin: 0 1rem;
+        }
+        .join-intersection {
+            min-height: 60px;
+            min-width: 60px;
+            background-color: #7030A0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md p-6 text-center">
+        <h1 class="text-4xl font-black text-[#7030A0]">Fundamentos e Gerenciamento de Dados em SQL</h1>
+        <p class="text-lg mt-2 text-gray-600">Com base na obra "Introdução à Linguagem SQL" de Thomas Nield.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="fundamentos-relacionais" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="section-card">
+                    <h2 class="text-3xl font-black text-[#7030A0] mb-4">1. Fundamentos de Bancos de Dados Relacionais</h2>
+                    <p class="mb-4 text-gray-700">Um **RDBMS** (Sistema de Gerenciamento de Banco de Dados Relacional) é a base da maioria dos sistemas. Sua principal característica é que as **tabelas** podem se relacionar umas com as outras, permitindo buscar informações em conjunto.</p>
+                    <h3 class="text-xl font-bold text-[#F25C05] mb-2">O Poder da Normalização</h3>
+                    <p class="text-gray-600">Normalizar significa separar diferentes tipos de dados em suas próprias tabelas, evitando **redundância** e facilitando a manutenção. A visualização abaixo mostra a vantagem disso.</p>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <canvas id="normalizationChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-center text-gray-600">Com a normalização, a alteração de um dado precisa ser feita em apenas um único registro, em vez de múltiplos lugares.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="select-statement" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">2. Recuperação de Dados com SELECT</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">A instrução **SELECT** é a operação mais comum no SQL, usada para solicitar e exibir dados de uma ou mais tabelas. É o seu ponto de partida para qualquer consulta.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#00A6A6]">
+                    <h3 class="text-xl font-bold mb-2 text-[#00A6A6]">Fundamentos do SELECT</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>**SELECT * FROM Tabela;**: Seleciona todas as colunas. O asterisco `*` é um curinga.</li>
+                        <li>**SELECT Coluna1, Coluna2 FROM Tabela;**: Seleciona colunas específicas.</li>
+                        <li>Cálculos Dinâmicos: Use **SELECT** para efetuar cálculos em colunas, como `PRICE * 1.07`.</li>
+                        <li>Aliases: Use **AS** para dar um nome a uma coluna ou valor calculado, ex: `PRICE AS PrecoProduto`.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#F2A104]">
+                    <h3 class="text-xl font-bold mb-2 text-[#F2A104]">Filtros e Concatenação</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>**Operadores Matemáticos:** Use `+, -, *, /` e `%` (módulo) para operações.</li>
+                        <li>**Concatenação:** Use `||` (ou a função `CONCAT()`) para mesclar dados textuais, ex: `'Sr. ' || nome AS NomeCompleto`.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="where-clause" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">3. Filtragem de Dados com WHERE</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">A cláusula **WHERE** é usada para filtrar registros, exibindo apenas aqueles que atendem a uma ou mais condições. É o seu controle sobre o que é exibido.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-[#F25C05] mb-2">Condições Numéricas</h3>
+                    <p class="text-sm text-gray-600">Use `=, !=, BETWEEN` para comparar valores numéricos ou intervalos.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-[#F2A104] mb-2">Condições de Texto</h3>
+                    <p class="text-sm text-gray-600">Use `LIKE` e os curingas `%` (qualquer sequência de caracteres) e `_` (um único caractere).</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-[#00A6A6] mb-2">Combinando Condições</h3>
+                    <p class="text-sm text-gray-600">Use **AND** e **OR** para combinar condições. O operador **IN** é útil para listar múltiplos valores.</p>
+                </div>
+                <div class="md:col-span-3 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-[#7030A0] mb-2">Manipulando Valores NULL</h3>
+                    <p class="text-sm text-gray-600">**NULL** significa a ausência de um valor. Use **IS NULL** ou **IS NOT NULL** para verificar, pois `NULL` não é igual a nada.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="aggregation-ordering" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">4. Agregação e Ordenação de Dados</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">A agregação permite criar totais a partir de múltiplos registros. A ordenação permite classificar os resultados para uma visualização mais clara.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#D92B04]">
+                    <h3 class="text-xl font-bold text-[#D92B04] mb-2">Funções de Agregação</h3>
+                    <p class="text-gray-700 mb-4">São usadas para resumir dados. Elas sempre ignoram valores nulos.</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>**COUNT()**: Conta registros.</li>
+                        <li>**SUM()**: Soma valores.</li>
+                        <li>**MIN()** / **MAX()**: Encontra o menor/maior valor.</li>
+                        <li>**AVG()**: Calcula a média.</li>
+                        <li>**GROUP BY**: Agrupa os totais por uma coluna específica.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#F2A104]">
+                    <h3 class="text-xl font-bold text-[#F2A104] mb-2">Ordenando Resultados</h3>
+                    <p class="text-gray-700 mb-4">Use a cláusula **ORDER BY** para classificar os registros.</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>**ASC**: Ordem crescente (padrão).</li>
+                        <li>**DESC**: Ordem decrescente.</li>
+                    </ul>
+                    <p class="mt-4 font-bold text-gray-700">Filtrando Agregações:</p>
+                    <p class="text-gray-700 text-sm">Use **HAVING** para filtrar os resultados depois que a agregação é calculada. **WHERE** filtra os registros antes da agregação.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-statement" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">5. Instrução CASE</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">O operador **CASE** é uma ferramenta poderosa para substituir valores de colunas com base em condições, permitindo transformar dados dinamicamente.</p>
+            <div class="flex flex-col items-center">
+                <div class="bg-[#F25C05] text-white p-4 rounded-lg shadow-md mb-4 text-center">
+                    <h3 class="font-bold text-xl">CASE</h3>
+                    <p class="text-sm">Inicia a instrução condicional.</p>
+                </div>
+                <div class="text-2xl text-gray-400">⬇️</div>
+                <div class="bg-[#F2A104] text-white p-4 rounded-lg shadow-md mb-4 text-center">
+                    <h3 class="font-bold text-xl">WHEN [condição] THEN [valor]</h3>
+                    <p class="text-sm">Define a condição e o valor de retorno se a condição for verdadeira.</p>
+                </div>
+                <div class="text-2xl text-gray-400">⬇️</div>
+                <div class="bg-[#D92B04] text-white p-4 rounded-lg shadow-md mb-4 text-center">
+                    <h3 class="font-bold text-xl">ELSE [valor]</h3>
+                    <p class="text-sm">Define um valor padrão para todas as condições não atendidas.</p>
+                </div>
+                <div class="text-2xl text-gray-400">⬇️</div>
+                <div class="bg-[#7030A0] text-white p-4 rounded-lg shadow-md text-center">
+                    <h3 class="font-bold text-xl">END</h3>
+                    <p class="text-sm">Finaliza a instrução CASE.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="joins" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">6. Unindo Dados com JOINs</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">A funcionalidade que define o SQL. JOINs permitem associar tabelas para reunir dados que estão distribuídos. A relação mais comum é "um-para-muitos".</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="border-4 border-[#00A6A6] p-4 rounded-lg">
+                    <h3 class="font-bold text-xl mb-2 text-[#00A6A6]">INNER JOIN</h3>
+                    <p class="text-gray-600 mb-4">Mescla tabelas e **exclui** os registros que não têm um valor comum em ambas.</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="join-box">Tabela A</div>
+                        <div class="join-connector">+</div>
+                        <div class="join-box">Tabela B</div>
+                        <div class="join-connector">=</div>
+                        <div class="join-intersection">∩</div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">O resultado são apenas os registros que existem em A **e** B.</p>
+                </div>
+                <div class="border-4 border-[#F2A104] p-4 rounded-lg">
+                    <h3 class="font-bold text-xl mb-2 text-[#F2A104]">LEFT JOIN</h3>
+                    <p class="text-gray-600 mb-4">Inclui **todos os registros** da tabela "esquerda", mesmo se não houver correspondência na direita. Campos sem correspondência são preenchidos com `NULL`.</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="join-box">Tabela A</div>
+                        <div class="join-connector">+</div>
+                        <div class="join-box">Tabela B</div>
+                        <div class="join-connector">=</div>
+                        <div class="join-box bg-[#F2A104]">Tabela A <br>+ <br> Interseção</div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">O resultado são todos os registros de A, mais os registros de B que combinam.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="dml-ops" class="section-card mb-12">
+            <h2 class="text-3xl font-black text-[#7030A0] mb-6 text-center">7. Gerenciamento de Dados (DML)</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-center mb-8">Instruções para a manipulação física dos registros. Um design de banco de dados robusto é fundamental para usar essas operações com segurança.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#00A6A6]">
+                    <h3 class="font-bold text-xl text-[#00A6A6] mb-2">INSERT</h3>
+                    <p class="text-sm text-gray-600">Insere um novo registro em uma tabela. Ex: `INSERT INTO Tabela (col) VALUES (val);`.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#F25C05]">
+                    <h3 class="font-bold text-xl text-[#F25C05] mb-2">UPDATE</h3>
+                    <p class="text-sm text-gray-600">Modifica registros existentes. Ex: `UPDATE Tabela SET col = val WHERE cond;`.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#D92B04]">
+                    <h3 class="font-bold text-xl text-[#D92B04] mb-2">DELETE</h3>
+                    <p class="text-sm text-gray-600">Exclui registros de uma tabela. Ex: `DELETE FROM Tabela WHERE cond;`.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-8">
+        <p class="text-gray-500">Curso de Tecnologia com Marcelo | Fundamentos de SQL</p>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const normalizationCtx = document.getElementById('normalizationChart').getContext('2d');
+        new Chart(normalizationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Com Normalização', 'Sem Normalização (Redundância)'],
+                datasets: [{
+                    label: 'Registros para Alterar',
+                    data: [1, 10],
+                    backgroundColor: ['#00A6A6', '#F25C05'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Registros'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
