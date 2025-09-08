@@ -1,233 +1,305 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infográfico: Conceitos de Banco de Dados</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Infográfico: Fundamentos de Bancos de Dados</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f3f4f6;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #60a5fa 0%, #1d4ed8 100%);
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
+
+        .icon {
+            @apply flex items-center justify-center w-12 h-12 rounded-full text-white text-2xl font-bold;
         }
-        .data-info-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+
+        .icon-data {
+            background-color: #fcd34d;
         }
-        @media (min-width: 768px) {
-            .data-info-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
+
+        .icon-info {
+            background-color: #84cc16;
         }
-        .data-card {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
         }
-        .abstraction-pyramid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
         }
-        .abstraction-pyramid-level {
-            width: 100%;
-            padding: 1rem;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            border: 2px solid white;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+        .box-container {
+            @apply flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8;
         }
-        .abstraction-pyramid-level:not(:last-child) {
-            margin-bottom: -2px;
-        }
-        .level-3 {
-            background-color: #00A6A6;
-            max-width: 250px;
-            z-index: 3;
-        }
-        .level-2 {
-            background-color: #F2A104;
-            max-width: 350px;
-            z-index: 2;
-        }
-        .level-1 {
-            background-color: #F25C05;
-            max-width: 450px;
-            z-index: 1;
+
+        .box {
+            @apply w-full md:w-1/2 lg:w-1/3 bg-white p-6 rounded-xl shadow-lg text-center;
         }
     </style>
 </head>
-<body class="text-gray-800">
 
-    <header class="bg-white shadow-md p-6 text-center">
-        <h1 class="text-4xl font-black text-[#7030A0]">Conceitos Essenciais de Banco de Dados</h1>
-        <p class="text-lg mt-2 text-gray-600">O Alicerce para qualquer Sistema de Software.</p>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Fundamentos de Bancos de Dados</h1>
+            <p class="text-lg md:text-xl font-medium">O Alicerce da Era Digital: Da Teoria à Aplicação Prática</p>
+        </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
 
-        <section id="what-is-db" class="mb-12">
-            <h2 class="text-3xl font-black text-center text-[#7030A0] mb-6">O que é um Banco de Dados?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="text-center p-6 bg-white rounded-lg shadow-lg">
-                    <span class="text-7xl">🗄️</span>
-                    <h3 class="text-2xl font-bold mt-4 text-[#F25C05]">Um Arquivo Central Organizado</h3>
-                    <p class="mt-2 text-gray-700">Pense em um banco de dados como um "arquivo inteligente" onde você pode guardar, organizar e recuperar informações de forma rápida e segura. Ele é a espinha dorsal de qualquer sistema que precisa lidar com dados.</p>
+        <!-- O que é um Banco de Dados? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">O Que é um Banco de Dados?</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    Um banco de dados é uma coleção de dados organizada sistematicamente e armazenada de forma eletrônica. Ele foi projetado para facilitar o gerenciamento e o acesso aos dados, garantindo sua organização, segurança e disponibilidade, mesmo à medida que a coleção de dados cresce em volume e complexidade. É a estrutura fundamental que permite que dados sejam armazenados, organizados, acessados e protegidos, transformando a matéria-prima digital em um recurso estratégico e valioso.
+                </p>
+            </div>
+        </section>
+
+        <!-- Dados vs. Informação -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Dados vs. Informação</h2>
+            <div class="flex flex-col md:flex-row items-stretch md:space-x-8 space-y-8 md:space-y-0">
+                <div class="card-content flex-1">
+                    <div class="flex items-center mb-4">
+                        <div class="icon icon-data">D</div>
+                        <h3 class="text-xl font-bold ml-4">O Que São Dados?</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Dados são a matéria-prima, o registro bruto e inespecífico de fatos ou eventos. Em sua forma original, um dado não carrega um significado completo por si só. Ex: "1985", "Maria Silva".
+                    </p>
                 </div>
-                <div class="chart-container h-64 md:h-80">
-                    <canvas id="databasePurposeChart"></canvas>
+                <div class="card-content flex-1">
+                    <div class="flex items-center mb-4">
+                        <div class="icon icon-info">I</div>
+                        <h3 class="text-xl font-bold ml-4">O Que é Informação?</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        A informação é o resultado do processamento e da contextualização dos dados. É quando os dados adquirem um significado detalhado e são trabalhados para agregar valor. Ex: "Maria Silva nasceu em 1985".
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p class="text-xl font-semibold">
+                    <span class="text-blue-600">Diferença e Dependência:</span> A diferença crucial reside no significado e no contexto. Dados são inespecíficos, enquanto a informação é específica e útil. A informação não pode existir sem os dados, e os dados só se tornam valiosos quando transformados em informação.
+                </p>
+            </div>
+        </section>
+
+        <!-- Quem Deveria Usar Bancos de Dados? & Aplicações -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Quem Deveria Usar e Onde São Usados?</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-6">
+                    O uso de bancos de dados é onipresente, permeando praticamente todos os setores da economia e da sociedade. Profissionais como o Administrador de Banco de Dados (DBA) e o Analista de Dados são responsáveis por seu gerenciamento, mas seu uso final se estende a todos que dependem das informações que eles contêm.
+                </p>
+
+                <h3 class="text-xl font-bold mb-4 text-center">Aplicações de Banco de Dados na Prática</h3>
+                <div class="overflow-x-auto rounded-xl shadow-md">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                    Setor
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                    Aplicações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Banco</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Informações de cliente, contas, empréstimos e transações bancárias.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Universidades</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Informações de alunos, cursos e notas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Linhas Aéreas</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Reservas e informações de horários de voos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Indústria</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Controle da produção de itens, gestão de estoques e processamento de pedidos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Vendas</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Informações de cliente, produto e histórico de compras.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Biblioteca</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Informações de livros, cadastro de alunos e solicitações de empréstimo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <section id="data-vs-info" class="text-center bg-white p-6 md:p-8 rounded-lg shadow-lg mb-12">
-            <h2 class="text-3xl font-black text-[#7030A0] mb-6">Dados vs. Informação</h2>
-            <p class="max-w-3xl mx-auto text-gray-700 mb-8">Dados são fatos brutos. Informação é o que acontece quando damos sentido a esses dados. O banco de dados faz a mágica de transformar dados em informação útil.</p>
-            <div class="data-info-container">
-                <div class="data-card border-l-4 border-[#00A6A6]">
-                    <h3 class="text-xl font-bold text-[#00A6A6] mb-2">Dados (Fatos Brutos)</h3>
-                    <p class="text-sm text-gray-600">Números e textos sem contexto.</p>
-                    <ul class="list-disc list-inside mt-4 text-left">
-                        <li>`1.75`</li>
-                        <li>`70`</li>
-                        <li>`25/10/2023`</li>
+        <!-- Banco de Dados Relacionais & SGBDs -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Bancos de Dados Relacionais e SGBDs</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-content">
+                    <h3 class="text-xl font-bold mb-4">O Que é um Banco de Dados Relacional?</h3>
+                    <p class="text-gray-600 mb-4">É o tipo de banco de dados mais comum, que organiza dados em tabelas (ou "relações") com colunas e linhas. Essa estrutura facilita a visualização e a compreensão de como diferentes dados se conectam. A linguagem de programação padrão para interagir com eles é o SQL.</p>
+                </div>
+                <div class="card-content">
+                    <h3 class="text-xl font-bold mb-4">O Que São SGBDs?</h3>
+                    <p class="text-gray-600 mb-2">SGBD (Sistema de Gerenciamento de Banco de Dados) é o software responsável por gerenciar e controlar as bases de dados. Ele atua como um intermediário entre a aplicação e os dados, abstraindo a complexidade de acesso e organização.</p>
+                    <h4 class="font-semibold mt-4">Principais SGBDs:</h4>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Oracle Database</li>
+                        <li>MySQL</li>
+                        <li>SQL Server</li>
+                        <li>PostgreSQL</li>
+                        <li>MongoDB (Não relacional)</li>
                     </ul>
                 </div>
-                <div class="data-card border-l-4 border-[#F2A104]">
-                    <h3 class="text-xl font-bold text-[#F2A104] mb-2">Informação (Dados com Contexto)</h3>
-                    <p class="text-sm text-gray-600">Dados processados e com significado.</p>
-                    <ul class="list-disc list-inside mt-4 text-left">
-                        <li>`Altura: 1.75m`</li>
-                        <li>`Peso: 70kg`</li>
-                        <li>`Data de Nascimento: 25/10/2023`</li>
+            </div>
+        </section>
+
+        <!-- Projeto de Banco de Dados & Ciclo de Vida -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Projeto e Ciclo de Vida</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-content">
+                    <h3 class="text-xl font-bold mb-4">O Projeto de Banco de Dados</h3>
+                    <p class="text-gray-600 mb-2">É a representação dos objetos do banco de dados, seguindo três fases:</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li><strong>Modelagem Conceitual:</strong> Representação abstrata dos requisitos do negócio (o que).</li>
+                        <li><strong>Modelagem Lógica:</strong> Tradução do modelo conceitual para um modelo estruturado (como o relacional).</li>
+                        <li><strong>Modelagem Física:</strong> Implementação do esquema lógico no SGBD, considerando os detalhes técnicos.</li>
+                    </ul>
+                </div>
+                <div class="card-content">
+                    <h3 class="text-xl font-bold mb-4">Ciclo de Vida de um Sistema de Banco de Dados</h3>
+                    <p class="text-gray-600 mb-2">É um ciclo contínuo de gestão e evolução, composto por 6 fases:</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Estudo Inicial</li>
+                        <li>Desenho</li>
+                        <li>Implementação e Carregamento</li>
+                        <li>Teste e Avaliação</li>
+                        <li>Operação</li>
+                        <li>Manutenção e Avaliação</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
-        <section id="advantages" class="mb-12">
-            <h2 class="text-3xl font-black text-center text-[#7030A0] mb-6">Vantagens do Uso de Bancos de Dados</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <span class="text-4xl text-[#F25C05]">📂</span>
-                    <h3 class="font-bold text-xl mt-2 text-[#00A6A6]">Organização</h3>
-                    <p class="text-gray-600 mt-2">Guarda os dados de forma estruturada e acessível.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <span class="text-4xl text-[#D92B04]">🛡️</span>
-                    <h3 class="font-bold text-xl mt-2 text-[#00A6A6]">Segurança</h3>
-                    <p class="text-gray-600 mt-2">Protege contra acessos não autorizados e perdas.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <span class="text-4xl text-[#F2A104]">🔄</span>
-                    <h3 class="font-bold text-xl mt-2 text-[#00A6A6]">Menos Redundância</h3>
-                    <p class="text-gray-600 mt-2">Evita a duplicação de informações importantes.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <span class="text-4xl text-[#7030A0]">🤝</span>
-                    <h3 class="font-bold text-xl mt-2 text-[#00A6A6]">Compartilhamento</h3>
-                    <p class="text-gray-600 mt-2">Permite que vários usuários acessem dados de forma controlada.</p>
+
+        <!-- Modelagem de Dados & MER -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Modelagem de Dados e MER</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-6">
+                    A <strong>Modelagem de Dados</strong> é a "planta baixa" que ajuda a visualizar e entender os relacionamentos entre os dados. O <strong>Modelo Entidade-Relacionamento (MER)</strong> é uma técnica que representa o mundo real de forma abstrata.
+                </p>
+
+                <div class="flex flex-col space-y-8">
+                    <div class="box-container">
+                        <div class="box">
+                            <h4 class="text-xl font-bold mb-2">Entidade</h4>
+                            <p class="text-gray-600">Objeto, conceito ou evento com relevância para o negócio. Ex: ALUNO, PROFESSOR.</p>
+                            <div class="border-2 border-blue-500 rounded-lg p-4 mt-4">
+                                <p class="font-bold">CLIENTE</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <h4 class="text-xl font-bold mb-2">Atributo</h4>
+                            <p class="text-gray-600">Propriedade que descreve uma entidade. Ex: nome, email.</p>
+                            <div class="border-2 border-blue-500 rounded-lg p-4 mt-4">
+                                <ul class="list-none text-left">
+                                    <li>- id_cliente (PK)</li>
+                                    <li>- nome</li>
+                                    <li>- email</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <h4 class="text-xl font-bold mb-2">Chaves</h4>
+                            <p class="text-gray-600 mb-2">Atributos que identificam e conectam os dados.</p>
+                            <ul class="list-disc list-inside text-gray-600 text-left">
+                                <li><strong>Chave Primária (PK):</strong> Identifica um registro de forma única.</li>
+                                <li><strong>Chave Estrangeira (FK):</strong> Conecta tabelas, referenciando a PK de outra tabela.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Relacionamento e Cardinalidade -->
+                    <div class="card-content !p-8">
+                        <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12 space-y-4 md:space-y-0">
+                            <div class="flex-1 text-center">
+                                <h4 class="text-xl font-bold mb-2">Relacionamento</h4>
+                                <p class="text-gray-600">Associação lógica entre duas ou mais entidades.</p>
+                                <div class="w-full h-8 mt-4 flex items-center justify-center">
+                                    <div class="h-1 bg-gray-400 w-1/3 rounded-full"></div>
+                                    <span class="mx-4 font-bold text-gray-600">Relacionamento</span>
+                                    <div class="h-1 bg-gray-400 w-1/3 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1 text-center">
+                                <h4 class="text-xl font-bold mb-2">Cardinalidade</h4>
+                                <p class="text-gray-600 mb-2">Define o número de instâncias que se relacionam.</p>
+                                <ul class="list-none text-left font-semibold text-gray-600">
+                                    <li>• 1:1 (Um para Um)</li>
+                                    <li>• 1:N (Um para Muitos)</li>
+                                    <li>• N:N (Muitos para Muitos)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="abstraction" class="text-center bg-white p-6 md:p-8 rounded-lg shadow-lg mb-12">
-            <h2 class="text-3xl font-black text-[#7030A0] mb-6">Abstração de Dados</h2>
-            <p class="max-w-3xl mx-auto text-gray-700 mb-8">O banco de dados simplifica a complexidade da informação, mostrando apenas o que cada tipo de usuário precisa ver. Pense nisso como três camadas.</p>
-            <div class="abstraction-pyramid items-center">
-                <div class="abstraction-pyramid-level level-3 w-full rounded-b-none rounded-t-lg">
-                    <h3 class="font-bold">Nível de Visão</h3>
-                    <p class="text-sm">O que o usuário final vê (tabelas e relatórios específicos)</p>
-                </div>
-                <div class="abstraction-pyramid-level level-2 w-full">
-                    <h3 class="font-bold">Nível Lógico</h3>
-                    <p class="text-sm">O que os dados significam (estruturas de tabelas, colunas, relacionamentos)</p>
-                </div>
-                <div class="abstraction-pyramid-level level-1 w-full rounded-t-none rounded-b-lg">
-                    <h3 class="font-bold">Nível Físico</h3>
-                    <p class="text-sm">Como os dados são armazenados no disco rígido</p>
+        <!-- SQL: A Linguagem Universal dos Dados -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">SQL: A Linguagem dos Dados</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-6">
+                    SQL (Structured Query Language) é a linguagem padrão para interagir com bancos de dados relacionais. É uma linguagem declarativa que permite descrever o resultado desejado, tornando o acesso aos dados flexível e poderoso.
+                </p>
+
+                <h3 class="text-xl font-bold mb-4 text-center">Principais Comandos SQL</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-blue-600">Linguagem de Definição de Dados (DDL)</h4>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li><strong>CREATE TABLE:</strong> Cria uma nova tabela.</li>
+                            <li><strong>ALTER TABLE:</strong> Modifica a estrutura de uma tabela.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-blue-600">Linguagem de Manipulação de Dados (DML)</h4>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li><strong>INSERT INTO:</strong> Adiciona novos registros.</li>
+                            <li><strong>UPDATE:</strong> Modifica dados existentes.</li>
+                            <li><strong>DELETE FROM:</strong> Remove registros.</li>
+                            <li><strong>SELECT:</strong> Recupera dados (o mais utilizado).</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
     </main>
-
-    <footer class="text-center p-6 mt-8">
-        <p class="text-gray-500">Curso de Tecnologia com Marcelo | Conceitos de Banco de Dados</p>
-    </footer>
-
-    <script>
-        const tooltipTitleCallback = {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const item = tooltipItems[0];
-                            let label = item.chart.data.labels[item.dataIndex];
-                            if (Array.isArray(label)) {
-                              return label.join(' ');
-                            } else {
-                              return label;
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        const purposeCtx = document.getElementById('databasePurposeChart').getContext('2d');
-        new Chart(purposeCtx, {
-            type: 'polarArea',
-            data: {
-                labels: ['Organizar', 'Armazenar', 'Acessar', 'Gerenciar'],
-                datasets: [{
-                    label: 'Propósito',
-                    data: [25, 25, 25, 25],
-                    backgroundColor: ['#00A6A6', '#F2A104', '#D92B04', '#7030A0'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    ...tooltipTitleCallback.plugins,
-                    legend: {
-                        position: 'bottom'
-                    }
-                },
-                scales: {
-                    r: {
-                        ticks: {
-                            display: false
-                        },
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.2)'
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </body>
+
 </html>
