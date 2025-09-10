@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Componentes de um Banco de Dados Relacional e Modelagem Conceitual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #60a5fa 0%, #1d4ed8 100%);
+        }
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
+        }
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
+        }
+
+        .sub-section-title {
+            @apply text-xl font-bold text-gray-700 mb-4;
+        }
+
+        .key-tag {
+            @apply inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-2 mb-2;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Aula 2: Componentes de um Banco de Dados Relacional e Modelagem Conceitual</h1>
+            <p class="text-lg md:text-xl font-medium">Desvendando a Estrutura e o Projeto de Bancos de Dados</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+
+        <!-- Objetivos da Aula -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Objetivos da Aula</h2>
+            <div class="card-content">
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Compreender os principais componentes de um Banco de Dados Relacional: Tabelas, Metadados e Chaves.</li>
+                    <li>Entender os tipos de relacionamentos entre tabelas (1:1, 1:N, N:N).</li>
+                    <li>Introduzir os conceitos fundamentais da Modelagem de Dados: Entidades, Atributos e Relacionamentos.</li>
+                    <li>Diferenciar Chave Primária e Chave Estrangeira.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Componentes de um Banco de Dados Relacional -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">1. Componentes de um Banco de Dados Relacional</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Tabelas -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">1.1. Tabelas</h3>
+                    <p class="text-gray-600 mb-4">São as estruturas fundamentais de armazenamento, organizando dados sobre um tema específico em linhas e colunas.</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li><strong>Linhas (Registros):</strong> Cada instância individual de dados. A ordem não é relevante.</li>
+                        <li><strong>Colunas (Atributos/Campos):</strong> Propriedades ou características do tema da tabela (Ex: ID, NOME, CARGO).</li>
+                        <li><strong>Tipos de Dados:</strong> Cada coluna armazena um tipo específico (VARCHAR, INT, DATE, BOOLEAN, etc.).</li>
+                    </ul>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\tabelafuncionarios.png" alt="Exemplo de Tabela de Funcionários com colunas e dados não ordenados." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Exemplo de Tabela FUNCIONARIOS</p>
+                    </div>
+                </div>
+
+                <!-- Metadados -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">1.2. Metadados</h3>
+                    <p class="text-gray-600 mb-4">São "dados sobre os dados", descrevendo a <strong>estrutura</strong> das tabelas e do banco de dados.</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Armazenam: Nomes de tabelas, nomes e tipos de colunas, informações sobre chaves, relacionamentos e permissões.</li>
+                        <li>Acesso: Gerenciados pelo SGBD e usados por DBAs para otimização.</li>
+                    </ul>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\metadados.png" alt="Exemplo de tabela de sistema mostrando a estrutura da tabela FUNCIONARIOS." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Exemplo de Metadados</p>
+                    </div>
+                </div>
+
+                <!-- Chaves -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">1.3. Chaves</h3>
+                    <p class="text-gray-600 mb-4">Mecanismos cruciais para garantir a integridade e evitar redundância.</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li><strong>Chave Primária (PK):</strong> Identifica unicamente cada registro. <span class="key-tag">NOT NULL</span> <span class="key-tag">ÚNICA</span>. Ex: <code>MATRICULA</code> em <code>FUNCIONARIOS</code>.</li>
+                        <li><strong>Chave Estrangeira (FK):</strong> Referencia a PK de outra tabela, estabelecendo um relacionamento e garantindo a **Integridade Referencial**. Ex: <code>ID_SETOR</code> em <code>FUNCIONARIOS</code> referenciando <code>SETORES.ID</code>.</li>
+                    </ul>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\chave.png" alt="Dois quadros: um mostrando uma tabela sem chave primária com dados duplicados, e o outro mostrando a mesma tabela com uma coluna ID como PK para resolver a ambiguidade." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Tabela sem e com Chave Primária</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Relacionamentos entre Tabelas -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">2. Relacionamentos entre Tabelas</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Um para Um (1:1) -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">Um para Um (1:1)</h3>
+                    <p class="text-gray-600 mb-4">Um registro na Tabela A se relaciona com <strong>no máximo um</strong> registro na Tabela B, e vice-versa.</p>
+                    <p class="text-gray-600 mb-4"><strong>Exemplo:</strong> <code>FUNCIONARIOS</code> e <code>DADOS_PAGAMENTO</code>.</p>
+                    <p class="text-gray-600 mb-4"><strong>Implementação:</strong> PK de uma tabela é FK na outra.</p>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\umparaum.jpg" alt="Diagrama de duas tabelas, FUNCIONARIOS e DADOS_PAGAMENTO, conectadas com a indicação de um relacionamento 1:1." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Diagrama Relacional 1:1</p>
+                    </div>
+                </div>
+
+                <!-- Um para Muitos (1:N) -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">Um para Muitos (1:N)</h3>
+                    <p class="text-gray-600 mb-4">Um registro na Tabela A se relaciona com <strong>vários</strong> registros na Tabela B, mas um registro na Tabela B com <strong>apenas um</strong> na Tabela A.</p>
+                    <p class="text-gray-600 mb-4"><strong>Exemplo:</strong> Um <code>SETOR</code> (1) possui vários <code>FUNCIONARIOS</code> (N).</p>
+                    <p class="text-gray-600 mb-4"><strong>Implementação:</strong> PK da tabela "1" é FK na tabela "N".</p>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\umparamuitos.jpg" alt="Diagrama mostrando as tabelas SETORES e FUNCIONARIOS com um relacionamento 1:N." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Diagrama Relacional 1:N</p>
+                    </div>
+                </div>
+
+                <!-- Muitos para Muitos (N:N) -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">Muitos para Muitos (N:N)</h3>
+                    <p class="text-gray-600 mb-4">Um registro na Tabela A se relaciona com <strong>vários</strong> na B, e um registro na B com <strong>vários</strong> na A.</p>
+                    <p class="text-gray-600 mb-4"><strong>Exemplo:</strong> Um <code>PEDIDO</code> pode ter vários <code>PRODUTOS</code>; um <code>PRODUTO</code> em vários <code>PEDIDOS</code>.</p>
+                    <p class="text-gray-600 mb-4"><strong>Implementação:</strong> Criação de uma **tabela associativa** (ou de junção) com as FKs das duas tabelas originais, que juntas formam sua PK composta.</p>
+                    <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                        <img src="img\muitosparamuitos.jpg" alt="Diagrama mostrando as tabelas PEDIDOS e PRODUTOS conectadas por uma terceira tabela, ITENS_DO_PEDIDO, que resolve a relação N:N." class="w-full">
+                        <p class="text-sm text-center text-gray-500 p-2">Diagrama Relacional N:N</p>
+                    </div>
+                </div>
+            </div>
+			<br />
+			<div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                    <img src="img\cardinalidades.jpg" alt="Diagrama de um relacionamento simples entre FUNCIONARIO e DEPARTAMENTO, com um losango no meio indicando a relação e a cardinalidade N:1." class="w-full">
+                    <p class="text-sm text-center text-gray-500 p-2">Tipos de representação de cardinalidade</p>
+                </div>
+				
+        </section>
+		
+
+        <!-- Modelagem de Dados Conceitual -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">3. Modelagem de Dados Conceitual</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-6">
+                    É a primeira e crucial etapa do projeto de um BD: criar uma representação abstrata dos dados e seus relacionamentos, baseada nas regras de negócio, <strong>antes de qualquer implementação técnica.</strong> O objetivo é entender e documentar claramente os requisitos de dados.
+                </p>
+
+                <h3 class="sub-section-title text-center mb-6">Componentes do Diagrama Entidade-Relacionamento (DER)</h3>
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div class="flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-2">Entidade</h4>
+                        <p class="text-gray-600 text-sm">Objeto ou conceito do mundo real. Representado por um <strong>Retângulo</strong>.</p>
+                        <span class="mt-2 p-2 bg-blue-100 border border-blue-600 rounded">CLIENTE</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-2">Atributo</h4>
+                        <p class="text-gray-600 text-sm">Propriedades que descrevem uma entidade. Representado por uma <strong>Elipse</strong>.</p>
+                        <span class="mt-2 p-2 bg-blue-100 border border-blue-600 rounded-full">Nome</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-2">Relacionamento</h4>
+                        <p class="text-gray-600 text-sm">Associação significativa entre entidades. Representado por um <strong>Losango</strong>.</p>
+                        <span class="mt-2 p-2 bg-blue-100 border border-blue-600 rotate-45 transform">
+                            <span class="inline-block -rotate-45">FAZ</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                    <img src="img\DER.png" alt="Diagrama de um relacionamento simples entre FUNCIONARIO e DEPARTAMENTO, com um losango no meio indicando a relação e a cardinalidade N:1." class="w-full">
+                    <p class="text-sm text-center text-gray-500 p-2">Diagrama Entidade-Relacionamento (DER) Simples</p>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="sub-section-title text-center">Resumo da Evolução da Modelagem</h3>
+                    <ol class="list-decimal list-inside text-gray-600 space-y-2">
+                        <li><strong>Modelo Conceitual (DER):</strong> Define o QUÊ será armazenado (Entidades, Atributos, Relacionamentos). Independente de tecnologia.</li>
+                        <li><strong>Modelo Lógico:</strong> Transforma o conceitual em uma estrutura próxima da implementação (Tabelas, Colunas, PKs, FKs).</li>
+                        <li><strong>Modelo Físico:</strong> Implementa o modelo lógico em um <strong>SGBD específico</strong> (ex: MySQL, Oracle), definindo índices, tipos de dados, etc.</li>
+                    </ol>
+                </div>
+            </div>
+			<br />
+			<div class="rounded-lg overflow-hidden border-2 border-gray-200">
+                    <img src="img\tiposmodelosdados.jpg" alt="Diagrama de um relacionamento simples entre FUNCIONARIO e DEPARTAMENTO, com um losango no meio indicando a relação e a cardinalidade N:1." class="w-full">
+                    <p class="text-sm text-center text-gray-500 p-2">Tipos de modelos de dados</p>
+                </div>			
+        </section>
+
+        <!-- Atividade Prática -->
+        <section>
+            <h2 class="section-title text-center">Atividade Prática (Exemplo)</h2>
+            <div class="card-content bg-blue-50">
+                <p class="text-gray-700">Para um sistema de biblioteca, identifique as entidades, seus atributos e os relacionamentos entre elas. Esboce o DER e depois proponha como seriam as tabelas (com suas chaves primárias e estrangeiras) para implementar esse modelo.</p>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
