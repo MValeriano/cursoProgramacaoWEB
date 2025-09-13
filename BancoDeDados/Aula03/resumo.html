@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Fundamentos de BD e Modelagem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #1d4ed8 0%, #60a5fa 100%);
+        }
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
+        }
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
+        }
+
+        .sub-section-title {
+            @apply text-xl font-bold text-gray-700 mb-4;
+        }
+
+        .card-image {
+            @apply w-full h-auto rounded-lg mb-4;
+        }
+
+        .table-container {
+            @apply overflow-x-auto rounded-xl shadow-md;
+        }
+        
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Aula 3 - Resumo: Fundamentos de Banco de Dados e Modelagem</h1>
+            <p class="text-lg md:text-xl font-medium">Revisão e Consolidação de Conceitos-Chave</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+
+        <!-- Visão Geral: O que é um Banco de Dados (BD)? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">1. Visão Geral: O que é um Banco de Dados (BD)?</h2>
+            <div class="card-content">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <img src="https://placehold.co/400x250/bbf7d0/166534?text=Banco+de+Dados" alt="Um ícone de banco de dados representando um repositório de informações." class="card-image md:w-1/2">
+                    <div class="md:w-1/2">
+                        <p class="text-gray-600 mb-4">
+                            Um Banco de Dados é uma coleção organizada de dados que representam fatos do mundo real. É um registro histórico que permite a consulta e recuperação de informações no futuro.
+                        </p>
+                        <h3 class="sub-section-title">Sistema Gerenciador (SGBD)</h3>
+                        <p class="text-gray-600 mb-2">
+                            É o software (ex: MySQL, PostgreSQL) que controla o BD, oferecendo vantagens como:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>**Independência entre Dados e Aplicação**.</li>
+                            <li>Controle de Redundância e Inconsistência.</li>
+                            <li>Garantia de Segurança e Integridade dos Dados.</li>
+                            <li>Eficiência em consultas e operações.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modelagem Conceitual: O "Projeto" do Banco -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">2. Modelagem Conceitual: O "Projeto" do Banco</h2>
+            <div class="card-content">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="md:w-1/2">
+                        <p class="text-gray-600 mb-4">
+                            Antes de criar tabelas, fazemos um "projeto" chamado **Modelo Entidade-Relacionamento (MER)**, representado por um **Diagrama ER (DER)**, que é independente de tecnologia.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>**Entidade:** Objeto do mundo real (ex: **Livro**). Representado por um retângulo.</li>
+                            <li>**Atributo:** Propriedade de uma entidade (ex: título, autor). Representado por uma elipse.</li>
+                            <li>**Relacionamento:** Associação entre entidades (ex: um **Cliente** faz um **Pedido**). Representado por um losango.</li>
+                        </ul>
+                    </div>
+                    <img src="https://placehold.co/400x250/bfdbfe/1e40af?text=Diagrama+Entidade-Relacionamento" alt="Um diagrama mostrando entidades representadas por retângulos, atributos por elipses e relacionamentos por losangos." class="card-image md:w-1/2">
+                </div>
+            </div>
+        </section>
+
+        <!-- O Coração do Banco Relacional: Tabelas, Chaves e Relacionamentos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">3. O Coração do Banco Relacional</h2>
+            <div class="card-content">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="sub-section-title">Tabelas e Chaves</h3>
+                        <p class="text-gray-600 mb-4">
+                            O modelo conceitual é transformado em um modelo lógico com tabelas, que são as estruturas de armazenamento.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>**Tabelas:** Compostas por **Linhas** (registros) e **Colunas** (atributos).</li>
+                            <li>**Chave Primária (PK):** Atributo que identifica **unicamente** cada registro. Não pode ser nulo.</li>
+                            <li>**Chave Estrangeira (FK):** Atributo em uma tabela que **referencia a PK de outra**, criando um relacionamento e garantindo a **integridade referencial**.</li>
+                        </ul>
+                    </div>
+                    <img src="https://placehold.co/400x250/fecaca/991b1b?text=Tabelas+e+Chaves" alt="Uma imagem ilustrando duas tabelas conectadas por uma chave estrangeira que referencia a chave primária da outra tabela." class="card-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Cardinalidade: A "Regra do Negócio" dos Relacionamentos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">4. Cardinalidade: A "Regra do Negócio" dos Relacionamentos</h2>
+            <div class="card-content">
+                <div class="table-container">
+                    <table class="w-full text-sm text-left text-gray-500 rounded-xl">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Cardinalidade</th>
+                                <th scope="col" class="px-6 py-3">Descrição</th>
+                                <th scope="col" class="px-6 py-3">Exemplo na Livraria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Um para Um (1:1)</td>
+                                <td class="px-6 py-4">Um registro em A se relaciona com no máximo um em B.</td>
+                                <td class="px-6 py-4">Um **Livro** tem um único **ISBN**.</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Um para Muitos (1:N)</td>
+                                <td class="px-6 py-4">Um registro em A se relaciona com vários em B.</td>
+                                <td class="px-6 py-4">Uma **Editora** publica muitos **Livros**.</td>
+                            </tr>
+                            <tr class="bg-white hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Muitos para Muitos (N:N)</td>
+                                <td class="px-6 py-4">Um registro em A se relaciona com vários em B, e vice-versa.</td>
+                                <td class="px-6 py-4">Um **Pedido** contém muitos **Livros**.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumo da Jornada de Modelagem -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Resumo da Jornada de Modelagem</h2>
+            <div class="card-content">
+                <img src="https://placehold.co/600x200/d1d5db/374151?text=Jornada+de+Modelagem" alt="Uma ilustração de um fluxo de trabalho de modelagem de dados, de uma ideia inicial até a implementação final." class="card-image">
+                <ol class="list-decimal list-inside text-gray-600 space-y-2">
+                    <li>**Mundo Real:** Entender o problema e as regras de negócio.</li>
+                    <li>**Modelo Conceitual (DER):** Representar com **Entidades**, **Atributos** e **Relacionamentos**.</li>
+                    <li>**Modelo Lógico:** Transformar o DER em **Tabelas**, **Colunas** e **Chaves**.</li>
+                    <li>**Modelo Físico:** Implementar em um **SGBD específico** (<code>CREATE TABLE...</code>).</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Conceito Chave Final -->
+        <section>
+            <h2 class="section-title text-center">Conceito Chave Final</h2>
+            <div class="card-content bg-blue-50">
+                <p class="text-gray-700 font-bold">
+                    Esquema: A **estrutura** do banco (as tabelas, colunas, relacionamentos). É o "projeto" estável.
+                </p>
+                <p class="text-gray-700 font-bold mt-2">
+                    Instância: Os **dados** propriamente ditos armazenados em um momento específico. Mudam constantemente.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

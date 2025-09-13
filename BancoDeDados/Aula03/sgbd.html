@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: O que é um SGBD?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
+        }
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
+        }
+
+        .sub-section-title {
+            @apply text-xl font-bold text-gray-700 mb-4;
+        }
+
+        .icon-box {
+            @apply flex flex-col items-center justify-center p-4 text-center;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">O que é um SGBD?</h1>
+            <p class="text-lg md:text-xl font-medium">Sistema de Gerenciamento de Banco de Dados</p>
+            <p class="mt-4 text-sm md:text-base">A espinha dorsal de qualquer aplicação que armazena dados.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+
+        <!-- O que é um SGBD? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">O que é um SGBD?</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <p class="text-gray-600 mb-4">
+                        Um **SGBD** é um software que permite aos usuários e aplicações criar, gerenciar e interagir com um banco de dados de forma eficiente. Ele atua como uma camada de abstração entre a aplicação e os dados, simplificando a complexidade do armazenamento e da recuperação.
+                    </p>
+                    <p class="text-gray-600">
+                        Pense nele como um zelador que organiza, protege e disponibiliza todas as informações do seu negócio.
+                    </p>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x350/bbf7d0/14532d?text=Usuário/Aplicação+%E2%86%92+SGBD+%E2%86%92+Dados" alt="Diagrama ilustrando a arquitetura de um SGBD como uma camada intermediária entre o usuário e os dados." class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Por que Usar um SGBD? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Por que Usar um SGBD?</h2>
+            <div class="card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/93c5fd/1e40af?text=Segurança" alt="Ícone de um escudo para representar segurança." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Segurança dos Dados</h3>
+                    <p class="text-sm text-gray-500 text-center">Controla o acesso, garantindo que apenas usuários autorizados possam ver ou modificar os dados.</p>
+                </div>
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/fde047/854d0e?text=Consistência" alt="Ícone de um quebra-cabeça para representar a integridade dos dados." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Controle de Redundância e Integridade</h3>
+                    <p class="text-sm text-gray-500 text-center">Evita a duplicação de informações e garante que os dados sejam consistentes e confiáveis.</p>
+                </div>
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/fda4af/7f1d1d?text=Concorrência" alt="Ícone de múltiplas pessoas para representar acesso simultâneo." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Acesso Múltiplo</h3>
+                    <p class="text-sm text-gray-500 text-center">Permite que vários usuários acessem e modifiquem o banco de dados simultaneamente sem causar problemas.</p>
+                </div>
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/d1d5db/374151?text=Backup" alt="Ícone de uma nuvem com uma seta para representar backup e recuperação." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Backup e Recuperação</h3>
+                    <p class="text-sm text-gray-500 text-center">Ferramentas para criar cópias de segurança e restaurar o banco de dados em caso de falhas.</p>
+                </div>
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/a5b4fc/312e81?text=Abstração" alt="Ícone de camadas para representar a abstração da complexidade." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Abstração de Dados</h3>
+                    <p class="text-sm text-gray-500 text-center">Esconde a complexidade de como e onde os dados são armazenados fisicamente.</p>
+                </div>
+                <div class="icon-box">
+                    <img src="https://placehold.co/80x80/bfdbfe/1e40af?text=Linguagem" alt="Ícone de uma chave para representar a linguagem de manipulação de dados." class="mb-2 rounded-full">
+                    <h3 class="font-semibold text-gray-700">Linguagem de Manipulação</h3>
+                    <p class="text-sm text-gray-500 text-center">Fornece uma linguagem padrão (como o SQL) para interagir com o banco de dados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Principais Funções -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Principais Funções de um SGBD</h2>
+            <div class="card-content grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-2">DDL (Linguagem de Definição de Dados)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Comandos para definir a estrutura do banco de dados.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-500">
+                        <li>**CREATE:** Cria objetos (tabelas, índices).</li>
+                        <li>**ALTER:** Modifica a estrutura de um objeto.</li>
+                        <li>**DROP:** Exclui um objeto.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-2">DML (Linguagem de Manipulação de Dados)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Comandos para manipular os dados dentro das tabelas.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-500">
+                        <li>**INSERT:** Adiciona novos dados.</li>
+                        <li>**SELECT:** Recupera dados.</li>
+                        <li>**UPDATE:** Modifica dados existentes.</li>
+                        <li>**DELETE:** Remove dados.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-2">DCL (Linguagem de Controle de Dados)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Comandos para controlar o acesso e as permissões de usuários.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-500">
+                        <li>**GRANT:** Concede permissões.</li>
+                        <li>**REVOKE:** Revoga permissões.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de SGBDs -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Tipos de SGBDs</h2>
+            <div class="card-content grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-2">SGBD Relacional (SQL)</h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                        Organiza os dados em **tabelas** com colunas e linhas. Usa chaves para definir relacionamentos.
+                    </p>
+                    <p class="text-sm text-gray-600 mb-2">
+                        **Exemplos:** MySQL, PostgreSQL, Oracle, SQL Server.
+                    </p>
+                    <img src="https://placehold.co/600x200/bfdbfe/1e40af?text=Tabelas+com+Relações" alt="Diagrama de tabelas conectadas para representar um banco de dados relacional." class="rounded-lg mt-4 w-full">
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-2">SGBD Não Relacional (NoSQL)</h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                        Projetado para lidar com dados não estruturados ou semi-estruturados, oferecendo flexibilidade e escalabilidade.
+                    </p>
+                    <p class="text-sm text-gray-600 mb-2">
+                        **Exemplos:** MongoDB, Cassandra, Redis.
+                    </p>
+                    <img src="https://placehold.co/600x200/e9d5ff/8b5cf6?text=Documentos+e+Dados+Flexíveis" alt="Ícones de documentos e objetos flexíveis para representar um banco de dados NoSQL." class="rounded-lg mt-4 w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- SGBDs Populares -->
+        <section>
+            <h2 class="section-title text-center">SGBDs Populares</h2>
+            <div class="card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <img src="https://placehold.co/64x64/bbf7d0/166534?text=MySQL" alt="Logo do MySQL." class="rounded-lg">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">MySQL</h3>
+                        <p class="text-sm text-gray-600">Um dos mais populares para aplicações web.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <img src="https://placehold.co/64x64/bfdbfe/1e40af?text=PostgreSQL" alt="Logo do PostgreSQL." class="rounded-lg">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">PostgreSQL</h3>
+                        <p class="text-sm text-gray-600">Poderoso e robusto, preferido por desenvolvedores.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <img src="https://placehold.co/64x64/fecaca/991b1b?text=MongoDB" alt="Logo do MongoDB." class="rounded-lg">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">MongoDB</h3>
+                        <p class="text-sm text-gray-600">SGBD NoSQL orientado a documentos.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <img src="https://placehold.co/64x64/fde047/854d0e?text=Oracle" alt="Logo do Oracle." class="rounded-lg">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Oracle Database</h3>
+                        <p class="text-sm text-gray-600">Líder no mercado corporativo e empresarial.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <img src="https://placehold.co/64x64/d1d5db/374151?text=SQL+Server" alt="Logo do SQL Server." class="rounded-lg">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">SQL Server</h3>
+                        <p class="text-sm text-gray-600">SGBD relacional da Microsoft.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
