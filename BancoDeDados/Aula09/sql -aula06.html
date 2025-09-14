@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão Geral do Curso de Banco de Dados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #3b82f6;
+            border-bottom: 4px solid #bfdbfe;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .icon-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">REVISÃO GERAL DO CURSO</h1>
+        <p class="text-xl font-light px-4">Seu guia completo para dominar Banco de Dados e SQL.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+
+        <div class="card">
+            <h2 class="section-title">1. Fundamentos de Banco de Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Um banco de dados é um sistema organizado para armazenar, gerenciar e recuperar dados. O **SGBD (Sistema de Gerenciamento de Banco de Dados)** é o software que permite a interação com esses dados.
+            </p>
+            <div class="sub-section-title">Conceitos Fundamentais do SGBD</div>
+            <ul class="space-y-4 text-gray-700">
+                <li class="icon-text"><span class="text-2xl">🔒</span> **Segurança:** Controla quem pode acessar o quê.</li>
+                <li class="icon-text"><span class="text-2xl">✅</span> **Integridade:** Garante a validade e a consistência dos dados.</li>
+                <li class="icon-text"><span class="text-2xl">🤝</span> **Concorrência:** Permite que múltiplos usuários acessem dados simultaneamente sem problemas.</li>
+                <li class="icon-text"><span class="text-2xl">🔄</span> **Transações:** Garante que as operações sejam concluídas ou desfeitas em sua totalidade (propriedades **ACID**).</li>
+                <li class="icon-text"><span class="text-2xl">🩹</span> **Recuperação de Falhas:** Permite restaurar o banco após uma falha.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">2. Modelagem de Dados</h2>
+            <div class="sub-section-title">Modelo Conceitual (Diagrama ER)</div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                É a representação de alto nível dos dados, focada nas regras de negócio. Usa o **Diagrama de Entidade-Relacionamento (ER)**.
+            </p>
+            <ul class="space-y-4 mt-4 text-gray-700">
+                <li>**Entidades:** Objetos de interesse (ex: `Cliente`, `Livro`).</li>
+                <li>**Atributos:** Características das entidades (ex: `nome`, `preco`).</li>
+                <li>**Relacionamentos:** Como as entidades se conectam (ex: `Cliente` *compra* `Livro`).</li>
+                <li>**Cardinalidade:** Quantas instâncias de uma entidade podem se relacionar com outra (ex: 1:1, 1:N, N:M).</li>
+            </ul>
+            <div class="sub-section-title">Modelo Lógico e Físico</div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Lógico:** Traduz o modelo conceitual para uma estrutura de tabelas, sem especificar o SGBD.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-2">
+                **Físico:** A implementação real do banco de dados, com tipos de dados específicos e otimizações.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">3. As Linguagens do SQL</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O SQL é dividido em linguagens, cada uma com um propósito diferente.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                <div class="bg-blue-100 p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg text-blue-800">DQL (Data Query Language)</h3>
+                    <p class="text-sm text-gray-700 mt-2">
+                        Para **consultar e buscar** dados. É a parte mais utilizada.
+                    </p>
+                    <div class="mt-2 text-gray-800 font-semibold">Comando Principal: `SELECT`</div>
+                </div>
+                <div class="bg-green-100 p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg text-green-800">DML (Data Manipulation Language)</h3>
+                    <p class="text-sm text-gray-700 mt-2">
+                        Para **manipular dados**, ou seja, inserir, atualizar e remover.
+                    </p>
+                    <div class="mt-2 text-gray-800 font-semibold">Comandos: `INSERT`, `UPDATE`, `DELETE`</div>
+                </div>
+                <div class="bg-yellow-100 p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg text-yellow-800">DDL (Data Definition Language)</h3>
+                    <p class="text-sm text-gray-700 mt-2">
+                        Para **definir a estrutura** do banco de dados, como tabelas.
+                    </p>
+                    <div class="mt-2 text-gray-800 font-semibold">Comandos: `CREATE`, `ALTER`, `DROP`</div>
+                </div>
+                <div class="bg-red-100 p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg text-red-800">DCL (Data Control Language)</h3>
+                    <p class="text-sm text-gray-700 mt-2">
+                        Para **controlar o acesso** e as permissões de usuários.
+                    </p>
+                    <div class="mt-2 text-gray-800 font-semibold">Comandos: `GRANT`, `REVOKE`</div>
+                </div>
+                <div class="bg-purple-100 p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg text-purple-800">DTL (Data Transaction Language)</h3>
+                    <p class="text-sm text-gray-700 mt-2">
+                        Para gerenciar **transações** e garantir a consistência dos dados.
+                    </p>
+                    <div class="mt-2 text-gray-800 font-semibold">Comandos: `BEGIN`, `COMMIT`, `ROLLBACK`</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="section-title">4. SQL na Prática</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Aqui estão alguns dos comandos mais importantes que você praticou.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="p-6 bg-indigo-50 rounded-xl">
+                    <h3 class="font-bold text-xl text-indigo-800 mb-2">DQL: Consultando Dados</h3>
+                    <div class="code-block">
+                        <pre><code>-- Selecionar todos os clientes
+SELECT * FROM clientes;
+
+-- Selecionar nome e preço de livros com preço > 40
+SELECT titulo, preco FROM livros WHERE preco > 40;</code></pre>
+                    </div>
+                </div>
+                <div class="p-6 bg-indigo-50 rounded-xl">
+                    <h3 class="font-bold text-xl text-indigo-800 mb-2">DML: Manipulando Dados</h3>
+                    <div class="code-block">
+                        <pre><code>-- Inserir um novo autor
+INSERT INTO autores (nome, nacionalidade) VALUES ('Clarice Lispector', 'Brasileira');
+
+-- Atualizar o preço de um livro
+UPDATE livros SET preco = 55.00 WHERE titulo = 'Dom Casmurro';
+
+-- Excluir um livro
+DELETE FROM livros WHERE titulo = 'Dom Casmurro';</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">5. Relacionamentos e JOINs</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                `JOINs` são essenciais para conectar tabelas e obter dados de forma consolidada.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="p-6 bg-teal-50 rounded-xl">
+                    <h3 class="font-bold text-xl text-teal-800 mb-2">INNER JOIN</h3>
+                    <p class="text-sm text-gray-700">
+                        Retorna apenas as linhas que têm correspondência nas duas tabelas.
+                    </p>
+                    <div class="code-block mt-4">
+                        <pre><code>SELECT c.nome, v.data_venda
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id;</code></pre>
+                    </div>
+                </div>
+                <div class="p-6 bg-teal-50 rounded-xl">
+                    <h3 class="font-bold text-xl text-teal-800 mb-2">LEFT JOIN</h3>
+                    <p class="text-sm text-gray-700">
+                        Retorna todas as linhas da tabela da esquerda e as correspondentes da direita.
+                    </p>
+                    <div class="code-block mt-4">
+                        <pre><code>SELECT l.titulo, a.nome
+FROM livros l
+LEFT JOIN livro_autores la ON l.livro_id = la.livro_id
+LEFT JOIN autores a ON la.autor_id = a.autor_id;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="section-title">Estudos Complementares</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Para continuar sua jornada no mundo de bancos de dados, aqui estão alguns tópicos para aprofundar seus conhecimentos:
+            </p>
+            <ul class="space-y-4 text-gray-700">
+                <li class="icon-text"><span class="text-2xl">⚡</span> **Otimização de Consultas:** Aprenda a criar queries mais eficientes usando `EXPLAIN` e índices.</li>
+                <li class="icon-text"><span class="text-2xl">🧠</span> **Normalização:** Aprofunde-se nas Formas Normais (FN1, FN2, FN3) para projetar bancos de dados sem redundância.</li>
+                <li class="icon-text"><span class="text-2xl">📊</span> **BI e Data Warehousing:** Entenda como SQL é usado para Business Intelligence e análise de grandes volumes de dados.</li>
+                <li class="icon-text"><span class="text-2xl">🌐</span> **Outros SGBDs:** Explore bancos como PostgreSQL, MySQL ou MongoDB (NoSQL) para ver as diferenças.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DQL: Linguagem de Consulta de Dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            flex-grow: 1;
+        }
+
+        .icon {
+            font-size: 3rem;
+        }
+
+        .dql-command-section {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">DQL: A Linguagem da Informação</h1>
+        <p class="text-xl font-light px-4">Linguagem de Consulta de Dados - Extraia insights do seu banco.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-purple-700">O Que é DQL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+                A Linguagem de Consulta de Dados (DQL) é o subconjunto da SQL dedicado à recuperação de dados. Seu comando principal, o <b class="text-gray-900">SELECT</b>, é o mais utilizado e essencial para a análise de dados.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- SELECT Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-teal-500">📄</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-teal-600">O Comando SELECT</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        É a instrução fundamental para solicitar dados de uma ou mais tabelas.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Selecionar todas as colunas</p>
+                        <pre><code>SELECT * FROM Livros;</code></pre>
+                        <p class="font-bold mt-4">Selecionar colunas específicas</p>
+                        <pre><code>SELECT titulo, preco FROM Livros;</code></pre>
+                        <p class="font-bold mt-4">Usando alias</p>
+                        <pre><code>SELECT titulo AS 'Título do Livro' FROM Livros;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHERE Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-orange-500">🎯</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-orange-600">Cláusula WHERE</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Filtra os registros com base em condições, mostrando apenas os que atendem aos critérios.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Filtro simples</p>
+                        <pre><code>SELECT * FROM Livros
+WHERE preco > 50.00;</code></pre>
+                        <p class="font-bold mt-4">Com operadores lógicos</p>
+                        <pre><code>SELECT nome FROM Clientes
+WHERE cidade = 'Rio de Janeiro' AND idade > 25;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP BY Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-blue-500">📊</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-blue-600">Cláusula GROUP BY</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Agrupa linhas que têm os mesmos valores para uma ou mais colunas, geralmente usada com funções de agregação.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Contar por editora</p>
+                        <pre><code>SELECT editora, COUNT(*)
+FROM Livros
+GROUP BY editora;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HAVING Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-red-500">⚠️</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-red-600">Cláusula HAVING</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Filtra os grupos criados pelo <b class="text-gray-900">GROUP BY</b> com base em uma condição agregada.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Grupos com mais de 100 livros</p>
+                        <pre><code>SELECT editora, COUNT(*)
+FROM Livros
+GROUP BY editora
+HAVING COUNT(*) > 100;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDER BY Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-green-500">⬆️⬇️</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-green-600">Cláusula ORDER BY</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Ordena o conjunto de resultados em ordem ascendente (ASC) ou descendente (DESC).
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Ordenar por preço</p>
+                        <pre><code>SELECT titulo, preco FROM Livros
+ORDER BY preco DESC;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOINs Section -->
+            <div class="dql-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-indigo-500">🔗</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-indigo-600">Junções (JOINs)</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Combina linhas de duas ou mais tabelas com base em uma coluna comum.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Clientes e seus pedidos</p>
+                        <pre><code>SELECT C.nome, V.data_venda
+FROM Clientes AS C
+JOIN Vendas AS V
+ON C.cliente_id = V.cliente_id;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center text-lg text-gray-600">
+            <p>
+                Dominar a <b class="text-gray-900">DQL</b> é fundamental para transformar dados brutos em informações úteis e estratégicas.
+            </p>
+            <p>
+                Ela é a base para qualquer análise ou relatório.
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>

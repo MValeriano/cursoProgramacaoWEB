@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 1: Introdução ao SQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #be185d;
+            border-bottom: 4px solid #fbcfe8;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #831843;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-header span {
+            margin-right: 0.5rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #f3f4f6;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA 1: INTRODUÇÃO AO SQL</h1>
+        <p class="text-xl font-light px-4">Descobrindo o poder da Linguagem de Bancos de Dados.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">O que é SQL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A **SQL** (Structured Query Language) é a linguagem padrão utilizada para **gerenciar e manipular bancos de dados relacionais**. É a ferramenta essencial para qualquer pessoa que trabalhe com dados, pois permite desde a simples consulta de informações até a construção de estruturas complexas.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Pense no SQL como um idioma que você usa para "conversar" com o banco de dados. Você faz perguntas e dá comandos, e o banco de dados responde ou executa as ações.
+            </p>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Tipos de Linguagem SQL</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                A SQL é dividida em diferentes tipos de comandos, cada um com uma função específica:
+            </p>
+            <ul class="space-y-4 text-gray-700">
+                <li class="p-4 bg-purple-50 rounded-lg">
+                    <strong class="text-purple-700">DQL (Data Query Language):</strong> Para consultar e recuperar dados. O principal comando é o <code class="bg-gray-200 px-2 py-1 rounded">SELECT</code>.
+                </li>
+                <li class="p-4 bg-purple-50 rounded-lg">
+                    <strong class="text-purple-700">DML (Data Manipulation Language):</strong> Para inserir, atualizar e excluir dados. Comandos como <code class="bg-gray-200 px-2 py-1 rounded">INSERT</code>, <code class="bg-gray-200 px-2 py-1 rounded">UPDATE</code> e <code class="bg-gray-200 px-2 py-1 rounded">DELETE</code>.
+                </li>
+                <li class="p-4 bg-purple-50 rounded-lg">
+                    <strong class="text-purple-700">DDL (Data Definition Language):</strong> Para criar, modificar e excluir a estrutura do banco de dados, como tabelas. Comandos: <code class="bg-gray-200 px-2 py-1 rounded">CREATE</code>, <code class="bg-gray-200 px-2 py-1 rounded">ALTER</code> e <code class="bg-gray-200 px-2 py-1 rounded">DROP</code>.
+                </li>
+                <li class="p-4 bg-purple-50 rounded-lg">
+                    <strong class="text-purple-700">DCL (Data Control Language):</strong> Para gerenciar permissões e acesso. Comandos: <code class="bg-gray-200 px-2 py-1 rounded">GRANT</code> e <code class="bg-gray-200 px-2 py-1 rounded">REVOKE</code>.
+                </li>
+                <li class="p-4 bg-purple-50 rounded-lg">
+                    <strong class="text-purple-700">DTL (Data Transaction Language):</strong> Para controlar transações e garantir a integridade dos dados. Comandos: <code class="bg-gray-200 px-2 py-1 rounded">COMMIT</code>, <code class="bg-gray-200 px-2 py-1 rounded">ROLLBACK</code>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Introdução aos Comandos DQL</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Nesta aula, vamos focar nos comandos mais usados: os de consulta.
+            </p>
+            <h3 class="font-bold text-2xl mb-2 text-pink-700">SELECT: A Base de Tudo</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">SELECT</code> é usado para solicitar dados de uma tabela.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg text-indigo-700">Selecionando Todas as Colunas</h4>
+                    <p class="text-sm text-gray-600 mb-2">
+                        Use o asterisco (<code class="bg-gray-200 px-2 py-1 rounded">*</code>) como um coringa para selecionar todas as colunas de uma tabela.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT * FROM nome_tabela;</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg text-indigo-700">Selecionando Colunas Específicas</h4>
+                    <p class="text-sm text-gray-600 mb-2">
+                        Liste os nomes das colunas que você deseja ver, separando-os com vírgulas.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT coluna1, coluna2 FROM nome_tabela;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="font-bold text-2xl mt-8 mb-2 text-pink-700">WHERE: Filtrando Dados</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                A cláusula <code class="bg-gray-200 px-2 py-1 rounded">WHERE</code> é utilizada para filtrar os resultados e mostrar apenas as linhas que atendem a uma condição específica.
+            </p>
+            <div class="code-block">
+                <pre><code>SELECT * FROM nome_tabela WHERE condicao;</code></pre>
+            </div>
+        </div>
+        
+        <div class="my-16">
+            <h2 class="section-title text-center">EXERCÍCIOS DQL BÁSICOS</h2>
+            <div class="text-center text-lg text-gray-600 mb-8">
+                Vamos praticar o que aprendemos com o banco de dados da livraria ZedeLivros!
+            </div>
+            
+            <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
+                <!-- Exercício 1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 1: Catálogo Completo</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre todas as informações da tabela `livros`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(1)">Mostrar Solução</button>
+                    <div id="solution-1" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM livros;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 2: Dados dos Autores</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Liste todas as colunas da tabela `autores`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(2)">Mostrar Solução</button>
+                    <div id="solution-2" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM autores;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 3: Nomes dos Clientes</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Exiba apenas os nomes de todos os clientes.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(3)">Mostrar Solução</button>
+                    <div id="solution-3" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT nome FROM clientes;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 4: Títulos e Preços</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Liste o título e o preço de todos os livros.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(4)">Mostrar Solução</button>
+                    <div id="solution-4" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT titulo, preco FROM livros;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 5: Vendas de Janeiro</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre todas as informações das vendas feitas em janeiro de 2024.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(5)">Mostrar Solução</button>
+                    <div id="solution-5" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM vendas
+WHERE data_venda LIKE '2024-01%';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 6 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 6: Livros Baratos</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Liste os livros que custam menos de R$ 30,00.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(6)">Mostrar Solução</button>
+                    <div id="solution-6" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM livros
+WHERE preco < 30;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 7 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 7: Autores Brasileiros</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre o nome e a data de nascimento de todos os autores brasileiros.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(7)">Mostrar Solução</button>
+                    <div id="solution-7" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT nome, data_nascimento FROM autores
+WHERE nacionalidade = 'brasileira';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 8 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 8: Estoque Baixo</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Exiba os títulos dos livros que têm menos de 20 unidades em estoque.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(8)">Mostrar Solução</button>
+                    <div id="solution-8" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT titulo FROM livros
+WHERE estoque < 20;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 9 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 9: Faturas Abertas</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Liste todas as faturas que ainda estão com o status "aberta".
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(9)">Mostrar Solução</button>
+                    <div id="solution-9" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM faturas
+WHERE status = 'aberta';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 10 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 10: Vendas Concluídas</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre todas as vendas que já foram concluídas (status "concluída").
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(10)">Mostrar Solução</button>
+                    <div id="solution-10" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT * FROM vendas
+WHERE status = 'concluída';</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleSolution(id) {
+                const solution = document.getElementById(`solution-${id}`);
+                const button = document.querySelector(`[onclick="toggleSolution(${id})"]`);
+                
+                if (solution.classList.contains('active')) {
+                    solution.classList.remove('active');
+                    button.textContent = 'Mostrar Solução';
+                } else {
+                    solution.classList.add('active');
+                    button.textContent = 'Ocultar Solução';
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCL: Linguagem de Controle de Dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            flex-grow: 1;
+        }
+
+        .icon {
+            font-size: 3rem;
+        }
+
+        .dcl-command-section {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">DCL: A Linguagem de Segurança</h1>
+        <p class="text-xl font-light px-4">Linguagem de Controle de Dados - Gerencie permissões de acesso.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-emerald-700">O Que é DCL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+                A Linguagem de Controle de Dados (DCL) é um subconjunto da SQL que lida com a gestão de permissões e controle de acesso aos dados. Ela é fundamental para a segurança do banco de dados, permitindo que administradores definam quem pode executar quais operações.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- GRANT Section -->
+            <div class="dcl-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-teal-500">🔒</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-teal-600">Comando GRANT</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        É usado para conceder privilégios (permissões) a usuários ou a grupos de usuários em objetos do banco de dados (tabelas, visões, etc.).
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Conceder permissão para selecionar dados</p>
+                        <pre><code>GRANT SELECT ON Clientes TO 'usuario_leitura';</code></pre>
+                        <p class="font-bold mt-4">Conceder múltiplas permissões</p>
+                        <pre><code>GRANT INSERT, UPDATE ON Livros TO 'equipe_vendas';</code></pre>
+                        <p class="font-bold mt-4">Dar todos os privilégios</p>
+                        <pre><code>GRANT ALL PRIVILEGES ON Vendas TO 'administrador';</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVOKE Section -->
+            <div class="dcl-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-red-500">🔓</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-red-600">Comando REVOKE</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        É usado para remover privilégios que foram concedidos anteriormente a um usuário ou grupo de usuários.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Revogar permissão para selecionar</p>
+                        <pre><code>REVOKE SELECT ON Clientes FROM 'usuario_leitura';</code></pre>
+                        <p class="font-bold mt-4">Revogar múltiplas permissões</p>
+                        <pre><code>REVOKE INSERT, UPDATE ON Livros FROM 'equipe_vendas';</code></pre>
+                        <p class="font-bold mt-4">Revogar todos os privilégios</p>
+                        <pre><code>REVOKE ALL PRIVILEGES ON Vendas FROM 'administrador';</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center text-lg text-gray-600">
+            <p>
+                A <b class="text-gray-900">DCL</b> é essencial para manter a integridade e a segurança do banco de dados.
+            </p>
+            <p>
+                Ela garante que apenas as pessoas certas tenham acesso às informações certas.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

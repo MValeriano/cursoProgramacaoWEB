@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula: Introdução ao PostgreSQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4f46e5;
+            border-bottom: 4px solid #a5b4fc;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .list-item-icon {
+            font-size: 1.5rem;
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .exercise-card {
+            background-color: #f3f4f6;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #e0e7ff;
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #c7d2fe;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA: INTRODUÇÃO AO POSTGRESQL</h1>
+        <p class="text-xl font-light px-4">Um dos Bancos de Dados Relacionais mais robustos e avançados do mercado!</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+
+        <div class="card">
+            <h2 class="section-title">O que é PostgreSQL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O **PostgreSQL**, também conhecido como "Postgres", é um poderoso sistema de gerenciamento de banco de dados relacional de código aberto (SGBDR). Ele é como uma grande biblioteca digital onde podemos armazenar, organizar e recuperar informações de forma segura e eficiente.
+            </p>
+            <div class="sub-title">Por que usar PostgreSQL?</div>
+            <ul class="space-y-4 text-gray-700">
+                <li class="list-item">
+                    <span class="list-item-icon">⭐</span>
+                    <div>
+                        <strong class="text-lg font-bold">Grátis e de Código Aberto:</strong> É uma solução gratuita, o que significa que você pode usá-la em qualquer projeto, desde um pequeno hobby até uma grande aplicação corporativa, sem custos de licença.
+                    </div>
+                </li>
+                <li class="list-item">
+                    <span class="list-item-icon">⭐</span>
+                    <div>
+                        <strong class="text-lg font-bold">Confiabilidade e Estabilidade:</strong> É conhecido por sua robustez e alta tolerância a falhas. Seus dados estão seguros e as transações são garantidas pelas propriedades **ACID** (Atomicidade, Consistência, Isolamento e Durabilidade).
+                    </div>
+                </li>
+                <li class="list-item">
+                    <span class="list-item-icon">⭐</span>
+                    <div>
+                        <strong class="text-lg font-bold">Comunidade Ativa e Ampla Adoção:</strong> Possui uma comunidade global de desenvolvedores e usuários que fornecem suporte contínuo e contribuem para seu constante aprimoramento.
+                    </div>
+                </li>
+                <li class="list-item">
+                    <span class="list-item-icon">⭐</span>
+                    <div>
+                        <strong class="text-lg font-bold">Recursos Avançados:</strong> Suporta recursos complexos como **chaves estrangeiras**, **gatilhos** (triggers), **procedimentos armazenados** e muito mais.
+                    </div>
+                </li>
+                <li class="list-item">
+                    <span class="list-item-icon">⭐</span>
+                    <div>
+                        <strong class="text-lg font-bold">Suporte a Geolocalização:</strong> É amplamente utilizado em aplicativos de mapeamento e análise espacial devido ao suporte nativo a dados geoespaciais com a extensão **PostGIS**.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Conceitos e Comandos Básicos</h2>
+            <div class="sub-title">Conceitos Essenciais</div>
+            <ul class="space-y-4 text-gray-700 list-disc list-inside">
+                <li>**Banco de Dados:** Uma pasta que contém várias tabelas.</li>
+                <li>**Tabela:** Uma planilha com linhas e colunas.</li>
+                <li>**Linha (Registro):** Cada entrada na tabela.</li>
+                <li>**Coluna (Campo):** Cada característica dos registros.</li>
+            </ul>
+
+            <div class="sub-title">Tipos de Dados Comuns</div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Veja uma lista com os tipos mais usados e seus exemplos:
+            </p>
+            <div class="overflow-x-auto rounded-lg shadow-md">
+                <table class="min-w-full bg-white rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Tipo</th>
+                            <th class="py-3 px-6 text-left">Exemplo</th>
+                            <th class="py-3 px-6 text-left">Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">VARCHAR(n)</td>
+                            <td class="py-3 px-6 text-left">VARCHAR(100)</td>
+                            <td class="py-3 px-6 text-left">Texto com até n caracteres</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">INT</td>
+                            <td class="py-3 px-6 text-left">INT</td>
+                            <td class="py-3 px-6 text-left">Números inteiros</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">SERIAL</td>
+                            <td class="py-3 px-6 text-left">SERIAL</td>
+                            <td class="py-3 px-6 text-left">Número que aumenta automaticamente</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">DECIMAL</td>
+                            <td class="py-3 px-6 text-left">DECIMAL(10,2)</td>
+                            <td class="py-3 px-6 text-left">Números com casas decimais</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">BOOLEAN</td>
+                            <td class="py-3 px-6 text-left">BOOLEAN</td>
+                            <td class="py-3 px-6 text-left">Verdadeiro ou Falso</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">DATE</td>
+                            <td class="py-3 px-6 text-left">DATE</td>
+                            <td class="py-3 px-6 text-left">Datas</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">TIMESTAMP</td>
+                            <td class="py-3 px-6 text-left">TIMESTAMP</td>
+                            <td class="py-3 px-6 text-left">Data e hora</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sub-title mt-8">Principais Comandos</div>
+            <div class="overflow-x-auto rounded-lg shadow-md">
+                <table class="min-w-full bg-white rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Comando</th>
+                            <th class="py-3 px-6 text-left">Função</th>
+                            <th class="py-3 px-6 text-left">Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">CREATE DATABASE</td>
+                            <td class="py-3 px-6 text-left">Criar banco de dados</td>
+                            <td class="py-3 px-6 text-left"><code>CREATE DATABASE escola;</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">CREATE TABLE</td>
+                            <td class="py-3 px-6 text-left">Criar tabela</td>
+                            <td class="py-3 px-6 text-left"><code>CREATE TABLE alunos (...);</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">INSERT</td>
+                            <td class="py-3 px-6 text-left">Adicionar dados</td>
+                            <td class="py-3 px-6 text-left"><code>INSERT INTO alunos VALUES (...);</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">SELECT</td>
+                            <td class="py-3 px-6 text-left">Consultar dados</td>
+                            <td class="py-3 px-6 text-left"><code>SELECT * FROM alunos;</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">UPDATE</td>
+                            <td class="py-3 px-6 text-left">Atualizar dados</td>
+                            <td class="py-3 px-6 text-left"><code>UPDATE alunos SET idade = 21;</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">DELETE</td>
+                            <td class="py-3 px-6 text-left">Excluir dados</td>
+                            <td class="py-3 px-6 text-left"><code>DELETE FROM alunos WHERE id = 1;</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">ALTER TABLE</td>
+                            <td class="py-3 px-6 text-left">Modificar tabela</td>
+                            <td class="py-3 px-6 text-left"><code>ALTER TABLE alunos ADD COLUMN...;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Criando e Manipulando Dados</h2>
+            <div class="sub-title">Criando um Banco de Dados</div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                No PostgreSQL, você pode criar um banco de dados usando o comando `CREATE DATABASE` no terminal, por exemplo:
+            </p>
+            <div class="code-block">
+                <pre><code>create database meubancodedados;</code></pre>
+            </div>
+            
+            <div class="sub-title">Criando Tabelas e Inserindo Dados</div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Para definir a estrutura dos dados, usamos o comando `CREATE TABLE`. Veja um exemplo de uma tabela `usuarios` com colunas `id`, `nome` e `idade`:
+            </p>
+            <div class="code-block">
+                <pre><code>CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255),
+    idade INTEGER
+);</code></pre>
+            </div>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Para adicionar um novo registro (uma linha), usamos o comando `INSERT`:
+            </p>
+            <div class="code-block">
+                <pre><code>INSERT INTO usuarios (nome, idade) VALUES ('Hugo', 30);</code></pre>
+            </div>
+
+            <div class="sub-title">Consultando Dados (SELECT)</div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Para ver os dados de uma tabela, usamos o `SELECT`.
+            </p>
+            <div class="code-block">
+                <pre><code>-- Para ver todos os dados da tabela
+SELECT * FROM usuarios;
+
+-- Para filtrar dados, usamos a cláusula WHERE
+SELECT * FROM usuarios WHERE idade > 25;</code></pre>
+            </div>
+
+            <div class="sub-title">Atualizando e Excluindo Dados (UPDATE e DELETE)</div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Para modificar um registro, use o `UPDATE`, sempre com um filtro `WHERE` para evitar atualizar dados indesejados. Para remover, use o `DELETE`.
+            </p>
+            <div class="code-block">
+                <pre><code>-- Atualizar a idade do usuário com ID 1
+UPDATE usuarios SET idade = 35 WHERE id = 1;
+
+-- Excluir o usuário com ID 1
+DELETE FROM usuarios WHERE id = 1;</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

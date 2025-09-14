@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 5: Consultas Avançadas e Transações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #b45309;
+            border-bottom: 4px solid #fcd34d;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #92400e;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-header span {
+            margin-right: 0.5rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #f3f4f6;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA 5: CONSULTAS AVANÇADAS E TRANSAÇÕES</h1>
+        <p class="text-xl font-light px-4">Domine o SQL para análises complexas e controle de dados.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Funções Agregadas</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Funções agregadas realizam cálculos em um conjunto de valores e retornam um único valor. Elas são essenciais para resumos e análises.
+            </p>
+            <ul class="space-y-2 mt-4 text-gray-700">
+                <li class="p-3 bg-amber-50 rounded-lg"><strong class="text-amber-700">COUNT():</strong> Conta o número de linhas.</li>
+                <li class="p-3 bg-amber-50 rounded-lg"><strong class="text-amber-700">SUM():</strong> Soma os valores de uma coluna.</li>
+                <li class="p-3 bg-amber-50 rounded-lg"><strong class="text-amber-700">AVG():</strong> Calcula a média dos valores.</li>
+                <li class="p-3 bg-amber-50 rounded-lg"><strong class="text-amber-700">MAX():</strong> Retorna o valor máximo de uma coluna.</li>
+                <li class="p-3 bg-amber-50 rounded-lg"><strong class="text-amber-700">MIN():</strong> Retorna o valor mínimo de uma coluna.</li>
+            </ul>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">GROUP BY e HAVING</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula <code class="bg-gray-200 px-2 py-1 rounded">GROUP BY</code> é usada em conjunto com funções agregadas para agrupar os resultados por uma ou mais colunas.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Já a cláusula <code class="bg-gray-200 px-2 py-1 rounded">HAVING</code> é usada para filtrar os grupos criados pelo <code class="bg-gray-200 px-2 py-1 rounded">GROUP BY</code>. Diferente do `WHERE`, que filtra linhas, o `HAVING` filtra grupos.
+            </p>
+            <div class="code-block mt-6">
+                <pre><code>-- Exemplo: Contar livros por editora
+SELECT editora, COUNT(*) AS total_livros
+FROM livros
+GROUP BY editora;
+
+-- Exemplo: Contar editoras com mais de 5 livros
+SELECT editora, COUNT(*) AS total_livros
+FROM livros
+GROUP BY editora
+HAVING COUNT(*) > 5;</code></pre>
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Subconsultas (Subqueries)</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Uma subconsulta é uma consulta `SELECT` aninhada dentro de outra consulta. Ela é usada para retornar dados que serão usados na consulta principal.
+            </p>
+            <div class="code-block mt-4">
+                <pre><code>-- Encontre o livro mais caro
+SELECT titulo, preco FROM livros
+WHERE preco = (SELECT MAX(preco) FROM livros);</code></pre>
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Transações (DTL)</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Uma transação é uma única unidade de trabalho. Ou todas as operações dentro dela são concluídas com sucesso, ou nenhuma delas é. Isso garante a consistência do banco de dados.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Os principais comandos DTL são:
+            </p>
+            <ul class="space-y-2 mt-4 text-gray-700">
+                <li class="p-3 bg-orange-50 rounded-lg"><strong class="text-orange-700">BEGIN TRANSACTION:</strong> Inicia uma nova transação.</li>
+                <li class="p-3 bg-orange-50 rounded-lg"><strong class="text-orange-700">COMMIT:</strong> Salva as alterações de forma permanente no banco de dados.</li>
+                <li class="p-3 bg-orange-50 rounded-lg"><strong class="text-orange-700">ROLLBACK:</strong> Desfaz todas as alterações desde o `BEGIN TRANSACTION`.</li>
+            </ul>
+        </div>
+        
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Views</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Uma `VIEW` é uma tabela virtual baseada no resultado de uma instrução `SELECT`. Ela não armazena dados, mas sim a consulta que a gerou. Isso simplifica consultas complexas e pode ser usada para segurança, limitando o acesso a certas colunas.
+            </p>
+            <div class="code-block mt-4">
+                <pre><code>-- Exemplo: Criar uma view para ver dados de clientes e vendas
+CREATE VIEW historico_compras AS
+SELECT
+    c.nome AS nome_cliente,
+    v.data_venda,
+    v.total
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id;</code></pre>
+            </div>
+        </div>
+
+        <div class="my-16">
+            <h2 class="section-title text-center">EXERCÍCIOS AVANÇADOS</h2>
+            <div class="text-center text-lg text-gray-600 mb-8">
+                Agora, vamos colocar em prática o que aprendemos sobre funções, agrupamentos e subconsultas.
+            </div>
+            
+            <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
+                <!-- Exercício 1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 1: Faturamento Total</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Calcule o valor total de todas as vendas já realizadas.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(1)">Mostrar Solução</button>
+                    <div id="solution-1" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT SUM(total) FROM vendas;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 2: Média de Preço dos Livros</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Qual é o preço médio dos livros na livraria?
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(2)">Mostrar Solução</button>
+                    <div id="solution-2" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT AVG(preco) FROM livros;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 3: Vendas por Cliente</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre o nome de cada cliente e o número total de compras que ele fez.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(3)">Mostrar Solução</button>
+                    <div id="solution-3" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT c.nome, COUNT(v.venda_id) AS total_compras
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.nome;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 4: Livros com Estoque Abaixo da Média</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Liste os títulos dos livros cujo estoque está abaixo da média de estoque de todos os livros.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(4)">Mostrar Solução</button>
+                    <div id="solution-4" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT titulo FROM livros
+WHERE estoque < (SELECT AVG(estoque) FROM livros);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 5: Ranking de Vendas por Cliente</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Calcule o valor total gasto por cada cliente e ordene do maior para o menor.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(5)">Mostrar Solução</button>
+                    <div id="solution-5" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT c.nome, SUM(v.total) AS total_gasto
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.nome
+ORDER BY total_gasto DESC;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 6 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 6: Faturamento por Mês</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Mostre o faturamento total para cada mês.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(6)">Mostrar Solução</button>
+                    <div id="solution-6" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT STRFTIME('%Y-%m', data_venda) AS mes, SUM(total) AS faturamento
+FROM vendas
+GROUP BY mes
+ORDER BY mes;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleSolution(id) {
+                const solution = document.getElementById(`solution-${id}`);
+                const button = document.querySelector(`[onclick="toggleSolution(${id})"]`);
+                
+                if (solution.classList.contains('active')) {
+                    solution.classList.remove('active');
+                    button.textContent = 'Mostrar Solução';
+                } else {
+                    solution.classList.add('active');
+                    button.textContent = 'Ocultar Solução';
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

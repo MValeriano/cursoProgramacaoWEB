@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2: Manipulação de Dados (DML)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4338ca;
+            border-bottom: 4px solid #c7d2fe;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4c1d95;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-header span {
+            margin-right: 0.5rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #f3f4f6;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA 2: MANIPULAÇÃO DE DADOS (DML)</h1>
+        <p class="text-xl font-light px-4">Aprenda a inserir, atualizar e excluir dados de forma segura.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando INSERT: Adicionando Novos Registros</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">INSERT</code> é usado para adicionar novos registros (linhas) em uma tabela. É a sua porta de entrada para popular o banco de dados.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Sintaxe Básica</h3>
+                    <p class="text-sm text-gray-600">
+                        Você especifica a tabela e, em seguida, os valores para cada coluna na ordem em que elas aparecem na tabela.
+                    </p>
+                    <div class="code-block mt-4">
+                        <pre><code>INSERT INTO nome_tabela VALUES (valor1, valor2, ...);</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Sintaxe Específica</h3>
+                    <p class="text-sm text-gray-600">
+                        É uma boa prática listar as colunas em que você está inserindo os dados. Isso torna o código mais legível e seguro contra futuras alterações na estrutura da tabela.
+                    </p>
+                    <div class="code-block mt-4">
+                        <pre><code>INSERT INTO nome_tabela (coluna1, coluna2, ...)
+VALUES (valor1, valor2, ...);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando UPDATE: Modificando Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">UPDATE</code> é utilizado para modificar dados existentes em uma ou mais linhas de uma tabela.
+            </p>
+            <div class="mt-6">
+                <h3 class="font-bold text-xl mb-2 text-indigo-700">Sintaxe</h3>
+                <p class="text-sm text-gray-600 mb-2">
+                    Você usa a cláusula <code class="bg-gray-200 px-2 py-1 rounded">SET</code> para definir os novos valores e a cláusula <code class="bg-gray-200 px-2 py-1 rounded">WHERE</code> para especificar quais registros devem ser atualizados.
+                </p>
+                <div class="code-block mt-4">
+                    <pre><code>UPDATE nome_tabela
+SET coluna1 = novo_valor1, coluna2 = novo_valor2, ...
+WHERE condicao;</code></pre>
+                </div>
+                <div class="mt-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded">
+                    <strong>⚠️ ATENÇÃO:</strong> Sempre use a cláusula <code class="bg-gray-200 px-2 py-1 rounded">WHERE</code> com <code class="bg-gray-200 px-2 py-1 rounded">UPDATE</code>, ou você irá modificar todos os registros da tabela!
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando DELETE: Removendo Registros</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">DELETE</code> é usado para remover uma ou mais linhas de uma tabela.
+            </p>
+            <div class="mt-6">
+                <h3 class="font-bold text-xl mb-2 text-indigo-700">Sintaxe</h3>
+                <p class="text-sm text-gray-600 mb-2">
+                    Assim como o <code class="bg-gray-200 px-2 py-1 rounded">UPDATE</code>, a cláusula <code class="bg-gray-200 px-2 py-1 rounded">WHERE</code> é crucial para especificar quais registros devem ser removidos.
+                </p>
+                <div class="code-block mt-4">
+                    <pre><code>DELETE FROM nome_tabela
+WHERE condicao;</code></pre>
+                </div>
+                <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
+                    <strong>🚫 CUIDADO:</strong> O <code class="bg-gray-200 px-2 py-1 rounded">DELETE</code> sem <code class="bg-gray-200 px-2 py-1 rounded">WHERE</code> remove todos os dados da tabela, e a operação é irreversível (a menos que uma transação esteja sendo usada).
+                </div>
+            </div>
+        </div>
+
+        <div class="my-16">
+            <h2 class="section-title text-center">EXERCÍCIOS DML</h2>
+            <div class="text-center text-lg text-gray-600 mb-8">
+                Pratique os comandos INSERT, UPDATE e DELETE com as tabelas de nossa livraria!
+            </div>
+            
+            <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
+                <!-- Exercício 1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 1: Novo Cliente</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Adicione um novo cliente com nome "João Santos", e-mail "joao.santos@email.com" e telefone "(11) 98765-4321".
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(1)">Mostrar Solução</button>
+                    <div id="solution-1" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>INSERT INTO clientes (nome, email, telefone)
+VALUES ('João Santos', 'joao.santos@email.com', '(11) 98765-4321');</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 2: Adicionando um Livro</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Insira um novo livro na tabela `livros` com o título "O Guia do Mochileiro das Galáxias", preço 35.50, estoque de 50 unidades e editora "Sextante".
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(2)">Mostrar Solução</button>
+                    <div id="solution-2" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>INSERT INTO livros (titulo, preco, estoque, editora)
+VALUES ('O Guia do Mochileiro das Galáxias', 35.50, 50, 'Sextante');</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 3: Alterando o Telefone</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Atualize o telefone do cliente "Ana Silva" para "(21) 99999-8888".
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(3)">Mostrar Solução</button>
+                    <div id="solution-3" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE clientes
+SET telefone = '(21) 99999-8888'
+WHERE nome = 'Ana Silva';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 4: Livro em Promoção</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Reduza o preço de todos os livros da editora "Penguin" em 10%.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(4)">Mostrar Solução</button>
+                    <div id="solution-4" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE livros
+SET preco = preco * 0.90
+WHERE editora = 'Penguin';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 5: Ajuste de Estoque</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Aumente o estoque do livro "Dom Casmurro" em 15 unidades.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(5)">Mostrar Solução</button>
+                    <div id="solution-5" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE livros
+SET estoque = estoque + 15
+WHERE titulo = 'Dom Casmurro';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 6 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 6: Removendo Autor</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Exclua o autor "Jane Austen" da tabela `autores`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(6)">Mostrar Solução</button>
+                    <div id="solution-6" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DELETE FROM autores
+WHERE nome = 'Jane Austen';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 7 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 7: Venda Cancelada</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Altere o status da venda com ID 1 para "cancelada".
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(7)">Mostrar Solução</button>
+                    <div id="solution-7" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE vendas
+SET status = 'cancelada'
+WHERE venda_id = 1;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 8 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 8: Excluindo Fatura</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Remova a fatura com o valor total de 125.75.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(8)">Mostrar Solução</button>
+                    <div id="solution-8" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DELETE FROM faturas
+WHERE valor_total = 125.75;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 9 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 9: Livros Esgotados</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Atualize o preço de todos os livros com estoque igual a zero para R$ 0,00 (considerando que são gratuitos para divulgação).
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(9)">Mostrar Solução</button>
+                    <div id="solution-9" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE livros
+SET preco = 0.00
+WHERE estoque = 0;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 10 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 10: Limpeza de Vendas Antigas</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Remova todas as vendas feitas antes de 2024.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(10)">Mostrar Solução</button>
+                    <div id="solution-10" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DELETE FROM vendas
+WHERE data_venda < '2024-01-01';</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            function toggleSolution(id) {
+                const solution = document.getElementById(`solution-${id}`);
+                const button = document.querySelector(`[onclick="toggleSolution(${id})"]`);
+                
+                if (solution.classList.contains('active')) {
+                    solution.classList.remove('active');
+                    button.textContent = 'Mostrar Solução';
+                } else {
+                    solution.classList.add('active');
+                    button.textContent = 'Ocultar Solução';
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

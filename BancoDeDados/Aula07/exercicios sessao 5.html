@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessão 5 - Consultas Avançadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0f2fe;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(to right, #0077b6, #00b4d8);
+        }
+
+        .container-main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            padding: 2.5rem;
+        }
+
+        .exercise-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0c4a6e;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .exercise-objective {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise-task {
+            font-size: 1rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .solution-section {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .solution-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .solution-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #4b5563;
+        }
+
+        .toggle-button {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition-property: background-color, transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+
+        .show-code-button {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        .show-code-button:hover {
+            background-color: #1e40af;
+        }
+
+        .hide-code-button {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        .hide-code-button:hover {
+            background-color: #b91c1c;
+        }
+
+        .solution-content {
+            margin-top: 1rem;
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            display: none;
+        }
+
+        .solution-content pre {
+            color: #f3f4f6;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-bg text-white py-12 shadow-xl rounded-b-[3rem]">
+        <div class="container-main text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Sessão 5: Consultas Avançadas</h1>
+            <p class="text-xl font-light">Livraria ZedeLivros</p>
+        </div>
+    </header>
+
+    <main class="container-main">
+
+        <!-- Exercise 5.1 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📖</span> 5.1 - Clientes que Compraram Machado
+                </h2>
+                <p class="exercise-objective">Objetivo: Encontrar fãs do autor.</p>
+                <p class="exercise-task">Tarefa: Liste clientes que compraram livros de Machado de Assis.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT DISTINCT c.nome
+FROM Clientes c
+JOIN Vendas v ON c.cliente_id = v.cliente_id
+JOIN Venda_Itens vi ON v.venda_id = vi.venda_id
+JOIN Livros l ON vi.livro_id = l.livro_id
+JOIN Livro_Autores la ON l.livro_id = la.livro_id
+JOIN Autores a ON la.autor_id = a.autor_id
+WHERE a.nome = 'Machado de Assis';
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5.2 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🚫</span> 5.2 - Livros Nunca Vendidos
+                </h2>
+                <p class="exercise-objective">Objetivo: Identificar livros parados.</p>
+                <p class="exercise-task">Tarefa: Mostre livros que nunca foram vendidos.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT l.titulo
+FROM Livros l
+LEFT JOIN Venda_Itens vi ON l.livro_id = vi.livro_id
+WHERE vi.livro_id IS NULL;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5.3 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🏆</span> 5.3 - Maior Compra
+                </h2>
+                <p class="exercise-objective">Objetivo: Encontrar a venda de maior valor.</p>
+                <p class="exercise-task">Tarefa: Mostre a venda com o maior valor total.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT *
+FROM Vendas
+ORDER BY total DESC
+LIMIT 1;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5.4 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🌟</span> 5.4 - Clientes que Mais Compram
+                </h2>
+                <p class="exercise-objective">Objetivo: Identificar melhores clientes.</p>
+                <p class="exercise-task">Tarefa: Liste os 3 clientes que mais fizeram compras.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome, COUNT(v.venda_id) AS total_compras
+FROM Clientes c
+JOIN Vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.nome
+ORDER BY total_compras DESC
+LIMIT 3;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5.5 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📈</span> 5.5 - Faturamento por Mês
+                </h2>
+                <p class="exercise-objective">Objetivo: Analisar performance mensal.</p>
+                <p class="exercise-task">Tarefa: Mostre o total vendido por mês.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT strftime('%Y-%m', data_venda) AS mes, SUM(total) AS faturamento_total
+FROM Vendas
+GROUP BY mes
+ORDER BY mes;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleSolution(element) {
+            const solutionContent = element.nextElementSibling;
+            const button = element.querySelector('button');
+            const isVisible = solutionContent.style.display === 'block';
+
+            if (isVisible) {
+                solutionContent.style.display = 'none';
+                button.textContent = 'Mostrar Código';
+                button.classList.remove('hide-code-button');
+                button.classList.add('show-code-button');
+            } else {
+                solutionContent.style.display = 'block';
+                button.textContent = 'Esconder Código';
+                button.classList.remove('show-code-button');
+                button.classList.add('hide-code-button');
+            }
+        }
+    </script>
+</body>
+
+</html>

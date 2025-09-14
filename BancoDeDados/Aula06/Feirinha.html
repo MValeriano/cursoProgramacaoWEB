@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula: Mapeamento de Modelos de Dados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4f46e5;
+            border-bottom: 4px solid #a5b4fc;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-direction: column;
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Aula: Mapeamento de Modelos de Dados</h1>
+        <p class="text-xl font-light px-4">Do Modelo Conceitual ao Físico na prática</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+
+        <div class="card">
+            <h2 class="section-title">O Processo de Modelagem de Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A modelagem de dados é o processo de criar um plano visual ou um diagrama que define a estrutura de um banco de dados. Este processo é dividido em três fases:
+            </p>
+            <ul class="space-y-4 text-gray-700 mt-4">
+                <li>
+                    <strong class="font-bold text-gray-900">1. Modelo Conceitual:</strong> Representa as entidades e seus relacionamentos de forma de alto nível, sem se preocupar com a tecnologia.
+                </li>
+                <li>
+                    <strong class="font-bold text-gray-900">2. Modelo Lógico:</strong> Detalha a estrutura do banco de dados, incluindo tabelas, colunas, chaves primárias e estrangeiras. É agnóstico ao SGBD.
+                </li>
+                <li>
+                    <strong class="font-bold text-gray-900">3. Modelo Físico:</strong> Especifica a implementação no SGBD, definindo tipos de dados, índices e restrições específicas da plataforma (ex: PostgreSQL, MySQL).
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Mapeando da Feirinha Virtual</h2>
+            <div class="sub-title">1. Modelo Conceitual (Diagrama de Entidade-Relacionamento)</div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Nesta fase, identificamos as entidades do nosso sistema de "Feirinha Virtual" e como elas se relacionam.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-4">
+                <li>**Usuários:** Podem ser clientes ou vendedores.</li>
+                <li>**Categorias:** Para classificar os produtos.</li>
+                <li>**Produtos:** Pertencem a uma categoria e são vendidos por um usuário (vendedor).</li>
+                <li>**Favoritos:** Uma lista de produtos que um usuário gosta.</li>
+            </ul>
+            <div class="image-container">
+                <img src="feirinha.drawio.png" alt="Diagrama de Entidade-Relacionamento da Feirinha Virtual">
+                <p class="image-caption">Modelo Conceitual da Feirinha Virtual.</p>
+            </div>
+            
+            <div class="sub-title mt-8">Cardinalidade dos Relacionamentos</div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                As cardinalidades descrevem a quantidade de instâncias de uma entidade que se relacionam com instâncias de outra.
+            </p>
+            <ul class="space-y-4 text-gray-700 mt-4">
+                <li>
+                    <strong class="font-bold text-gray-900">Usuários e Produtos (1:N):</strong> Um **usuário** (vendedor) pode ter **vários produtos**, mas um **produto** pertence a apenas um **usuário**.
+                    <div class="image-container">
+                        <img src="usuarioXproduto.png" alt="Cardinalidade 1 para N entre Usuário e Produto">
+                        <p class="image-caption">Relacionamento 1:N entre Usuário e Produto.</p>
+                    </div>
+                </li>
+                <li>
+                    <strong class="font-bold text-gray-900">Categorias e Produtos (1:N):</strong> Uma **categoria** pode ter **vários produtos**, mas um **produto** pertence a apenas uma **categoria**.
+                    <div class="image-container">
+                        <img src="categoriaXproduto.png" alt="Cardinalidade 1 para N entre Categoria e Produto">
+                        <p class="image-caption">Relacionamento 1:N entre Categoria e Produto.</p>
+                    </div>
+                </li>
+                <li>
+                    <strong class="font-bold text-gray-900">Usuários e Favoritos (N:M):</strong> Um **usuário** pode ter **vários produtos favoritos**, e um **produto** pode ser favorito de **vários usuários**.
+                    <div class="image-container">
+                        <img src="usuarioXprodutoXfavoritos.png" alt="Cardinalidade N para M entre Usuário e Favoritos">
+                        <p class="image-caption">Relacionamento N:M entre Usuário e Favoritos.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2 class="section-title">Mapeamento para o Modelo Lógico</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Aqui, convertemos as entidades e relacionamentos em tabelas e colunas, adicionando as chaves primárias e estrangeiras.
+            </p>
+            <div class="sub-title">Regras de Conversão</div>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-4">
+                <li>**Entidades** se tornam **tabelas**.</li>
+                <li>**Atributos** se tornam **colunas**.</li>
+                <li>**Relacionamentos 1:N:** A chave primária da tabela "1" se torna uma chave estrangeira na tabela "N".</li>
+                <li>**Relacionamentos N:M:** É criada uma **tabela intermediária** que armazena as chaves primárias das duas tabelas.</li>
+            </ul>
+            
+            <div class="sub-title mt-8">Exemplo Lógico da Feirinha</div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Veja como as tabelas seriam representadas no modelo lógico:
+            </p>
+
+                    <div class="image-container">
+                        <img src="er_feirinha.png" alt="Cardinalidade N para M entre Usuário e Favoritos">
+                        <p class="image-caption">Relacionamento N:M entre Usuário e Favoritos.</p>
+                    </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Mapeamento para o Modelo Físico</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Nesta etapa final, o modelo lógico é adaptado para um SGBD específico, adicionando detalhes como tipos de dados exatos e restrições. No nosso caso, usaremos a sintaxe do PostgreSQL.
+            </p>
+            <div class="sub-title">Exemplo Físico (PostgreSQL)</div>
+            <div class="code-block">
+                <pre><code>-- Criação da tabela de Usuários
+CREATE TABLE usuarios (
+    usuario_id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+-- Criação da tabela de Categorias
+CREATE TABLE categorias (
+    categoria_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+-- Criação da tabela de Produtos
+CREATE TABLE produtos (
+    produto_id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2) NOT NULL,
+    estoque INTEGER DEFAULT 0,
+    usuario_id INTEGER REFERENCES usuarios(usuario_id),
+    categoria_id INTEGER REFERENCES categorias(categoria_id)
+);
+
+-- Criação da tabela de Favoritos (Tabela N:M)
+CREATE TABLE favoritos (
+    usuario_id INTEGER REFERENCES usuarios(usuario_id),
+    produto_id INTEGER REFERENCES produtos(produto_id),
+    data_favoritado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (usuario_id, produto_id)
+);</code></pre>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

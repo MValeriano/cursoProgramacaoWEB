@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 4: Relacionamentos entre Tabelas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #047857;
+            border-bottom: 4px solid #a7f3d0;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA 4: RELACIONAMENTOS ENTRE TABELAS</h1>
+        <p class="text-xl font-light px-4">Aprenda a conectar diferentes conjuntos de dados.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">A Lógica dos Relacionamentos</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Em um banco de dados, os dados não ficam isolados. Eles são organizados em tabelas que se conectam, criando uma rede de informações. A conexão entre essas tabelas é feita através de chaves.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Imagine a tabela `clientes` e a tabela `vendas`. Elas se relacionam porque um cliente pode fazer várias vendas. Para sabermos qual cliente fez qual venda, usamos a **chave primária** (`cliente_id`) na tabela `clientes` e a repetimos como uma **chave estrangeira** na tabela `vendas`.
+            </p>
+            <div class="mt-8 p-6 bg-green-50 rounded-lg border-l-4 border-green-400 text-green-800">
+                <strong class="font-bold">Chave Primária (PRIMARY KEY):</strong> Identificador único de cada registro em uma tabela.
+                <br><br>
+                <strong class="font-bold">Chave Estrangeira (FOREIGN KEY):</strong> Uma coluna que referencia a chave primária de outra tabela. É a "ponte" que liga as tabelas.
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Tipos de Relacionamento</h2>
+            <ul class="space-y-6 text-gray-700">
+                <li class="p-4 bg-lime-50 rounded-lg">
+                    <strong class="text-lime-700">1 para 1 (1:1):</strong> Um registro na Tabela A se relaciona com exatamente um registro na Tabela B. Ex: um `cliente` tem um único `endereço` principal.
+                </li>
+                <li class="p-4 bg-lime-50 rounded-lg">
+                    <strong class="text-lime-700">1 para Muitos (1:N):</strong> Um registro na Tabela A pode se relacionar com vários registros na Tabela B. Ex: um `cliente` pode ter várias `vendas`.
+                </li>
+                <li class="p-4 bg-lime-50 rounded-lg">
+                    <strong class="text-lime-700">Muitos para Muitos (N:M):</strong> Vários registros da Tabela A podem se relacionar com vários registros da Tabela B. Ex: um `livro` pode ter vários `autores`, e um `autor` pode ter vários `livros`. Nesses casos, usamos uma **tabela intermediária** para conectar as duas.
+                </li>
+            </ul>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando JOIN: Conectando Tabelas</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">JOIN</code> é usado para combinar linhas de duas ou mais tabelas com base em uma coluna relacionada entre elas.
+            </p>
+
+            <h3 class="font-bold text-2xl mt-8 mb-4 text-green-700">INNER JOIN</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Retorna apenas as linhas que têm correspondência nas **duas tabelas**. É o tipo de JOIN mais comum.
+            </p>
+            <div class="image-container">
+                <img src="sql-inner-join.png" alt="Diagrama de Venn mostrando a intersecção de dois conjuntos para ilustrar INNER JOIN.">
+            </div>
+            <div class="code-block mt-4">
+                <pre><code>SELECT clientes.nome, vendas.data_venda
+FROM clientes
+INNER JOIN vendas ON clientes.cliente_id = vendas.cliente_id;</code></pre>
+            </div>
+
+            <h3 class="font-bold text-2xl mt-8 mb-4 text-green-700">LEFT JOIN</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Retorna todas as linhas da tabela da **esquerda** e as linhas correspondentes da tabela da direita. Se não houver correspondência, o resultado da tabela da direita será NULL.
+            </p>
+            <div class="image-container">
+                <img src="sql-left-join.png" alt="Diagrama de Venn mostrando um conjunto completo à esquerda e a intersecção com o conjunto à direita.">
+            </div>
+            <div class="code-block mt-4">
+                <pre><code>SELECT clientes.nome, vendas.venda_id
+FROM clientes
+LEFT JOIN vendas ON clientes.cliente_id = vendas.cliente_id;</code></pre>
+            </div>
+
+            <h3 class="font-bold text-2xl mt-8 mb-4 text-green-700">RIGHT JOIN</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Retorna todas as linhas da tabela da **direita** e as linhas correspondentes da tabela da esquerda. Se não houver correspondência, o resultado da tabela da esquerda será NULL.
+            </p>
+            <div class="image-container">
+                <img src="sql-right-join.png" alt="Diagrama de Venn mostrando um conjunto completo à direita e a intersecção com o conjunto à esquerda.">
+            </div>
+            <div class="code-block mt-4">
+                <pre><code>SELECT clientes.nome, vendas.venda_id
+FROM clientes
+RIGHT JOIN vendas ON clientes.cliente_id = vendas.cliente_id;</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

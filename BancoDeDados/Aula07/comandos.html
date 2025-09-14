@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula: Comandos Básicos PostgreSQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4f46e5;
+            border-bottom: 4px solid #a5b4fc;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Comandos Essenciais do PostgreSQL</h1>
+        <p class="text-xl font-light px-4">Uma referência rápida para dominar as operações básicas de SQL.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card">
+            <h2 class="section-title">SELECT</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O comando **SELECT** é a sua principal ferramenta para extrair dados de um banco de dados. Pense nele como se estivesse pedindo ao banco para lhe mostrar informações específicas. Ele é versátil e forma a base para quase tudo o que você fará com SQL. Seja para extrair uma tabela completa ou apenas alguns detalhes específicos, o **SELECT** é a forma de solicitar que o banco de dados compartilhe os dados com você.
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Para ver todas as informações sobre os funcionários
+SELECT * FROM employees;
+
+-- Para ver apenas os nomes e departamentos
+SELECT name, department FROM employees;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">WHERE</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula **WHERE** funciona como uma lente de aumento para suas consultas, permitindo que você se concentre apenas nos dados específicos de que precisa. Em vez de recuperar todas as linhas de uma tabela, você pode aplicar condições para restringir os resultados. Isso torna suas consultas mais eficientes e o resultado mais relevante.
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Encontrar funcionários do departamento 'Sales'
+SELECT * FROM employees WHERE department = 'Sales';
+
+-- Encontrar funcionários do departamento 'Sales' que ganham mais de 50000
+SELECT * FROM employees WHERE department = 'Sales' AND salary > 50000;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">ORDER BY</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula **ORDER BY** organiza seus dados para que você possa vê-los com mais clareza. Ela permite que você classifique os resultados por uma ou mais colunas, facilitando a análise e a compreensão das informações. Você pode ordenar em ordem crescente (`ASC`) ou decrescente (`DESC`).
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Classificar funcionários por salário, do maior para o menor
+SELECT * FROM employees ORDER BY salary DESC;
+
+-- Classificar primeiro por departamento e depois por nome
+SELECT * FROM employees ORDER BY department, name;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">JOIN</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                O comando **JOIN** é usado para combinar dados de duas ou mais tabelas. Isso é particularmente útil quando seu banco de dados é normalizado e as informações relacionadas estão em tabelas separadas. O **JOIN** garante que seus dados permaneçam bem organizados e fáceis de consultar.
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Unir tabelas 'employees' e 'departments' para ver nome e departamento
+SELECT employees.name, departments.name
+FROM employees
+JOIN departments ON employees.department_id = departments.id;
+
+-- Usar LEFT JOIN para incluir funcionários sem departamento
+SELECT employees.name, departments.name
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.id;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">GROUP BY</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula **GROUP BY** é uma ferramenta essencial para organizar e resumir dados em suas consultas. Ela ajuda você a dividir grandes conjuntos de dados em grupos menores e significativos com base em colunas específicas. É especialmente útil com funções agregadas como `COUNT()` e `AVG()`.
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Contar quantos funcionários há em cada departamento
+SELECT department, COUNT(*) FROM employees GROUP BY department;
+
+-- Encontrar o salário médio de cada departamento
+SELECT department, AVG(salary) FROM employees GROUP BY department;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">HAVING</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula **HAVING** é como um filtro para dados agrupados. Enquanto o **WHERE** filtra linhas individuais, o **HAVING** permite que você aplique condições aos resultados agregados após o agrupamento. Isso é útil para focar em grupos que atendem a critérios específicos.
+            </p>
+            <div class="sub-title">Exemplo</div>
+            <div class="code-block">
+                <pre><code>-- Encontrar departamentos onde o salário médio é superior a 50000
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">LIMIT</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A cláusula **LIMIT** é perfeita para trabalhar com grandes conjuntos de dados quando você precisa visualizar apenas uma pequena parte. É ideal para uma checagem rápida ou para depuração.
+            </p>
+            <div class="sub-title">Exemplo</div>
+            <div class="code-block">
+                <pre><code>-- Limitar os resultados para as 10 primeiras linhas
+SELECT * FROM employees LIMIT 10;</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">CREATE, INSERT, UPDATE, DELETE</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Esses comandos formam a espinha dorsal do gerenciamento de banco de dados, permitindo que você adicione, modifique ou remova dados em suas tabelas. O domínio desses comandos permite que você assuma o controle total dos seus dados.
+            </p>
+            <div class="sub-title">Exemplos</div>
+            <div class="code-block">
+                <pre><code>-- Adicionar um novo funcionário
+INSERT INTO employees (name, department) VALUES ('John Doe', 'Marketing');
+
+-- Atualizar o departamento de um funcionário
+UPDATE employees SET department = 'HR' WHERE id = 1;
+
+-- Excluir um registro de funcionário
+DELETE FROM employees WHERE id = 1;</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

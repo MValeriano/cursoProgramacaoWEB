@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: A Instrução SELECT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
+        }
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
+        }
+
+        .sub-section-title {
+            @apply text-xl font-bold text-gray-700 mb-4;
+        }
+
+        .sql-code {
+            @apply bg-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre-wrap;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">A Instrução SELECT em SQL</h1>
+            <p class="text-lg md:text-xl font-medium">A porta de entrada para a recuperação e análise de dados</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+
+        <!-- O que é SELECT? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">O que é a instrução SELECT?</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <p class="text-gray-600 mb-4">
+                        A instrução **SELECT** é a operação mais comum e fundamental na **Linguagem de Manipulação de Dados (DML)**. Sua função principal é **recuperar dados** de uma ou mais tabelas, permitindo transformá-los e construir resumos significativos **sem alterar a tabela original**.
+                    </p>
+                    <p class="text-gray-600">
+                        É a base de qualquer consulta, usada para solicitar e exibir informações de forma organizada.
+                    </p>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x350/bfdbfe/1e40af?text=SQL+Query+%E2%86%92+Dados+Visuais" alt="Diagrama ilustrando o processo de uma query SQL transformando dados brutos em uma visualização." class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Selecionando Dados Básicos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">1. Selecionando Dados Básicos</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    A forma mais simples de usar o `SELECT` é com o asterisco (*), que atua como um curinga para selecionar todas as colunas de uma tabela.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Todas as Colunas</h3>
+                        <div class="sql-code">SELECT * FROM CUSTOMER;</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Colunas Específicas</h3>
+                        <p class="text-sm text-gray-600 mb-2">Liste as colunas que você deseja ver, separadas por vírgulas.</p>
+                        <div class="sql-code">SELECT Name, City FROM CUSTOMER;</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expressões e Aliases -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">2. Expressões e Aliases</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    Vá além da seleção simples. Realize cálculos em colunas e atribua nomes mais legíveis aos resultados.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Cálculos Dinâmicos</h3>
+                        <p class="text-sm text-gray-600 mb-2">Crie novas colunas calculadas na hora.</p>
+                        <div class="sql-code">SELECT PRICE * 1.07 FROM PRODUCTS;</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Aliases com AS</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dê um nome (alias) mais amigável ao resultado.</p>
+                        <div class="sql-code">SELECT PRICE * 1.07 AS TAXED_PRICE FROM PRODUCTS;</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtrando com WHERE -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">3. Filtrando Dados com a Cláusula WHERE</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x300/fde047/854d0e?text=Filtro+de+Dados" alt="Um ícone de funil para representar a filtragem de dados." class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <p class="text-gray-600 mb-4">
+                        A cláusula **WHERE** é a ferramenta essencial para **filtrar registros**, exibindo apenas aqueles que correspondem a uma ou mais condições.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>**Operadores de Comparação:** `=, !=, >, <, >=, <=`.</li>
+                        <li>**Operadores Lógicos:** `AND`, `OR`, `NOT` para combinar condições.</li>
+                        <li>**`IN` e `NOT IN`:** Para listar múltiplos valores.</li>
+                        <li>**`LIKE`:** Para buscar padrões em strings (com `%` e `_`).</li>
+                        <li>**`IS NULL` / `IS NOT NULL`:** Para verificar valores inexistentes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agregação e Grupos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">4. Agregando Dados com GROUP BY e Funções</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    Agregue dados para obter um total a partir de múltiplos registros. A cláusula **GROUP BY** permite agrupar esses totais por uma ou mais colunas.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Funções de Agregação</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                            <li>`COUNT()`: Conta o número de registros.</li>
+                            <li>`SUM()`: Soma valores numéricos.</li>
+                            <li>`AVG()`: Calcula a média.</li>
+                            <li>`MIN()`/`MAX()`: Encontra valores mínimo/máximo.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Exemplo com GROUP BY</h3>
+                        <div class="sql-code">
+                            SELECT Category, COUNT(*) AS TotalProducts
+                            FROM Products
+                            GROUP BY Category;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtrando Grupos com HAVING -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">5. Filtrando Grupos com HAVING</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <p class="text-gray-600 mb-4">
+                        A cláusula **HAVING** é usada para **filtrar resultados após a agregação**. Diferentemente do `WHERE`, que filtra registros individuais, o `HAVING` atua sobre os grupos criados pelo `GROUP BY`.
+                    </p>
+                    <div class="sql-code">
+                        SELECT Category, COUNT(*)
+                        FROM Products
+                        GROUP BY Category
+                        HAVING COUNT(*) > 10;
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x300/93c5fd/1e40af?text=Filtrando+Grupos" alt="Diagrama de um filtro sendo aplicado a grupos de dados, não a dados individuais." class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Outras Cláusulas e Conceitos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">6. Outras Cláusulas e Conceitos Chave</h2>
+            <div class="card-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">ORDER BY</h3>
+                        <p class="text-sm text-gray-600">
+                            **Ordena** o conjunto de resultados. Use `ASC` para ascendente (padrão) e `DESC` para descendente.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">DISTINCT</h3>
+                        <p class="text-sm text-gray-600">
+                            Garante que os resultados sejam **únicos**, eliminando linhas duplicadas.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">CASE</h3>
+                        <p class="text-sm text-gray-600">
+                            Adiciona **lógica condicional** (como um `IF-THEN-ELSE`) dentro de uma consulta.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">JOIN</h3>
+                        <p class="text-sm text-gray-600">
+                            **Combina dados** de duas ou mais tabelas com base em uma coluna relacionada.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Subqueries</h3>
+                        <p class="text-sm text-gray-600">
+                            Aninha uma consulta `SELECT` dentro de outra para filtrar ou retornar valores.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">Operações de Conjunto</h3>
+                        <p class="text-sm text-gray-600">
+                            Combina resultados de múltiplas consultas com `UNION`, `INTERSECT` e `EXCEPT`.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

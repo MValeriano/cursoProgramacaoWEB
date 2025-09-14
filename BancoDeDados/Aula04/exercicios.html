@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Consultas SQL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0f2fe; /* Light blue background */
+        }
+
+        .header-bg {
+            background-image: linear-gradient(to right, #0077b6, #00b4d8);
+        }
+
+        .container-main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            padding: 2.5rem;
+        }
+
+        .exercise-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0c4a6e; /* Darker blue */
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .exercise-objective {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise-task {
+            font-size: 1rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .solution-section {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .solution-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .solution-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #4b5563;
+        }
+
+        .toggle-button {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition-property: background-color, transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+
+        .show-code-button {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        .show-code-button:hover {
+            background-color: #1e40af;
+        }
+
+        .hide-code-button {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        .hide-code-button:hover {
+            background-color: #b91c1c;
+        }
+
+        .solution-content {
+            margin-top: 1rem;
+            background-color: #1f2937; /* Dark background for code */
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            display: none;
+        }
+
+        .solution-content pre {
+            color: #f3f4f6;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-bg text-white py-12 shadow-xl rounded-b-[3rem]">
+        <div class="container-main text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">📚 Exercícios de SQL</h1>
+            <p class="text-xl font-light">Livraria ZedeLivros</p>
+        </div>
+    </header>
+
+    <main class="container-main">
+
+        <!-- Exercise 1 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📝</span> 1. Listagem Básica
+                </h2>
+                <p class="exercise-objective">Objetivo: Listar todas as informações dos clientes cadastrados na livraria.</p>
+                <p class="exercise-task">Tarefa: Escreva uma consulta que mostre todos os dados de todos os clientes.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">SELECT * FROM Clientes;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">💰</span> 2. Filtro por Preço
+                </h2>
+                <p class="exercise-objective">Objetivo: Encontrar livros com preço superior a R$ 40,00 para uma promoção especial.</p>
+                <p class="exercise-task">Tarefa: Mostre todos os livros que custam mais de R$ 40,00.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">SELECT * FROM Livros WHERE preco > 40.00;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🛍️</span> 3. Vendas por Cliente
+                </h2>
+                <p class="exercise-objective">Objetivo: Relacionar cada cliente com suas respectivas vendas.</p>
+                <p class="exercise-task">Tarefa: Liste o nome de cada cliente junto com a data e o valor total de suas compras.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome, v.data_venda, v.valor_total
+FROM Clientes c
+INNER JOIN Vendas v ON c.id_cliente = v.id_cliente;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🛒</span> 4. Detalhes das Compras
+                </h2>
+                <p class="exercise-objective">Objetivo: Verificar o que cada cliente comprou em detalhes.</p>
+                <p class="exercise-task">Tarefa: Mostre o nome do cliente, o título do livro comprado, a quantidade e o preço unitário de cada item vendido.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome, l.titulo, iv.quantidade, iv.preco_unitario
+FROM Clientes c
+INNER JOIN Vendas v ON c.id_cliente = v.id_cliente
+INNER JOIN ItensVenda iv ON v.id_venda = iv.id_venda
+INNER JOIN Livros l ON iv.id_livro = l.id_livro;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">✍️</span> 5. Autores dos Livros
+                </h2>
+                <p class="exercise-objective">Objetivo: Descobrir quem são os autores de cada livro.</p>
+                <p class="exercise-task">Tarefa: Liste todos os livros com o nome de seus respectivos autores.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT l.titulo, a.nome
+FROM Livros l
+INNER JOIN Autores a ON l.id_autor = a.id_autor;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 6 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🧾</span> 6. Faturas das Vendas
+                </h2>
+                <p class="exercise-objective">Objetivo: Consultar as faturas geradas para cada venda.</p>
+                <p class="exercise-task">Tarefa: Mostre o número da venda, a data da venda, o valor total da fatura e seu status.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT f.id_fatura, v.data_venda, f.valor_total, f.status
+FROM Faturas f
+INNER JOIN Vendas v ON f.id_venda = v.id_venda;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 7 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🥇</span> 7. Ranking de Clientes
+                </h2>
+                <p class="exercise-objective">Objetivo: Identificar os clientes que mais compram na livraria.</p>
+                <p class="exercise-task">Tarefa: Calcule quantas compras cada cliente fez e o valor total gasto por eles.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome, COUNT(v.id_venda) AS total_compras, SUM(v.valor_total) AS total_gasto
+FROM Clientes c
+LEFT JOIN Vendas v ON c.id_cliente = v.id_cliente
+GROUP BY c.nome
+ORDER BY total_gasto DESC;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 8 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">❤️</span> 8. Fãs de Machado de Assis
+                </h2>
+                <p class="exercise-objective">Objetivo: Encontrar quais clientes compraram livros do autor Machado de Assis.</p>
+                <p class="exercise-task">Tarefa: Liste os nomes dos clientes que adquiriram obras deste autor (sem repetir nomes).</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT DISTINCT c.nome
+FROM Clientes c
+INNER JOIN Vendas v ON c.id_cliente = v.id_cliente
+INNER JOIN ItensVenda iv ON v.id_venda = iv.id_venda
+INNER JOIN Livros l ON iv.id_livro = l.id_livro
+INNER JOIN Autores a ON l.id_autor = a.id_autor
+WHERE a.nome = 'Machado de Assis';
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 9 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📦</span> 9. Livros em Estoque
+                </h2>
+                <p class="exercise-objective">Objetivo: Verificar quais livros estão com estoque baixo.</p>
+                <p class="exercise-task">Tarefa: Mostre os livros que têm menos de 30 unidades em estoque.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">SELECT * FROM Livros WHERE estoque < 30;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 10 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📅</span> 10. Vendas do Mês
+                </h2>
+                <p class="exercise-objective">Objetivo: Analisar as vendas realizadas em janeiro de 2024.</p>
+                <p class="exercise-task">Tarefa: Liste todas as vendas feitas no mês de janeiro de 2024, mostrando o nome do cliente e o valor total.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome, v.valor_total
+FROM Vendas v
+INNER JOIN Clientes c ON v.id_cliente = c.id_cliente
+WHERE v.data_venda BETWEEN '2024-01-01' AND '2024-01-31';
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 11 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🇧🇷</span> 11. Autores Brasileiros
+                </h2>
+                <p class="exercise-objective">Objetivo: Descobrir quais autores são brasileiros.</p>
+                <p class="exercise-task">Tarefa: Mostre todos os autores que têm nacionalidade brasileira.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">SELECT * FROM Autores WHERE nacionalidade = 'Brasileira';</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 12 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">🏢</span> 12. Livros por Editora
+                </h2>
+                <p class="exercise-objective">Objetivo: Agrupar os livros por editora.</p>
+                <p class="exercise-task">Tarefa: Conte quantos livros cada editora publicou e mostre o resultado em ordem alfabética pelo nome da editora.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT e.nome, COUNT(l.id_livro) AS total_livros
+FROM Editoras e
+INNER JOIN Livros l ON e.id_editora = l.id_editora
+GROUP BY e.nome
+ORDER BY e.nome ASC;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 13 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">⏰</span> 13. Faturas em Atraso
+                </h2>
+                <p class="exercise-objective">Objetivo: Identificar faturas que estão com pagamento em aberto e vencidas.</p>
+                <p class="exercise-task">Tarefa: Liste as faturas que estão com status "aberta" e cuja data de vencimento já passou (considere a data atual como 2024-02-20).</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT *
+FROM Faturas
+WHERE status = 'aberta' AND data_vencimento < '2024-02-20';
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 14 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">📈</span> 14. Livros Mais Vendidos
+                </h2>
+                <p class="exercise-objective">Objetivo: Descobrir quais livros são os mais vendidos.</p>
+                <p class="exercise-task">Tarefa: Mostre o título de cada livro e a quantidade total vendida, ordenando do mais vendido para o menos vendido.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT l.titulo, SUM(iv.quantidade) AS total_vendido
+FROM Livros l
+INNER JOIN ItensVenda iv ON l.id_livro = iv.id_livro
+GROUP BY l.titulo
+ORDER BY total_vendido DESC;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 15 -->
+        <div class="exercise-card">
+            <div class="card-content">
+                <h2 class="exercise-title">
+                    <span class="exercise-icon">👤</span> 15. Clientes que Não Compraram
+                </h2>
+                <p class="exercise-objective">Objetivo: Identificar clientes que ainda não fizeram nenhuma compra.</p>
+                <p class="exercise-task">Tarefa: Liste os clientes que não possuem nenhuma venda registrada.</p>
+                <div class="solution-section">
+                    <div class="solution-header" onclick="toggleSolution(this)">
+                        <span class="solution-title">Solução</span>
+                        <button class="toggle-button show-code-button">Mostrar Código</button>
+                    </div>
+                    <div class="solution-content">
+                        <pre><code class="language-sql">
+SELECT c.nome
+FROM Clientes c
+LEFT JOIN Vendas v ON c.id_cliente = v.id_cliente
+WHERE v.id_cliente IS NULL;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleSolution(element) {
+            const solutionContent = element.nextElementSibling;
+            const button = element.querySelector('button');
+            const isVisible = solutionContent.style.display === 'block';
+
+            if (isVisible) {
+                solutionContent.style.display = 'none';
+                button.textContent = 'Mostrar Código';
+                button.classList.remove('hide-code-button');
+                button.classList.add('show-code-button');
+            } else {
+                solutionContent.style.display = 'block';
+                button.textContent = 'Esconder Código';
+                button.classList.remove('show-code-button');
+                button.classList.add('hide-code-button');
+            }
+        }
+    </script>
+</body>
+
+</html>

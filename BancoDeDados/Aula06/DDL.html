@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDL: Linguagem de Definição de Dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .header-bg {
+            background-image: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+        }
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .icon {
+            font-size: 3rem;
+            color: #0077b6;
+        }
+        .ddl-command-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .ddl-command-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">DDL: A Linguagem da Estrutura</h1>
+        <p class="text-xl font-light px-4">Linguagem de Definição de Dados - Mude o esqueleto do seu banco de dados.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-indigo-700">O Que é DDL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+                A Linguagem de Definição de Dados (DDL) é um subconjunto da SQL usado para definir e gerenciar a estrutura dos objetos de um banco de dados. Em vez de manipular os dados em si, você está trabalhando com o "esqueleto" do banco, como tabelas, índices e visões.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- CREATE Section -->
+            <div class="ddl-command-section">
+                <div class="ddl-command-header">
+                    <span class="icon">➕</span>
+                </div>
+                <div class="card p-6 h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-green-600">CREATE</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Usado para criar novos objetos no banco de dados. É o primeiro passo para construir sua estrutura de dados.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">CREATE TABLE</p>
+                        <pre><code>CREATE TABLE Clientes (
+    cliente_id INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);</code></pre>
+                        <p class="font-bold mt-4">CREATE DATABASE</p>
+                        <pre><code>CREATE DATABASE LojaOnline;</code></pre>
+                        <p class="font-bold mt-4">CREATE INDEX</p>
+                        <pre><code>CREATE INDEX idx_email ON Clientes (email);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALTER Section -->
+            <div class="ddl-command-section">
+                <div class="ddl-command-header">
+                    <span class="icon">🔧</span>
+                </div>
+                <div class="card p-6 h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-yellow-600">ALTER</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Permite modificar a estrutura de um objeto já existente. Você pode adicionar, remover ou alterar colunas.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Adicionar Coluna</p>
+                        <pre><code>ALTER TABLE Clientes
+ADD telefone VARCHAR(20);</code></pre>
+                        <p class="font-bold mt-4">Remover Coluna</p>
+                        <pre><code>ALTER TABLE Clientes
+DROP COLUMN telefone;</code></pre>
+                        <p class="font-bold mt-4">Modificar Coluna</p>
+                        <pre><code>ALTER TABLE Clientes
+MODIFY COLUMN nome VARCHAR(150);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DROP Section -->
+            <div class="ddl-command-section">
+                <div class="ddl-command-header">
+                    <span class="icon">🗑️</span>
+                </div>
+                <div class="card p-6 h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-red-600">DROP</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Usado para remover objetos do banco de dados de forma definitiva. Cuidado, esta operação não pode ser desfeita!
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <p class="font-bold">Remover Tabela</p>
+                        <pre><code>DROP TABLE Clientes;</code></pre>
+                        <p class="font-bold mt-4">Remover Banco de Dados</p>
+                        <pre><code>DROP DATABASE LojaOnline;</code></pre>
+                        <p class="font-bold mt-4">Remover Índice</p>
+                        <pre><code>DROP INDEX idx_email;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center text-lg text-gray-600">
+            <p>
+                O DDL é essencial para o <b class="text-gray-900">design</b> e a <b class="text-gray-900">manutenção</b> de qualquer banco de dados relacional.
+            </p>
+            <p>
+                É a fundação sobre a qual todos os seus dados serão construídos.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

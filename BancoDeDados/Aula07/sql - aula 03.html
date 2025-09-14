@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 3: Definição de Estruturas (DDL)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            border-bottom: 4px solid #bfdbfe;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-header span {
+            margin-right: 0.5rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #f3f4f6;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">AULA 3: DEFINIÇÃO DE ESTRUTURAS (DDL)</h1>
+        <p class="text-xl font-light px-4">Aprenda a criar e modificar a estrutura de um banco de dados.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">O que é DDL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                A **DDL** (Data Definition Language) é o conjunto de comandos SQL usado para **definir, modificar e remover a estrutura** do seu banco de dados. Com ela, você constrói a "casa" que vai guardar seus dados.
+            </p>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando CREATE: Criando Tabelas</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">CREATE TABLE</code> é usado para criar uma nova tabela no banco de dados.
+            </p>
+            <h3 class="font-bold text-2xl mb-2 text-blue-700">Sintaxe</h3>
+            <div class="code-block mt-4">
+                <pre><code>CREATE TABLE nome_tabela (
+    coluna1 tipo_de_dado,
+    coluna2 tipo_de_dado,
+    ...
+);</code></pre>
+            </div>
+            
+            <h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Principais Tipos de Dados</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Eles definem o tipo de informação que cada coluna pode armazenar.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">INTEGER:</strong> Números inteiros. Ex: idade, quantidade.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">TEXT / VARCHAR:</strong> Cadeias de caracteres. Ex: nomes, endereços.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DECIMAL / REAL:</strong> Números com casas decimais. Ex: preços, saldos.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DATE:</strong> Armazena datas.</li>
+            </ul>
+
+            <h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Constraints (Restrições)</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Regras que garantem a integridade e a validade dos dados.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">PRIMARY KEY:</strong> Identificador único para cada registro. Não pode ser nula e deve ser única.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">FOREIGN KEY:</strong> Liga uma coluna a outra tabela, criando relacionamentos.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">NOT NULL:</strong> Garante que a coluna não pode ter um valor nulo.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">UNIQUE:</strong> Todos os valores na coluna devem ser únicos.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DEFAULT:</strong> Define um valor padrão caso nenhum valor seja fornecido.</li>
+            </ul>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando ALTER: Modificando Tabelas</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Use o comando <code class="bg-gray-200 px-2 py-1 rounded">ALTER TABLE</code> para adicionar, modificar ou remover colunas de uma tabela existente.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Adicionar Coluna</h3>
+                    <div class="code-block mt-4">
+                        <pre><code>ALTER TABLE nome_tabela
+ADD COLUMN nova_coluna tipo_dado;</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Modificar Coluna</h3>
+                    <div class="code-block mt-4">
+                        <pre><code>ALTER TABLE nome_tabela
+MODIFY COLUMN coluna tipo_dado;</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Remover Coluna</h3>
+                    <div class="code-block mt-4">
+                        <pre><code>ALTER TABLE nome_tabela
+DROP COLUMN coluna;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Comando DROP: Excluindo Estruturas</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">DROP TABLE</code> é usado para excluir uma tabela inteira. **Use com extrema cautela**, pois a operação é irreversível.
+            </p>
+            <div class="code-block">
+                <pre><code>DROP TABLE nome_tabela;</code></pre>
+            </div>
+            <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
+                <strong>🚫 AVISO:</strong> Isso apaga a tabela e todos os seus dados.
+            </div>
+        </div>
+        
+        <div class="my-16">
+            <h2 class="section-title text-center">EXERCÍCIOS DDL</h2>
+            <div class="text-center text-lg text-gray-600 mb-8">
+                Vamos praticar a definição de estruturas com o nosso banco de dados.
+            </div>
+            
+            <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
+                <!-- Exercício 1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 1: Criando uma Tabela</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Crie uma nova tabela chamada `fornecedores` com as colunas: `fornecedor_id` (PRIMARY KEY, INTEGER), `nome` (TEXT, NOT NULL), `cidade` (TEXT) e `contato` (TEXT).
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(1)">Mostrar Solução</button>
+                    <div id="solution-1" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>CREATE TABLE fornecedores (
+    fornecedor_id INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    cidade TEXT,
+    contato TEXT
+);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 2: Adicionando uma Coluna</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Adicione uma nova coluna chamada `email` (TEXT) à tabela `fornecedores`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(2)">Mostrar Solução</button>
+                    <div id="solution-2" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>ALTER TABLE fornecedores
+ADD COLUMN email TEXT;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 3: Modificando uma Coluna</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Altere o tipo de dado da coluna `contato` na tabela `fornecedores` para `INTEGER`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(3)">Mostrar Solução</button>
+                    <div id="solution-3" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>ALTER TABLE fornecedores
+MODIFY COLUMN contato INTEGER;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 4: Removendo uma Coluna</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Remova a coluna `cidade` da tabela `fornecedores`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(4)">Mostrar Solução</button>
+                    <div id="solution-4" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>ALTER TABLE fornecedores
+DROP COLUMN cidade;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 5: Adicionando uma Tabela de Relacionamento</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Crie uma tabela chamada `livros_fornecedores` para relacionar `livros` com `fornecedores`, usando `livro_id` e `fornecedor_id` como chaves estrangeiras.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(5)">Mostrar Solução</button>
+                    <div id="solution-5" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>CREATE TABLE livros_fornecedores (
+    livro_id INTEGER,
+    fornecedor_id INTEGER,
+    PRIMARY KEY(livro_id, fornecedor_id),
+    FOREIGN KEY(livro_id) REFERENCES livros(livro_id),
+    FOREIGN KEY(fornecedor_id) REFERENCES fornecedores(fornecedor_id)
+);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 6 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <span>📘</span>
+                        <span>Exercício 6: Removendo a Tabela</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Exclua a tabela `fornecedores`.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(6)">Mostrar Solução</button>
+                    <div id="solution-6" class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DROP TABLE fornecedores;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleSolution(id) {
+                const solution = document.getElementById(`solution-${id}`);
+                const button = document.querySelector(`[onclick="toggleSolution(${id})"]`);
+                
+                if (solution.classList.contains('active')) {
+                    solution.classList.remove('active');
+                    button.textContent = 'Mostrar Solução';
+                } else {
+                    solution.classList.add('active');
+                    button.textContent = 'Ocultar Solução';
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

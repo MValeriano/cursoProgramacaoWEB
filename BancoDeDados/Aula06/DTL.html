@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTL: Linguagem de Transação de Dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            flex-grow: 1;
+        }
+
+        .icon {
+            font-size: 3rem;
+        }
+
+        .dtl-command-section {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">DTL: Linguagem de Transação de Dados</h1>
+        <p class="text-xl font-light px-4">Garanta a integridade e consistência das suas operações.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">O Que é DTL?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+                A Linguagem de Transação de Dados (DTL) é um subconjunto da SQL que gerencia as transações, garantindo que as operações sejam executadas de forma segura e confiável. Uma transação é uma sequência de uma ou mais operações lógicas que devem ser tratadas como uma única unidade de trabalho.
+            </p>
+        </div>
+
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-purple-800">Propriedades ACID</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center mb-8">
+                As transações em bancos de dados relacionais são garantidas pelas propriedades ACID, que asseguram a confiabilidade do processamento.
+            </p>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <span class="icon text-purple-600">⚛️</span>
+                    <h3 class="text-xl font-bold mt-2">Atomicidade</h3>
+                    <p class="text-sm text-gray-600">
+                        Todas as operações de uma transação são executadas com sucesso, ou nenhuma delas é. É o princípio do "tudo ou nada".
+                    </p>
+                </div>
+                <div class="text-center">
+                    <span class="icon text-purple-600">✅</span>
+                    <h3 class="text-xl font-bold mt-2">Consistência</h3>
+                    <p class="text-sm text-gray-600">
+                        A transação leva o banco de dados de um estado consistente para outro. As regras de integridade do BD são mantidas.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <span class="icon text-purple-600"> isolé</span>
+                    <h3 class="text-xl font-bold mt-2">Isolamento</h3>
+                    <p class="text-sm text-gray-600">
+                        Transações simultâneas não interferem umas nas outras. O resultado final é o mesmo de se elas fossem executadas sequencialmente.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <span class="icon text-purple-600">🧱</span>
+                    <h3 class="text-xl font-bold mt-2">Durabilidade</h3>
+                    <p class="text-sm text-gray-600">
+                        Uma vez que a transação é concluída (commit), suas alterações são permanentes e sobrevivem a falhas do sistema.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- COMMIT Section -->
+            <div class="dtl-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-green-500">💾</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-green-600">Comando COMMIT</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Finaliza uma transação com sucesso, salvando permanentemente todas as alterações feitas no banco de dados.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <pre><code>BEGIN TRANSACTION;
+UPDATE Contas
+SET saldo = saldo - 100
+WHERE id = 123;
+UPDATE Contas
+SET saldo = saldo + 100
+WHERE id = 456;
+COMMIT; -- Salva todas as alterações</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROLLBACK Section -->
+            <div class="dtl-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-red-500">↩️</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-red-600">Comando ROLLBACK</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Desfaz todas as alterações de uma transação não finalizada, restaurando o banco de dados para o estado em que estava antes do início da transação.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <pre><code>BEGIN TRANSACTION;
+UPDATE Livros
+SET estoque = estoque - 1
+WHERE titulo = 'O Iluminado';
+-- Ocorre um erro inesperado...
+ROLLBACK; -- Desfaz a operação
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAVEPOINT Section -->
+            <div class="dtl-command-section flex flex-col">
+                <div class="flex justify-center mb-4">
+                    <span class="icon text-yellow-500">📍</span>
+                </div>
+                <div class="card p-6 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-yellow-600">Comando SAVEPOINT</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                        Cria um ponto de salvamento temporário dentro de uma transação. Permite reverter apenas para aquele ponto, sem desfazer a transação inteira.
+                    </p>
+                    <div class="code-block text-xs mt-auto">
+                        <pre><code>BEGIN TRANSACTION;
+INSERT INTO Clientes (...)
+SAVEPOINT cliente_adicionado;
+INSERT INTO Vendas (...);
+-- Se a inserção de Vendas falhar...
+ROLLBACK TO SAVEPOINT cliente_adicionado;
+-- Apenas a venda é desfeita.</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center text-lg text-gray-600">
+            <p>
+                O uso correto da <b class="text-gray-900">DTL</b> é a chave para garantir que as operações críticas sejam seguras e que os dados permaneçam íntegros, mesmo em caso de falhas.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
