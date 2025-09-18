@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão Visual: Comandos SQL Fundamentais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header-bg {
+            background-image: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4f46e5;
+            border-bottom: 4px solid #a5b4fc;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .exercise-card {
+            background-color: #f3f4f6;
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .exercise-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .solution-toggle-btn {
+            background-color: #e0e7ff;
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .solution-toggle-btn:hover {
+            background-color: #c7d2fe;
+        }
+
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .solution-container.active {
+            display: block;
+        }
+
+        .solution-code {
+            background-color: #1f2937;
+            color: #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        thead tr {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f7fafc;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .warning {
+            color: #c53030;
+            font-weight: 600;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fed7d7;
+            border-radius: 0.75rem;
+            border: 1px solid #c53030;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bg py-16 text-center text-white rounded-b-[4rem]">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Revisão Comandos SQL Fundamentais</h1>
+        <p class="text-xl font-light px-4">Uma visão geral prática para reforçar seu conhecimento em DML e DQL.</p>
+    </div>
+
+    <div class="container mt-12 mb-16">
+
+        <div class="card">
+            <h2 class="section-title">📊 Tabela de Exemplo: CLIENTES</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Vamos usar a tabela abaixo como referência para todos os nossos exemplos e exercícios.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>cliente_id</th>
+                        <th>nome</th>
+                        <th>email</th>
+                        <th>telefone</th>
+                        <th>endereco</th>
+						<th>data_cadastro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Ana Silva</td>
+                        <td>ana.silva@email.com</td>
+                        <td>(11) 99999-1111</td>
+                        <td>Rua das Flores, 123 - São Paulo</td>
+						<td>2023-01-15</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Carlos Oliveira</td>
+                        <td>carlos.oliveira@email.com</td>
+                        <td>(21) 98888-2222</td>
+                        <td>Av. Brasil, 456 - Rio de Janeiro</td>
+						<td>2023-02-20</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Maria Santos</td>
+                        <td>maria.santos@email.com</td>
+                        <td>(31) 97777-3333</td>
+                        <td>Rua da Paz, 789 - Belo Horizonte</td>
+						<td>2023-03-10</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>João Pereira</td>
+                        <td>joao.pereira@email.com</td>
+                        <td>(41) 96666-4444</td>
+                        <td>Rua das Palmeiras, 321 - Curitiba</td>
+						<td>2023-04-05</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Paula Costa</td>
+                        <td>paula.costa@email.com</td>
+                        <td>(51) 95555-5555</td>
+                        <td>Av. Central, 654 - Porto Alegre</td>
+						<td>2023-05-12</td>
+                    </tr>					
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">1. Comando INSERT - Inserindo Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Para que serve?** Adicionar novos registros (linhas) em uma tabela.
+            </p>
+            <div class="sub-title">Sintaxe Básica</div>
+            <div class="code-block">
+                <pre><code>INSERT INTO nome_tabela (coluna1, coluna2, coluna3, ...)
+VALUES (valor1, valor2, valor3, ...);</code></pre>
+            </div>
+            <div class="sub-title">Exemplo Prático</div>
+            <div class="code-block">
+                <pre><code>INSERT INTO clientes (nome, email, telefone, endereco)
+VALUES ('Carlos Santana', 'santana@hotmail.com', '(91) 9999-5555', 'Rua dos pardais 183');</code></pre>
+            </div>
+            <div class="sub-title">Resultado Visual</div>
+            <div class="bg-gray-100 p-6 rounded-lg text-sm md:flex md:gap-8">
+                <div class="md:w-1/2 mb-4 md:mb-0">
+                    <strong class="text-gray-700">ANTES:</strong>
+                    <pre><code>
++------------+-------------------+
+| cliente_id | nome              |
++------------+-------------------+
+| 3          | Maria Santos      |
+| 4          | João Pereira      |
+| 5          | Paula Costa       |
++------------+-------------------+
+                    </code></pre>
+                </div>
+                <div class="md:w-1/2">
+                    <strong class="text-gray-700">DEPOIS:</strong>
+                    <pre><code>
++------------+-------------------+
+| cliente_id | nome              |
++------------+-------------------+
+| 3          | Maria Santos      |
+| 4          | João Pereira      |
+| 5          | Paula Costa       |
+| 6          | Carlos Santana    | ← NOVO!
++------------+-------------------+
+                    </code></pre>
+                </div>
+            </div>
+
+            <h3 class="sub-title">✏️ Exercícios - INSERT</h3>
+            <div class="space-y-4">
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 1.1</div>
+                    <p class="text-gray-700 mb-4">
+                        Adicione um novo cliente à tabela `clientes`. Insira 'Fátima Silveira' na endereco 'Avenida das Industrias 125', 
+						com email de 'fatinhadoces@gmail.com' e telefone de '(11) 6565-9985'.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>INSERT INTO clientes (nome, email, telefone, endereco)
+VALUES ('Fátima Silveira', 'fatinhadoces@gmail.com', '(11) 6565-9985', 'Avenida das Industrias 125');</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 1.2</div>
+                    <p class="text-gray-700 mb-4">
+                        Insira um novo cliente 'Leonor Souza' na endereco 'Rua Lindaura Campos 965', com email de 50.00 e telefone de 80.00.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>INSERT INTO clientes (nome, email, telefone, endereco)
+VALUES ('Leonor Souza', 'leosouza@gmail.com', '(21) 7575-8995', 'Rua Lindaura Campos 965');</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">2. Comando UPDATE - Modificando Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Para que serve?** Alterar valores de registros existentes em uma tabela.
+            </p>
+            <div class="sub-title">Sintaxe Básica</div>
+            <div class="code-block">
+                <pre><code>UPDATE nome_tabela
+SET coluna1 = novo_valor, coluna2 = novo_valor2, ...
+WHERE condição;</code></pre>
+            </div>
+            <div class="warning">
+                <strong>⚠️ CUIDADO!</strong> Sem a cláusula `WHERE`, o comando `UPDATE` irá alterar **TODOS** os registros da tabela!
+            </div>
+            <div class="sub-title">Exemplo Prático</div>
+            <div class="code-block">
+                <pre><code>UPDATE clientes
+SET telefone = (41) 7555-3333
+WHERE nome = 'João Pereira';</code></pre>
+            </div>
+            <div class="sub-title">Resultado Visual</div>
+            <div class="bg-gray-100 p-6 rounded-lg text-sm md:flex md:gap-8">
+                <div class="md:w-1/2 mb-4 md:mb-0">
+                    <strong class="text-gray-700">ANTES:</strong>
+                    <pre><code>
++------------+--------------+-----------------+
+| cliente_id | nome         | telefone        |
++------------+--------------+-----------------+
+| 2          | João Pereira | (41) 96666-4444 |
++------------+--------------+-----------------+
+                    </code></pre>
+                </div>
+                <div class="md:w-1/2">
+                    <strong class="text-gray-700">DEPOIS:</strong>
+                    <pre><code>
++------------+--------------+-----------------+
+| cliente_id | nome         | telefone        |
++------------+--------------+-----------------+
+| 2          | João Pereira | (41) 7555-3333  | ← ALTERADO!
++------------+--------------+-----------------+
+                    </code></pre>
+					
+                </div>
+            </div>
+
+            <h3 class="sub-title">✏️ Exercícios - UPDATE</h3>
+            <div class="space-y-4">
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 2.1</div>
+                    <p class="text-gray-700 mb-4">
+                        Atualize o telefone do 'Maria Santos' para (81) 6555-9999 e o email para 'marisantos@locals.com'.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE clientes
+SET telefone = '(81) 6555-9999', email = 'marisantos@locals.com'
+WHERE nome = 'Maria Santos';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 2.2</div>
+                    <p class="text-gray-700 mb-4">
+                        Modifique a endereco do 'Paula Costa' para 'Avenida Circulante Nove 732'.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>UPDATE clientes
+SET endereco = 'Avenida Circulante Nove 732'
+WHERE nome = 'Paula Costa';</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">3. Comando DELETE - Removendo Dados</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Para que serve?** Excluir registros permanentemente de uma tabela.
+            </p>
+            <div class="sub-title">Sintaxe Básica</div>
+            <div class="code-block">
+                <pre><code>DELETE FROM nome_tabela
+WHERE condição;</code></pre>
+            </div>
+            <div class="warning">
+                <strong>⚠️ CUIDADO EXTREMO!</strong> Sem a cláusula `WHERE`, o comando `DELETE` irá excluir **TODOS** os registros da tabela!
+            </div>
+            <div class="sub-title">Exemplo Prático</div>
+            <div class="code-block">
+                <pre><code>DELETE FROM clientes
+WHERE cliente_id = 5;</code></pre>
+            </div>
+            <div class="sub-title">Resultado Visual</div>
+            <div class="bg-gray-100 p-6 rounded-lg text-sm md:flex md:gap-8">
+                <div class="md:w-1/2 mb-4 md:mb-0">
+                    <strong class="text-gray-700">ANTES:</strong>
+                    <pre><code>
++------------+-------------------+
+| cliente_id | nome              |
++------------+-------------------+
+| 3          | Maria Santos      |
+| 4          | João Pereira      |
+| 5          | Paula Costa       |
++------------+-------------------+
+                    </code></pre>
+                </div>
+                <div class="md:w-1/2">
+                    <strong class="text-gray-700">DEPOIS:</strong>
+                    <pre><code>
++------------+-------------------+
+| cliente_id | nome              |
++------------+-------------------+
+| 3          | Maria Santos      |
+| 4          | João Pereira      |
++------------+-------------------+
+// Paula Costa FOI REMOVIDO!
+                    </code></pre>
+                </div>
+            </div>
+
+            <h3 class="sub-title">✏️ Exercícios - DELETE</h3>
+            <div class="space-y-4">
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 3.1</div>
+                    <p class="text-gray-700 mb-4">
+                        Remova o 'Maria Santos' da tabela.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DELETE FROM clientes
+WHERE nome = 'Maria Santos';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 3.2</div>
+                    <p class="text-gray-700 mb-4">
+                        Exclua todos os clientes com data cadastro maior que '2023-05-12'.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>DELETE FROM clientes
+WHERE data_cadastro > '2023-05-12';</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">4. Comando SELECT + WHERE - Consultando com Filtros</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Para que serve?** Recuperar dados específicos de uma tabela usando condições.
+            </p>
+            <div class="sub-title">Sintaxe Básica</div>
+            <div class="code-block">
+                <pre><code>SELECT coluna1, coluna2, ...
+FROM nome_tabela
+WHERE condição;</code></pre>
+            </div>
+            <div class="sub-title">Operadores de Comparação</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operador</th>
+                        <th>Significado</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>`=`</td>
+                        <td>Igual</td>
+                        <td>`WHERE endereco = 'Rua das Palmeiras, 321 - Curitiba'`</td>
+                    </tr>
+                    <tr>
+                        <td>`<>`</td>
+                        <td>Diferente</td>
+                        <td>`WHERE endereco <> 2`</td>
+                    </tr>
+                    <tr>
+                        <td>`<`</td>
+                        <td>Menor que</td>
+                        <td>`WHERE telefone < 10`</td>
+                    </tr>
+                    <tr>
+                        <td>`>`</td>
+                        <td>Maior que</td>
+                        <td>`WHERE email > 5`</td>
+                    </tr>
+                    <tr>
+                        <td>`<=`</td>
+                        <td>Menor ou igual</td>
+                        <td>`WHERE telefone <= 12`</td>
+                    </tr>
+                    <tr>
+                        <td>`>=`</td>
+                        <td>Maior ou igual</td>
+                        <td>`WHERE email >= 8`</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sub-title">Operadores Especiais</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operador</th>
+                        <th>Uso</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>`BETWEEN`</td>
+                        <td>Intervalo de valores</td>
+                        <td>`WHERE telefone BETWEEN 1 AND 5`</td>
+                    </tr>
+                    <tr>
+                        <td>`LIKE`</td>
+                        <td>Correspondência de padrões com `%`</td>
+                        <td>`WHERE nome LIKE '%Caderno%'`</td>
+                    </tr>
+                    <tr>
+                        <td>`IN`</td>
+                        <td>Lista de valores possíveis</td>
+                        <td>`WHERE endereco IN (1, 2)`</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sub-title">Operadores Lógicos</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operador</th>
+                        <th>Função</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>`AND`</td>
+                        <td>Ambas as condições devem ser verdadeiras</td>
+                        <td>`WHERE endereco = 'Rua das Palmeiras, 321 - Curitiba' AND telefone > 10`</td>
+                    </tr>
+                    <tr>
+                        <td>`OR`</td>
+                        <td>Pelo menos uma condição deve ser verdadeira</td>
+                        <td>`WHERE endereco = 'Rua das Palmeiras, 321 - Curitiba' OR endereco = 2`</td>
+                    </tr>
+                    <tr>
+                        <td>`NOT`</td>
+                        <td>Nega uma condição</td>
+                        <td>`WHERE NOT endereco = 2`</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="sub-title">Exemplo Prático Combinado</div>
+            <div class="code-block">
+                <pre><code>SELECT cliente_id, nome, telefone
+FROM clientes
+WHERE (data_cadastro LIKE '2023%' OR nome LIKE '%a%')
+AND cliente_id BETWEEN 2 AND 4;</code></pre>
+            </div>
+
+            <h3 class="sub-title">✏️ Exercícios - SELECT + WHERE</h3>
+            <div class="space-y-4">
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 4.1</div>
+                    <p class="text-gray-700 mb-4">
+                        Selecione a `nome` e o `email` de todos os clientes com `email` igual a 'marisantos@locals.com'.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT nome, email
+FROM clientes
+WHERE email = 'marisantos@locals.com';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-header">Exercício 4.2</div>
+                    <p class="text-gray-700 mb-4">
+                        Encontre todos os clientes que tem a data do cadastro o ano de 2023 e que contêm a letra 'e' no nome.
+                    </p>
+                    <button class="solution-toggle-btn" onclick="toggleSolution(this)">Ver Solução</button>
+                    <div class="solution-container">
+                        <div class="solution-code">
+                            <pre><code>SELECT *
+FROM clientes
+WHERE data_cadastro LIKE '2023%' AND nome LIKE '%e%';</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">💡 Dica Final</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                Sempre faça um **SELECT** antes de um **UPDATE** ou **DELETE** para verificar quais registros serão afetados.
+            </p>
+            <div class="code-block">
+                <pre><code>-- Primeiro verifique com SELECT para ver o resultado:
+SELECT * FROM clientes WHERE nome = 'João Pereira';
+
+-- Se o resultado estiver correto, execute o UPDATE:
+UPDATE clientes SET telefone = (41) 7555-3333 WHERE nome = 'João Pereira';</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(button) {
+            const solutionContainer = button.nextElementSibling;
+            if (solutionContainer.classList.contains('active')) {
+                solutionContainer.classList.remove('active');
+                button.textContent = 'Ver Solução';
+            } else {
+                solutionContainer.classList.add('active');
+                button.textContent = 'Ocultar Solução';
+            }
+        }
+    </script>
+</body>
+
+</html>
