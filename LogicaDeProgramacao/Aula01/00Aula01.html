@@ -1,0 +1,413 @@
+<!-- Chosen Palette: Calm & Professional -->
+<!-- Application Structure Plan: The SPA is structured as a multi-module interactive guide, with a fixed sidebar for navigation and a main content area. This architecture was chosen over a simple linear page to allow students to easily jump between modules and use the application as both a learning tool and a quick reference guide. The user flow is non-linear; students can explore topics in any order. Key interactions include smooth-scrolling navigation, a "scrollspy" that highlights the active module in the sidebar, and interactive toggles to switch between PHP and JavaScript code examples, reinforcing the language-agnostic nature of logic. This structure provides a superior user experience by organizing a large amount of information into a manageable and explorable format. -->
+<!-- Visualization & Content Choices: 
+- Course Syllabus -> Goal: Organize/Navigate -> Method: Sticky Sidebar Navigation -> Interaction: Click to scroll, scroll to highlight -> Justification: Provides a persistent map of the course content, improving discoverability and usability.
+- Code Examples -> Goal: Compare/Inform -> Method: Interactive Code Blocks -> Interaction: Toggle buttons to switch between PHP and JavaScript -> Justification: Allows for direct comparison of syntax for the same logical concept, which is highly effective for learning. Code is presented in styled blocks for readability. NO SVG/Mermaid.
+- Key Concepts (e.g., Algorithm) -> Goal: Inform -> Method: Thematic Cards (HTML/CSS) -> Interaction: Hover effects -> Justification: Breaks down definitions into visually distinct, digestible chunks of information.
+- Fluxograma Example -> Goal: Inform -> Method: Diagram built with HTML/CSS -> Interaction: None -> Justification: A simple visual representation of the algorithm flow, built with semantic HTML and styled with Tailwind to avoid external graphics. NO SVG/Mermaid.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Interativo de Lógica de Programação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        .code-block { background-color: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; white-space: pre; }
+        .code-block .comment { color: #64748b; }
+        .code-block .keyword { color: #7c3aed; }
+        .code-block .function { color: #2563eb; }
+        .code-block .string { color: #16a34a; }
+        .code-block .number { color: #ea580c; }
+        .sidebar-link { display: block; padding: 0.5rem 1rem; border-radius: 0.375rem; transition: background-color 0.2s, color 0.2s; color: #475569; border-left: 3px solid transparent;}
+        .sidebar-link:hover { background-color: #f1f5f9; color: #312e81; }
+        .sidebar-link.active { background-color: #e0e7ff; color: #4f46e5; font-weight: 600; border-left-color: #4f46e5; }
+        .content-section { padding-top: 5rem; margin-top: -4rem; }
+        .code-toggle button.active { background-color: #4f46e5; color: white; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap -mx-4">
+            <aside class="w-full lg:w-1/4 px-4 py-8">
+                <div class="sticky top-8">
+                    <h2 class="text-xl font-bold mb-4">Módulos do Curso</h2>
+                    <nav id="sidebar-nav" class="space-y-1">
+                        <a href="#modulo1" class="sidebar-link">Módulo 1: Introdução</a>
+                        <a href="#modulo2" class="sidebar-link">Módulo 2: Variáveis</a>
+                        <a href="#modulo3" class="sidebar-link">Módulo 3: Operadores</a>
+                        <a href="#modulo4" class="sidebar-link">Módulo 4: I/O</a>
+                        <a href="#modulo5" class="sidebar-link">Módulo 5: Controle de Fluxo</a>
+                        <a href="#modulo6" class="sidebar-link">Módulo 6: Repetição</a>
+                        <a href="#modulo7" class="sidebar-link">Módulo 7: Estruturas de Dados</a>
+                        <a href="#modulo8" class="sidebar-link">Módulo 8: Funções</a>
+                        <a href="#modulo9" class="sidebar-link">Módulo 9: Integração HTML</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="w-full lg:w-3/4 px-4 py-8">
+                <section id="intro" class="mb-12">
+                    <h1 class="text-4xl font-bold text-indigo-600 mb-4">Curso Completo de Lógica de Programação</h1>
+                    <p class="text-lg text-slate-600">Bem-vindo(a) ao seu guia interativo de lógica de programação. Navegue pelos módulos para explorar os conceitos fundamentais que formam a base de todo grande software, com exemplos práticos em PHP e JavaScript.</p>
+                </section>
+
+                <div id="course-content" class="space-y-12">
+                    
+                    <section id="modulo1" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 1: Introdução à Lógica de Programação</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">O que é Lógica de Programação?</h3>
+                                <p class="text-slate-600">É a técnica de organizar o raciocínio para resolver problemas de forma que o computador consiga executar. Pense nisso como uma receita de bolo: uma sequência de passos claros e na ordem correta. Se a ordem estiver errada, o resultado não será o esperado.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">O que é um Algoritmo?</h3>
+                                <p class="mb-2 text-slate-600">Um algoritmo é simplesmente essa sequência de passos. Ele pode ser representado de várias formas, desde uma linguagem natural até o código final.</p>
+                                <div class="bg-white p-6 rounded-lg shadow-sm mt-4">
+                                    <h4 class="font-semibold mb-2">Exemplo: Calcular a média de duas notas</h4>
+                                    <p class="text-sm text-slate-500 mb-4">Abaixo, veja o mesmo algoritmo em pseudocódigo e em código real.</p>
+                                    <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                        <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                        <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                                    </div>
+                                    <div class="code-container">
+                                        <div class="code-block" data-lang-content="php"><code><span class="comment"># Pseudocódigo</span>
+<span class="comment">Início</span>
+  <span class="comment">Leia nota1</span>
+  <span class="comment">Leia nota2</span>
+  <span class="comment">media ← (nota1 + nota2) / 2</span>
+  <span class="comment">Se media >= 7 Então</span>
+      <span class="comment">Escreva "Aprovado"</span>
+  <span class="comment">Senão</span>
+      <span class="comment">Escreva "Reprovado"</span>
+<span class="comment">Fim</span>
+
+<span class="comment"># Código PHP</span>
+<span class="keyword">$nota1</span> = <span class="number">8</span>;
+<span class="keyword">$nota2</span> = <span class="number">6</span>;
+<span class="keyword">$media</span> = (<span class="keyword">$nota1</span> + <span class="keyword">$nota2</span>) / <span class="number">2</span>;
+<span class="keyword">if</span> (<span class="keyword">$media</span> >= <span class="number">7</span>) {
+    <span class="keyword">echo</span> <span class="string">"Aprovado"</span>;
+} <span class="keyword">else</span> {
+    <span class="keyword">echo</span> <span class="string">"Reprovado"</span>;
+}</code></div>
+                                        <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// Pseudocódigo</span>
+<span class="comment">Início</span>
+  <span class="comment">Leia nota1</span>
+  <span class="comment">Leia nota2</span>
+  <span class="comment">media ← (nota1 + nota2) / 2</span>
+  <span class="comment">Se media >= 7 Então</span>
+      <span class="comment">Escreva "Aprovado"</span>
+  <span class="comment">Senão</span>
+      <span class="comment">Escreva "Reprovado"</span>
+<span class="comment">Fim</span>
+
+<span class="comment">// Código JavaScript</span>
+<span class="keyword">let</span> <span class="keyword">nota1</span> = <span class="number">8</span>;
+<span class="keyword">let</span> <span class="keyword">nota2</span> = <span class="number">6</span>;
+<span class="keyword">let</span> <span class="keyword">media</span> = (<span class="keyword">nota1</span> + <span class="keyword">nota2</span>) / <span class="number">2</span>;
+<span class="keyword">if</span> (<span class="keyword">media</span> >= <span class="number">7</span>) {
+    <span class="function">console.log</span>(<span class="string">"Aprovado"</span>);
+} <span class="keyword">else</span> {
+    <span class="function">console.log</span>(<span class="string">"Reprovado"</span>);
+}</code></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="modulo2" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 2: Variáveis e Constantes</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Variáveis</h3>
+                                <p class="mb-2 text-slate-600">São espaços na memória do computador para armazenar dados que podem <span class="font-bold">mudar</span> durante a execução do programa. Toda variável tem um nome, tipo e valor.</p>
+                            </div>
+                             <div>
+                                <h3 class="text-xl font-semibold mb-2">Constantes</h3>
+                                <p class="mb-2 text-slate-600">São como variáveis, mas seu valor é definido uma vez e <span class="font-bold">não pode ser alterado</span>.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                        <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                        <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                                    </div>
+                                    <div class="code-container">
+                                        <div class="code-block" data-lang-content="php"><code><span class="comment"># Variáveis</span>
+<span class="keyword">$nome</span> = <span class="string">"Maria"</span>; <span class="comment">// String</span>
+<span class="keyword">$idade</span> = <span class="number">25</span>; <span class="comment">// Inteiro</span>
+<span class="keyword">$preco</span> = <span class="number">19.90</span>; <span class="comment">// Float</span>
+<span class="keyword">$ativo</span> = <span class="keyword">true</span>; <span class="comment">// Boolean</span>
+
+<span class="comment"># Constante</span>
+<span class="function">define</span>(<span class="string">"PI"</span>, <span class="number">3.14159</span>);
+<span class="keyword">echo</span> <span class="function">PI</span>;</code></div>
+                                        <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// Variáveis</span>
+<span class="keyword">let</span> <span class="keyword">nome</span> = <span class="string">"Maria"</span>; <span class="comment">// String</span>
+<span class="keyword">let</span> <span class="keyword">idade</span> = <span class="number">25</span>; <span class="comment">// Number (inteiro)</span>
+<span class="keyword">let</span> <span class="keyword">preco</span> = <span class="number">19.90</span>; <span class="comment">// Number (float)</span>
+<span class="keyword">let</span> <span class="keyword">ativo</span> = <span class="keyword">true</span>; <span class="comment">// Boolean</span>
+
+<span class="comment">// Constante</span>
+<span class="keyword">const</span> <span class="keyword">PI</span> = <span class="number">3.14159</span>;
+<span class="function">console.log</span>(<span class="keyword">PI</span>);</code></div>
+                                    </div>
+                                </div>
+                        </div>
+                    </section>
+
+                     <section id="modulo3" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 3: Operadores</h2>
+                         <p class="mb-4 text-slate-600">São os símbolos que executam operações sobre variáveis e valores.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-2">Aritméticos</h4>
+                                <p class="text-slate-500 text-sm"><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (resto)</p>
+                            </div>
+                             <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-2">Atribuição</h4>
+                                <p class="text-slate-500 text-sm"><code>=</code>, <code>+=</code>, <code>-=</code></p>
+                            </div>
+                             <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-2">Comparação</h4>
+                                <p class="text-slate-500 text-sm"><code>==</code>, <code>===</code>, <code>!=</code>, <code>></code>, <code><</code></p>
+                            </div>
+                             <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-2">Lógicos</h4>
+                                <p class="text-slate-500 text-sm"><code>&&</code> (E), <code>||</code> (OU), <code>!</code> (NÃO)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="modulo4" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 4: Estruturas de Entrada e Saída</h2>
+                         <p class="mb-4 text-slate-600">A forma como seu programa se comunica com o mundo exterior.</p>
+                         <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="comment">// Saída</span>
+<span class="keyword">echo</span> <span class="string">"Olá, mundo!"</span>;
+
+<span class="comment">// Entrada (executado no terminal)</span>
+<span class="keyword">$nome</span> = <span class="function">readline</span>(<span class="string">"Digite seu nome: "</span>);
+<span class="keyword">echo</span> <span class="string">"Bem-vindo, "</span> . <span class="keyword">$nome</span>;</code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// Saída (no console do navegador)</span>
+<span class="function">console.log</span>(<span class="string">"Olá, mundo!"</span>);
+
+<span class="comment">// Entrada (no navegador)</span>
+<span class="keyword">let</span> <span class="keyword">nome</span> = <span class="function">prompt</span>(<span class="string">"Digite seu nome:"</span>);
+<span class="function">alert</span>(<span class="string">"Bem-vindo, "</span> + <span class="keyword">nome</span>);</code></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="modulo5" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 5: Controle de Fluxo</h2>
+                        <p class="mb-4 text-slate-600">Permite que o programa tome decisões e execute diferentes blocos de código com base em condições.</p>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h4 class="font-semibold mb-2">If / Else If / Else, Ternário e Switch</h4>
+                             <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="comment">// If / Else</span>
+<span class="keyword">$idade</span> = <span class="number">16</span>;
+<span class="keyword">if</span> (<span class="keyword">$idade</span> >= <span class="number">18</span>) { <span class="keyword">echo</span> <span class="string">"Maior"</span>; } <span class="keyword">else</span> { <span class="keyword">echo</span> <span class="string">"Menor"</span>; }
+
+<span class="comment">// Ternário</span>
+<span class="keyword">$resultado</span> = (<span class="keyword">$idade</span> >= <span class="number">18</span>) ? <span class="string">"Maior"</span> : <span class="string">"Menor"</span>;
+
+<span class="comment">// Switch</span>
+<span class="keyword">$dia</span> = <span class="number">3</span>;
+<span class="keyword">switch</span> (<span class="keyword">$dia</span>) {
+    <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">echo</span> <span class="string">"Domingo"</span>; <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">echo</span> <span class="string">"Segunda"</span>; <span class="keyword">break</span>;
+    <span class="keyword">default</span>: <span class="keyword">echo</span> <span class="string">"Outro dia"</span>;
+}</code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// If / Else</span>
+<span class="keyword">let</span> <span class="keyword">idade</span> = <span class="number">16</span>;
+<span class="keyword">if</span> (<span class="keyword">idade</span> >= <span class="number">18</span>) { <span class="function">console.log</span>(<span class="string">"Maior"</span>); } <span class="keyword">else</span> { <span class="function">console.log</span>(<span class="string">"Menor"</span>); }
+
+<span class="comment">// Ternário</span>
+<span class="keyword">let</span> <span class="keyword">resultado</span> = (<span class="keyword">idade</span> >= <span class="number">18</span>) ? <span class="string">"Maior"</span> : <span class="string">"Menor"</span>;
+
+<span class="comment">// Switch</span>
+<span class="keyword">let</span> <span class="keyword">dia</span> = <span class="number">3</span>;
+<span class="keyword">switch</span> (<span class="keyword">dia</span>) {
+    <span class="keyword">case</span> <span class="number">1</span>: <span class="function">console.log</span>(<span class="string">"Domingo"</span>); <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">2</span>: <span class="function">console.log</span>(<span class="string">"Segunda"</span>); <span class="keyword">break</span>;
+    <span class="keyword">default</span>: <span class="function">console.log</span>(<span class="string">"Outro dia"</span>);
+}</code></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="modulo6" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 6: Estruturas de Repetição</h2>
+                         <p class="mb-4 text-slate-600">Também chamados de loops, executam um bloco de código repetidamente enquanto uma condição for atendida.</p>
+                         <div class="bg-white p-6 rounded-lg shadow-sm">
+                             <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="comment">// For</span>
+<span class="keyword">for</span> (<span class="keyword">$i</span> = <span class="number">1</span>; <span class="keyword">$i</span> <= <span class="number">5</span>; <span class="keyword">$i</span>++) { <span class="keyword">echo</span> <span class="keyword">$i</span>; }
+
+<span class="comment">// While</span>
+<span class="keyword">$i</span> = <span class="number">1</span>;
+<span class="keyword">while</span> (<span class="keyword">$i</span> <= <span class="number">5</span>) { <span class="keyword">echo</span> <span class="keyword">$i</span>; <span class="keyword">$i</span>++; }
+
+<span class="comment">// Do While</span>
+<span class="keyword">$i</span> = <span class="number">1</span>;
+<span class="keyword">do</span> { <span class="keyword">echo</span> <span class="keyword">$i</span>; <span class="keyword">$i</span>++; } <span class="keyword">while</span> (<span class="keyword">$i</span> <= <span class="number">5</span>);</code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// For</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> <span class="keyword">i</span> = <span class="number">1</span>; <span class="keyword">i</span> <= <span class="number">5</span>; <span class="keyword">i</span>++) { <span class="function">console.log</span>(<span class="keyword">i</span>); }
+
+<span class="comment">// While</span>
+<span class="keyword">let</span> <span class="keyword">i</span> = <span class="number">1</span>;
+<span class="keyword">while</span> (<span class="keyword">i</span> <= <span class="number">5</span>) { <span class="function">console.log</span>(<span class="keyword">i</span>); <span class="keyword">i</span>++; }
+
+<span class="comment">// Do While</span>
+<span class="keyword">let</span> <span class="keyword">i</span> = <span class="number">1</span>;
+<span class="keyword">do</span> { <span class="function">console.log</span>(<span class="keyword">i</span>); <span class="keyword">i</span>++; } <span class="keyword">while</span> (<span class="keyword">i</span> <= <span class="number">5</span>);</code></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="modulo7" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 7: Estruturas de Dados</h2>
+                        <p class="mb-4 text-slate-600">Formas de organizar e armazenar múltiplos valores de forma eficiente.</p>
+                         <div class="bg-white p-6 rounded-lg shadow-sm">
+                             <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="comment">// Array (vetor)</span>
+<span class="keyword">$frutas</span> = [<span class="string">"maçã"</span>, <span class="string">"banana"</span>, <span class="string">"laranja"</span>];
+<span class="keyword">echo</span> <span class="keyword">$frutas</span>[<span class="number">1</span>]; <span class="comment">// banana</span></code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="comment">// Array (vetor)</span>
+<span class="keyword">let</span> <span class="keyword">frutas</span> = [<span class="string">"maçã"</span>, <span class="string">"banana"</span>, <span class="string">"laranja"</span>];
+<span class="function">console.log</span>(<span class="keyword">frutas</span>[<span class="number">1</span>]); <span class="comment">// banana</span>
+
+<span class="comment">// Matriz (array de arrays)</span>
+<span class="keyword">let</span> <span class="keyword">notas</span> = [ [<span class="number">8</span>, <span class="number">7</span>], [<span class="number">6</span>, <span class="number">5</span>] ];
+<span class="function">console.log</span>(<span class="keyword">notas</span>[<span class="number">0</span>][<span class="number">1</span>]); <span class="comment">// 7</span>
+
+<span class="comment">// Objeto</span>
+<span class="keyword">let</span> <span class="keyword">pessoa</span> = { nome: <span class="string">"Ana"</span>, idade: <span class="number">25</span> };
+<span class="function">console.log</span>(<span class="keyword">pessoa.nome</span>); <span class="comment">// Ana</span></code></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="modulo8" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 8: Funções</h2>
+                         <p class="mb-4 text-slate-600">Blocos de código reutilizáveis que realizam uma tarefa específica. A base para um código limpo e organizado.</p>
+                         <div class="bg-white p-6 rounded-lg shadow-sm">
+                             <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="keyword">function</span> <span class="function">soma</span>(<span class="keyword">$a</span>, <span class="keyword">$b</span>) {
+    <span class="keyword">return</span> <span class="keyword">$a</span> + <span class="keyword">$b</span>;
+}
+<span class="keyword">echo</span> <span class="function">soma</span>(<span class="number">5</span>, <span class="number">3</span>); <span class="comment">// 8</span></code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="keyword">function</span> <span class="function">soma</span>(<span class="keyword">a</span>, <span class="keyword">b</span>) {
+    <span class="keyword">return</span> <span class="keyword">a</span> + <span class="keyword">b</span>;
+}
+<span class="function">console.log</span>(<span class="function">soma</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span></code></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="modulo9" class="content-section">
+                        <h2 class="text-3xl font-bold mb-6 border-b-4 border-indigo-200 pb-2">Módulo 9: Integração com HTML</h2>
+                        <p class="mb-4 text-slate-600">Veja como usar sua lógica de programação para criar páginas web dinâmicas.</p>
+                         <div class="bg-white p-6 rounded-lg shadow-sm">
+                             <div class="code-toggle mb-2 flex space-x-1 bg-slate-200 p-1 rounded-md">
+                                <button data-lang="php" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md active">PHP</button>
+                                <button data-lang="js" class="lang-btn w-full py-1 px-3 text-sm font-semibold rounded-md">JavaScript</button>
+                            </div>
+                            <div class="code-container">
+                                <div class="code-block" data-lang-content="php"><code><span class="comment">&lt;!DOCTYPE html&gt;</span>
+<span class="comment">&lt;html&gt;</span>
+<span class="comment">&lt;body&gt;</span>
+  <span class="comment">&lt;h1&gt;</span><span class="keyword">&lt;?php</span> <span class="keyword">echo</span> <span class="string">"Olá do PHP!"</span>; <span class="keyword">?&gt;</span><span class="comment">&lt;/h1&gt;</span>
+<span class="comment">&lt;/body&gt;</span>
+<span class="comment">&lt;/html&gt;</span></code></div>
+                                <div class="code-block hidden" data-lang-content="js"><code><span class="comment">&lt;!DOCTYPE html&gt;</span>
+<span class="comment">&lt;html&gt;</span>
+<span class="comment">&lt;body&gt;</span>
+  <span class="comment">&lt;h1 id="msg"&gt;&lt;/h1&gt;</span>
+  <span class="comment">&lt;script&gt;</span>
+    <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">"msg"</span>).<span class="keyword">innerText</span> = <span class="string">"Olá do JavaScript!"</span>;
+  <span class="comment">&lt;/script&gt;</span>
+<span class="comment">&lt;/body&gt;</span>
+<span class="comment">&lt;/html&gt;</span></code></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('#sidebar-nav a');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+            sections.forEach(section => { observer.observe(section); });
+
+            const codeToggles = document.querySelectorAll('.code-toggle');
+            codeToggles.forEach(toggle => {
+                const buttons = toggle.querySelectorAll('.lang-btn');
+                const codeContainer = toggle.nextElementSibling;
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        const lang = button.dataset.lang;
+                        const allCodeBlocks = codeContainer.querySelectorAll('.code-block');
+                        allCodeBlocks.forEach(block => {
+                            if (block.dataset.langContent === lang) {
+                                block.classList.remove('hidden');
+                            } else {
+                                block.classList.add('hidden');
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

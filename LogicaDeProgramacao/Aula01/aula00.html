@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programação - Aula 00</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            position: relative;
+        }
+        details > summary::after {
+            content: '+';
+            font-weight: 800;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            content: '-';
+            transform: translateY(-50%) rotate(0deg);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl p-6 md:p-12 lg:p-16">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Curso de Lógica de Programação
+            </h1>
+            <p class="mt-2 text-xl text-gray-600">
+                Aula 00: O que é Lógica?
+            </p>
+        </header>
+
+        <!-- Seção de Filosofia do Curso -->
+        <div class="mb-12 p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-5 4h8a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Nossa Filosofia: Resolvendo Problemas
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+                Neste curso, a programação é uma **ferramenta**, não o objetivo final. O nosso foco é desenvolver a sua capacidade de **pensar, organizar e solucionar problemas** de forma estruturada. A codificação vem depois, como a forma de implementar a sua solução.
+            </p>
+        </div>
+
+        <!-- Seção de Problema do Dia -->
+        <div class="mb-12 p-8 bg-red-50 rounded-2xl border-l-4 border-red-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-red-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Problema do Dia
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Imagine que você precisa organizar a lista de livros de uma biblioteca. Você tem o nome do livro, o autor e a data de publicação. Sua tarefa é criar um **plano passo-a-passo** para que o computador organize os livros em ordem alfabética. Pense no problema, não no código!
+            </p>
+            <textarea id="problema-do-dia" rows="8" class="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 resize-none" placeholder="Escreva aqui o seu plano de solução..."></textarea>
+        </div>
+
+        <!-- Conteúdo da Aula -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Conteúdo da Aula</h2>
+        <div class="space-y-6">
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">O que é Lógica?</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p><strong>Origem da palavra:</strong> A palavra "lógica" tem origem na palavra grega "logos", que significa **razão, argumentação ou fala**. A ideia de falar e argumentar pressupõe que o que está sendo dito possua um sentido para aquele que ouve.</p>
+                    <p><strong>Definição:</strong> A lógica trata das formas do pensamento em geral, estudando a estrutura formal dos enunciados (proposições) e suas regras. Serve para pensar corretamente, sendo uma ferramenta do correto pensar.</p>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Tipos de Lógica</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p><strong>Lógica Formal:</strong> Trabalha a forma lógica dos enunciados através da representação (simbólica) das proposições por letras ($p$, $q$, $r$). Investiga as relações entre proposições através de operadores lógicos (conjunções, disjunções, condicionais).</p>
+                    <p><strong>Lógica Proposicional:</strong> Estabelece relações entre proposições usando operadores lógicos.</p>
+                    <ul class="list-disc list-inside ml-6 space-y-1">
+                        <li>Negação (~ ou $\neg$)</li>
+                        <li>Conjunção ($\wedge$)</li>
+                        <li>Disjunção ($\vee$)</li>
+                        <li>Condicional ($\Rightarrow$)</li>
+                        <li>Bi-condicional ($\Leftrightarrow$)</li>
+                    </ul>
+                    <p>A **Tabela Verdade** é um dispositivo usado no estudo da lógica matemática.</p>
+                    <p><strong>Lógica Computacional:</strong> Derivada da lógica matemática, analisa relações entre valores e os transforma em algoritmos. Fundamenta a relação com computadores, mesclando lógica tradicional com elementos de lógicas não-clássicas.</p>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Conceitos Básicos da Lógica</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <ul class="list-disc list-inside ml-6 space-y-2">
+                        <li><strong>Proposições</strong></li>
+                        <li><strong>Conectivos Lógicos:</strong> AND, OR, NOT</li>
+                        <li><strong>Tabelas Verdade</strong></li>
+                        <li><strong>Operadores Aritméticos:</strong> Adição (+), Subtração (-), Multiplicação (*), Divisão (/), Módulo (%)</li>
+                        <li><strong>Operadores Lógicos:</strong> Operadores de comparação (==, <, >, <=, >=) e operadores lógicos (&&, ||, !)</li>
+                        <li><strong>Estruturas de Controle:</strong> Condicionais (if, else, switch) e Loops (for, while, do-while)</li>
+                        <li><strong>Variáveis:</strong> Espaços de armazenamento que representam valores.</li>
+                        <li><strong>Tipos de Dados:</strong> Inteiros, ponto flutuante, caracteres, booleanos, etc.</li>
+                        <li><strong>Funções e Procedimentos:</strong> Para modularizar e reutilizar código.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Como Resolver Problemas</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p><strong>Decomposição de Problemas:</strong> Dividir um problema complexo em problemas menores e mais gerenciáveis. Isso facilita a compreensão e a abordagem de cada parte separadamente.</p>
+                    <p><strong>Identificação de Entradas e Saídas:</strong> Definir o que o programa precisa receber (entrada) e o que ele deve exibir como resultado (saída).</p>
+                    <p><strong>Identificação de Padrões:</strong> Reconhecer regularidades ou repetições para criar funções reutilizáveis.</p>
+                    <p><strong>Desenvolvimento de Algoritmos Eficientes:</strong> Criar uma sequência de passos que resolvam o problema de forma rápida e eficiente.</p>
+                    <p><strong>Outras Habilidades:</strong> Manipulação de Strings, Manipulação de Objetos e Tratamento de Exceções.</p>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Estruturas de Dados e Algoritmos</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p><strong>Estruturas de Dados:</strong> Formas de organizar, armazenar e manipular dados. Exemplos incluem: Arrays, Listas Ligadas, Pilhas, Filas, Árvores e Grafos.</p>
+                    <p><strong>Algoritmo:</strong> Uma sequência finita e precisa de passos para resolver um problema. Pode ser representado em pseudocódigo ou fluxogramas. **Algoritmos e estruturas de dados são a base da ciência da computação!**</p>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Paradigmas de Programação</summary>
+                <div class="mt-4 text-gray-600 space-y-2">
+                    <p>Diferentes abordagens para organizar e estruturar código, como:</p>
+                    <ul class="list-disc list-inside ml-6">
+                        <li>Procedural</li>
+                        <li>Orientada a Objetos</li>
+                        <li>Funcional</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">Bases da Carreira de Programador</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p><strong>Portfólio:</strong> Repositório onde o programador reúne seus projetos (GitHub, Bitbucket, GitLab), mostrando suas habilidades.</p>
+                    <p><strong>Banco de Dados:</strong> Local centralizado para armazenar e gerenciar dados, utilizando SQL ou NoSQL, dependendo da necessidade do negócio.</p>
+                    <p><strong>Backend:</strong> A parte do software que lida com dados e seu processamento (servidor). Utiliza frameworks como Django, Laravel e Express para padronização e agilidade.</p>
+                    <p><strong>Frontend:</strong> Relacionado à interface do usuário. O que o usuário vê e como ele interage com a aplicação. Utiliza frameworks como React.js, Angular e Vue.js.</p>
+                </div>
+            </details>
+        </div>
+        
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-12">
+            <button id="save-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-green-700 bg-green-600">
+                Salvar Progresso
+            </button>
+            <button id="clear-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-red-700 bg-red-600">
+                Limpar Tudo
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fields = ['problema-do-dia'];
+            const saveButton = document.getElementById('save-button');
+            const clearButton = document.getElementById('clear-button');
+
+            function loadData() {
+                fields.forEach(id => {
+                    const value = localStorage.getItem(id);
+                    if (value) {
+                        document.getElementById(id).value = value;
+                    }
+                });
+            }
+
+            function saveData() {
+                fields.forEach(id => {
+                    const value = document.getElementById(id).value;
+                    localStorage.setItem(id, value);
+                });
+            }
+
+            async function clearData() {
+                const confirmed = await confirm('Tem certeza que deseja limpar todo o progresso? Esta ação não pode ser desfeita.');
+                if (confirmed) {
+                    fields.forEach(id => {
+                        document.getElementById(id).value = '';
+                        localStorage.removeItem(id);
+                    });
+                    alert('Progresso limpo com sucesso!');
+                }
+            }
+
+            saveButton.addEventListener('click', () => {
+                saveData();
+                alert('Progresso salvo com sucesso!');
+            });
+            clearButton.addEventListener('click', clearData);
+
+            loadData();
+        });
+
+        function alert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+            alertBox.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                    <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                    <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200">OK</button>
+                </div>
+            `;
+            document.body.appendChild(alertBox);
+            alertBox.querySelector('button').addEventListener('click', () => {
+                document.body.removeChild(alertBox);
+            });
+        }
+
+        function confirm(message) {
+            return new Promise((resolve) => {
+                const confirmBox = document.createElement('div');
+                confirmBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+                confirmBox.innerHTML = `
+                    <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                        <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                        <div class="flex justify-center space-x-4">
+                            <button class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-all duration-200 confirm-ok">Sim</button>
+                            <button class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition-all duration-200 confirm-cancel">Cancelar</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(confirmBox);
+
+                confirmBox.querySelector('.confirm-ok').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(true);
+                });
+                confirmBox.querySelector('.confirm-cancel').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(false);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

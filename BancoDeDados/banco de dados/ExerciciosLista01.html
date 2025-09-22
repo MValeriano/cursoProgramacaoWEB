@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de SQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            color: #334155;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .exercise-card:hover {
+            transform: translateY(-5px);
+        }
+        .exercise-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0d9488;
+        }
+        .exercise-description {
+            margin-top: 0.5rem;
+            color: #4b5563;
+        }
+        .show-solution-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        .show-solution-btn:hover {
+            background-color: #2563eb;
+        }
+        .solution-container {
+            margin-top: 1rem;
+            overflow-x: auto;
+            border-left: 4px solid #065f46;
+            padding-left: 1rem;
+            display: none;
+        }
+        pre {
+            background-color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        code {
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            white-space: pre;
+        }
+        .title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container">
+    <h1 class="title">Exercícios de SQL - Livraria ZéDeLivros</h1>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 1</h2>
+        <p class="exercise-description"><strong>Relatório de Livros Mais Vendidos</strong><br>A direção da livraria precisa identificar os 10 livros mais vendidos no último trimestre para planejar o reposicionamento nas prateleiras. Gere um relatório com o título dos livros e a quantidade total vendida, ordenados pelos mais vendidos.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT l.titulo, SUM(vi.quantidade) as total_vendido
+FROM livros l
+JOIN venda_itens vi ON l.livro_id = vi.livro_id
+JOIN vendas v ON vi.venda_id = v.venda_id
+WHERE v.data_venda >= date('now', '-3 months')
+GROUP BY l.livro_id
+ORDER BY total_vendido DESC
+LIMIT 10;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 2</h2>
+        <p class="exercise-description"><strong>Análise de Vendas por Autor</strong><br>O setor de marketing quer conhecer o desempenho dos autores. Liste os 5 autores com maior faturamento no ano de 2025, mostrando o nome do autor e o valor total vendido de suas obras.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT a.nome, SUM(vi.quantidade * vi.preco_unitario) as faturamento_total
+FROM autores a
+JOIN livro_autores la ON a.autor_id = la.autor_id
+JOIN venda_itens vi ON la.livro_id = vi.livro_id
+JOIN vendas v ON vi.venda_id = v.venda_id
+WHERE strftime('%Y', v.data_venda) = '2025'
+GROUP BY a.autor_id
+ORDER BY faturamento_total DESC
+LIMIT 5;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 3</h2>
+        <p class="exercise-description"><strong>Clientes que Mais Compraram</strong><br>Identifique os 15 clientes que mais realizaram compras na livraria (em valor monetário). Mostre o nome do cliente, email e o total gasto em todas as compras, ordenados pelos maiores compradores.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT c.nome, c.email, SUM(v.total) as total_gasto
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.cliente_id
+ORDER BY total_gasto DESC
+LIMIT 15;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 4</h2>
+        <p class="exercise-description"><strong>Livros com Estoque Crítico</strong><br>O departamento de compras precisa de um relatório dos livros com estoque abaixo de 10 unidades. Mostre o título, editora, quantidade em estoque e preço, ordenados por estoque crescente.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT titulo, editora, estoque, preco
+FROM livros
+WHERE estoque < 10
+ORDER BY estoque ASC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 5</h2>
+        <p class="exercise-description"><strong>Vendas por Período</strong><br>Gere um relatório mensal de vendas para 2025, mostrando o mês (formato 'YYYY-MM'), o total vendido e a quantidade de vendas realizadas em cada mês.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    strftime('%Y-%m', data_venda) as mes,
+    SUM(total) as total_vendido,
+    COUNT(*) as quantidade_vendas
+FROM vendas
+WHERE strftime('%Y', data_venda) = '2025'
+GROUP BY mes
+ORDER BY mes;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 6</h2>
+        <p class="exercise-description"><strong>Faturas em Atraso</strong><br>O financeiro precisa identificar todas as faturas com status 'aberta' e data de vencimento anterior à data atual. Liste o ID da venda, valor total, data de vencimento e dias em atraso.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    v.venda_id,
+    f.valor_total,
+    f.data_vencimento,
+    julianday('now') - julianday(f.data_vencimento) as dias_atraso
+FROM faturas f
+JOIN vendas v ON f.venda_id = v.venda_id
+WHERE f.status = 'aberta' 
+AND f.data_vencimento < date('now');</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 7</h2>
+        <p class="exercise-description"><strong>Autores por Nacionalidade</strong><br>Para um evento cultural, precisamos conhecer a distribuição de autores por nacionalidade. Conte quantos autores temos de cada nacionalidade, listando as 10 nacionalidades com mais autores.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT nacionalidade, COUNT(*) as quantidade_autores
+FROM autores
+WHERE nacionalidade IS NOT NULL
+GROUP BY nacionalidade
+ORDER BY quantidade_autores DESC
+LIMIT 10;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 8</h2>
+        <p class="exercise-description"><strong>Ticket Médio por Cliente</strong><br>Calcule o ticket médio (valor médio gasto por compra) para cada cliente que realizou pelo menos 3 compras. Mostre o nome do cliente e o valor médio gasto, ordenado pelos maiores valores.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    c.nome,
+    AVG(v.total) as ticket_medio
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.cliente_id
+HAVING COUNT(v.venda_id) >= 3
+ORDER BY ticket_medio DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 9</h2>
+        <p class="exercise-description"><strong>Livros Nunca Vendidos</strong><br>Identifique os livros que nunca foram vendidos (que não possuem registros na tabela de itens de venda). Mostre o título, editora e preço desses livros.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT titulo, editora, preco
+FROM livros
+WHERE livro_id NOT IN (SELECT DISTINCT livro_id FROM venda_itens)
+ORDER BY titulo;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 10</h2>
+        <p class="exercise-description"><strong>Evolução de Vendas</strong><br>Gere um relatório que mostre a evolução de vendas por trimestre em 2025, com o total vendido em cada trimestre e a variação percentual em relação ao trimestre anterior.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>WITH trimestres AS (
+    SELECT 
+        CASE 
+            WHEN strftime('%m', data_venda) IN ('01','02','03') THEN '2025-T1'
+            WHEN strftime('%m', data_venda) IN ('04','05','06') THEN '2025-T2'
+            WHEN strftime('%m', data_venda) IN ('07','08','09') THEN '2025-T3'
+            ELSE '2025-T4'
+        END as trimestre,
+        SUM(total) as total_trimestre
+    FROM vendas
+    WHERE strftime('%Y', data_venda) = '2025'
+    GROUP BY trimestre
+)
+SELECT 
+    trimestre,
+    total_trimestre,
+    LAG(total_trimestre) OVER (ORDER BY trimestre) as trimestre_anterior,
+    ROUND((total_trimestre - LAG(total_trimestre) OVER (ORDER BY trimestre)) * 100.0 / LAG(total_trimestre) OVER (ORDER BY trimestre), 2) as variacao_percentual
+FROM trimestres
+ORDER BY trimestre;</code></pre>
+        </div>
+    </div>
+    
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 11</h2>
+        <p class="exercise-description"><strong>Clientes Inativos</strong><br>Identifique os clientes que não realizaram compras nos últimos 6 meses. Mostre nome, email e data da última compra.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    c.nome, 
+    c.email,
+    MAX(v.data_venda) as ultima_compra
+FROM clientes c
+LEFT JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.cliente_id
+HAVING ultima_compra IS NULL OR ultima_compra < date('now', '-6 months')
+ORDER BY ultima_compra;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 12</h2>
+        <p class="exercise-description"><strong>Livros por Faixa de Preço</strong><br>Classifique os livros em faixas de preço: Econômico (até R$ 30), Intermediário (R$ 31 a R$ 60) e Premium (acima de R$ 60). Conte quantos livros existem em cada faixa.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    CASE 
+        WHEN preco <= 30 THEN 'Econômico'
+        WHEN preco <= 60 THEN 'Intermediário'
+        ELSE 'Premium'
+    END as faixa_preco,
+    COUNT(*) as quantidade
+FROM livros
+GROUP BY faixa_preco
+ORDER BY faixa_preco;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 13</h2>
+        <p class="exercise-description"><strong>Média de Itens por Venda</strong><br>Calcule a média de itens por venda para cada mês de 2025, mostrando também o total de vendas e itens vendidos por mês.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    strftime('%Y-%m', v.data_venda) as mes,
+    COUNT(DISTINCT v.venda_id) as total_vendas,
+    COUNT(vi.venda_item_id) as total_itens,
+    ROUND(CAST(COUNT(vi.venda_item_id) AS REAL) / COUNT(DISTINCT v.venda_id), 2) as media_itens_por_venda
+FROM vendas v
+JOIN venda_itens vi ON v.venda_id = vi.venda_id
+WHERE strftime('%Y', v.data_venda) = '2025'
+GROUP BY mes
+ORDER BY mes;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 14</h2>
+        <p class="exercise-description"><strong>Top 5 Editoras</strong><br>Liste as 5 editoras com maior faturamento em 2025, mostrando o valor total vendido de seus livros.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.editora,
+    SUM(vi.quantidade * vi.preco_unitario) as faturamento_total
+FROM livros l
+JOIN venda_itens vi ON l.livro_id = vi.livro_id
+JOIN vendas v ON vi.venda_id = v.venda_id
+WHERE strftime('%Y', v.data_venda) = '2025'
+GROUP BY l.editora
+ORDER BY faturamento_total DESC
+LIMIT 5;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 15</h2>
+        <p class="exercise-description"><strong>Vendas por Dia da Semana</strong><br>Analise as vendas por dia da semana para identificar os dias com maior movimento. Mostre o dia da semana e o total vendido.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    CASE CAST(strftime('%w', data_venda) AS INTEGER)
+        WHEN 0 THEN 'Domingo'
+        WHEN 1 THEN 'Segunda-feira'
+        WHEN 2 THEN 'Terça-feira'
+        WHEN 3 THEN 'Quarta-feira'
+        WHEN 4 THEN 'Quinta-feira'
+        WHEN 5 THEN 'Sexta-feira'
+        ELSE 'Sábado'
+    END as dia_semana,
+    SUM(total) as total_vendido
+FROM vendas
+GROUP BY dia_semana
+ORDER BY total_vendido DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 16</h2>
+        <p class="exercise-description"><strong>Clientes com Maior Número de Compras</strong><br>Identifique os 10 clientes com maior número de compras realizadas, mostrando nome, email e quantidade de compras.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    c.nome,
+    c.email,
+    COUNT(v.venda_id) as total_compras
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY c.cliente_id
+ORDER BY total_compras DESC
+LIMIT 10;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 17</h2>
+        <p class="exercise-description"><strong>Livros com Maior Lucro</strong><br>Considerando que o lucro é 40% do preço de venda, liste os 10 livros que geraram maior lucro em 2025.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.titulo,
+    SUM(vi.quantidade * vi.preco_unitario * 0.4) as lucro_total
+FROM livros l
+JOIN venda_itens vi ON l.livro_id = vi.livro_id
+JOIN vendas v ON vi.venda_id = v.venda_id
+WHERE strftime('%Y', v.data_venda) = '2025'
+GROUP BY l.livro_id
+ORDER BY lucro_total DESC
+LIMIT 10;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 18</h2>
+        <p class="exercise-description"><strong>Vendas com Desconto</strong><br>Identifique as vendas onde o valor pago foi pelo menos 10% menor que o valor total dos itens, sugerindo que houve aplicação de desconto.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    v.venda_id,
+    v.total as valor_venda,
+    SUM(vi.quantidade * vi.preco_unitario) as valor_itens,
+    ROUND((SUM(vi.quantidade * vi.preco_unitario) - v.total) * 100.0 / SUM(vi.quantidade * vi.preco_unitario), 2) as percentual_desconto
+FROM vendas v
+JOIN venda_itens vi ON v.venda_id = vi.venda_id
+GROUP BY v.venda_id
+HAVING percentual_desconto >= 10
+ORDER BY percentual_desconto DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 19</h2>
+        <p class="exercise-description"><strong>Autores com Mais Obras</strong><br>Liste os 10 autores com maior número de obras cadastradas no sistema, mostrando também sua nacionalidade.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    a.nome,
+    a.nacionalidade,
+    COUNT(la.livro_id) as quantidade_obras
+FROM autores a
+JOIN livro_autores la ON a.autor_id = la.autor_id
+GROUP BY a.autor_id
+ORDER BY quantidade_obras DESC
+LIMIT 10;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 20</h2>
+        <p class="exercise-description"><strong>Vendas por Estado</strong><br>Analise as vendas por estado (considerando os dois primeiros dígitos do CEP no endereço). Mostre o estado e o total vendido.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    SUBSTR(c.endereco, INSTR(c.endereco, '/') + 1, 2) as estado,
+    SUM(v.total) as total_vendido
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+WHERE c.endereco LIKE '%/%'
+GROUP BY estado
+ORDER BY total_vendido DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 21</h2>
+        <p class="exercise-description"><strong>Média de Tempo entre Compras</strong><br>Calcule a média de tempo entre compras para os clientes que fizeram pelo menos 2 compras.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>WITH compras_clientes AS (
+    SELECT 
+        cliente_id,
+        data_venda,
+        LAG(data_venda) OVER (PARTITION BY cliente_id ORDER BY data_venda) as compra_anterior
+    FROM vendas
+)
+SELECT 
+    c.nome,
+    ROUND(AVG(julianday(data_venda) - julianday(compra_anterior)), 2) as media_dias_entre_compras
+FROM compras_clientes cc
+JOIN clientes c ON cc.cliente_id = c.cliente_id
+WHERE compra_anterior IS NOT NULL
+GROUP BY cc.cliente_id
+ORDER BY media_dias_entre_compras;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 22</h2>
+        <p class="exercise-description"><strong>Livros com Baixa Rotatividade</strong><br>Identifique os livros que estão há mais de 6 meses no estoque sem vendas. Mostre título, data de publicação e quantidade em estoque.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.titulo,
+    l.data_publicacao,
+    l.estoque
+FROM livros l
+WHERE l.livro_id NOT IN (
+    SELECT DISTINCT vi.livro_id
+    FROM venda_itens vi
+    JOIN vendas v ON vi.venda_id = v.venda_id
+    WHERE v.data_venda >= date('now', '-6 months')
+)
+ORDER BY l.data_publicacao;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 23</h2>
+        <p class="exercise-description"><strong>Vendas por Faixa Etária dos Clientes</strong><br>Categorize os clientes por faixa etária (baseado na data de cadastro como proxy) e mostre o total vendido por faixa.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    CASE 
+        WHEN julianday('now') - julianday(data_cadastro) < 365 THEN 'Menos de 1 ano'
+        WHEN julianday('now') - julianday(data_cadastro) < 1095 THEN '1-3 anos'
+        ELSE 'Mais de 3 anos'
+    END as tempo_cliente,
+    SUM(v.total) as total_vendido
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+GROUP BY tempo_cliente
+ORDER BY total_vendido DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 24</h2>
+        <p class="exercise-description"><strong>Livros Mais Caros por Editora</strong><br>Para cada editora, encontre o livro mais caro. Mostre editora, título e preço.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.editora,
+    l.titulo,
+    l.preco
+FROM livros l
+WHERE (l.editora, l.preco) IN (
+    SELECT editora, MAX(preco)
+    FROM livros
+    GROUP BY editora
+)
+ORDER BY l.preco DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 25</h2>
+        <p class="exercise-description"><strong>Clientes com Compras Acima da Média</strong><br>Identifique os clientes cujo valor médio de compras é superior à média geral de todas as compras.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>WITH media_geral AS (
+    SELECT AVG(total) as media_global
+    FROM vendas
+),
+media_cliente AS (
+    SELECT 
+        cliente_id,
+        AVG(total) as media_cliente
+    FROM vendas
+    GROUP BY cliente_id
+)
+SELECT 
+    c.nome,
+    c.email,
+    mc.media_cliente
+FROM media_cliente mc
+JOIN clientes c ON mc.cliente_id = c.cliente_id
+WHERE mc.media_cliente > (SELECT media_global FROM media_geral)
+ORDER BY mc.media_cliente DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 26</h2>
+        <p class="exercise-description"><strong>Evolução de Estoque</strong><br>Monitore a evolução do estoque considerando vendas realizadas. Mostre livro, estoque atual e quantidade total vendida.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.titulo,
+    l.estoque as estoque_atual,
+    COALESCE(SUM(vi.quantidade), 0) as total_vendido
+FROM livros l
+LEFT JOIN venda_itens vi ON l.livro_id = vi.livro_id
+GROUP BY l.livro_id
+ORDER BY total_vendido DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 27</h2>
+        <p class="exercise-description"><strong>Vendas por Autor e Mês</strong><br>Gere um relatório de vendas por autor e por mês, mostrando autor, mês e valor total vendido.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    a.nome as autor,
+    strftime('%Y-%m', v.data_venda) as mes,
+    SUM(vi.quantidade * vi.preco_unitario) as total_vendido
+FROM autores a
+JOIN livro_autores la ON a.autor_id = la.autor_id
+JOIN venda_itens vi ON la.livro_id = vi.livro_id
+JOIN vendas v ON vi.venda_id = v.venda_id
+GROUP BY a.autor_id, mes
+ORDER BY mes, total_vendido DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 28</h2>
+        <p class="exercise-description"><strong>Clientes com Maior Variedade de Compras</strong><br>Identifique os clientes que compraram livros de pelo menos 3 autores diferentes.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    c.nome,
+    COUNT(DISTINCT la.autor_id) as autores_diferentes
+FROM clientes c
+JOIN vendas v ON c.cliente_id = v.cliente_id
+JOIN venda_itens vi ON v.venda_id = vi.venda_id
+JOIN livro_autores la ON vi.livro_id = la.livro_id
+GROUP BY c.cliente_id
+HAVING autores_diferentes >= 3
+ORDER BY autores_diferentes DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 29</h2>
+        <p class="exercise-description"><strong>Livros com Preço Acima da Média</strong><br>Liste os livros com preço acima da média de preços de todos os livros, mostrando também a diferença em percentual.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>WITH media_preco AS (
+    SELECT AVG(preco) as media
+    FROM livros
+)
+SELECT 
+    titulo,
+    preco,
+    ROUND((preco - (SELECT media FROM media_preco)) * 100.0 / (SELECT media FROM media_preco), 2) as percentual_acima_media
+FROM livros
+WHERE preco > (SELECT media FROM media_preco)
+ORDER BY percentual_acima_media DESC;</code></pre>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h2 class="exercise-title">Exercício 30</h2>
+        <p class="exercise-description"><strong>Correlação entre Preço e Vendas</strong><br>Verifique se existe correlação entre o preço do livro e a quantidade vendida. Mostre livro, preço e quantidade vendida.</p>
+        <button class="show-solution-btn">Mostrar Gabarito</button>
+        <div class="solution-container">
+            <pre><code>SELECT 
+    l.titulo,
+    l.preco,
+    COALESCE(SUM(vi.quantidade), 0) as quantidade_vendida
+FROM livros l
+LEFT JOIN venda_itens vi ON l.livro_id = vi.livro_id
+GROUP BY l.livro_id
+ORDER BY l.preco DESC;</code></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.show-solution-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const solutionContainer = button.nextElementSibling;
+            if (solutionContainer.style.display === 'none' || solutionContainer.style.display === '') {
+                solutionContainer.style.display = 'block';
+                button.textContent = 'Ocultar Gabarito';
+            } else {
+                solutionContainer.style.display = 'none';
+                button.textContent = 'Mostrar Gabarito';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

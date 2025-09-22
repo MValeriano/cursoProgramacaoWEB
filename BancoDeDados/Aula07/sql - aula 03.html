@@ -127,21 +127,52 @@
         <div class="card p-8 md:p-12 mb-12">
             <h2 class="section-title">Comando CREATE: Criando Tabelas</h2>
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                O comando <code class="bg-gray-200 px-2 py-1 rounded">CREATE TABLE</code> é usado para criar uma nova tabela no banco de dados.
-            </p>
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">CREATE TABLE</code> 
+				é usado para criar novas tabelas no banco de dados, definindo suas colunas, tipos de dados e restrições.
+			</p>
             <h3 class="font-bold text-2xl mb-2 text-blue-700">Sintaxe</h3>
             <div class="code-block mt-4">
-                <pre><code>CREATE TABLE nome_tabela (
-    coluna1 tipo_de_dado,
-    coluna2 tipo_de_dado,
+                <pre><code>CREATE TABLE [IF NOT EXISTS] nome_tabela (
+    coluna1 tipo_dado [constraints],
+    coluna2 tipo_dado [constraints],
     ...
+    [constraints de tabela]
+) [TABLESPACE tablespace_name];
 );</code></pre>
             </div>
             
+            <h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Parâmetros Opcionais:</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+				<ul class="space-y-2 text-gray-700">
+					<li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">IF NOT EXISTS:</strong> 
+						Evita erro se a tabela já existir.
+					</li>
+					<li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">TABLESPACE: </strong> 
+						Evita erro se a tabela já existir.
+					</li>					
+				</ul>
+            </p>
+			
             <h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Principais Tipos de Dados</h3>
             <p class="text-lg text-gray-700 leading-relaxed mb-4">
                 Eles definem o tipo de informação que cada coluna pode armazenar.
             </p>
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados Numéricos</h3>
+			<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;"> <thead> <tr style="background-color: #f2f2f2;"> <th style="text-align: left; padding: 12px;">Tipo</th> <th style="text-align: left; padding: 12px;">Descrição</th> <th style="text-align: left; padding: 12px;">Exemplo</th> </tr> </thead> <tbody> <tr> <td style="padding: 10px;"><code>SMALLINT</code></td> <td style="padding: 10px;">Inteiro 2 bytes</td> <td style="padding: 10px;"><code>idade SMALLINT</code></td> </tr> <tr> <td style="padding: 10px;"><code>INTEGER</code></td> <td style="padding: 10px;">Inteiro 4 bytes</td> <td style="padding: 10px;"><code>id INTEGER</code></td> </tr> <tr> <td style="padding: 10px;"><code>BIGINT</code></td> <td style="padding: 10px;">Inteiro 8 bytes</td> <td style="padding: 10px;"><code>cpf BIGINT</code></td> </tr> <tr> <td style="padding: 10px;"><code>DECIMAL(p,s)</code></td> <td style="padding: 10px;">Precisão decimal</td> <td style="padding: 10px;"><code>preco DECIMAL(10,2)</code></td> </tr> <tr> <td style="padding: 10px;"><code>NUMERIC(p,s)</code></td> <td style="padding: 10px;">Similar ao DECIMAL</td> <td style="padding: 10px;"><code>altura NUMERIC(5,2)</code></td> </tr> <tr> <td style="padding: 10px;"><code>REAL</code></td> <td style="padding: 10px;">Ponto flutuante 4 bytes</td> <td style="padding: 10px;"><code>temperatura REAL</code></td> </tr> <tr> <td style="padding: 10px;"><code>DOUBLE PRECISION</code></td> <td style="padding: 10px;">Ponto flutuante 8 bytes</td> <td style="padding: 10px;"><code>cientifico DOUBLE PRECISION</code></td> </tr> <tr> <td style="padding: 10px;"><code>SERIAL</code></td> <td style="padding: 10px;">Auto incremento 4 bytes</td> <td style="padding: 10px;"><code>id SERIAL</code></td> </tr> <tr> <td style="padding: 10px;"><code>BIGSERIAL</code></td> <td style="padding: 10px;">Auto incremento 8 bytes</td> <td style="padding: 10px;"><code>id BIGSERIAL</code></td> </tr> </tbody> </table>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados de Texto</h3>
+			<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;"> <thead> <tr style="background-color: #f2f2f2;"> <th style="text-align: left; padding: 12px;">Tipo</th> <th style="text-align: left; padding: 12px;">Descrição</th> <th style="text-align: left; padding: 12px;">Exemplo</th> </tr> </thead> <tbody> <tr> <td style="padding: 10px;"><code>CHAR(n)</code></td> <td style="padding: 10px;">Texto fixo</td> <td style="padding: 10px;"><code>sigla CHAR(3)</code></td> </tr> <tr> <td style="padding: 10px;"><code>VARCHAR(n)</code></td> <td style="padding: 10px;">Texto variável</td> <td style="padding: 10px;"><code>nome VARCHAR(100)</code></td> </tr> <tr> <td style="padding: 10px;"><code>TEXT</code></td> <td style="padding: 10px;">Texto ilimitado</td> <td style="padding: 10px;"><code>descricao TEXT</code></td> </tr> </tbody> </table>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados de Data/Hora</h3>
+			<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;"> <thead> <tr style="background-color: #f2f2f2;"> <th style="text-align: left; padding: 12px;">Tipo</th> <th style="text-align: left; padding: 12px;">Descrição</th> <th style="text-align: left; padding: 12px;">Exemplo</th> </tr> </thead> <tbody> <tr> <td style="padding: 10px;"><code>DATE</code></td> <td style="padding: 10px;">Data</td> <td style="padding: 10px;"><code>nascimento DATE</code></td> </tr> <tr> <td style="padding: 10px;"><code>TIME</code></td> <td style="padding: 10px;">Hora</td> <td style="padding: 10px;"><code>horario TIME</code></td> </tr> <tr> <td style="padding: 10px;"><code>TIMESTAMP</code></td> <td style="padding: 10px;">Data e hora</td> <td style="padding: 10px;"><code>criado_em TIMESTAMP</code></td> </tr> <tr> <td style="padding: 10px;"><code>TIMESTAMPTZ</code></td> <td style="padding: 10px;">Data/hora com fuso</td> <td style="padding: 10px;"><code>log TIMESTAMPTZ</code></td> </tr> <tr> <td style="padding: 10px;"><code>INTERVAL</code></td> <td style="padding: 10px;">Intervalo de tempo</td> <td style="padding: 10px;"><code>duracao INTERVAL</code></td> </tr> </tbody> </table>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados Booleanos</h3>
+			<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;"> <thead> <tr style="background-color: #f2f2f2;"> <th style="text-align: left; padding: 12px;">Tipo</th> <th style="text-align: left; padding: 12px;">Descrição</th> <th style="text-align: left; padding: 12px;">Exemplo</th> </tr> </thead> <tbody> <tr> <td style="padding: 10px;"><code>UUID</code></td> <td style="padding: 10px;">Identificador único</td> <td style="padding: 10px;"><code>codigo UUID</code></td> </tr> <tr> <td style="padding: 10px;"><code>JSON</code></td> <td style="padding: 10px;">Dados JSON</td> <td style="padding: 10px;"><code>dados JSON</code></td> </tr> <tr> <td style="padding: 10px;"><code>JSONB</code></td> <td style="padding: 10px;">JSON binário</td> <td style="padding: 10px;"><code>config JSONB</code></td> </tr> <tr> <td style="padding: 10px;"><code>ARRAY</code></td> <td style="padding: 10px;">Array de valores</td> <td style="padding: 10px;"><code>telefones TEXT[]</code></td> </tr> </tbody> </table>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados Booleanos</h3>
+			<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;"> <thead> <tr style="background-color: #f2f2f2;"> <th style="text-align: left; padding: 12px;">Tipo</th> <th style="text-align: left; padding: 12px;">Descrição</th> <th style="text-align: left; padding: 12px;">Exemplo</th> </tr> </thead> <tbody> <tr> <td style="padding: 10px;"><code>UUID</code></td> <td style="padding: 10px;">Identificador único</td> <td style="padding: 10px;"><code>codigo UUID</code></td> </tr> <tr> <td style="padding: 10px;"><code>JSON</code></td> <td style="padding: 10px;">Dados JSON</td> <td style="padding: 10px;"><code>dados JSON</code></td> </tr> <tr> <td style="padding: 10px;"><code>JSONB</code></td> <td style="padding: 10px;">JSON binário</td> <td style="padding: 10px;"><code>config JSONB</code></td> </tr> <tr> <td style="padding: 10px;"><code>ARRAY</code></td> <td style="padding: 10px;">Array de valores</td> <td style="padding: 10px;"><code>telefones TEXT[]</code></td> </tr> </tbody> </table>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Tipos de Dados mais usados</h3>
             <ul class="space-y-2 text-gray-700">
                 <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">INTEGER:</strong> Números inteiros. Ex: idade, quantidade.</li>
                 <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">TEXT / VARCHAR:</strong> Cadeias de caracteres. Ex: nomes, endereços.</li>
@@ -153,182 +184,1243 @@
             <p class="text-lg text-gray-700 leading-relaxed mb-4">
                 Regras que garantem a integridade e a validade dos dados.
             </p>
+			
             <ul class="space-y-2 text-gray-700">
-                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">PRIMARY KEY:</strong> Identificador único para cada registro. Não pode ser nula e deve ser única.</li>
-                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">FOREIGN KEY:</strong> Liga uma coluna a outra tabela, criando relacionamentos.</li>
-                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">NOT NULL:</strong> Garante que a coluna não pode ter um valor nulo.</li>
-                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">UNIQUE:</strong> Todos os valores na coluna devem ser únicos.</li>
-                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DEFAULT:</strong> Define um valor padrão caso nenhum valor seja fornecido.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">PRIMARY KEY:</strong> 
+				Identificador único para cada registro. Não pode ser nula e deve ser única.
+                    <div class="code-block mt-4">
+                        <pre><code>-- Forma 1: Na coluna
+CREATE TABLE usuarios (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(100)
+);
+
+-- Forma 2: Como constraint de tabela
+CREATE TABLE usuarios (
+	id SERIAL,
+	nome VARCHAR(100),
+	PRIMARY KEY (id)
+);
+
+-- Forma 3: Chave composta
+CREATE TABLE pedidos_itens (
+	pedido_id INTEGER,
+	item_id INTEGER,
+	quantidade INTEGER,
+	PRIMARY KEY (pedido_id, item_id)
+);
+</code></pre>
+                    </div>
+				</li>
+
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">FOREIGN KEY:</strong> Liga uma coluna a outra tabela, criando relacionamentos.
+                    <div class="code-block mt-4">
+<pre><code>CREATE TABLE pedidos (
+		id SERIAL PRIMARY KEY,
+		usuario_id INTEGER,
+		data_pedido DATE,
+		FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+	);
+
+	-- Com ações em cascata
+	CREATE TABLE pedidos (
+		id SERIAL PRIMARY KEY,
+		usuario_id INTEGER,
+		data_pedido DATE,
+		FOREIGN KEY (usuario_id) 
+			REFERENCES usuarios(id)
+			ON DELETE CASCADE
+			ON UPDATE SET NULL
+	);
+</code></pre>
+                    </div>				
+				</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">NOT NULL:</strong> Garante que a coluna não pode ter um valor nulo.
+				    <div class="code-block mt-4">
+<pre><code>CREATE TABLE produtos (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(100) NOT NULL,
+		descricao TEXT,
+		preco DECIMAL(10,2) NOT NULL
+	);
+</code></pre>
+                    </div>
+				</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">UNIQUE:</strong> Todos os valores na coluna devem ser únicos.
+                    <div class="code-block mt-4">
+<pre><code>CREATE TABLE usuarios (
+		id SERIAL PRIMARY KEY,
+		email VARCHAR(255) UNIQUE,
+		cpf VARCHAR(11) UNIQUE NOT NULL
+	);
+
+	-- Múltiplas colunas
+	CREATE TABLE funcionarios (
+		id SERIAL PRIMARY KEY,
+		departamento_id INTEGER,
+		matricula VARCHAR(10),
+		UNIQUE (departamento_id, matricula)
+	);
+</code></pre>
+                    </div>				
+				</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">CHECK:</strong> Define uma condição que deve ser satisfeita.
+                    <div class="code-block mt-4">
+<pre><code>CREATE TABLE produtos (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(100) NOT NULL,
+		preco DECIMAL(10,2) CHECK (preco > 0),
+		estoque INTEGER CHECK (estoque >= 0)
+	);
+
+	-- Check complexo
+	CREATE TABLE funcionarios (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(100) NOT NULL,
+		salario DECIMAL(10,2),
+		data_admissao DATE,
+		email VARCHAR(50) NOT NULL, 
+		CHECK (salario > 0 AND data_admissao <= CURRENT_DATE),
+		CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z]{2,}$')
+	);
+</code></pre>
+                    </div>				
+				</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DEFAULT:</strong> Define um valor padrão caso nenhum valor seja fornecido.
+                    <div class="code-block mt-4">
+<pre><code>CREATE TABLE pedidos (
+		id SERIAL PRIMARY KEY,
+		data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		status VARCHAR(20) DEFAULT 'pendente',
+		total DECIMAL(10,2) DEFAULT 0.00
+	);
+</code></pre>
+                    </div>				
+				</li>				
             </ul>
         </div>
 
         <div class="card p-8 md:p-12 mb-12">
             <h2 class="section-title">Comando ALTER: Modificando Tabelas</h2>
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Use o comando <code class="bg-gray-200 px-2 py-1 rounded">ALTER TABLE</code> para adicionar, modificar ou remover colunas de uma tabela existente.
+                Use o comando <code class="bg-gray-200 px-2 py-1 rounded">ALTER TABLE</code> para adicionar, modificar ou remover colunas de uma tabela existente.  É uma operação essencial para evolução do esquema do banco de dados.
             </p>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Quando usar ALTER TABLE?</h3>
+            <ul class="space-y-2 text-gray-700 mb-6">
+                <li class="p-3 bg-blue-50 rounded-lg">Adicionar, modificar ou remover colunas.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Adicionar ou remover constraints.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Renomear tabelas ou colunas.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Renomear tabelas ou colunas.</li>
+				<li class="p-3 bg-blue-50 rounded-lg">Modificar propriedades da tabela.</li>
+            </ul>			
+			
+			<div>
+				<h3 class="font-bold text-xl mb-2 text-indigo-700">Sintaxe Geral</h3>
+				<div class="code-block mt-4 mb-4">
+<pre><code>ALTER TABLE [IF EXISTS] nome_tabela
+	ação_da_alteracao;						
+</code></pre>
+				</div>
+			</div>			
+			
+			<h3 class="font-bold text-2xl mt-8 mb-2 text-blue-700">Principais Ações:</h3>
+            <ul class="space-y-2 text-gray-700 mb-6">
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">ADD COLUMN</strong> - Adicionar nova coluna.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DROP COLUMN</strong> - Remover coluna.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">ALTER COLUMN</strong> - Modificar coluna.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">RENAME TO</strong> - Renomear tabela.</li>
+				<li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">ADD CONSTRAINT</strong> - Adicionar constraint.</li>
+				<li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">DROP CONSTRAINT</strong> - Remover constraint.</li>
+            </ul>				
+		
             <div class="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="font-bold text-xl mb-2 text-indigo-700">Adicionar Coluna</h3>
                     <div class="code-block mt-4">
-                        <pre><code>ALTER TABLE nome_tabela
-ADD COLUMN nova_coluna tipo_dado;</code></pre>
+<pre><code>-- Sintaxe básica
+	ALTER TABLE nome_tabela 
+	ADD COLUMN nome_coluna tipo_dado [constraints];
+
+	-- Exemplos práticos
+	ALTER TABLE usuarios 
+	ADD COLUMN telefone VARCHAR(15);
+
+	ALTER TABLE produtos 
+	ADD COLUMN data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+	ALTER TABLE pedidos 
+	ADD COLUMN total DECIMAL(10,2) NOT NULL DEFAULT 0.00;						
+</code></pre>
                     </div>
                 </div>
                 <div>
                     <h3 class="font-bold text-xl mb-2 text-indigo-700">Modificar Coluna</h3>
                     <div class="code-block mt-4">
-                        <pre><code>ALTER TABLE nome_tabela
-MODIFY COLUMN coluna tipo_dado;</code></pre>
+<pre><code>-- Sintaxe básica
+	ALTER TABLE nome_tabela 
+	DROP COLUMN [IF EXISTS] nome_coluna [CASCADE | RESTRICT];
+
+	-- Exemplos
+	ALTER TABLE usuarios 
+	DROP COLUMN telefone;
+
+	ALTER TABLE produtos 
+	DROP COLUMN IF EXISTS observacao; -- Não causa erro se não existir
+
+	ALTER TABLE vendas 
+	DROP COLUMN comissao CASCADE; -- Remove dependências							
+</code></pre>
                     </div>
                 </div>
                 <div>
                     <h3 class="font-bold text-xl mb-2 text-indigo-700">Remover Coluna</h3>
                     <div class="code-block mt-4">
-                        <pre><code>ALTER TABLE nome_tabela
-DROP COLUMN coluna;</code></pre>
+<pre><code>ALTER TABLE nome_tabela 
+	RENAME COLUMN nome_atual TO novo_nome;
+
+	-- Exemplos
+	ALTER TABLE clientes 
+	RENAME COLUMN nome TO nome_completo;
+
+	ALTER TABLE produtos 
+	RENAME COLUMN preco TO preco_venda;
+</code></pre>
                     </div>
                 </div>
             </div>
+			
+			
+            <div class="grid md:grid-cols-3 gap-8 mt-5">
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Alterar Tipo de Dado</h3>
+                    <div class="code-block mt-4">
+<pre><code>ALTER TABLE nome_tabela 
+ALTER COLUMN nome_coluna TYPE novo_tipo [USING expressao];
+
+-- Exemplos simples
+ALTER TABLE usuarios 
+ALTER COLUMN idade TYPE SMALLINT;
+
+-- Com conversão usando USING
+ALTER TABLE produtos 
+ALTER COLUMN preco TYPE DECIMAL(10,2) 
+USING preco::decimal(10,2);
+
+-- Conversão de texto para numérico
+ALTER TABLE vendas 
+ALTER COLUMN valor TYPE NUMERIC(10,2) 
+USING REPLACE(valor, 'R$', '')::numeric(10,2);					
+</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Modificar Constraints de Coluna</h3>
+                    <div class="code-block mt-4">
+<pre><code>-- Adicionar NOT NULL
+ALTER TABLE nome_tabela 
+ALTER COLUMN nome_coluna SET NOT NULL;
+
+-- Remover NOT NULL
+ALTER TABLE nome_tabela 
+ALTER COLUMN nome_coluna DROP NOT NULL;
+
+-- Setar valor padrão
+ALTER TABLE nome_tabela 
+ALTER COLUMN nome_coluna SET DEFAULT valor;
+
+-- Remover valor padrão
+ALTER TABLE nome_tabela 
+ALTER COLUMN nome_coluna DROP DEFAULT;
+
+-- Exemplos
+ALTER TABLE usuarios 
+ALTER COLUMN email SET NOT NULL;
+
+ALTER TABLE produtos 
+ALTER COLUMN estoque SET DEFAULT 0;
+
+ALTER TABLE pedidos 
+ALTER COLUMN status DROP DEFAULT;							
+</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Renomear Coluna</h3>
+                    <div class="code-block mt-4">
+<pre><code>ALTER TABLE nome_tabela 
+RENAME COLUMN nome_atual TO novo_nome;
+
+-- Exemplos
+ALTER TABLE clientes 
+RENAME COLUMN nome TO nome_completo;
+
+ALTER TABLE produtos 
+RENAME COLUMN preco TO preco_venda;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+			<h2 class="font-bold text-xl mb-6 mt-6 text-indigo-700">Modificando Constraints da tabela</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-5">
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Adicionar Constraints</h3>
+                    <div class="code-block mt-4">
+<pre><code>-- Primary Key
+ALTER TABLE nome_tabela 
+ADD PRIMARY KEY (coluna1, coluna2, ...);
+
+-- Foreign Key
+ALTER TABLE nome_tabela 
+ADD CONSTRAINT nome_constraint 
+FOREIGN KEY (coluna) REFERENCES outra_tabela(coluna);
+
+-- Unique
+ALTER TABLE nome_tabela 
+ADD CONSTRAINT nome_constraint UNIQUE (coluna);
+
+-- Check
+ALTER TABLE nome_tabela 
+ADD CONSTRAINT nome_constraint CHECK (condicao);
+
+-- Exemplos
+ALTER TABLE usuarios 
+ADD CONSTRAINT pk_usuarios PRIMARY KEY (id);
+
+ALTER TABLE pedidos 
+ADD CONSTRAINT fk_pedidos_usuario 
+FOREIGN KEY (usuario_id) REFERENCES usuarios(id);
+
+ALTER TABLE produtos 
+ADD CONSTRAINT uk_produtos_sku UNIQUE (sku);
+
+ALTER TABLE funcionarios 
+ADD CONSTRAINT ck_salario_positivo 
+CHECK (salario > 0);				
+</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Remover Constraints da tabela</h3>
+                    <div class="code-block mt-4">
+<pre><code>ALTER TABLE nome_tabela 
+DROP CONSTRAINT nome_constraint [CASCADE | RESTRICT];
+
+-- Exemplos
+ALTER TABLE produtos 
+DROP CONSTRAINT uk_produtos_sku;
+
+ALTER TABLE pedidos 
+DROP CONSTRAINT fk_pedidos_usuario CASCADE;
+</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Renomear Constraints da tabela</h3>
+                    <div class="code-block mt-4">
+<pre><code>ALTER TABLE nome_tabela 
+RENAME CONSTRAINT nome_atual TO novo_nome;
+
+-- Exemplo
+ALTER TABLE usuarios 
+RENAME CONSTRAINT usuarios_pkey TO pk_usuarios;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+			<h2 class="font-bold text-xl mb-6 mt-6 text-indigo-700">Modificando a Tabela</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-5">
+                <div>
+                    <h3 class="font-bold text-xl mb-2 text-indigo-700">Renomear Tabela</h3>
+                    <div class="code-block mt-4">
+<pre><code>ALTER TABLE nome_atual 
+RENAME TO novo_nome;
+
+-- Exemplos
+ALTER TABLE usuarios 
+RENAME TO users;
+
+ALTER TABLE produto 
+RENAME TO produtos;				
+</code></pre>
+                    </div>
+                </div>
+                <div>
+            </div>
+        </div>	
+
+
+        </div>			
+
+
+
+
+	
+
+			
         </div>
+		
+		
+        <div class="card p-8 md:p-12 mb-12">
+            <h2 class="section-title">Operações em Lote (Múltiplas Alterações)</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Na maioria das vezes é mais eficiente fazer multiplas alterações.
+            </p>
+            <div class="code-block">
+                <pre><code>-- Múltiplas alterações em um comando (mais eficiente)
+ALTER TABLE produtos 
+    ADD COLUMN marca VARCHAR(50),
+    ADD COLUMN categoria VARCHAR(30),
+    ALTER COLUMN preco TYPE DECIMAL(12,2),
+    ADD CONSTRAINT ck_preco_positivo CHECK (preco > 0),
+    RENAME COLUMN descricao TO descricao_completa;</code></pre>
+            </div>
+        </div>		
+		
 
         <div class="card p-8 md:p-12 mb-12">
             <h2 class="section-title">Comando DROP: Excluindo Estruturas</h2>
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                O comando <code class="bg-gray-200 px-2 py-1 rounded">DROP TABLE</code> é usado para excluir uma tabela inteira. **Use com extrema cautela**, pois a operação é irreversível.
+                O comando <code class="bg-gray-200 px-2 py-1 rounded">DROP TABLE</code> é usado para remover permanentemente uma tabela e todos os seus dados do banco de dados. **Use com extrema cautela**, pois a operação é destrutiva e irreversível.
             </p>
-            <div class="code-block">
-                <pre><code>DROP TABLE nome_tabela;</code></pre>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-6 text-blue-700">Quando usar DROP TABLE?</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li class="p-3 bg-blue-50 rounded-lg">Limpar estruturas obsoletas.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Excluir tabelas de staging após processamento.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Remover dados sensíveis permanentemente.</li>
+                <li class="p-3 bg-blue-50 rounded-lg">Gerenciar ciclo de vida do banco de dados.</li>
+            </ul>			
+			
+			
+            <div class="code-block mt-8 ">
+                <pre><code>DROP TABLE [IF EXISTS] nome_tabela [, ...] 
+[CASCADE | RESTRICT];</code></pre>
             </div>
             <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
                 <strong>🚫 AVISO:</strong> Isso apaga a tabela e todos os seus dados.
             </div>
+			
+			<h3 class="font-bold text-2xl mt-8 mb-6 text-blue-700">Componentes da Sintaxe:</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">IF EXISTS: </strong>Evita erro se a tabela não existir.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">nome_tabela: </strong>Nome da tabela a ser removida.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">CASCADE: </strong>Remove objetos dependentes automaticamente.</li>
+                <li class="p-3 bg-blue-50 rounded-lg"><strong class="text-blue-700">RESTRICT: </strong>Impede remoção se houver dependências (padrão).</li>
+            </ul>				
         </div>
         
-        <div class="my-16">
-            <h2 class="section-title text-center">EXERCÍCIOS DDL</h2>
-            <div class="text-center text-lg text-gray-600 mb-8">
-                Vamos praticar a definição de estruturas com o nosso banco de dados.
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios DDL PostgreSQL</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .my-16 {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-lg {
+            font-size: 1.125rem;
+        }
+        
+        .text-gray-600 {
+            color: #718096;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .bg-gray-100 {
+            background-color: #f7fafc;
+        }
+        
+        .p-8 {
+            padding: 2rem;
+        }
+        
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+        
+        .shadow-inner {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .grid {
+            display: grid;
+        }
+        
+        .gap-6 {
+            gap: 1.5rem;
+        }
+        
+        .exercise-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #3498db;
+        }
+        
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .text-gray-700 {
+            color: #4a5568;
+        }
+        
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .solution-toggle-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.3s;
+        }
+        
+        .solution-toggle-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .solution-container {
+            display: none;
+            margin-top: 1rem;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .solution-code {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="my-16">
+    <h2 class="section-title text-center">EXERCÍCIOS DDL - SISTEMA DE NOTA FISCAL</h2>
+    <div class="text-center text-lg text-gray-600 mb-8">
+        Vamos praticar a definição de estruturas com um sistema completo de nota fiscal.
+    </div>
+    
+    <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
+        
+        <!-- ========== EXERCÍCIOS CREATE TABLE ========== -->
+        
+        <h3 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">CREATE TABLE (10 Exercícios)</h3>
+        
+        <!-- Exercício CREATE 1 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 1: Tabela Básica de Nota Fiscal</span>
             </div>
-            
-            <div class="bg-gray-100 p-8 rounded-xl shadow-inner grid gap-6">
-                <!-- Exercício 1 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 1: Criando uma Tabela</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Crie uma nova tabela chamada `fornecedores` com as colunas: `fornecedor_id` (PRIMARY KEY, INTEGER), `nome` (TEXT, NOT NULL), `cidade` (TEXT) e `contato` (TEXT).
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(1)">Mostrar Solução</button>
-                    <div id="solution-1" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>CREATE TABLE fornecedores (
-    fornecedor_id INTEGER PRIMARY KEY,
-    nome TEXT NOT NULL,
-    cidade TEXT,
-    contato TEXT
+            <p class="text-gray-700 mb-2">
+                A empresa XPTO precisa armazenar informações de notas fiscais. Crie a tabela <code>nota_fiscal</code> com os campos: 
+                <code>numero</code> (INTEGER), <code>data_emissao</code> (DATE), <code>valor_total</code> (DECIMAL), 
+                <code>cliente_nome</code> (VARCHAR(100)), <code>cliente_cpf</code> (VARCHAR(14)). 
+                Não adicione constraints ainda.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-1')">Mostrar Solução</button>
+            <div id="solution-create-1" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE nota_fiscal (
+    numero INTEGER,
+    data_emissao DATE,
+    valor_total DECIMAL(10,2),
+    cliente_nome VARCHAR(100),
+    cliente_cpf VARCHAR(14)
 );</code></pre>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Exercício 2 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 2: Adicionando uma Coluna</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Adicione uma nova coluna chamada `email` (TEXT) à tabela `fornecedores`.
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(2)">Mostrar Solução</button>
-                    <div id="solution-2" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>ALTER TABLE fornecedores
-ADD COLUMN email TEXT;</code></pre>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Exercício 3 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 3: Modificando uma Coluna</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Altere o tipo de dado da coluna `contato` na tabela `fornecedores` para `INTEGER`.
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(3)">Mostrar Solução</button>
-                    <div id="solution-3" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>ALTER TABLE fornecedores
-MODIFY COLUMN contato INTEGER;</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercício 4 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 4: Removendo uma Coluna</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Remova a coluna `cidade` da tabela `fornecedores`.
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(4)">Mostrar Solução</button>
-                    <div id="solution-4" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>ALTER TABLE fornecedores
-DROP COLUMN cidade;</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercício 5 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 5: Adicionando uma Tabela de Relacionamento</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Crie uma tabela chamada `livros_fornecedores` para relacionar `livros` com `fornecedores`, usando `livro_id` e `fornecedor_id` como chaves estrangeiras.
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(5)">Mostrar Solução</button>
-                    <div id="solution-5" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>CREATE TABLE livros_fornecedores (
-    livro_id INTEGER,
-    fornecedor_id INTEGER,
-    PRIMARY KEY(livro_id, fornecedor_id),
-    FOREIGN KEY(livro_id) REFERENCES livros(livro_id),
-    FOREIGN KEY(fornecedor_id) REFERENCES fornecedores(fornecedor_id)
-);</code></pre>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Exercício 6 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span>📘</span>
-                        <span>Exercício 6: Removendo a Tabela</span>
-                    </div>
-                    <p class="text-gray-700 mb-2">
-                        Exclua a tabela `fornecedores`.
-                    </p>
-                    <button class="solution-toggle-btn" onclick="toggleSolution(6)">Mostrar Solução</button>
-                    <div id="solution-6" class="solution-container">
-                        <div class="solution-code">
-                            <pre><code>DROP TABLE fornecedores;</code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Exercício CREATE 2 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 2: Tabela de Itens da Nota</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Agora crie a tabela <code>itens_nota_fiscal</code> para armazenar os produtos de cada nota: 
+                <code>id_item</code> (INTEGER), <code>numero_nota</code> (INTEGER), <code>produto_codigo</code> (VARCHAR(20)), 
+                <code>produto_descricao</code> (VARCHAR(200)), <code>quantidade</code> (DECIMAL), <code>valor_unitario</code> (DECIMAL).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-2')">Mostrar Solução</button>
+            <div id="solution-create-2" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE itens_nota_fiscal (
+    id_item INTEGER,
+    numero_nota INTEGER,
+    produto_codigo VARCHAR(20),
+    produto_descricao VARCHAR(200),
+    quantidade DECIMAL(10,3),
+    valor_unitario DECIMAL(10,2)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 3 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 3: Tabela de Clientes</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie a tabela <code>clientes</code> para normalizar os dados: 
+                <code>cliente_id</code> (SERIAL), <code>nome</code> (VARCHAR(100)), <code>cpf</code> (VARCHAR(14)), 
+                <code>email</code> (VARCHAR(100)), <code>telefone</code> (VARCHAR(15)).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-3')">Mostrar Solução</button>
+            <div id="solution-create-3" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE clientes (
+    cliente_id SERIAL,
+    nome VARCHAR(100),
+    cpf VARCHAR(14),
+    email VARCHAR(100),
+    telefone VARCHAR(15)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 4 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 4: Tabela de Produtos</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie a tabela <code>produtos</code> com: 
+                <code>produto_id</code> (SERIAL), <code>codigo</code> (VARCHAR(20)), <code>descricao</code> (VARCHAR(200)), 
+                <code>preco</code> (DECIMAL), <code>estoque</code> (INTEGER).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-4')">Mostrar Solução</button>
+            <div id="solution-create-4" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE produtos (
+    produto_id SERIAL,
+    codigo VARCHAR(20),
+    descricao VARCHAR(200),
+    preco DECIMAL(10,2),
+    estoque INTEGER
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 5 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 5: Tabela com Primary Key</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Recrie a tabela <code>nota_fiscal</code> adicionando <code>numero</code> como PRIMARY KEY e 
+                <code>cliente_id</code> como FOREIGN KEY referenciando a tabela clientes.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-5')">Mostrar Solução</button>
+            <div id="solution-create-5" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE nota_fiscal (
+    numero INTEGER PRIMARY KEY,
+    data_emissao DATE,
+    valor_total DECIMAL(10,2),
+    cliente_id INTEGER,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 6 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 6: Tabela com Constraints</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Recrie a tabela <code>itens_nota_fiscal</code> com: PRIMARY KEY composta (<code>numero_nota</code>, <code>id_item</code>), 
+                FOREIGN KEY para <code>nota_fiscal</code> e <code>produtos</code>, e CHECK para <code>quantidade > 0</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-6')">Mostrar Solução</button>
+            <div id="solution-create-6" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE itens_nota_fiscal (
+    id_item INTEGER,
+    numero_nota INTEGER,
+    produto_id INTEGER,
+    quantidade DECIMAL(10,3) CHECK (quantidade > 0),
+    valor_unitario DECIMAL(10,2) CHECK (valor_unitario >= 0),
+    PRIMARY KEY (numero_nota, id_item),
+    FOREIGN KEY (numero_nota) REFERENCES nota_fiscal(numero),
+    FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 7 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 7: Tabela com Valores Padrão</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie a tabela <code>configuracoes</code> com: <code>config_id</code> (SERIAL PRIMARY KEY), 
+                <code>empresa_nome</code> (VARCHAR(100) DEFAULT 'XPTO Ltda'), 
+                <code>data_criacao</code> (TIMESTAMP DEFAULT CURRENT_TIMESTAMP), 
+                <code>ativo</code> (BOOLEAN DEFAULT TRUE).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-7')">Mostrar Solução</button>
+            <div id="solution-create-7" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE configuracoes (
+    config_id SERIAL PRIMARY KEY,
+    empresa_nome VARCHAR(100) DEFAULT 'XPTO Ltda',
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 8 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 8: Tabela com Unique Constraint</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Modifique a criação da tabela <code>clientes</code> para incluir UNIQUE constraint no CPF e NOT NULL no nome.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-8')">Mostrar Solução</button>
+            <div id="solution-create-8" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE clientes (
+    cliente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE,
+    email VARCHAR(100),
+    telefone VARCHAR(15)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 9 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 9: Tabela com Múltiplas Constraints</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie a tabela <code>produtos</code> com: PRIMARY KEY, UNIQUE no código, CHECK para preço positivo, 
+                e DEFAULT 0 no estoque.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-9')">Mostrar Solução</button>
+            <div id="solution-create-9" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE produtos (
+    produto_id SERIAL PRIMARY KEY,
+    codigo VARCHAR(20) UNIQUE NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    preco DECIMAL(10,2) CHECK (preco >= 0),
+    estoque INTEGER DEFAULT 0 CHECK (estoque >= 0)
+);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício CREATE 10 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>📘</span>
+                <span>Exercício CREATE 10: Tabela com Herança</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie uma tabela <code>pessoas</code> com dados básicos e tabelas <code>clientes</code> e <code>fornecedores</code> 
+                que herdam de <code>pessoas</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('create-10')">Mostrar Solução</button>
+            <div id="solution-create-10" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>CREATE TABLE pessoas (
+    pessoa_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf_cnpj VARCHAR(20),
+    email VARCHAR(100)
+);
+
+CREATE TABLE clientes (
+    tipo_cliente VARCHAR(20),
+    data_cadastro DATE DEFAULT CURRENT_DATE
+) INHERITS (pessoas);
+
+CREATE TABLE fornecedores (
+    ramo_atuacao VARCHAR(50),
+    data_cadastro DATE DEFAULT CURRENT_DATE
+) INHERITS (pessoas);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ========== EXERCÍCIOS ALTER TABLE ========== -->
+        
+        <h3 style="color: #2c3e50; border-bottom: 2px solid #e74c3c; padding-bottom: 0.5rem; margin-top: 2rem;">ALTER TABLE (10 Exercícios)</h3>
+        
+        <!-- Exercício ALTER 1 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 1: Adicionar Coluna</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Adicione a coluna <code>situacao</code> (VARCHAR(20)) na tabela <code>nota_fiscal</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-1')">Mostrar Solução</button>
+            <div id="solution-alter-1" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE nota_fiscal 
+ADD COLUMN situacao VARCHAR(20);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 2 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 2: Adicionar Default Value</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Defina o valor padrão 'EMITIDA' para a coluna <code>situacao</code> na tabela <code>nota_fiscal</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-2')">Mostrar Solução</button>
+            <div id="solution-alter-2" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE nota_fiscal 
+ALTER COLUMN situacao SET DEFAULT 'EMITIDA';</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 3 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 3: Adicionar NOT NULL</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Torne a coluna <code>data_emissao</code> obrigatória na tabela <code>nota_fiscal</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-3')">Mostrar Solução</button>
+            <div id="solution-alter-3" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE nota_fiscal 
+ALTER COLUMN data_emissao SET NOT NULL;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 4 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 4: Adicionar Check Constraint</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Adicione uma constraint CHECK para garantir que <code>valor_total</code> seja maior que zero.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-4')">Mostrar Solução</button>
+            <div id="solution-alter-4" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE nota_fiscal 
+ADD CONSTRAINT ck_valor_total_positivo 
+CHECK (valor_total > 0);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 5 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 5: Modificar Tipo de Dado</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Altere o tipo da coluna <code>telefone</code> na tabela <code>clientes</code> para VARCHAR(20).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-5')">Mostrar Solução</button>
+            <div id="solution-alter-5" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE clientes 
+ALTER COLUMN telefone TYPE VARCHAR(20);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 6 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 6: Renomear Coluna</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Renomeie a coluna <code>cpf</code> para <code>documento</code> na tabela <code>clientes</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-6')">Mostrar Solução</button>
+            <div id="solution-alter-6" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE clientes 
+RENAME COLUMN cpf TO documento;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 7 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 7: Adicionar Foreign Key</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Adicione uma foreign key na tabela <code>itens_nota_fiscal</code> referenciando <code>produtos</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-7')">Mostrar Solução</button>
+            <div id="solution-alter-7" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE itens_nota_fiscal 
+ADD CONSTRAINT fk_item_produto 
+FOREIGN KEY (produto_id) REFERENCES produtos(produto_id);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 8 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 8: Remover Coluna</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova a coluna <code>produto_descricao</code> da tabela <code>itens_nota_fiscal</code> 
+                (agora usamos a descrição da tabela produtos).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-8')">Mostrar Solução</button>
+            <div id="solution-alter-8" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE itens_nota_fiscal 
+DROP COLUMN produto_descricao;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 9 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 9: Múltiplas Alterações</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Em um único comando: adicione as colunas <code>data_cancelamento</code> (DATE) e 
+                <code>motivo_cancelamento</code> (VARCHAR(100)) na tabela <code>nota_fiscal</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-9')">Mostrar Solução</button>
+            <div id="solution-alter-9" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE nota_fiscal 
+ADD COLUMN data_cancelamento DATE,
+ADD COLUMN motivo_cancelamento VARCHAR(100);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício ALTER 10 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🔧</span>
+                <span>Exercício ALTER 10: Renomear Tabela</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Renomeie a tabela <code>configuracoes</code> para <code>parametros_sistema</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('alter-10')">Mostrar Solução</button>
+            <div id="solution-alter-10" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>ALTER TABLE configuracoes 
+RENAME TO parametros_sistema;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ========== EXERCÍCIOS DROP TABLE ========== -->
+        
+        <h3 style="color: #2c3e50; border-bottom: 2px solid #27ae60; padding-bottom: 0.5rem; margin-top: 2rem;">DROP TABLE (10 Exercícios)</h3>
+        
+        <!-- Exercício DROP 1 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 1: Remover Tabela Simples</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova a tabela <code>parametros_sistema</code> (anteriormente configuracoes).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-1')">Mostrar Solução</button>
+            <div id="solution-drop-1" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE parametros_sistema;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 2 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 2: Remover com IF EXISTS</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova a tabela <code>backup_antigo</code> apenas se ela existir.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-2')">Mostrar Solução</button>
+            <div id="solution-drop-2" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE IF EXISTS backup_antigo;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 3 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 3: Remover Múltiplas Tabelas</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova as tabelas <code>temp_vendas</code>, <code>temp_clientes</code> e <code>temp_produtos</code> em um único comando.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-3')">Mostrar Solução</button>
+            <div id="solution-drop-3" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE temp_vendas, temp_clientes, temp_produtos;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 4 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 4: Tentativa com Restrict (Comportamento Padrão)</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Tente remover a tabela <code>clientes</code> usando RESTRICT (que é o padrão).
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-4')">Mostrar Solução</button>
+            <div id="solution-drop-4" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE clientes RESTRICT;
+-- Isso causará erro se houver dependências</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 5 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 5: Remover com CASCADE</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova a tabela <code>clientes</code> e todas as suas dependências usando CASCADE.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-5')">Mostrar Solução</button>
+            <div id="solution-drop-5" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE clientes CASCADE;
+-- Remove também as foreign keys que referenciam esta tabela</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 6 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 6: Remover Tabela com Backup</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie um backup da tabela <code>nota_fiscal</code> antes de removê-la.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-6')">Mostrar Solução</button>
+            <div id="solution-drop-6" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>-- Primeiro fazer backup
+CREATE TABLE backup_nota_fiscal AS SELECT * FROM nota_fiscal;
+
+-- Depois remover
+DROP TABLE nota_fiscal;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 7 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 7: Remover em Transação</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Use uma transação para remover a tabela <code>itens_nota_fiscal</code> com possibilidade de rollback.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-7')">Mostrar Solução</button>
+            <div id="solution-drop-7" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>BEGIN;
+DROP TABLE itens_nota_fiscal;
+-- Se algo der errado:
+-- ROLLBACK;
+-- Se tudo certo:
+COMMIT;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 8 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 8: Verificar Dependências Antes de Remover</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Verifique as dependências da tabela <code>produtos</code> antes de tentar removê-la.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-8')">Mostrar Solução</button>
+            <div id="solution-drop-8" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>-- Verificar dependências
+SELECT 
+    tc.table_name as tabela_dependente,
+    kcu.column_name as coluna_fk
+FROM information_schema.table_constraints tc
+JOIN information_schema.key_column_usage kcu 
+    ON tc.constraint_name = kcu.constraint_name
+WHERE tc.constraint_type = 'FOREIGN KEY'
+AND tc.table_name != 'produtos'
+AND kcu.referenced_table_name = 'produtos';
+
+-- Se houver dependências, usar CASCADE ou remover manualmente primeiro</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 9 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 9: Remover Tabela de Herança</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Remova a tabela <code>fornecedores</code> que herda de <code>pessoas</code>.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-9')">Mostrar Solução</button>
+            <div id="solution-drop-9" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>DROP TABLE fornecedores;
+-- A tabela pai (pessoas) não é afetada</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercício DROP 10 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span>🗑️</span>
+                <span>Exercício DROP 10: Script de Limpeza Completo</span>
+            </div>
+            <p class="text-gray-700 mb-2">
+                Crie um script para remover todas as tabelas do sistema de nota fiscal em ordem correta.
+            </p>
+            <button class="solution-toggle-btn" onclick="toggleSolution('drop-10')">Mostrar Solução</button>
+            <div id="solution-drop-10" class="solution-container">
+                <div class="solution-code">
+                    <pre><code>-- Ordem correta para evitar erros de foreign key
+DROP TABLE IF EXISTS itens_nota_fiscal CASCADE;
+DROP TABLE IF EXISTS nota_fiscal CASCADE;
+DROP TABLE IF EXISTS produtos CASCADE;
+DROP TABLE IF EXISTS clientes CASCADE;
+DROP TABLE IF EXISTS fornecedores CASCADE;
+DROP TABLE IF EXISTS pessoas CASCADE;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
 
         <script>
             function toggleSolution(id) {

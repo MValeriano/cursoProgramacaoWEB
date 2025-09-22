@@ -1,0 +1,477 @@
+<!-- Chosen Palette: Soothing & Professional -->
+<!-- Application Structure Plan: The SPA is designed as a thematic, scrollable journey to guide beginners. It starts with the abstract concept of "Lógica" and "Algoritmos," moves to the concrete "Ferramentas do Desenvolvedor" (variáveis, operadores), and then to the core methodologies of "Controle de Fluxo" e "Estruturas de Repetição". It visualizes a key data structure (Stack) with an interactive chart and connects all concepts in a final section on "Funções" and "Integração com HTML". This thematic flow was chosen to make the content more engaging and to reinforce the idea of building from concepts to real-world applications, aligning with a problem-solving-first teaching philosophy. -->
+<!-- Visualization & Content Choices: 
+- Conceito de Lógica -> Goal: Inform -> Method: HTML/CSS Text blocks with emphasis -> Justification: Clearly presents key definitions without clutter.
+- Algoritmo & Exemplo -> Goal: Organize/Inform -> Method: HTML/CSS Cards with code blocks -> Justification: Groups related information (pseudocode, real code) for clear comparison.
+- Pilha (Stack) -> Goal: Inform/Compare -> Method: Interactive Bar Chart -> Interaction: Buttons to push/pop data, updating the chart -> Justification: Makes the abstract LIFO (Last-In, First-Out) concept tangible and interactive, providing a hands-on learning experience. Library: Chart.js (Canvas).
+- Estruturas de Repetição -> Goal: Organize/Inform -> Method: Code blocks with title -> Justification: Presents code examples directly from the source material in a clean, readable format.
+- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Interativo de Lógica de Programação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #F8F9FA; color: #343a40; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 350px; max-height: 40vh; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .section-card { background-color: white; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05); padding: 2.5rem; }
+        .interactive-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+        pre { background-color: #f1f3f5; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        code { font-family: 'Courier New', Courier, monospace; }
+        .highlight { color: #0077B6; font-weight: 700; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white sticky top-0 z-10 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-[#495057]">Lógica de Programação</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#modulo1" class="text-gray-600 hover:text-[#0077B6]">Módulo 1</a>
+                <a href="#modulo2" class="text-gray-600 hover:text-[#0077B6]">Módulo 2</a>
+                <a href="#modulo3" class="text-gray-600 hover:text-[#0077B6]">Módulo 3</a>
+                <a href="#modulo4" class="text-gray-600 hover:text-[#0077B6]">Módulo 4</a>
+                <a href="#modulo5" class="text-gray-600 hover:text-[#0077B6]">Módulo 5</a>
+                <a href="#modulo6" class="text-gray-600 hover:text-[#0077B6]">Módulo 6</a>
+                <a href="#modulo7" class="text-gray-600 hover:text-[#0077B6]">Módulo 7</a>
+                <a href="#modulo8" class="text-gray-600 hover:text-[#0077B6]">Módulo 8</a>
+                <a href="#modulo9" class="text-gray-600 hover:text-[#0077B6]">Módulo 9</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 space-y-16">
+
+        <section id="intro" class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#212529]">Curso Completo de Lógica de Programação</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-4xl mx-auto">Este guia interativo transforma o curso de lógica de programação em uma jornada visual e prática. Explore cada conceito, de variáveis a funções, e veja como eles se conectam para construir softwares robustos. Prepare-se para pensar como um programador.</p>
+        </section>
+
+        <section id="modulo1" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 1: Introdução à Lógica de Programação</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">A lógica de programação é a base do pensamento computacional. Antes de escrever uma única linha de código, você precisa aprender a <span class="highlight">organizar seu raciocínio</span>. É como uma receita de bolo: passos claros, em uma ordem precisa.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">O que é um Algoritmo?</h3>
+                    <p class="text-gray-600 mb-4">Um algoritmo é uma sequência de passos para resolver um problema. Pode ser um simples conjunto de instruções ou algo mais complexo. Aqui estão alguns exemplos para ilustrar a ideia.</p>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Pseudocódigo</h4>
+                            <pre><code class="text-sm">Início
+  Leia nota1
+  Leia nota2
+  media ← (nota1 + nota2) / 2
+  Se media >= 7 Então
+      Escreva "Aprovado"
+  Senão
+      Escreva "Reprovado"
+Fim</code></pre>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Código real (PHP e JavaScript)</h4>
+                            <pre><code class="text-sm">PHP:
+$nota1 = 8; $nota2 = 6; $media = ($nota1 + $nota2) / 2;
+if ($media >= 7) {
+    echo "Aprovado";
+} else {
+    echo "Reprovado";
+}
+JavaScript:
+let nota1 = 8; let nota2 = 6; let media = (nota1 + nota2) / 2;
+if (media >= 7) {
+    console.log("Aprovado");
+} else {
+    console.log("Reprovado");
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold mb-4">Exemplo do mundo real: Fazer café</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Colocar água na cafeteira.</li>
+                            <li>Colocar pó de café no filtro.</li>
+                            <li>Ligar a cafeteira.</li>
+                            <li>Esperar a água passar pelo pó.</li>
+                            <li>Servir o café.</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-2">A ordem é crucial. Assim como um algoritmo precisa de uma sequência correta para funcionar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo2" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 2: Variáveis e Constantes</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Variáveis e constantes são os "contêineres" para armazenar informações no seu programa. Entender a diferença entre eles e seus tipos de dados é fundamental para manipular a informação corretamente.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Variáveis</h3>
+                    <p class="text-gray-600">São espaços na memória do computador para dados que podem <span class="highlight">mudar de valor</span>. Elas possuem nome, tipo e valor.</p>
+                    <pre class="mt-4"><code class="text-sm">PHP:
+$nome = "Maria";
+$idade = 25;
+
+JavaScript:
+let nome = "Maria";
+let idade = 25;</code></pre>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Constantes</h3>
+                    <p class="text-gray-600">Ao contrário das variáveis, as constantes armazenam valores que <span class="highlight">não podem ser alterados</span> durante a execução do programa.</p>
+                    <pre class="mt-4"><code class="text-sm">PHP:
+define("PI", 3.14159);
+echo PI;
+
+JavaScript:
+const PI = 3.14159;
+console.log(PI);</code></pre>
+                </div>
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-2">Tipos de Dados</h3>
+                    <p class="text-gray-600 mb-4">A natureza da informação define seu tipo. Programação requer que você defina o tipo para que o computador saiba como tratar os dados.</p>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="text-4xl">🔢</span>
+                            <p class="font-bold">Inteiro</p>
+                            <p class="text-sm text-gray-500">Números inteiros (10)</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="text-4xl">📈</span>
+                            <p class="font-bold">Real/Float</p>
+                            <p class="text-sm text-gray-500">Números com casas decimais (3.14)</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="text-4xl">📝</span>
+                            <p class="font-bold">String</p>
+                            <p class="text-sm text-gray-500">Textos ("Olá")</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="text-4xl">✅</span>
+                            <p class="font-bold">Boolean</p>
+                            <p class="text-sm text-gray-500">Verdadeiro ou Falso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo3" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 3: Operadores</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Operadores são símbolos que nos permitem realizar operações lógicas ou matemáticas com os dados. Eles são essenciais para tomar decisões e realizar cálculos em um programa.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Operadores Aritméticos</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><span class="highlight">+</span> soma</li>
+                        <li><span class="highlight">-</span> subtração</li>
+                        <li><span class="highlight">*</span> multiplicação</li>
+                        <li><span class="highlight">/</span> divisão</li>
+                        <li><span class="highlight">%</span> resto da divisão</li>
+                    </ul>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Operadores de Atribuição</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><span class="highlight">=</span> atribui valor</li>
+                        <li><span class="highlight">+=</span> soma e atribui</li>
+                        <li><span class="highlight">-=</span> subtrai e atribui</li>
+                    </ul>
+                </div>
+                 <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Operadores de Comparação</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><span class="highlight">==</span> igual (valor)</li>
+                        <li><span class="highlight">===</span> estritamente igual (valor e tipo)</li>
+                        <li><span class="highlight">!=</span> diferente</li>
+                    </ul>
+                </div>
+                 <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Operadores Lógicos</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><span class="highlight">&&</span> (E lógico)</li>
+                        <li><span class="highlight">||</span> (OU lógico)</li>
+                        <li><span class="highlight">!</span> (NÃO)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo4" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 4: Estruturas de Entrada e Saída</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Para que seu programa seja útil, ele precisa se comunicar com o usuário. A <span class="highlight">saída</span> exibe informações, e a <span class="highlight">entrada</span> coleta dados do usuário.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Saída de Dados</h3>
+                    <pre><code class="text-sm">PHP:
+echo "Olá";
+
+JS:
+console.log("Olá");</code></pre>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Entrada de Dados</h3>
+                    <pre><code class="text-sm">PHP (terminal):
+readline("Digite seu nome: ");
+
+JS (navegador):
+let nome = prompt("Digite seu nome:");
+alert("Bem-vindo, " + nome);</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo5" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 5: Controle de Fluxo</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">O controle de fluxo permite que seu programa tome decisões e escolha caminhos diferentes com base em condições. Isso torna seu código dinâmico e inteligente.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">If, Else If, Else</h3>
+                    <p class="text-gray-600">A estrutura mais comum para tomar decisões. Executa um bloco de código se uma condição for verdadeira.</p>
+                    <pre class="mt-4"><code class="text-sm">$idade = 16;
+if ($idade >= 18) {
+    echo "Maior de idade";
+} else {
+    echo "Menor de idade";
+}</code></pre>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Operador Ternário</h3>
+                    <p class="text-gray-600">Uma forma abreviada para um "if/else" simples. É ideal para atribuições de valor baseadas em uma condição.</p>
+                    <pre class="mt-4"><code class="text-sm">let idade = 20;
+let resultado = (idade >= 18) ? "Maior" : "Menor";
+console.log(resultado);</code></pre>
+                </div>
+                 <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Switch Case</h3>
+                    <p class="text-gray-600">Usado para testar uma única variável contra múltiplos valores. Mais legível que uma longa cadeia de "if/else if".</p>
+                    <pre class="mt-4"><code class="text-sm">$dia = 3;
+switch ($dia) {
+    case 1: echo "Domingo"; break;
+    case 2: echo "Segunda"; break;
+    case 3: echo "Terça"; break;
+    default: echo "Dia inválido";
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo6" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 6: Estruturas de Repetição</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Estruturas de repetição, ou laços, permitem que você execute um bloco de código várias vezes, economizando tempo e esforço. São a essência da automação em programação.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">For</h3>
+                    <p class="text-gray-600">Ideal para quando você sabe exatamente quantas repetições precisa.</p>
+                    <pre class="mt-4"><code class="text-sm">for (let i = 1; i <= 10; i++) {
+    console.log("Número: " + i);
+}</code></pre>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">While</h3>
+                    <p class="text-gray-600">Repete enquanto uma condição for verdadeira. Use quando o número de repetições é incerto.</p>
+                    <pre class="mt-4"><code class="text-sm">$i = 1;
+while ($i <= 5) {
+    echo $i;
+    $i++;
+}</code></pre>
+                </div>
+                 <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Do While</h3>
+                    <p class="text-gray-600">Similar ao "while", mas garante que o bloco de código seja executado pelo menos uma vez antes de verificar a condição.</p>
+                    <pre class="mt-4"><code class="text-sm">let i = 1;
+do {
+    console.log(i);
+    i++;
+} while (i <= 5);</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo7" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 7: Estruturas de Dados</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Estruturas de dados são formas especializadas de organizar a informação. Elas permitem armazenar e acessar dados de maneira eficiente para a solução de problemas complexos.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Arrays e Matrizes</h3>
+                    <p class="text-gray-600 mb-4">Arrays (ou vetores) são coleções ordenadas de itens. Matrizes são arrays dentro de arrays, criando uma estrutura de grade.</p>
+                    <pre class="mt-4"><code class="text-sm">Array:
+$frutas = ["maçã", "banana", "laranja"];
+echo $frutas[1]; // banana
+
+Matriz:
+let notas = [
+  [8, 7, 9],
+  [6, 5, 7]
+];
+console.log(notas[1][2]); // 7</code></pre>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Objetos</h3>
+                    <p class="text-gray-600 mb-4">Objetos são estruturas que permitem agrupar dados relacionados e funções. Eles são essenciais na programação orientada a objetos.</p>
+                    <pre class="mt-4"><code class="text-sm">let pessoa = {
+  nome: "Ana",
+  idade: 25,
+  profissao: "Engenheira"
+};
+console.log(pessoa.nome);</code></pre>
+                </div>
+            </div>
+             <div class="mt-12">
+                <h3 class="text-2xl font-bold text-center mb-4">Visualizando uma Pilha (Stack)</h3>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-4">Uma pilha é uma estrutura de dados do tipo "Último a Entrar, Primeiro a Sair" (LIFO). Clique nos botões para empilhar e desempilhar valores e veja o conceito em ação.</p>
+                 <div class="flex space-x-4 justify-center mb-8">
+                    <button id="pushButton" class="bg-[#0077B6] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#005c8c]">Empilhar (Push)</button>
+                    <button id="popButton" class="bg-[#adb5bd] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#95a0a9]">Desempilhar (Pop)</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="stackChart"></canvas>
+                </div>
+             </div>
+        </section>
+
+        <section id="modulo8" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 8: Funções</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Funções são blocos de código reutilizáveis que realizam uma tarefa específica. Elas tornam seu código mais limpo, organizado e fácil de manter.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Criando Funções</h3>
+                    <pre class="mt-4"><code class="text-sm">PHP:
+function soma($a, $b) {
+    return $a + $b;
+}
+echo soma(3, 4);
+
+JS:
+function soma(a, b) {
+    return a + b;
+}
+console.log(soma(3, 4));</code></pre>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">Escopo de Variáveis</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><span class="highlight">Global:</span> pode ser acessada em qualquer lugar do programa.</li>
+                        <li><span class="highlight">Local:</span> só existe dentro da função onde foi criada.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulo9" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Módulo 9: PHP/JS em HTML</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Aprenda a integrar o poder do backend (PHP) e do frontend (JavaScript) diretamente em suas páginas web para criar aplicações dinâmicas.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">PHP no HTML</h3>
+                    <pre><code class="text-sm">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;&lt;?php echo "Olá, mundo!"; ?&gt;&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-2">JavaScript no HTML</h3>
+                    <pre><code class="text-sm">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;h1 id="msg"&gt;&lt;/h1&gt;
+  &lt;script&gt;
+    document.getElementById("msg").innerText = "Olá, mundo!";
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-200 mt-16 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>&copy; 2024 - Guia Interativo de Lógica de Programação. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const stackCtx = document.getElementById('stackChart');
+        const stackData = {
+            labels: [],
+            datasets: [{
+                label: 'Elementos na Pilha',
+                data: [],
+                backgroundColor: '#0077B6',
+                borderColor: '#005c8c',
+                borderWidth: 1
+            }]
+        };
+        const stackChart = new Chart(stackCtx, {
+            type: 'bar',
+            data: stackData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, max: 8, ticks: { stepSize: 1 } },
+                    y: { ticks: { font: { size: 14 } } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                         callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        let stackCounter = 0;
+        document.getElementById('pushButton').addEventListener('click', () => {
+            if (stackChart.data.labels.length < 8) {
+                stackCounter++;
+                const newItem = `Elemento ${stackCounter}`;
+                stackChart.data.labels.push(newItem);
+                stackChart.data.datasets[0].data.push(stackCounter);
+                stackChart.update();
+            }
+        });
+
+        document.getElementById('popButton').addEventListener('click', () => {
+            if (stackChart.data.labels.length > 0) {
+                stackChart.data.labels.pop();
+                stackChart.data.datasets[0].data.pop();
+                stackChart.update();
+            }
+        });
+    </script>
+</body>
+</html>

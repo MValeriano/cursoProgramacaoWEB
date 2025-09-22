@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programação - Aula 01</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            position: relative;
+        }
+        details > summary::after {
+            content: '+';
+            font-weight: 800;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            content: '-';
+            transform: translateY(-50%) rotate(0deg);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl p-6 md:p-12 lg:p-16">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Curso de Lógica de Programação
+            </h1>
+            <p class="mt-2 text-xl text-gray-600">
+                Aula 01: Conceitos Básicos e Controle de Fluxo
+            </p>
+        </header>
+
+        <!-- Seção de Filosofia do Curso -->
+        <div class="mb-12 p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-5 4h8a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Nossa Filosofia: Resolvendo Problemas
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+                Nesta aula, o foco é entender como os conceitos de **lógica de programação** se traduzem em ferramentas práticas para a criação de soluções. Vamos usar as linguagens PHP e JavaScript para ilustrar esses conceitos, mas lembre-se: o que importa é a lógica!
+            </p>
+        </div>
+
+        <!-- Seção de Problema do Dia -->
+        <div class="mb-12 p-8 bg-red-50 rounded-2xl border-l-4 border-red-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-red-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Problema do Dia
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Você foi contratado por uma pizzaria para calcular o valor de um pedido. O preço da pizza depende do sabor ($35,00) e da quantidade de coberturas extras ($5,00 por cobertura). O cliente também pode ter um cupom de desconto de 15%. Descreva em português os passos para calcular o preço final e determinar se o cupom se aplica.
+            </p>
+            <textarea id="problema-do-dia" rows="8" class="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 resize-none" placeholder="Escreva aqui o seu plano de solução..."></textarea>
+        </div>
+
+        <!-- Conteúdo da Aula -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Conteúdo da Aula</h2>
+        <div class="space-y-6">
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">1. Introdução à Lógica de Programação</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        **O que é lógica de programação?**<br>
+                        É a organização coerente de instruções para resolver problemas. A base de todo programa é a sequência lógica: **entrada → processamento → saída**.
+                    </p>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-1-1" class="block font-medium text-gray-700">a) Escreva um algoritmo em português para fazer um café.</label>
+                            <textarea id="exercicio-1-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-1-2" class="block font-medium text-gray-700">b) Descreva os passos para calcular a média de 3 números.</label>
+                            <textarea id="exercicio-1-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-1-3" class="block font-medium text-gray-700">c) Liste as etapas para verificar se um número é par ou ímpar.</label>
+                            <textarea id="exercicio-1-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">2. Variáveis e Constantes</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        **Variáveis** são espaços de armazenamento para valores que podem mudar. **Constantes** armazenam valores fixos.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-php">
+// PHP
+$nome = "João";          // string
+$idade = 25;             // int
+$altura = 1.75;          // float
+$estudante = true;       // boolean
+define("PI", 3.14159);   // constante
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-javascript">
+// JavaScript
+let nome = "João";       // string
+let idade = 25;          // number
+let altura = 1.75;       // number
+let estudante = true;    // boolean
+const PI = 3.14159;      // constante
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-2-1" class="block font-medium text-gray-700">a) Declare variáveis para armazenar: nome, idade, cidade e se é maior de idade.</label>
+                            <textarea id="exercicio-2-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-2-2" class="block font-medium text-gray-700">b) Crie constantes para representar: velocidade da luz e o número de Euler ($e \approx 2.718$).</label>
+                            <textarea id="exercicio-2-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-2-3" class="block font-medium text-gray-700">c) Converta a temperatura de Celsius para Fahrenheit ($F = C \times 1.8 + 32$) usando variáveis.</label>
+                            <textarea id="exercicio-2-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">3. Operadores</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        Operadores são símbolos que realizam operações em valores e variáveis.
+                    </p>
+                    <ul class="list-disc list-inside ml-6 space-y-2">
+                        <li>**Aritméticos:** `+`, `-`, `*`, `/`, `%`, `**`</li>
+                        <li>**Atribuição:** `=`, `+=`, `-=`, `*=`, `/=`</li>
+                        <li>**Comparação:** `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`</li>
+                        <li>**Lógicos:** `&&` (AND), `||` (OR), `!` (NOT)</li>
+                    </ul>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-3-1" class="block font-medium text-gray-700">a) Calcule o IMC ($peso / altura^2$) com valores fixos.</label>
+                            <textarea id="exercicio-3-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-3-2" class="block font-medium text-gray-700">b) Compare duas idades e mostre quem é mais velho.</label>
+                            <textarea id="exercicio-3-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-3-3" class="block font-medium text-gray-700">c) Verifique se um número está entre 10 e 20 (inclusive) usando operadores lógicos.</label>
+                            <textarea id="exercicio-3-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">4. Estruturas de Entrada e Saída</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        A **entrada** permite que o programa receba dados, enquanto a **saída** permite que ele exiba informações.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-php">
+// PHP
+echo "Hello World!";
+$nome = readline("Digite seu nome: ");
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-javascript">
+// JavaScript
+console.log("Hello World!");
+let nome = prompt("Digite seu nome:");
+alert("Bem-vindo, " + nome);
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-4-1" class="block font-medium text-gray-700">a) Peça o nome e idade do usuário e exiba uma mensagem personalizada.</label>
+                            <textarea id="exercicio-4-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-4-2" class="block font-medium text-gray-700">b) Calcule e mostre a soma de dois números informados pelo usuário.</label>
+                            <textarea id="exercicio-4-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-4-3" class="block font-medium text-gray-700">c) Converta dólares para reais (cotação fixa de R$5.25) com entrada do usuário.</label>
+                            <textarea id="exercicio-4-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-12">
+            <button id="save-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-green-700 bg-green-600">
+                Salvar Progresso
+            </button>
+            <button id="clear-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-red-700 bg-red-600">
+                Limpar Tudo
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fields = [
+                'problema-do-dia',
+                'exercicio-1-1',
+                'exercicio-1-2',
+                'exercicio-1-3',
+                'exercicio-2-1',
+                'exercicio-2-2',
+                'exercicio-2-3',
+                'exercicio-3-1',
+                'exercicio-3-2',
+                'exercicio-3-3',
+                'exercicio-4-1',
+                'exercicio-4-2',
+                'exercicio-4-3'
+            ];
+            const saveButton = document.getElementById('save-button');
+            const clearButton = document.getElementById('clear-button');
+
+            function loadData() {
+                fields.forEach(id => {
+                    const value = localStorage.getItem(id);
+                    if (value) {
+                        document.getElementById(id).value = value;
+                    }
+                });
+            }
+
+            function saveData() {
+                fields.forEach(id => {
+                    const value = document.getElementById(id).value;
+                    localStorage.setItem(id, value);
+                });
+            }
+
+            async function clearData() {
+                const confirmed = await confirm('Tem certeza que deseja limpar todo o progresso? Esta ação não pode ser desfeita.');
+                if (confirmed) {
+                    fields.forEach(id => {
+                        document.getElementById(id).value = '';
+                        localStorage.removeItem(id);
+                    });
+                    alert('Progresso limpo com sucesso!');
+                }
+            }
+
+            saveButton.addEventListener('click', () => {
+                saveData();
+                alert('Progresso salvo com sucesso!');
+            });
+            clearButton.addEventListener('click', clearData);
+
+            loadData();
+        });
+
+        function alert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+            alertBox.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                    <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                    <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200">OK</button>
+                </div>
+            `;
+            document.body.appendChild(alertBox);
+            alertBox.querySelector('button').addEventListener('click', () => {
+                document.body.removeChild(alertBox);
+            });
+        }
+
+        function confirm(message) {
+            return new Promise((resolve) => {
+                const confirmBox = document.createElement('div');
+                confirmBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+                confirmBox.innerHTML = `
+                    <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                        <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                        <div class="flex justify-center space-x-4">
+                            <button class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-all duration-200 confirm-ok">Sim</button>
+                            <button class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition-all duration-200 confirm-cancel">Cancelar</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(confirmBox);
+
+                confirmBox.querySelector('.confirm-ok').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(true);
+                });
+                confirmBox.querySelector('.confirm-cancel').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(false);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

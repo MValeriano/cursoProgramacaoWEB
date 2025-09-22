@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programação - Aula 03</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            position: relative;
+        }
+        details > summary::after {
+            content: '+';
+            font-weight: 800;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            content: '-';
+            transform: translateY(-50%) rotate(0deg);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl p-6 md:p-12 lg:p-16">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Curso de Lógica de Programação
+            </h1>
+            <p class="mt-2 text-xl text-gray-600">
+                Aula 03: Estruturas de Dados e Funções
+            </p>
+        </header>
+
+        <!-- Seção de Filosofia do Curso -->
+        <div class="mb-12 p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-5 4h8a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Nossa Filosofia: Resolvendo Problemas
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+                Nesta aula, vamos aprender a organizar dados de forma eficiente (em **Arrays** e **Objetos**) e a criar blocos de código reutilizáveis (**Funções**). Essas ferramentas são essenciais para construir programas maiores e mais complexos.
+            </p>
+        </div>
+
+        <!-- Seção de Problema do Dia -->
+        <div class="mb-12 p-8 bg-red-50 rounded-2xl border-l-4 border-red-500 shadow-inner">
+            <h2 class="text-2xl font-bold text-red-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Problema do Dia
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Sua tarefa é criar um sistema simples de cadastro de alunos para uma escola. Pense em como você armazenaria as informações de cada aluno (nome, idade, notas) e como criaria uma rotina para calcular a média de notas de cada um deles.
+            </p>
+            <textarea id="problema-do-dia" rows="8" class="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 resize-none" placeholder="Escreva aqui o seu plano de solução..."></textarea>
+        </div>
+
+        <!-- Conteúdo da Aula -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Conteúdo da Aula</h2>
+        <div class="space-y-6">
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">9. Arrays</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        **Arrays** são estruturas de dados que armazenam uma coleção de itens (elementos) em uma única variável. Os itens podem ser acessados por um índice.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-php">
+// PHP
+$frutas = array("maçã", "banana", "laranja");
+$pessoa = ["nome" => "João", "idade" => 25];
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-javascript">
+// JavaScript
+let frutas = ["maçã", "banana", "laranja"];
+let pessoa = {nome: "João", idade: 25};
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-9-1" class="block font-medium text-gray-700">a) Crie um array com 5 números e calcule a média.</label>
+                            <textarea id="exercicio-9-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-9-2" class="block font-medium text-gray-700">b) Inverta a ordem dos elementos de um array.</label>
+                            <textarea id="exercicio-9-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-9-3" class="block font-medium text-gray-700">c) Encontre o maior número em um array.</label>
+                            <textarea id="exercicio-9-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">10. Objetos</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        **Objetos** são estruturas mais complexas que armazenam dados e funcionalidades relacionadas.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-javascript">
+// JavaScript
+let carro = {
+    marca: "Ford",
+    modelo: "Fiesta",
+    ano: 2020,
+    ligar: function() {
+        return "Carro ligado!";
+    }
+};
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-php">
+// PHP
+$carro = (object) [
+    'marca' => 'Ford',
+    'modelo' => 'Fiesta',
+    'ano' => 2020
+];
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-10-1" class="block font-medium text-gray-700">a) Crie um objeto "produto" com nome, preço e desconto.</label>
+                            <textarea id="exercicio-10-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-10-2" class="block font-medium text-gray-700">b) Calcule o preço final com desconto usando um método do objeto.</label>
+                            <textarea id="exercicio-10-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-10-3" class="block font-medium text-gray-700">c) Crie um array de objetos (pessoas) e filtre apenas as maiores de idade.</label>
+                            <textarea id="exercicio-10-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">11. Funções</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        **Funções** são blocos de código reutilizáveis. Elas podem receber entradas, processá-las e retornar um valor.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-php">
+// PHP
+function soma($a, $b) {
+    return $a + $b;
+}
+
+// Escopo
+$global = 10;
+function teste() {
+    global $global;
+    $local = 5;
+    return $global + $local;
+}
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-javascript">
+// JavaScript
+function soma(a, b) {
+    return a + b;
+}
+
+// Escopo
+let global = 10;
+function teste() {
+    let local = 5;
+    return global + local;
+}
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-11-1" class="block font-medium text-gray-700">a) Crie uma função para converter Celsius para Fahrenheit.</label>
+                            <textarea id="exercicio-11-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-11-2" class="block font-medium text-gray-700">b) Faça uma função que verifica se uma palavra é um palíndromo (lê-se igual de trás para frente).</label>
+                            <textarea id="exercicio-11-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-11-3" class="block font-medium text-gray-700">c) Implemente uma calculadora com funções separadas para cada operação (+, -, *, /).</label>
+                            <textarea id="exercicio-11-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="p-6 bg-gray-50 rounded-2xl border-t-4 border-gray-400 shadow-sm">
+                <summary class="text-xl font-semibold text-gray-700">12. Inserindo PHP/JavaScript em HTML</summary>
+                <div class="mt-4 text-gray-600 space-y-4">
+                    <p>
+                        O PHP é uma linguagem de servidor, processada antes da página ser enviada ao navegador. Já o JavaScript é uma linguagem de cliente, processada diretamente no navegador.
+                    </p>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exemplos:</h4>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-html">
+// HTML com PHP
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;?php
+    echo "Data: " . date('d/m/Y');
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                            </code></pre>
+                        </div>
+                        <div class="bg-gray-800 text-white rounded-lg p-4 font-mono text-sm">
+                            <pre><code class="language-html">
+// HTML com JavaScript
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;script&gt;
+    document.write("Hora: " + new Date().toLocaleTimeString());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                            </code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <h4 class="font-semibold text-gray-800">Exercícios:</h4>
+                        <div class="space-y-2">
+                            <label for="exercicio-12-1" class="block font-medium text-gray-700">a) Crie uma página que mostre a data e hora atuais.</label>
+                            <textarea id="exercicio-12-1" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-12-2" class="block font-medium text-gray-700">b) Faça um formulário que calcula o IMC com entrada do usuário (use HTML + JS/PHP).</label>
+                            <textarea id="exercicio-12-2" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="exercicio-12-3" class="block font-medium text-gray-700">c) Crie uma lista dinâmica com um array de nomes.</label>
+                            <textarea id="exercicio-12-3" rows="3" class="w-full p-3 rounded-xl border border-gray-300 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-12">
+            <button id="save-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-green-700 bg-green-600">
+                Salvar Progresso
+            </button>
+            <button id="clear-button" class="w-full md:w-1/2 p-4 text-white font-bold rounded-xl shadow-md transition-all duration-200 hover:bg-red-700 bg-red-600">
+                Limpar Tudo
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fields = [
+                'problema-do-dia',
+                'exercicio-9-1',
+                'exercicio-9-2',
+                'exercicio-9-3',
+                'exercicio-10-1',
+                'exercicio-10-2',
+                'exercicio-10-3',
+                'exercicio-11-1',
+                'exercicio-11-2',
+                'exercicio-11-3',
+                'exercicio-12-1',
+                'exercicio-12-2',
+                'exercicio-12-3'
+            ];
+            const saveButton = document.getElementById('save-button');
+            const clearButton = document.getElementById('clear-button');
+
+            function loadData() {
+                fields.forEach(id => {
+                    const value = localStorage.getItem(id);
+                    if (value) {
+                        document.getElementById(id).value = value;
+                    }
+                });
+            }
+
+            function saveData() {
+                fields.forEach(id => {
+                    const value = document.getElementById(id).value;
+                    localStorage.setItem(id, value);
+                });
+            }
+
+            async function clearData() {
+                const confirmed = await confirm('Tem certeza que deseja limpar todo o progresso? Esta ação não pode ser desfeita.');
+                if (confirmed) {
+                    fields.forEach(id => {
+                        document.getElementById(id).value = '';
+                        localStorage.removeItem(id);
+                    });
+                    alert('Progresso limpo com sucesso!');
+                }
+            }
+
+            saveButton.addEventListener('click', () => {
+                saveData();
+                alert('Progresso salvo com sucesso!');
+            });
+            clearButton.addEventListener('click', clearData);
+
+            loadData();
+        });
+
+        function alert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+            alertBox.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                    <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                    <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200">OK</button>
+                </div>
+            `;
+            document.body.appendChild(alertBox);
+            alertBox.querySelector('button').addEventListener('click', () => {
+                document.body.removeChild(alertBox);
+            });
+        }
+
+        function confirm(message) {
+            return new Promise((resolve) => {
+                const confirmBox = document.createElement('div');
+                confirmBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50';
+                confirmBox.innerHTML = `
+                    <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+                        <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+                        <div class="flex justify-center space-x-4">
+                            <button class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-all duration-200 confirm-ok">Sim</button>
+                            <button class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition-all duration-200 confirm-cancel">Cancelar</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(confirmBox);
+
+                confirmBox.querySelector('.confirm-ok').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(true);
+                });
+                confirmBox.querySelector('.confirm-cancel').addEventListener('click', () => {
+                    document.body.removeChild(confirmBox);
+                    resolve(false);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

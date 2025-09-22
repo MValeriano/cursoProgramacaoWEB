@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOT - Aprendizado Orientado à Tarefas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .accordion-item-header { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; }
+        .accordion-item-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out; padding: 0 1.5rem; }
+        .accordion-item-content.open { max-height: 1000px; padding: 1.5rem; }
+        .arrow-icon { transition: transform 0.3s ease-in-out; }
+        .open .arrow-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-blue-600">AOT - Aprendizado Orientado à Tarefas</h1>
+            <p class="mt-2 text-lg text-gray-500">Guia Interativo da Primeira Lista de Exercícios</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <aside class="col-span-1">
+                <div class="bg-white rounded-xl shadow-lg p-6 sticky top-8">
+                    <h2 class="text-xl md:text-2xl font-bold mb-4">Metodologia de Resolução</h2>
+                    <p class="text-sm text-gray-500 mb-6">Clique em cada passo para expandir a descrição detalhada.</p>
+
+                    <div class="space-y-4" id="metodologia-container">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 1: COMPREENSÃO DO PROBLEMA</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Identificar o problema central</li>
+                                    <li>Reconhecer as necessidades dos usuários</li>
+                                    <li>Definir objetivos claros</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 2: IDENTIFICAÇÃO DE ENTRADAS E SAÍDAS</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Listar todos os dados necessários</li>
+                                    <li>Definir formatos de entrada</li>
+                                    <li>Especificar resultados esperados</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 3: ANÁLISE E PLANEJAMENTO</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Dividir o problema em partes menores</li>
+                                    <li>Identificar cálculos necessários</li>
+                                    <li>Definir regras de negócio</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 4: PSEUDOCÓDIGO</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Escrever passos lógicos em português</li>
+                                    <li>Definir estruturas de dados necessárias</li>
+                                    <li>Especificar fluxo de processamento</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 5: IMPLEMENTAÇÃO</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Traduzir pseudocódigo para linguagem de programação</li>
+                                    <li>Testar cada parte individualmente</li>
+                                    <li>Validar resultados</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 rounded-lg overflow-hidden">
+                            <div class="accordion-item-header">
+                                <span class="font-semibold text-lg">PASSO 6: TESTE E REFINAMENTO</span>
+                                <svg class="arrow-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-item-content">
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Testar com dados reais</li>
+                                    <li>Identificar e corrigir problemas</li>
+                                    <li>Otimizar performance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="col-span-1 md:col-span-2">
+                <h2 class="text-xl md:text-2xl font-bold mb-4">Exercícios AOT</h2>
+                <div id="exercicios-container" class="space-y-6">
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 001 - Sistema de Controle de Estoque</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema de controle de estoque para uma loja que vende produtos de diferentes categorias, como eletrônicos, vestuário e alimentos. O sistema deve permitir o registro de entrada de produtos, preenchimento de atributos específicos para cada categoria, verificação do nível crítico de estoque e atualização dos dados.</p>
+                            
+                            <h3 class="font-semibold text-lg mb-2">Resolução do Problema:</h3>
+                            <p class="text-gray-600 mb-2">**Lógica:**</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Entrada de Dados: Igual para todos os produtos: código, descrição, preço e peso. Para eletrônicos: especificar a potência. Para vestuário: indicar o tamanho. Para alimentos: informar a data de validade.</li>
+                                <li>Saída de Dados: Imprimir os dados do produto, o nível atual de estoque e alertar se estiver abaixo do nível crítico.</li>
+                            </ul>
+                            <p class="text-gray-600 mb-2">**Algoritmo - Sequência de Passos Lógicos:**</p>
+                            <ul class="list-decimal list-inside text-gray-600">
+                                <li>Solicitar ao usuário os dados: código, descrição, preço e peso.</li>
+                                <li>Verificar se a descrição do produto é eletrônico, vestuário ou alimento.</li>
+                                <li>Se eletrônico, solicitar a potência. Se vestuário, pedir o tamanho. Se alimento, informar a data de validade.</li>
+                                <li>Criar um formulário HTML para entrada de dados.</li>
+                                <li>Criar uma tabela no banco de dados de produtos com os campos necessários.</li>
+                                <li>Calcular o nível crítico de estoque: Registrar manualmente os dados do produto, considerando as particularidades de cada categoria.</li>
+                                <li>Imprimir os dados do produto e o nível de estoque na tela, alertando se necessário.</li>
+                            </ul>
+                            
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Diagrama de fluxo para entrada de produtos;</li>
+                                <li>Modelo de banco de dados para armazenamento das informações;</li>
+                                <li>Exemplo de alerta para nível crítico de estoque.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Estruturação de formulários para entrada de dados;</li>
+                                <li>Implementação de estruturas condicionais para diferentes categorias de produtos;</li>
+                                <li>Utilização de loops para processar múltiplos produtos;</li>
+                                <li>Conhecimento em manipulação de alertas para situações críticas.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 002 - Sistema de Agendamento de Consultas</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema abrangente de agendamento de consultas médicas para uma clínica que disponibiliza serviços nas áreas de clínica geral, pediatria e ortopedia. O sistema deve fornecer funcionalidades para o agendamento eficiente de novas consultas, possibilitando o preenchimento de atributos específicos para cada especialidade médica. Além disso, é necessário implementar mecanismos para buscar consultas de uma especialidade específica e para listar todas as consultas agendadas.</p>
+                            
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Agendamento de Novas Consultas:** Criar uma interface interativa que facilite o agendamento de novas consultas, incluindo campos para informações do paciente, escolha da especialidade e definição da data e horário da consulta.</li>
+                                <li>**Atributos Específicos por Especialidade:** Estruturar o sistema para permitir o preenchimento de atributos específicos para cada especialidade médica, possibilitando uma experiência personalizada durante o agendamento.</li>
+                                <li>**Busca por Consultas de uma Especialidade:** Implementar um mecanismo de busca que permita ao usuário encontrar consultas de uma especialidade específica, facilitando a gestão e visualização das agendas.</li>
+                                <li>**Listagem de Consultas Agendadas:** Desenvolver uma funcionalidade que exiba todas as consultas agendadas, proporcionando uma visão geral e facilitando o acompanhamento do fluxo de atendimentos.</li>
+                            </ul>
+
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Protótipo de tela para agendamento de consultas;</li>
+                                <li>Esquema de dados para armazenamento das consultas;</li>
+                                <li>Script de busca por especialidade no banco de dados.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Implementação avançada de formulários interativos para agendamento de consultas;</li>
+                                <li>Utilização de estruturas condicionais robustas para lidar com diferentes especialidades médicas;</li>
+                                <li>Aplicação eficiente de loops para processamento de consultas e listagem;</li>
+                                <li>Conhecimento sólido em manipulação de dados em um banco de dados.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 003 - Sistema de Controle de Estoque (Simplificado)</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver uma versão simplificada de um sistema de controle de estoque, com foco exclusivo em produtos de uma única categoria. O sistema deve permitir o registro eficiente de entrada de produtos, a verificação de nível crítico de estoque e a exibição de dados atualizados de maneira simplificada.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Registro de Entrada de Produtos:** Criar uma interface simplificada para facilitar o registro de entrada de novos produtos, incluindo campos essenciais como código, descrição e quantidade.</li>
+                                <li>**Verificação de Nível Crítico de Estoque:** Implementar um mecanismo de verificação automática do nível de estoque, alertando de forma simples caso o estoque atinja um estado crítico.</li>
+                                <li>**Exibição de Dados Atualizados:** Desenvolver uma interface intuitiva que permita visualizar os dados atualizados do estoque, proporcionando uma visão clara da situação dos produtos.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Esboço da interface do sistema;</li>
+                                <li>Estrutura básica do banco de dados;</li>
+                                <li>Exemplo de alerta para nível crítico de estoque.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de formulários simplificados para entrada de dados;</li>
+                                <li>Implementação eficiente de estruturas condicionais, considerando uma única categoria de produtos;</li>
+                                <li>Utilização estratégica de loops para processar dados de estoque;</li>
+                                <li>Compreensão sólida de alertas para situações críticas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 004 - Sistema de Cadastro de Alunos e Notas</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema abrangente para o cadastro de alunos e suas respectivas notas em diferentes disciplinas. O sistema deve oferecer a facilidade de inclusão de novos alunos, permitir o registro de notas específicas para cada disciplina, calcular a média geral dos alunos e apresentar uma visão clara dos estudantes aprovados e reprovados.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Cadastro de Alunos:** Implementar uma interface para o cadastro eficiente de novos alunos, incluindo informações essenciais como nome, matrícula, e outros detalhes relevantes.</li>
+                                <li>**Registro de Notas por Disciplina:** Criar uma funcionalidade que permita o registro de notas para diferentes disciplinas, garantindo flexibilidade e precisão nos dados acadêmicos.</li>
+                                <li>**Cálculo da Média Geral:** Desenvolver um script para o cálculo automático da média geral dos alunos, proporcionando uma visão consolidada do desempenho acadêmico.</li>
+                                <li>**Exibição de Alunos Aprovados e Reprovados:** Implementar uma funcionalidade que apresente de forma clara os alunos que foram aprovados e reprovados, baseando-se em critérios definidos.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Protótipo de tela para cadastro de alunos e notas;</li>
+                                <li>Estrutura do banco de dados para armazenamento das informações;</li>
+                                <li>Script para cálculo da média geral.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de formulários interativos para cadastro de alunos e notas;</li>
+                                <li>Utilização eficaz de estruturas condicionais para avaliar a aprovação dos alunos;</li>
+                                <li>Manipulação habilidosa de dados em um banco de dados para armazenar informações acadêmicas.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 005 - Sistema de Reservas de Salas de Reunião</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema eficiente para gerenciamento de reservas de salas de reunião em uma empresa. O sistema deve oferecer recursos que incluem a visualização de salas disponíveis, agendamento de novas reuniões, consulta de reservas futuras e a possibilidade de cancelar reservas existentes.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Visualização de Salas Disponíveis:** Criar uma interface intuitiva que permita aos usuários visualizar as salas de reunião disponíveis, destacando aquelas que estão ocupadas.</li>
+                                <li>**Agendamento de Novas Reuniões:** Implementar uma funcionalidade que possibilite o agendamento de novas reuniões, solicitando informações essenciais como data, horário e duração.</li>
+                                <li>**Consulta de Reservas Futuras:** Desenvolver um script que permita a consulta fácil e rápida de reservas futuras, proporcionando uma visão clara do uso das salas.</li>
+                                <li>**Cancelamento de Reservas:** Integrar uma funcionalidade que permita o cancelamento de reservas existentes, garantindo flexibilidade aos usuários.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Layout da interface para visualização e reserva de salas;</li>
+                                <li>Modelo de dados para armazenamento das reservas;</li>
+                                <li>Script para consulta de reservas futuras.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de interfaces interativas para visualização e reserva de recursos;</li>
+                                <li>Utilização eficaz de estruturas condicionais para controle de reservas;</li>
+                                <li>Manipulação habilidosa de dados em um banco de dados para garantir integridade nas reservas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 006 - Sistema de Controle de Finanças Pessoais</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema abrangente para o controle de finanças pessoais, proporcionando ao usuário a capacidade de registrar suas receitas e despesas, calcular o saldo atual e visualizar um histórico financeiro. O sistema deve oferecer opções robustas para categorização das transações, permitindo uma análise detalhada dos gastos.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Registro de Receitas e Despesas:** Criar uma interface intuitiva para o registro eficiente de receitas e despesas, facilitando a entrada de dados pelo usuário.</li>
+                                <li>**Cálculo do Saldo Atual:** Desenvolver um script que, com base nas transações registradas, calcule e apresente o saldo financeiro atual.</li>
+                                <li>**Visualização de Histórico Financeiro:** Implementar uma funcionalidade que permita ao usuário visualizar um histórico completo de suas transações, organizadas por data e categoria.</li>
+                                <li>**Categorização de Transações:** Incluir opções de categorização para as transações, possibilitando ao usuário analisar seus gastos de forma segmentada.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Esboço da interface para registro de receitas e despesas;</li>
+                                <li>Estrutura de dados para armazenamento das transações;</li>
+                                <li>Script para cálculo do saldo atual.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de formulários interativos para entrada de transações financeiras;</li>
+                                <li>Utilização efetiva de estruturas condicionais para categorização inteligente;</li>
+                                <li>Manipulação hábil de dados para o cálculo preciso do saldo e exibição do histórico financeiro.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 007 - Sistema de Gerenciamento de Tarefas</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema eficiente de gerenciamento de tarefas pessoais, proporcionando ao usuário a capacidade de adicionar, excluir e marcar tarefas como concluídas. O sistema deve organizar automaticamente as tarefas por prioridade e permitir uma fácil visualização das pendências.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Adição, Exclusão e Marcação de Tarefas:** Criar uma interface intuitiva para a adição de novas tarefas, exclusão de tarefas existentes e marcação de tarefas como concluídas.</li>
+                                <li>**Organização por Prioridade:** Implementar um algoritmo de ordenação que organize automaticamente as tarefas por prioridade, garantindo que as mais importantes se destaquem.</li>
+                                <li>**Visualização de Tarefas Pendentes:** Desenvolver uma funcionalidade que permita ao usuário visualizar facilmente suas tarefas pendentes, destacando aquelas que necessitam de atenção imediata.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Layout da interface para adição e exclusão de tarefas;</li>
+                                <li>Estrutura de dados para armazenamento das tarefas;</li>
+                                <li>Script para ordenação e filtragem de tarefas.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de interfaces simples e intuitivas para interação do usuário;</li>
+                                <li>Utilização efetiva de estruturas condicionais para organizar tarefas com base em prioridade;</li>
+                                <li>Manipulação eficaz de dados para garantir uma visualização clara e precisa das tarefas pendentes.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 008 - Sistema de Registro de Peso e Altura</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema abrangente para registro de peso e altura de usuários, possibilitando o acompanhamento ao longo do tempo. O sistema deve calcular o Índice de Massa Corporal (IMC) e fornecer feedback personalizado com base nos resultados obtidos.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Registro de Peso e Altura:** Criar uma interface amigável para o registro preciso e fácil de peso e altura pelos usuários.</li>
+                                <li>**Cálculo do Índice de Massa Corporal (IMC):** Implementar um script para calcular automaticamente o IMC com base nos dados de peso e altura fornecidos.</li>
+                                <li>**Feedback Personalizado:** Utilizar estruturas condicionais para fornecer feedback personalizado sobre a situação atual do usuário com base no IMC calculado.</li>
+                                <li>**Acompanhamento ao Longo do Tempo:** Estruturar uma base de dados eficiente para armazenar as informações registradas, permitindo que os usuários acompanhem seu progresso ao longo do tempo.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Protótipo da interface para registro de peso e altura;</li>
+                                <li>Estrutura de dados para armazenamento das informações;</li>
+                                <li>Script para cálculo do IMC e feedback.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Criação de formulários intuitivos para registro de dados;</li>
+                                <li>Utilização efetiva de estruturas condicionais para fornecer feedback personalizado;</li>
+                                <li>Manipulação eficaz de dados para garantir o acompanhamento detalhado ao longo do tempo.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 009 - Sistema de Controle de Estoque</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema abrangente para o controle de estoque de produtos em uma loja. O sistema deve facilitar o gerenciamento por meio do cadastro eficiente de novos produtos, registro detalhado de entradas e saídas de estoque, além de fornecer relatórios precisos sobre a situação atual do estoque.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Cadastro de Novos Produtos:** Criar uma interface intuitiva para o cadastro de novos produtos, permitindo a inclusão de informações essenciais, como código, descrição, preço e categoria.</li>
+                                <li>**Registro de Entradas e Saídas de Estoque:** Implementar um sistema eficaz para o registro de entradas e saídas de estoque, considerando aspectos como quantidade, data e motivo.</li>
+                                <li>**Controle Eficiente:** Utilizar estruturas condicionais para garantir o controle eficiente, gerenciando adequadamente as atualizações de estoque com base nas operações realizadas.</li>
+                                <li>**Relatórios Detalhados:** Desenvolver scripts para gerar relatórios detalhados sobre a situação atual do estoque, incluindo informações como produtos disponíveis, níveis críticos e histórico de movimentação.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Layout da interface para cadastro de produtos e controle de estoque;</li>
+                                <li>Estrutura de dados para armazenamento das informações;</li>
+                                <li>Script para registro de entradas e saídas de estoque.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Desenvolvimento de formulários intuitivos para o cadastro eficiente de produtos;</li>
+                                <li>Utilização efetiva de estruturas condicionais para o controle preciso de entradas e saídas;</li>
+                                <li>Manipulação avançada de dados para a geração de relatórios detalhados sobre o estoque.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="accordion-item-header bg-blue-500 text-white hover:bg-blue-600">
+                            <span class="font-bold text-xl">Tarefa 010 - Sistema de Notificações de Compromissos</span>
+                            <svg class="arrow-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-item-content">
+                            <h3 class="font-semibold text-lg mb-2">Descrição da Tarefa:</h3>
+                            <p class="text-gray-600 mb-4">Desenvolver um sistema robusto de notificações para o acompanhamento eficiente de compromissos e tarefas agendadas. O sistema deve oferecer a funcionalidade de adicionar novos compromissos, configurar lembretes personalizados e proporcionar notificações em tempo real para manter os usuários informados.</p>
+                            <h3 class="font-semibold text-lg mb-2">Detalhamento:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>**Adição de Compromissos:** Criar uma interface amigável para a adição de novos compromissos, considerando detalhes como título, data, hora e descrição.</li>
+                                <li>**Configuração de Lembretes:** Implementar um sistema flexível que permita aos usuários configurar lembretes personalizados para cada compromisso, adaptando-se às preferências individuais.</li>
+                                <li>**Notificações em Tempo Real:** Desenvolver scripts para o envio de notificações em tempo real, garantindo que os usuários sejam alertados de forma imediata sobre compromissos iminentes.</li>
+                                <li>**Gerenciamento Eficiente:** Utilizar estruturas condicionais para o gerenciamento eficiente das notificações, considerando situações como cancelamento de compromissos e ajustes de horário.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Artefatos Relacionados à Tarefa:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Protótipo da interface para adição e configuração de compromissos;</li>
+                                <li>Estrutura de dados para armazenamento das informações de compromissos;</li>
+                                <li>Script para envio de notificações em tempo real.</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg mt-4 mb-2">Habilidades Adquiridas:</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>Desenvolvimento de interfaces intuitivas para adição e configuração de compromissos;</li>
+                                <li>Utilização eficaz de estruturas condicionais para gerenciar notificações de forma personalizada;</li>
+                                <li>Implementação de funcionalidades em tempo real para garantir uma experiência de usuário dinâmica.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const metodologiaContainer = document.getElementById('metodologia-container');
+            metodologiaContainer.addEventListener('click', (event) => {
+                const header = event.target.closest('.accordion-item-header');
+                if (header) {
+                    const content = header.nextElementSibling;
+                    const isOpen = content.classList.toggle('open');
+                    const allItems = metodologiaContainer.querySelectorAll('.accordion-item-content');
+                    allItems.forEach(item => {
+                        if (item !== content) {
+                            item.classList.remove('open');
+                        }
+                    });
+                }
+            });
+
+            const exerciciosContainer = document.getElementById('exercicios-container');
+            exerciciosContainer.addEventListener('click', (event) => {
+                const header = event.target.closest('.accordion-item-header');
+                if (header) {
+                    const content = header.nextElementSibling;
+                    content.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

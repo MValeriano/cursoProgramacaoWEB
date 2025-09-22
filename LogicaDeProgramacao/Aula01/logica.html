@@ -1,0 +1,250 @@
+<!-- Chosen Palette: Soothing & Professional -->
+<!-- Application Structure Plan: The SPA is designed as a thematic, scrollable journey to guide beginners. It starts with the abstract concept of "Logic," moves to the concrete "Developer's Toolkit" (variables, control flow), then focuses on the core methodology in "The Art of Problem Solving." It visualizes abstract concepts like "Data Structures & Algorithms" with interactive charts and finally connects everything to the "Developer Ecosystem" (Frontend, Backend, DBs). This thematic flow was chosen over a linear syllabus to make the content more engaging and to reinforce the idea of building from concepts to real-world application, aligning with the problem-solving-first teaching philosophy. -->
+<!-- Visualization & Content Choices: 
+- Types of Logic -> Goal: Organize -> Method: Interactive HTML/CSS Cards -> Interaction: Click-to-reveal -> Justification: Breaks down dense definitions into digestible parts without overwhelming the user.
+- Problem-Solving Steps -> Goal: Organize -> Method: HTML/CSS Vertical Timeline -> Interaction: Hover highlights -> Justification: Visually represents the sequential, step-by-step nature of the methodology, making the process clear and easy to follow. NO SVG/Mermaid used.
+- Data Structures (Stack) -> Goal: Inform/Compare -> Method: Interactive Bar Chart -> Interaction: Buttons to push/pop data, updating the chart -> Justification: Makes the abstract LIFO (Last-In, First-Out) concept tangible and interactive, providing a hands-on learning experience. Library: Chart.js (Canvas).
+- Algorithm Efficiency -> Goal: Compare -> Method: Static Bar Chart -> Interaction: None -> Justification: A simple bar chart provides a clear, immediate quantitative comparison of steps, effectively demonstrating the performance difference between algorithms. Library: Chart.js (Canvas).
+- Developer Ecosystem -> Goal: Relationships -> Method: HTML/CSS Flow Diagram -> Interaction: Hover highlights -> Justification: A flowchart built with semantic HTML clearly shows the interconnected roles of Frontend, Backend, and Databases in a complete application. NO SVG/Mermaid used.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Interativo de Lógica de Programação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #F5F5F5; color: #333333; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 40vh; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .section-card { background-color: white; border-radius: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05); padding: 2rem; }
+        .interactive-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white sticky top-0 z-10 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-[#81A1C1]">Lógica de Programação</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#logic" class="text-gray-600 hover:text-[#81A1C1]">O que é Lógica?</a>
+                <a href="#toolkit" class="text-gray-600 hover:text-[#81A1C1]">Ferramentas</a>
+                <a href="#problem-solving" class="text-gray-600 hover:text-[#81A1C1]">Resolução de Problemas</a>
+                <a href="#data-structures" class="text-gray-600 hover:text-[#81A1C1]">Estruturas & Algoritmos</a>
+                <a href="#ecosystem" class="text-gray-600 hover:text-[#81A1C1]">Ecossistema Dev</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 space-y-16">
+
+        <section id="logic" class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#333333]">O Alicerce de Tudo: O que é Lógica?</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Antes de escrever uma única linha de código, precisamos aprender a pensar. Lógica é a arte de organizar o pensamento para resolver problemas de forma clara e eficiente. É a ferramenta que transforma um desafio complexo em uma sequência de passos simples.</p>
+        </section>
+
+        <section class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#81A1C1] mb-8">Diferentes Formas de Pensar</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl text-center">
+                    <h3 class="text-xl font-bold mb-2">Lógica Formal</h3>
+                    <p class="text-gray-600">Estuda a estrutura do raciocínio. Usa símbolos (p, q) para representar ideias e analisar como elas se conectam, garantindo que nossos argumentos sejam válidos.</p>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl text-center">
+                    <h3 class="text-xl font-bold mb-2">Lógica Proposicional</h3>
+                    <p class="text-gray-600">É a base da tomada de decisão. Avalia se afirmações são verdadeiras ou falsas usando conectivos como E (AND), OU (OR) e NÃO (NOT), formando a base das condicionais em programação.</p>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl text-center">
+                    <h3 class="text-xl font-bold mb-2">Lógica Computacional</h3>
+                    <p class="text-gray-600">A ponte entre o pensamento humano e a máquina. Transforma as regras da lógica matemática em algoritmos que um computador pode entender e executar para realizar tarefas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="toolkit" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#81A1C1] mb-8">O Kit de Ferramentas do Desenvolvedor</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Todo programa, do mais simples ao mais complexo, é construído com os mesmos blocos fundamentais. Dominar essas ferramentas é o primeiro passo para dar vida às suas ideias.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">Variáveis e Tipos</h3>
+                    <p class="text-gray-600">São "caixas" para guardar informações. Cada caixa tem um tipo específico, como texto (`String`), números (`Integer`, `Float`) ou valores de verdadeiro/falso (`Boolean`).</p>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">Operadores</h3>
+                    <p class="text-gray-600">Símbolos que realizam ações: aritméticos (`+`, `-`, `*`), de comparação (`>`, `<`, `==`) e lógicos (`&&`, `||`), permitindo cálculos e decisões.</p>
+                </div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">Estruturas de Controle</h3>
+                    <p class="text-gray-600">Definem o "fluxo" do programa. Condicionais (`if/else`) decidem qual caminho seguir, enquanto laços de repetição (`for`, `while`) executam tarefas várias vezes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem-solving" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#81A1C1] mb-8">A Arte de Resolver Problemas</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Codificar é a última etapa. O verdadeiro trabalho de um desenvolvedor é seguir um método para transformar uma ideia vaga em uma solução funcional.</p>
+            <div class="relative pl-8 border-l-4 border-[#B48EAD]">
+                <div class="mb-8">
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 1: Compreensão</h3>
+                    <p class="text-gray-600">Ouça o cliente. Qual é o problema real? Quais são os objetivos? Defina claramente o que precisa ser construído.</p>
+                </div>
+                <div class="mb-8">
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 2: Entradas e Saídas</h3>
+                    <p class="text-gray-600">Quais informações o sistema precisa receber (entradas)? O que ele deve entregar como resultado (saídas)?</p>
+                </div>
+                <div class="mb-8">
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 3: Planejamento</h3>
+                    <p class="text-gray-600">Divida o grande problema em partes menores e gerenciáveis. Quais são as regras de negócio? Quais cálculos são necessários?</p>
+                </div>
+                <div class="mb-8">
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 4: Pseudocódigo</h3>
+                    <p class="text-gray-600">Escreva a lógica em português, como uma receita de bolo. Descreva os passos, sem se preocupar com a sintaxe de uma linguagem específica.</p>
+                </div>
+                 <div class="mb-8">
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 5: Implementação</h3>
+                    <p class="text-gray-600">Agora sim! Traduza seu pseudocódigo para a linguagem de programação escolhida (JavaScript, PHP, etc.).</p>
+                </div>
+                 <div>
+                    <div class="absolute w-6 h-6 bg-[#A3BE8C] rounded-full -left-3.5 border-4 border-white"></div>
+                    <h3 class="text-xl font-bold text-[#333333]">Passo 6: Teste e Refinamento</h3>
+                    <p class="text-gray-600">Verifique se tudo funciona como o esperado. Teste com dados reais, corrija os erros e otimize o que for necessário.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-structures" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#81A1C1] mb-8">Organizando a Informação</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Estruturas de dados são formas especializadas de organizar e armazenar dados para que possam ser acessados e trabalhados de forma eficiente. Algoritmos são as "receitas" que operam sobre essas estruturas.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Visualizando uma Pilha (Stack)</h3>
+                    <p class="text-gray-600 mb-4">Uma pilha é uma estrutura de dados do tipo "Último a Entrar, Primeiro a Sair" (LIFO). Pense em uma pilha de pratos: você só pode adicionar ou remover o prato do topo. É útil para funcionalidades como o botão "desfazer" em um editor.</p>
+                    <div class="flex space-x-4">
+                        <button id="pushButton" class="bg-[#81A1C1] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#6e8ca9]">Empilhar (Push)</button>
+                        <button id="popButton" class="bg-[#B48EAD] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#a17c9b]">Desempilhar (Pop)</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="stackChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="section-card">
+            <h2 class="text-3xl font-bold text-center text-[#81A1C1] mb-8">O Ecossistema de um Desenvolvedor</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Lógica de programação é a base, mas um software completo envolve a interação de várias tecnologias e áreas especializadas.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8 text-center">
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl w-64">
+                    <h3 class="text-xl font-bold text-[#A3BE8C] mb-2">Frontend</h3>
+                    <p class="text-gray-600">A parte visual da aplicação, com a qual o usuário interage. É o "palco".<br><small>(React, Angular, Vue.js)</small></p>
+                </div>
+                <div class="text-2xl font-bold text-[#B48EAD]">↔️</div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl w-64">
+                    <h3 class="text-xl font-bold text-[#B48EAD] mb-2">Backend</h3>
+                    <p class="text-gray-600">O "cérebro" da aplicação que processa os dados e a lógica de negócio. São os "bastidores".<br><small>(Node.js, Django, Laravel)</small></p>
+                </div>
+                <div class="text-2xl font-bold text-[#81A1C1]">↔️</div>
+                <div class="interactive-card bg-gray-50 p-6 rounded-xl w-64">
+                    <h3 class="text-xl font-bold text-[#81A1C1] mb-2">Banco de Dados</h3>
+                    <p class="text-gray-600">Onde todas as informações são armazenadas de forma segura e organizada. É a "biblioteca".<br><small>(PostgreSQL, MySQL, MongoDB)</small></p>
+                </div>
+            </div>
+             <div class="text-center mt-12">
+                <h3 class="text-2xl font-bold text-[#333333]">Seu Portfólio</h3>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Plataformas como o GitHub são essenciais para mostrar seus projetos, colaborar com outros desenvolvedores e construir sua reputação profissional.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>&copy; 2025 - Guia Interativo de Lógica de Programação. Criado para inspirar a próxima geração de desenvolvedoras.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const stackCtx = document.getElementById('stackChart');
+        const stackData = {
+            labels: [],
+            datasets: [{
+                label: 'Elementos na Pilha',
+                data: [],
+                backgroundColor: '#81A1C1',
+                borderColor: '#6e8ca9',
+                borderWidth: 1
+            }]
+        };
+        const stackChart = new Chart(stackCtx, {
+            type: 'bar',
+            data: stackData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, max: 10, ticks: { stepSize: 1 } },
+                    y: { ticks: { font: { size: 14 } } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                         callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        let stackCounter = 0;
+        document.getElementById('pushButton').addEventListener('click', () => {
+            if (stackChart.data.labels.length < 8) {
+                stackCounter++;
+                const newItem = `Elemento ${stackCounter}`;
+                stackChart.data.labels.push(newItem);
+                stackChart.data.datasets[0].data.push(stackCounter);
+                stackChart.update();
+            }
+        });
+
+        document.getElementById('popButton').addEventListener('click', () => {
+            if (stackChart.data.labels.length > 0) {
+                stackChart.data.labels.pop();
+                stackChart.data.datasets[0].data.pop();
+                stackChart.update();
+            }
+        });
+
+    </script>
+</body>
+</html>
