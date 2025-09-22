@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Funções de Agregação no PostgreSQL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .section-title {
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6;
+        }
+
+        .card-content {
+            @apply bg-white p-6 rounded-xl shadow-lg h-full;
+        }
+
+        .sub-section-title {
+            @apply text-xl font-bold text-gray-700 mb-4;
+        }
+
+        .sql-code {
+            @apply bg-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre-wrap;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 px-6 md:px-12 rounded-b-3xl shadow-xl">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Funções de Agregação no PostgreSQL</h1>
+            <p class="text-lg md:text-xl font-medium">Transformando dados em resumos significativos</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+
+        <!-- O que são Funções de Agregação? -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">O que são Funções de Agregação?</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <p class="text-gray-600 mb-4">
+                        Funções de agregação realizam **cálculos em um conjunto de valores** e retornam um **único valor**. Elas são essenciais para relatórios e análises de dados, permitindo obter resumos como totais, médias e contagens de grandes volumes de informação.
+                    </p>
+                    <h3 class="font-bold text-lg text-gray-700 mb-2">Principais Funções:</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>**`SUM()`**: Soma os valores de uma coluna.</li>
+                        <li>**`COUNT()`**: Conta o número de linhas ou valores.</li>
+                        <li>**`AVG()`**: Calcula a média aritmética.</li>
+                        <li>**`MIN()`** e **`MAX()`**: Encontram os valores mínimo e máximo.</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x350/bfdbfe/1e40af?text=Dados+Brutos+%E2%86%92+Resumo+Agregado" alt="Diagrama ilustrando o processo de agregação de dados.">
+                </div>
+            </div>
+        </section>
+
+        <!-- Estrutura de Dados -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Estrutura de Dados dos Exemplos</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    Para nossos exemplos práticos, vamos usar a seguinte tabela de vendas.
+                </p>
+                <div class="sql-code">
+                    -- Criação da tabela de vendas
+                    CREATE TABLE vendas (
+                        venda_id SERIAL PRIMARY KEY,
+                        data_venda DATE NOT NULL,
+                        cliente_id INTEGER,
+                        vendedor_id INTEGER,
+                        produto VARCHAR(100),
+                        quantidade INTEGER,
+                        valor_unitario DECIMAL(10,2),
+                        total DECIMAL(10,2)
+                    );
+
+                    -- Inserção dos dados de exemplo
+                    INSERT INTO vendas (data_venda, cliente_id, vendedor_id, produto, quantidade, valor_unitario, total) VALUES
+                    ('2024-01-15', 1, 101, 'Notebook', 2, 2500.00, 5000.00),
+                    ('2024-01-15', 2, 102, 'Mouse', 5, 50.00, 250.00),
+                    ('2024-01-16', 1, 101, 'Teclado', 3, 120.00, 360.00),
+                    ('2024-01-17', 3, 103, 'Monitor', 1, 800.00, 800.00),
+                    ('2024-01-17', 2, 102, 'Notebook', 1, 2500.00, 2500.00),
+                    ('2024-01-18', 1, 101, 'Mouse', 2, 50.00, 100.00),
+                    ('2024-01-18', 4, 103, 'Tablet', 2, 700.00, 1400.00);
+                </div>
+            </div>
+        </section>
+
+        <!-- Funções Individuais -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">As Funções em Ação</h2>
+            <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                <!-- SUM() -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">1. `SUM()` - Soma</h3>
+                    <p class="text-gray-600 mb-2">Calcula o total de uma coluna numérica.</p>
+                    <div class="sql-code">
+                        SELECT SUM(total) AS total_geral FROM vendas;
+                    </div>
+                </div>
+
+                <!-- COUNT() -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">2. `COUNT()` - Contagem</h3>
+                    <p class="text-gray-600 mb-2">Conta o número de registros.</p>
+                    <div class="sql-code">
+                        SELECT COUNT(*) AS total_vendas FROM vendas;
+                    </div>
+                </div>
+
+                <!-- AVG() -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">3. `AVG()` - Média</h3>
+                    <p class="text-gray-600 mb-2">Calcula a média de uma coluna.</p>
+                    <div class="sql-code">
+                        SELECT AVG(total) AS media_vendas FROM vendas;
+                    </div>
+                </div>
+
+                <!-- MIN() e MAX() -->
+                <div class="card-content">
+                    <h3 class="sub-section-title">4. `MIN()` e `MAX()` - Extremos</h3>
+                    <p class="text-gray-600 mb-2">Encontram o menor e o maior valor.</p>
+                    <div class="sql-code">
+                        SELECT
+                            MIN(total) AS menor_venda,
+                            MAX(total) AS maior_venda
+                        FROM vendas;
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GROUP BY e HAVING -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Agrupando e Filtrando Agregações</h2>
+            <div class="card-content">
+                <p class="text-gray-600 mb-4">
+                    As cláusulas `GROUP BY` e `HAVING` trabalham juntas para criar e filtrar grupos de dados.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- GROUP BY -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">`GROUP BY`</h3>
+                        <p class="text-sm text-gray-600 mb-2">Agrupa linhas com valores idênticos para aplicar uma agregação.</p>
+                        <div class="sql-code">
+                            SELECT produto, SUM(total) AS total_vendido
+                            FROM vendas
+                            GROUP BY produto;
+                        </div>
+                    </div>
+                    <!-- HAVING -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-2">`HAVING`</h3>
+                        <p class="text-sm text-gray-600 mb-2">Filtra os resultados **após** a agregação.</p>
+                        <div class="sql-code">
+                            SELECT
+                                vendedor_id,
+                                COUNT(*) AS total_vendas
+                            FROM vendas
+                            GROUP BY vendedor_id
+                            HAVING COUNT(*) > 2;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diferença entre WHERE e HAVING -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">A Diferença Crucial: WHERE vs. HAVING</h2>
+            <div class="card-content flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x300/f0abfc/4a044e?text=Linhas+vs.+Grupos" alt="Diagrama ilustrando a diferença entre filtrar linhas individuais (WHERE) e grupos de dados (HAVING)." class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>**`WHERE`**: Filtra **linhas individuais** antes da agregação.</li>
+                        <li>**`HAVING`**: Filtra **grupos de linhas** depois da agregação.</li>
+                    </ul>
+                    <p class="text-gray-600 mt-4">
+                        É um dos conceitos mais importantes para otimizar suas consultas. Lembre-se: `WHERE` atua sobre os dados brutos, enquanto `HAVING` atua sobre os dados já agregados.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Práticos -->
+        <section class="mb-12">
+            <h2 class="section-title text-center">Exercícios Práticos</h2>
+            <div class="card-content">
+                <p class="text-gray-600">
+                    Agora que você entende as principais funções e cláusulas, pratique com os exemplos abaixo. Copie e cole o código para ver os resultados!
+                </p>
+                <h3 class="sub-section-title mt-4">1. Soma por Produto</h3>
+                <div class="sql-code">
+                    SELECT produto, SUM(total) AS total_produto FROM vendas GROUP BY produto;
+                </div>
+                <h3 class="sub-section-title mt-4">2. Contagem de Clientes Distintos</h3>
+                <div class="sql-code">
+                    SELECT COUNT(DISTINCT cliente_id) AS clientes_ativos FROM vendas;
+                </div>
+                <h3 class="sub-section-title mt-4">3. Vendas de Vendedores com Mais de 1 Venda</h3>
+                <div class="sql-code">
+                    SELECT
+                        vendedor_id,
+                        COUNT(*) AS total_vendas
+                    FROM vendas
+                    GROUP BY vendedor_id
+                    HAVING COUNT(*) > 1;
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
