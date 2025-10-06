@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de POO em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfd; }
+        .section-header { border-left: 4px solid #10b981; }
+        .code-block { 
+            background-color: #1f2937; 
+            color: #d1d5db; 
+            padding: 1.5rem; 
+            border-radius: 0.75rem; 
+            overflow-x: auto; 
+            font-size: 0.875rem; 
+            line-height: 1.6; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+            /* Adicionado para transição suave (opcional, mas melhora a UX) */
+            transition: all 0.3s ease-in-out;
+            max-height: 2000px; /* Grande o suficiente para a transição */
+            opacity: 1;
+        }
+        .code-block.hidden-solution {
+            display: none; /* Usa display none para esconder o elemento */
+        }
+        .comment { color: #9ca3af; }
+        .keyword { color: #facc15; font-weight: 600; }
+        .type { color: #34d399; }
+        .highlight { color: #60a5fa; }
+        .req-box { border: 2px dashed #9ca3af; padding: 1rem; background-color: #f9fafb; border-radius: 0.5rem; white-space: pre-wrap; }
+    </style>
+</head>
+<body class="p-4 sm:p-10">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+
+        <!-- Título Principal -->
+        <header class="bg-emerald-600 text-white p-6 sm:p-10 rounded-xl shadow-2xl">
+            <h1 class="text-3xl sm:text-4xl font-extrabold mb-3">Solução de Hierarquia de Classes para E-commerce em PHP</h1>
+            <p class="text-lg font-light opacity-90">Implementação baseada nos requisitos detalhados de POO, Frete e Interação via Terminal.</p>
+        </header>
+
+        <!-- Seção de Requisitos (Conteúdo na Íntegra) -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-800 pb-4 section-header pl-4 mb-6">Requisitos do Exercício (Conteúdo Integral)</h2>
+            <div class="req-box text-gray-800">
+                Descrição das regras de negócio:
+Uma loja vende 3 tipos de produto: livro, CD e software. Para todos os produtos existe código, descrição,
+preço e peso. Para o CD existe o nome da banda, para o livro existe o nome do autor e para o software
+existe a categoria. Para entregar um produto, o cálculo do frete é feito multiplicando o peso do produto
+por R$ 6,50. Implemente as classes que retratam esse cenário.
+Programa:
+O programa deve permitir ao usuário informar qual é o tipo de produto (livro, CD ou software) e, com
+base nesta resposta, solicitar o preenchimento dos atributos de cada tipo de produto. Em seguida, calcular
+o valor do frete e imprimir os dados do produto e o valor do frete.
+Obs.: tanto a leitura dos valores quando a impressão devem ser realizadas pelo terminal 
+
+
+Basicamente vc criara uma classe  Produto e nela voce criara todas as variaveis necessarias(codigo,
+descrição, preço,peso),
+criara os métodos Getter e Setter e por fim criara o metodo calcularFrete que retornara um double, 
+depois criara uma classe para cada tipo de produto (livro, CD, software) e extendera de Produto. No final terá 
+4 Classes (Produto, Livro, CD, Software). 
+Na classe de teste, dentro do seu método main vc criara um objeto Produto sem instancia e um int que recuperará 
+um numero que o usuario digitar, 
+depois disso irá associar 1 = Livro, 2 = CD, 3 = Software e fazer os if’s, dentro dos if’s, baseado na escolha 
+do usuario, vc instancia o objeto Produto 
+com a classe do objeto em questão (Livro,CD,Software) recupera o que o usuario digitar e utiliza os getter e 
+setter. depois é só exibir. 
+Seria legal sobreescrever o método toString tambem, assim depois de setados os valores bastaria vc chamar a 
+classe dentro do system.out
+
+
+
+1. Crie uma hierarquia de classes para uma loja que venda livros, CDs e DVDs.
+2. Sobrescreva o método imptimir() para que imprima:
+a. Para livros: nome, preço e autor;
+b. Para CDs: nome, preço e número de faixas;
+c. Para DVDs: nome, preço e duração.
+3. Evite ao máximo repetição de código, use os conceitos adquiridos de POO.
+4. No método main() adicione 5 produtos diferentes (à sua escolha) a um vetor e, por fim, imprima o conteúdo
+do vetor.
+            </div>
+        </section>
+
+        <!-- Seção de Solução em Código PHP -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-800 pb-4 section-header pl-4 mb-6">Solução em Código PHP (Simulação de Terminal)</h2>
+            
+            <!-- NOVO: Botão para mostrar/esconder a solução -->
+            <button id="toggleSolution" class="mb-6 px-6 py-2 bg-emerald-500 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 transition duration-150">
+                Mostrar Solução
+            </button>
+
+            <!-- Adicionado ID e classe 'hidden-solution' para controle via JS -->
+            <div id="solutionCode" class="code-block hidden-solution">
+                <p class="comment">// O código utiliza a função 'readline' do PHP para simular a interação via terminal (Stdin).</p>
+                <p class="comment">// A classe 'Software' foi utilizada como o terceiro produto, conforme a primeira descrição do requisito.</p>
+                <br>
+                <p><span class="keyword">class</span> <span class="highlight">Produto</span> {</p>
+                <p class="pl-4"><span class="comment">// Atributos comuns (código, descrição, preço, peso)</span></p>
+                <p class="pl-4"><span class="keyword">protected</span> <span class="highlight">$codigo</span>;</p>
+                <p class="pl-4"><span class="keyword">protected</span> <span class="highlight">$descricao</span>;</p>
+                <p class="pl-4"><span class="keyword">public</span> <span class="highlight">$preco</span>; <span class="comment">// Definido como public para facilitar o cálculo do total na simulação</span></p>
+                <p class="pl-4"><span class="keyword">protected</span> <span class="highlight">$peso</span>; <span class="comment">// double em Kg</span></p>
+                <p class="pl-4"><span class="keyword">const</span> TARIFA_FRETE_POR_PESO = 6.50;</p>
+                <br>
+                <p class="pl-4"><span class="comment">// Construtor Base (substitui a necessidade de muitos Getters e Setters manuais em um projeto simples)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>) {</p>
+                <p class="pl-8"><span class="highlight">$this</span>->codigo = <span class="highlight">$codigo</span>;</p>
+                <p class="pl-8"><span class="highlight">$this</span>->descricao = <span class="highlight">$descricao</span>;</p>
+                <p class="pl-8"><span class="highlight">$this</span>->preco = <span class="highlight">$preco</span>;</p>
+                <p class="pl-8"><span class="highlight">$this</span>->peso = <span class="highlight">$peso</span>;</p>
+                <p class="pl-4">}</p>
+                <br>
+                <p class="pl-4"><span class="comment">// Método calcularFrete que retorna double (float em PHP)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">calcularFrete</span>(): <span class="type">float</span> {</p>
+                <p class="pl-8"><span class="keyword">return</span> <span class="highlight">$this</span>->peso * self::TARIFA_FRETE_POR_PESO;</p>
+                <p class="pl-4">}</p>
+                <br>
+                <p class="pl-4"><span class="comment">// Método mágico __toString() (equivalente ao toString para exibição)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">__toString</span>(): <span class="type">string</span> {</p>
+                <p class="pl-8"><span class="keyword">return</span> "Código: {<span class="highlight">$this</span>->codigo} | Nome/Descrição: {<span class="highlight">$this</span>->descricao} | Preço: R$" . number_format(<span class="highlight">$this</span>->preco, 2, ',', '.') . " | Peso: {<span class="highlight">$this</span>->peso} Kg";</p>
+                <p class="pl-4">}</p>
+                <br>
+                <p class="pl-4"><span class="comment">// Método abstrato 'imprimirDetalhes' para forçar a sobrescrita (Polimorfismo, Requisito 2)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">imprimirDetalhes</span>(): <span class="type">string</span>;</p>
+                <p>}</p>
+                <br>
+                <p><span class="keyword">class</span> <span class="highlight">Livro</span> <span class="keyword">extends</span> <span class="highlight">Produto</span> {</p>
+                <p class="pl-4"><span class="keyword">private</span> <span class="highlight">$autor</span>;</p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$autor</span>) {</p>
+                <p class="pl-8"><span class="keyword">parent</span><span class="highlight">::__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>);</p>
+                <p class="pl-8"><span class="highlight">$this</span>->autor = <span class="highlight">$autor</span>;</p>
+                <p class="pl-4">}</p>
+                <p class="pl-4"><span class="comment">// Sobrescrita: Livros - nome, preço e autor (Requisito 2a)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">imprimirDetalhes</span>(): <span class="type">string</span> {</p>
+                <p class="pl-8"><span class="keyword">return</span> "Tipo: Livro | " . <span class="highlight">$this</span>-><span class="highlight">__toString</span>() . " | Autor: {<span class="highlight">$this</span>->autor}";</p>
+                <p class="pl-4">}</p>
+                <p>}</p>
+                <br>
+                <p><span class="keyword">class</span> <span class="highlight">CD</span> <span class="keyword">extends</span> <span class="highlight">Produto</span> {</p>
+                <p class="pl-4"><span class="keyword">private</span> <span class="highlight">$banda</span>;</p>
+                <p class="pl-4"><span class="keyword">private</span> <span class="highlight">$numeroFaixas</span>;</p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$banda</span>, <span class="highlight">$numeroFaixas</span>) {</p>
+                <p class="pl-8"><span class="keyword">parent</span><span class="highlight">::__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>);</p>
+                <p class="pl-8"><span class="highlight">$this</span>->banda = <span class="highlight">$banda</span>;</p>
+                <p class="pl-8"><span class="highlight">$this</span>->numeroFaixas = <span class="highlight">$numeroFaixas</span>;</p>
+                <p class="pl-4">}</p>
+                <p class="pl-4"><span class="comment">// Sobrescrita: CDs - nome, preço e número de faixas (Requisito 2b)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">imprimirDetalhes</span>(): <span class="type">string</span> {</p>
+                <p class="pl-8"><span class="keyword">return</span> "Tipo: CD | " . <span class="highlight">$this</span>-><span class="highlight">__toString</span>() . " | Banda: {<span class="highlight">$this</span>->banda} | Faixas: {<span class="highlight">$this</span>->numeroFaixas}";</p>
+                <p class="pl-4">}</p>
+                <p>}</p>
+                <br>
+                <p><span class="keyword">class</span> <span class="highlight">Software</span> <span class="keyword">extends</span> <span class="highlight">Produto</span> {</p>
+                <p class="pl-4"><span class="keyword">private</span> <span class="highlight">$categoria</span>;</p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$categoria</span>) {</p>
+                <p class="pl-8"><span class="keyword">parent</span><span class="highlight">::__construct</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>);</p>
+                <p class="pl-8"><span class="highlight">$this</span>->categoria = <span class="highlight">$categoria</span>;</p>
+                <p class="pl-4">}</p>
+                <p class="pl-4"><span class="comment">// Sobrescrita: Software - nome, preço e categoria (Regra de Negócio)</span></p>
+                <p class="pl-4"><span class="keyword">public function</span> <span class="highlight">imprimirDetalhes</span>(): <span class="type">string</span> {</p>
+                <p class="pl-8"><span class="keyword">return</span> "Tipo: Software | " . <span class="highlight">$this</span>-><span class="highlight">__toString</span>() . " | Categoria: {<span class="highlight">$this</span>->categoria}";</p>
+                <p class="pl-4">}</p>
+                <p>}</p>
+                <br>
+                <p><span class="comment">// ====================================================================</span></p>
+                <p><span class="comment">// Lógica de Teste (Simulação do 'main' / Requisito 4)</span></p>
+                <p><span class="comment">// ====================================================================</span></p>
+                <br>
+                <p><span class="keyword">echo</span> "\n<span class="highlight">--- 1. Teste de Polimorfismo (5 Produtos no Vetor) ---</span>\n";</p>
+                <br>
+                <p><span class="highlight">$produtos</span> = [</p>
+                <p class="pl-4"><span class="comment">// Livro: Código, Descrição, Preço, Peso, Autor</span></p>
+                <p class="pl-4"><span class="keyword">new</span> <span class="highlight">Livro</span>("L001", "A Arte da Programação", 85.90, 0.7, "Donald Knuth"),</p>
+                <p class="pl-4"><span class="comment">// CD: Código, Descrição, Preço, Peso, Banda, Número de Faixas</span></p>
+                <p class="pl-4"><span class="keyword">new</span> <span class="highlight">CD</span>("C002", "Rock Essencial", 35.00, 0.1, "The OOP Band", 12),</p>
+                <p class="pl-4"><span class="comment">// Software: Código, Descrição, Preço, Peso, Categoria</span></p>
+                <p class="pl-4"><span class="keyword">new</span> <span class="highlight">Software</span>("S003", "Editor Gráfico Pro", 499.00, 0.01, "Design"),</p>
+                <p class="pl-4"><span class="keyword">new</span> <span class="highlight">Livro</span>("L004", "Algoritmos e Estruturas", 120.00, 1.2, "Thomas H. Cormen"),</p>
+                <p class="pl-4"><span class="keyword">new</span> <span class="highlight">CD</span>("C005", "Trilhas de Jazz", 45.50, 0.1, "Various Artists", 18),</p>
+                <p>];</p>
+                <br>
+                <p><span class="keyword">foreach</span> (<span class="highlight">$produtos</span> <span class="keyword">as</span> <span class="highlight">$produto</span>) {</p>
+                <p class="pl-4"><span class="comment">// Chama o método polimórfico 'imprimirDetalhes'</span></p>
+                <p class="pl-4"><span class="keyword">echo</span> <span class="highlight">$produto</span>-><span class="highlight">imprimirDetalhes</span>() . "\n";</p>
+                <p class="pl-4"><span class="comment">// Cálculo do frete comum a todos</span></p>
+                <p class="pl-4"><span class="keyword">echo</span> "  -> Frete: R$" . number_format(<span class="highlight">$produto</span>-><span class="highlight">calcularFrete</span>(), 2, ',', '.') . "\n";</p>
+                <p class="pl-4"><span class="keyword">echo</span> "------------------------------------------------------------------\n";</p>
+                <p>}</p>
+                <br>
+                <p><span class="comment">// --- 2. Teste de Leitura Interativa (Requisito de Terminal e If's) ---</span></p>
+                <p><span class="keyword">echo</span> "\n<span class="highlight">--- 2. Simulação de Entrada Interativa (Terminal) ---</span>\n";</p>
+                <p><span class="keyword">echo</span> "Escolha o tipo de produto (1=Livro, 2=CD, 3=Software): ";</p>
+                <p><span class="highlight">$tipoProduto</span> = (int) <span class="highlight">readline</span>(); <span class="comment">// Simula a leitura da entrada do usuário</span></p>
+                <br>
+                <p><span class="highlight">$produtoSelecionado</span> = <span class="highlight">null</span>;</p>
+                <p><span class="comment">// Coleta atributos comuns</span></p>
+                <p><span class="highlight">$codigo</span> = <span class="highlight">readline</span>("Informe o Código: ");</p>
+                <p><span class="highlight">$descricao</span> = <span class="highlight">readline</span>("Informe a Descrição/Nome: ");</p>
+                <p><span class="highlight">$preco</span> = (float) <span class="highlight">readline</span>("Informe o Preço (Ex: 50.00): ");</p>
+                <p><span class="highlight">$peso</span> = (float) <span class="highlight">readline</span>("Informe o Peso em Kg (Ex: 0.5): ");</p>
+                <br>
+                <p><span class="comment">// Uso de if's para instanciação baseada na escolha</span></p>
+                <p><span class="keyword">if</span> (<span class="highlight">$tipoProduto</span> === 1) {</p>
+                <p class="pl-4"><span class="highlight">$autor</span> = <span class="highlight">readline</span>("Informe o Autor do Livro: ");</p>
+                <p class="pl-4"><span class="highlight">$produtoSelecionado</span> = <span class="keyword">new</span> <span class="highlight">Livro</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$autor</span>);</p>
+                <p>}</p>
+                <p><span class="keyword">elseif</span> (<span class="highlight">$tipoProduto</span> === 2) {</p>
+                <p class="pl-4"><span class="highlight">$banda</span> = <span class="highlight">readline</span>("Informe o Nome da Banda: ");</p>
+                <p class="pl-4"><span class="highlight">$faixas</span> = (int) <span class="highlight">readline</span>("Informe o Número de Faixas: ");</p>
+                <p class="pl-4"><span class="highlight">$produtoSelecionado</span> = <span class="keyword">new</span> <span class="highlight">CD</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$banda</span>, <span class="highlight">$faixas</span>);</p>
+                <p>}</p>
+                <p><span class="keyword">elseif</span> (<span class="highlight">$tipoProduto</span> === 3) {</p>
+                <p class="pl-4"><span class="highlight">$categoria</span> = <span class="highlight">readline</span>("Informe a Categoria do Software: ");</p>
+                <p class="pl-4"><span class="highlight">$produtoSelecionado</span> = <span class="keyword">new</span> <span class="highlight">Software</span>(<span class="highlight">$codigo</span>, <span class="highlight">$descricao</span>, <span class="highlight">$preco</span>, <span class="highlight">$peso</span>, <span class="highlight">$categoria</span>);</p>
+                <p>}</p>
+                <br>
+                <p><span class="keyword">if</span> (<span class="highlight">$produtoSelecionado</span> <span class="highlight">!== null</span>) {</p>
+                <p class="pl-4"><span class="keyword">echo</span> "\n<span class="highlight">--- Detalhes do Produto Selecionado ---</span>\n";</p>
+                <p class="pl-4"><span class="comment">// O método imprimirDetalhes() utiliza __toString() internamente.</span></p>
+                <p class="pl-4"><span class="keyword">echo</span> <span class="highlight">$produtoSelecionado</span>-><span class="highlight">imprimirDetalhes</span>() . "\n";</p>
+                <p class="pl-4"><span class="keyword">echo</span> "Valor do Frete (R$ 6,50/Kg): R$" . number_format(<span class="highlight">$produtoSelecionado</span>-><span class="highlight">calcularFrete</span>(), 2, ',', '.') . "\n";</p>
+                <p class="pl-4"><span class="keyword">echo</span> "Valor Total (Produto + Frete): R$" . number_format(<span class="highlight">$produtoSelecionado</span>->preco + <span class="highlight">$produtoSelecionado</span>-><span class="highlight">calcularFrete</span>(), 2, ',', '.') . "\n";</p>
+                <p>}</p>
+                <p><span class="keyword">else</span> {</p>
+                <p class="pl-4"><span class="keyword">echo</span> "Opção inválida. Por favor, escolha 1, 2 ou 3.\n";</p>
+                <p>}</p>
+                <p>?></p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script para funcionalidade de esconder/mostrar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('toggleSolution');
+            const codeBlock = document.getElementById('solutionCode');
+            
+            // Adiciona listener de clique
+            button.addEventListener('click', () => {
+                // Tenta remover ou adicionar a classe para toggle
+                const isHidden = codeBlock.classList.toggle('hidden-solution');
+
+                // Altera o texto do botão com base no estado
+                if (isHidden) {
+                    button.textContent = 'Mostrar Solução';
+                } else {
+                    button.textContent = 'Esconder Solução';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

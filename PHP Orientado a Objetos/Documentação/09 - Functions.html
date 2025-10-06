@@ -1,0 +1,224 @@
+<!-- Chosen Palette: Reusability & Structure (#8BC34A - Verde Limão, #673AB7 - Violeta) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções e Passagem de Parâmetros em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #8BC34A; /* Verde Limão Principal */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #673AB7; /* Violeta */
+        }
+        .-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .-keyword { color: #8BE9FD; } /* Ciano */
+        .-var { color: #CDDC39; } /* Lima */
+        .-op { color: #FF79C6; } /* Rosa */
+        .-string { color: #FF9800; } /* Laranja */
+        .-comment { color: #546E7A; }
+        .reference-highlight {
+            color: #FF79C6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Funções (Functions): A Reutilização de Código</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Seu Mini-Robô de Serviço para Tarefas Específicas</h2>
+            <p class="mt-4 text-gray-700">Uma função é um bloco de código que **encapsula** uma tarefa. Ela pode receber dados (parâmetros) e gerar um resultado (`return`), eliminando a necessidade de escrever o mesmo código várias vezes.</p>
+        </header>
+
+        <!-- 1. Passagem de Parâmetros: O Robô e os Dados -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#673AB7] mb-5">1. Passagem de Parâmetros: Como o Robô Lida com os Dados</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Passagem por Valor -->
+                <div class="concept-card border-t-4 border-[#8BC34A]">
+                    <h4 class="text-xl font-bold text-[#8BC34A] mb-2">Tipo 1: Passagem por Valor (Padrão)</h4>
+                    <p class="text-sm text-gray-600 mb-3">A função trabalha com uma **cópia** do dado original. O valor externo não é afetado pelas alterações internas.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>**Conceito:** Variável local à função.</li>
+                        <li>**Analogia:** A **Fotocópia**. Rabiscar a cópia não estraga o original.</li>
+                    </ul>
+                    <div class="-block">
+                        <span class="-var">$original</span> <span class="-op">=</span> <span class="-val">100</span>;
+                        <br><span class="-keyword">function</span> mudar(<span class="-var">$num</span>) {
+                        <br>  <span class="-var">$num</span> <span class="-op">=</span> <span class="-val">50</span>; <span class="-comment">// Altera SÓ a cópia</span>
+                        <br>}
+                        <br><span class="-keyword">mudar</span>(<span class="-var">$original</span>);
+                        <br><span class="-comment">// $original ainda é 100</span>
+                    </div>
+                </div>
+
+                <!-- Passagem por Referência -->
+                <div class="concept-card border-t-4 border-[#673AB7]">
+                    <h4 class="text-xl font-bold text-[#673AB7] mb-2">Tipo 2: Passagem por Referência (<span class="reference-highlight">&</span>)</h4>
+                    <p class="text-sm text-gray-600 mb-3">A função acessa o **dado original** na memória. As alterações internas **modificam** o valor externo.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>**Marcação:** Usa o operador **< class="bg-gray-200 px-1 rounded text-sm">&</>** na declaração do parâmetro.</li>
+                        <li>**Analogia:** A **Chave do Cofre**. Você altera o valor guardado no cofre original.</li>
+                    </ul>
+                    <div class="-block">
+                        <span class="-var">$original</span> <span class="-op">=</span> <span class="-val">100</span>;
+                        <br><span class="-keyword">function</span> mudar(<span class="reference-highlight">&</span><span class="-var">$num</span>) { <span class="-comment">// O & é crucial</span>
+                        <br>  <span class="-var">$num</span> <span class="-op">=</span> <span class="-val">50</span>; <span class="-comment">// Altera o original</span>
+                        <br>}
+                        <br><span class="-keyword">mudar</span>(<span class="-var">$original</span>);
+                        <br><span class="-comment">// $original agora é 50</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Estrutura Básica e Return -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#8BC34A] mb-5">2. Estrutura Básica: Criação e Saída (Return)</h3>
+            <div class="concept-card border-t-4 border-[#8BC34A]">
+                <p class="text-sm text-gray-700 mb-3">Use a palavra-chave < class="bg-gray-200 px-1 rounded text-sm">function</>, defina parâmetros opcionais entre parênteses e use < class="bg-gray-200 px-1 rounded text-sm">return</> para devolver o resultado.</p>
+                <div class="-block">
+                    <span class="-keyword">function</span> somar(<span class="-var">$n1</span>, <span class="-var">$n2</span>) {
+                    <br>  <span class="-keyword">return</span> <span class="-var">$n1</span> <span class="-op">+</span> <span class="-var">$n2</span>;
+                    <br>}
+                    <br>
+                    <br><span class="-comment">// Armazena o valor retornado em uma variável</span>
+                    <br><span class="-var">$total</span> <span class="-op">=</span> <span class="-keyword">somar</span>(<span class="-val">5</span>, <span class="-val">3</span>); <span class="-comment">// $total recebe 8</span>
+                    <br><span class="-keyword">echo</span> <span class="-var">$total</span>;
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Exercícios Estruturados de Funções -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#673AB7] mb-5 border-b pb-2">5 Desafios com Funções e Parâmetros</h3>
+            <p class="text-gray-700 mb-6">Implemente as funções e observe a diferença entre a manipulação de valores e referências.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: Estrutura e Reusabilidade -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#8BC34A] mb-2">1. O Mini-Robô de Validação (Return e Reuso)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie a função < class="bg-gray-200 px-1 rounded text-sm">validar_email($email)</> e use **return** para reutilização.</p>
+                    <div class="-block">
+                        <span class="-keyword">function</span> validar_email(<span class="-var">$email</span>) {
+                        <br>  <span class="-keyword">if</span> (<span class="-keyword">empty</span>(<span class="-var">$email</span>)) {
+                        <br>    <span class="-keyword">return</span> <span class="-string">"Email Inválido"</span>;
+                        <br>  } <span class="-keyword">else</span> {
+                        <br>    <span class="-keyword">return</span> <span class="-string">"Email Válido"</span>;
+                        <br>  }
+                        <br>}
+                        <br>
+                        <br><span class="-comment">// Reutilização</span>
+                        <br><span class="-var">$resultado1</span> <span class="-op">=</span> <span class="-keyword">validar_email</span>(<span class="-string">'teste@email.com'</span>);
+                        <br><span class="-var">$resultado2</span> <span class="-op">=</span> <span class="-keyword">validar_email</span>(<span class="-string">''</span>);
+                        <br><span class="-keyword">echo</span> <span class="-string">"Teste 1: "</span> <span class="-op">.</span> <span class="-var">$resultado1</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                        <br><span class="-keyword">echo</span> <span class="-string">"Teste 2: "</span> <span class="-op">.</span> <span class="-var">$resultado2</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Passagem por Valor -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#8BC34A] mb-2">2. O Documento Protegido (Passagem por Valor)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Incremente o salário na função e prove que o **valor original** permanece intocado.</p>
+                    <div class="-block">
+                        <span class="-var">$salario_original</span> <span class="-op">=</span> <span class="-val">5000</span>;
+                        <br>
+                        <br><span class="-keyword">function</span> ajustar_salario(<span class="-var">$salario</span>) {
+                        <br>  <span class="-var">$salario</span> <span class="-op">+=</span> <span class="-val">1000</span>; <span class="-comment">// Incrementa a CÓPIA</span>
+                        <br>  <span class="-keyword">echo</span> <span class="-string">"Dentro da função (Cópia): R$ "</span> <span class="-op">.</span> <span class="-var">$salario</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                        <br>}
+                        <br>
+                        <br><span class="-keyword">ajustar_salario</span>(<span class="-var">$salario_original</span>);
+                        <br><span class="-keyword">echo</span> <span class="-string">"Fora da função (Original): R$ "</span> <span class="-op">.</span> <span class="-var">$salario_original</span> <span class="-op">.</span> <span class="-string">"<br>"</span>; <span class="-comment">// 5000</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Passagem por Referência -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#673AB7] mb-2">3. A Chave do Cofre (Passagem por Referência)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use o **< class="bg-gray-200 px-1 rounded text-sm">&</>** para dobrar a dívida e modificar o valor externo permanentemente.</p>
+                    <div class="-block">
+                        <span class="-var">$minha_divida</span> <span class="-op">=</span> <span class="-val">200</span>;
+                        <br>
+                        <br><span class="-keyword">function</span> aplicar_juros(<span class="reference-highlight">&</span><span class="-var">$divida</span>) {
+                        <br>  <span class="-var">$divida</span> <span class="-op">*=</span> <span class="-val">2</span>; <span class="-comment">// Multiplica o ORIGINAL</span>
+                        <br>  <span class="-keyword">echo</span> <span class="-string">"Dentro da função (Referência): R$ "</span> <span class="-op">.</span> <span class="-var">$divida</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                        <br>}
+                        <br>
+                        <br><span class="-keyword">aplicar_juros</span>(<span class="-var">$minha_divida</span>);
+                        <br><span class="-keyword">echo</span> <span class="-string">"Fora da função (Original Após): R$ "</span> <span class="-op">.</span> <span class="-var">$minha_divida</span> <span class="-op">.</span> <span class="-string">"<br>"</span>; <span class="-comment">// 400</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Escopo e Referência -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#673AB7] mb-2">4. O Log de Acesso Global (Escopo e Referência)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use referência para permitir que a função **modifique** uma variável de contador externa (global).</p>
+                    <div class="-block">
+                        <span class="-var">$contador_global</span> <span class="-op">=</span> <span class="-val">0</span>;
+                        <br>
+                        <br><span class="-keyword">function</span> registrar_acesso(<span class="reference-highlight">&</span><span class="-var">$contador</span>) {
+                        <br>  <span class="-var">$contador</span><span class="-op">++</span>; <span class="-comment">// Incrementa a referência direta</span>
+                        <br>  <span class="-keyword">echo</span> <span class="-string">"Acesso registrado. Total interno: "</span> <span class="-op">.</span> <span class="-var">$contador</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                        <br>}
+                        <br>
+                        <br><span class="-keyword">registrar_acesso</span>(<span class="-var">$contador_global</span>); <span class="-comment">// 1</span>
+                        <br><span class="-keyword">registrar_acesso</span>(<span class="-var">$contador_global</span>); <span class="-comment">// 2</span>
+                        <br><span class="-keyword">registrar_acesso</span>(<span class="-var">$contador_global</span>); <span class="-comment">// 3</span>
+                        <br><span class="-keyword">echo</span> <span class="-string">"Contador global final: "</span> <span class="-op">.</span> <span class="-var">$contador_global</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Valor Padrão e Referência -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#8BC34A] mb-2">5. Funções com Valor Padrão e Referência (Combinação)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie uma função que use **< class="bg-gray-200 px-1 rounded text-sm">&</>** (referência) e um valor **default** (padrão) no segundo parâmetro.</p>
+                    <div class="-block">
+                        <span class="-var">$status_atual</span> <span class="-op">=</span> <span class="-string">'Pendente'</span>;
+                        <br>
+                        <br><span class="-keyword">function</span> processar_pedido(<span class="reference-highlight">&</span><span class="-var">$status</span>, <span class="-var">$descricao_padrao</span> <span class="-op">=</span> <span class="-string">'Processando Pedido'</span>) {
+                        <br>  <span class="-var">$status</span> <span class="-op">=</span> <span class="-var">$descricao_padrao</span>; <span class="-comment">// Altera o status externo</span>
+                        <br>  <span class="-keyword">echo</span> <span class="-string">"Status atualizado para: "</span> <span class="-op">.</span> <span class="-var">$status</span> <span class="-op">.</span> <span class="-string">"<br>"</span>;
+                        <br>}
+                        <br>
+                        <br><span class="-comment">// 1ª chamada: Usa o default ("Processando Pedido")</span>
+                        <br><span class="-keyword">processar_pedido</span>(<span class="-var">$status_atual</span>);
+                        <br>
+                        <br><span class="-comment">// 2ª chamada: Sobrescreve o default ("Pronto para Envio")</span>
+                        <br><span class="-keyword">processar_pedido</span>(<span class="-var">$status_atual</span>, <span class="-string">'Pronto para Envio'</span>);
+                        <br>
+                        <br><span class="-keyword">echo</span> <span class="-string">"Status final externo: "</span> <span class="-op">.</span> <span class="-var">$status_atual</span>;
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

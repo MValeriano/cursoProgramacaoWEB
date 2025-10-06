@@ -1,0 +1,213 @@
+<!-- Chosen Palette: Structured & Directive (#4A90E2, #7ED321, #FF9500) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas de Controle PHP: IF, ELSE e SWITCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #4A90E2; /* Azul Principal */
+            color: white;
+        }
+        .if-card {
+            border-left: 5px solid #4A90E2;
+            background-color: #e9f0fb; /* Azul muito claro */
+        }
+        .switch-card {
+            border-left: 5px solid #FF9500; /* Laranja/Âmbar */
+            background-color: #fff6e6; /* Laranja muito claro */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+        .code-keyword { color: #8BE9FD; } /* Ciano */
+        .code-var { color: #50FA7B; } /* Verde Claro */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-string { color: #F1FA8C; } /* Amarelo Claro */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Estruturas de Controle de Fluxo em PHP</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-[#FF9500]">O GPS do seu Código: Tomando Decisões</h2>
+            <p class="mt-4 text-gray-200">Essas estruturas (IF, ELSE, SWITCH) são cruciais, pois permitem que o código tome decisões e altere o fluxo sequencial de execução com base em condições.</p>
+        </header>
+
+        <!-- 1. Estruturas de Decisão: IF, ELSE e ELSEIF -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#4A90E2] mb-5">1. Decisão Sequencial (IF, ELSEIF, ELSE)</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- IF e Condição -->
+                <div class="if-card p-5 rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-[#4A90E2] mb-2">IF (SE)</h4>
+                    <p class="text-gray-700 mb-3">Executa um bloco de código somente se a condição entre parênteses for avaliada como TRUE (Verdadeira).</p>
+                    <p class="text-sm italic text-gray-600 mb-2">Analogia: SE (combustível baixo) ENTÃO {acenda a luz de advertência}.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">if</span> (<span class="code-var">$idade</span> <span class="code-op">>=</span> <span class="code-val">18</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Maior de idade"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- ELSE e ELSEIF -->
+                <div class="if-card p-5 rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-[#4A90E2] mb-2">ELSE e ELSEIF (SENÃO SE)</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-3">
+                        <li>ELSEIF Testa uma próxima condição se a anterior falhou.</li>
+                        <li>ELSE É o bloco padrão de "caso contrário", executado se *todas* as condições anteriores falharem.</li>
+                    </ul>
+                    <p class="text-sm italic text-gray-600 mb-2">Regra: Assim que uma condição é TRUE, o restante da cadeia é ignorado.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">if</span> (<span class="code-var">$nota</span> <span class="code-op">>=</span> <span class="code-val">7</span>) { <span class="code-keyword">...</span> }
+                        <br><span class="code-keyword">elseif</span> (<span class="code-var">$nota</span> <span class="code-op">>=</span> <span class="code-val">5</span>) { <span class="code-keyword">...</span> }
+                        <br><span class="code-keyword">else</span> { <span class="code-keyword">...</span> }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Comando SWITCH -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#FF9500] mb-5">2. Comando SWITCH (Teste em Série)</h3>
+            <div class="switch-card p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 mb-4">O SWITCH testa o valor de uma única variável contra diferentes casos específicos (<code class="font-semibold">CASE</code>).</p>
+                
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p class="font-semibold text-lg text-[#FF9500] mb-1">CASE e BREAK</p>
+                        <ul class="list-disc list-inside text-sm text-gray-700">
+                            <li>Cada <code class="bg-gray-200 px-1 rounded text-sm">CASE</code> compara a variável com um valor.</li>
+                            <li>O <code class="bg-gray-200 px-1 rounded text-sm">BREAK</code> é crucial e obrigatório; ele impede que o código continue executando os <code class="bg-gray-200 px-1 rounded text-sm">CASE</code>s seguintes.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg text-[#FF9500] mb-1">DEFAULT</p>
+                        <p class="text-sm text-gray-700">O bloco <code class="bg-gray-200 px-1 rounded text-sm">DEFAULT</code> será executado se o valor da variável não corresponder a nenhum dos <code class="bg-gray-200 px-1 rounded text-sm">CASE</code>s. É similar ao <code class="bg-gray-200 px-1 rounded text-sm">ELSE</code>.</p>
+                    </div>
+                </div>
+                
+                <p class="text-sm italic text-gray-600 mb-2">Analogia: Central Telefônica Automática: Digite a opção (variável). CASO 1: Atende. CASO 2: Suporte. DEFAULT: Opção Inválida.</p>
+                <div class="code-block">
+                    <span class="code-keyword">switch</span> (<span class="code-var">$operador</span>) {
+                    <br>  <span class="code-keyword">case</span> <span class="code-string">'add'</span>:
+                    <br>    <span class="code-keyword">echo</span> <span class="code-string">"Adição"</span>;
+                    <br>    <span class="code-keyword">break</span>; <span class="code-comment">// Importante: para a execução aqui</span>
+                    <br>  <span class="code-keyword">default</span>:
+                    <br>    <span class="code-keyword">echo</span> <span class="code-string">"Operação inválida"</span>;
+                    <br>}
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Diferença Chave -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#FF9500] mb-5">Diferença: IF/ELSEIF vs. SWITCH</h3>
+            <div class="p-4 rounded-lg shadow-md bg-white border border-gray-200">
+                <p class="text-gray-700">O SWITCH é focado em testar diferentes valores específicos de UMA ÚNICA variável.</p>
+                <p class="text-gray-700 mt-2">O IF/ELSEIF permite checar diferentes condições e múltiplas variáveis em cada etapa da cadeia de decisão, oferecendo maior flexibilidade para lógica complexa.</p>
+            </div>
+        </section>
+
+
+        <!-- 4. Exercícios Estruturados de Controle de Fluxo -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#4A90E2] mb-5 border-b pb-2">5 Desafios de Estruturas de Controle</h3>
+            <p class="text-gray-700 mb-6">Aplique o IF/ELSEIF/ELSE e o SWITCH para criar códigos que tomam decisões.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4A90E2] mb-2">1. Verificador de Faixa Etária (IF, ELSEIF, ELSE)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Classifique o usuário em "adulto", "adolescente" ou "criança" com base na <code class="bg-gray-200 px-1 rounded text-sm">$idade</code>.</p>
+                    <div class="code-block">
+                        <span class="code-var">$idade</span> <span class="code-op">=</span> <span class="code-val">15</span>;
+                        <br><span class="code-keyword">if</span> (<span class="code-var">$idade</span> <span class="code-op">>=</span> <span class="code-val">18</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Você é um adulto e pode dirigir."</span>;
+                        <br>} <span class="code-keyword">elseif</span> (<span class="code-var">$idade</span> <span class="code-op">>=</span> <span class="code-val">14</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Você é um adolescente e precisa de permissão."</span>;
+                        <br>} <span class="code-keyword">else</span> {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Você é uma criança."</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF9500] mb-2">2. O Sinal de Trânsito (SWITCH)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Simule um semáforo usando <code class="bg-gray-200 px-1 rounded text-sm">SWITCH</code> e garanta que haja um <code class="bg-gray-200 px-1 rounded text-sm">DEFAULT</code>.</p>
+                    <div class="code-block">
+                        <span class="code-var">$cor</span> <span class="code-op">=</span> <span class="code-string">'vermelho'</span>;
+                        <br><span class="code-keyword">switch</span> (<span class="code-var">$cor</span>) {
+                        <br>  <span class="code-keyword">case</span> <span class="code-string">'verde'</span>: <span class="code-keyword">echo</span> <span class="code-string">"Prossiga..."</span>; <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">case</span> <span class="code-string">'amarelo'</span>: <span class="code-keyword">echo</span> <span class="code-string">"Atenção..."</span>; <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">case</span> <span class="code-string">'vermelho'</span>: <span class="code-keyword">echo</span> <span class="code-string">"Pare..."</span>; <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">default</span>: <span class="code-keyword">echo</span> <span class="code-string">"Sinal com defeito."</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4A90E2] mb-2">3. Sistema de Desconto (Lógicos e IF)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use o operador lógico E (<code class="bg-gray-200 px-1 rounded text-sm">&&</code>) para exigir que duas condições sejam verdadeiras para conceder o desconto.</p>
+                    <div class="code-block">
+                        <span class="code-var">$valor_compra</span> <span class="code-op">=</span> <span class="code-val">150.00</span>;
+                        <br><span class="code-var">$cliente_vip</span> <span class="code-op">=</span> <span class="code-val">TRUE</span>;
+                        <br><span class="code-keyword">if</span> (<span class="code-var">$valor_compra</span> <span class="code-op">></span> <span class="code-val">100</span> <span class="code-op">&&</span> <span class="code-var">$cliente_vip</span> <span class="code-op">==</span> <span class="code-val">TRUE</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Desconto de 15% aplicado!"</span>;
+                        <br>} <span class="code-keyword">else</span> {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Desconto não aplicável."</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF9500] mb-2">5. Validação Múltipla (Múltiplos IFs Independentes)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use <code class="bg-gray-200 px-1 rounded text-sm">IF</code>s separados para verificar campos de formulário, exibindo todas as mensagens de erro, se houver.</p>
+                    <div class="code-block">
+                        <span class="code-var">$nome</span> <span class="code-op">=</span> <span class="code-string">""</span>; <span class="code-var">$email</span> <span class="code-op">=</span> <span class="code-string">"teste@exemplo.com"</span>;
+                        <br><span class="code-var">$erros</span> <span class="code-op">=</span> <span class="code-val">0</span>;
+                        <br>
+                        <br><span class="code-comment">// 1º IF: verifica nome</span>
+                        <br><span class="code-keyword">if</span> (<span class="code-keyword">empty</span>(<span class="code-var">$nome</span>)) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Erro: O nome é obrigatório."</span>;
+                        <br>  <span class="code-var">$erros</span><span class="code-op">++</span>;
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// 2º IF: verifica email</span>
+                        <br><span class="code-keyword">if</span> (<span class="code-keyword">empty</span>(<span class="code-var">$email</span>)) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Erro: O email é obrigatório."</span>;
+                        <br>  <span class="code-var">$erros</span><span class="code-op">++</span>;
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// 3º IF: verifica se pode enviar</span>
+                        <br><span class="code-keyword">if</span> (<span class="code-var">$erros</span> <span class="code-op">==</span> <span class="code-val">0</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Formulário enviado com sucesso."</span>;
+                        <br>}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

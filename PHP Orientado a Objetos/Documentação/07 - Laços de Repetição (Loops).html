@@ -1,0 +1,214 @@
+<!-- Chosen Palette: Iterative & Flowing (#00BCD4, #FF9800, #CDDC39) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas de Repetição PHP: Loops Essenciais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #00BCD4; /* Ciano Principal */
+            color: white;
+        }
+        .loop-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .loop-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-keyword { color: #8BE9FD; } /* Ciano */
+        .code-var { color: #CDDC39; } /* Lima */
+        .code-val { color: #FF9800; } /* Laranja */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Laços de Repetição (Loops) em PHP</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-[#CDDC39]">O Modo Automático para Executar Tarefas Múltiplas</h2>
+            <p class="mt-4 text-gray-200">Loops são a linha de produção do seu código, executando um bloco de comandos repetidamente enquanto uma condição for verdadeira. Eles evitam a repetição de código.</p>
+        </header>
+
+        <!-- 1. Laços Condicionais e de Contagem -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#00BCD4] mb-5">1. Repetição Baseada em Condição e Contagem</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <!-- WHILE -->
+                <div class="loop-card border-t-4 border-[#FF9800]">
+                    <h4 class="text-xl font-bold text-[#FF9800] mb-2">WHILE (ENQUANTO)</h4>
+                    <p class="text-sm text-gray-600 mb-3">Repete ENQUANTO a condição for verdadeira. Ideal para quando o número de iterações não é conhecido.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Checa a condição antes da primeira execução.</li>
+                        <li>Analogia: Dirigir ENQUANTO a gasolina não acaba.</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="code-var">$i</span> <span class="code-op">=</span> <span class="code-val">0</span>;
+                        <br><span class="code-keyword">while</span> (<span class="code-var">$i</span> <span class="code-op"><</span> <span class="code-val">5</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-var">$i</span>;
+                        <br>  <span class="code-var">$i</span><span class="code-op">++</span>; <span class="code-comment">// Evita loop infinito!</span>
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- FOR -->
+                <div class="loop-card border-t-4 border-[#00BCD4]">
+                    <h4 class="text-xl font-bold text-[#00BCD4] mb-2">FOR (PARA)</h4>
+                    <p class="text-sm text-gray-600 mb-3">Repetição com contador definido. Ideal para quando o número de iterações é conhecido.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Combina Início, Condição e Incremento em uma linha.</li>
+                        <li>Analogia: Subir uma escadaria contada, do degrau 1 ATÉ o 10.</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="code-keyword">for</span> (<span class="code-var">$i</span> <span class="code-op">=</span> <span class="code-val">1</span>; <span class="code-var">$i</span> <span class="code-op"><=</span> <span class="code-val">10</span>; <span class="code-var">$i</span><span class="code-op">++</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-var">$i</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- DO WHILE -->
+                <div class="loop-card border-t-4 border-[#CDDC39]">
+                    <h4 class="text-xl font-bold text-[#CDDC39] mb-2">DO WHILE (FAÇA ENQUANTO)</h4>
+                    <p class="text-sm text-gray-600 mb-3">Executa o código pelo menos uma vez antes de checar a condição.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>A condição é checada no final do bloco.</li>
+                        <li>Analogia: Tentativa Obrigatória: FAÇA a conexão, ENQUANTO falhar.</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="code-keyword">do</span> {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Tentando..."</span>;
+                        <br>  <span class="code-var">$sucesso</span> <span class="code-op">=</span> <span class="code-val">FALSE</span>;
+                        <br>} <span class="code-keyword">while</span> (<span class="code-op">!</span><span class="code-var">$sucesso</span>);
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Laço Especializado: FOREACH -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#CDDC39] mb-5">2. FOREACH (PARA CADA)</h3>
+            <div class="loop-card border-t-4 border-[#CDDC39]">
+                <h4 class="text-xl font-bold text-[#CDDC39] mb-2">FOREACH (Para Cada Elemento)</h4>
+                <p class="text-sm text-gray-600 mb-3">Laço especializado em arrays e objetos. Não requer contadores e é o mais usado para processar dados de banco de dados.</p>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Sintaxe Valor -->
+                    <div>
+                        <p class="font-semibold text-base text-gray-700 mb-1">Sintaxe 1: Somente Valor</p>
+                        <p class="text-xs italic text-gray-600 mb-2">Usado em arrays simples (indexados).</p>
+                        <div class="code-block">
+                            <span class="code-keyword">foreach</span> (<span class="code-var">$produtos</span> <span class="code-keyword">as</span> <span class="code-var">$item</span>) {
+                            <br>  <span class="code-keyword">echo</span> <span class="code-var">$item</span>; <span class="code-comment">// Exibe: Teclado, Mouse...</span>
+                            <br>}
+                        </div>
+                    </div>
+                    <!-- Sintaxe Chave/Valor -->
+                    <div>
+                        <p class="font-semibold text-base text-gray-700 mb-1">Sintaxe 2: Chave (Rótulo) e Valor</p>
+                        <p class="text-xs italic text-gray-600 mb-2">Usado em arrays associativos (com rótulos).</p>
+                        <div class="code-block">
+                            <span class="code-keyword">foreach</span> (<span class="code-var">$usuario</span> <span class="code-keyword">as</span> <span class="code-var">$chave</span> <span class="code-op">=></span> <span class="code-var">$valor</span>) {
+                            <br>  <span class="code-keyword">echo</span> <span class="code-var">$chave</span> <span class="code-op">.</span> <span class="code-string">": "</span> <span class="code-op">.</span> <span class="code-var">$valor</span>;
+                            <br>}
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 italic mt-4 border-t pt-2">Analogia: O Carteiro: Para CADA caixa postal (item do array), entregue a carta (valor).</p>
+            </div>
+        </section>
+
+        <!-- 3. Exercícios Estruturados de Loops -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#00BCD4] mb-5 border-b pb-2">5 Desafios com Laços de Repetição</h3>
+            <p class="text-gray-700 mb-6">Aplique o loop correto para contagem, condições e iteração de arrays.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: FOR -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00BCD4] mb-2">1. O Lançamento de Foguetes (FOR)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie a contagem regressiva de 10 a 0. Lembre-se de usar o decremento (<code class="bg-gray-200 px-1 rounded text-sm">--</code>) e a condição correta.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">for</span> (<span class="code-var">$i</span> <span class="code-op">=</span> <span class="code-val">10</span>; <span class="code-var">$i</span> <span class="code-op">>=</span> <span class="code-val">0</span>; <span class="code-var">$i</span><span class="code-op">--</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Contagem regressiva: "</span> <span class="code-op">.</span> <span class="code-var">$i</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 2: WHILE -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF9800] mb-2">2. A Verificação de Estoque (WHILE)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Processe caixas (subtraia 3) ENQUANTO o estoque for maior ou igual a 10. Atenção ao Loop Infinito!</p>
+                    <div class="code-block">
+                        <span class="code-var">$caixas_no_estoque</span> <span class="code-op">=</span> <span class="code-val">60</span>;
+                        <br><span class="code-keyword">while</span> (<span class="code-var">$caixas_no_estoque</span> <span class="code-op">>=</span> <span class="code-val">10</span>) {
+                        <br>  <span class="code-var">$caixas_no_estoque</span> <span class="code-op">-=</span> <span class="code-val">3</span>; <span class="code-comment">// Processa 3 caixas (Atualiza a variável de condição)</span>
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Caixas restantes: "</span> <span class="code-op">.</span> <span class="code-var">$caixas_no_estoque</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 3: DO WHILE -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#CDDC39] mb-2">3. O Leitor de Arquivo (DO WHILE)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Simule uma tentativa de leitura que garante a execução pelo menos uma vez e para na 3ª tentativa.</p>
+                    <div class="code-block">
+                        <span class="code-var">$tentativas</span> <span class="code-op">=</span> <span class="code-val">0</span>;
+                        <br><span class="code-var">$arquivo_lido</span> <span class="code-op">=</span> <span class="code-val">FALSE</span>;
+                        <br><span class="code-keyword">do</span> {
+                        <br>  <span class="code-var">$tentativas</span><span class="code-op">++</span>;
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Tentativa de leitura: "</span> <span class="code-op">.</span> <span class="code-var">$tentativas</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>  <span class="code-keyword">if</span> (<span class="code-var">$tentativas</span> <span class="code-op">==</span> <span class="code-val">3</span>) {
+                        <br>    <span class="code-var">$arquivo_lido</span> <span class="code-op">=</span> <span class="code-val">TRUE</span>;
+                        <br>  }
+                        <br>} <span class="code-keyword">while</span> (<span class="code-op">!</span><span class="code-var">$arquivo_lido</span>); <span class="code-comment">// Repete enquanto NÃO TRUE</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: FOREACH Associativo -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00BCD4] mb-2">5. Exibindo Chaves e Valores (FOREACH Associativo)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use a sintaxe <code class="bg-gray-200 px-1 rounded text-sm">as $chave => $valor</code> para extrair rótulos de um array de usuário.</p>
+                    <div class="code-block">
+                        <span class="code-var">$dados_usuario</span> <span class="code-op">=</span> [
+                        <br>  <span class="code-string">'Nome'</span> <span class="code-op">=></span> <span class="code-string">'João da Silva'</span>,
+                        <br>  <span class="code-string">'Email'</span> <span class="code-op">=></span> <span class="code-string">'joao@exemplo.com'</span>,
+                        <br>  <span class="code-string">'Telefone'</span> <span class="code-op">=></span> <span class="code-string">'(11) 98765-4321'</span>
+                        <br>];
+                        <br>
+                        <br><span class="code-keyword">foreach</span> (<span class="code-var">$dados_usuario</span> <span class="code-keyword">as</span> <span class="code-var">$campo</span> <span class="code-op">=></span> <span class="code-var">$dado</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-var">$campo</span> <span class="code-op">.</span> <span class="code-string">: "</span> <span class="code-op">.</span> <span class="code-var">$dado</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

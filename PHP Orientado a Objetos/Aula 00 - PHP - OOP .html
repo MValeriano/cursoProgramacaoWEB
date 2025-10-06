@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação Orientada a Objetos (POO)</title>
+    <!-- Carrega Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de fonte e estilo de corpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fundo muito suave */
+        }
+        .code-block {
+            background-color: #1a1e27; /* Fundo escuro para código */
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            font-family: monospace;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Estilização para o destaque de código PHP */
+        .keyword { color: #5ad5ff; } /* Azul claro (class, function, new) */
+        .type { color: #34d399; } /* Verde água (type hints, class names) */
+        .modifier { color: #facc15; } /* Amarelo (public, private) */
+        .comment { color: #6b7280; } /* Cinza */
+        .string { color: #ef4444; } /* Vermelho */
+        .method { color: #f97316; } /* Laranja (method names) */
+        .variable { color: #e5e7eb; } /* Branco (variáveis $ ) */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-5xl mx-auto bg-white shadow-2xl rounded-2xl p-6 md:p-12 border-t-8 border-indigo-600">
+
+        <!-- Título Principal -->
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-3">
+                Programação Orientada a Objetos (POO)
+            </h1>
+            <p class="text-xl text-indigo-600 font-medium">Paradigmas, Bases e Pilares em PHP</p>
+        </header>
+        
+        <!-- INTRODUÇÃO -->
+        <div class="bg-indigo-50 p-6 rounded-lg mb-10 border-l-4 border-indigo-500">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-3">O que é POO?</h2>
+            <p class="text-gray-700 leading-relaxed">
+                A POO é um dos paradigmas de programação mais populares. Ela simplifica programas complexos organizando o código em torno de objetos, que são unidades menores que combinam dados (atributos) e ações (métodos). O objetivo é aproximar a programação das coisas do mundo real.
+            </p>
+        </div>
+
+        <!-- BASES DA POO: OBJETOS E CLASSES -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2 text-center">Bases da POO: Classes e Objetos</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card: Objetos -->
+                <div class="p-6 bg-green-50 rounded-xl shadow-lg border-l-4 border-green-500">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-3">O que são Objetos?</h3>
+                    <p class="text-gray-700 mb-3">
+                        Objetos são as unidades concretas que combinam:
+                        <ul class="list-disc ml-5 text-gray-700">
+                            <li>Atributos (Dados): As características do objeto (ex: modelo, cor, velocidade).</li>
+                            <li>Métodos (Ações): As operações ou comportamentos que o objeto pode realizar (ex: acelerar, frear).</li>
+                        </ul>
+                    </p>
+                    
+                    <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo da Classe `Carro` (PHP)</h4>
+                    <div class="code-block text-sm">
+                        <pre>
+&lt;?php
+<span class="keyword">class</span> <span class="type">Carro</span> {
+    <span class="modifier">public</span> <span class="type">float</span> <span class="variable">$velocidade</span>;
+    <span class="modifier">public</span> <span class="type">string</span> <span class="variable">$modelo</span>;
+    <span class="modifier">public</span> <span class="type">string</span> <span class="variable">$cor</span>;
+    
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">__construct</span>(<span class="type">string</span> <span class="variable">$modelo</span>, <span class="type">string</span> <span class="variable">$cor</span>) {
+        <span class="variable">$this</span>-&gt;modelo = <span class="variable">$modelo</span>;
+        <span class="variable">$this</span>-&gt;cor = <span class="variable">$cor</span>;
+        <span class="variable">$this</span>-&gt;velocidade = <span class="string">0.0</span>;
+    }
+    
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">acelerar</span>(): <span class="type">void</span> {
+        <span class="comment">// código do carro para acelerar</span>
+    }
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">frear</span>(): <span class="type">void</span> {
+        <span class="comment">// código do carro para frear</span>
+    }
+}
+?&gt;
+</pre>
+                    </div>
+                </div>
+
+                <!-- Card: Classes -->
+                <div class="p-6 bg-yellow-50 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                    <h3 class="text-2xl font-semibold text-yellow-700 mb-3">O que são Classes?</h3>
+                    <p class="text-gray-700 mb-3">
+                        A classe é um conceito abstrato, servindo como um molde ou uma planta para criar objetos. Ela define o conjunto de características e comportamentos comuns a todos os objetos que pertencem a ela.
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        A criação de um objeto a partir de uma classe é chamada de instanciação. O seu carro específico (o objeto) é uma instância da classe genérica "Carro".
+                    </p>
+                    <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo de Instanciação (PHP)</h4>
+                    <div class="code-block text-sm">
+                        <pre>
+&lt;?php
+<span class="comment">// Usando a classe Carro para criar um objeto (instância)</span>
+<span class="variable">$meuCarro</span> = <span class="keyword">new</span> <span class="type">Carro</span>(<span class="string">"Fit 2.0"</span>, <span class="string">"Vermelho"</span>);
+
+<span class="comment">// Acessando atributos e métodos do objeto</span>
+<span class="variable">$meuCarro</span>-&gt;<span class="method">acelerar</span>();
+<span class="keyword">echo</span> <span class="variable">$meuCarro</span>-&gt;modelo; <span class="comment">// Saída: Fit 2.0</span>
+?&gt;
+</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-10 border-gray-300">
+
+        <!-- PILARES DA POO -->
+        <section>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b pb-2 text-center">Os 4 Pilares da POO</h2>
+
+            <!-- Encapsulamento -->
+            <div class="mb-8 p-6 bg-blue-50 rounded-xl shadow-lg border-l-4 border-blue-500">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                    <span class="text-3xl mr-2">🔒</span> 1. Encapsulamento
+                </h3>
+                <p class="text-gray-700 mb-3">
+                    O encapsulamento impede o vazamento de escopo, controlando a visibilidade dos atributos e métodos.
+                    Isso significa que o objeto esconde como ele funciona por dentro, expondo apenas o necessário.
+                    Atributos podem ser privados (só visíveis internamente) e métodos podem ser usados como "getters e setters" (para ler e alterar, respectivamente).
+                </p>
+                <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo de Encapsulamento (PHP)</h4>
+                <div class="code-block text-sm">
+                    <pre>
+&lt;?php
+<span class="keyword">class</span> <span class="type">Carro</span> {
+    <span class="modifier">private</span> <span class="type">float</span> <span class="variable">$velocidade</span> = <span class="string">0.0</span>; <span class="comment">// Acesso restrito</span>
+    
+    <span class="comment">// Getter: método público para ler o atributo privado</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">getVelocidade</span>(): <span class="type">float</span> {
+        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;velocidade;
+    }
+    
+    <span class="comment">// Setter: método privado para alterar o atributo (só o próprio Carro pode chamar)</span>
+    <span class="modifier">private</span> <span class="keyword">function</span> <span class="method">setVelocidade</span>(<span class="type">float</span> <span class="variable">$novaVelocidade</span>): <span class="type">void</span> {
+        <span class="variable">$this</span>-&gt;velocidade = <span class="variable">$novaVelocidade</span>;
+    }
+
+    <span class="comment">// Método de comportamento público que usa o método privado</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">acelerar</span>(): <span class="type">void</span> {
+        <span class="variable">$this</span>-&gt;<span class="method">setVelocidade</span>(<span class="variable">$this</span>-&gt;velocidade + <span class="string">10</span>);
+    }
+}
+?&gt;
+</pre>
+                </div>
+            </div>
+
+            <!-- Herança -->
+            <div class="mb-8 p-6 bg-red-50 rounded-xl shadow-lg border-l-4 border-red-500">
+                <h3 class="text-2xl font-semibold text-red-700 mb-3 flex items-center">
+                    <span class="text-3xl mr-2">🧬</span> 2. Herança
+                </h3>
+                <p class="text-gray-700 mb-3">
+                    Herança é quando uma classe A "é um tipo de" classe B. A classe filha (A) herda os atributos e métodos da classe mãe (B), podendo adicionar ou modificar comportamentos. Isso promove o reaproveitamento de código.
+                </p>
+                <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo de Herança (`extends` em PHP)</h4>
+                <div class="code-block text-sm">
+                    <pre>
+&lt;?php
+<span class="comment">// HondaFit herda todas as características e comportamentos de Carro</span>
+<span class="keyword">class</span> <span class="type">HondaFit</span> <span class="keyword">extends</span> <span class="type">Carro</span> {
+    
+    <span class="comment">// Construtor de HondaFit</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">__construct</span>(<span class="type">string</span> <span class="variable">$cor</span>) {
+        <span class="comment">// Chama o construtor da classe mãe (Carro)</span>
+        <span class="keyword">parent</span>::<span class="method">__construct</span>(<span class="string">"Honda Fit"</span>, <span class="variable">$cor</span>);
+    }
+    
+    <span class="comment">// Adiciona um método específico do Fit</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">ligarModoEconomico</span>(): <span class="type">void</span> {
+        <span class="comment">// Código para economizar combustível</span>
+    }
+}
+?&gt;
+</pre>
+                </div>
+            </div>
+
+            <!-- Interface -->
+            <div class="mb-8 p-6 bg-purple-50 rounded-xl shadow-lg border-l-4 border-purple-500">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                    <span class="text-3xl mr-2">📄</span> 3. Interface
+                </h3>
+                <p class="text-gray-700 mb-3">
+                    Uma Interface define um contrato: um conjunto de métodos que uma classe deve implementar. Quando classes diferentes (ex: `Carro` e `Moto`) implementam a mesma interface (ex: `Automovel`), elas compartilham um comportamento comum.
+                </p>
+                <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo de Interface (`interface` e `implements` em PHP)</h4>
+                <div class="code-block text-sm">
+                    <pre>
+&lt;?php
+<span class="comment">// A Interface define o contrato: métodos SEM implementação</span>
+<span class="keyword">interface</span> <span class="type">Automovel</span> {
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">acelerar</span>(): <span class="type">void</span>;
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">frear</span>(): <span class="type">void</span>;
+}
+
+<span class="comment">// Classes diferentes implementam o contrato</span>
+<span class="keyword">class</span> <span class="type">Carro</span> <span class="keyword">implements</span> <span class="type">Automovel</span> {
+    <span class="comment">/* ... atributos e construtor ... */</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">acelerar</span>(): <span class="type">void</span> {
+        <span class="comment">// Implementação específica do Carro</span>
+    }
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">frear</span>(): <span class="type">void</span> {
+        <span class="comment">// Implementação específica do Carro</span>
+    }
+}
+
+<span class="keyword">class</span> <span class="type">Moto</span> <span class="keyword">implements</span> <span class="type">Automovel</span> {
+    <span class="comment">/* ... atributos e construtor ... */</span>
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">acelerar</span>(): <span class="type">void</span> {
+        <span class="comment">// Implementação específica da Moto</span>
+    }
+    <span class="modifier">public</span> <span class="keyword">function</span> <span class="method">frear</span>(): <span class="type">void</span> {
+        <span class="comment">// Implementação específica da Moto</span>
+    }
+}
+?&gt;
+</pre>
+                </div>
+            </div>
+
+            <!-- Polimorfismo -->
+            <div class="mb-10 p-6 bg-teal-50 rounded-xl shadow-lg border-l-4 border-teal-500">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-3 flex items-center">
+                    <span class="text-3xl mr-2">✨</span> 4. Polimorfismo
+                </h3>
+                <p class="text-gray-700 mb-3">
+                    Polimorfismo (muitas formas) permite que objetos de classes diferentes (que implementam a mesma interface) respondam ao mesmo método de maneiras distintas. O mesmo nome de método pode ter implementações diferentes em cada classe.
+                </p>
+                <h4 class="font-bold text-lg mt-4 text-gray-800">Exemplo de Polimorfismo (PHP)</h4>
+                <div class="code-block text-sm">
+                    <pre>
+&lt;?php
+<span class="comment">// Instanciação: Objetos diferentes, mas tratados como o tipo 'Automovel' (Interface)</span>
+<span class="comment">// Assumindo que Carro e Moto implementam a interface Automovel e possuem construtores.</span>
+<span class="variable">$moto</span> = <span class="keyword">new</span> <span class="type">Moto</span>(<span class="string">"Yamaha XPTO-100"</span>);
+<span class="variable">$carro</span> = <span class="keyword">new</span> <span class="type">Carro</span>(<span class="string">"Honda Fit"</span>);
+    
+<span class="variable">$listaAutomoveis</span> = [<span class="variable">$moto</span>, <span class="variable">$carro</span>];
+    
+<span class="keyword">foreach</span> (<span class="variable">$listaAutomoveis</span> <span class="keyword">as</span> <span class="variable">$automovel</span>) {
+    <span class="comment">// A chamada do método é a mesma para todos (acelerar()),</span>
+    <span class="comment">// mas a execução interna é polimórfica (diferente para Carro e Moto).</span>
+    <span class="variable">$automovel</span>-&gt;<span class="method">acelerar</span>(); 
+}
+?&gt;
+</pre>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-10 border-gray-300">
+
+        <!-- POO vs ESTRUTURADA -->
+        <section class="mb-6 bg-gray-100 p-6 rounded-xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="text-3xl mr-2">🔄</span> POO vs. Programação Estruturada
+            </h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Enquanto a Programação Estruturada foca no fluxo de execução (sequências, condições, repetições) geralmente em uma única ou poucas grandes rotinas, a POO foca na organização dos dados e ações em unidades (objetos).
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                A POO oferece vantagens como o encapsulamento (restrição de acesso), que ajuda a evitar o uso excessivo e perigoso de variáveis globais, facilitando a identificação do estado de cada variável e tornando o código mais seguro e manutenível.
+            </p>
+        </section>
+
+    </div>
+
+</body>
+</html>

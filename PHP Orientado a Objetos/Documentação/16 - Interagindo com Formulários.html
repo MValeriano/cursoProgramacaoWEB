@@ -1,0 +1,178 @@
+<!-- Chosen Palette: Form Handling Focus (#2980b9 - Azul Marinho para Fundamentos, #e67e22 - Laranja para Captura de Dados) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms, GET e POST: Manipulando Dados do Usuário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #2980b9; /* Azul Marinho */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #e67e22; font-weight: bold; } /* Laranja para Superglobal */
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #50fa7b; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .get-highlight { border-left: 5px solid #3498db; } /* Azul claro para GET */
+        .post-highlight { border-left: 5px solid #e74c3c; } /* Vermelho para POST */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Interagindo com Formulários em PHP</h1>
+            <p class="mt-4 text-gray-200 text-lg">GET, POST e as Superglobais para a coleta de dados do usuário.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Explicação Didática: Formulários, GET e POST</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+
+                <!-- Método GET -->
+                <div class="concept-card get-highlight">
+                    <h4 class="text-2xl font-bold text-[#3498db] mb-2">Método GET</h4>
+                    <p class="text-sm text-gray-700 mb-2">Os dados são anexados à URL ($\text{chave}=\text{valor}$) e acessados via `$_GET`. Ideal para buscas e conteúdos compartilháveis.</p>
+                    <p class="text-sm font-semibold text-gray-700 mt-2">Regra de Ouro: Use para Obter/Exibir dados.</p>
+                </div>
+
+                <!-- Método POST -->
+                <div class="concept-card post-highlight">
+                    <h4 class="text-2xl font-bold text-[#e74c3c] mb-2">Método POST</h4>
+                    <p class="text-sm text-gray-700 mb-2">Os dados são enviados no corpo da requisição e acessados via `$_POST`. Mais seguro para dados sensíveis.</p>
+                    <p class="text-sm font-semibold text-gray-700 mt-2">Regra de Ouro: Use para Enviar/Submeter dados (Login, Cadastro).</p>
+                </div>
+            </div>
+
+            <!-- Boas Práticas -->
+            <div class="concept-card bg-yellow-50 border-l-4 border-[#e67e22]">
+                <h4 class="text-xl font-bold text-[#e67e22] mb-2">Boas Práticas de Formulário</h4>
+                <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                    <li>Validação da Submissão: Use `$_SERVER['REQUEST_METHOD']` para garantir que o script só processe dados se o método correto (POST/GET) foi usado.</li>
+                    <li>Saneamento: Use `htmlspecialchars()` em todos os dados de saída (`echo`) para prevenir XSS.</li>
+                    <li>Action = Própria Página: Use `action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>"` para enviar o formulário de volta ao próprio script para processamento (Padrão Calculadora).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- II. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200 mt-12">
+            <h3 class="text-3xl font-bold text-[#2980b9] mb-5 border-b pb-2">II. 5 Exercícios Estruturais Aplicados</h3>
+
+            <!-- PHP Processing Block -->
+            <div class="code-block text-white">
+                <span class="code-reserved">&lt;?php</span>
+                
+                <br><span class="code-comment">// EXERCÍCIO 1: Buscador Compartilhável (GET)</span>
+                <br><span class="code-reserved">if</span> (isset(<span class="code-var">$_GET</span>[<span class="code-string">'termo'</span>])) {
+                <br>    <span class="code-var">$termo_saneado</span> <span class="code-op">=</span> <span class="code-reserved">htmlspecialchars</span>(<span class="code-var">$_GET</span>[<span class="code-string">'termo'</span>])<span class="code-op">;</span>
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;h4 class='text-xl text-blue-400'&gt;1. Resultados da Busca (GET)&lt;/h4&gt;"</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm text-blue-200'&gt;Resultados para a busca: &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code-var">$termo_saneado</span> <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt;. (Veja a URL!)&lt;/p&gt;&lt;hr class='my-2'&gt;"</span><span class="code-op">;</span>
+                <br>}
+                
+                <br><span class="code-comment">// EXERCÍCIO 3 & 5: Validação de Método e Calculadora Integrada (POST)</span>
+                <br><span class="code-reserved">if</span> (<span class="code-var">$_SERVER</span>[<span class="code-string">'REQUEST_METHOD'</span>] <span class="code-op">==</span> <span class="code-string">'POST'</span>) {
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;h4 class='text-xl text-red-400'&gt;2, 3 & 5. Processamento de Dados (POST)&lt;/h4&gt;"</span><span class="code-op">;</span>
+                <br>    
+                <br>    <span class="code-comment">// Ex. 2: Cadastro de Usuário (Simulação)</span>
+                <br>    <span class="code-var">$username</span> <span class="code-op">=</span> <span class="code-var">$_POST</span>[<span class="code-string">'username'</span>] ?? <span class="code-string">'Desconhecido'</span><span class="code-op">;</span>
+                <br>    <span class="code-var">$password_existe</span> <span class="code-op">=</span> isset(<span class="code-var">$_POST</span>[<span class="code-string">'password'</span>]) ? <span class="code-string">'capturada com sucesso.'</span> : <span class="code-string">'não enviada.'</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm text-red-200'&gt;Usuário &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code-reserved">htmlspecialchars</span>(<span class="code-var">$username</span>) <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt; enviado. Senha &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code-var">$password_existe</span> <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt;&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>
+                <br>    <span class="code-comment">// Ex. 5: Calculadora Integrada (Lógica simples)</span>
+                <br>    <span class="code-var">$n1</span> <span class="code-op">=</span> (int)(<span class="code-var">$_POST</span>[<span class="code-string">'num1'</span>] ?? <span class="code-int">0</span>)<span class="code-op">;</span>
+                <br>    <span class="code-var">$n2</span> <span class="code-op">=</span> (int)(<span class="code-var">$_POST</span>[<span class="code-string">'num2'</span>] ?? <span class="code-int">0</span>)<span class="code-op">;</span>
+                <br>    <span class="code-var">$op</span> <span class="code-op">=</span> <span class="code-var">$_POST</span>[<span class="code-string">'operador'</span>] ?? <span class="code-string">'+'</span><span class="code-op">;</span>
+                <br>    <span class="code-var">$resultado</span> <span class="code-op">=</span> <span class="code-string">"Erro na operação."</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">if</span> (<span class="code-var">$op</span> <span class="code-op">==</span> <span class="code-string">'+'</span>) <span class="code-var">$resultado</span> <span class="code-op">=</span> <span class="code-var">$n1</span> <span class="code-op">+</span> <span class="code-var">$n2</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">elseif</span> (<span class="code-var">$op</span> <span class="code-op">==</span> <span class="code-string">'-'</span>) <span class="code-var">$resultado</span> <span class="code-op">=</span> <span class="code-var">$n1</span> <span class="code-op">-</span> <span class="code-var">$n2</span><span class="code-op">;</span>
+                <br>    <span class="code-comment">// Simplificado para não encher de código de switch case</span>
+                <br>    
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm text-red-200'&gt;Calculadora (Ex. 5): O resultado da operação &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code_var">$op</span> <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt; é: &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code-var">$resultado</span> <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt;&lt;/p&gt;&lt;hr class='my-2'&gt;"</span><span class="code-op">;</span>
+                <br>} <span class="code-reserved">else</span> {
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-blue-500'&gt;* Requisicão inicial (GET) detectada. Exibindo formulários.&lt;/p&gt;&lt;hr class='my-2'&gt;"</span><span class="code-op">;</span>
+                <br>    <span class="code-comment">// Nota: No Ex. 3, se o arquivo fosse 'processa.php', teríamos o header("Location: ...") aqui.</span>
+                <br>}
+
+                <br><span class="code-comment">// EXERCÍCIO 4: Saneamento (Simulação com string de teste)</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h4 class='text-xl text-yellow-400'&gt;4. Saneamento e Prevenção de XSS:&lt;/h4&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-var">$input_riscoso</span> <span class="code-op">=</span> <span class="code-string">"&lt;script&gt;alert('hack');&lt;/script&gt; Titulo"</span><span class="code-op">;</span>
+                <br><span class="code-var">$titulo_saneado</span> <span class="code-op">=</span> <span class="code-reserved">htmlspecialchars</span>(<span class="code-var">$input_riscoso</span>)<span class="code-op">;</span>
+                <br>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm text-yellow-200'&gt;Input Original (Malicioso): &lt;code&gt;"</span> <span class="code-op">.</span> <span class="code-var">$input_riscoso</span> <span class="code-op">.</span> <span class="code-string">"&lt;/code&gt;&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h1 class='text-lg font-bold text-yellow-500'&gt;Título Saneado: "</span> <span class="code-op">.</span> <span class="code-var">$titulo_saneado</span> <span class="code-op">.</span> <span class="code-string">"&lt;/h1&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-xs text-yellow-500'&gt;O código malicioso não foi executado (sem alert) e foi exibido como texto puro, graças ao htmlspecialchars().&lt;/p&gt;"</span><span class="code-op">;</span>
+                
+                <br><span class="code-reserved">?&gt;</span>
+            </div>
+
+            <h4 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Formulários para Interação (Os formulários se submetem a esta página):</h4>
+
+            <div class="space-y-6">
+                <!-- Ex. 1: Buscador Compartilhável (GET) -->
+                <div class="concept-card get-highlight bg-blue-50">
+                    <h5 class="font-bold text-lg text-[#3498db] mb-2">1. Formulário de Busca (GET)</h5>
+                    <form method="GET" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="space-y-2">
+                        <input type="text" name="termo" placeholder="Digite o termo de busca (Ex. 1)" class="w-full p-2 border rounded" required>
+                        <button type="submit" class="w-full bg-[#3498db] text-white p-2 rounded-lg font-semibold hover:bg-blue-600 transition">Buscar (Método GET)</button>
+                    </form>
+                </div>
+
+                <!-- Ex. 2, 3, 5: Cadastro e Calculadora (POST) -->
+                <div class="concept-card post-highlight bg-red-50">
+                    <h5 class="font-bold text-lg text-[#e74c3c] mb-2">2, 3 e 5. Cadastro e Calculadora (POST)</h5>
+                    
+                    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="space-y-3">
+                        <p class="text-sm font-semibold text-gray-600">Simulação Cadastro (Ex. 2):</p>
+                        <input type="text" name="username" placeholder="Username" class="w-full p-2 border rounded">
+                        <input type="password" name="password" placeholder="Senha (Use type='password' para ocultar)" class="w-full p-2 border rounded">
+
+                        <p class="text-sm font-semibold text-gray-600 pt-3">Simulação Calculadora (Ex. 5):</p>
+                        <div class="flex space-x-2">
+                            <input type="number" name="num1" value="10" class="w-1/3 p-2 border rounded text-center">
+                            <select name="operador" class="w-1/3 p-2 border rounded text-center">
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                                <option value="*">*</option>
+                                <option value="/">/</option>
+                            </select>
+                            <input type="number" name="num2" value="5" class="w-1/3 p-2 border rounded text-center">
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#e74c3c] text-white p-2 rounded-lg font-semibold hover:bg-red-600 transition">Submeter Dados (Método POST)</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

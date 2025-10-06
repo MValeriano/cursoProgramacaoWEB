@@ -1,0 +1,197 @@
+<!-- Chosen Palette: Date/Time Focus (#3498db - Azul para Tempo, #2ecc71 - Verde para Sucesso/Timestamp) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas e TimeStamp em PHP: Funções Essenciais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #3498db; /* Azul Estrutural */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; }
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .timestamp-highlight { border-left: 5px solid #2ecc71; } /* Verde para Timestamp */
+        .format-highlight { border-left: 5px solid #f39c12; } /* Laranja para Formato */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Manipulação de Datas e Tempo em PHP</h1>
+            <p class="mt-4 text-gray-200 text-lg">Entendendo a diferença entre a data formatada e o Unix Timestamp.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Funções Essenciais para Tempo e Formato</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+
+                <!-- 1. date() -->
+                <div class="concept-card format-highlight">
+                    <h4 class="text-2xl font-bold text-[#f39c12] mb-2">A. <span class="code-reserved">date()</span> (Formato Legível)</h4>
+                    <p class="text-sm text-gray-700 mb-2">Recebe um formato como parâmetro (string) e retorna a data e/ou hora atual do servidor nesse formato. É usada para exibição humana.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>`Y`: Ano com 4 dígitos</li>
+                        <li>`m`: Mês numérico (01-12)</li>
+                        <li>`d`: Dia do mês (01-31)</li>
+                        <li>`H`: Hora (24h) | `i`: Minuto | `s`: Segundo</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="code-reserved">echo</span> <span class="code-reserved">date</span>(<span class="code-string">'d/m/Y H:i'</span>)<span class="code-op">;</span> <span class="code-comment">// Ex: 05/10/2025 20:50</span>
+                    </div>
+                </div>
+
+                <!-- 2. time() -->
+                <div class="concept-card timestamp-highlight">
+                    <h4 class="text-2xl font-bold text-[#2ecc71] mb-2">B. <span class="code-reserved">time()</span> (Unix Timestamp)</h4>
+                    <p class="text-sm text-gray-700 mb-2">Retorna um número inteiro que representa os segundos decorridos desde 1º de Janeiro de 1970 (Era Unix). Ideal para cálculos de diferença de tempo.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>É um valor numérico.</li>
+                        <li>Não precisa de parâmetros.</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="code-var">$timestamp</span> <span class="code-op">=</span> <span class="code-reserved">time</span>()<span class="code-op">;</span> <span class="code-comment">// Ex: 1760074211</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- strtotime() -->
+            <div class="concept-card bg-blue-50 border-l-4 border-blue-400">
+                <h4 class="text-2xl font-bold text-[#3498db] mb-2">C. <span class="code-reserved">strtotime()</span> (String para Timestamp)</h4>
+                <p class="text-sm text-gray-700 mb-2">Converte uma string contendo uma data legível (ex: "tomorrow", "2023-01-01") em um Unix Timestamp (número de segundos fixo) para essa data. Útil para datas históricas ou futuras.</p>
+                <div class="code-block">
+                    <span class="code-var">$data_fixa_ts</span> <span class="code-op">=</span> <span class="code-reserved">strtotime</span>(<span class="code-string">'2020-07-20'</span>)<span class="code-op">;</span> <span class="code-comment">// Ex: 1595203200</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- II. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5 border-b pb-2">II. 5 Exercícios Práticos com Datas</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Formatação de Data Padrão para Relatórios -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#f39c12] mb-2">1. Formatação de Data Padrão para Relatórios (<span class="code-reserved">date()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Obter a data e hora atual no formato de relatório (YYYY-MM-DD HH:MM:SS).</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$formato_relatorio</span> <span class="code-op">=</span> <span class="code-string">'Y-m-d H:i:s'</span><span class="code-op">;</span>
+                        <br><span class="code-var">$data_atual</span> <span class="code-op">=</span> <span class="code-reserved">date</span>(<span class="code-var">$formato_relatorio</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Relatório gerado em: "</span> <span class="code-op">.</span> <span class="code-var">$data_atual</span><span class="code-op">;</span>
+                        <br><span class="code-comment">// Saída: Relatório gerado em: 2025-10-05 20:50:30 (variável)</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Calculando a Duração de uma Sessão -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2ecc71] mb-2">2. Calculando a Duração de uma Sessão (<span class="code-reserved">time()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Medir o tempo de execução de um trecho de código em segundos usando o Unix Timestamp.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-comment">// 1. Captura o timestamp de início</span>
+                        <br><span class="code-var">$inicio_sessao</span> <span class="code-op">=</span> <span class="code-reserved">time</span>()<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Simulação de processamento demorado (espera 2 segundos)</span>
+                        <br><span class="code-reserved">sleep</span>(<span class="code-int">2</span>)<span class="code-op">;</span> 
+                        <br>
+                        <br><span class="code-comment">// 2. Captura o timestamp de fim</span>
+                        <br><span class="code-var">$fim_sessao</span> <span class="code-op">=</span> <span class="code-reserved">time</span>()<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 3. Calcula a duração</span>
+                        <br><span class="code-var">$duracao_segundos</span> <span class="code-op">=</span> <span class="code-var">$fim_sessao</span> <span class="code-op">-</span> <span class="code-var">$inicio_sessao</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"A sessão durou: "</span> <span class="code-op">.</span> <span class="code-var">$duracao_segundos</span> <span class="code-op">.</span> <span class="code-string">" segundos."</span><span class="code-op">;</span> <span class="code-comment">// Saída: 2 segundos</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Convertendo Datas Históricas para Timestamp -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#3498db] mb-2">3. Convertendo Datas Históricas para Timestamp (<span class="code-reserved">strtotime()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Obter o valor numérico (timestamp) de uma data específica para fins de armazenamento ou comparação.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$data_evento</span> <span class="code-op">=</span> <span class="code-string">"1985-10-26 13:00:00"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Converte a string de data fixa para um timestamp fixo</span>
+                        <br><span class="code-var">$timestamp_evento</span> <span class="code-op">=</span> <span class="code-reserved">strtotime</span>(<span class="code-var">$data_evento</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Data do Evento (String): "</span> <span class="code-op">.</span> <span class="code-var">$data_evento</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Timestamp Fixo: "</span> <span class="code-op">.</span> <span class="code-var">$timestamp_evento</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Reflexão: Para o timestamp do momento exato da execução, usaríamos time().</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Formatando um Timestamp Fixo (Controle de Formato) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#f39c12] mb-2">4. Formatando um Timestamp Fixo (<span class="code-reserved">date()</span> com 2º Parâmetro)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar a função date() para formatar qualquer timestamp (não apenas o atual) para o formato amigável (DD/MM/YYYY).</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-comment">// Timestamp Fixo (Exemplo: 1º de Janeiro de 2023)</span>
+                        <br><span class="code-var">$timestamp_fixo</span> <span class="code-op">=</span> <span class="code-int">1672531200</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// date() recebe o formato (1º arg) e o timestamp a ser formatado (2º arg)</span>
+                        <br><span class="code-var">$data_formatada</span> <span class="code-op">=</span> <span class="code-reserved">date</span>(<span class="code-string">'d/m/Y'</span>, <span class="code-var">$timestamp_fixo</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Timestamp original: "</span> <span class="code-op">.</span> <span class="code-var">$timestamp_fixo</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Data formatada: "</span> <span class="code-op">.</span> <span class="code-var">$data_formatada</span><span class="code-op">;</span> <span class="code-comment">// Saída: 01/01/2023</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Decisão de Arquitetura de Datas (Conceitual/Prático) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#34495e] mb-2">5. Decisão de Arquitetura: PHP vs. Banco de Dados</h4>
+                    <p class="text-sm text-gray-700 mb-3">Entender a responsabilidade de cada sistema na atribuição da data e hora de criação de um registro.</p>
+                    <div class="p-4 rounded-lg bg-gray-100 border border-gray-300">
+                        <p class="font-semibold text-gray-800 mb-2">Pergunta 1: Palavra-chave do Banco de Dados para Default?</p>
+                        <p class="text-sm text-gray-700 mb-3">A palavra-chave usada na definição da coluna DATETIME no banco de dados para que ele insira a hora do servidor automaticamente é: CURRENT\_TIMESTAMP.</p>
+                        
+                        <p class="font-semibold text-gray-800 mb-2">Pergunta 2: Função PHP para enviar a data exata?</p>
+                        <p class="text-sm text-gray-700">A função mais adequada é date('Y-m-d H:i:s'). Embora time() retorne o momento exato, ela retorna um timestamp. A função date(), quando usada com o formato DATETIME padrão do banco de dados ('Y-m-d H:i:s'), fornece uma string que pode ser diretamente inserida na coluna do banco de dados, garantindo compatibilidade e legibilidade.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Primeira Página PHP</title>
+    <!-- Carrega Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de fonte e estilo de corpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ff; /* Azul claro de fundo */
+        }
+        .code-block {
+            background-color: #1f2937; /* Cinza escuro para o código */
+            color: #d1d5db;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+        }
+        /* Simulação de syntax highlight */
+        .tag-html { color: #818cf8; } /* Azul claro */
+        .tag-php { color: #facc15; } /* Amarelo */
+        .keyword { color: #34d399; } /* Verde água */
+        .string { color: #f87171; } /* Vermelho claro */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10 border-t-8 border-purple-600">
+
+        <!-- Título da Apresentação -->
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-8 text-center">
+            Sua Primeira Página PHP
+        </h1>
+
+        <!-- SEÇÃO 1: O Script Hello World Simples -->
+        <div class="mb-10 p-5 rounded-lg bg-gray-50 border border-gray-200">
+            <h2 class="text-3xl font-semibold text-purple-600 mb-4 flex items-center">
+                <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                1. O Script Básico: hello.php
+            </h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Para começar, crie um novo arquivo chamado <span class="font-bold text-indigo-700">hello.php</span> e coloque-o no diretório raiz do seu servidor web (<code class="bg-gray-200 p-1 rounded">DOCUMENT_ROOT</code>).
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Exemplo #1 Nosso primeiro script PHP:</h3>
+            
+            <!-- Bloco de Código PHP Simples -->
+            <div class="code-block">
+                <pre><span class="tag-php">&lt;?php</span>
+
+<span class="keyword">echo</span> <span class="string">"Olá, Mundo!"</span>;
+
+<span class="tag-php">?&gt;</span></pre>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed mt-4">
+                Ao acessar a URL correta (ex: <code class="bg-gray-200 p-1 rounded">http://localhost/hello.php</code>), o servidor interpreta o código PHP e exibe a mensagem no navegador.
+            </p>
+        </div>
+
+        <hr class="my-8 border-gray-300">
+
+        <!-- SEÇÃO 2: Incorporando PHP em HTML -->
+        <div class="mb-10 p-5 rounded-lg bg-gray-50 border border-gray-200">
+            <h2 class="text-3xl font-semibold text-purple-600 mb-4 flex items-center">
+                <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                2. PHP Embutido no HTML
+            </h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                O PHP pode ser incorporado em uma página HTML normal. O código PHP é delimitado pelas <span class="font-bold">instruções de processamento</span> de início (<span class="text-purple-500 font-bold">`<?php`</span>) e fim (<span class="text-purple-500 font-bold">`?>`</span>).
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Exemplo de Incorporação:</h3>
+            
+            <!-- Bloco de Código PHP embutido -->
+            <div class="code-block">
+                <pre><span class="tag-html">&lt;!DOCTYPE html&gt;</span>
+<span class="tag-html">&lt;html&gt;</span>
+    <span class="tag-html">&lt;head&gt;</span>
+        <span class="tag-html">&lt;title&gt;</span>Teste PHP<span class="tag-html">&lt;/title&gt;</span>
+    <span class="tag-html">&lt;/head&gt;</span>
+    <span class="tag-html">&lt;body&gt;</span>
+        <span class="tag-php">&lt;?php</span> <span class="keyword">echo</span> <span class="string">'&lt;p&gt;Olá, Mundo!&lt;/p&gt;'</span>; <span class="tag-php">?&gt;</span>
+    <span class="tag-html">&lt;/body&gt;</span>
+<span class="tag-html">&lt;/html&gt;</span></pre>
+            </div>
+            
+            <p class="text-gray-700 leading-relaxed mt-4 p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                Importante: O servidor web sabe que precisa interpretar este arquivo por causa da <span class="font-bold text-yellow-700">extensão ".php"</span>. Se você tentar acessar o arquivo diretamente pelo sistema de arquivos (e não via HTTP), o PHP não será executado.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-6 mb-3">Resultado da Saída (HTML Gerado):</h3>
+            
+            <!-- Bloco de Saída HTML -->
+            <div class="bg-indigo-100 p-4 rounded-lg shadow-inner">
+                <pre class="overflow-x-auto text-sm text-gray-800 font-mono">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Teste PHP&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;Olá, Mundo!&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+        </div>
+
+        <hr class="my-8 border-gray-300">
+
+        <!-- SEÇÃO 3: Verificando a Configuração -->
+        <div class="p-5 rounded-lg bg-gray-50 border border-gray-200">
+            <h2 class="text-3xl font-semibold text-purple-600 mb-4 flex items-center">
+                <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-5.618 4.016M12 21a9 9 0 100-18 9 9 0 000 18z"></path></svg>
+                3. Como Obter Informações sobre o PHP (phpinfo())
+            </h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                O script mais famoso do PHP é uma simples chamada à função <span class="font-bold text-green-600">`phpinfo()`</span>.
+                Ele exibe uma página com <span class="font-bold">todas as informações úteis</span> sobre seu sistema e configurações (variáveis predefinidas, módulos carregados, opções de configuração, etc.).
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Exemplo #2 Informações do PHP:</h3>
+            
+            <!-- Bloco de Código PHP Info -->
+            <div class="code-block">
+                <pre><span class="tag-php">&lt;?php</span> <span class="keyword">phpinfo</span>(); <span class="tag-php">?&gt;</span></pre>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed mt-4">
+                Problemas? Se o PHP não estiver habilitado ou configurado corretamente, você pode ver o código fonte em texto ou uma caixa de diálogo para salvar o arquivo. Se isso acontecer, você precisará verificar a configuração do seu servidor web (Apache, Nginx, etc.).
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

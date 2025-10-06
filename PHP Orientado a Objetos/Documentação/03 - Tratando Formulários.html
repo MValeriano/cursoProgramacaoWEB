@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratando Formulários com PHP</title>
+    <!-- Carrega Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de fonte */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Fundo suave */
+        }
+        /* Estilos para o bloco de código PHP */
+        .php-code-block {
+            background-color: #273746; /* Azul escuro/preto para terminal */
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Simulação de syntax highlight para PHP */
+        .tag-php { color: #f9d71c; } /* Amarelo */
+        .keyword { color: #3498db; } /* Azul */
+        .superglobal { color: #e74c3c; } /* Vermelho */
+        .string { color: #2ecc71; } /* Verde */
+        .comment { color: #95a5a6; } /* Cinza */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10 border-t-8 border-blue-600">
+
+        <!-- Título da Apresentação -->
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-8 text-center border-b pb-4">
+            Tratando Formulários com PHP
+        </h1>
+
+        <!-- SEÇÃO 1: O Conceito Principal -->
+        <div class="mb-10 p-5 rounded-lg bg-blue-50 border border-blue-200">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                O Básico: Variáveis Automáticas
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+                Uma das maiores forças do PHP é como ele trata formulários HTML. O conceito essencial é que <span class="font-bold text-indigo-700">qualquer elemento de formulário</span> é automaticamente disponibilizado para seus scripts PHP através de variáveis superglobais.
+            </p>
+        </div>
+
+        <hr class="my-8 border-gray-300">
+
+        <!-- SEÇÃO 2: O Formulário HTML (form.html) -->
+        <div class="mb-10">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-4 0V3m0 2v2m0 12v-2"></path></svg>
+                Exemplo #1: O Formulário HTML
+            </h2>
+            
+            <p class="text-gray-700 italic mb-3">Este é um formulário HTML padrão, sem nenhuma tag especial do PHP.</p>
+
+            <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-md">
+                <!-- Visualização do Formulário -->
+                <form action="action.php" method="post" class="space-y-4">
+                    <div class="flex flex-col">
+                        <label for="nome" class="font-semibold text-gray-700">Seu nome:</label>
+                        <input name="nome" id="nome" type="text" placeholder="Ex: Maria" class="p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="idade" class="font-semibold text-gray-700">Sua idade:</label>
+                        <input name="idade" id="idade" type="number" placeholder="Ex: 22" class="p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-lg">
+                        Enviar Dados (action="action.php")
+                    </button>
+                </form>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-800 mt-6 mb-3">Código HTML do Formulário:</h3>
+            <div class="php-code-block text-sm">
+                <pre>
+<span class="tag-html">&lt;form action="action.php" method="post"&gt;</span>
+    <span class="tag-html">&lt;label for="nome"&gt;</span>Seu nome:<span class="tag-html">&lt;/label&gt;</span>
+    <span class="tag-html">&lt;input name="nome" id="nome" type="text"&gt;</span>
+
+    <span class="tag-html">&lt;label for="idade"&gt;</span>Sua idade:<span class="tag-html">&lt;/label&gt;</span>
+    <span class="tag-html">&lt;input name="idade" id="idade" type="number"&gt;</span>
+
+    <span class="tag-html">&lt;button type="submit"&gt;</span>Enviar<span class="tag-html">&lt;/button&gt;</span>
+<span class="tag-html">&lt;/form&gt;</span></pre>
+            </div>
+        </div>
+
+        <hr class="my-8 border-gray-300">
+
+        <!-- SEÇÃO 3: O Script de Ação (action.php) -->
+        <div class="mb-10">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                Exemplo #2: Imprimindo Dados (action.php)
+            </h2>
+            
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Código PHP:</h3>
+            <div class="php-code-block text-sm">
+                <pre>
+Olá, <span class="tag-php">&lt;?php</span> <span class="keyword">echo</span> <span class="keyword">htmlspecialchars</span>(<span class="superglobal">$_POST</span>[<span class="string">'nome'</span>]); <span class="tag-php">?&gt;</span>.
+Você tem <span class="tag-php">&lt;?php</span> <span class="keyword">echo</span> (<span class="keyword">int</span>) <span class="superglobal">$_POST</span>[<span class="string">'idade'</span>]; <span class="tag-php">?&gt;</span> anos de idade.</pre>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed mt-4">
+                A superglobal <span class="font-bold text-superglobal">`$_POST`</span> contém todos os dados enviados pelo formulário com o método POST. Para acessar um campo, usamos o seu atributo <span class="font-mono bg-gray-200 p-0.5 rounded">`name`</span> como chave.
+            </p>
+
+            <div class="mt-6 p-4 bg-green-100 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-green-800 mb-2">Saída (Exemplo):</p>
+                <p class="text-gray-700 italic">Olá, Maria. Você tem 22 anos de idade.</p>
+            </div>
+        </div>
+
+        <hr class="my-8 border-gray-300">
+
+        <!-- SEÇÃO 4: Segurança e Superglobais -->
+        <div class="p-5 rounded-lg bg-yellow-50 border border-yellow-200">
+            <h2 class="text-2xl font-bold text-yellow-700 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                Sanitização e Superglobais
+            </h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">1. Segurança (Sanitização)</h3>
+            <ul class="list-disc ml-6 space-y-2 text-gray-700">
+                <li><span class="font-bold">`htmlspecialchars()`:</span> Essencial! Converte caracteres especiais do HTML (como `<` e `>`) em entidades codificadas, prevenindo a injeção de tags HTML ou JavaScript maliciosos (<span class="font-mono">XSS - Cross-Site Scripting</span>).</li>
+                <li><span class="font-bold">Type Casting:</span> O uso de <span class="font-mono bg-gray-200 p-0.5 rounded">`(int)`</span> converte o dado para um inteiro, removendo automaticamente qualquer caractere estranho que não seja um número.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. As Superglobais do Formulário</h3>
+            <ul class="list-disc ml-6 space-y-2 text-gray-700">
+                <li><span class="font-bold text-superglobal">`$_POST`</span>: Contém dados enviados usando o método <span class="font-mono bg-gray-200 p-0.5 rounded">`POST`</span> (mais seguro para dados sensíveis).</li>
+                <li><span class="font-bold text-superglobal">`$_GET`</span>: Contém dados enviados usando o método <span class="font-mono bg-gray-200 p-0.5 rounded">`GET`</span> (dados ficam visíveis na URL).</li>
+                <li><span class="font-bold text-superglobal">`$_REQUEST`</span>: Contém os dados mesclados das origens GET, POST e COOKIE. Geralmente é recomendado usar <span class="superglobal">`$_POST`</span> ou <span class="superglobal">`$_GET`</span> diretamente para saber a origem do dado.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

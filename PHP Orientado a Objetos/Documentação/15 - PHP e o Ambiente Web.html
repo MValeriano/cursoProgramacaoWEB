@@ -1,0 +1,192 @@
+<!-- Chosen Palette: Web Flow Focus (#3498db - Azul para HTTP/Fluxo, #f1c40f - Amarelo para Superglobais) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superglobais e Fluxo Web em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #3498db; /* Azul */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #f1c40f; font-weight: bold; } /* Amarelo para Superglobal */
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #50fa7b; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .get-highlight { border-left: 5px solid #2ecc71; } /* Verde para GET */
+        .post-highlight { border-left: 5px solid #e74c3c; } /* Vermelho para POST */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">PHP e o Ambiente Web</h1>
+            <p class="mt-4 text-gray-200 text-lg">Controlando o fluxo da aplicação com Superglobais e Métodos HTTP.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Interação Servidor-Cliente</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+
+                <!-- Superglobais -->
+                <div class="concept-card border-l-4 border-[#f1c40f]">
+                    <h4 class="text-2xl font-bold text-[#f1c40f] mb-2">Superglobais</h4>
+                    <p class="text-sm text-gray-700 mb-2">Variáveis predefinidas (arrays) que armazenam dados do ambiente, do cliente ou da sessão.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>`$_SERVER`: Informações do servidor e requisição.</li>
+                        <li>`$_GET`: Dados visíveis na URL.</li>
+                        <li>`$_POST`: Dados invisíveis no corpo da requisição.</li>
+                    </ul>
+                </div>
+
+                <!-- Método GET -->
+                <div class="concept-card get-highlight">
+                    <h4 class="text-2xl font-bold text-[#2ecc71] mb-2">Método GET</h4>
+                    <p class="text-sm text-gray-700 mb-2">Dados submetidos via URL (query string). Ideal para consultas ou links que podem ser compartilhados.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Acessa dados via URL: ?busca=termo</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$_GET</span>[<span class="code-string">'busca'</span>]<span class="code-op">;</span>
+                    </div>
+                </div>
+
+                <!-- Método POST -->
+                <div class="concept-card post-highlight">
+                    <h4 class="text-2xl font-bold text-[#e74c3c] mb-2">Método POST</h4>
+                    <p class="text-sm text-gray-700 mb-2">Dados enviados no corpo da requisição. Ideal para submissão de formulários, login ou dados sensíveis.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Acessa dados via corpo da requisição</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$_POST</span>[<span class="code-string">'usuario'</span>]<span class="code-op">;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chaves Chave de $_SERVER -->
+            <div class="concept-card bg-gray-50 border-l-4 border-[#3498db]">
+                <h4 class="text-xl font-bold text-[#3498db] mb-2">Chaves Essenciais de <span class="code-var">$_SERVER</span></h4>
+                <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                    <li>`REQUEST_METHOD`: "GET" ou "POST". Controla o fluxo da aplicação.</li>
+                    <li>`PHP_SELF`: Caminho do arquivo atual. Usado em `action` de formulários.</li>
+                    <li>`DOCUMENT_ROOT`: Caminho físico raiz do servidor (disco rígido).</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- III. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200 mt-12">
+            <h3 class="text-3xl font-bold text-[#3498db] mb-5 border-b pb-2">II. 5 Exercícios Estruturais</h3>
+
+            <div class="space-y-8">
+
+                <h4 class="text-xl font-semibold text-gray-800">Resultado dos Exercícios:</h4>
+
+                <!-- PHP Execution Block -->
+                <div class="code-block">
+                <span class="code-reserved">&lt;?php</span>
+
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-comment">// EXERCÍCIO 1: Diagnóstico de Ambiente e Caminho Absoluto</span>
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h3 class='text-lg font-bold text-yellow-500'&gt;1. Diagnóstico do Ambiente:&lt;/h3&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;ul class='list-disc list-inside text-sm'&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;li&gt;ROOT Físico (DOCUMENT_ROOT): "</span> <span class="code-op">.</span> <span class="code-var">$_SERVER</span>[<span class="code-string">'DOCUMENT_ROOT'</span>] <span class="code-op">.</span> <span class="code-string">"&lt;/li&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;li&gt;Nome do Servidor (SERVER_NAME): "</span> <span class="code-op">.</span> <span class="code-var">$_SERVER</span>[<span class="code-string">'SERVER_NAME'</span>] <span class="code-op">.</span> <span class="code-string">"&lt;/li&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;li&gt;Caminho do Arquivo Atual (PHP_SELF): "</span> <span class="code-op">.</span> <span class="code-var">$_SERVER</span>[<span class="code-string">'PHP_SELF'</span>] <span class="code-op">.</span> <span class="code-string">"&lt;/li&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;/ul&gt;&lt;br&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-comment">// Explicação: DOCUMENT_ROOT é o caminho completo no disco. PHP_SELF é o caminho acessível pela Web.</span>
+                <br>
+
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-comment">// EXERCÍCIO 3 & 5: Validação de Submissão Segura / Controle de Fluxo (POST)</span>
+                <br><span class="code-comment">// Usamos REQUEST_METHOD para decidir se processamos (POST) ou apenas exibimos o formulário (GET)</span>
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h3 class='text-lg font-bold text-red-500'&gt;3. & 5. Validação de Submissão e Fluxo (POST):&lt;/h3&gt;"</span><span class="code-op">;</span>
+
+                <br><span class="code-reserved">if</span> (<span class="code-var">$_SERVER</span>[<span class="code-string">'REQUEST_METHOD'</span>] <span class="code-op">==</span> <span class="code-string">'POST'</span>) {
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-green-500'&gt;* SUCESSO! MÉTODDO POST DETECTADO.&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>    <span class="code-comment">// Simulação da captura de dados (Exercício 5)</span>
+                <br>    <span class="code-var">$usuario</span> <span class="code-op">=</span> <span class="code-var">$_POST</span>[<span class="code-string">'username'</span>] ?? <span class="code-string">'[Não Enviado]'</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm'&gt;Processamento de dados iniciado para o usuário: &lt;b&gt;"</span> <span class="code-op">.</span> <span class="code-var">$usuario</span> <span class="code-op">.</span> <span class="code-string">"&lt;/b&gt;&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>} <span class="code-reserved">else</span> {
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-blue-500'&gt;* REQUISIÇÃO GET DETECTADA. Acesso negado ao processamento, exibindo o formulário.&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>}
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-comment">// EXERCÍCIO 4: Logs de Acesso e Método</span>
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h3 class='text-lg font-bold text-gray-700'&gt;4. Log de Acesso:&lt;/h3&gt;"</span><span class="code-op">;</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-sm'&gt;LOG: "</span> <span class="code-op">.</span> <span class="code-var">$_SERVER</span>[<span class="code-string">'REQUEST_METHOD'</span>] <span class="code-op">.</span> <span class="code-string">" - Acesso em "</span> <span class="code-op">.</span> <span class="code-var">$_SERVER</span>[<span class="code-string">'SERVER_NAME'</span>] <span class="code-op">.</span> <span class="code-string">"&lt;/p&gt;&lt;br&gt;"</span><span class="code-op">;</span>
+                <br>
+
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-comment">// EXERCÍCIO 2: Criando um Formulário que se Processa (GET)</span>
+                <br><span class="code-comment">// --------------------------------------------------------------------------------------------------</span>
+                <br><span class="code-reserved">echo</span> <span class="code-string">"&lt;h3 class='text-lg font-bold text-green-500'&gt;2. Formulário de Busca (GET):&lt;/h3&gt;"</span><span class="code-op">;</span>
+                <br>
+                <br><span class="code-comment">// Captura o termo de busca se ele existir na URL</span>
+                <br><span class="code-reserved">if</span> (isset(<span class="code-var">$_GET</span>[<span class="code-string">'termo_pesquisa'</span>]) <span class="code-op">&amp;&amp;</span> <span class="code-var">$_GET</span>[<span class="code-string">'termo_pesquisa'</span>] <span class="code-op">!==</span> <span class="code-string">''</span>) {
+                <br>    <span class="code-var">$termo</span> <span class="code-op">=</span> <span class="code_var">$_GET</span>[<span class="code-string">'termo_pesquisa'</span>]<span class="code-op">;</span>
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-green-700 font-bold'&gt;Você buscou por: "</span> <span class="code-op">.</span> <span class="code-var">$termo</span> <span class="code-op">.</span> <span class="code-string">". (Verifique a URL)&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>} <span class="code-reserved">else</span> {
+                <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;p class='text-gray-500'&gt;Nenhum termo de busca enviado.&lt;/p&gt;"</span><span class="code-op">;</span>
+                <br>}
+                <br><span class="code-reserved">?&gt;</span>
+                </div>
+                <!-- HTML Forms for Interaction -->
+                <div class="space-y-6 p-4 border rounded-lg">
+
+                    <div class="get-highlight p-4 rounded-lg bg-green-50">
+                        <h5 class="font-bold text-lg text-[#2ecc71] mb-2">Formulário GET (Ex. 2)</h5>
+                        <form method="GET" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="space-y-2">
+                            <input type="text" name="termo_pesquisa" placeholder="Digite o termo de busca" class="w-full p-2 border rounded">
+                            <button type="submit" class="w-full bg-[#2ecc71] text-white p-2 rounded hover:bg-green-600 transition">Buscar (GET)</button>
+                            <p class="text-xs text-gray-500 mt-2">Os dados aparecem na URL (query string).</p>
+                        </form>
+                    </div>
+
+                    <div class="post-highlight p-4 rounded-lg bg-red-50">
+                        <h5 class="font-bold text-lg text-[#e74c3c] mb-2">Formulário POST (Ex. 3, 4 e 5)</h5>
+                        <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="space-y-2">
+                            <input type="text" name="username" placeholder="Username (Exercício 5)" class="w-full p-2 border rounded">
+                            <input type="password" name="password" placeholder="Senha" class="w-full p-2 border rounded">
+                            <button type="submit" class="w-full bg-[#e74c3c] text-white p-2 rounded hover:bg-red-600 transition">Submeter (POST)</button>
+                            <p class="text-xs text-gray-500 mt-2">Os dados são invisíveis na URL.</p>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

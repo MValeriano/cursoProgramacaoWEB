@@ -1,0 +1,265 @@
+<!-- CONFIRMATION: Nenhuma biblioteca de visualização complexa (Chart.js, Plotly.js) foi usada, pois o conteúdo é didático. Nenhuma imagem raster, SVG ou Mermaid JS foi utilizada. -->
+<!-- Paleta Escolhida: Energetic & Playful (Acabamento em #FF6B6B e #4ECDC4) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Essencial de PHP e OOP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #FF6B6B;
+            --color-secondary: #4ECDC4;
+            --color-dark: #2D3A3A;
+            --color-background: #F7FFF7;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+        }
+        .module-card {
+            background-color: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-top-width: 8px;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .code-block {
+            background-color: var(--color-dark);
+            color: #F7FFF7;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .code-key { color: var(--color-secondary); font-weight: 600; }
+        .code-var { color: #93c5fd; }
+        .code-op { color: #facc15; }
+        .code-string { color: #10b981; }
+        .analogy-box {
+            border-left: 4px solid var(--color-primary);
+            background-color: #fef2f2;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <!-- Header Principal -->
+    <header class="text-center mb-12 py-10 rounded-xl bg-white shadow-lg">
+        <h1 class="text-5xl font-extrabold text-[var(--color-dark)] mb-2">Curso Essencial de PHP</h1>
+        <h2 class="text-3xl font-semibold text-[var(--color-primary)]">Da Variável ao Objeto</h2>
+        <p class="text-lg text-gray-500 mt-2">Baseado no livro "PHP Programando com Orientação a Objetos"</p>
+    </header>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Módulo 1 -->
+        <section id="modulo1" class="module-card lg:col-span-3 border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 1: Introdução, Variáveis e Comandos de Saída</h3>
+            
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: A Cozinha PHP</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">O PHP é a cozinha (o backend), onde os pedidos (dados) são processados e o resultado é enviado de volta ao cliente (o navegador), enquanto HTML/CSS são o cardápio.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Pontos Chave</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>O que é PHP? Linguagem de script para processamento de dados (web ou console).</li>
+                        <li>Delimitadores: O código deve estar entre <code class="code-block inline-block p-1 bg-gray-800 text-white rounded text-xs"> &lt;?php</code> e <code class="code-block inline-block p-1 bg-gray-800 text-white rounded text-xs">?&gt;</code>.</li>
+                        <li>Variáveis ($ Caixas Mágicas): Identificadores para valores mutáveis, precedidas por `$`. PHP é case sensitive para variáveis e funções.</li>
+                        <li>Comandos de Saída: <code class="code-key">echo</code> e <code class="code-key">print</code> (output); <code class="code-key">var_dump()</code> (essencial para debug, mostra tipo e valor).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios Práticos (5)</h4>
+                    <div class="space-y-3">
+                        <div class="code-block">
+                            <span class="code-key">echo</span> <span class="code-string">"Bem-vindo à Cozinha PHP!"</span>;
+                            <br><span class="code-var">$prato_favorito</span> <span class="code-op">=</span> <span class="code-string">"Feijoada"</span>; <span class="code-key">echo</span> <span class="code-var">$prato_favorito</span>;
+                            <br><span class="code-key">echo</span> <span class="code-string">"Eu tenho "</span> <span class="code-op">.</span> <span class="code-var">$idade</span> <span class="code-op">.</span> <span class="code-var">$texto</span>;
+                        </div>
+                        <p class="text-sm text-gray-600">Simule a criação de um array e use <code class="code-key">var_dump()</code>. Teste a sensibilidade a maiúsculas/minúsculas ($Nome vs $nome).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo 2 -->
+        <section id="modulo2" class="module-card lg:col-span-2 border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 2: Tipos de Dados e Operadores Essenciais</h3>
+            
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: A Estrutura da Receita</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">Os Tipos de Dados definem a natureza dos ingredientes (farinha, água) e os Operadores são as ações que realizamos sobre eles (somar, comparar).</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Pontos Chave: Tipos e Operadores</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>Escalares: Booleano (<code class="code-key">TRUE</code>/<code class="code-key">FALSE</code>), Numérico (<code class="code-key">int</code>, <code class="code-key">float</code>), String (aspas simples <code class="code-key">'</code> ou duplas <code class="code-key">"</code>).</li>
+                        <li>Operadores Relacionais: Resultam em <code class="code-key">TRUE</code> ou <code class="code-key">FALSE</code>.</li>
+                        <li>Igualdade Fraca (<code class="code-op">==</code>): Compara valores (não checa o tipo).</li>
+                        <li>Identidade Forte (<code class="code-op">===</code>): Compara valores E tipos de dados.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Analogia do Padeiro: <code class="code-op">==</code> vs. <code class="code-op">===</code></h4>
+                    <p class="text-sm text-gray-600 mb-3">Se <code class="code-var">$farinha1</code> é <code class="code-string">'10'</code> (string) e <code class="code-var">$farinha2</code> é <code class="code-key">10</code> (int):</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li><code class="code-var">$farinha1</code> <code class="code-op">==</code> <code class="code-var">$farinha2</code> é <code class="code-key">TRUE</code> (Conteúdo igual).</li>
+                        <li><code class="code-var">$farinha1</code> <code class="code-op">===</code> <code class="code-var">$farinha2</code> é <code class="code-key">FALSE</code> (Tipos diferentes).</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios Práticos (5)</h4>
+            <div class="code-block">
+                <span class="code-key">// 1. Igualdade Fraca</span>
+                <br><span class="code-var">$a</span> <span class="code-op">=</span> <span class="code-key">5</span>; <span class="code-var">$b</span> <span class="code-op">=</span> <span class="code-string">'5'</span>; <span class="code-key">echo</span> <span class="code-var">$a</span> <span class="code-op">==</span> <span class="code-var">$b</span>; <span class="code-op">// TRUE</span>
+                <br><span class="code-key">// 2. Identidade Forte</span>
+                <br><span class="code-key">echo</span> <span class="code-var">$a</span> <span class="code-op">===</span> <span class="code-var">$b</span>; <span class="code-op">// FALSE</span>
+                <br><span class="code-key">// 3. Módulo</span>
+                <br><span class="code-key">echo</span> <span class="code-key">10</span> <span class="code-op">%</span> <span class="code-key">3</span>; <span class="code-op">// 1</span>
+            </div>
+        </section>
+
+        <!-- Módulo 3 -->
+        <section id="modulo3" class="module-card border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 3: Estruturas de Controle</h3>
+            
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: O GPS do Código</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">As estruturas desviam o fluxo (decisão) ou repetem tarefas (iteração), agindo como um GPS para o código.</p>
+            </div>
+
+            <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Decisão e Repetição</h4>
+            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                <li>Decisão: <code class="code-key">IF</code> / <code class="code-key">ELSE</code> / <code class="code-key">ELSEIF</code> (desvio condicional).</li>
+                <li>Alternativa: <code class="code-key">SWITCH</code> (para diversos valores, exige <code class="code-key">break</code>).</li>
+                <li>Loops Conhecidos: <code class="code-key">FOR</code> (número de repetições conhecido).</li>
+                <li>Loops Condicionais: <code class="code-key">WHILE</code> (repete enquanto a condição for <code class="code-key">TRUE</code>).</li>
+                <li>Iteração em Arrays: <code class="code-key">FOREACH</code> (essencial para percorrer arrays).</li>
+            </ul>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios (Decisão e Loop)</h4>
+            <div class="code-block">
+                <span class="code-key">if</span> (<span class="code-var">$velocidade</span> <span class="code-op">></span> <span class="code-key">80</span>) { <span class="code-key">echo</span> <span class="code-string">"Multado"</span>; }
+                <br><span class="code-key">for</span> (<span class="code-var">$i</span><span class="code-op">=1</span>; <span class="code-var">$i</span><span class="code-op"><=5</span>; <span class="code-var">$i</span><span class="code-op">++</span>) { <span class="code-key">echo</span> <span class="code-var">$i</span>; }
+                <br><span class="code-key">foreach</span> (<span class="code-var">$frutas</span> <span class="code-key">as</span> <span class="code-var">$f</span>) { <span class="code-key">echo</span> <span class="code-var">$f</span>; }
+            </div>
+        </section>
+
+        <!-- Módulo 4 -->
+        <section id="modulo4" class="module-card border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 4: Arrays</h3>
+            
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: A Caixa de Ferramentas</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">Containers que armazenam múltiplos valores (strings, números, objetos) de forma dinâmica.</p>
+            </div>
+
+            <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Tipos e Funções</h4>
+            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                <li>Indexados: Acesso por índice numérico (começa em 0). (Ex: Lista de Compras numerada).</li>
+                <li>Associativos: Acesso por chave de string (rótulo). (Ex: Ficha Cadastral: 'Nome' -> 'Carlos').</li>
+                <li>Multidimensionais: Arrays que contêm outros arrays (Matrizes).</li>
+                <li>Funções Essenciais: <code class="code-key">count()</code>, <code class="code-key">array_push()</code>.</li>
+            </ul>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios (Acesso e Manipulação)</h4>
+            <div class="code-block">
+                <span class="code-var">$times</span> <span class="code-op">=</span> [<span class="code-string">'Time A'</span>, <span class="code-string">'Time B'</span>, <span class="code-string">'Time C'</span>];
+                <br><span class="code-key">echo</span> <span class="code-var">$times</span>[<span class="code-key">2</span>]; <span class="code-op">// Terceiro item (Time C)</span>
+                <br><span class="code-var">$aluno</span> <span class="code-op">=</span> [<span class="code-string">'nota'</span> <span class="code-op">=></span> <span class="code-key">9.5</span>];
+                <br><span class="code-key">echo</span> <span class="code-var">$aluno</span>[<span class="code-string">'nota'</span>]; <span class="code-op">// Acessando pela chave</span>
+            </div>
+        </section>
+
+        <!-- Módulo 5 -->
+        <section id="modulo5" class="module-card lg:col-span-2 border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 5: Orientação a Objetos (OOP)</h3>
+            
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: A Fábrica de Carros</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">OOP lida com estruturas que se assemelham ao mundo real (classes, objetos, herança).</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Pilares da OOP</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>Classe (A Planta): Estrutura estática que define atributos (variáveis) e métodos (funcionalidades).</li>
+                        <li>Objeto (O Carro Pronto): Instância dinâmica da classe, criada com o operador <code class="code-key">new</code>.</li>
+                        <li>Construtor (<code class="code-key">__construct</code>): Método especial executado na criação do objeto, para inicializar propriedades.</li>
+                        <li>Herança (<code class="code-key">extends</code>): Permite que classes-filhas reutilizem comportamentos da classe-pai.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios (5)</h4>
+                    <div class="code-block">
+                        <span class="code-key">class</span> <span class="code-var">Pessoa</span> {
+                        <br>&nbsp;&nbsp;<span class="code-key">public</span> <span class="code-var">$nome</span>, <span class="code-var">$idade</span>;
+                        <br>&nbsp;&nbsp;<span class="code-key">public</span> <span class="code-key">function</span> <span class="code-var">__construct</span>(<span class="code-var">$n</span>, <span class="code-var">$i</span>) { ... }
+                        <br>&nbsp;&nbsp;<span class="code-key">public</span> <span class="code-key">function</span> <span class="code-var">Apresentar</span>() { <span class="code-key">return</span> <span class="code-var">$this</span>-><span class="code-var">nome</span>; }
+                        <br>}
+                        <br><span class="code-var">$usuario</span> <span class="code-op">=</span> <span class="code-key">new</span> <span class="code-var">Pessoa</span>(<span class="code-string">"João"</span>, <span class="code-key">30</span>);
+                        <br><span class="code-key">class</span> <span class="code-var">Funcionario</span> <span class="code-key">extends</span> <span class="code-var">Pessoa</span> { ... }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo 6 -->
+        <section id="modulo6" class="module-card lg:col-span-3 border-[var(--color-primary)]">
+            <h3 class="text-3xl font-bold text-[var(--color-dark)] mb-4">Módulo 6: Persistência e Segurança de Dados</h3>
+
+            <div class="analogy-box p-4 mb-6 rounded-lg">
+                <p class="font-bold text-[var(--color-primary)]">Conceito Lúdico: O Cofre e o Carteiro</p>
+                <p class="text-sm mt-1 text-[var(--color-dark)]">Dados duradouros (DB) e comunicação segura (HTTP, Hashing).</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Persistência (DB)</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>SQL: Linguagem para DB (<code class="code-key">SELECT</code>, <code class="code-key">INSERT</code>, <code class="code-key">UPDATE</code>, <code class="code-key">DELETE</code>).</li>
+                        <li>PDO: Biblioteca de acesso a DB recomendada por ser consistente e unificada.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Métodos HTTP (O Carteiro)</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>GET: Dados na URL (Query String). Use para obter dados não sensíveis (Cartão Postal).</li>
+                        <li>POST: Dados no corpo da requisição (oculto). Use para dados sensíveis (Carta Selada).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 border-b pb-2 text-[var(--color-secondary)]">Segurança</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700">
+                        <li>Hashing: Senhas nunca em texto puro. Use <code class="code-key">password_hash()</code> (irreversível).</li>
+                        <li>Custo (Cost Factor): Define a lentidão proposital do hash para dificultar ataques de Força Bruta.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-3 border-b pb-2 text-[var(--color-secondary)]">Exercícios (5)</h4>
+            <div class="code-block">
+                <span class="code-key">// 1. Acessando dados (exemplo POST)</span>
+                <br><span class="code-key">echo</span> <span class="code-var">$_POST</span>[<span class="code-string">'nome'</span>];
+                <br><span class="code-key">// 4. Consulta SQL</span>
+                <br><span class="code-key">SELECT</span> <span class="code-var">nome</span>, <span class="code-var">email</span>, <span class="code-var">telefone</span> <span class="code-key">FROM</span> <span class="code-var">clientes</span>;
+                <br><span class="code-key">// 5. Conexão PDO</span>
+                <br><span class="code-key">try</span> { <span class="code-var">$pdo</span> <span class="code-op">=</span> <span class="code-key">new</span> <span class="code-var">PDO</span>(...); } <span class="code-key">catch</span> (...) { ... }
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

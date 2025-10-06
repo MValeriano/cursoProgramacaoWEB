@@ -1,0 +1,214 @@
+<!-- Chosen Palette: String Focus (#e67e22 - Laranja para Funções de String, #9b59b6 - Roxo para Sintaxe/Interpolação) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de Strings: Funções Essenciais em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #e67e22; /* Laranja Escuro */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; }
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .case-highlight { border-left: 5px solid #2ecc71; } /* Verde para Maiúsculas/Minúsculas */
+        .search-highlight { border-left: 5px solid #e74c3c; } /* Vermelho para Busca/Substituição */
+        .array-highlight { border-left: 5px solid #9b59b6; } /* Roxo para Array/Conversão */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Strings em PHP: Funções e Sintaxe</h1>
+            <p class="mt-4 text-gray-200 text-lg">Aprenda a normalizar, dividir, concatenar e transformar dados de texto usando funções nativas.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Métodos e Sintaxe de Strings</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+
+                <!-- Aspas -->
+                <div class="concept-card border-l-4 border-[#9b59b6]">
+                    <h4 class="text-xl font-bold text-[#9b59b6] mb-2">1. Aspas e Interpolação</h4>
+                    <p class="text-sm text-gray-700">Aspas Duplas (" "): Permitem a Interpolação de variáveis (`"Olá $nome"`). São avaliadas pelo PHP.</p>
+                    <p class="text-sm text-gray-700 mt-1">Aspas Simples (' '): Não permitem a interpolação; tratam o conteúdo literalmente (`'Olá $nome'`). Mais rápidas.</p>
+                </div>
+
+                <!-- Funções de Transformação -->
+                <div class="concept-card border-l-4 border-[#e67e22]">
+                    <h4 class="text-xl font-bold text-[#e67e22] mb-2">2. Formato e Comprimento</h4>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>`strlen()`: Retorna o comprimento da string (inclui espaços).</li>
+                        <li>`strtoupper()`: Converte para MAIÚSCULO.</li>
+                        <li>`strtolower()`: Converte para minúsculo (Normalização).</li>
+                        <li>`substr()`: Extrai uma parte da string (resumo/trecho).</li>
+                    </ul>
+                </div>
+
+                <!-- Funções de Busca e Conversão -->
+                <div class="concept-card border-l-4 border-[#3498db]">
+                    <h4 class="text-xl font-bold text-[#3498db] mb-2">3. Busca, Troca e Array</h4>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>`str_replace()`: Substitui todas as ocorrências de um texto por outro.</li>
+                        <li>`strpos()`: Encontra a posição (índice) de uma substring.</li>
+                        <li>`explode()`: Converte string para Array usando um delimitador.</li>
+                        <li>`implode()`: Converte Array de volta para string com um separador.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Concatenação -->
+            <div class="concept-card bg-gray-50 border-l-4 border-black">
+                <h4 class="text-xl font-bold text-black mb-2">Concatenação (<span class="code-op">.</span>)</h4>
+                <p class="text-sm text-gray-700">O ponto é o operador usado para juntar duas ou mais strings de forma explícita. É obrigatório ao usar aspas simples ou ao juntar strings e variáveis.</p>
+                <div class="code-block">
+                    <span class="code-var">$msg</span> <span class="code-op">=</span> <span class="code-string">'Total é '</span> <span class="code-op">.</span> <span class="code-var">$valor</span> <span class="code-op">.</span> <span class="code-string">' reais.'</span><span class="code-op">;</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- II. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#e67e22] mb-5 border-b pb-2">II. 5 Exercícios Práticos com Strings</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Normalização e Contagem de Dados de Login -->
+                <div class="case-highlight">
+                    <h4 class="text-xl font-semibold text-[#2ecc71] mb-2">1. Normalização e Validação de Login (<span class="code-reserved">strtolower()</span> e <span class="code-reserved">strlen()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Garantir que o username esteja em minúsculo (normalização) e verificar se ele atende ao requisito de comprimento mínimo.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$username_bruto</span> <span class="code-op">=</span> <span class="code-string">"UsuarioAdmin"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 1. Normalização (garante que maiúsculas/minúsculas não importam)</span>
+                        <br><span class="code-var">$username_limpo</span> <span class="code-op">=</span> <span class="code-reserved">strtolower</span>(<span class="code-var">$username_bruto</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 2. Contagem e Validação</span>
+                        <br><span class="code-var">$comprimento</span> <span class="code-op">=</span> <span class="code-reserved">strlen</span>(<span class="code-var">$username_limpo</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">if</span> (<span class="code-var">$comprimento</span> <span class="code-op">&lt;</span> <span class="code-int">6</span>) {
+                        <br>    <span class="code-reserved">echo</span> <span class="code-string">"Erro: O nome de usuário deve ter pelo menos 6 caracteres."</span><span class="code-op">;</span>
+                        <br>} <span class="code-reserved">else</span> {
+                        <br>    <span class="code-reserved">echo</span> <span class="code-string">"Usuário validado ("</span> <span class="code-op">.</span> <span class="code-var">$comprimento</span> <span class="code-op">.</span> <span class="code-string">" caracteres): "</span> <span class="code-op">.</span> <span class="code-var">$username_limpo</span><span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Geração de Resumo de Artigo -->
+                <div class="search-highlight">
+                    <h4 class="text-xl font-semibold text-[#e74c3c] mb-2">2. Geração de Resumo (Snippet) (<span class="code-reserved">substr()</span> e Concatenação)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Extrair os primeiros 50 caracteres de um texto longo e adicionar uma elipse indicando continuação.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$artigo</span> <span class="code-op">=</span> <span class="code-string">"A Programação Orientada a Objetos em PHP oferece recursos poderosos para a criação de sistemas modulares e reutilizáveis, baseando-se em princípios como herança e encapsulamento."</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Extrai 50 caracteres a partir do índice 0</span>
+                        <br><span class="code-var">$resumo</span> <span class="code-op">=</span> <span class="code-reserved">substr</span>(<span class="code-var">$artigo</span>, <span class="code-int">0</span>, <span class="code-int">50</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Concatena o resumo com a indicação de continuação</span>
+                        <br><span class="code-var">$resumo_final</span> <span class="code-op">=</span> <span class="code-var">$resumo</span> <span class="code-op">.</span> <span class="code-string">"... [Continuar Lendo]"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Resumo: "</span> <span class="code-op">.</span> <span class="code-var">$resumo_final</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Detecção e Substituição de Conteúdo -->
+                <div class="search-highlight">
+                    <h4 class="text-xl font-semibold text-[#e74c3c] mb-2">3. Filtragem de Conteúdo (<span class="code-reserved">str_replace()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Detectar uma palavra proibida e substituí-la por um filtro (Embora strpos() seja para detecção, o str_replace() faz a ação de filtragem diretamente).</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$comentario</span> <span class="code-op">=</span> <span class="code-string">"Este serviço é chato e lento."</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Define o que buscar, o que substituir e onde buscar</span>
+                        <br><span class="code-var">$comentario_filtrado</span> <span class="code-op">=</span> <span class="code-reserved">str_replace</span>(<span class="code-string">'chato'</span>, <span class="code-string">'*'</span>, <span class="code-var">$comentario</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Comentário Original: "</span> <span class="code-op">.</span> <span class="code-var">$comentario</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Comentário Filtrado: "</span> <span class="code-op">.</span> <span class="code-var">$comentario_filtrado</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Análise e Conversão de Dados Separados por Vírgula -->
+                <div class="array-highlight">
+                    <h4 class="text-xl font-semibold text-[#9b59b6] mb-2">4. String para Array e Array para String (<span class="code-reserved">explode()</span> e <span class="code-reserved">implode()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Dividir uma lista em um vetor (Array) e depois reagrupar com um novo separador.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$lista_tags</span> <span class="code-op">=</span> <span class="code-string">"php, poo, string, array"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 1. String -> Array (Delimitador: ", ")</span>
+                        <br><span class="code-var">$array_tags</span> <span class="code-op">=</span> <span class="code-reserved">explode</span>(<span class="code-string">', '</span>, <span class="code-var">$lista_tags</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Conteúdo do Array: "</span><span class="code-op">;</span> <span class="code-reserved">print_r</span>(<span class="code-var">$array_tags</span>)<span class="code-op">;</span> <span class="code-reserved">echo</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 2. Array -> String (Novo Separador: "|")</span>
+                        <br><span class="code-var">$tags_formatadas</span> <span class="code-op">=</span> <span class="code-reserved">implode</span>(<span class="code-string">' | '</span>, <span class="code-var">$array_tags</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Tags Formatadas: "</span> <span class="code-op">.</span> <span class="code-var">$tags_formatadas</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Interpolação de Variáveis vs. Concatenção Explicita -->
+                <div class="array-highlight">
+                    <h4 class="text-xl font-semibold text-[#9b59b6] mb-2">5. Sintaxe: Aspas Duplas vs. Concatenção (<span class="code-op">.</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Demonstrar as duas formas válidas de construir uma frase, e o perigo de usar aspas simples com variáveis.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$saudacao</span> <span class="code-op">=</span> <span class="code-string">"Olá"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$nome</span> <span class="code-op">=</span> <span class="code-string">"Visitante"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// A) Interpolação (Aspas Duplas)</span>
+                        <br><span class="code-var">$frase_a</span> <span class="code-op">=</span> <span class="code-string">"$saudacao, $nome!"</span><span class="code-op">;</span> <span class="code-comment">// PHP traduz as variáveis</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Frase A (Interpolação): "</span> <span class="code-op">.</span> <span class="code-var">$frase_a</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// B) Concatenacao (Aspas Simples + Ponto)</span>
+                        <br><span class="code-var">$frase_b</span> <span class="code-op">=</span> <span class="code-var">$saudacao</span> <span class="code-op">.</span> <span class="code-string">', '</span> <span class="code-op">.</span> <span class="code-var">$nome</span> <span class="code-op">.</span> <span class="code-string">'!'</span><span class="code-op">;</span> <span class="code-comment">// Concatenação Explícita</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Frase B (Concatenação): "</span> <span class="code-op">.</span> <span class="code-var">$frase_b</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// C) Aspas Simples com Variável (NÃO TRADUZ)</span>
+                        <br><span class="code-var">$frase_c</span> <span class="code-op">=</span> <span class="code-string">'A $saudacao diz...'</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Frase C (Erro de Sintaxe): "</span> <span class="code-op">.</span> <span class="code-var">$frase_c</span><span class="code-op">;</span> <span class="code-comment">// Saída: A $saudacao diz...</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

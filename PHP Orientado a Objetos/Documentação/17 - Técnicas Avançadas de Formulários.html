@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas Avançadas de Formulários em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .section-header { border-left: 4px solid #06b6d4; }
+        .code-block { background-color: #1f2937; color: #d1d5db; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.875rem; }
+        .superglobal { color: #facc15; font-weight: 600; }
+        .php-keyword { color: #4ade80; font-weight: 600; }
+        .html-attr { color: #f97316; }
+        .box-concept { background-color: #ecfeff; border-color: #67e8f9; }
+        .box-exercise { background-color: #f0fdfa; border-color: #34d399; }
+        .php-code-sim { background-color: #374151; border-radius: 0.5rem; padding: 0.75rem; margin-top: 0.5rem; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+
+        <!-- Título Principal -->
+        <header class="bg-sky-600 text-white p-6 sm:p-10 rounded-xl shadow-2xl">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Formulários Robustos com PHP</h1>
+            <p class="text-xl font-light opacity-90">O desenvolvimento de formulários interativos e robustos é um dos pilares do PHP. Os tópicos a seguir cobrem técnicas avançadas que garantem melhor experiência do usuário e maior segurança na aplicação.</p>
+            <p class="mt-4 text-sm font-semibold text-sky-200">Com base nos materiais fornecidos, apresentamos a explicação didática e 5 exercícios práticos.</p>
+        </header>
+
+        <!-- Seção 1: Explicação Didática e Ilustrativa dos Conceitos -->
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 pb-4 section-header pl-4 mb-8">1. Explicação Didática e Ilustrativa dos Conceitos</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1.1 Auto Processamento de Formulários -->
+                <div class="p-6 rounded-xl border-2 box-concept shadow-md space-y-3">
+                    <h3 class="text-xl font-bold text-sky-700">1.1 Auto Processamento de Formulários</h3>
+                    <p class="text-gray-700">Ocorre quando o formulário HTML envia os dados de volta para o próprio arquivo PHP que o contém.</p>
+                    <div class="php-code-sim">
+                        <p><span class="php-keyword">if</span> (<span class="superglobal">$_SERVER['REQUEST_METHOD']</span> == 'POST') {</p>
+                        <p class="pl-4">// Processamento dos dados...</p>
+                        <p>}</p>
+                        <p><span class="php-keyword">Implementação:</span> <span class="html-attr">action</span>="<?= <span class="superglobal">$_SERVER['PHP_SELF']</span> ?>"</p>
+                    </div>
+                    <p class="text-sm text-gray-600">O <span class="superglobal">REQUEST_METHOD</span> controla o fluxo, executando o código apenas após a submissão.</p>
+                </div>
+
+                <!-- 1.2 Validação de Formulários -->
+                <div class="p-6 rounded-xl border-2 box-concept shadow-md space-y-3">
+                    <h3 class="text-xl font-bold text-sky-700">1.2 Validação de Formulários</h3>
+                    <p class="font-semibold text-red-600">Regra de Ouro (Segurança):</p>
+                    <p class="text-gray-700">A validação deve ser sempre repetida no servidor (PHP). Nunca confie apenas na validação do lado do cliente (HTML/JS).</p>
+                    <div class="php-code-sim">
+                        <p><span class="php-keyword">if</span> (<span class="php-keyword">empty</span>(<span class="superglobal">$_POST</span>['nome'])) {</p>
+                        <p class="pl-4">// Erro: Nome é obrigatório.</p>
+                        <p>}</p>
+                    </div>
+                    <p class="text-sm text-gray-600">Utilize <span class="php-keyword">empty()</span> para verificar campos vazios e funções como <span class="php-keyword">is_numeric()</span> para verificar tipos.</p>
+                </div>
+
+                <!-- 1.3 Preenchendo Formulários (UX) -->
+                <div class="p-6 rounded-xl border-2 box-concept shadow-md space-y-3">
+                    <h3 class="text-xl font-bold text-sky-700">1.3 Preenchendo Formulários (UX)</h3>
+                    <p class="text-gray-700">Em caso de erro, reexibir o formulário com os dados válidos previamente submetidos preenchidos para melhor experiência do usuário.</p>
+                    <p class="font-semibold text-gray-800">Mecanismo: Injeção de Valor</p>
+                    <div class="php-code-sim">
+                        <p><span class="html-attr">&lt;input type="email" value="</span><span class="php-keyword"><?php echo </span><span class="superglobal">$email_enviado</span><span class="php-keyword">; ?></span><span class="html-attr">"&gt;</span></p>
+                    </div>
+                    <p class="text-sm text-gray-600">A variável <span class="superglobal">$email_enviado</span> captura o valor de <span class="superglobal">$_POST</span>['email'] e o injeta no atributo <span class="html-attr">value</span>.</p>
+                </div>
+
+                <!-- 1.4 Input com Múltiplos Valores (Arrays) -->
+                <div class="p-6 rounded-xl border-2 box-concept shadow-md space-y-3">
+                    <h3 class="text-xl font-bold text-sky-700">1.4 Input com Múltiplos Valores</h3>
+                    <p class="text-gray-700">Campos como *checkboxes* que permitem múltiplas seleções são recebidos pelo PHP como um Array.</p>
+                    <p class="font-semibold text-gray-800">Estrutura de Recebimento:</p>
+                    <div class="php-code-sim">
+                        <p><span class="html-attr">&lt;input type="checkbox" name="opcoes[]"&gt;</span></p>
+                        <p>// PHP recebe: <span class="superglobal">$_POST</span>['opcoes'] (é um Array)</p>
+                    </div>
+                    <p class="text-sm text-gray-600">Use <span class="php-keyword">foreach</span> no PHP para iterar sobre o array de opções selecionadas.</p>
+                </div>
+
+                <!-- 1.5 Upload de Arquivos -->
+                <div class="p-6 rounded-xl border-2 box-concept shadow-md space-y-3">
+                    <h3 class="text-xl font-bold text-sky-700">1.5 Upload de Arquivos</h3>
+                    <p class="text-gray-700">O envio de arquivos é tratado pela superglobal <span class="superglobal">$_FILES</span>.</p>
+                    <p class="font-semibold text-gray-800">Verificações Essenciais:</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-700">
+                        <li>Tamanho: <code class="superglobal">$_FILES['campo']['size']</code> (Prevenção de sobrecarga).</li>
+                        <li>Tipo/Extensão: <code class="superglobal">$_FILES['campo']['type']</code> (Segurança e formato).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-px bg-gray-300"></div>
+
+        <!-- Seção 2: 5 Exercícios para Raciocínio Estrutural -->
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 pb-4 section-header pl-4 mb-8">2. 5 Exercícios para Raciocínio Estrutural</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Exercício 1 & 2 -->
+                <div class="box-exercise border-2 p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-2">Exercício 1 & 2: Auto Processamento e UX</h3>
+                    <p class="mb-3 text-gray-700"><strong class="text-teal-600">Temas:</strong> Auto Processamento, <span class="superglobal">$_SERVER['REQUEST_METHOD']</span>, <span class="php-keyword">empty()</span>, Preenchimento Automático (<span class="html-attr">value</span>).</p>
+
+                    <h4 class="font-semibold text-lg mt-4 text-gray-800">Enunciado Prático:</h4>
+                    <ul class="list-decimal list-inside ml-4 space-y-2 text-gray-700">
+                        <li>Crie um formulário (`contato.php`) com campos Nome e Email.</li>
+                        <li>Use <span class="superglobal">$_SERVER['PHP_SELF']</span> na `action` (Auto Processamento).</li>
+                        <li>Use <span class="superglobal">$_SERVER['REQUEST_METHOD']</span> para processar apenas no <span class="php-keyword">POST</span>.</li>
+                        <li>Valide se o Nome está vazio (<span class="php-keyword">empty()</span>).</li>
+                        <li>Se houver erro, o valor digitado no campo Email deve ser injetado de volta no atributo <span class="html-attr">value</span> para re-preenchimento (UX).</li>
+                    </ul>
+
+                    <div class="code-block mt-4">
+                        <p class="text-yellow-400">// Simulação da lógica PHP no topo de 'contato.php'</p>
+                        <p><span class="php-keyword">if</span> (<span class="superglobal">$_SERVER['REQUEST_METHOD']</span> == 'POST') {</p>
+                        <p class="pl-4"><span class="superglobal">$email_enviado</span> = <span class="superglobal">$_POST</span>['email'] ?? '';</p>
+                        <p class="pl-4"><span class="php-keyword">if</span> (<span class="php-keyword">empty</span>(<span class="superglobal">$_POST</span>['nome'])) {</p>
+                        <p class="pl-8"><span class="superglobal">$erro</span> = "Erro: O nome é obrigatório.";</p>
+                        <p class="pl-4">}</p>
+                        <p>}</p>
+                        <p class="mt-2 text-yellow-400">// Simulação do HTML do campo Email:</p>
+                        <p class="text-gray-300">&lt;input type="email" name="email" <span class="html-attr">value</span>="<span class="php-keyword"><?php echo </span><span class="superglobal">$email_enviado</span><span class="php-keyword">; ?></span>"&gt;</p>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="box-exercise border-2 p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-2">Exercício 5: Validação Composta (Array de Erros)</h3>
+                    <p class="mb-3 text-gray-700"><strong class="text-teal-600">Temas:</strong> Coleta de Erros em Array, <span class="php-keyword">count()</span>, <span class="php-keyword">foreach</span>.</p>
+
+                    <h4 class="font-semibold text-lg mt-4 text-gray-800">Enunciado Prático:</h4>
+                    <ul class="list-decimal list-inside ml-4 space-y-2 text-gray-700">
+                        <li>Crie um array vazio: <code class="superglobal">$erros_validacao</code>.</li>
+                        <li>Capture <span class="superglobal">$nome</span> e <span class="superglobal">$idade</span> de <span class="superglobal">$_POST</span>.</li>
+                        <li>Use <span class="php-keyword">if</span> e <span class="php-keyword">empty()</span> para adicionar a string de erro ao array se <span class="superglobal">$nome</span> ou <span class="superglobal">$idade</span> estiverem vazios.</li>
+                        <li>Use <span class="php-keyword">if (count(</span><code class="superglobal">$erros_validacao</code><span class="php-keyword">) > 0)</span> para controlar o fluxo.</li>
+                        <li>Se houver erros, use <span class="php-keyword">foreach</span> para exibir todos os erros de uma vez.</li>
+                        <li>Se o array estiver vazio, imprima "Formulário validado com sucesso.".</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600">Raciocínio Estrutural: Essa metodologia evita parar no primeiro erro, melhorando a UX e a arquitetura do código.</p>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div class="box-exercise border-2 p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-2">Exercício 3: Escolha de Múltiplos Interesses</h3>
+                    <p class="mb-3 text-gray-700"><strong class="text-teal-600">Temas:</strong> Input Array, <span class="php-keyword">foreach</span>, Checkboxes.</p>
+
+                    <h4 class="font-semibold text-lg mt-4 text-gray-800">Enunciado Prático:</h4>
+                    <ul class="list-decimal list-inside ml-4 space-y-2 text-gray-700">
+                        <li>Crie checkboxes para 'Esporte', 'Cultura', 'Tecnologia' com <span class="html-attr">name="interesses[]"</span>.</li>
+                        <li>Verifique se o array <span class="superglobal">$_POST['interesses']</span> foi submetido.</li>
+                        <li>Use um laço <span class="php-keyword">foreach</span> para iterar sobre o array recebido.</li>
+                        <li>Imprima uma lista não ordenada (<span class="html-attr">&lt;ul&gt;</span>) com cada interesse selecionado.</li>
+                    </ul>
+                    <div class="code-block mt-4">
+                        <p><span class="php-keyword">if</span> (!<span class="php-keyword">empty</span>(<span class="superglobal">$_POST</span>['interesses'])) {</p>
+                        <p class="pl-4"><span class="php-keyword">foreach</span> (<span class="superglobal">$_POST</span>['interesses'] <span class="php-keyword">as</span> <span class="superglobal">$interesse</span>) {</p>
+                        <p class="pl-8"><span class="php-keyword">echo</span> "<span class="html-attr">&lt;li&gt;</span>" . <span class="superglobal">$interesse</span> . "<span class="html-attr">&lt;/li&gt;</span>";</p>
+                        <p class="pl-4">}</p>
+                        <p>}</p>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div class="box-exercise border-2 p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-2">Exercício 4: Verificação de Arquivo (Conceitual)</h3>
+                    <p class="mb-3 text-gray-700"><strong class="text-teal-600">Temas:</strong> Upload de Arquivos, <span class="superglobal">$_FILES</span>, Segurança.</p>
+
+                    <h4 class="font-semibold text-lg mt-4 text-gray-800">Respostas Conceituais:</h4>
+                    <ul class="list-decimal list-inside ml-4 space-y-3 text-gray-700">
+                        <li>Superglobal: O PHP usa a superglobal <span class="superglobal">$_FILES</span> para coletar informações sobre o arquivo enviado.</li>
+                        <li>Verificação de Tamanho: Consultamos a chave <code class="superglobal">['size']</code> (Ex: <code class="superglobal">$_FILES['imagem']['size']</code>) para verificar o tamanho do arquivo em bytes.</li>
+                        <li>Prevenção de Sobrecarga: A superglobal <span class="superglobal">$_FILES</span> permite verificar o tamanho antes de mover o arquivo do diretório temporário para o destino final (com a função <span class="php-keyword">move_uploaded_file()</span>), garantindo que arquivos muito grandes sejam rejeitados antes de sobrecarregar os recursos do servidor.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="text-center p-6 mt-12 text-gray-500 text-sm border-t border-gray-200">
+            Apresentação didática sobre a criação de formulários interativos e seguros com PHP.
+        </footer>
+
+    </div>
+
+</body>
+</html>

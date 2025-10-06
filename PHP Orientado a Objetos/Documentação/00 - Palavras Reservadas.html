@@ -1,0 +1,178 @@
+<!-- Chosen Palette: Reserved Words Focus (#800080 - Roxo, #FFD700 - Dourado/Amarelo) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavras Reservadas do PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #800080; /* Roxo Principal */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #FFD700; /* Dourado */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-reserved { color: #FF8C00; font-weight: bold; } /* Laranja para Palavras Reservadas */
+        .code-var { color: #CDDC39; } /* Lima */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-string { color: #FFC107; } /* Amarelo */
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Conceito -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Palavras Reservadas do PHP (Keywords)</h1>
+            <p class="mt-4 text-gray-200 text-lg">Se a sintaxe é a gramática, as Palavras Reservadas são o vocabulário obrigatório. Você não pode usá-las para nomear seus próprios elementos.</p>
+        </header>
+
+        <!-- O Impacto da Palavra Reservada -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#800080] mb-5">1. O Dicionário Interno do PHP</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Analogia e Regra -->
+                <div class="concept-card border-t-4 border-[#FFD700]">
+                    <h4 class="text-xl font-bold text-[#FFD700] mb-2">Analogia: Comandos de Voz Específicos</h4>
+                    <p class="text-sm text-gray-700">O PHP já tem comandos definidos como `if`, `while`, ou `return`. Se você tentar nomear uma variável de `$if`, o interpretador pode confundir sua intenção, gerando erros ou comportamento inesperado.</p>
+                    <p class="text-xs mt-3 font-semibold text-red-600">Regra: Não use Palavras Reservadas para nomear Variáveis, Funções, Classes ou Constantes.</p>
+                </div>
+
+                <!-- Exemplos Comuns -->
+                <div class="concept-card border-t-4 border-[#800080]">
+                    <h4 class="text-xl font-bold text-[#800080] mb-2">Exemplos Comuns de Keywords</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Estruturas de Decisão: <span class="code-reserved">if</span>, <span class="code-reserved">else</span>, <span class="code-reserved">switch</span>, <span class="code-reserved">break</span>.</li>
+                        <li>Laços de Repetição: <span class="code-reserved">while</span>, <span class="code-reserved">for</span>, <span class="code-reserved">foreach</span>, <span class="code-reserved">continue</span>.</li>
+                        <li>Definição de Estruturas: <span class="code-reserved">function</span>, <span class="code-reserved">class</span>, <span class="code-reserved">return</span>.</li>
+                        <li>Orientação a Objetos: <span class="code-reserved">new</span>, <span class="code-reserved">public</span>, <span class="code-reserved">private</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Exercícios para Evitar Conflitos -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#800080] mb-5 border-b pb-2">2. 5 Desafios de Nomenclatura e Keywords</h3>
+            <p class="text-gray-700 mb-6">Identifique e corrija o uso incorreto de Palavras Reservadas como identificadores.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: A Batalha dos Controladores (Conflito de Variáveis) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#800080] mb-2">1. Conflito de Nomes de Variáveis</h4>
+                    <p class="text-sm text-gray-700 mb-3">As palavras `if`, `while` e `class` são reservadas. Corrigimos renomeando-as para nomes descritivos.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// CÓDIGO ORIGINAL (Erro de sintaxe): $if = TRUE; $while = 10; $class = "Produto";</span>
+                        <br>
+                        <br><span class="code-var">$estado_decisao</span> <span class="code-op">=</span> <span class="code-keyword">TRUE</span><span class="code-op">;</span>
+                        <br><span class="code-var">$contador_loop</span> <span class="code-op">=</span> <span class="code-val">10</span><span class="code-op">;</span>
+                        <br><span class="code-var">$nome_estrutura</span> <span class="code-op">=</span> <span class="code-string">"Produto"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$estado_decisao</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: O Robô sem Nome (Conflito de Funções) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FFD700] mb-2">2. Conflito de Nomes de Funções</h4>
+                    <p class="text-sm text-gray-700 mb-3">A palavra `return` é usada para devolver um valor de uma função, e não pode ser usada como nome dela.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// CÓDIGO ORIGINAL (Erro): function return($dado) { ... }</span>
+                        <br>
+                        <br><span class="code-reserved">function</span> <span class="code-var">retornar_dado</span>(<span class="code-var">$dado</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Função executada. O nome é seguro."</span><span class="code-op">;</span>
+                        <br>  <span class="code-reserved">return</span> <span class="code-var">$dado</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-var">retornar_dado</span>(<span class="code-string">'Sucesso'</span>)<span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: O Template Duplicado (Conflito de Classes) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#800080] mb-2">3. Conflito de Nomes de Classes</h4>
+                    <p class="text-sm text-gray-700 mb-3">A palavra `class` é uma palavra reservada que o PHP usa para definir uma classe, logo, ela não pode ser usada como o nome da classe.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// CÓDIGO ORIGINAL (Erro de Sintaxe): class Class { ... }</span>
+                        <br>
+                        <br><span class="code-reserved">class</span> <span class="code-var">EstruturaPadrao</span> {
+                        <br>  <span class="code-comment">// Definição da classe aqui</span>
+                        <br>  <span class="code-reserved">public</span> <span class="code-reserved">function</span> <span class="code-var">saudar</span>() {
+                        <br>    <span class="code-keyword">echo</span> <span class="code-string">"Estrutura padrão pronta."</span><span class="code-op">;</span>
+                        <br>  }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$obj</span> <span class="code-op">=</span> <span class="code-reserved">new</span> <span class="code-var">EstruturaPadrao</span>()<span class="code-op">;</span>
+                        <br><span class="code-var">$obj</span><span class="code-op">-></span><span class="code-var">saudar</span>()<span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: A Constante Proibida (Keywords de SGBD) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FFD700] mb-2">4. Constantes e Keywords de SGBD</h4>
+                    <p class="text-sm text-gray-700 mb-3">Evitar o nome `SELECT` é uma boa prática porque ele é um comando crucial de SQL, o que causa confusão no contexto de banco de dados.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// define('SELECT', 'comando'); // MÁ PRÁTICA! Não use comandos SQL como nomes.</span>
+                        <br>
+                        <br><span class="code-reserved">define</span>(<span class="code-string">'MAXIMO_USUARIOS'</span>, <span class="code-val">50</span>)<span class="code-op">;</span> <span class="code-comment">// Alternativa segura e descritiva</span>
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Limite de usuários: "</span> <span class="code-op">.</span> <span class="code-var">MAXIMO_USUARIOS</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: O Controle de Fluxo como Argumento -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#800080] mb-2">5. O Controle de Fluxo como Argumento</h4>
+                    <p class="text-sm text-gray-700 mb-3">Embora o PHP aceite `$if` (devido ao `$`), essa nomenclatura é péssima prática e confunde o leitor, pois colide com a palavra reservada `if`.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// Nome do parâmetro descritivo é sempre melhor do que usar Palavras Reservadas:</span>
+                        <br><span class="code-reserved">function</span> <span class="code-var">checar_dados</span>(<span class="code-var">$dados_entrada</span>) {
+                        <br>  <span class="code-reserved">if</span> (<span class="code-var">$dados_entrada</span> <span class="code-op">==</span> <span class="code-val">0</span>) {
+                        <br>    <span class="code-reserved">return</span> <span class="code-keyword">FALSE</span><span class="code-op">;</span>
+                        <br>  }
+                        <br>  <span class="code-reserved">return</span> <span class="code-keyword">TRUE</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Resultado: "</span> <span class="code-op">.</span> (<span class="code-var">checar_dados</span>(<span class="code-val">5</span>) <span class="code-op">?</span> <span class="code-string">'OK'</span> <span class="code-op">:</span> <span class="code-string">'Erro'</span>)<span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

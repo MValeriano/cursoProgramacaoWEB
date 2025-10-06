@@ -1,0 +1,255 @@
+<!-- Chosen Palette: Foundational Coding (#3F51B5 - Indigo, #FFC107 - Amarelo/Âmbar) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de PHP: Sintaxe e Estrutura Básica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #3F51B5; /* Indigo Principal */
+            color: white;
+        }
+        .section-title {
+            color: #FFC107; /* Amarelo/Âmbar */
+        }
+        .data-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #3F51B5;
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-keyword { color: #8BE9FD; } /* Ciano */
+        .code-var { color: #CDDC39; } /* Lima */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-string { color: #FFC107; } /* Amarelo/Âmbar */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Conceitos Fundamentais de PHP</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-200">Estrutura, Sintaxe e Elementos Chave para o Desenvolvimento Web</h2>
+            <p class="mt-4 text-gray-100">O PHP (PHP Hypertext Preprocessor) é a linguagem de *script* que processa dados e gera conteúdo dinâmico. Ele atua como a cozinha de uma aplicação web.</p>
+        </header>
+
+        <!-- 1. Estrutura e Sintaxe Essenciais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-title mb-5">1. Estrutura e Sintaxe Essenciais</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <!-- Delimitadores -->
+                <div class="data-card">
+                    <h4 class="text-xl font-bold text-[#3F51B5] mb-2">Delimitadores de Código</h4>
+                    <p class="text-sm text-gray-700">Todo código PHP deve estar contido entre `<?php` e `?>`. Em arquivos *pure PHP* (só código PHP), o delimitador de fechamento é omitido.</p>
+                    <div class="code-block">
+                        &lt;?php
+                        <br> <span class="code-comment">// Código aqui</span>
+                        <br> ?&gt;
+                    </div>
+                </div>
+
+                <!-- Ponto e Vírgula -->
+                <div class="data-card">
+                    <h4 class="text-xl font-bold text-[#3F51B5] mb-2">Ponto e Vírgula (;)</h4>
+                    <p class="text-sm text-gray-700">Cada comando (declaração) no PHP deve terminar com um ponto e vírgula (;). É o "ponto final" da instrução.</p>
+                    <div class="code-block">
+                        <span class="code-var">$nome</span> <span class="code-op">=</span> <span class="code-string">'Alice'</span><span class="code-op">;</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$nome</span><span class="code-op">;</span>
+                    </div>
+                </div>
+
+                <!-- Output e Comentários -->
+                <div class="data-card">
+                    <h4 class="text-xl font-bold text-[#3F51B5] mb-2">Saída (Output) e Comentários</h4>
+                    <p class="text-sm text-gray-700">`echo` e `print` exibem dados. Comentários (linhas não executadas) usam `//`, `#` ou `/* ... */`.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">echo</span> <span class="code-string">'Olá!'</span>; <span class="code-comment">// Saída</span>
+                        <br><span class="code-comment">/* Comentário</span>
+                        <br><span class="code-comment">   de Múltiplas Linhas */</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Variáveis e Tipos de Dados -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-title mb-5">2. Variáveis e Tipos de Dados (As Caixas Rotuladas)</h3>
+            <div class="data-card border-t-4 border-[#FFC107]">
+                <p class="text-sm text-gray-700 mb-4">Variáveis armazenam valores e devem começar com o cifrão ($). O PHP é Case Sensitive para nomes de variáveis.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo de Dado</th>
+                                <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">O que Armazena</th>
+                                <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Exemplo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr>
+                                <td class="px-3 py-2 whitespace-nowrap font-medium">String</td>
+                                <td class="px-3 py-2 whitespace-nowrap">Texto (cadeia de caracteres).</td>
+                                <td class="px-3 py-2 whitespace-nowrap"><code class="code-var">$nome = "Maria";</code></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 whitespace-nowrap font-medium">Numérico</td>
+                                <td class="px-3 py-2 whitespace-nowrap">Inteiros (`int`) ou com decimal (`float`).</td>
+                                <td class="px-3 py-2 whitespace-nowrap"><code class="code-var">$idade = 25; $preco = 9.99;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 whitespace-nowrap font-medium">Booleano</td>
+                                <td class="px-3 py-2 whitespace-nowrap">Valor lógico: `TRUE` ou `FALSE`.</td>
+                                <td class="px-3 py-2 whitespace-nowrap"><code class="code-var">$ativo = TRUE;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 whitespace-nowrap font-medium">Array</td>
+                                <td class="px-3 py-2 whitespace-nowrap">Lista ou coleção de valores.</td>
+                                <td class="px-3 py-2 whitespace-nowrap"><code class="code-var">$cores = ['vermelho', 'azul'];</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Operadores e Estruturas de Controle -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-title mb-5">3. Operadores e Estruturas de Controle</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Operadores -->
+                <div class="data-card border-t-4 border-[#3F51B5]">
+                    <h4 class="text-xl font-bold text-[#3F51B5] mb-2">Operadores (As Ferramentas de Ação)</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Atribuição: `=` (Atribui valor).</li>
+                        <li>Aritméticos: `+`, `-`, `*`, `/`, `%` (Módulo).</li>
+                        <li>Incremento/Decremento: `++`, `--` (Adiciona/Subtrai 1).</li>
+                        <li>Relacionais: `==` (Igual valor), `===` (Igual valor E tipo).</li>
+                        <li>Lógicos: `&&` (AND), `||` (OR).</li>
+                    </ul>
+                </div>
+
+                <!-- Estruturas de Controle -->
+                <div class="data-card border-t-4 border-[#FFC107]">
+                    <h4 class="text-xl font-bold text-[#FFC107] mb-2">Estruturas de Controle (Tomada de Decisão)</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>IF/ELSE: Executa um bloco se uma condição for `TRUE`.</li>
+                        <li>WHILE / FOR: Laços de repetição (iteração).</li>
+                        <li>FOREACH: Laço específico para percorrer arrays.</li>
+                        <li>SWITCH: Testa uma variável contra múltiplos casos (`CASE`).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. Exercícios Estruturados de Conceitos Básicos -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#3F51B5] mb-5 border-b pb-2">5 Desafios de Fundamentos PHP</h3>
+            <p class="text-gray-700 mb-6">Combine variáveis, operadores e estruturas de controle para resolver tarefas comuns.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: Fatura do Cliente (Variáveis, Atribuição e Output) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#3F51B5] mb-2">1. A Fatura do Cliente (Variáveis e Output)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Calcule o subtotal e exiba a fatura completa em uma única linha.</p>
+                    <div class="code-block">
+                        <span class="code-var">$produto</span> <span class="code-op">=</span> <span class="code-string">'Café'</span>;
+                        <br><span class="code-var">$preco_unitario</span> <span class="code-op">=</span> <span class="code-val">5.50</span>;
+                        <br><span class="code-var">$quantidade</span> <span class="code-op">=</span> <span class="code-val">4</span>;
+                        <br>
+                        <br><span class="code-var">$subtotal</span> <span class="code-op">=</span> <span class="code-var">$preco_unitario</span> <span class="code-op">*</span> <span class="code-var">$quantidade</span>;
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Fatura: "</span> <span class="code-op">.</span> <span class="code-var">$quantidade</span> <span class="code-op">.</span> <span class="code-string">" unidades de "</span> <span class="code-op">.</span> <span class="code-var">$produto</span> <span class="code-op">.</span> <span class="code-string">". Total: R$ "</span> <span class="code-op">.</span> <span class="code-var">$subtotal</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Verificador de Status (Lógicos, Relacionais e IF/ELSE) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#3F51B5] mb-2">2. O Verificador de Status (Lógicos e IF/ELSE)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use o operador lógico `&&` para garantir que ambas as condições sejam satisfeitas.</p>
+                    <div class="code-block">
+                        <span class="code-var">$idade</span> <span class="code-op">=</span> <span class="code-val">17</span>;
+                        <br><span class="code-var">$is_ativo</span> <span class="code-op">=</span> <span class="code-keyword">TRUE</span>;
+                        <br>
+                        <br><span class="code-keyword">if</span> (<span class="code-var">$idade</span> <span class="code-op">>=</span> <span class="code-val">18</span> <span class="code-op">&&</span> <span class="code-var">$is_ativo</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Acesso Concedido."</span>;
+                        <br>} <span class="code-keyword">else</span> {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Acesso Negado: Condições não atendidas."</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 3: O Menu Interativo (SWITCH e Output) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FFC107] mb-2">3. O Menu Interativo (SWITCH e BREAK)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Simule um menu interativo usando a estrutura SWITCH.</p>
+                    <div class="code-block">
+                        <span class="code-var">$opcao_menu</span> <span class="code-op">=</span> <span class="code-val">2</span>;
+                        <br>
+                        <br><span class="code-keyword">switch</span> (<span class="code-var">$opcao_menu</span>) {
+                        <br>  <span class="code-keyword">case</span> <span class="code-val">1</span>:
+                        <br>    <span class="code-keyword">echo</span> <span class="code-string">"Navegando para Home"</span>;
+                        <br>    <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">case</span> <span class="code-val">2</span>:
+                        <br>    <span class="code-keyword">echo</span> <span class="code-string">"Navegando para Perfil"</span>;
+                        <br>    <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">case</span> <span class="code-val">3</span>:
+                        <br>    <span class="code-keyword">echo</span> <span class="code-string">"Navegando para Configurações"</span>;
+                        <br>    <span class="code-keyword">break</span>;
+                        <br>  <span class="code-keyword">default</span>:
+                        <br>    <span class="code-keyword">echo</span> <span class="code-string">"Opção Inválida"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 4: O Log de Eventos (FOR e Incremento) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FFC107] mb-2">4. O Log de Eventos (Laço FOR e Contador)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use o FOR para iterar um número conhecido de vezes (8 eventos).</p>
+                    <div class="code-block">
+                        <span class="code-keyword">for</span> (<span class="code-var">$i</span> <span class="code-op">=</span> <span class="code-val">1</span>; <span class="code-var">$i</span> <span class="code-op"><=</span> <span class="code-val">8</span>; <span class="code-var">$i</span><span class="code-op">++</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Evento ["</span> <span class="code-op">.</span> <span class="code-var">$i</span> <span class="code-op">.</span> <span class="code-string">"] registrado. <br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Lista de Funcionários (Array e FOREACH) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#3F51B5] mb-2">5. A Lista de Funcionários (Array e FOREACH)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Percorra cada item de um array usando o laço mais adequado para coleções.</p>
+                    <div class="code-block">
+                        <span class="code-var">$funcionarios</span> <span class="code-op">=</span> [<span class="code-string">'Ricardo'</span>, <span class="code-string">'Silvia'</span>, <span class="code-string">'Patrícia'</span>, <span class="code-string">'Bruno'</span>];
+                        <br>
+                        <br><span class="code-keyword">foreach</span> (<span class="code-var">$funcionarios</span> <span class="code-keyword">as</span> <span class="code-var">$nome_atual</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Funcionário: "</span> <span class="code-op">.</span> <span class="code-var">$nome_atual</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

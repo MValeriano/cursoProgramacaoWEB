@@ -1,0 +1,240 @@
+<!-- Chosen Palette: Dynamic & Technical (#546E7A, #FFB74D, #4DB6AC) -->
+<!-- Confirmação: NÃO foi usado SVG. NÃO foi usado Chart.js, Plotly.js ou Mermaid JS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores PHP: As Ações e Comandos da Linguagem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #546E7A; /* Cinza Ardósia Escuro */
+            color: #eceff1;
+        }
+        .section-title {
+            color: #37474F; /* Cinza Escuro */
+        }
+        .op-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .op-card-atribuicao { border-top: 5px solid #FFB74D; /* Laranja */ }
+        .op-card-aritmetico { border-top: 5px solid #4DB6AC; /* Verde Água */ }
+        .op-card-relacional { border-top: 5px solid #E57373; /* Vermelho Claro */ }
+        .op-card-logico { border-top: 5px solid #9575CD; /* Roxo */ }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+        .code-op { color: #FFEB3B; }
+        .code-var { color: #80CBC4; }
+        .code-val { color: #FFCC80; }
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Operadores PHP: Ações e Comandos</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-[#FFB74D]">As Ferramentas para Manipular os Dados (Variáveis)</h2>
+            <p class="mt-4 text-gray-300">Se as variáveis são as "caixas" onde guardamos informações, os operadores são as ferramentas que usamos para calcular, comparar e conectar esses dados.</p>
+        </header>
+
+        <!-- Container de Operadores -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
+
+            <!-- 1. Operadores de Atribuição (Assignment) -->
+            <section class="op-card op-card-atribuicao">
+                <h3 class="text-2xl font-bold section-title flex items-center mb-4">
+                    <span class="text-[#FFB74D] mr-3">#1</span> Atribuição (Assignment)
+                </h3>
+                <p class="text-gray-600 mb-4">Usados para colocar um valor dentro de uma variável ou modificá-lo no local.</p>
+                <table class="w-full text-sm mb-4">
+                    <thead>
+                        <tr class="font-semibold text-left text-gray-500">
+                            <th class="py-1">Operador</th>
+                            <th class="py-1">Exemplo</th>
+                            <th class="py-1">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code class="code-op">=</code></td><td><code class="code-op">$a = 10;</code></td><td>Atribui o valor 10 a $a.</td></tr>
+                        <tr><td><code class="code-op">+=</code></td><td><code class="code-op">$a += 5;</code></td><td>$a = $a + 5 (Adição Composta)</td></tr>
+                        <tr><td><code class="code-op">-=</code></td><td><code class="code-op">$a -= 2;</code></td><td>$a = $a - 2</td></tr>
+                        <tr><td><code class="code-op">.=</code></td><td><code class="code-op">$s .= 'Olá';</code></td><td>$s = $s . 'Olá' (Concatenação Composta)</td></tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-gray-500 italic border-t pt-2">Analogia: Colocar ou somar itens diretamente na "caixa" (variável).</p>
+            </section>
+
+            <!-- 2. Operadores Aritméticos (Mathematical) -->
+            <section class="op-card op-card-aritmetico">
+                <h3 class="text-2xl font-bold section-title flex items-center mb-4">
+                    <span class="text-[#4DB6AC] mr-3">#2</span> Aritméticos (Cálculo)
+                </h3>
+                <p class="text-gray-600 mb-4">Usados para realizar cálculos matemáticos com números.</p>
+                <table class="w-full text-sm mb-4">
+                    <thead>
+                        <tr class="font-semibold text-left text-gray-500">
+                            <th class="py-1">Operador</th>
+                            <th class="py-1">Descrição</th>
+                            <th class="py-1">Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code class="code-op">+</code></td><td>Adição</td><td><code class="code-op">1 + 2</code></td></tr>
+                        <tr><td><code class="code-op">*</code></td><td>Multiplicação</td><td><code class="code-op">3 * 4</code></td></tr>
+                        <tr><td><code class="code-op">/</code></td><td>Divisão</td><td><code class="code-op">10 / 2</code></td></tr>
+                        <tr><td><code class="code-op">%</code></td><td>Módulo (Resto)</td><td><code class="code-op">10 % 3</code> (Retorna 1)</td></tr>
+                        <tr><td><code class="code-op"></code></td><td>Exponenciação</td><td><code class="code-op">10  3</code> (Retorna 1000)</td></tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-gray-500 italic border-t pt-2">Precedência: Utilize parênteses <code class="bg-gray-200 px-1 rounded text-sm">()</code> para forçar a ordem de cálculo, garantindo que o que está dentro seja processado primeiro.</p>
+            </section>
+
+            <!-- 3. Operadores Relacionais (Comparisons) -->
+            <section class="op-card op-card-relacional">
+                <h3 class="text-2xl font-bold section-title flex items-center mb-4">
+                    <span class="text-[#E57373] mr-3">#3</span> Relacionais (Comparação)
+                </h3>
+                <p class="text-gray-600 mb-4">Usados para comparar valores. O resultado é sempre Booleano (TRUE ou FALSE).</p>
+                <table class="w-full text-sm mb-4">
+                    <thead>
+                        <tr class="font-semibold text-left text-gray-500">
+                            <th class="py-1">Operador</th>
+                            <th class="py-1">Conceito</th>
+                            <th class="py-1">Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code class="code-op">==</code></td><td>Igualdade Solta (Só valor)</td><td><code class="code-op">5 == '5'</code> (TRUE)</td></tr>
+                        <tr><td><code class="code-op">===</code></td><td>Identidade Estrita (Valor E Tipo)</td><td><code class="code-op">5 === '5'</code> (FALSE)</td></tr>
+                        <tr><td><code class="code-op">!=</code> / <code class="code-op"><></code></td><td>Diferente (Solto)</td><td><code class="code-op">5 != 4</code> (TRUE)</td></tr>
+                        <tr><td><code class="code-op">></code> / <code class="code-op"><</code></td><td>Maior / Menor</td><td><code class="code-op">$a > $b</code></td></tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-gray-500 italic border-t pt-2">Regra de Ouro: Sempre que a verificação de tipo for crucial (segurança, precisão), use <code class="code-op">===</code>.</p>
+            </section>
+
+            <!-- 4. Operadores Lógicos (Logic) -->
+            <section class="op-card op-card-logico lg:col-span-2">
+                <h3 class="text-2xl font-bold section-title flex items-center mb-4">
+                    <span class="text-[#9575CD] mr-3">#4</span> Lógicos (Combinar Condições)
+                </h3>
+                <p class="text-gray-600 mb-4">Usados para combinar ou negar expressões lógicas em testes condicionais (ex: <code class="bg-gray-200 px-1 rounded text-sm">if</code>).</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-semibold text-lg text-[#9575CD] mb-1"><code class="code-op">&&</code> (and)</p>
+                        <p class="text-sm text-gray-700">E (AND): Retorna TRUE se *todas* as condições forem verdadeiras. <br><span class="italic">"Matemática >= 7 E Português >= 7"</span></p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg text-[#9575CD] mb-1"><code class="code-op">||</code> (or)</p>
+                        <p class="text-sm text-gray-700">OU (OR): Retorna TRUE se *pelo menos uma* condição for verdadeira. <br><span class="italic">"Chave OU Código de Acesso"</span></p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg text-[#9575CD] mb-1"><code class="code-op">!</code> (not)</p>
+                        <p class="text-sm text-gray-700">NÃO (NOT): Nega o resultado. Transforma TRUE em FALSE, e FALSE em TRUE. <br><span class="italic">"Se NÃO for 'Ativo'"</span></p>
+                    </div>
+                </div>
+            </section>
+
+             <!-- 5. Incremento e Decremento -->
+            <section class="op-card op-card-aritmetico">
+                <h3 class="text-2xl font-bold section-title flex items-center mb-4">
+                    <span class="text-[#4DB6AC] mr-3">#5</span> Incremento e Decremento
+                </h3>
+                <p class="text-gray-600 mb-4">Forma curta de adicionar ou subtrair 1 da variável. Usado em <code class="bg-gray-200 px-1 rounded text-sm">for</code> loops.</p>
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="font-semibold text-left text-gray-500">
+                            <th class="py-1">Operador</th>
+                            <th class="py-1">Conceito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code class="code-op">++$a</code></td><td>Pré-incremento: Soma 1, depois usa o valor.</td></tr>
+                        <tr><td><code class="code-op">$a++</code></td><td>Pós-incremento: Usa o valor, depois soma 1.</td></tr>
+                        <tr><td><code class="code-op">--$a</code></td><td>Pré-decremento: Subtrai 1, depois usa.</td></tr>
+                        <tr><td><code class="code-op">$a--</code></td><td>Pós-decremento: Usa, depois subtrai 1.</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+
+        <!-- Seção: Exercícios Estruturados -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold section-title mb-5 border-b pb-2">5 Desafios com Operadores</h3>
+            <p class="text-gray-700 mb-6">Teste seus conhecimentos com exercícios que exploram cada tipo de operador.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FFB74D] mb-2">1. Distribuição de Tarefas (Aritméticos e Módulo)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Divida 25 tarefas para 7 programadores e descubra o resto.</p>
+                    <div class="code-block">
+                        <span class="code-var">$programadores</span> <span class="code-op">=</span> <span class="code-val">7</span>;
+                        <br><span class="code-var">$tarefas</span> <span class="code-op">=</span> <span class="code-val">25</span>;
+                        <br><span class="code-comment">// Tarefas por programador: 25 / 7 (Divisão)</span>
+                        <br><span class="code-comment">// Tarefas restantes: 25 % 7 (Módulo)</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#E57373] mb-2">3. O Veredito Legal (Relacionais: == vs. ===)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Compare <code class="bg-gray-200 px-1 rounded text-sm">$data_registro = '0';</code> com <code class="bg-gray-200 px-1 rounded text-sm">0</code> (inteiro), usando os dois operadores de igualdade.</p>
+                    <div class="code-block">
+                        <span class="code-var">$data_registro</span> <span class="code-op">=</span> <span class="code-val">'0'</span>;
+                        <br><span class="code-comment">// Resultado TRUE (só checa o valor):</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$data_registro</span> <span class="code-op">==</span> <span class="code-val">0</span>;
+                        <br><span class="code-comment">// Resultado FALSE (checa valor E tipo):</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$data_registro</span> <span class="code-op">===</span> <span class="code-val">0</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#9575CD] mb-2">4. A Decisão do Login (Lógicos: AND e OR)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Monte a expressão lógica complexa para liberar o acesso.</p>
+                    <div class="code-block">
+                        <span class="code-var">$is_admin</span> <span class="code-op">=</span> <span class="code-keyword">FALSE</span>; <span class="code-var">$senha_correta</span> <span class="code-op">=</span> <span class="code-keyword">TRUE</span>;
+                        <br><span class="code-var">$is_vip</span> <span class="code-op">=</span> <span class="code-keyword">TRUE</span>; <span class="code-var">$tem_token</span> <span class="code-op">=</span> <span class="code-keyword">FALSE</span>;
+                        <br><span class="code-comment">// (Admin E Senha) OU (VIP OU Token)</span>
+                        <br><span class="code-var">$acesso_liberado</span> <span class="code-op">=</span> (<span class="code-var">$is_admin</span> <span class="code-op">&&</span> <span class="code-var">$senha_correta</span>) <span class="code-op">||</span> (<span class="code-var">$is_vip</span> <span class="code-op">||</span> <span class="code-var">$tem_token</span>);
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$acesso_liberado</span>; <span class="code-comment">// Resultado esperado: TRUE</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4DB6AC] mb-2">5. Contador de Vendas (Incremento Pré e Pós)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Entenda a diferença sutil entre <code class="bg-gray-200 px-1 rounded text-sm">$vendas++</code> (pós) e <code class="bg-gray-200 px-1 rounded text-sm">++$vendas</code> (pré).</p>
+                    <div class="code-block">
+                        <span class="code-var">$vendas</span> <span class="code-op">=</span> <span class="code-val">5</span>;
+                        <br><span class="code-var">$venda_anunciada</span> <span class="code-op">=</span> <span class="code-var">$vendas</span><span class="code-op">++</span>; <span class="code-comment">// $venda_anunciada = 5, $vendas = 6</span>
+                        <br><span class="code-var">$venda_registrada</span> <span class="code-op">=</span> <span class="code-op">++</span><span class="code-var">$vendas</span>; <span class="code-comment">// $venda_registrada = 7, $vendas = 7</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

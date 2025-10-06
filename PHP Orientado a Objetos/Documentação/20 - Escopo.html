@@ -1,0 +1,195 @@
+<!-- Chosen Palette: Scope Focus (#6A0DAD - Roxo Profundo, #4CAF50 - Verde para Destaque) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escopo (Scope) no PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #6A0DAD; /* Roxo Profundo Principal */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #4CAF50; /* Verde Destaque */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #CDDC39; }
+        .code-reserved { color: #FF8C00; font-weight: bold; }
+        .code-string { color: #FFC107; }
+        .code-op { color: #FF79C6; }
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Conceito -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Escopo (Scope) no PHP</h1>
+            <p class="mt-4 text-gray-200 text-lg">Define a visibilidade e o tempo de vida de variáveis e outras estruturas no código.</p>
+            <p class="text-xs mt-2 italic">Analogia: O Alcance do Rádio Comunicador</p>
+        </header>
+
+        <!-- I. Tipos Principais de Escopo -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#6A0DAD] mb-5">I. Tipos Principais de Escopo</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. Escopo Global -->
+                <div class="concept-card">
+                    <h4 class="text-xl font-bold text-[#6A0DAD] mb-2">1. Global</h4>
+                    <p class="text-sm text-gray-700">Declarado fora de funções. Acessível em qualquer lugar, mas não diretamente dentro de funções sem <span class="code-reserved">global</span> ou <span class="code-reserved">$GLOBALS</span>.</p>
+                </div>
+
+                <!-- 2. Escopo Local -->
+                <div class="concept-card">
+                    <h4 class="text-xl font-bold text-[#4CAF50] mb-2">2. Local</h4>
+                    <p class="text-sm text-gray-700">Declarado dentro de uma função. Acessível somente dentro daquela função. Destruído ao final da execução da função.</p>
+                </div>
+
+                <!-- 3. Escopo de Parâmetros -->
+                <div class="concept-card">
+                    <h4 class="text-xl font-bold text-indigo-500 mb-2">3. Parâmetros</h4>
+                    <p class="text-sm text-gray-700">Argumentos passados para uma função. Comportam-se como variáveis locais, mas são a forma preferida de passar dados para o escopo local.</p>
+                </div>
+
+                <!-- 4. Escopo Estático -->
+                <div class="concept-card">
+                    <h4 class="text-xl font-bold text-yellow-600 mb-2">4. Estático (Static)</h4>
+                    <p class="text-sm text-gray-700">Declarado dentro de uma função com <span class="code-reserved">static</span>. Mantém o valor entre diferentes chamadas da função (não é resetado).</p>
+                </div>
+            </div>
+            
+            <p class="text-sm text-gray-700 mt-6 p-4 bg-purple-100 border-l-4 border-[#6A0DAD] rounded-md">
+                Superglobals & Constantes: Variáveis Superglobais (como <span class="code-reserved">$_GET</span>) e <span class="code-reserved">Constantes</span> (criadas com <span class="code-reserved">define()</span>) são acessíveis de qualquer escopo sem a necessidade de usar <span class="code-reserved">global</span>.
+            </p>
+        </section>
+
+        <!-- II. Exercícios Práticos para Fixação -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#4CAF50] mb-5 border-b pb-2">II. 5 Exercícios Práticos: Quebrando e Corrigindo o Escopo</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: O Muro do Escopo (Local vs. Global) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#6A0DAD] mb-2">1. O Muro do Escopo (Global em Função)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Variáveis globais não entram em funções automaticamente. É preciso usar a palavra-chave <span class="code-reserved">global</span>.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex1_global.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$fruta_favorita</span> <span class="code-op">=</span> <span class="code-string">"Maçã"</span><span class="code-op">;</span> <span class="code-comment">// Escopo Global</span>
+                        <br>
+                        <br><span class="code-reserved">function</span> dizer_fruta() {
+                        <br>  <span class="code-comment">// Tentar usar $fruta_favorita aqui daria 'Undefined variable'</span>
+                        <br>  <span class="code-reserved">global</span> <span class="code-var">$fruta_favorita</span><span class="code-op">;</span> <span class="code-comment">// Importa a variável global</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Minha fruta favorita é: "</span> <span class="code-op">.</span> <span class="code-var">$fruta_favorita</span> <span class="code-op">.</span> <span class="code-string">" (Acessada via global).";</span>
+                        <br>}
+                        <br>
+                        <br>dizer_fruta()<span class="code-op">;</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: O Robô que Acumula (Escopo Estático) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">2. O Robô que Acumula (Escopo Estático)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Variáveis <span class="code-reserved">static</span> mantêm seu valor entre as chamadas da função, agindo como um contador persistente.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex2_static.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">function</span> contar_pedidos() {
+                        <br>  <span class="code-reserved">static</span> <span class="code-var">$total</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span> <span class="code-comment">// Escopo Estático: Valor persiste</span>
+                        <br>  <span class="code-var">$total</span><span class="code-op">++;</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Pedido número: "</span> <span class="code-op">.</span> <span class="code-var">$total</span> <span class="code-op">.</span> <span class="code-string">"<br>";</span>
+                        <br>}
+                        <br>
+                        <br>contar_pedidos()<span class="code-op">;</span> <span class="code-comment">// Resultado: 1</span>
+                        <br>contar_pedidos()<span class="code-op">;</span> <span class="code-comment">// Resultado: 2</span>
+                        <br>contar_pedidos()<span class="code-op">;</span> <span class="code-comment">// Resultado: 3</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Acesso ao Banco de Dados Global (Superglobal GLOBALS) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#6A0DAD] mb-2">3. Acesso Global via Superglobal <span class="code-reserved">$GLOBALS</span></h4>
+                    <p class="text-sm text-gray-700 mb-3">A superglobal <span class="code-reserved">$GLOBALS</span> é um array associativo que contém todas as variáveis globais e é acessível de qualquer escopo.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex3_globals.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$database_host</span> <span class="code-op">=</span> <span class="code-string">"localhost"</span><span class="code-op">;</span> <span class="code-comment">// Variável Global</span>
+                        <br>
+                        <br><span class="code-reserved">function</span> conectar_db() {
+                        <br>  <span class="code-var">$host</span> <span class="code-op">=</span> <span class="code-reserved">$GLOBALS</span>[<span class="code-string">'database_host'</span>]<span class="code-op">;</span> <span class="code-comment">// Acessa a variável global via array $GLOBALS</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Conectando ao HOST: "</span> <span class="code-op">.</span> <span class="code-var">$host</span> <span class="code-op">.</span> <span class="code-string">" (Método GLOBALS).";</span>
+                        <br>}
+                        <br>
+                        <br>conectar_db()<span class="code-op">;</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 4: O Parâmetro como Prioridade (Escopo de Parâmetros) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">4. Parâmetro como Prioridade (Escopo Local > Global)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Se um parâmetro (variável local) tem o mesmo nome de uma variável global, o PHP usa o valor local.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex4_param.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$item</span> <span class="code-op">=</span> <span class="code-string">"Cadeira"</span><span class="code-op">;</span> <span class="code-comment">// Global: "Cadeira"</span>
+                        <br>
+                        <br><span class="code-reserved">function</span> exibir_item(<span class="code-var">$item</span>) { <span class="code-comment">// Parâmetro: cria um novo $item no escopo local</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"O item exibido é: "</span> <span class="code-op">.</span> <span class="code-var">$item</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br>exibir_item(<span class="code-string">"Mesa"</span>)<span class="code-op">;</span> <span class="code-comment">// Resultado: "Mesa", provando a precedência do escopo local.</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Funções vs. Constantes (Escopo e Constantes) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#6A0DAD] mb-2">5. Escopo e Constantes (Sempre Globais)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Constantes definidas com <span class="code-reserved">define()</span> são inerentemente globais e acessíveis em qualquer função sem esforço extra.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex5_const.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">define</span>(<span class="code-string">"LIMITE_CARACTERES"</span>, <span class="code-int">140</span>)<span class="code-op">;</span> <span class="code-comment">// Constante global</span>
+                        <br>
+                        <br><span class="code-reserved">function</span> checar_limite() {
+                        <br>  <span class="code-comment">// A constante é acessada diretamente, sem 'global' ou '$GLOBALS'</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Limite permitido: "</span> <span class="code-op">.</span> <span class="code-var">LIMITE_CARACTERES</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br>checar_limite()<span class="code-op">;</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!-- Chosen Palette: Array Focus (#1abc9c - Verde Água para Estruturas, #3498db - Azul para Funções de Manipulação) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de Arrays: Funções e Estruturas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #1abc9c; /* Verde Água */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; }
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .indexed-highlight { border-left: 5px solid #2ecc71; } /* Verde para Indexados */
+        .assoc-highlight { border-left: 5px solid #f39c12; } /* Laranja para Associativos */
+        .multi-highlight { border-left: 5px solid #9b59b6; } /* Roxo para Multidimensionais */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Manipulação de Arrays em PHP</h1>
+            <p class="mt-4 text-gray-200 text-lg">Arrays: o contêiner dinâmico para coleções de dados.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Tipos de Arrays e Estruturas</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+
+                <!-- Array Indexado -->
+                <div class="concept-card indexed-highlight">
+                    <h4 class="text-2xl font-bold text-[#2ecc71] mb-2">A. Arrays Indexados (Numéricos)</h4>
+                    <p class="text-sm text-gray-700 mb-2">As chaves (posições) são números inteiros, começando em 0. Usados para listas simples onde a ordem é importante.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Sintaxe Curta</span>
+                        <br><span class="code-var">$lista</span> <span class="code-op">=</span> [<span class="code-string">'A'</span>, <span class="code-string">'B'</span>, <span class="code-string">'C'</span>]<span class="code-op">;</span>
+                        <br><span class="code-comment">// Acesso ao valor 'B'</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$lista</span>[<span class="code-int">1</span>]<span class="code-op">;</span> <span class="code-comment">// Saída: B</span>
+                    </div>
+                </div>
+
+                <!-- Array Associativo -->
+                <div class="concept-card assoc-highlight">
+                    <h4 class="text-2xl font-bold text-[#f39c12] mb-2">B. Arrays Associativos (String Keys)</h4>
+                    <p class="text-sm text-gray-700 mb-2">As chaves são strings (rótulos) que descrevem o valor. Usados para dados estruturados (registros, configurações).</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Chave => Valor</span>
+                        <br><span class="code-var">$usuario</span> <span class="code-op">=</span> [
+                        <br>    <span class="code-string">'nome'</span> <span class="code-op">=&gt;</span> <span class="code-string">'Ana'</span>, 
+                        <br>    <span class="code-string">'idade'</span> <span class="code-op">=&gt;</span> <span class="code-int">25</span>
+                        <br>]<span class="code-op">;</span>
+                        <br><span class="code-comment">// Acesso ao valor 'Ana'</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$usuario</span>[<span class="code-string">'nome'</span>]<span class="code-op">;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Array Multidimensional -->
+            <div class="concept-card multi-highlight bg-purple-50">
+                <h4 class="text-2xl font-bold text-[#9b59b6] mb-2">C. Array Multidimensional (Matriz)</h4>
+                <p class="text-sm text-gray-700 mb-2">Um array que contém outros arrays como seus elementos (array de arrays). Essencial para simular tabelas de dados.</p>
+                <p class="text-sm text-gray-700 font-bold">Acesso:</p>
+                <div class="code-block">
+                    <span class="code-comment">// Acesso: [Linha][Coluna]</span>
+                    <br><span class="code-var">$matriz</span>[<span class="code-int">0</span>][<span class="code-string">'email'</span>]<span class="code-op">;</span> 
+                </div>
+            </div>
+
+            <!-- Funções Essenciais de Manipulação -->
+            <h3 class="text-3xl font-bold text-[#3498db] mt-10 mb-5">II. Funções de Manipulação (Métodos)</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                    <p class="font-bold text-lg text-blue-800">Tamanho/Contagem</p>
+                    <ul class="text-sm list-disc list-inside ml-2">
+                        <li>`count()`: Retorna o número de elementos.</li>
+                    </ul>
+                </div>
+                <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                    <p class="font-bold text-lg text-blue-800">Adicionar/Remover</p>
+                    <ul class="text-sm list-disc list-inside ml-2">
+                        <li>`array_push()`: Adiciona ao final.</li>
+                        <li>`array_pop()`: Remove do final.</li>
+                        <li>`array_splice()`: Remove ou insere em qualquer ponto.</li>
+                    </ul>
+                </div>
+                <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                    <p class="font-bold text-lg text-blue-800">Ordenação</p>
+                    <ul class="text-sm list-disc list-inside ml-2">
+                        <li>`sort()`: Ordena por valor, reinicia índices.</li>
+                        <li>`asort()`: Ordena por valor, mantém chaves associativas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- III. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200 mt-12">
+            <h3 class="text-3xl font-bold text-[#1abc9c] mb-5 border-b pb-2">III. 5 Exercícios para Raciocínio Estrutural</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Gerenciamento de Fila Simples -->
+                <div class="indexed-highlight">
+                    <h4 class="text-xl font-semibold text-[#2ecc71] mb-2">1. Gerenciamento de Fila Simples (<span class="code-reserved">array_push()</span>, <span class="code-reserved">array_pop()</span> e <span class="code-reserved">count()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Adicionar múltiplos pedidos e simular o cancelamento do último pedido na fila.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$pedidos</span> <span class="code-op">=</span> <span class="code-reserved">array</span>(<span class="code-string">'Pedido A'</span>, <span class="code-string">'Pedido B'</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 1. Adiciona Pedido C e D no final</span>
+                        <br><span class="code-reserved">array_push</span>(<span class="code-var">$pedidos</span>, <span class="code-string">'Pedido C'</span>, <span class="code-string">'Pedido D'</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 2. Simula o cancelamento do último (Pedido D)</span>
+                        <br><span class="code-reserved">array_pop</span>(<span class="code-var">$pedidos</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Número de elementos restantes: "</span> <span class="code-op">.</span> <span class="code-reserved">count</span>(<span class="code-var">$pedidos</span>) <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">print_r</span>(<span class="code-var">$pedidos</span>)<span class="code-op">;</span> <span class="code-comment">// Saída: Array ( [0] => Pedido A [1] => Pedido B [2] => Pedido C )</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Catálogo e Ordenação Associativa -->
+                <div class="assoc-highlight">
+                    <h4 class="text-xl font-semibold text-[#f39c12] mb-2">2. Catálogo e Ordenação Associativa (<span class="code-reserved">sort()</span> vs. <span class="code-reserved">asort()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Ordenar o array pelos valores (nomes dos produtos) mantendo a associação com as chaves (códigos).</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-comment">// Código => Produto</span>
+                        <br><span class="code-var">$produtos</span> <span class="code-op">=</span> [<span class="code-int">50</span> <span class="code-op">=&gt;</span> <span class="code-string">'Maçã'</span>, <span class="code-int">10</span> <span class="code-op">=&gt;</span> <span class="code-string">'Pêra'</span>, <span class="code-int">30</span> <span class="code-op">=&gt;</span> <span class="code-string">'Banana'</span>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Se usássemos sort(), perderíamos os códigos: sort($produtos);</span>
+                        <br>
+                        <br><span class="code-comment">// asort() ordena pelo valor, preservando a chave (código)</span>
+                        <br><span class="code-reserved">asort</span>(<span class="code-var">$produtos</span>)<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Catálogo Ordenado por Nome (mantendo código):&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">print_r</span>(<span class="code-var">$produtos</span>)<span class="code-op">;</span> <span class="code-comment">// Saída: Array ( [30] => Banana [50] => Maçã [10] => Pêra )</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Segmentação e Inserção Cirúrgica -->
+                <div class="indexed-highlight">
+                    <h4 class="text-xl font-semibold text-[#2ecc71] mb-2">3. Segmentação e Inserção Cirúrgica (<span class="code-reserved">array_splice()</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Remover e inserir elementos em um ponto específico de um array, forçando a reindexação.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$tarefas</span> <span class="code-op">=</span> [<span class="code-string">'Tarefa A'</span>, <span class="code-string">'Tarefa B'</span>, <span class="code-string">'Tarefa C'</span>, <span class="code-string">'Tarefa D'</span>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Início (índice 1, onde está B), Remover (1 elemento), Substituir (Novo Array)</span>
+                        <br><span class="code-reserved">array_splice</span>(<span class="code-var">$tarefas</span>, <span class="code-int">1</span>, <span class="code-int">1</span>, [
+                        <br>    <span class="code-string">'Tarefa B-1 (nova)'</span>,
+                        <br>    <span class="code-string">'Tarefa B-2 (nova)'</span>
+                        <br>])<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Lista de Tarefas Atualizada:&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">print_r</span>(<span class="code-var">$tarefas</span>)<span class="code-op">;</span>
+                        <br><span class="code-comment">// Saída: Array ( [0] => Tarefa A [1] => Tarefa B-1 (nova) [2] => Tarefa B-2 (nova) [3] => Tarefa C [4] => Tarefa D )</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Mapeamento de Configurações de Veículos (Multidimensional) -->
+                <div class="multi-highlight">
+                    <h4 class="text-xl font-semibold text-[#9b59b6] mb-2">4. Mapeamento de Configurações (Acesso Multidimensional)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Acessar dados em estruturas aninhadas usando o encadeamento de chaves associativas.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$catalogo_carros</span>[<span class="code-string">'Palio'</span>] <span class="code-op">=</span> [
+                        <br>    <span class="code-string">'cor'</span> <span class="code-op">=&gt;</span> <span class="code-string">'azul'</span>,
+                        <br>    <span class="code-string">'opcionais'</span> <span class="code-op">=&gt;</span> [
+                        <br>        <span class="code-string">'tipo'</span> <span class="code-op">=&gt;</span> <span class="code-string">'Ar Cond.'</span>,
+                        <br>        <span class="code-string">'status'</span> <span class="code-op">=&gt;</span> <span class="code-string">'Instalado'</span>
+                        <br>    ]
+                        <br>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Acessando o tipo do opcional (3 níveis de profundidade)</span>
+                        <br><span class="code-var">$tipo_opcional</span> <span class="code-op">=</span> <span class="code-var">$catalogo_carros</span>[<span class="code-string">'Palio'</span>][<span class="code-string">'opcionais'</span>][<span class="code-string">'tipo'</span>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Acessando o status</span>
+                        <br><span class="code-var">$status_opcional</span> <span class="code-op">=</span> <span class="code-var">$catalogo_carros</span>[<span class="code-string">'Palio'</span>][<span class="code-string">'opcionais'</span>][<span class="code-string">'status'</span>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Opcional: "</span> <span class="code-op">.</span> <span class="code-var">$tipo_opcional</span> <span class="code-op">.</span> <span class="code-string">" (Status: "</span> <span class="code-op">.</span> <span class="code-var">$status_opcional</span> <span class="code-op">.</span> <span class="code-string">")"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Simulação de Resultado de Banco de Dados (Iteração 2D) -->
+                <div class="multi-highlight">
+                    <h4 class="text-xl font-semibold text-[#9b59b6] mb-2">5. Simulação de Resultado de Banco de Dados (<span class="code-reserved">foreach</span> Aninhado)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar loops aninhados para iterar sobre linhas e colunas de uma matriz 2D.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-var">$resultados_db</span> <span class="code-op">=</span> [
+                        <br>    [<span class="code-string">'nome'</span> <span class="code-op">=&gt;</span> <span class="code-string">'João'</span>, <span class="code-string">'email'</span> <span class="code-op">=&gt;</span> <span class="code-string">'joao@exemplo.com'</span>],
+                        <br>    [<span class="code-string">'nome'</span> <span class="code-op">=&gt;</span> <span class="code-string">'Maria'</span>, <span class="code-string">'email'</span> <span class="code-op">=&gt;</span> <span class="code-string">'maria@exemplo.com'</span>]
+                        <br>]<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// Loop externo: Itera sobre as LINHAS (cada elemento é um array)</span>
+                        <br><span class="code-reserved">foreach</span> (<span class="code-var">$resultados_db</span> <span class="code-reserved">as</span> <span class="code-var">$indice_linha</span> <span class="code-op">=&gt;</span> <span class="code-var">$linha</span>) {
+                        <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;h3&gt;Usuário #"</span> <span class="code-op">.</span> (<span class="code-var">$indice_linha</span> <span class="code-op">+</span> <span class="code-int">1</span>) <span class="code-op">.</span> <span class="code-string">"&lt;/h3&gt;"</span><span class="code-op">;</span>
+                        <br>
+                        <br>    <span class="code-comment">// Loop interno: Itera sobre as COLUNAS (chave => valor) de cada linha</span>
+                        <br>    <span class="code-reserved">foreach</span> (<span class="code-var">$linha</span> <span class="code-reserved">as</span> <span class="code-var">$coluna</span> <span class="code-op">=&gt;</span> <span class="code-var">$valor</span>) {
+                        <br>        <span class="code-reserved">echo</span> <span class="code-string">"&lt;li&gt;"</span> <span class="code-op">.</span> <span class="code-var">$coluna</span> <span class="code-op">.</span> <span class="code-string">": "</span> <span class="code-op">.</span> <span class="code-var">$valor</span> <span class="code-op">.</span> <span class="code-string">"&lt;/li&gt;"</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>    <span class="code-reserved">echo</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

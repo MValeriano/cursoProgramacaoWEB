@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da POO com PHP</title>
+    <!-- Carrega Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de Fonte Inter (padrão Tailwind) e estilos customizados */
+        html {
+            scroll-behavior: smooth;
+        }
+        .code-block {
+            background-color: #1f2937; /* Cinza escuro/azul para fundo de código */
+            color: #d1d5db; /* Texto claro */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .section-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        .heading-accent {
+            color: #4f46e5; /* Índigo vibrante */
+        }
+        .php-tag {
+            color: #f97316; /* Laranja para tags PHP */
+            font-weight: bold;
+        }
+        .comment {
+            color: #6ee7b7; /* Verde claro para comentários */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        
+        <header class="text-center mb-12 py-8 bg-indigo-600 rounded-xl shadow-xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2">
+                Módulo de Curso
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-indigo-200">
+                Fundamentos da Programação Orientada a Objetos com PHP
+            </h2>
+        </header>
+
+        <!-- Introdução -->
+        <div class="section-card">
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Bem-vindo ao módulo de fundamentos da Programação Orientada a Objetos (POO) com PHP. A POO é um paradigma de programação que revolucionou a forma como construímos software, permitindo o desenvolvimento de sistemas mais complexos, escaláveis e de fácil manutenção. Em contraste com a programação procedural, que se concentra em uma sequência de tarefas ou rotinas, a POO organiza o código em torno de "objetos" do mundo real. Essa abordagem estratégica não apenas estrutura melhor nossas aplicações, mas também promove um alto nível de reuso de código, tornando o processo de desenvolvimento mais ágil e eficiente.
+            </p>
+        </div>
+        
+        <!-- Seção 1: O que é POO? -->
+        <div class="section-card">
+            <h3 class="text-3xl font-bold mb-4 heading-accent">1.1. O que é POO?</h3>
+            <p class="mb-4">
+                Em sua essência, a Programação Orientada a Objetos é um modelo que organiza o software em torno de dados, ou "objetos", em vez de se concentrar apenas em funções e lógica. Cada objeto é uma entidade autocontida que consiste tanto em dados (atributos) quanto em procedimentos (métodos) para manipular esses dados.
+            </p>
+            <p class="mb-4 font-semibold text-lg">
+                Para tornar o conceito mais acessível, vamos usar uma analogia do mundo real: a fabricação de um carro.
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                <li>A planta de engenharia de um carro é como uma Classe. Ela define todas as especificações: cor, modelo, potência do motor, funcionalidades do painel, etc. É um modelo que contém todas as informações necessárias para construir um.</li>
+                <li>Os carros reais fabricados a partir dessa planta são como os Objetos. Cada carro é uma instância concreta da planta. Ele possui as características (atributos) definidas na planta, mas tem seu próprio estado (um carro pode ser azul, outro vermelho; um pode ter 10km rodados, outro 50.000km).</li>
+            </ul>
+            <p class="mt-4">
+                A POO nos permite modelar entidades complexas do mundo real de forma intuitiva dentro do nosso código.
+            </p>
+
+            <h3 class="text-3xl font-bold mt-8 mb-4 heading-accent">1.2. Por que usar POO em PHP?</h3>
+            <p class="mb-4">
+                Adotar a POO em projetos PHP é uma decisão estratégica que traz inúmeros benefícios, especialmente para aplicações que precisam crescer e evoluir. A principal vantagem é a capacidade de construir sistemas mais organizados, reutilizáveis e fáceis de manter.
+            </p>
+            <p class="mb-4">
+                Com mais de 78% dos sites conhecidos na internet utilizando PHP como sua linguagem de back-end, dominar a POO se torna uma habilidade crucial e indispensável para qualquer desenvolvedor web profissional. Agora que entendemos a importância da POO, vamos mergulhar nos seus blocos de construção essenciais: as classes e os objetos.
+            </p>
+        </div>
+
+        <!-- Seção 2: Blocos Fundamentais: Classes e Objetos -->
+        <div class="section-card">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-purple-700">2. Blocos Fundamentais: Classes e Objetos</h2>
+            
+            <h3 class="text-2xl font-bold mb-3 text-purple-600">2.1. Definindo uma Classe</h3>
+            <p class="mb-3">
+                Uma Classe é um modelo ou um molde utilizado para criar objetos. Ela agrupa um conjunto de atributos (propriedades) e métodos (funcionalidades). Por convenção, nomes de classes em PHP utilizam PascalCase.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+
+class Produto
+{
+    public $codigo;
+    public $descricao;
+    public $preco;
+    public $quantidade;
+}
+<span class="php-tag">?&gt;</span></code></pre>
+            <p class="mt-3 text-sm text-gray-500 italic">
+                Nota do Educador: Usamos os modificadores de acesso explícitos (public, private, protected) em vez da sintaxe antiga <code class="bg-gray-100 p-0.5 rounded">var</code>.
+            </p>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-purple-600">2.2. Criando um Objeto</h3>
+            <p class="mb-3">
+                Um Objeto é uma instância concreta de uma classe. Para criar (instanciar) um objeto, utilizamos o operador <code class="bg-gray-100 p-0.5 rounded">new</code>. Para acessar suas propriedades, usamos o operador de objeto <code class="bg-gray-100 p-0.5 rounded">-&gt;</code>.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+// Supondo que a classe Produto já foi incluída com include_once 'Produto.php';
+
+// cria um objeto (instancia a classe)
+$produto1 = new Produto();
+
+// atribui valores às propriedades do objeto
+$produto1->codigo = 4001;
+$produto1->descricao = 'CD - The Best of Eric Clapton';
+<span class="php-tag">?&gt;</span></code></pre>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-purple-600">2.3. Propriedades e Métodos</h3>
+            <p class="mb-3">
+                Propriedades (variáveis internas) definem o estado. Métodos (funções internas) definem o comportamento. Para acessar as propriedades do próprio objeto de dentro de um método, usamos a pseudovariável <code class="bg-gray-100 p-0.5 rounded">$this</code>.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+
+class Produto
+{
+    // ... propriedades ...
+
+    public function imprimeEtiqueta()
+    {
+        print 'Código: ' . $this->codigo . "\n";
+        print 'Descrição: ' . $this->descricao . "\n";
+    }
+}
+<span class="php-tag">?&gt;</span></code></pre>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-purple-600">2.4. O Método Construtor</h3>
+            <p class="mb-3">
+                O Construtor (<code class="bg-gray-100 p-0.5 rounded">__construct</code>) é executado automaticamente ao criar o objeto, sendo ideal para inicializar as propriedades.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+
+class Produto
+{
+    public $codigo;
+    // ... outras propriedades ...
+
+    public function __construct($codigo, $descricao, $preco, $quantidade)
+    {
+        $this->codigo = $codigo;
+        $this->descricao = $descricao;
+        $this->preco = $preco;
+        $this->quantidade = $quantidade;
+    }
+    
+    // ... método imprimeEtiqueta() ...
+}
+<span class="php-tag">?&gt;</span></code></pre>
+        </div>
+        
+        <!-- Seção 3: Os 4 Pilares da POO -->
+        <div class="section-card">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-indigo-700">3. Os 4 Pilares da POO</h2>
+            <p class="mb-6">
+                Os quatro pilares — Encapsulamento, Herança, Polimorfismo e Abstração — promovem um código mais seguro, flexível e reutilizável.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-3 text-indigo-600">3.1. Encapsulamento: Protegendo Seus Dados</h3>
+            <p class="mb-3">
+                Agrupa dados e métodos e restringe o acesso direto. Utiliza Modificadores de Acesso:
+                <ul class="list-disc list-inside ml-4 mt-2">
+                    <li><code class="bg-gray-100 p-0.5 rounded">public</code>: Acessível de qualquer lugar.</li>
+                    <li><code class="bg-gray-100 p-0.5 rounded">private</code>: Acessível apenas dentro da própria classe.</li>
+                    <li><code class="bg-gray-100 p-0.5 rounded">protected</code>: Acessível pela própria classe e por classes filhas.</li>
+                </ul>
+            </p>
+            <p class="mt-3">
+                Usamos Getters (obtêm) e Setters (definem) para mediar o acesso.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+
+class Produto
+{
+    private $codigo; <span class="comment">// Propriedade privada</span>
+    // ...
+
+    public function setPreco($novoPreco)
+    {
+        <span class="comment">// Lógica de validação no Setter</span>
+        if (is_numeric($novoPreco) && $novoPreco > 0) {
+            $this->preco = $novoPreco;
+        }
+    }
+}
+<span class="php-tag">?&gt;</span></code></pre>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-indigo-600">3.2. Herança: Reutilizando Código</h3>
+            <p class="mb-3">
+                Permite que uma classe filha herde atributos e métodos de uma classe pai, usando a palavra-chave <code class="bg-gray-100 p-0.5 rounded">extends</code>. Promove reuso de código e cria uma hierarquia "é um tipo de".
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+<span class="comment">// ProdutoFisico.php (herda de Produto)</span>
+class ProdutoFisico <span class="php-tag">extends</span> Produto
+{
+    private $pesoKg;
+
+    public function __construct(..., $pesoKg)
+    {
+        <span class="comment">// Chama o construtor da classe pai</span>
+        parent::__construct(..., $categoria);
+        $this->pesoKg = $pesoKg;
+    }
+}
+<span class="php-tag">?&gt;</span></code></pre>
+            
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-indigo-600">3.3. Polimorfismo: Muitas Formas de Agir</h3>
+            <p class="mb-3">
+                A capacidade de objetos de diferentes classes responderem à mesma chamada de método de maneiras específicas. A classe filha pode redefinir (override) um método herdado da classe pai.
+            </p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+<span class="comment">// Dentro da classe ProdutoFisico</span>
+public function imprimeEtiqueta()
+{
+    print '--- Produto Físico ---' . "\n";
+    print 'Peso: ' . $this->pesoKg . " Kg\n";
+}
+
+<span class="comment">// Dentro da classe ProdutoDigital</span>
+public function imprimeEtiqueta()
+{
+    print '--- Produto Digital ---' . "\n";
+    print 'Link para Download: ' . $this->linkDownload . "\n";
+}
+<span class="php-tag">?&gt;</span></code></pre>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-indigo-600">3.4. Abstração: Foco no Essencial</h3>
+            <p class="mb-3">
+                Oculta detalhes de implementação, expondo apenas a funcionalidade essencial. Implementada via Interfaces (contratos) e Classes Abstratas (modelos não instanciáveis).
+            </p>
+            <ul class="list-disc list-inside ml-4 mt-2 mb-4">
+                <li><strong class="font-semibold">Interface:</strong> Define *quais* métodos devem existir (<code class="bg-gray-100 p-0.5 rounded">interface VendavelInterface</code>).</li>
+                <li><strong class="font-semibold">Classe Abstrata:</strong> Não pode ser instanciada e pode definir métodos abstratos (contratos obrigatórios para filhas).</li>
+            </ul>
+            
+            <p class="font-semibold mb-2">Exemplo de Classe Abstrata:</p>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+<span class="comment">// Produto.php (versão final da classe base)</span>
+
+<span class="php-tag">abstract</span> class Produto <span class="php-tag">implements</span> VendavelInterface
+{
+    // ... propriedades e construtor ...
+
+    <span class="comment">// Método abstrato: As filhas são obrigadas a implementá-lo</span>
+    <span class="php-tag">abstract</span> public function imprimeEtiqueta();
+}
+<span class="php-tag">?&gt;</span></code></pre>
+            
+        </div>
+        
+        <!-- Seção 4: Consolidando o Exemplo Prático -->
+        <div class="section-card">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-green-700">4. Consolidando o Exemplo Prático</h2>
+            <p class="mb-4">
+                Abaixo, a estrutura de arquivos e o script de execução que une todos os pilares da POO.
+            </p>
+            
+            <h4 class="text-xl font-bold mb-3 text-green-600">4.1. Código Final das Classes (Resumo)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Interface -->
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p class="font-mono text-sm text-gray-700">VendavelInterface.php</p>
+                    <pre class="code-block p-2"><code class="language-php">interface VendavelInterface
+{
+    public function getPreco();
+    public function setPreco($novoPreco);
+}</code></pre>
+                </div>
+                <!-- Produto Abstrato -->
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p class="font-mono text-sm text-gray-700">Produto.php (Abstract)</p>
+                    <pre class="code-block p-2"><code class="language-php">abstract class Produto implements VendavelInterface
+{
+    private $preco;
+    // ... construtor ...
+    public function setPreco($novoPreco) { /* ... validação ... */ }
+    abstract public function imprimeEtiqueta();
+}</code></pre>
+                </div>
+                <!-- ProdutoFisico -->
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p class="font-mono text-sm text-gray-700">ProdutoFisico.php (Herança)</p>
+                    <pre class="code-block p-2"><code class="language-php">class ProdutoFisico extends Produto
+{
+    // ...
+    public function imprimeEtiqueta()
+    {
+        print '--- Produto Físico ---' . "\n";
+        // ... imprime peso ...
+    }
+}</code></pre>
+                </div>
+                <!-- ProdutoDigital -->
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p class="font-mono text-sm text-gray-700">ProdutoDigital.php (Polimorfismo)</p>
+                    <pre class="code-block p-2"><code class="language-php">class ProdutoDigital extends Produto
+{
+    // ...
+    public function imprimeEtiqueta()
+    {
+        print '--- Produto Digital ---' . "\n";
+        // ... imprime link ...
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold mt-6 mb-3 text-green-600">4.2. Colocando Tudo em Ação (index.php)</h4>
+            <pre class="code-block"><code class="language-php"><span class="php-tag">&lt;?php</span>
+<span class="comment">// Gerenciamento de dependências</span>
+require_once 'VendavelInterface.php';
+require_once 'Categoria.php';
+// ... outros requires ...
+
+// Criação de categorias
+$catLivros = new Categoria('Livros');
+
+// Instanciação de objetos
+$livro = new ProdutoFisico(101, 'PHP para Iniciantes', 59.90, $catLivros, 0.8);
+$ebook = new ProdutoDigital(202, 'PHP Avançado', 39.90, $catSoftware, 'http://download.site/php-avancado');
+
+// Demonstração do Polimorfismo
+echo "Imprimindo etiquetas:\n\n";
+$livro->imprimeEtiqueta(); <span class="comment">// Chama a versão Física</span>
+$ebook->imprimeEtiqueta(); <span class="comment">// Chama a versão Digital</span>
+
+// Demonstração do Encapsulamento
+echo "\n--- Testando encapsulamento ---\n";
+echo "Preço atual do livro: R$ " . $livro->getPreco() . "\n";
+$livro->setPreco(55.00); <span class="comment">// Alteração permitida</span>
+$livro->setPreco(-10); <span class="comment">// Alteração inválida (ignora)</span>
+echo "Preço após tentativa inválida: R$ " . $livro->getPreco() . "\n";
+<span class="php-tag">?&gt;</span></code></pre>
+        </div>
+        
+        <!-- Seção 5: Boas Práticas e Conclusão -->
+        <div class="section-card">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-red-700">5. Boas Práticas e Dicas Finais</h2>
+
+            <h3 class="text-2xl font-bold mb-3 text-red-600">5.1. Nomenclatura e Convenções</h3>
+            <ul class="list-disc list-inside ml-4 space-y-2">
+                <li><strong class="font-semibold">Nomes de Classes:</strong> Utilize PascalCase (ex: <code class="bg-gray-100 p-0.5 rounded">ProdutoDigital</code>).</li>
+                <li><strong class="font-semibold">Nomes de Métodos e Propriedades:</strong> Utilize camelCase (ex: <code class="bg-gray-100 p-0.5 rounded">getPreco()</code>, <code class="bg-gray-100 p-0.5 rounded">$nomeDoProduto</code>).</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-red-600">5.2. Organização do Código</h3>
+            <ul class="list-disc list-inside ml-4 space-y-2">
+                <li><strong class="font-semibold">Um Arquivo por Classe:</strong> Salve cada classe ou interface em seu próprio arquivo (ex: <code class="bg-gray-100 p-0.5 rounded">ProdutoDigital.php</code>).</li>
+                <li><strong class="font-semibold">Gerenciamento de Dependências:</strong> Utilize <code class="bg-gray-100 p-0.5 rounded">require_once</code> para carregar os arquivos de classe no início do script.</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold mt-6 mb-3 text-red-600">5.3. Conclusão do Módulo</h3>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Parabéns! Você concluiu este módulo introdutório sobre os fundamentos da Programação Orientada a Objetos em PHP. Você aprendeu os conceitos essenciais de classes, objetos e os quatro pilares que formam a base para a construção de software robusto e escalável.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-3">
+                Lembre-se de que a maestria em POO vem com a prática contínua. Encorajamos você a aplicar esses conceitos em seus próprios projetos e a explorar como frameworks modernos de PHP utilizam esses princípios em larga escala.
+            </p>
+        </div>
+
+        <footer class="text-center mt-10 py-4 text-gray-500 text-sm">
+            &copy; Módulo de Fundamentos da POO com PHP.
+        </footer>
+    </div>
+</body>
+</html>

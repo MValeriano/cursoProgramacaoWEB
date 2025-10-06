@@ -1,0 +1,272 @@
+<!-- Chosen Palette: OOP Pillars Focus (#34495e - Escuro para Estrutura, #e74c3c - Vermelho para Private, #2980b9 - Azul para Protected/Herança) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilares de POO: Visibilidade e Herança</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #34495e; /* Escuro Estrutural */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; } /* Verde/Amarelo para Variáveis */
+        .code-reserved { color: #ff79c6; font-weight: bold; } /* Rosa para Palavras-chave */
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .vis-public { border-left: 5px solid #2ecc71; } /* Verde para Public */
+        .vis-private { border-left: 5px solid #e74c3c; } /* Vermelho para Private */
+        .vis-protected { border-left: 5px solid #2980b9; } /* Azul para Protected */
+        .heranca-highlight { border-bottom: 3px solid #f39c12; } /* Laranja para Herança */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">POO Avançado: Encapsulamento e Herança</h1>
+            <p class="mt-4 text-gray-300 text-lg">Controlando o acesso aos dados (Visibilidade) e Reutilizando estruturas (Herança).</p>
+        </header>
+
+        <!-- I. Explicação Didática dos Conceitos de POO -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Membros e Visibilidade (Encapsulamento)</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+
+                <!-- Public -->
+                <div class="concept-card vis-public">
+                    <h4 class="text-xl font-bold text-[#2ecc71] mb-2"><span class="code-reserved">public</span> (Público)</h4>
+                    <p class="text-sm text-gray-700">Acessível por: Própria Classe, Classes Filhas e Código Externo. (Padrão)</p>
+                </div>
+
+                <!-- Private -->
+                <div class="concept-card vis-private">
+                    <h4 class="text-xl font-bold text-[#e74c3c] mb-2"><span class="code-reserved">private</span> (Privado)</h4>
+                    <p class="text-sm text-gray-700">Acessível por: APENAS pela Própria Classe. Ideal para dados internos críticos.</p>
+                </div>
+
+                <!-- Protected -->
+                <div class="concept-card vis-protected">
+                    <h4 class="text-xl font-bold text-[#2980b9] mb-2"><span class="code-reserved">protected</span> (Protegido)</h4>
+                    <p class="text-sm text-gray-700">Acessível por: Própria Classe e Classes Filhas, mas não pelo código externo.</p>
+                </div>
+            </div>
+
+            <!-- This e Acesso -->
+            <div class="concept-card bg-gray-100 border-l-4 border-gray-500 mb-6">
+                <h4 class="text-xl font-bold text-gray-800 mb-2">$this e Acesso aos Membros</h4>
+                <p class="text-sm text-gray-700">A pseudo-variável $this representa o objeto atual. É usada internamente nos métodos para acessar as propriedades e outros métodos do objeto usando o operador <span class="code-reserved">-></span> (seta).</p>
+            </div>
+
+            <!-- Herança -->
+            <div class="concept-card heranca-highlight p-6 bg-yellow-50">
+                <h4 class="text-2xl font-bold text-[#f39c12] mb-2">Herança (<span class="code-reserved">extends</span>)</h4>
+                <p class="text-sm text-gray-700 mb-2">Permite que uma Classe-Filha receba todos os membros da Classe-Pai. Reutilização de código e estruturação de hierarquia.</p>
+                <div class="code-block">
+                    <span class="code-comment">// A classe Estagiario herda de Funcionario:</span>
+                    <br><span class="code-reserved">class</span> Funcionario { <span class="code-comment">/* ... */</span> }
+                    <br><span class="code-reserved">class</span> Estagiario <span class="code-reserved">extends</span> Funcionario { <span class="code-comment">/* ... */</span> }
+                </div>
+            </div>
+
+        </section>
+
+        <!-- II. Exercícios Estruturais POO -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5 border-b pb-2">II. 5 Exercícios para Raciocínio Estrutural</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Manipulação de Estado Interno com $this -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">1. Manipulação de Estado Interno com <span class="code-reserved">$this</span></h4>
+                    <p class="text-sm text-gray-700 mb-3">Garantir que o método interaja corretamente com a propriedade $TempoAtual da instância.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Relogio {
+                        <br>    <span class="code-reserved">public</span> <span class="code-var">$TempoAtual</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span>
+                        <br>    
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> IncrementarMinuto() {
+                        <br>        <span class="code-comment">// Usa $this para modificar o TempoAtual do objeto em questão</span>
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">TempoAtual</span> <span class="code-op">+=</span> <span class="code-int">1</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> ObterTempo() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">TempoAtual</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$meu_relogio</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Relogio<span class="code-op">;</span>
+                        <br><span class="code-reserved">for</span> (<span class="code-var">$i</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span> <span class="code-var">$i</span> <span class="code-op">&lt;</span> <span class="code-int">45</span><span class="code-op">;</span> <span class="code-var">$i</span><span class="code-op">++</span>) {
+                        <br>    <span class="code-var">$meu_relogio</span><span class="code-op">-></span>IncrementarMinuto()<span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Tempo Decorrido: "</span> <span class="code-op">.</span> <span class="code-var">$meu_relogio</span><span class="code-op">-></span>ObterTempo()<span class="code-op">;</span> <span class="code-comment">// Saída: 45</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Proteção de Dados Críticos (Visibilidade private) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#e74c3c] mb-2">2. Encapsulamento com Visibilidade <span class="code-reserved">private</span> (Getters/Setters)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Impedir acesso direto ao $Salario, forçando o uso de métodos para aplicar regras de validação.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Pessoa {
+                        <br>    <span class="code-reserved">public</span> <span class="code-var">$Nome</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">private</span> <span class="code-var">$Salario</span><span class="code-op">;</span> <span class="code-comment">// DADO CRÍTICO: SÓ ACESSÍVEL AQUI DENTRO</span>
+                        <br>    
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> SetSalario(<span class="code-var">$valor</span>) {
+                        <br>        <span class="code-reserved">if</span> (<span class="code-reserved">is_numeric</span>(<span class="code-var">$valor</span>) <span class="code-op">&amp;&amp;</span> <span class="code-var">$valor</span> <span class="code-op">></span> <span class="code-int">0</span>) {
+                        <br>            <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Salario</span> <span class="code-op">=</span> <span class="code-var">$valor</span><span class="code-op">;</span>
+                        <br>            <span class="code-reserved">echo</span> <span class="code-string">"Salário definido corretamente. &lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>        } <span class="code-reserved">else</span> {
+                        <br>            <span class="code-reserved">echo</span> <span class="code-string">"Erro: Salário inválido. &lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>        }
+                        <br>    }
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> GetSalario() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Salario</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$pessoa</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pessoa<span class="code-op">;</span>
+                        <br><span class="code-var">$pessoa</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">=</span> <span class="code-string">'João'</span><span class="code-op">;</span> <span class="code-comment">// OK - Public</span>
+                        <br><span class="code-var">$pessoa</span><span class="code-op">-></span>SetSalario(<span class="code-int">10000</span>)<span class="code-op">;</span> <span class="code-comment">// OK - Usa o Setter com validação</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Nome: "</span> <span class="code-op">.</span> <span class="code-var">$pessoa</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">.</span> <span class="code-string">" | Salário Lido: "</span> <span class="code-op">.</span> <span class="code-var">$pessoa</span><span class="code-op">-></span>GetSalario() <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-comment">// Tentar $pessoa->Salario = 10000; geraria um Erro Fatal do PHP.</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Constantes de Classe e Regras de Negócio -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">3. Constantes de Classe (<span class="code-reserved">const</span> e <span class="code-reserved">self::</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Definir valores fixos para toda a classe e usá-los em métodos para aplicar regras de negócio.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Configuracao {
+                        <br>    <span class="code-reserved">const</span> PI <span class="code-op">=</span> <span class="code-float">3.14159</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">const</span> MAX_DESCONTO_PERCENTUAL <span class="code-op">=</span> <span class="code-int">15</span><span class="code-op">;</span>
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> CalcularDesconto(<span class="code-var">$valor</span>, <span class="code-var">$percentual</span>) {
+                        <br>        <span class="code-comment">// Acesso interno com self::</span>
+                        <br>        <span class="code-reserved">if</span> (<span class="code-var">$percentual</span> <span class="code-op">></span> <span class="code-reserved">self</span><span class="code-op">::</span>MAX_DESCONTO_PERCENTUAL) {
+                        <br>            <span class="code-var">$percentual</span> <span class="code-op">=</span> <span class="code-reserved">self</span><span class="code-op">::</span>MAX_DESCONTO_PERCENTUAL<span class="code-op">;</span>
+                        <br>        }
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$valor</span> <span class="code-op">*</span> (<span class="code-int">1</span> <span class="code-op">-</span> (<span class="code-var">$percentual</span> <span class="code-op">/</span> <span class="code-int">100</span>))<span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// Acesso externo com NomeDaClasse::</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"O valor de PI é: "</span> <span class="code-op">.</span> Configuracao<span class="code-op">::</span>PI <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$config</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Configuracao<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Valor com 20% de desconto (limitado a 15%): "</span> <span class="code-op">.</span> <span class="code-var">$config</span><span class="code-op">-></span>CalcularDesconto(<span class="code-int">100</span>, <span class="code-int">20</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Herança e Reutilização de Base -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2980b9] mb-2">4. Herança, Visibilidade <span class="code-reserved">protected</span> e Sobrescrita</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar <span class="code-reserved">extends</span> para herdar e <span class="code-reserved">protected</span> para permitir acesso da classe filha a um membro privado da classe pai.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Funcionario {
+                        <br>    <span class="code-reserved">public</span> <span class="code-var">$Nome</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">protected</span> <span class="code-var">$SalarioBase</span><span class="code-op">;</span> <span class="code-comment">// Acessível em filhas</span>
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> SetSalarioBase(<span class="code-var">$base</span>) {
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">SalarioBase</span> <span class="code-op">=</span> <span class="code-var">$base</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> CalcularSalarioBruto() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">SalarioBase</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> Estagiario <span class="code-reserved">extends</span> Funcionario {
+                        <br>    <span class="code-comment">// Sobrescreve o método do pai para aplicar uma regra específica</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> CalcularSalarioBruto() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">SalarioBase</span> <span class="code-op">*</span> <span class="code-float">1.12</span><span class="code-op">;</span> <span class="code-comment">// Acessa $SalarioBase (protected)</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$pedrinho</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Estagiario<span class="code-op">;</span>
+                        <br><span class="code-var">$pedrinho</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">=</span> <span class="code-string">'Pedrinho'</span><span class="code-op">;</span>
+                        <br><span class="code-var">$pedrinho</span><span class="code-op">-></span>SetSalarioBase(<span class="code-int">1000</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Salário de Estagiário: R$"</span> <span class="code-op">.</span> <span class="code-var">$pedrinho</span><span class="code-op">-></span>CalcularSalarioBruto()<span class="code-op">;</span> <span class="code-comment">// Saída: R$1120</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Herança Profunda e Regras Específicas -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2980b9] mb-2">5. Herança, Constantes e <span class="code-reserved">parent::</span> (Estendendo o Pai)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Sobrescrever um método, mas chamar a funcionalidade original da classe-pai antes de aplicar a regra filha.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Conta {
+                        <br>    <span class="code-reserved">protected</span> <span class="code-var">$Saldo</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> Depositar(<span class="code-var">$quantia</span>) { <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span> <span class="code-op">+=</span> <span class="code-var">$quantia</span><span class="code-op">;</span> }
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> Retirar(<span class="code-var">$quantia</span>) {
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span> <span class="code-op">-=</span> <span class="code-var">$quantia</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> ObterSaldo() { <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span><span class="code-op">;</span> }
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> ContaCorrente <span class="code-reserved">extends</span> Conta {
+                        <br>    <span class="code-reserved">const</span> TAXA_RETIRO <span class="code-op">=</span> <span class="code-int">5</span><span class="code-op">;</span>
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> Retirar(<span class="code-var">$quantia</span>) {
+                        <br>        <span class="code-var">$total_debito</span> <span class="code-op">=</span> <span class="code-var">$quantia</span> <span class="code-op">+</span> <span class="code-reserved">self</span><span class="code-op">::</span>TAXA_RETIRO<span class="code-op">;</span>
+                        <br>        <span class="code-reserved">if</span> (<span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span> <span class="code-op">>=</span> <span class="code-var">$total_debito</span>) {
+                        <br>            <span class="code-comment">// 1. Chama o método original do Pai para debitar a quantia base</span>
+                        <br>            <span class="code-reserved">parent</span><span class="code-op">::</span>Retirar(<span class="code-var">$quantia</span>)<span class="code-op">;</span>
+                        <br>            <span class="code-comment">// 2. Aplica a regra adicional da classe filha</span>
+                        <br>            <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span> <span class="code-op">-=</span> <span class="code-reserved">self</span><span class="code-op">::</span>TAXA_RETIRO<span class="code-op">;</span>
+                        <br>            <span class="code-reserved">echo</span> <span class="code-string">"Retirada efetuada (Taxa: R$5) &lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>        } <span class="code-reserved">else</span> {
+                        <br>            <span class="code-reserved">echo</span> <span class="code-string">"Saldo Insuficiente. &lt;br&gt;"</span><span class="code-op">;</span>
+                        <br>        }
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$minha_conta</span> <span class="code-op">=</span> <span class="code-reserved">new</span> ContaCorrente<span class="code-op">;</span>
+                        <br><span class="code-var">$minha_conta</span><span class="code-op">-></span>Depositar(<span class="code-int">100</span>)<span class="code-op">;</span>
+                        <br><span class="code-var">$minha_conta</span><span class="code-op">-></span>Retirar(<span class="code-int">50</span>)<span class="code-op">;</span> <span class="code-comment">// Total debitado: 50 + 5 = 55</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Saldo Atual: "</span> <span class="code-op">.</span> <span class="code-var">$minha_conta</span><span class="code-op">-></span>ObterSaldo()<span class="code-op">;</span> <span class="code-comment">// Saída: 45</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

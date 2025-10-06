@@ -1,0 +1,194 @@
+<!-- Chosen Palette: Modularization Focus (#00796B - Ciano Escuro/Verde Água, #FFB300 - Amarelo para Alerta) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modularização: require, include e _once</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #00796B; /* Ciano Escuro Principal */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #FFB300; /* Amarelo de Alerta */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #CDDC39; }
+        .code-reserved { color: #FF8C00; font-weight: bold; }
+        .code-string { color: #FFC107; }
+        .code-op { color: #FF79C6; }
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Conceito -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Modularização de Código em PHP</h1>
+            <p class="mt-4 text-gray-200 text-lg">Usando <span class="font-bold">require</span>, <span class="font-bold">include</span> e suas variantes para organizar e reutilizar definições.</p>
+        </header>
+
+        <!-- I. Conceitos de Inclusão e Práticas Recomendadas -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#00796B] mb-5">I. Inclusão de Arquivos e Tratamento de Erro</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- require vs. include -->
+                <div class="concept-card border-l-8 border-red-600">
+                    <h4 class="text-xl font-bold text-red-600 mb-2">require (CRÍTICO)</h4>
+                    <p class="text-sm text-gray-700">Usado para arquivos essenciais (conexão DB, classes base). Se o arquivo falhar, gera Fatal Error e para a execução imediatamente.</p>
+                </div>
+
+                <!-- include vs. require -->
+                <div class="concept-card border-l-8 border-yellow-600">
+                    <h4 class="text-xl font-bold text-yellow-600 mb-2">include (OPCIONAL)</h4>
+                    <p class="text-sm text-gray-700">Usado para arquivos opcionais (funções utilitárias). Se o arquivo falhar, gera apenas Warning e o script continua a ser executado.</p>
+                </div>
+
+                <!-- _once -->
+                <div class="concept-card border-l-8 border-[#00796B]">
+                    <h4 class="text-xl font-bold text-[#00796B] mb-2">require_once / include_once</h4>
+                    <p class="text-sm text-gray-700">Garante que o arquivo seja incluído e avaliado apenas uma vez. Essencial para evitar a Redefinição de classes, funções e constantes.</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-gray-100 border-l-4 border-gray-500 rounded-md">
+                <h4 class="text-xl font-bold text-gray-800 mb-2">Prática Recomendada: Omissão da Tag de Fechamento (?>)</h4>
+                <p class="text-sm text-gray-700">Em arquivos que contêm somente código PHP (classes, configurações, handlers), a tag de fechamento `<span class="code-reserved">?&gt;</span>` deve ser OMITIDA.</p>
+                <p class="text-xs text-gray-600 mt-1">Motivo: Evita a saída acidental de espaços ou quebras de linha após o fechamento, o que pode corromper cabeçalhos HTTP (Sessões, Cookies).</p>
+            </div>
+        </section>
+
+        <!-- II. Exercícios para Raciocínio Estrutural -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#FFB300] mb-5 border-b pb-2">II. 5 Exercícios de Raciocínio Estrutural</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Gerenciamento de Dependências Críticas -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00796B] mb-2">1. Gerenciamento de Dependências Críticas</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar `require` para dependências cruciais (`config.php`) e `include` para opcionais (`mensagens_uteis.php`).</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// index.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-comment">// 1. Conexão crítica (require -> Fatal Error se falhar)</span>
+                        <br><span class="code-reserved">require</span> <span class="code-string">'config.php'</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-comment">// 2. Função opcional (include -> Warning, mas o script continua)</span>
+                        <br><span class="code-reserved">include</span> <span class="code-string">'mensagens_uteis.php'</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Sistema carregado (Constantes do DB em config.php são essenciais)."</span><span class="code-op">;</span>
+                        <br><span class="code-comment">// ... O código pode continuar a rodar mesmo sem mensagens_uteis.php ...</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: O Desafio da Reutilização Segura -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00796B] mb-2">2. O Desafio da Reutilização Segura (Evitando Redefinição)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Impedir a redeclaração de funções ou classes usando o sufixo <span class="code-reserved">_once</span>.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// funcoes.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">function</span> calcula_imc(<span class="code-var">$p</span>, <span class="code-var">$a</span>) { <span class="code-reserved">return</span> <span class="code-var">$p</span> / (<span class="code-var">$a</span> <span class="code-op">*</span> <span class="code-var">$a</span>)<span class="code-op">;</span> }
+                        <br>
+                        <br><span class="text-sm text-gray-400">// relatorio.php</span>
+                        <br><span class="code-reserved">require_once</span> <span class="code-string">'funcoes.php'</span><span class="code-op">;</span> <span class="code-comment">// Inclui 1/2</span>
+                        <br><span class="code-reserved">require_once</span> <span class="code-string">'funcoes.php'</span><span class="code-op">;</span> <span class="code-comment">// Ignorado, prevenindo Fatal Error de redefinição</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"IMC calculado: "</span> <span class="code-op">.</span> calcula_imc(<span class="code-int">75</span>, <span class="code-int">1.75</span>)<span class="code-op">;</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Padrões de Design e Classes -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00796B] mb-2">3. Padrões de Design em OO (classes)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Em POO, use sempre `_once` para carregar classes e evitar redefinições acidentais.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// classes/Pessoa.class.php (sem tag de fechamento)</span> <br>
+                        &lt;?php <span class="code-reserved">class</span> Pessoa { <span class="code-comment">//...</span> }
+                        <br>
+                        <br><span class="text-sm text-gray-400">// objetos.php</span>
+                        <br><span class="code-reserved">require_once</span> <span class="code-string">'classes/Pessoa.class.php'</span><span class="code-op">;</span> <span class="code-comment">// Necessário para instanciar objetos</span>
+                        <br><span class="code-reserved">require_once</span> <span class="code-string">'classes/Conta.class.php'</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-var">$carlos</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pessoa()<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Classes carregadas com sucesso.";</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Sintaxe Pura e Boas Práticas -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00796B] mb-2">4. Sintaxe Pura e Omissão do Fechamento</h4>
+                    <p class="text-sm text-gray-700 mb-3">Omitindo a tag de fechamento (`?>`) em arquivos puramente PHP para evitar problemas de `Headers Already Sent`.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// dbh.inc.php (ARQUIVO PURO PHP)</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">function</span> conectar_db() {
+                        <br>  <span class="code-comment">// Lógica de conexão com o banco de dados aqui...</span>
+                        <br>  <span class="code-reserved">return</span> <span class="code-reserved">true</span><span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-comment">// NENHUMA TAG DE FECHAMENTO (?>) DEVE SER USADA AQUI.</span>
+                        <br>
+                        <br><span class="text-sm text-gray-400">// index.php</span>
+                        <br><span class="code-reserved">require</span> <span class="code-string">'dbh.inc.php'</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Arquivo de conexão carregado com segurança.";</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Controle de Fluxo Condicional com Inclusão -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#00796B] mb-2">5. Controle de Fluxo Condicional com Inclusão</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usando `if/else` e `file_exists` para carregar o arquivo correto e finalizar o script com uma mensagem personalizada se a dependência falhar.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// index.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$config_carregado</span> <span class="code-op">=</span> <span class="code-reserved">false</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">if</span> (<span class="code-reserved">file_exists</span>(<span class="code-string">'config_dev.php'</span>)) {
+                        <br>    <span class="code-reserved">require</span> <span class="code-string">'config_dev.php'</span><span class="code-op">;</span> <span class="code-comment">// Tenta o ambiente de Desenvolvimento</span>
+                        <br>    <span class="code-var">$config_carregado</span> <span class="code-op">=</span> <span class="code-reserved">true</span><span class="code-op">;</span>
+                        <br>} <span class="code-reserved">elseif</span> (<span class="code-reserved">file_exists</span>(<span class="code-string">'config_prod.php'</span>)) {
+                        <br>    <span class="code-reserved">require</span> <span class="code-string">'config_prod.php'</span><span class="code-op">;</span> <span class="code-comment">// Se falhar, tenta o de Produção</span>
+                        <br>    <span class="code-var">$config_carregado</span> <span class="code-op">=</span> <span class="code-reserved">true</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">if</span> (!<span class="code-var">$config_carregado</span>) {
+                        <br>    <span class="code-reserved">die</span>(<span class="code-string">"ERRO FATAL: Arquivo de configuração não encontrado."</span>)<span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Configuração carregada. Continuação do script...";</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

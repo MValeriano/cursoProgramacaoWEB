@@ -1,0 +1,256 @@
+<!-- Chosen Palette: Advanced OOP Focus (#16a085 - Verde Água para Abstração, #f39c12 - Amarelo/Laranja para Construtor) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO Avançado: Construtor, Abstração e Interfaces</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .header-card {
+            background-color: #16a085; /* Verde Água Escuro */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; }
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .constructor-highlight { border-left: 5px solid #f39c12; } /* Laranja Construtor */
+        .abstract-highlight { border-left: 5px solid #2980b9; } /* Azul Abstração */
+        .interface-highlight { border-left: 5px solid #e74c3c; } /* Vermelho Interface */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">POO Avançado: Inicialização e Contratos</h1>
+            <p class="mt-4 text-gray-200 text-lg">Dominando o ciclo de vida do objeto (Construtor), a imposição de regras (Abstração) e a garantia de funcionalidades (Interfaces).</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#34495e] mb-5">I. Pilares de Estrutura e Comportamento</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+
+                <!-- Construtor -->
+                <div class="concept-card constructor-highlight">
+                    <h4 class="text-2xl font-bold text-[#f39c12] mb-2">1. Constructor (<span class="code-reserved">__construct</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-2">É o método especial executado automaticamente ao instanciar um objeto (`new`). Sua função é inicializar as propriedades com valores válidos, garantindo que o objeto "nasça" com um estado correto.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">function</span> <span class="code-reserved">__construct</span>(<span class="code-var">$nome</span>) {
+                        <br>    <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">=</span> <span class="code-var">$nome</span><span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-var">$p</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pessoa(<span class="code-string">'Ana'</span>)<span class="code-op">;</span>
+                    </div>
+                </div>
+
+                <!-- Abstração -->
+                <div class="concept-card abstract-highlight">
+                    <h4 class="text-2xl font-bold text-[#2980b9] mb-2">2. Abstração (Classes e Métodos)</h4>
+                    <p class="text-sm text-gray-700 mb-2">Foca na estrutura importante, ignorando detalhes iniciais. É usada para definir uma base.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>Classes Abstratas: <span class="code-reserved">abstract class</span>. Não podem ser instanciadas. Servem apenas como pai para herança.</li>
+                        <li>Métodos Abstratos: <span class="code-reserved">abstract function</span>. Não possuem código; obrigam as classes filhas a implementá-los.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Interfaces -->
+            <div class="concept-card interface-highlight p-6 bg-red-50">
+                <h4 class="text-2xl font-bold text-[#e74c3c] mb-2">3. Interfaces (<span class="code-reserved">interface</span> e <span class="code-reserved">implements</span>)</h4>
+                <p class="text-sm text-gray-700 mb-2">Uma Interface define um CONTRATO de métodos que uma classe deve obrigatoriamente fornecer. É como uma promessa de funcionalidade.</p>
+                <div class="code-block">
+                    <span class="code-comment">// Contrato: APENAS ASSINATURAS DE MÉTODOS</span>
+                    <br><span class="code-reserved">interface</span> IConectavel {
+                    <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> conectar()<span class="code-op">;</span>
+                    <br>}
+                    <br>
+                    <br><span class="code-comment">// Implementação: A classe PROMETE cumprir o contrato</span>
+                    <br><span class="code-reserved">class</span> Servidor <span class="code-reserved">implements</span> IConectavel {
+                    <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> conectar() { <span class="code-comment">// Implementação obrigatória</span> }
+                    <br>}
+                </div>
+            </div>
+
+        </section>
+
+        <!-- II. Exercícios Estruturais POO -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#16a085] mb-5 border-b pb-2">II. 5 Exercícios para Raciocínio Estrutural</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Fluxo de Inicialização e Herança com Constructor -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#f39c12] mb-2">1. Constructor em Herança: Chamando o Ancestral (<span class="code-reserved">parent::__construct</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Garantir que a classe-filha inicialize suas próprias propriedades e delegue a inicialização das propriedades herdadas para o construtor da classe-pai.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Veiculo {
+                        <br>    <span class="code-reserved">protected</span> <span class="code-var">$cor</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">protected</span> <span class="code-var">$fabricante</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> __construct(<span class="code-var">$cor</span>, <span class="code-var">$fabricante</span>) {
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">cor</span> <span class="code-op">=</span> <span class="code-var">$cor</span><span class="code-op">;</span>
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">fabricante</span> <span class="code-op">=</span> <span class="code-var">$fabricante</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> ObterFabricante() { <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">fabricante</span><span class="code-op">;</span> }
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> Carro <span class="code-reserved">extends</span> Veiculo {
+                        <br>    <span class="code-reserved">public</span> <span class="code-var">$numeroPortas</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> __construct(<span class="code-var">$cor</span>, <span class="code-var">$fabricante</span>, <span class="code-var">$portas</span>) {
+                        <br>        <span class="code-comment">// Chama o construtor do Pai para inicializar as propriedades herdadas</span>
+                        <br>        <span class="code-reserved">parent</span><span class="code-op">::</span>__construct(<span class="code-var">$cor</span>, <span class="code-var">$fabricante</span>)<span class="code-op">;</span>
+                        <br>        <span class="code-comment">// Inicializa a propriedade própria</span>
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">numeroPortas</span> <span class="code-op">=</span> <span class="code-var">$portas</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$meu_carro</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Carro(<span class="code-string">'Vermelho'</span>, <span class="code-string">'Ford'</span>, <span class="code-int">4</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Fabricante: "</span> <span class="code-op">.</span> <span class="code-var">$meu_carro</span><span class="code-op">-></span>ObterFabricante()<span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Forçando Implementação de Comportamento (Métodos Abstratos) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2980b9] mb-2">2. Abstração e Contrato de Implementação (<span class="code-reserved">abstract</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Criar uma classe-base não instanciável que obriga as classes filhas a definir o comportamento do método ProcessarPagamento().</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">abstract</span> <span class="code-reserved">class</span> MetodoPagamento { <span class="code-comment">// Não pode ser instanciada diretamente</span>
+                        <br>    <span class="code-comment">// Define a assinatura que TODAS as filhas devem ter</span>
+                        <br>    <span class="code-reserved">abstract</span> <span class="code-reserved">public</span> <span class="code-reserved">function</span> ProcessarPagamento(<span class="code-var">$valor</span>)<span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> Pix <span class="code-reserved">extends</span> MetodoPagamento {
+                        <br>    <span class="code-comment">// OBRIGATORIAMENTE implementa o método abstrato</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> ProcessarPagamento(<span class="code-var">$valor</span>) {
+                        <br>        <span class="code-reserved">return</span> <span class="code-string">"Pagamento Pix de R$"</span> <span class="code-op">.</span> <span class="code-var">$valor</span> <span class="code-op">.</span> <span class="code-string">" processado."</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$pag_pix</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pix<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$pag_pix</span><span class="code-op">-></span>ProcessarPagamento(<span class="code-int">50</span>)<span class="code-op">;</span>
+                        <br><span class="code-comment">// Tentar $erro = new MetodoPagamento(); resultaria em Erro Fatal.</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Contratos Múltiplos com Interfaces -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#e74c3c] mb-2">3. Contratos Múltiplos (<span class="code-reserved">interface</span> e <span class="code-reserved">implements</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar Interfaces para impor contratos de funcionalidade (IConectavel e ILogavel) que a classe Servidor deve cumprir.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">interface</span> IConectavel {
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> conectar()<span class="code-op">;</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> desconectar()<span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-reserved">interface</span> ILogavel {
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> registrarLog(<span class="code-var">$mensagem</span>)<span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> Servidor <span class="code-reserved">implements</span> IConectavel, ILogavel { <span class="code-comment">// Cumpre 2 contratos</span>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> conectar() { <span class="code-reserved">return</span> <span class="code-string">"Conectado ao Servidor X."</span><span class="code-op">;</span> }
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> desconectar() { <span class="code-reserved">return</span> <span class="code-string">"Desconectado."</span><span class="code-op">;</span> }
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> registrarLog(<span class="code-var">$mensagem</span>) { <span class="code-reserved">return</span> <span class="code-string">"LOG: "</span> <span class="code-op">.</span> <span class="code-var">$mensagem</span><span class="code-op">;</span> }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$serv</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Servidor<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$serv</span><span class="code-op">-></span>conectar() <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$serv</span><span class="code-op">-></span>registrarLog(<span class="code-string">'Início da sessão'</span>)<span class="code-op">;</span>
+                        <br><span class="code-comment">// Se registrarLog() fosse omitido, PHP geraria um Erro Fatal (Contrato quebrado).</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Verificando a Hierarquia (Ancestralidade) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">4. Verificando Ancestralidade (<span class="code-reserved">get_parent_class</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Utilizar uma função utilitária do PHP para identificar o nome da classe-pai de um objeto, confirmando a hierarquia.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Usuario {}
+                        <br><span class="code-reserved">class</span> Admin <span class="code-reserved">extends</span> Usuario {}
+                        <br><span class="code-reserved">class</span> SuperAdmin <span class="code-reserved">extends</span> Admin {}
+                        <br>
+                        <br><span class="code-reserved">function</span> VerificarHierarquia(<span class="code-var">$objeto_alvo</span>) {
+                        <br>    <span class="code-reserved">return</span> <span class="code-reserved">get_parent_class</span>(<span class="code-var">$objeto_alvo</span>)<span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$super_admin</span> <span class="code-op">=</span> <span class="code-reserved">new</span> SuperAdmin<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-var">$pai_direto</span> <span class="code-op">=</span> VerificarHierarquia(<span class="code-var">$super_admin</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Classe Ancestral de SuperAdmin: "</span> <span class="code-op">.</span> <span class="code-var">$pai_direto</span> <span class="code-op">.</span> <span class="code-string">"&lt;br&gt;"</span><span class="code-op">;</span> <span class="code-comment">// Saída: Admin</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Classe Ancestral de Admin: "</span> <span class="code-op">.</span> <span class="code-reserved">get_parent_class</span>(<span class="code-string">'Admin'</span>)<span class="code-op">;</span> <span class="code-comment">// Saída: Usuario</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Combinando Abstração e Inicialização -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#16a085] mb-2">5. Abstração + Constructor + Método <span class="code-reserved">final</span> (Fluxo de Dados)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Impor a inicialização de dados via construtor (classe abstrata) e proteger o método de exportação final contra sobrescrita (<span class="code-reserved">final</span>).</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">abstract</span> <span class="code-reserved">class</span> FormatoExportacao {
+                        <br>    <span class="code-reserved">protected</span> <span class="code-var">$dados</span><span class="code-op">;</span>
+                        <br>
+                        <br>    <span class="code-reserved">public</span> <span class="code-reserved">function</span> __construct(<span class="code-var">$dados</span>) { <span class="code-comment">// Obriga a inicialização ao nascer</span>
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">dados</span> <span class="code-op">=</span> <span class="code-var">$dados</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>
+                        <br>    <span class="code-reserved">abstract</span> <span class="code-reserved">protected</span> <span class="code-reserved">function</span> GerarSaida()<span class="code-op">;</span> <span class="code-comment">// As filhas implementam a formatação</span>
+                        <br>
+                        <br>    <span class="code-comment">// Final: Não pode ser sobrescrito para garantir a lógica de exportação</span>
+                        <br>    <span class="code-reserved">final</span> <span class="code-reserved">public</span> <span class="code-reserved">function</span> Exportar() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-string">"Processando e Enviando: "</span> <span class="code-op">.</span> <span class="code-var">$this</span><span class="code-op">-></span>GerarSaida()<span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">class</span> ExportacaoXML <span class="code-reserved">extends</span> FormatoExportacao {
+                        <br>    <span class="code-reserved">protected</span> <span class="code-reserved">function</span> GerarSaida() { <span class="code-comment">// Implementação obrigatória</span>
+                        <br>        <span class="code-reserved">return</span> <span class="code-string">"&lt;XML&gt;DADOS_TOTAIS&lt;/XML&gt;"</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$dados_mock</span> <span class="code-op">=</span> [<span class="code-string">'id'</span> <span class="code-op">=&gt;</span> <span class="code-int">1</span>, <span class="code-string">'valor'</span> <span class="code-op">=&gt;</span> <span class="code-int">100</span>]<span class="code-op">;</span>
+                        <br><span class="code-var">$xml_exp</span> <span class="code-op">=</span> <span class="code-reserved">new</span> ExportacaoXML(<span class="code-var">$dados_mock</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$xml_exp</span><span class="code-op">-></span>Exportar()<span class="code-op">;</span>
+                        <br><span class="code-comment">// Tentar sobrescrever Exportar() geraria um Erro Fatal.</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

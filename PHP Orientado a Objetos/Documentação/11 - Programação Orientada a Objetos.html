@@ -1,0 +1,224 @@
+<!-- Chosen Palette: OOP Focus (#2c3e50 - Azul Escuro/Cinza para Estrutura, #1abc9c - Verde Turquesa para Ênfase POO) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de POO em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecf0f1;
+        }
+        .header-card {
+            background-color: #2c3e50; /* Azul Escuro */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background-color: #232f3e;
+            color: #f8f8f2;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #50fa7b; }
+        .code-reserved { color: #ff79c6; font-weight: bold; }
+        .code-string { color: #f1fa8c; }
+        .code-op { color: #8be9fd; }
+        .code-comment { color: #6272a4; }
+        .oop-highlight {
+            border-left: 5px solid #1abc9c; /* Verde Turquesa */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Programação Orientada a Objetos (POO) em PHP</h1>
+            <p class="mt-4 text-gray-300 text-lg">Entendendo Classes (o modelo) e Objetos (a instância) para estruturar sistemas.</p>
+        </header>
+
+        <!-- I. Conceitos Fundamentais -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#2c3e50] mb-5">I. Classe, Objeto e Propriedades</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- O que é Classe -->
+                <div class="concept-card oop-highlight">
+                    <h4 class="text-2xl font-bold text-[#1abc9c] mb-2">Classe (O Modelo)</h4>
+                    <p class="text-sm text-gray-700 mb-2">Uma classe é a estrutura estática, o molde ou o *template*. Ela define o tipo de dado e as funcionalidades que todos os objetos desse tipo terão.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>Propriedades (<span class="code-reserved">var</span>): As variáveis da classe (Ex: `$Nome`, `$Preco`).</li>
+                        <li>Métodos: As funcionalidades ou funções da classe (Ex: `Depositar()`, `Envelhecer()`).</li>
+                    </ul>
+                </div>
+
+                <!-- O que é Objeto -->
+                <div class="concept-card oop-highlight">
+                    <h4 class="text-2xl font-bold text-[#1abc9c] mb-2">Objeto (A Instância)</h4>
+                    <p class="text-sm text-gray-700 mb-2">Um objeto é a estrutura dinâmica e única criada a partir de uma classe usando o operador <span class="code-reserved">new</span>.</p>
+                    <ul class="list-disc list-inside ml-4 text-sm text-gray-600">
+                        <li>Instanciação: Cria o objeto (Ex: `$produto = new Produto;`).</li>
+                        <li>Acesso: Propriedades são acessadas e manipuladas com o operador <span class="code-reserved">-></span> (seta).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-2xl font-bold text-[#2c3e50] mt-8 mb-4">Sintaxe Básica</h4>
+            <div class="code-block">
+                <span class="code-comment">// 1. A CLASSE (Estrutura estática)</span>
+                <br><span class="code-reserved">class</span> Produto {
+                <br>    <span class="code-reserved">var</span> <span class="code-var">$Codigo</span><span class="code-op">;</span>
+                <br>    <span class="code-reserved">var</span> <span class="code-var">$Descricao</span><span class="code-op">;</span>
+                <br>}
+                <br>
+                <br><span class="code-comment">// 2. INSTANCIAÇÃO (Criação de objeto dinâmico)</span>
+                <br><span class="code-var">$produto</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Produto<span class="code-op">;</span>
+                <br>
+                <br><span class="code-comment">// 3. ACESSO ÀS PROPRIEDADES (Atribuição de valores únicos)</span>
+                <br><span class="code-var">$produto</span><span class="code-op">-></span><span class="code-var">Codigo</span> <span class="code-op">=</span> <span class="code-int">4001</span><span class="code-op">;</span>
+                <br><span class="code-var">$produto</span><span class="code-op">-></span><span class="code-var">Descricao</span> <span class="code-op">=</span> <span class="code-string">'CD - Eric Clapton'</span><span class="code-op">;</span>
+            </div>
+        </section>
+
+        <!-- II. Exercícios Estruturais POO -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#1abc9c] mb-5 border-b pb-2">II. 5 Exercícios de Estruturação POO</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Modelando um Item Simples -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">1. Modelando um Item Simples (Classe, Propriedades e Instância)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Definir a classe `ItemBiblioteca` e instanciar um objeto, acessando suas propriedades.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> ItemBiblioteca {
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$id</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$titulo</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$tipo</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$meu_livro</span> <span class="code-op">=</span> <span class="code-reserved">new</span> ItemBiblioteca<span class="code-op">;</span>
+                        <br><span class="code-var">$meu_livro</span><span class="code-op">-></span><span class="code-var">titulo</span> <span class="code-op">=</span> <span class="code-string">"O Guia do Mochileiro das Galáxias"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$meu_livro</span><span class="code-op">-></span><span class="code-var">tipo</span> <span class="code-op">=</span> <span class="code-string">"Livro"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Título: "</span> <span class="code-op">.</span> <span class="code-var">$meu_livro</span><span class="code-op">-></span><span class="code-var">titulo</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Unicidade dos Objetos -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">2. Unicidade dos Objetos (Múltiplas Instâncias Independentes)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Demonstrar que cada objeto é uma entidade única, mesmo vindo do mesmo modelo (Classe).</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Assumindo que a classe Produto está definida (com Codigo, Descricao, Quantidade)</span>
+                        <br><span class="code-var">$mouse</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Produto<span class="code-op">;</span>
+                        <br><span class="code-var">$teclado</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Produto<span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-var">$mouse</span><span class="code-op">-></span><span class="code-var">Quantidade</span> <span class="code-op">=</span> <span class="code-int">50</span><span class="code-op">;</span> <span class="code-comment">// Valor inicial do Mouse</span>
+                        <br><span class="code-var">$teclado</span><span class="code-op">-></span><span class="code-var">Quantidade</span> <span class="code-op">=</span> <span class="code-int">100</span><span class="code-op">;</span> <span class="code-comment">// Valor inicial do Teclado</span>
+                        <br>
+                        <br><span class="code-var">$mouse</span><span class="code-op">-></span><span class="code-var">Quantidade</span> <span class="code-op">-=</span> <span class="code-int">5</span><span class="code-op">;</span> <span class="code-comment">// Somente o mouse é afetado</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Mouse Quantidade: "</span> <span class="code-op">.</span> <span class="code-var">$mouse</span><span class="code-op">-></span><span class="code-var">Quantidade</span><span class="code-op">;</span> <span class="code-comment">// Saída: 45</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">" | Teclado Quantidade: "</span> <span class="code-op">.</span> <span class="code-var">$teclado</span><span class="code-op">-></span><span class="code-var">Quantidade</span><span class="code-op">;</span> <span class="code-comment">// Saída: 100</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Métodos de Ação (Funcionalidades) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">3. Métodos de Ação e o Uso da Variável $this</h4>
+                    <p class="text-sm text-gray-700 mb-3">Implementar funcionalidades (Métodos) que interagem com as propriedades internas do próprio objeto usando <span class="code-reserved">$this</span>.</p>
+                    <div class="code-block">
+                        <span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Conta {
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$Saldo</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span>
+                        <br>    
+                        <br>    <span class="code-reserved">function</span> Depositar(<span class="code-var">$quantia</span>) {
+                        <br>        <span class="code-comment">// $this referencia a propriedade Saldo DO PRÓPRIO objeto</span>
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span> <span class="code-op">+=</span> <span class="code-var">$quantia</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>
+                        <br>    <span class="code-reserved">function</span> ObterSaldo() {
+                        <br>        <span class="code-reserved">return</span> <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Saldo</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-var">$minha_conta</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Conta<span class="code-op">;</span>
+                        <br><span class="code-var">$minha_conta</span><span class="code-op">-></span>Depositar(<span class="code-int">500</span>)<span class="code-op">;</span>
+                        <br><span class="code-var">$minha_conta</span><span class="code-op">-></span>Depositar(<span class="code-int">150</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Saldo Final: "</span> <span class="code-op">.</span> <span class="code-var">$minha_conta</span><span class="code-op">-></span>ObterSaldo()<span class="code-op">;</span> <span class="code-comment">// Saída: 650</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Modularização e Inclusão -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">4. Modularização e Inclusão de Classes (<span class="code-reserved">require_once</span>)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar a regra de modularização (`include_once`) para carregar o modelo (`Pessoa.class.php`) antes de instanciar o objeto.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// classes/Pessoa.class.php (Omitir tag de fechamento)</span>
+                        <br><span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">class</span> Pessoa {
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$Nome</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$Idade</span><span class="code-op">;</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// index.php</span>
+                        <br><span class="code-reserved">&lt;?php</span>
+                        <br><span class="code-reserved">require_once</span> <span class="code-string">'classes/Pessoa.class.php'</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-var">$aluno</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pessoa<span class="code-op">;</span> <span class="code-comment">// Instanciação só é possível se a classe for carregada</span>
+                        <br><span class="code-var">$aluno</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">=</span> <span class="code-string">'Carlos'</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-var">$aluno</span><span class="code-op">-></span><span class="code-var">Nome</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Interação e Estado do Objeto -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#2c3e50] mb-2">5. Interação e Encapsulamento de Comportamento</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usar um método (`Envelhecer()`) para alterar o estado interno (`$Idade`) do objeto de forma controlada.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Classe Pessoa com método Envelhecer()</span>
+                        <br><span class="code-reserved">class</span> Pessoa {
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$Nome</span><span class="code-op">;</span>
+                        <br>    <span class="code-reserved">var</span> <span class="code-var">$Idade</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span>
+                        <br>
+                        <br>    <span class="code-reserved">function</span> Envelhecer(<span class="code-var">$anos</span>) {
+                        <br>        <span class="code-var">$this</span><span class="code-op">-></span><span class="code-var">Idade</span> <span class="code-op">+=</span> <span class="code-var">$anos</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// interacao.php</span>
+                        <br><span class="code-var">$cliente</span> <span class="code-op">=</span> <span class="code-reserved">new</span> Pessoa<span class="code-op">;</span>
+                        <br><span class="code-var">$cliente</span><span class="code-op">-></span><span class="code-var">Nome</span> <span class="code-op">=</span> <span class="code-string">'Maria'</span><span class="code-op">;</span> <span class="code-var">$cliente</span><span class="code-op">-></span><span class="code-var">Idade</span> <span class="code-op">=</span> <span class="code-int">30</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Idade Inicial de Maria: "</span> <span class="code-op">.</span> <span class="code-var">$cliente</span><span class="code-op">-></span><span class="code-var">Idade</span> <span class="code-op">.</span> <span class="code-string">" &lt;br&gt;"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$cliente</span><span class="code-op">-></span>Envelhecer(<span class="code-int">5</span>)<span class="code-op">;</span>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Idade Atualizada de Maria: "</span> <span class="code-op">.</span> <span class="code-var">$cliente</span><span class="code-op">-></span><span class="code-var">Idade</span><span class="code-op">;</span> <span class="code-comment">// Saída: 35</span>
+                        <br><span class="code-reserved">?&gt;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

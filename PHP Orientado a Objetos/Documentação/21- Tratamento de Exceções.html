@@ -1,0 +1,207 @@
+<!-- Chosen Palette: Exception Handling Focus (#D32F2F - Vermelho de Alerta, #4CAF50 - Verde de Segurança) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratamento de Exceções TRY...CATCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #D32F2F; /* Vermelho Principal (Alerta) */
+            color: white;
+        }
+        .section-header {
+            color: #4CAF50; /* Verde (Sucesso/Segurança) */
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #D32F2F;
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #CDDC39; }
+        .code-reserved { color: #FF8C00; font-weight: bold; }
+        .code-string { color: #FFC107; }
+        .code-op { color: #FF79C6; }
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Conceito -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Tratamento de Exceções: TRY...CATCH</h1>
+            <p class="mt-4 text-gray-200 text-lg">Permite gerenciar e reagir a erros de forma controlada, evitando que falhas inesperadas encerrem o programa.</p>
+            <p class="text-xs mt-2 italic">Analogia: O Paraquedas e o Plano de Voo (Plano de Resgate)</p>
+        </header>
+
+        <!-- I. Componentes do TRY...CATCH -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-header mb-5">I. Componentes e Fluxo</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="concept-card border-l-8 border-indigo-500">
+                    <h4 class="text-xl font-bold text-indigo-500 mb-2">TRY (A Tentativa)</h4>
+                    <p class="text-sm text-gray-700">Contém o código de risco (ex: conexão a banco de dados). O PHP tenta executá-lo.</p>
+                </div>
+
+                <div class="concept-card border-l-8 border-yellow-500">
+                    <h4 class="text-xl font-bold text-yellow-500 mb-2">THROW (Lançamento)</h4>
+                    <p class="text-sm text-gray-700">Sinal de alerta. É a instrução que gera e lança o objeto Exceção (erro) ao detectar uma falha.</p>
+                </div>
+
+                <div class="concept-card border-l-8 border-[#4CAF50]">
+                    <h4 class="text-xl font-bold text-[#4CAF50] mb-2">CATCH (A Captura)</h4>
+                    <p class="text-sm text-gray-700">O plano de resgate. Se o TRY falhar, o CATCH captura a exceção lançada e executa o código de tratamento de erro.</p>
+                </div>
+
+                <div class="concept-card border-l-8 border-red-500">
+                    <h4 class="text-xl font-bold text-red-500 mb-2">Exceção ($e)</h4>
+                    <p class="text-sm text-gray-700">Um objeto especial (da classe `Exception`) que carrega detalhes do erro: mensagem (`getMessage()`), linha (`getLine()`), etc.</p>
+                </div>
+            </div>
+            
+            <p class="text-sm text-gray-700 mt-6 p-4 bg-red-100 border-l-4 border-red-500 rounded-md">
+                Vantagem: O `TRY...CATCH` isola o erro. Se o bloco `TRY` falhar, o código principal continua a execução após o bloco `CATCH`, a menos que você use `die()` ou `exit()`.
+            </p>
+        </section>
+
+        <!-- II. Exercícios Práticos para Fixação -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#D32F2F] mb-5 border-b pb-2">II. 5 Exercícios Estruturados de TRY...CATCH</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: A Conexão Crítica (TRY...CATCH Básico) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">1. A Conexão Crítica (TRY...CATCH Básico)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Protegendo um bloco de código que simula a falha na conexão com um recurso.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex1_basico.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$recurso_online</span> <span class="code-op">=</span> <span class="code-reserved">FALSE</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">try</span> { <span class="code-comment">// Tente executar o código de risco</span>
+                        <br>  <span class="code-reserved">if</span> (!<span class="code-var">$recurso_online</span>) {
+                        <br>    <span class="code-reserved">throw new Exception</span>(<span class="code-string">"Recurso não encontrado ou offline."</span>)<span class="code-op">;</span>
+                        <br>  }
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Conexão estabelecida com sucesso.";</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (<span class="code-reserved">Exception</span> <span class="code-var">$e</span>) { <span class="code-comment">// Captura qualquer erro do tipo Exception</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"ERRO DE CONEXÃO: "</span> <span class="code-op">.</span> <span class="code-var">$e</span><span class="code-op">-></span><span class="code-reserved">getMessage</span>()<span class="code-op">;</span>
+                        <br>}
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Divisão por Zero (Isolamento de Risco) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#D32F2F] mb-2">2. Divisão por Zero (Isolamento de Risco)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Evitando um erro fatal que encerraria o programa, isolando a checagem.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex2_divisao.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$dividendo</span> <span class="code-op">=</span> <span class="code-int">10</span><span class="code-op">;</span>
+                        <br><span class="code-var">$divisor</span> <span class="code-op">=</span> <span class="code-int">0</span><span class="code-op">;</span> <span class="code-comment">// Causa de falha</span>
+                        <br>
+                        <br><span class="code-reserved">try</span> {
+                        <br>  <span class="code-reserved">if</span> (<span class="code-var">$divisor</span> <span class="code-op">===</span> <span class="code-int">0</span>) {
+                        <br>    <span class="code-reserved">throw new Exception</span>(<span class="code-string">"Divisão por zero não permitida."</span>)<span class="code-op">;</span>
+                        <br>  }
+                        <br>  <span class="code-var">$resultado</span> <span class="code-op">=</span> <span class="code-var">$dividendo</span> <span class="code-op">/</span> <span class="code-var">$divisor</span><span class="code-op">;</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Resultado: "</span> <span class="code-op">.</span> <span class="code-var">$resultado</span><span class="code-op">;</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (<span class="code-reserved">Exception</span> <span class="code-var">$e</span>) {
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"ERRO ARITMÉTICO: "</span> <span class="code-op">.</span> <span class="code-var">$e</span><span class="code-op">-></span><span class="code-reserved">getMessage</span>()<span class="code-op">;</span>
+                        <br>}
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Capturando Informações Detalhadas (Métodos da Exceção) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">3. Detalhes do Erro (getMessage, getFile, getLine)</h4>
+                    <p class="text-sm text-gray-700 mb-3">O objeto da exceção (`$e`) fornece metadados cruciais para a depuração.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex3_detalhes.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">try</span> {
+                        <br>  <span class="code-reserved">throw new Exception</span>(<span class="code-string">"Falha crítica no processamento."</span>)<span class="code-op">;</span> <span class="code-comment">// Linha 4</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (<span class="code-reserved">Exception</span> <span class="code-var">$erro</span>) {
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"=== LOG DE ERRO ===<br>";</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Mensagem: "</span> <span class="code-op">.</span> <span class="code-var">$erro</span><span class="code-op">-></span><span class="code-reserved">getMessage</span>() <span class="code-op">.</span> <span class="code-string">"<br>";</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Arquivo: "</span> <span class="code-op">.</span> <span class="code-var">$erro</span><span class="code-op">-></span><span class="code-reserved">getFile</span>() <span class="code-op">.</span> <span class="code-string">"<br>";</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"Linha: "</span> <span class="code-op">.</span> <span class="code-var">$erro</span><span class="code-op">-></span><span class="code-reserved">getLine</span>() <span class="code-op">.</span> <span class="code-string">"<br>";</span>
+                        <br>}
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Múltiplos Tratamentos (Subtipos de Exceção) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#D32F2F] mb-2">4. Múltiplos CATCHES (Tratamentos Específicos)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usando CATCHES encadeados para criar planos de resgate diferentes para cada tipo de erro.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex4_multi.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-comment">// Criando uma classe de exceção específica (deve herdar de Exception)</span>
+                        <br><span class="code-reserved">class</span> File_NotFound_Exception <span class="code-reserved">extends</span> <span class="code-reserved">Exception</span> {}
+                        <br>
+                        <br><span class="code-reserved">try</span> {
+                        <br>  <span class="code-reserved">throw new</span> File_NotFound_Exception(<span class="code-string">"Arquivo de configuração não existe."</span>)<span class="code-op">;</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (File_NotFound_Exception <span class="code-var">$e</span>) { <span class="code-comment">// CATCH mais Específico</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"LOG: Arquivo Ausente. Tentando backup...<br>";</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (<span class="code-reserved">Exception</span> <span class="code-var">$e</span>) { <span class="code-comment">// CATCH Genérico (captura o que sobrou)</span>
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"ERRO GERAL: Algo desconhecido aconteceu. <br>";</span>
+                        <br>}
+                        <br>?&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: O Encerramento Seguro (Die vs. Exit) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">5. O Encerramento Seguro (Usando die())</h4>
+                    <p class="text-sm text-gray-700 mb-3">Garantindo que o programa pare imediatamente após um erro crítico, para evitar processamento com dados inválidos.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// php_ex5_die.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">try</span> {
+                        <br>  <span class="code-reserved">throw new Exception</span>(<span class="code-string">"Falha de Processamento, dados corrompidos."</span>)<span class="code-op">;</span>
+                        <br>
+                        <br>} <span class="code-reserved">catch</span> (<span class="code-reserved">Exception</span> <span class="code-var">$e</span>) {
+                        <br>  <span class="code-reserved">echo</span> <span class="code-string">"ERRO CRÍTICO CAPTURADO: "</span> <span class="code-op">.</span> <span class="code-var">$e</span><span class="code-op">-></span><span class="code-reserved">getMessage</span>() <span class="code-op">.</span> <span class="code-string">"<br>";</span>
+                        <br>  <span class="code-reserved">die</span>(<span class="code-string">"Script encerrado."</span>)<span class="code-op">;</span> <span class="code-comment">// Interrompe a execução imediatamente</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-reserved">echo</span> <span class="code-string">"Este código NUNCA deve ser executado se o erro ocorrer."</span><span class="code-op">;</span>
+                        <br>?&gt;
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

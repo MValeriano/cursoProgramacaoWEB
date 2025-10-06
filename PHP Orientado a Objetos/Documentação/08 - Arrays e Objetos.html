@@ -1,0 +1,222 @@
+<!-- Chosen Palette: Structured Data (#4CAF50 - Verde, #03A9F4 - Azul Claro) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas de Dados PHP: Arrays e Objetos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #4CAF50; /* Verde Principal */
+            color: white;
+        }
+        .section-title {
+            color: #03A9F4; /* Azul Claro */
+        }
+        .data-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #4CAF50;
+        }
+        .object-card {
+            border-top-color: #03A9F4;
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-keyword { color: #8BE9FD; } /* Ciano */
+        .code-var { color: #CDDC39; } /* Lima */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-string { color: #FF9800; } /* Laranja */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Estruturas de Dados: Arrays e Objetos</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-white">Agrupando Informações Complexas em PHP</h2>
+            <p class="mt-4 text-gray-100">Arrays e Objetos são contêineres que armazenam múltiplos valores dentro de uma única variável, permitindo manipular informações como um único bloco de dados.</p>
+        </header>
+
+        <!-- 1. ARRAY (O Container Multifuncional) -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-title mb-5">1. Array (O Container Multifuncional)</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Definição e Analogia -->
+                <div class="data-card">
+                    <h4 class="text-xl font-bold text-[#4CAF50] mb-2">Conceito e Analogia</h4>
+                    <p class="text-sm text-gray-600 mb-3">Um Array é uma coleção de valores (de qualquer tipo) acessada por meio de uma chave (índice).</p>
+                    <p class="text-sm italic text-gray-700">Analogia: É uma caixa de ferramentas rotulada, guardando vários itens com uma única identificação.</p>
+                    <div class="code-block">
+                        <span class="code-var">$frutas</span> <span class="code-op">=</span> [<span class="code-string">'Maçã'</span>, <span class="code-string">'Pêra'</span>, <span class="code-string">'Uva'</span>];
+                        <br><span class="code-comment">// Acessando o primeiro item:</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$frutas</span>[<span class="code-val">0</span>]; <span class="code-comment">// Saída: Maçã</span>
+                    </div>
+                </div>
+
+                <!-- Tipos de Arrays -->
+                <div class="data-card">
+                    <h4 class="text-xl font-bold text-[#4CAF50] mb-2">Tipos de Arrays</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                        <li>Indexado: Acessado por índices numéricos (0, 1, 2...). (Ex: Lista de supermercado numerada).</li>
+                        <li>Associativo: Acessado por chaves de string (rótulos). (Ex: Ficha cadastral com chaves 'nome', 'email').</li>
+                        <li>Multidimensional: Array que contém outros Arrays. (Ex: Uma planilha ou tabela de DB).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. OBJETO (A Entidade Inteligente) -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold section-title mb-5">2. Objeto (A Entidade Inteligente)</h3>
+            <div class="data-card object-card border-t-4 border-[#03A9F4]">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="text-xl font-bold text-[#03A9F4] mb-2">Classe vs. Objeto (OOP)</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                            <li>Classe: A Planta ou Template. Define as regras e propriedades (`cor`, `velocidade`).</li>
+                            <li>Objeto: O Carro Pronto (instância). Estrutura viva com dados e identidade únicos.</li>
+                        </ul>
+                        <p class="text-sm italic text-gray-600 mt-3">Os dados (propriedades) do objeto são acessados com o operador de seta <code class="bg-gray-200 px-1 rounded text-sm">-></code>.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-base text-gray-700 mb-1">Criação e Acesso</p>
+                        <div class="code-block">
+                            <span class="code-comment">// 1. A Classe (o template)</span>
+                            <br><span class="code-keyword">class</span> <span class="code-var">Carro</span> {
+                            <br>  <span class="code-var">public</span> <span class="code-var">$cor</span>;
+                            <br>  <span class="code-var">public</span> <span class="code-var">$modelo</span>;
+                            <br>}
+                            <br>
+                            <br><span class="code-comment">// 2. O Objeto (a instância)</span>
+                            <br><span class="code-var">$meu_carro</span> <span class="code-op">=</span> <span class="code-keyword">new</span> <span class="code-var">Carro</span>();
+                            <br><span class="code-var">$meu_carro</span><span class="code-op">-></span><span class="code-var">cor</span> <span class="code-op">=</span> <span class="code-string">'Vermelho'</span>;
+                            <br><span class="code-keyword">echo</span> <span class="code-var">$meu_carro</span><span class="code-op">-></span><span class="code-var">cor</span>;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. Exercícios Estruturados -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#4CAF50] mb-5 border-b pb-2">5 Desafios de Estruturas de Dados</h3>
+            <p class="text-gray-700 mb-6">Pratique a criação e manipulação de arrays e objetos, a base de todo sistema web.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: Array Indexado -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">1. O Contador de Clientes (Array Indexado)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie um array indexado e acesse o terceiro cliente (índice 2). Use <code class="bg-gray-200 px-1 rounded text-sm">count()</code>.</p>
+                    <div class="code-block">
+                        <span class="code-var">$clientes_recentes</span> <span class="code-op">=</span> [<span class="code-string">'Maria'</span>, <span class="code-string">'João'</span>, <span class="code-string">'Pedro'</span>, <span class="code-string">'Ana'</span>];
+                        <br>
+                        <br><span class="code-comment">// 2. Acessa o TERCEIRO cliente (índice 2)</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Terceiro cliente: "</span> <span class="code-op">.</span> <span class="code-var">$clientes_recentes</span>[<span class="code-val">2</span>] <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>
+                        <br><span class="code-comment">// 3. Conta os elementos</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Total de clientes: "</span> <span class="code-op">.</span> <span class="code-keyword">count</span>(<span class="code-var">$clientes_recentes</span>);
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Array Associativo -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">2. O Carrinho de Compras (Array Associativo)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use chaves de <code class="bg-gray-200 px-1 rounded text-sm">string</code> para associar o produto ao preço.</p>
+                    <div class="code-block">
+                        <span class="code-var">$carrinho</span> <span class="code-op">=</span> [
+                        <br>  <span class="code-string">'Livro PHP'</span> <span class="code-op">=></span> <span class="code-val">85.50</span>,
+                        <br>  <span class="code-string">'Mouse'</span> <span class="code-op">=></span> <span class="code-val">49.90</span>
+                        <br>];
+                        <br>
+                        <br><span class="code-comment">// 2. Exibe o preço do livro</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Preço do livro: R$ "</span> <span class="code-op">.</span> <span class="code-var">$carrinho</span>[<span class="code-string">'Livro PHP'</span>] <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>
+                        <br><span class="code-comment">// 3. Adiciona novo item (Teclado)</span>
+                        <br><span class="code-var">$carrinho</span>[<span class="code-string">'Teclado'</span>] <span class="code-op">=</span> <span class="code-val">150.00</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Manipulação de Array -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#4CAF50] mb-2">3. Gestão de Tarefas (Manipulação e Debugging)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Use <code class="bg-gray-200 px-1 rounded text-sm">array_push()</code> e <code class="bg-gray-200 px-1 rounded text-sm">array_pop()</code> para manipular a lista.</p>
+                    <div class="code-block">
+                        <span class="code-var">$tarefas</span> <span class="code-op">=</span> [<span class="code-string">'Limpar Janelas'</span>, <span class="code-string">'Lavar Louça'</span>, <span class="code-string">'Aspirar Sala'</span>];
+                        <br>
+                        <br><span class="code-comment">// 2. Adiciona item ao final</span>
+                        <br><span class="code-keyword">array_push</span>(<span class="code-var">$tarefas</span>, <span class="code-string">'Passar Roupa'</span>);
+                        <br>
+                        <br><span class="code-comment">// 3. Remove o último item (Passar Roupa)</span>
+                        <br><span class="code-keyword">array_pop</span>(<span class="code-var">$tarefas</span>);
+                        <br>
+                        <br><span class="code-comment">// 4. Exibe o array formatado para debugging</span>
+                        <br><span class="code-keyword">print_r</span>(<span class="code-var">$tarefas</span>);
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Objeto Básico -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#03A9F4] mb-2">4. O Template do Carro (Classe e Objeto)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie a <code class="bg-gray-200 px-1 rounded text-sm">Class</code>, instancie o <code class="bg-gray-200 px-1 rounded text-sm">new</code> Objeto e use o operador <code class="bg-gray-200 px-1 rounded text-sm">-></code>.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// 1. A Planta (Classe)</span>
+                        <br><span class="code-keyword">class</span> <span class="code-var">Carro</span> {
+                        <br>  <span class="code-var">public</span> <span class="code-var">$cor</span>;
+                        <br>  <span class="code-var">public</span> <span class="code-var">$velocidade_maxima</span>;
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// 3. O Carro Pronto (Objeto)</span>
+                        <br><span class="code-var">$meu_carro</span> <span class="code-op">=</span> <span class="code-keyword">new</span> <span class="code-var">Carro</span>();
+                        <br>
+                        <br><span class="code-comment">// 4. Atribui e exibe a propriedade</span>
+                        <br><span class="code-var">$meu_carro</span><span class="code-op">-></span><span class="code-var">cor</span> <span class="code-op">=</span> <span class="code-string">'Vermelho'</span>;
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"A cor do meu carro é: "</span> <span class="code-op">.</span> <span class="code-var">$meu_carro</span><span class="code-op">-></span><span class="code-var">cor</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Array Multidimensional e FOREACH -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#03A9F4] mb-2">5. Dados do Banco de Dados (Array Multidimensional)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Simule linhas de banco de dados e use a sintaxe <code class="bg-gray-200 px-1 rounded text-sm">[][]</code> para acessar o dado.</p>
+                    <div class="code-block">
+                        <span class="code-var">$resultados_db</span> <span class="code-op">=</span> [
+                        <br>  [<span class="code-string">'id'</span> <span class="code-op">=></span> <span class="code-val">1</span>, <span class="code-string">'nome'</span> <span class="code-op">=></span> <span class="code-string">'Carlos'</span>, <span class="code-string">'status'</span> <span class="code-op">=></span> <span class="code-string">'ativo'</span>],
+                        <br>  [<span class="code-string">'id'</span> <span class="code-op">=></span> <span class="code-val">2</span>, <span class="code-string">'nome'</span> <span class="code-op">=></span> <span class="code-string">'Marina'</span>, <span class="code-string">'status'</span> <span class="code-op">=></span> <span class="code-string">'inativo'</span>]
+                        <br>];
+                        <br>
+                        <br><span class="code-comment">// 2. Exibe o nome do SEGUNDO registro (índice 1, chave 'nome')</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Nome do 2º registro: "</span> <span class="code-op">.</span> <span class="code-var">$resultados_db</span>[<span class="code-val">1</span>][<span class="code-string">'nome'</span>] <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>
+                        <br><span class="code-comment">// 3. Bônus: Iterando com FOREACH</span>
+                        <br><span class="code-keyword">foreach</span> (<span class="code-var">$resultados_db</span> <span class="code-keyword">as</span> <span class="code-var">$registro</span>) {
+                        <br>  <span class="code-keyword">echo</span> <span class="code-string">"Usuário: "</span> <span class="code-op">.</span> <span class="code-var">$registro</span>[<span class="code-string">'nome'</span>] <span class="code-op">.</span> <span class="code-string">" | Status: "</span> <span class="code-op">.</span> <span class="code-var">$registro</span>[<span class="code-string">'status'</span>] <span class="code-op">.</span> <span class="code-string">"<br>"</span>;
+                        <br>}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

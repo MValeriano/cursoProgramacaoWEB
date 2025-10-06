@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Curso: Sintaxe Básica do PHP para Iniciantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #1e293b;
+        }
+        .section-header {
+            border-left: 8px solid #3b82f6; /* Blue 500 */
+            padding-left: 1rem;
+        }
+        .code-block {
+            background-color: #1e293b; /* Slate 800 */
+            color: #e2e8f0; /* Slate 200 */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .highlight-tip {
+            border-left: 4px solid #f97316; /* Orange 500 */
+            background-color: #fff7ed; /* Orange 50 */
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+        .security-alert {
+            background-color: #fee2e2; /* Red 100 */
+            color: #dc2626; /* Red 600 */
+            border: 2px solid #ef4444; /* Red 500 */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #eff6ff; /* Blue 50 */
+            font-weight: 600;
+            color: #1e40af; /* Blue 800 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-8">
+        <!-- Título Principal -->
+        <header class="text-center mb-12 py-8 rounded-xl bg-white shadow-lg">
+            <h1 class="text-4xl font-extrabold text-blue-600 mb-2">Módulo de Curso: Sintaxe Básica do PHP para Iniciantes</h1>
+            <p class="text-xl text-gray-500">Seu primeiro passo no desenvolvimento web de back-end.</p>
+        </header>
+
+        <!-- Seção 1.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="intro">1.0 Introdução ao PHP: O que é e Onde Ele Vive?</h2>
+            <p class="mb-4">
+                Bem-vindo ao seu primeiro passo no mundo do desenvolvimento web de back-end! Para construir sites e aplicações web verdadeiramente dinâmicas e interativas, é crucial entender o papel fundamental de linguagens como o PHP. Enquanto tecnologias como HTML e CSS definem a estrutura e a aparência de uma página, o PHP é o motor que trabalha nos bastidores, processando dados, interagindo com bancos de dados e personalizando o conteúdo antes mesmo que ele chegue ao seu navegador. Este módulo foi desenhado para desmistificar esse processo, mostrando como o PHP se tornou a espinha dorsal de uma vasta porção da internet.
+            </p>
+            <p class="mb-4">
+                O PHP (um acrônimo recursivo para PHP: Hypertext Preprocessor) é uma linguagem de programação de lado do servidor (<span class="font-semibold text-blue-600">server-side</span>). Isso o diferencia fundamentalmente de linguagens de lado do cliente (<span class="font-semibold text-gray-500">client-side</span>), como HTML, CSS e JavaScript. O código de lado do cliente é executado diretamente no navegador do usuário, mas o código PHP opera de forma diferente: ele é executado no servidor web, tornando sua lógica interna completamente invisível para o visitante do site.
+            </p>
+
+            <div class="mt-6 border-t pt-4">
+                <h3 class="text-xl font-semibold mb-3 text-blue-600">O Fluxo de Execução do PHP:</h3>
+                <ol class="list-decimal list-inside space-y-2 pl-4 text-gray-700">
+                    <li>Um usuário, através de seu navegador, solicita uma página de um site (ex: <code>www.meusite.com/contato.php</code>).</li>
+                    <li>O servidor web recebe a solicitação e encontra o arquivo <code>.php</code> correspondente.</li>
+                    <li>O servidor então executa o código PHP contido nesse arquivo. Esse código pode realizar tarefas como buscar informações de um banco de dados, processar dados de um formulário ou criar conteúdo dinamicamente.</li>
+                    <li>O resultado final da execução do PHP é uma saída em <span class="font-bold">HTML puro</span>.</li>
+                    <li>O servidor envia este HTML gerado para o navegador do usuário, que o renderiza como uma página web padrão.</li>
+                </ol>
+            </div>
+
+            <p class="mt-6 p-4 bg-yellow-50 rounded-lg">
+                A relevância do PHP no cenário atual é inegável. Estatísticas mostram que mais de 78% de todos os sites da internet cuja linguagem de back-end é conhecida utilizam PHP. Isso inclui gigantes da tecnologia como o Facebook e a Wikipedia, além de ser a tecnologia por trás do sistema de gerenciamento de conteúdo mais popular do mundo, o WordPress.
+            </p>
+            <p class="mt-4">
+                Agora que você compreende o papel estratégico do PHP no ecossistema web, vamos mergulhar na sintaxe fundamental que dá vida a toda essa engrenagem.
+            </p>
+        </section>
+
+        <!-- Seção 2.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="estrutura">2.0 A Estrutura Fundamental de um Script PHP</h2>
+            <p class="mb-4">
+                Assim como qualquer idioma, o PHP possui suas próprias regras gramaticais — sua sintaxe — que precisam ser seguidas para que o código funcione corretamente. Esta seção é o seu primeiro passo prático para escrever código PHP funcional, aprendendo como delimitar seus scripts, exibir informações e documentar sua lógica.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">2.1 Delimitadores de Código: Abrindo e Fechando o PHP</h3>
+            <p class="mb-3">
+                Todo código PHP deve ser inserido dentro de um par de tags específicas que informam ao servidor onde a execução do PHP começa e termina. Essas tags são <code>&lt;?php</code> para abrir o bloco de código e <code>?&gt;</code> para fechá-lo.
+            </p>
+            <p class="mb-3">
+                Qualquer comando PHP que você escrever deve estar contido nesses delimitadores. É uma regra fundamental que cada instrução (ou comando) dentro de um bloco PHP termine com um ponto e vírgula (;).
+            </p>
+            <div class="code-block">
+                &lt;?php<br>
+                // código;<br>
+                // código;<br>
+                ?&gt;
+            </div>
+            <div class="highlight-tip mt-4">
+                <span class="font-bold text-orange-600">Dica de Iniciante:</span> O ponto e vírgula (;) é como o ponto final de uma frase em português. Esquecê-lo é um dos erros mais comuns e frustrantes para quem está começando!
+            </div>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">2.2 Comandos de Saída: Mostrando Informações na Tela</h3>
+            <p class="mb-3">
+                Para que seu script PHP seja útil, ele precisa gerar uma saída que será enviada ao navegador. O comando mais comum e fundamental para isso é o <code class="bg-gray-200 text-red-600 p-1 rounded">echo</code>. Ele pode ser usado para exibir texto simples, o valor de variáveis e até mesmo tags HTML.
+            </p>
+            <p class="mb-3">Vamos ao exemplo clássico de "Olá, Mundo!" para ver o <code class="bg-gray-200 text-red-600 p-1 rounded">echo</code> em ação:</p>
+            <div class="code-block">
+                &lt;?php<br>
+                echo "Olá, Mundo!";<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">Olá, Mundo!</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">2.3 Comentários: Deixando Anotações no Código</h3>
+            <p class="mb-3">
+                Comentários são trechos de texto em seu código que são completamente ignorados pelo servidor. Eles são essenciais para documentar sua lógica, seja para referência futura ou para que outros desenvolvedores possam entender o que seu código faz. O PHP oferece três maneiras de escrever comentários.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li>Comentário de linha única com <code class="bg-gray-200 text-red-600 p-1 rounded">//</code>: Tudo após as duas barras até o final da linha é considerado um comentário.</li>
+                <li>Comentário de linha única com <code class="bg-gray-200 text-red-600 p-1 rounded">#</code>: Funciona da mesma forma que o <code>//</code>.</li>
+                <li>Comentário de múltiplas linhas com <code class="bg-gray-200 text-red-600 p-1 rounded">/* ... */</code>: Permite escrever comentários que se estendem por várias linhas, começando com <code>/*</code> e terminando com <code>*/</code>.</li>
+            </ul>
+            <p class="mb-3">Aqui está um exemplo que ilustra os três tipos:</p>
+            <div class="code-block">
+                &lt;?php<br>
+                // Este é um comentário de linha única. A linha abaixo exibe uma saudação.<br>
+                echo "Olá!";<br>
+                <br>
+                # Este é outro estilo de comentário de linha única.<br>
+                <br>
+                /*<br>
+                  Este é um comentário<br>
+                  que abrange múltiplas<br>
+                  linhas. É útil para<br>
+                  explicações mais longas.<br>
+                */<br>
+                echo " Mundo!";<br>
+                ?&gt;
+            </div>
+            <p class="mt-4">
+                Com a estrutura básica dominada, estamos prontos para o próximo passo essencial: aprender a armazenar e manipular informações. Faremos isso utilizando variáveis, os blocos de construção de qualquer programa.
+            </p>
+        </section>
+
+        <!-- Seção 3.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="variaveis">3.0 Variáveis e Tipos de Dados: As Caixas de Informação do Código</h2>
+            <p class="mb-4">
+                Variáveis são os contêineres fundamentais para armazenar dados em qualquer programa. Pense em uma variável como uma "caixa com uma etiqueta": você dá um nome (a etiqueta) à caixa e guarda uma informação dentro dela. Mais tarde, sempre que precisar daquela informação, basta chamar a caixa pela sua etiqueta.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">3.1 Declarando Variáveis</h3>
+            <p class="mb-3">
+                Em PHP, a regra para declarar uma variável é simples e consistente: o nome da variável sempre começa com o símbolo do cifrão ($).
+            </p>
+            <div class="code-block">
+                &lt;?php<br>
+                $saudacao = "Bem-vindo ao curso de PHP!";<br>
+                echo $saudacao;<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">Bem-vindo ao curso de PHP!</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">3.2 Tipos de Dados Primitivos (Escalares)</h3>
+            <p class="mb-3">
+                Um tipo de dado "escalar" significa que a variável armazena apenas um único valor. O PHP trabalha com vários tipos de dados primitivos, e ele é flexível o suficiente para, na maioria das vezes, entender o tipo de dado com base no valor que você atribui.
+            </p>
+            <ul class="list-disc list-inside space-y-3 pl-4">
+                <li><span class="font-bold">String:</span> Uma sequência de caracteres, como texto. O valor deve estar entre aspas (simples ou duplas).Exemplo: <code>$nome = "João";</code></li>
+                <li><span class="font-bold">Integer:</span> Números inteiros, sem casas decimais.Exemplo: <code>$idade = 30;</code></li>
+                <li><span class="font-bold">Float:</span> Números de ponto flutuante, ou seja, números com casas decimais.Exemplo: <code>$preco = 19.99;</code></li>
+                <li><span class="font-bold">Boolean:</span> Representa um valor lógico que só pode ser <span class="font-mono">true</span> (verdadeiro) ou <span class="font-mono">false</span> (falso). É muito usado em testes condicionais.Exemplo: <code>$estaLogado = true;</code></li>
+                <li><span class="font-bold">NULL:</span> Um tipo especial que representa a ausência intencional de um valor. Uma variável é nula se nenhum valor foi atribuído a ela ou se ela foi explicitamente definida como <span class="font-mono">NULL</span>.Exemplo: <code>$valorNulo = NULL;</code></li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">3.3 Verificando Tipos de Dados</h3>
+            <p class="mb-3">
+                Durante o desenvolvimento, especialmente ao depurar, pode ser útil verificar qual o tipo de dado e o valor que uma variável contém. A função <code class="bg-gray-200 text-red-600 p-1 rounded">var_dump()</code> é perfeita para isso, pois ela exibe informações detalhadas sobre uma ou mais variáveis.
+            </p>
+            <div class="code-block">
+                &lt;?php<br>
+                $nome = "Maria";<br>
+                $numeroDeFilhos = 2;<br>
+                <br>
+                var_dump($nome);<br>
+                echo "&lt;br&gt;"; // A tag &lt;br&gt; cria uma quebra de linha em HTML<br>
+                var_dump($numeroDeFilhos);<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída:<br><span class="font-mono font-bold text-green-600">string(5) "Maria"</span><br><span class="font-mono font-bold text-green-600">int(2)</span></p>
+            <p class="mt-3 mb-4">
+                A saída nos informa que a variável <code>$nome</code> é uma string de 5 caracteres com o valor "Maria", e <code>$numeroDeFilhos</code> é um integer (<code class="font-mono">int</code>) com o valor 2.
+            </p>
+            <div class="highlight-tip mt-4">
+                <span class="font-bold text-orange-600">Dica de Iniciante:</span> Lembre-se de que os nomes das variáveis em PHP diferenciam maiúsculas de minúsculas! A variável <code>$nome</code> é completamente diferente da variável <code>$Nome</code>. Para evitar dores de cabeça, adote um padrão e seja consistente! A convenção mais comum em PHP é usar camelCase para nomes de variáveis (ex: <code>$numeroDeFilhos</code>).
+            </div>
+            <p class="mt-4">
+                Agora que sabemos como armazenar dados em "caixas", vamos aprender como realizar operações e manipular essas informações usando os operadores do PHP.
+            </p>
+        </section>
+
+        <!-- Seção 4.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="operadores">4.0 Operadores: As Ferramentas de Ação do PHP</h2>
+            <p class="mb-4">
+                Operadores são símbolos que nos permitem executar operações em variáveis e valores. Eles são as ferramentas que usamos para tudo, desde realizar cálculos matemáticos simples até fazer comparações lógicas complexas que direcionam o fluxo de nossos programas.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">4.1 Operadores Aritméticos</h3>
+            <p class="mb-3">
+                Esses são os operadores que você provavelmente já conhece da matemática. Eles são usados para realizar operações aritméticas básicas.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">+</code> (Adição)</li>
+                <li><code class="font-mono">-</code> (Subtração)</li>
+                <li><code class="font-mono">*</code> (Multiplicação)</li>
+                <li><code class="font-mono">/</code> (Divisão)</li>
+                <li><code class="font-mono">%</code> (Módulo - Retorna o resto de uma divisão)</li>
+            </ul>
+            <div class="code-block">
+                &lt;?php<br>
+                $soma = 5 + 3; // $soma será 8<br>
+                $resto = 10 % 3; // 10 dividido por 3 é 3, com resto 1. $resto será 1.<br>
+                echo "10 dividido por 3 tem um resto de: " . $resto;<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">10 dividido por 3 tem um resto de: 1</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">4.2 Operadores de Atribuição</h3>
+            <p class="mb-3">
+                O operador de atribuição mais básico é o <code class="font-mono">=</code> (igual), que atribui o valor à direita a uma variável à esquerda. No entanto, existem formas abreviadas que combinam uma operação aritmética com uma atribuição, tornando o código mais conciso.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">=</code> (Atribuição simples)</li>
+                <li><code class="font-mono">+=</code> (Adiciona e atribui)</li>
+                <li><code class="font-mono">-=</code> (Subtrai e atribui)</li>
+                <li><code class="font-mono">*=</code> (Multiplica e atribui)</li>
+                <li><code class="font-mono">/=</code> (Divide e atribui)</li>
+            </ul>
+            <div class="code-block">
+                &lt;?php<br>
+                $numero = 10;<br>
+                $numero += 5; // Isto é o mesmo que: $numero = $numero + 5;<br>
+                echo $numero;<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">15</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">4.3 Operadores de Comparação</h3>
+            <p class="mb-3">
+                Esses operadores são cruciais para a lógica de um programa. Eles são usados para comparar dois valores e o resultado da comparação é sempre um valor booleano: <span class="font-mono">true</span> ou <span class="font-mono">false</span>.
+            </p>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operador</th>
+                            <th>Nome</th>
+                            <th>Exemplo</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-mono">==</td>
+                            <td>Igual</td>
+                            <td class="font-mono">$a == $b</td>
+                            <td><span class="font-semibold">true</span> se $a é igual a $b após a conversão de tipo.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono">===</td>
+                            <td>Idêntico</td>
+                            <td class="font-mono">$a === $b</td>
+                            <td><span class="font-semibold">true</span> se $a é igual a $b e são do mesmo tipo.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono">!=</td>
+                            <td>Diferente</td>
+                            <td class="font-mono">$a != $b</td>
+                            <td><span class="font-semibold">true</span> se $a não é igual a $b.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono">!==</td>
+                            <td>Não idêntico</td>
+                            <td class="font-mono">$a !== $b</td>
+                            <td><span class="font-semibold">true</span> se $a não é igual a $b ou não são do mesmo tipo.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono">></td>
+                            <td>Maior que</td>
+                            <td class="font-mono">$a > $b</td>
+                            <td><span class="font-semibold">true</span> se $a é maior que $b.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono"><</td>
+                            <td>Menor que</td>
+                            <td class="font-mono">$a < $b</td>
+                            <td><span class="font-semibold">true</span> se $a é menor que $b.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-3 bg-red-50 rounded-lg mt-4 border-l-4 border-red-500">
+                <span class="font-bold text-red-600">Nota Importante:</span> A diferença entre <code class="font-mono">==</code> (igual) e <code class="font-mono">===</code> (idêntico) é uma fonte comum de bugs. Sempre prefira <code class="font-mono">===</code> para uma comparação mais estrita e segura, pois ela não apenas compara os valores, mas também os tipos de dados.
+            </div>
+            <p class="mt-4 mb-3">Veja a diferença na prática:</p>
+            <div class="code-block">
+                &lt;?php<br>
+                // Comparação "igual" (==) - Converte os tipos antes de comparar.<br>
+                var_dump(5 == "5"); // O PHP converte a string "5" para um número.<br>
+                <br>
+                echo "&lt;br&gt;";<br>
+                <br>
+                // Comparação "idêntica" (===) - Não converte, os tipos devem ser os mesmos.<br>
+                var_dump(5 === "5"); // Um é integer, o outro é string.<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída:<br><span class="font-mono font-bold text-green-600">bool(true)</span><br><span class="font-mono font-bold text-green-600">bool(false)</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">4.4 Operadores Lógicos</h3>
+            <p class="mb-3">
+                Operadores lógicos são usados para combinar múltiplas declarações condicionais.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">&&</code> ou <code class="font-mono">and</code> (<span class="font-bold">E</span>): Retorna <span class="font-mono">true</span> somente se ambas as condições forem verdadeiras.</li>
+                <li><code class="font-mono">||</code> ou <code class="font-mono">or</code> (<span class="font-bold">OU</span>): Retorna <span class="font-mono">true</span> se pelo menos uma das condições for verdadeira.</li>
+            </ul>
+            <div class="code-block">
+                &lt;?php<br>
+                $idade = 25;<br>
+                $temHabilitacao = true;<br>
+                <br>
+                // A condição só será verdadeira se a idade for 18 ou mais E a habilitação for verdadeira.<br>
+                if ($idade >= 18 && $temHabilitacao == true) {<br>
+                  echo "Pode dirigir.";<br>
+                }<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">Pode dirigir.</span></p>
+            <p class="mt-4">
+                Dominar os operadores nos deu a capacidade de fazer perguntas ao nosso código ('isto é igual a aquilo?'). Agora, com as estruturas de controle, vamos aprender a dar ordens com base nas respostas, transformando nosso script de uma lista de tarefas em um programa que pensa e reage.
+            </p>
+        </section>
+
+        <!-- Seção 5.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="controle">5.0 Estruturas de Controle: Direcionando o Fluxo do Seu Código</h2>
+            <p class="mb-4">
+                Por padrão, um script PHP é executado sequencialmente, de cima para baixo. No entanto, raramente queremos que um programa faça a mesma coisa todas as vezes. As estruturas de controle nos permitem alterar esse fluxo, seja para tomar decisões com base em certas condições ou para repetir um bloco de código várias vezes.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">5.1 Estruturas Condicionais</h3>
+            <p class="mb-3">
+                As estruturas condicionais executam diferentes blocos de código com base no resultado de uma expressão booleana (<span class="font-mono">true</span> ou <span class="font-mono">false</span>).
+            </p>
+            <ul class="list-disc list-inside space-y-3 pl-4 mb-3">
+                <li><span class="font-bold">if, else, elseif</span> Esta é a estrutura condicional mais comum. Ela permite que você execute um código se uma condição for verdadeira e, opcionalmente, execute outro código se ela for falsa. Usando uma analogia do dia a dia: "se estiver chovendo, leve um guarda-chuva; senão, leve óculos de sol." A cláusula <code class="font-mono">elseif</code> permite testar múltiplas condições em sequência.</li>
+                <li><span class="font-bold">switch</span> A estrutura <code class="font-mono">switch</code> é uma alternativa mais limpa e organizada para uma longa cadeia de <code class="font-mono">if/elseifs</code>. Ela é ideal quando você precisa comparar o valor de uma única variável com vários valores possíveis e executar um código diferente para cada caso.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">5.2 Laços de Repetição (Loops)</h3>
+            <p class="mb-3">
+                Loops são usados para executar o mesmo bloco de código repetidamente, enquanto uma determinada condição for atendida.
+            </p>
+            <ul class="list-disc list-inside space-y-3 pl-4 mb-3">
+                <li><span class="font-bold">while</span> O loop <code class="font-mono">while</code> diz: "Execute este bloco de código repetidamente enquanto uma condição for verdadeira." A condição é verificada antes de cada execução do bloco.<br><span class="text-sm text-gray-500 italic">Use quando: você precisa repetir uma ação, mas não sabe de antemão quantas vezes, como ao ler linhas de um arquivo.</span></li>
+                <li><span class="font-bold">do...while</span> Este loop é muito semelhante ao <code class="font-mono">while</code>, com uma diferença crucial: ele garante que o bloco de código seja executado pelo menos uma vez. A condição é verificada depois de cada execução.<br><span class="text-sm text-gray-500 italic">Use quando: em situações raras onde a primeira execução é garantida, como um menu que deve ser exibido pelo menos uma vez.</span></li>
+                <li><span class="font-bold">for</span> O loop <code class="font-mono">for</code> é ideal para quando você sabe exatamente quantas vezes precisa repetir uma ação. Ele combina a inicialização de um contador, a condição de continuação e a atualização do contador em uma única linha.<br><span class="text-sm text-gray-500 italic">Use quando: você sabe exatamente o número de repetições, como ao exibir os 10 produtos mais vendidos.</span></li>
+                <li><span class="font-bold">foreach</span> Esta é a forma mais fácil, segura e recomendada para percorrer cada item de um <span class="font-bold">array</span>. Em vez de gerenciar um contador manual, o <code class="font-mono">foreach</code> simplesmente pega um array e executa um bloco de código para cada elemento dentro dele.<br><span class="text-sm text-gray-500 italic">Use quando: sempre que precisar iterar sobre todos os itens de um array. É a sua escolha padrão para listas.</span></li>
+            </ul>
+            <p class="mt-4">
+                A menção ao <code class="font-mono">foreach</code> nos leva diretamente ao nosso próximo tópico essencial. Agora que sabemos como controlar o fluxo, vamos aprender a trabalhar com coleções de dados usando a estrutura mais importante para isso: os arrays.
+            </p>
+        </section>
+
+        <!-- Seção 6.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="arrays">6.0 Arrays: Coleções de Dados Organizados</h2>
+            <p class="mb-4">
+                Até agora, nossas variáveis armazenaram apenas um valor de cada vez. No entanto, muitas vezes precisamos trabalhar com uma coleção de valores relacionados. Um array é um tipo especial de variável que pode conter múltiplos valores em uma única estrutura, funcionando como uma lista de compras, uma lista de nomes de alunos ou uma coleção de configurações.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">6.1 Arrays Indexados</h3>
+            <p class="mb-3">
+                Arrays indexados (ou numéricos) são o tipo mais simples de array. Eles usam índices numéricos para identificar cada elemento da coleção. É importante lembrar que, na maioria das linguagens de programação, incluindo o PHP, a contagem de índices começa em 0.
+            </p>
+            <div class="code-block">
+                &lt;?php<br>
+                // Cria um array indexado com três frutas<br>
+                $frutas = ["Maçã", "Banana", "Laranja"];<br>
+                <br>
+                // Acessa o segundo elemento do array (índice 1)<br>
+                echo "A segunda fruta na lista é: " . $frutas[1]; <br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">A segunda fruta na lista é: Banana</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">6.2 Arrays Associativos</h3>
+            <p class="mb-3">
+                Arrays associativos são mais descritivos. Em vez de usar índices numéricos, eles usam strings nomeadas, chamadas de "chaves" (<span class="font-mono">keys</span>), para identificar cada valor. Isso torna o código mais legível, pois as chaves podem descrever o que o valor representa.
+            </p>
+            <div class="code-block">
+                &lt;?php<br>
+                // Cria um array associativo com informações de um aluno<br>
+                $aluno = [<br>
+                  "nome" => "Carlos",<br>
+                  "idade" => 22,<br>
+                  "curso" => "Engenharia"<br>
+                ];<br>
+                <br>
+                // Acessa os valores usando suas chaves<br>
+                echo $aluno["nome"] . " tem " . $aluno["idade"] . " anos.";<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">Carlos tem 22 anos.</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">6.3 Funções Úteis para Arrays</h3>
+            <p class="mb-3">
+                O PHP oferece um vasto conjunto de funções para manipular arrays. Aqui estão duas das mais essenciais para começar:
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">count($array)</code>: Retorna o número de elementos em um array. É útil para saber o tamanho da sua coleção.</li>
+                <li><code class="font-mono">array_push($array, "novo_valor")</code>: Adiciona um ou mais elementos ao final de um array indexado.</li>
+            </ul>
+            <p class="mt-4">
+                O PHP vem com muitas funções prontas não apenas para arrays, mas para vários outros tipos de dados, que podem economizar muito tempo e esforço. Elas são como atalhos poderosos que veremos a seguir.
+            </p>
+        </section>
+
+        <!-- Seção 7.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="funcoes">7.0 Funções Básicas Essenciais</h2>
+            <p class="mb-4">
+                Uma das grandes vantagens do PHP é sua extensa biblioteca de funções incorporadas (<span class="font-semibold">built-in functions</span>). São pedaços de código reutilizáveis que já vêm com a linguagem para realizar tarefas comuns, desde manipular texto até gerar números aleatórios. Usá-las economiza tempo, reduz a chance de erros e torna seu código mais eficiente.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">7.1 Funções de String</h3>
+            <p class="mb-3">
+                Desde contar caracteres até encontrar e substituir texto, estas funções são o seu canivete suíço para qualquer manipulação de strings.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">strlen($string)</code>: Retorna o comprimento (número de caracteres) de uma string.</li>
+                <li><code class="font-mono">strtoupper($string)</code>: Converte todos os caracteres de uma string para maiúsculas.</li>
+                <li><code class="font-mono">strtolower($string)</code>: Converte todos os caracteres de uma string para minúsculas.</li>
+                <li><code class="font-mono">str_replace("buscar", "substituir", $string)</code>: Substitui todas as ocorrências de um texto por outro dentro de uma string.</li>
+            </ul>
+            <div class="code-block">
+                &lt;?php<br>
+                $frase = "Eu gosto de maçãs.";<br>
+                $nova_frase = str_replace("maçãs", "bananas", $frase);<br>
+                echo $nova_frase;<br>
+                ?&gt;
+            </div>
+            <p class="mt-2 p-2 bg-gray-100 rounded">Saída: <span class="font-mono font-bold text-green-600">Eu gosto de bananas.</span></p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">7.2 Funções de Números</h3>
+            <p class="mb-3">
+                Estas funções ajudam a realizar verificações e operações matemáticas de forma rápida e segura.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">is_numeric($valor)</code>: Verifica se uma variável contém um número ou uma string numérica. Retorna <span class="font-mono">true</span> ou <span class="font-mono">false</span>.</li>
+                <li><code class="font-mono">round($numero)</code>: Arredonda um número de ponto flutuante (float) para o inteiro mais próximo.</li>
+                <li><code class="font-mono">rand(min, max)</code>: Gera um número inteiro aleatório dentro do intervalo especificado (inclusivo).</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">7.3 Funções de Array</h3>
+            <p class="mb-3">
+                Além das que já vimos, aqui estão mais algumas ferramentas poderosas para gerenciar suas coleções de dados.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono">in_array("valor", $array)</code>: Verifica se um valor existe em um array.</li>
+                <li><code class="font-mono">array_merge($array1, $array2)</code>: Combina (mescla) dois ou mais arrays em um único array.</li>
+                <li><code class="font-mono">array_reverse($array)</code>: Retorna um novo array com os elementos do array original na ordem inversa.</li>
+            </ul>
+            <p class="mt-4">
+                Agora que você tem um arsenal de ferramentas para manipular dados, vamos aplicá-las em um dos cenários mais importantes do desenvolvimento web: processar dados enviados por usuários através de formulários HTML.
+            </p>
+        </section>
+
+        <!-- Seção 8.0 -->
+        <section class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold section-header mb-4" id="formularios">8.0 Manipulando Formulários HTML com PHP</h2>
+            <p class="mb-4">
+                A manipulação de formulários é a ponte entre a interação do usuário no <span class="font-semibold">front-end</span> e a lógica de processamento no <span class="font-semibold">back-end</span>. É aqui que o PHP realmente brilha, permitindo que você colete, valide e processe informações enviadas por visitantes, como em formulários de contato, login, cadastro e pesquisas.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">8.1 Métodos de Envio: GET vs. POST</h3>
+            <p class="mb-3">
+                Quando um formulário HTML é submetido, os dados são enviados ao servidor usando um de dois métodos principais, especificados no atributo <code class="font-mono">method</code> da tag <code class="font-mono">&lt;form&gt;</code>:
+            </p>
+            <ul class="list-disc list-inside space-y-3 pl-4 mb-3">
+                <li><span class="font-bold">GET:</span> Envia os dados do formulário anexados diretamente à URL. Os dados ficam visíveis na barra de endereço do navegador (ex: <code>pagina.php?nome=joao&idade=30</code>). É ideal para funcionalidades como pesquisas ou filtros, onde você pode querer compartilhar ou salvar a URL com os parâmetros.</li>
+                <li><span class="font-bold">POST:</span> Envia os dados do formulário no corpo da requisição HTTP. Os dados não são visíveis na URL, tornando este método mais seguro e essencial para o envio de informações sensíveis, como senhas, ou grandes volumes de dados.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">8.2 Recebendo os Dados com Superglobais</h3>
+            <p class="mb-3">
+                O PHP torna extremamente fácil acessar os dados enviados por um formulário através de variáveis especiais chamadas superglobais. Elas são arrays associativos que estão disponíveis em qualquer parte do seu script.
+            </p>
+            <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                <li><code class="font-mono text-red-600">$_GET</code>: Um array associativo contendo os dados enviados via método GET.</li>
+                <li><code class="font-mono text-red-600">$_POST</code>: Um array associativo contendo os dados enviados via método POST.</li>
+            </ul>
+            <p class="mb-3">As chaves desses arrays correspondem aos atributos <code class="font-mono">name</code> dos campos do seu formulário HTML.</p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-blue-600">8.3 Exemplo Prático e a Importância da Segurança</h3>
+            <p class="mb-3">Vamos criar um formulário simples de contato e o script PHP para processá-lo.</p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-700">Passo 1: Crie o Formulário HTML</h4>
+            <p class="mb-3">Este formulário usa o método <code class="font-mono">POST</code> e envia os dados para um script chamado <code>processar.php</code>.</p>
+            <div class="code-block">
+                &lt;form action="processar.php" method="POST"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="nome"&gt;Nome:&lt;/label&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" id="nome" name="username"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;&lt;br&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="email"&gt;Email:&lt;/label&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="email" id="email" name="email"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;&lt;br&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;button type="submit"&gt;Enviar&lt;/button&gt;<br>
+                &lt;/form&gt;
+            </div>
+
+            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-700">Passo 2: Crie o Script PHP (processar.php)</h4>
+            <p class="mb-3">Este script verifica se o formulário foi enviado via POST, coleta os dados e os exibe.</p>
+
+            <div class="security-alert mb-4">
+                <span class="text-xl font-extrabold">ALERTA DE SEGURANÇA</span>
+                <p class="mt-2">A regra número um da programação web é: NUNCA confie nos dados do usuário. Qualquer informação vinda de um formulário pode ter sido manipulada. Antes de usar ou exibir esses dados, você deve sempre validá-los e "higienizá-los" (<span class="italic">sanitized</span>).</p>
+                <p class="mt-1">Uma das principais ameaças é o Cross-Site Scripting (XSS), onde um invasor injeta scripts maliciosos (como JavaScript) nos campos de um formulário.</p>
+                <p class="mt-1">Para se proteger contra isso, use a função <code class="font-mono text-red-900 bg-red-200 p-1 rounded">htmlspecialchars()</code>. Ela converte caracteres especiais (como <code class="font-mono">&lt;</code> e <code class="font-mono">&gt;</code>) em suas respectivas entidades HTML, tornando-os inofensivos e impedindo que o navegador os interprete como código.</p>
+            </div>
+
+            <div class="code-block">
+                // Arquivo: processar.php<br>
+                &lt;?php<br>
+                // Verifica se o formulário foi submetido usando o método POST<br>
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Coleta os dados do formulário e higieniza a saída para prevenir XSS<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;$nome = htmlspecialchars($_POST['username']);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;$email = htmlspecialchars($_POST['email']);<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;echo "&lt;h1&gt;Dados Recebidos&lt;/h1&gt;";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;echo "Olá, " . $nome . "!&lt;br&gt;";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;echo "Seu email é: " . $email;<br>
+                } else {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Se o acesso não foi via POST, informa que o método está incorreto<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;echo "O formulário não foi enviado corretamente.";<br>
+                }<br>
+                ?&gt;
+            </div>
+
+            <p class="mt-6 p-4 bg-green-50 rounded-lg border-l-4 border-green-500 font-semibold text-green-800">
+                Parabéns! Você concluiu uma jornada pelos fundamentos essenciais do PHP. Desde a sintaxe básica e variáveis até o manuseio de formulários, você agora possui a base sólida necessária para começar a explorar tópicos mais avançados, como interação com bancos de dados, sessões de usuário e a construção de aplicações web completas e dinâmicas. Continue praticando e construindo!
+            </p>
+        </section>
+
+        <!-- Conclusão e Rodapé -->
+        <footer class="text-center mt-12 py-4 text-gray-500 border-t">
+            <p>&copy; Módulo de Curso: Sintaxe Básica do PHP para Iniciantes</p>
+        </footer>
+    </div>
+
+</body>
+</html>

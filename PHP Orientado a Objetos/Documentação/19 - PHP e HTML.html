@@ -1,0 +1,228 @@
+<!-- Chosen Palette: PHP Integration Focus (#4A90E2 - PHP Blue, #00B894 - Verde para Prática Recomendada) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração PHP e HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #4A90E2; /* PHP Blue */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #FFD166; /* Amarelo de Destaque */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-var { color: #CDDC39; }
+        .code-reserved { color: #FF8C00; font-weight: bold; }
+        .code-string { color: #FFC107; }
+        .code-op { color: #FF79C6; }
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">PHP e HTML: A Geração de Páginas Dinâmicas</h1>
+            <p class="mt-4 text-gray-200 text-lg">Aprenda a incorporar (embed) código PHP diretamente no HTML para construir websites.</p>
+        </header>
+
+        <!-- I. Explicação Didática: Sintaxe e Saída -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#4A90E2] mb-5">I. Explicação: Sintaxe e Saída</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Extensão e Delimitadores -->
+                <div class="concept-card border-l-8 border-indigo-500">
+                    <h4 class="text-xl font-bold text-indigo-500 mb-2">1. Delimitadores e Extensão</h4>
+                    <p class="text-sm text-gray-700">O arquivo deve ter extensão .php. O código deve estar entre <span class="font-mono text-sm text-indigo-700">&lt;?php</span> e <span class="font-mono text-sm text-indigo-700">?&gt;</span>.</p>
+                </div>
+
+                <!-- Comando de Saída (echo) -->
+                <div class="concept-card border-l-8 border-[#FFD166]">
+                    <h4 class="text-xl font-bold text-[#FFD166] mb-2">2. Comando de Saída (echo)</h4>
+                    <p class="text-sm text-gray-700">A função principal para enviar texto, variáveis ou resultados de cálculos para o navegador é o comando <span class="code-reserved">echo</span>.</p>
+                </div>
+
+                <!-- Omissão do Fechamento -->
+                <div class="concept-card border-l-8 border-[#00B894]">
+                    <h4 class="text-xl font-bold text-[#00B894] mb-2">3. Melhor Prática (Tags Puras)</h4>
+                    <p class="text-sm text-gray-700">Em arquivos que são puramente PHP (includes, handlers), omita a tag de fechamento <span class="font-mono text-sm text-indigo-700">?&gt;</span> para evitar output indesejado.</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-gray-100 border-l-4 border-gray-500 rounded-md">
+                <h4 class="text-xl font-bold text-gray-800 mb-2">Melhor Prática: Fechar e Reabrir Tags</h4>
+                <p class="text-sm text-gray-700">Em vez de usar <span class="font-mono text-sm text-indigo-700">echo</span> para imprimir grandes blocos de HTML, feche a tag PHP (<span class="code-op">?&gt;</span>) e reabra-a (<span class="code-reserved">&lt;?php</span>) em torno da marcação.</p>
+                <p class="text-xs text-gray-600 mt-1">Isso melhora a legibilidade e permite que o editor aplique a sintaxe correta ao HTML puro.</p>
+            </div>
+        </section>
+
+        <!-- II. Exercícios Estruturais -->
+        <section class="p-6 rounded-xl shadow-xl bg-white border border-gray-200">
+            <h3 class="text-3xl font-bold text-[#4A90E2] mb-5 border-b pb-2">II. 5 Exercícios Estruturais: PHP no HTML</h3>
+
+            <div class="space-y-8">
+
+                <!-- Exercício 1: Tabela de Dados Dinâmicos -->
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-600 mb-2">1. Gerando uma Tabela de Dados Dinâmicos</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usando <span class="code-reserved">foreach</span> e fechando/reabrindo tags para gerar linhas de uma tabela HTML.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// tabela.php</span> <br>
+                        &lt;?php <span class="code-var">$cores</span> <span class="code-op">=</span> [<span class="code-string">"Vermelho"</span>, <span class="code-string">"Azul"</span>, <span class="code-string">"Verde"</span>]<span class="code-op">;</span> ?&gt;
+                        <br>
+                        &lt;h2&gt;Lista de Cores&lt;/h2&gt;
+                        <br>&lt;table class="border-collapse w-full"&gt;
+                        <br>  &lt;tbody&gt;
+                        <br>
+                        <br>    <span class="code-reserved">&lt;?php</span> <span class="code-reserved">foreach</span> (<span class="code-var">$cores</span> <span class="code-reserved">as</span> <span class="code-var">$cor</span>)<span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>      &lt;tr class="border-b"&gt;
+                        <br>        &lt;td class="p-2"&gt;Cor: <span class="code-reserved">&lt;?php</span> <span class="code-reserved">echo</span> <span class="code-var">$cor</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>&lt;/td&gt;
+                        <br>      &lt;/tr&gt;
+                        <br>
+                        <br>    <span class="code-reserved">&lt;?php</span> <span class="code-reserved">endforeach</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>  &lt;/tbody&gt;
+                        <br>&lt;/table&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Componente Condicional de Navegação -->
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-600 mb-2">2. Componente Condicional de Navegação</h4>
+                    <p class="text-sm text-gray-700 mb-3">Exibindo blocos HTML inteiros baseados em uma condição (<span class="code-reserved">if/else</span>), mantendo o HTML limpo.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// menu.php</span> <br>
+                        &lt;?php <span class="code-var">$usuario_ativo</span> <span class="code-op">=</span> <span class="code-reserved">true</span><span class="code-op">;</span> ?&gt;
+                        <br>
+                        &lt;nav&gt;
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">if</span> (<span class="code-var">$usuario_ativo</span>)<span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>    &lt;a href="painel.php"&gt;Painel de Controle&lt;/a&gt;
+                        <br>    &lt;button&gt;Sair&lt;/button&gt; &lt;!-- HTML PURO AQUI --&gt;
+                        <br>
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">else</span><span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>    &lt;a href="login.php"&gt;Login&lt;/a&gt;
+                        <br>    &lt;a href="cadastro.php"&gt;Cadastro&lt;/a&gt; &lt;!-- HTML PURO AQUI --&gt;
+                        <br>
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">endif</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>
+                        <br>&lt;/nav&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 3: O Dilema do Handler de Dados -->
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-600 mb-2">3. Handler Puro vs. Arquivo Misto (Regras de Tags)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Omissão da tag de fechamento (<span class="code-op">?&gt;</span>) em arquivos que só contêm PHP para evitar erros de output/headers.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// processa_dados.inc.php (ARQUIVO PURO PHP)</span> <br>
+                        &lt;?php
+                        <br><span class="code-reserved">function</span> salvar_dados() {
+                        <br>  <span class="code-comment">// Lógica para salvar dados sem gerar HTML...</span>
+                        <br>}
+                        <br>
+                        <br><span class="code-comment">// A tag de fechamento (?>) é OMITIDA AQUI.</span>
+                        <br>
+                        <br><span class="text-sm text-gray-400">// formulario.php (ARQUIVO MISTO)</span>
+                        <br>&lt;?php <span class="code-reserved">require</span> <span class="code-string">'processa_dados.inc.php'</span><span class="code-op">;</span> <span class="code-op">?&gt;</span> &lt;!-- Tag de fechamento é OBRIGATÓRIA AQUI para o HTML iniciar --&gt;
+                        <br>&lt;html&gt;
+                        <br>...
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Verificando a Submissão de Formulário -->
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-600 mb-2">4. Verificando a Submissão de Formulário (Superglobal)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Usando a superglobal <span class="code-reserved">$_POST</span> e <span class="code-reserved">isset()</span> para controlar se o formulário deve ser exibido ou processado.</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// saudacao.php</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$username</span> <span class="code-op">=</span> <span class="code-string">''</span><span class="code-op">;</span>
+                        <br><span class="code-reserved">if</span> (<span class="code-reserved">isset</span>(<span class="code-var">$_POST</span>[<span class="code-string">'username'</span>]) <span class="code-op">&&</span> !<span class="code-reserved">empty</span>(<span class="code-var">$_POST</span>[<span class="code-string">'username'</span>])) {
+                        <br>    <span class="code-var">$username</span> <span class="code-op">=</span> <span class="code-var">$_POST</span>[<span class="code-string">'username'</span>]<span class="code-op">;</span>
+                        <br>}
+                        <br><span class="code-op">?&gt;</span>
+                        <br>
+                        <br>&lt;div class="p-4"&gt;
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">if</span> (<span class="code-var">$username</span>)<span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>    &lt;h1 class="text-green-600 text-3xl"&gt;Bem-vindo, <span class="code-reserved">&lt;?php</span> <span class="code-reserved">echo</span> <span class="code-var">$username</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>!&lt;/h1&gt;
+                        <br>
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">else</span><span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>    &lt;h2&gt;Entre com seu nome:&lt;/h2&gt;
+                        <br>    &lt;form method="POST" action="saudacao.php"&gt;
+                        <br>      &lt;input type="text" name="username" class="border p-2 rounded-md" placeholder="Seu nome"&gt;
+                        <br>      &lt;button type="submit" class="bg-blue-500 text-white p-2 rounded-md"&gt;Enviar&lt;/button&gt;
+                        <br>    &lt;/form&gt;
+                        <br>
+                        <br>  <span class="code-reserved">&lt;?php</span> <span class="code-reserved">endif</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>
+                        <br>&lt;/div&gt;
+                    </div>
+                </div>
+
+                <!-- Exercício 5: Validação Simples e Repetição de Campo -->
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-600 mb-2">5. Validação com Manutenção de Dados (value)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Mantendo o valor digitado no campo (<span class="code-reserved">value</span>) após uma falha de validação (<span class="code-reserved">empty()</span>).</p>
+                    <div class="code-block">
+                        <span class="text-sm text-gray-400">// Modificação de saudacao.php (somente a lógica e o formulário)</span> <br>
+                        &lt;?php
+                        <br><span class="code-var">$username</span> <span class="code-op">=</span> <span class="code-string">''</span><span class="code-op">;</span> <span class="code-var">$mensagem_erro</span> <span class="code-op">=</span> <span class="code-string">''</span><span class="code-op">;</span> <span class="code-var">$erro</span> <span class="code-op">=</span> <span class="code-reserved">false</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-reserved">if</span> (<span class="code-reserved">isset</span>(<span class="code-var">$_POST</span>[<span class="code-string">'username'</span>])) {
+                        <br>    <span class="code-var">$username</span> <span class="code-op">=</span> <span class="code-var">$_POST</span>[<span class="code-string">'username'</span>]<span class="code-op">;</span>
+                        <br>    <span class="code-reserved">if</span> (<span class="code-reserved">empty</span>(<span class="code-var">$username</span>)) {
+                        <br>        <span class="code-var">$erro</span> <span class="code-op">=</span> <span class="code-reserved">true</span><span class="code-op">;</span>
+                        <br>        <span class="code-var">$mensagem_erro</span> <span class="code-op">=</span> <span class="code-string">"O campo nome não pode estar vazio."</span><span class="code-op">;</span>
+                        <br>    }
+                        <br>    <span class="code-comment">// Se $erro for false, o código de sucesso (Ex. 4) viria aqui.</span>
+                        <br>}
+                        <br><span class="code-op">?&gt;</span>
+                        <br>
+                        <br>&lt;!-- Exibição de Erro e Formulário --&gt;
+                        <br><span class="code-reserved">&lt;?php</span> <span class="code-reserved">if</span> (<span class="code-var">$erro</span>)<span class="code-op">:</span> <span class="code-op">?&gt;</span>
+                        <br>  &lt;p class="text-red-500 font-bold"&gt;<span class="code-reserved">&lt;?php</span> <span class="code-reserved">echo</span> <span class="code-var">$mensagem_erro</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>&lt;/p&gt;
+                        <br><span class="code-reserved">&lt;?php</span> <span class="code-reserved">endif</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>
+                        <br>
+                        <br>&lt;form method="POST" action="saudacao.php"&gt;
+                        <br>  &lt;input type="text" name="username" class="border p-2 rounded-md"
+                        <br>    <span class="code-comment"><!-- Injeção de dados no atributo value --></span>
+                        <br>    <span class="code-reserved">value</span>="<span class="code-reserved">&lt;?php</span> <span class="code-reserved">echo</span> <span class="code-var">$username</span><span class="code-op">;</span> <span class="code-op">?&gt;</span>"&gt;
+                        <br>  &lt;button type="submit" class="bg-blue-500 text-white p-2 rounded-md"&gt;Enviar&lt;/button&gt;
+                        <br>&lt;/form&gt;
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

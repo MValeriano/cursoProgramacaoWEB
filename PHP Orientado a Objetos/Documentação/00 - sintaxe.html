@@ -1,0 +1,213 @@
+<!-- Chosen Palette: Syntax Focus (#FF8C00 - Laranja Escuro, #1E90FF - Azul Forte) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaxe Básica do PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-card {
+            background-color: #FF8C00; /* Laranja Escuro Principal */
+            color: white;
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #1E90FF; /* Azul Forte */
+        }
+        .code-block {
+            background-color: #263238;
+            color: #E0F7FA;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .code-php-tag { color: #FF8C00; font-weight: bold; } /* Laranja */
+        .code-var { color: #CDDC39; } /* Lima */
+        .code-op { color: #FF79C6; } /* Rosa */
+        .code-string { color: #FFC107; } /* Amarelo */
+        .code-comment { color: #546E7A; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título Principal e Conceito -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-xl mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3">Sintaxe do PHP: A Gramática da Cozinha</h1>
+            <p class="mt-4 text-gray-800">A sintaxe é o conjunto de regras que o servidor deve seguir. Se a pontuação e a formatação estiverem erradas, o código não executa.</p>
+        </header>
+
+        <!-- Elementos Essenciais da Sintaxe PHP -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#1E90FF] mb-5">1. Pilares da Sintaxe PHP</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <!-- Delimitadores -->
+                <div class="concept-card border-t-4 border-[#FF8C00]">
+                    <h4 class="text-xl font-bold text-[#FF8C00] mb-2">Delimitadores (Chave de Ignição)</h4>
+                    <p class="text-sm text-gray-700">O servidor só executa o que está entre `<?php` (Abertura) e `?>` (Fechamento). Omitir o fechamento em arquivos puros PHP é a melhor prática.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br>  <span class="code-comment">// Código aqui...</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Ponto e Vírgula -->
+                <div class="concept-card border-t-4 border-[#1E90FF]">
+                    <h4 class="text-xl font-bold text-[#1E90FF] mb-2">Ponto e Vírgula (Ponto Final)</h4>
+                    <p class="text-sm text-gray-700">Todo comando ou instrução (statement) no PHP deve ser encerrado com `;`. Ele indica o fim do comando.</p>
+                    <div class="code-block">
+                        <span class="code-var">$idade</span> <span class="code-op">=</span> <span class="code-val">30</span><span class="code-op">;</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$idade</span><span class="code-op">;</span>
+                    </div>
+                </div>
+
+                <!-- Variáveis & Case Sensitive -->
+                <div class="concept-card border-t-4 border-[#FF8C00]">
+                    <h4 class="text-xl font-bold text-[#FF8C00] mb-2">Variáveis (Símbolo $)</h4>
+                    <p class="text-sm text-gray-700">Toda variável deve começar com o cifrão (`$`). O PHP é case sensitive (sensível a maiúsculas/minúsculas) para variáveis.</p>
+                    <div class="code-block">
+                        <span class="code-var">$nome</span> <span class="code-op">=</span> <span class="code-string">'João'</span>;
+                        <br><span class="code-comment">// $Nome é outra variável!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Outros Elementos Chave -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold text-[#FF8C00] mb-5">2. Comandos de Saída e Comentários</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Output -->
+                <div class="concept-card border-t-4 border-[#1E90FF]">
+                    <h4 class="text-xl font-bold text-[#1E90FF] mb-2">Comandos de Saída (Output)</h4>
+                    <p class="text-sm text-gray-700">Usados para enviar o conteúdo processado de volta ao navegador.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>`echo`: Comando mais comum e ligeiramente mais rápido.</li>
+                        <li>`print`: É uma função, também usada para imprimir.</li>
+                    </ul>
+                </div>
+                <!-- Comentários -->
+                <div class="concept-card border-t-4 border-[#FF8C00]">
+                    <h4 class="text-xl font-bold text-[#FF8C00] mb-2">Comentários (Notas Internas)</h4>
+                    <p class="text-sm text-gray-700">Linhas que o PHP ignora durante a execução, usadas para documentação interna.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Linha Única: `//` ou `#`</li>
+                        <li>Múltiplas Linhas: `/* ... */`</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Exercícios Práticos -->
+        <section class="p-6 rounded-xl shadow-xl bg-white">
+            <h3 class="text-3xl font-bold text-[#1E90FF] mb-5 border-b pb-2">3. 5 Desafios de Sintaxe PHP</h3>
+            <p class="text-gray-700 mb-6">Pratique o uso correto de delimitadores, variáveis, concatenação e a regra de arquivos puros.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1: Delimitadores e Ponto Final -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF8C00] mb-2">1. Delimitadores e Ponto Final (saudacao.php)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Mistura de HTML e PHP. Note o uso obrigatório do `;` e a abertura/fechamento do bloco.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-var">$mensagem</span> <span class="code-op">=</span> <span class="code-string">"Bem-vindo!"</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                        <br><span class="code-html-tag">&lt;h1&gt;</span>Site em PHP<span class="code-html-tag">&lt;/h1&gt;</span>
+                        <br>
+                        <br><span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$mensagem</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 2: Variáveis e Case Sensitivity -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF8C00] mb-2">2. Variáveis e Case Sensitivity</h4>
+                    <p class="text-sm text-gray-700 mb-3">A variável `$Produto` (com P maiúsculo) na linha do `echo` está errada, pois não foi declarada. Abaixo, provamos que `$TOTAL` e `$total` são diferentes.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-var">$produto</span> <span class="code-op">=</span> <span class="code-string">"Teclado"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$Preco</span> <span class="code-op">=</span> <span class="code-val">150.00</span><span class="code-op">;</span> <span class="code-comment">// Variável $Preco</span>
+                        <br>
+                        <br><span class="code-comment">// ERRO NO CÓDIGO ORIGINAL: A variável abaixo não existe!</span>
+                        <br><span class="code-comment">// echo "Produto: " . $Produto;</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Produto: "</span> <span class="code-op">.</span> <span class="code-var">$produto</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span><span class="code-op">;</span> <span class="code-comment">// Correção</span>
+                        <br>
+                        <br><span class="code-var">$TOTAL</span> <span class="code-op">=</span> <span class="code-val">100</span><span class="code-op">;</span> <span class="code-comment">// Em maiúsculas</span>
+                        <br><span class="code-var">$total</span> <span class="code-op">=</span> <span class="code-val">50</span><span class="code-op">;</span> <span class="code-comment">// Em minúsculas</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"TOTAL (1): R$ "</span> <span class="code-op">.</span> <span class="code-var">$TOTAL</span> <span class="code-op">.</span> <span class="code-string">"<br>"</span><span class="code-op">;</span>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"total (2): R$ "</span> <span class="code-op">.</span> <span class="code-var">$total</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3: Comentários e Depuração (Debug) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#1E90FF] mb-2">3. Comentários e Depuração</h4>
+                    <p class="text-sm text-gray-700 mb-3">Uso de comentários de linha única (`//`) e múltiplas linhas (`/* */`) para documentação.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-var">$valor</span> <span class="code-op">=</span> <span class="code-val">250</span><span class="code-op">;</span> <span class="code-comment">// Valor base do produto ou serviço</span>
+                        <br>
+                        <br><span class="code-comment">/* </span>
+                        <br><span class="code-comment">Cálculo do imposto: Aplicamos 10% sobre o valor base.</span>
+                        <br><span class="code-comment">Isso nos dará o valor do imposto a ser pago.</span>
+                        <br><span class="code-comment">*/</span>
+                        <br><span class="code-var">$imposto</span> <span class="code-op">=</span> <span class="code-var">$valor</span> <span class="code-op">*</span> <span class="code-val">0.10</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Imposto a pagar: R$ "</span> <span class="code-op">.</span> <span class="code-var">$imposto</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 4: Concatenação e Caracteres Especiais -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#1E90FF] mb-2">4. Concatenação e Caracteres Especiais (\n)</h4>
+                    <p class="text-sm text-gray-700 mb-3">O caractere de nova linha `\n` funciona dentro de strings de aspas duplas (`"`) e é combinado com o ponto (`.`).</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-var">$cidade</span> <span class="code-op">=</span> <span class="code-string">"Porto Alegre"</span><span class="code-op">;</span>
+                        <br><span class="code-var">$cep</span> <span class="code-op">=</span> <span class="code-string">"90000-000"</span><span class="code-op">;</span>
+                        <br>
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Remessa para:\n"</span> <span class="code-op">.</span>
+                        <br>     <span class="code-var">$cidade</span> <span class="code-op">.</span> <span class="code-string">"\n"</span> <span class="code-op">.</span>
+                        <br>     <span class="code-string">"CEP: "</span> <span class="code-op">.</span> <span class="code-var">$cep</span><span class="code-op">;</span>
+                        <br><span class="code-php-tag">?&gt;</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 5: O Arquivo Puro (Regra da Omissão) -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#FF8C00] mb-2">5. O Arquivo Puro (config.php)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Em um arquivo que só tem código PHP, o delimitador de fechamento `?>` é omitido para prevenir erros.</p>
+                    <div class="code-block">
+                        <span class="code-php-tag">&lt;?php</span>
+                        <br><span class="code-comment">// config.php - Arquivo Pure PHP. Omitimos o ?> no final.</span>
+                        <br>
+                        <br><span class="code-var">$DEBUG_MODE</span> <span class="code-op">=</span> <span class="code-keyword">TRUE</span><span class="code-op">;</span>
+                        <br><span class="code-var">$versao_app</span> <span class="code-op">=</span> <span class="code-string">'1.0'</span><span class="code-op">;</span>
+                        <br><span class="code-comment">// Fim do arquivo.</span>
+                        <br><span class="code-comment">// NÃO FECHA COM ?></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

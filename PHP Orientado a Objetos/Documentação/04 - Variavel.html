@@ -1,0 +1,243 @@
+<!-- Chosen Palette: Calm & Professional (#94a3b8, #64748b, #334155) -->
+<!-- Confirmação: NÃO foi usado SVG. NÃO foi usado Chart.js, Plotly.js ou Mermaid JS. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variáveis PHP: A Analogia da Caixa e da Etiqueta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            scroll-behavior: smooth;
+        }
+        .header-card {
+            background-color: #e2e8f0; /* Azul Claro Suave */
+        }
+        .concept-box {
+            border-left: 5px solid #64748b; /* Cinza Médio */
+            background-color: #f1f5f9; /* Cinza Muito Claro */
+        }
+        .key-rule {
+            border-left: 4px solid #334155; /* Cinza Escuro */
+        }
+        .code-block {
+            background-color: #1e293b; /* Quase Preto */
+            color: #f0f9ff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        .code-keyword { color: #94a3b8; } /* Azul Claro */
+        .code-var { color: #facc15; } /* Amarelo */
+        .code-string { color: #4ade80; } /* Verde Claro */
+        .code-comment { color: #64748b; } /* Cinza Médio */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-6xl mx-auto">
+
+        <!-- Título Principal e Introdução -->
+        <header class="header-card p-6 sm:p-10 rounded-xl shadow-lg mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#334155] mb-3">O Conceito de Variável em PHP</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-[#64748b]">A Chave para Armazenar Informação na Web</h2>
+            <p class="mt-4 text-gray-600">Entenda de forma simples o que é uma variável, como ela funciona e quais são as regras essenciais para começar a programar em PHP.</p>
+        </header>
+
+        <!-- Seção: Analogia da Caixa e da Etiqueta -->
+        <section id="analogia" class="mb-12">
+            <h3 class="text-3xl font-bold text-[#334155] mb-5">O que é uma Variável? (Analogia da Caixa)</h3>
+            
+            <div class="concept-box p-5 rounded-lg shadow-md">
+                <p class="font-bold text-xl mb-3 text-[#334155]">Pense na variável como uma caixa na sua mudança:</p>
+                <ul class="list-none space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl font-extrabold text-[#64748b] mr-3">📦</span>
+                        <div>
+                            <p class="font-semibold text-lg">A Variável é a Caixa (Local de Memória)</p>
+                            <p class="text-gray-700 text-sm">É um local volátil na memória RAM do servidor que armazena dados enquanto a aplicação está rodando. O conteúdo é destruído após o programa finalizar.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-extrabold text-[#64748b] mr-3">🏷️</span>
+                        <div>
+                            <p class="font-semibold text-lg">O Nome da Variável é a Etiqueta</p>
+                            <p class="text-gray-700 text-sm">Você usa a etiqueta (ex: <code class="bg-gray-200 px-1 rounded text-sm">$nome_cliente</code>) para identificar e acessar o Conteúdo (o dado) que está dentro da caixa.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-extrabold text-[#64748b] mr-3">🍎</span>
+                        <div>
+                            <p class="font-semibold text-lg">O Conteúdo é o Dado</p>
+                            <p class="text-gray-700 text-sm">É o valor real que você quer guardar (ex: <code class="bg-gray-200 px-1 rounded text-sm">"Maria da Silva"</code>, <code class="bg-gray-200 px-1 rounded text-sm">30</code> ou <code class="bg-gray-200 px-1 rounded text-sm">TRUE</code>).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção: Regras Essenciais -->
+        <section id="regras" class="mb-12">
+            <h3 class="text-3xl font-bold text-[#334155] mb-5">Regras Essenciais e Boas Práticas</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="key-rule p-4 rounded-md shadow-md bg-white">
+                    <p class="text-lg font-bold text-[#334155] mb-2">1. Sinal de Cifrão ($) é Obrigatório</p>
+                    <p class="text-sm text-gray-700 mb-2">Toda variável PHP DEVE começar com o caractere cifrão, seguido pelo nome.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Declaração e Inicialização</span>
+                        <br><span class="code-var">$nome</span> <span class="code-keyword">=</span> <span class="code-string">"Daniel"</span>;
+                    </div>
+                </div>
+
+                <div class="key-rule p-4 rounded-md shadow-md bg-white">
+                    <p class="text-lg font-bold text-[#334155] mb-2">2. Case Sensitive (Sensível a Maiúsculas/Minúsculas)</p>
+                    <p class="text-sm text-gray-700 mb-2">PHP trata letras maiúsculas e minúsculas como distintas no nome da variável.</p>
+                    <div class="code-block">
+                        <span class="code-var">$nomeCliente</span> <span class="code-keyword">=</span> <span class="code-string">"João"</span>;
+                        <br><span class="code-var">$nomecliente</span> <span class="code-keyword">=</span> <span class="code-string">"Maria"</span>; <span class="code-comment">// Variáveis diferentes!</span>
+                    </div>
+                </div>
+
+                <div class="key-rule p-4 rounded-md shadow-md bg-white md:col-span-2">
+                    <p class="text-lg font-bold text-[#334155] mb-2">3. Boas Práticas de Nomenclatura</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700">
+                        <li>Proibido: Iniciar com números, usar espaços ou caracteres especiais (<code class="bg-gray-200 px-1 rounded">!</code>, <code class="bg-gray-200 px-1 rounded">@</code>, <code class="bg-gray-200 px-1 rounded">/</code>).</li>
+                        <li>Recomendado: Utilizar <code>snake_case</code> (palavras minúsculas com underscore: <code class="bg-gray-200 px-1 rounded">$nome_completo</code>) ou <code>camelCase</code> (primeira letra maiúscula nas palavras seguintes: <code class="bg-gray-200 px-1 rounded">$nomeCliente</code>).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Tipos de Variáveis (O Conteúdo da Caixa) -->
+        <section id="tipos" class="mb-12">
+            <h3 class="text-3xl font-bold text-[#334155] mb-5">Tipos de Variáveis (O Conteúdo da Caixa)</h3>
+            <p class="text-gray-700 mb-4">Os tipos de dados mais básicos (escalares) contêm apenas um valor:</p>
+            
+            <div class="overflow-x-auto shadow-lg rounded-lg">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-100 text-left text-xs font-semibold uppercase tracking-wider text-[#334155]">
+                            <th class="py-3 px-4">Tipo de Dado</th>
+                            <th class="py-3 px-4">O que é</th>
+                            <th class="py-3 px-4">Exemplo em PHP</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-[#64748b]">String</td>
+                            <td class="py-3 px-4">Cadeia de caracteres alfanuméricos (texto).</td>
+                            <td class="py-3 px-4 code-block"><code class="p-0 bg-transparent text-sm"><span class="code-var">$frase</span> <span class="code-keyword">=</span> <span class="code-string">"Olá Mundo"</span>;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-[#64748b]">Integer (Int)</td>
+                            <td class="py-3 px-4">Números inteiros (sem ponto decimal).</td>
+                            <td class="py-3 px-4 code-block"><code class="p-0 bg-transparent text-sm"><span class="code-var">$idade</span> <span class="code-keyword">=</span> <span class="code-key">30</span>;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-[#64748b]">Float</td>
+                            <td class="py-3 px-4">Números de ponto flutuante (com decimais).</td>
+                            <td class="py-3 px-4 code-block"><code class="p-0 bg-transparent text-sm"><span class="code-var">$preco</span> <span class="code-keyword">=</span> <span class="code-key">5.99</span>;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-[#64748b]">Boolean</td>
+                            <td class="py-3 px-4">Um valor lógico: Verdadeiro (<code class="text-yellow-500">TRUE</code>) ou Falso (<code class="text-yellow-500">FALSE</code>).</td>
+                            <td class="py-3 px-4 code-block"><code class="p-0 bg-transparent text-sm"><span class="code-var">$estaAtivo</span> <span class="code-keyword">=</span> <span class="code-keyword">TRUE</span>;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-[#64748b]">Array</td>
+                            <td class="py-3 px-4">Contém múltiplos valores (não é escalar), como uma lista.</td>
+                            <td class="py-3 px-4 code-block"><code class="p-0 bg-transparent text-sm"><span class="code-var">$cores</span> <span class="code-keyword">=</span> [<span class="code-string">'Azul'</span>, <span class="code-string">'Verde'</span>];</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção: Exercícios Práticos -->
+        <section id="exercicios" class="p-6 rounded-xl shadow-xl bg-white mb-12">
+            <h3 class="text-3xl font-bold text-[#334155] mb-5 border-b pb-2">5 Exercícios Práticos</h3>
+            <p class="text-gray-700 mb-6">Aplique os conceitos de declaração, tipos de dados e sensibilidade a maiúsculas/minúsculas.</p>
+
+            <div class="space-y-6">
+
+                <!-- Exercício 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#64748b] mb-2">1. A Ficha Cadastral (Declaração e Tipos)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Crie quatro variáveis para armazenar: nome completo (string), idade (int), se é bolsista (boolean) e valor da mensalidade (float).</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Sugestão de Resolução:</span>
+                        <br><span class="code-var">$nome_aluno</span> <span class="code-keyword">=</span> <span class="code-string">"Júlia Silva"</span>;
+                        <br><span class="code-var">$idade</span> <span class="code-keyword">=</span> <span class="code-key">22</span>;
+                        <br><span class="code-var">$e_bolsista</span> <span class="code-keyword">=</span> <span class="code-keyword">TRUE</span>;
+                        <br><span class="code-var">$mensalidade</span> <span class="code-keyword">=</span> <span class="code-key">950.50</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#64748b] mb-2">2. O Erro do Estagiário (Case Sensitivity)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Corrija o código que não exibe o usuário logado devido à sensibilidade de maiúsculas/minúsculas.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Código Corrigido:</span>
+                        <br><span class="code-var">$usuario</span> <span class="code-keyword">=</span> <span class="code-string">"admin_master"</span>;
+                        <br><span class="code-var">$senha</span> <span class="code-keyword">=</span> <span class="code-string">"123456"</span>;
+                        <br><span class="code-keyword">echo</span> <span class="code-string">"Usuário logado: "</span> <span class="code-keyword">.</span> <span class="code-var">$usuario</span>; <span class="code-comment">// Corrigido: '$Usuario' para '$usuario'</span>
+                    </div>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#64748b] mb-2">3. O Saldo Bancário (Atribuição e Reatribuição)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Simule uma transação subtraindo o valor da compra (25) do saldo inicial (100) e exiba o resultado final (75).</p>
+                    <div class="code-block">
+                        <span class="code-var">$saldo_inicial</span> <span class="code-keyword">=</span> <span class="code-key">100</span>;
+                        <br><span class="code-var">$compra</span> <span class="code-keyword">=</span> <span class="code-key">25</span>;
+                        <br><span class="code-var">$saldo_final</span> <span class="code-keyword">=</span> <span class="code-var">$saldo_inicial</span> <span class="code-keyword">-</span> <span class="code-var">$compra</span>;
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$saldo_final</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#64748b] mb-2">4. O Endereço Completo (Concatenação de Strings)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Combine as variáveis de rua, número e cidade em uma única variável formatada.</p>
+                    <div class="code-block">
+                        <span class="code-var">$rua</span> <span class="code-keyword">=</span> <span class="code-string">"Rua das Flores"</span>;
+                        <br><span class="code-var">$numero</span> <span class="code-keyword">=</span> <span class="code-key">120</span>;
+                        <br><span class="code-var">$cidade</span> <span class="code-keyword">=</span> <span class="code-string">"São Paulo"</span>;
+                        <br><span class="code-var">$endereco_completo</span> <span class="code-keyword">=</span> <span class="code-var">$rua</span> <span class="code-keyword">.</span> <span class="code-string">", "</span> <span class="code-keyword">.</span> <span class="code-var">$numero</span> <span class="code-keyword">.</span> <span class="code-string">" - "</span> <span class="code-keyword">.</span> <span class="code-var">$cidade</span>;
+                        <br><span class="code-keyword">echo</span> <span class="code-var">$endereco_completo</span>;
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-[#64748b] mb-2">5. Caixa Vazia (Boas Práticas de Inicialização)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Atribua valores padrão (zero ou string vazia) para evitar erros de variáveis não definidas.</p>
+                    <div class="code-block">
+                        <span class="code-comment">// Inicialização para números (int)</span>
+                        <br><span class="code-var">$total_itens</span> <span class="code-keyword">=</span> <span class="code-key">0</span>;
+                        <br><span class="code-comment">// Inicialização para texto (string)</span>
+                        <br><span class="code-var">$mensagem_aviso</span> <span class="code-keyword">=</span> <span class="code-string">""</span>;
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="text-center py-6 text-sm text-gray-500 border-t mt-8">
+            <p>Conceitos baseados em "PHP Programando com Orientação a Objetos".</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
