@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartões Didáticos: PHP, OOP e SQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #4a5568;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Estilo para as Seções */
+        .secao {
+            margin-bottom: 50px;
+        }
+
+        .secao h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Grid para os Cartões */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Estilo do Cartão (Container para a Animação 3D) */
+        .card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px; /* Efeito 3D */
+            cursor: pointer;
+        }
+
+        /* Container Interno que Gira */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        /* Rotação ao clicar */
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso do Cartão */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Para Safari */
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo da Frente */
+        .card-front {
+            background-color: #ffffff;
+            color: black;
+            border: 1px solid #ddd;
+        }
+        
+        /* Estilo do Verso */
+        .card-back {
+            background-color: #3498db;
+            color: white;
+            transform: rotateY(180deg); /* O verso começa virado */
+        }
+
+        .card-numero {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .card-back .card-numero {
+             background-color: #fff;
+             color: #3498db;
+        }
+
+        .card-texto {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .card-back .card-texto {
+            font-size: 1.05em;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Cartões Didáticos Interativos</h1>
+            <p>PHP, Programação Orientada a Objetos e SQL</p>
+        </header>
+
+        <!-- Seção I -->
+        <section class="secao">
+            <h2>I. Conceitos Fundamentais e Sintaxe</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 1 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">1</div>
+                            <p class="card-texto">Qual é a principal função da <strong>tag de abertura</strong> de código PHP (`<?php`)?</p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">1</div>
+                            <p class="card-texto">É o delimitador que informa ao interpretador PHP para começar a analisar e executar o código da linguagem que o segue.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 2 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">2</div>
+                            <p class="card-texto">O que o <strong>ponto e vírgula</strong> (`;`) representa no final de uma instrução PHP?</p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">2</div>
+                            <p class="card-texto">Ele delimita e informa ao interpretador PHP que a instrução atual foi <strong>concluída</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicione os outros cartões da Seção I aqui -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">3</div>
+                            <p class="card-texto">Qual é a <strong>melhor prática</strong> para o <strong>tag de fechamento</strong> (`?>`) em arquivos que contêm <strong>somente</strong> código PHP?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">3</div>
+                            <p class="card-texto">A <strong>tag de fechamento deve ser omitida</strong> em arquivos puramente PHP para evitar problemas causados por espaços ou caracteres acidentais após o bloco.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">4</div>
+                            <p class="card-texto">O que é uma <strong>variável variante</strong> (*variable variable*) em PHP?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">4</div>
+                            <p class="card-texto">É o conceito onde o PHP utiliza dois cifrões (`$$`) para <strong>referenciar uma variável</strong> cujo nome é o <strong>conteúdo</strong> de outra variável (ex: `$nome` contém 'maria', `$$nome` aponta para a variável `$maria`).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">5</div>
+                            <p class="card-texto">Qual é a regra fundamental para a <strong>nomenclatura</strong> de variáveis em PHP em relação ao *case* (maiúsculas/minúsculas)?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">5</div>
+                            <p class="card-texto">O PHP é <strong>case sensitive</strong>. Variáveis como `$codigo` e `$Codigo` são tratadas de forma totalmente diferente.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">6</div>
+                            <p class="card-texto">O que é um <strong>Tipo Booleano</strong> em PHP?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">6</div>
+                            <p class="card-texto">É um valor lógico que pode ser verdadeiro (`TRUE`) ou falso (`FALSE`).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto">O que o PHP considera como <strong>FALSO</strong> em comparações lógicas?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto">O PHP considera o <strong>valor zero</strong> (`0`) como sendo falso em comparações lógicas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto">Como se cria uma <strong>referência</strong> entre duas variáveis em PHP para que a alteração em uma afete a outra?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto">A atribuição deve ser precedida pelo operador <strong>`&`</strong> (e-comercial).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção II -->
+        <section class="secao">
+            <h2>II. Operadores e Estruturas de Controle</h2>
+            <div class="flashcard-grid">
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto">Qual operador deve ser usado para verificar se duas variáveis são <strong>iguais em valor E no tipo</strong> de dado?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto">O operador <strong>Idêntico</strong> (`===`). Ele retorna `TRUE` se as expressões forem iguais e do <strong>mesmo tipo de dado</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto">O que o operador <strong>Módulo</strong> (`%`) retorna em uma operação aritmética?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto">Retorna o <strong>módulo (resto da divisão)</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto">Qual é a função do operador lógico <strong>`XOR`</strong> (`ou exclusivo`)?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto">Retorna `TRUE` se <strong>apenas uma</strong> das expressões for verdadeira, de forma exclusiva.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto">O que o operador <strong>`BREAK`</strong> faz em um laço de repetição (`WHILE` ou `FOR`)?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto">O comando `BREAK` <strong>aborta a execução</strong> dos blocos de comandos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto">Como se chama a <strong>atribuição condicional simplificada</strong> que substitui um bloco `IF/ELSE` em uma única linha?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto">É o <strong>Operador Ternário</strong> (`? :`).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">14</div>
+                            <p class="card-texto">Qual laço de repetição é <strong>ideal</strong> para iterar sobre *arrays* e matrizes?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">14</div>
+                            <p class="card-texto">O laço <strong>`FOREACH`</strong>, que decompõe um vetor ou matriz em cada um de seus elementos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção III -->
+        <section class="secao">
+            <h2>III. Arrays, Funções e Tipos de Dados Complexos</h2>
+            <div class="flashcard-grid">
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">15</div>
+                            <p class="card-texto">O que é um <strong>`array`</strong> em PHP?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">15</div>
+                            <p class="card-texto">É uma <strong>lista de valores armazenados na memória</strong>, que podem ser de diferentes tipos (números, *strings*, objetos) e são acessados por uma chave.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">16</div>
+                            <p class="card-texto">Como o PHP distingue um <strong>array indexado</strong> de um <strong>array associativo</strong>?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">16</div>
+                            <p class="card-texto">O array indexado usa <strong>índices numéricos</strong> (começando em 0), enquanto o array associativo usa <strong>strings</strong> como chaves de acesso.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">17</div>
+                            <p class="card-texto">Qual é o comando de saída usado para imprimir o conteúdo de um *array* de forma <strong>explanatória</strong>, mostrando o <strong>tipo de dado</strong> e todos os atributos, ideal para *debugging*?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">17</div>
+                            <p class="card-texto">É o <strong>`var_dump()`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">18</div>
+                            <p class="card-texto">Qual é a principal característica que define um <strong>objeto</strong> (`object`) em PHP?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">18</div>
+                            <p class="card-texto">É uma entidade com um determinado <strong>comportamento</strong> definido por seus <strong>métodos (ações)</strong> e <strong>propriedades (dados)</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">19</div>
+                            <p class="card-texto">O que a palavra-chave <strong>`return`</strong> faz em uma função?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">19</div>
+                            <p class="card-texto">É a cláusula utilizada no final de uma função para <strong>retornar o resultado</strong> da função (pode ser um inteiro, *string*, *array*, objeto, etc.).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">20</div>
+                            <p class="card-texto">Como você declara uma <strong>variável estática</strong> (`static`) dentro de uma função?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">20</div>
+                            <p class="card-texto">Deve-se utilizar o operador `static`. Variáveis estáticas mantêm o valor que lhes foi atribuído na última execução da função.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção IV -->
+        <section class="secao">
+            <h2>IV. Orientação a Objetos e Abstração</h2>
+            <div class="flashcard-grid">
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">21</div>
+                            <p class="card-texto">O que é <strong>Polimorfismo</strong> em Orientação a Objetos?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">21</div>
+                            <p class="card-texto">É o princípio que permite que classes derivadas de uma mesma superclasse tenham <strong>métodos iguais (mesma nomenclatura)</strong>, mas com <strong>comportamentos diferentes</strong> (redefinidos em cada classe-filha).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">22</div>
+                            <p class="card-texto">O que significa declarar um método como <strong>`final`</strong>?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">22</div>
+                            <p class="card-texto">Significa que o método <strong>não pode ser sobrescrito</strong> (redefinido) nas classes filhas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">23</div>
+                            <p class="card-texto">O que significa declarar uma classe como <strong>`final`</strong>?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">23</div>
+                            <p class="card-texto">Significa que a classe <strong>não pode ser uma superclasse</strong>, ou seja, não pode servir de base em uma estrutura de herança e <strong>não poderá ser especializada</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">24</div>
+                            <p class="card-texto">Qual a visibilidade que permite acesso aos membros de uma classe <strong>somente</strong> dentro da própria classe onde foram declarados?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">24</div>
+                            <p class="card-texto">A visibilidade <strong>`private`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">25</div>
+                            <p class="card-texto">Qual a visibilidade que permite acesso aos membros <strong>dentro da própria classe</strong> e nas <strong>classes descendentes</strong> (herdeiras), mas não externamente?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">25</div>
+                            <p class="card-texto">A visibilidade <strong>`protected`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção V -->
+        <section class="secao">
+            <h2>V. Manipulação de Dados e SQL</h2>
+            <div class="flashcard-grid">
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">26</div>
+                            <p class="card-texto">Qual instrução SQL é usada para <strong>inserir</strong> uma ou mais linhas em uma tabela do banco de dados?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">26</div>
+                            <p class="card-texto">A instrução <strong>`INSERT INTO`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">27</div>
+                            <p class="card-texto">Qual instrução SQL é usada para <strong>recuperar</strong> (ler) um conjunto de linhas a partir de uma ou mais tabelas?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">27</div>
+                            <p class="card-texto">A instrução <strong>`SELECT`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">28</div>
+                            <p class="card-texto">O que a cláusula <strong>`WHERE`</strong> faz nas instruções SQL `SELECT`, `UPDATE` e `DELETE`?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">28</div>
+                            <p class="card-texto">Define uma <strong>condição</strong> (filtro) para que o comando seja aplicado apenas aos registros que a satisfaçam.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">29</div>
+                            <p class="card-texto">Qual instrução SQL é usada para <strong>apagar</strong> (remover) uma ou mais linhas de uma tabela?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">29</div>
+                            <p class="card-texto">A instrução <strong>`DELETE FROM`</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">30</div>
+                            <p class="card-texto">O que é a biblioteca <strong>PDO</strong> (PHP Data Objects)?</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">30</div>
+                            <p class="card-texto">É uma biblioteca que provê uma <strong>API limpa e consistente</strong> para unificar o acesso às diversas extensões de bancos de dados existentes no PHP.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

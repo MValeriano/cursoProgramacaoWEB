@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios PHP - Variáveis e Conceitos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background */
+            color: #1f2937;
+        }
+        .resolution-section {
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+        }
+        .resolution-section.open {
+            max-height: 2500px; /* Suficiente para todo o conteúdo */
+            padding: 1.5rem;
+        }
+        .php-code {
+            background-color: #1e293b; /* Cor escura para código */
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            line-height: 1.4;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .exercise-header {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 sm:p-10">
+        
+        <header class="text-center mb-10 border-b-4 border-blue-600 pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-800 mb-2">
+                PHP: Conceitos e Exercícios Práticos de Variáveis
+            </h1>
+            <p class="text-gray-600 text-lg">
+                Foco em Declaração, Nomenclatura, Tipagem e Atribuição.
+            </p>
+        </header>
+
+        <!-- Seção de Resumo -->
+        <section class="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-bold text-blue-800 mb-3">Resumo: Variáveis em PHP</h2>
+            <p class="text-gray-700 leading-relaxed">
+                As variáveis em PHP são identificadores utilizados para representar valores mutáveis e voláteis, sendo armazenadas na memória RAM e destruídas após a execução do programa. Elas devem ter um nome de identificação precedido pelo caractere cifrão ($). O PHP é sensível a letras maiúsculas e minúsculas (case sensitive), então `$codigo` e `$Codigo` são tratadas como variáveis diferentes.
+            </p>
+        </section>
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">5 Exercícios sobre Variáveis em PHP</h2>
+
+        <section id="exercises-container" class="space-y-8">
+
+            <!-- Card do Exercício 1 -->
+            <div id="exercise-1" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="exercise-header p-6 flex justify-between items-center bg-indigo-50 rounded-t-xl">
+                    <h3 class="text-xl font-bold text-indigo-800">Exercício 1: Validação de Nomenclatura e Tipo de Dado</h3>
+                    <button onclick="toggleResolution('res-1', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Você está desenvolvendo um módulo de registro de usuários e precisa armazenar o nome completo e o ID do cliente. Durante a codificação, você cometeu um erro de nomenclatura em uma das variáveis, e precisa identificar a melhor prática correta, além de garantir que a idade seja tratada como um número.</p>
+                    <p class="text-sm font-semibold text-indigo-600 mb-3">Conceitos Chave: Declaração de Variáveis, Nomenclatura (Regras de Ouro), Case Sensitivity, Tipo Numérico e Tipo String.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>Tente declarar as seguintes variáveis e, com base nas dicas de nomenclatura, identifique qual delas resultará em erro de sintaxe ou é considerada uma má prática (e justifique):
+                            <code class="text-red-600">$NomeCompleto</code>, <code class="text-red-600">$3id_usuario</code>, <code class="text-red-600">$email-cliente</code>, <code class="text-green-600">$nome_completo</code></li>
+                        <li>Declare as seguintes informações, atribuindo o tipo de dado correto a cada variável: Nome Completo (String), Idade (Numérico/Inteiro), Está Ativo (Booleano: TRUE ou FALSE)</li>
+                        <li>Utilize o comando de saída <code>echo</code> para exibir o Nome Completo e a Idade.</li>
+                        <li>Se a variável <code>$NomeCompleto</code> for declarada como <code>$nomecompleto</code> e você tentar acessá-la como <code>$NomeCompleto</code>, o que o PHP exibirá?</li>
+                    </ul>
+                </div>
+                <!-- Resolução 1 -->
+                <div id="res-1" class="resolution-section bg-indigo-50 border-t border-indigo-200">
+                    <h4 class="font-bold text-indigo-800 mb-3">Resolução e Explicação</h4>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 mb-4 ml-4">
+                        <li>Erros de Sintaxe: <code>$3id_usuario</code> (não pode começar com número) e <code>$email-cliente</code> (o hífen é interpretado como operador de subtração).</li>
+                        <li>Má Prática: <code>$NomeCompleto</code> é permitida, mas <code>$nome_completo</code> é a convenção recomendada (snake_case).</li>
+                        <li>Case Sensitivity: O PHP exibirá um Notice: Undefined variable, pois ele diferencia maiúsculas de minúsculas.</li>
+                    </ul>
+                    <div class="php-code">
+                        &lt;?php
+                            // Declaração de Variáveis com tipos corretos
+                            $nome_completo = "João da Silva"; // String
+                            $idade = 28; // Integer (Numérico)
+                            $esta_ativo = true; // Boolean
+
+                            // Exibição
+                            echo "Nome: " . $nome_completo . "&lt;br&gt;";
+                            echo "Idade: " . $idade . " anos&lt;br&gt;";
+
+                            // Exemplo de Case Sensitivity (se tentar acessar uma variável com nome diferente)
+                            $nome_sem_maiusculas = "Ana";
+                            // echo $Nome_sem_maiusculas; // Causaria um Notice (variável indefinida)
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 2 -->
+            <div id="exercise-2" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="exercise-header p-6 flex justify-between items-center bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-800">Exercício 2: Gerenciamento de Estoque e Atribuição</h3>
+                    <button onclick="toggleResolution('res-2', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Você está gerenciando o estoque de um produto chamado "Caneta Azul". O sistema começa com 10 unidades. Durante o dia, 3 unidades são vendidas e, em seguida, 5 novas unidades são adicionadas ao estoque. Você precisa registrar o valor final e utilizar operadores de atribuição para facilitar os cálculos.</p>
+                    <p class="text-sm font-semibold text-yellow-600 mb-3">Conceitos Chave: Atribuição Simples (=), Operadores de Atribuição Composta (+=, -=), Tipo Numérico.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>Crie a variável <code>$estoque_caneta_azul</code> e atribua o valor inicial de 10.</li>
+                        <li>Use um operador de atribuição composta para subtrair 3 unidades, simulando uma venda.</li>
+                        <li>Use um operador de atribuição composta para adicionar 5 novas unidades, simulando uma reposição de estoque.</li>
+                        <li>Crie uma variável <code>$preco_unitario</code> e atribua o valor 2.50. Calcule e exiba o Valor Total do Estoque Atual (Estoque atual * Preço Unitário).</li>
+                    </ul>
+                </div>
+                <!-- Resolução 2 -->
+                <div id="res-2" class="resolution-section bg-yellow-50 border-t border-yellow-200">
+                    <h4 class="font-bold text-yellow-800 mb-3">Resolução em PHP (Operadores de Atribuição)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Estoque inicial
+                            $estoque_caneta_azul = 10;
+
+                            // 2. Venda de 3 unidades
+                            $estoque_caneta_azul -= 3; // Estoque agora é 7
+
+                            // 3. Reposição de 5 unidades
+                            $estoque_caneta_azul += 5; // Estoque agora é 12
+
+                            // 4. Cálculo do Valor Total do Estoque
+                            $preco_unitario = 2.50;
+                            $valor_total_estoque = $estoque_caneta_azul * $preco_unitario;
+
+                            echo "Estoque Final: " . $estoque_caneta_azul . " unidades&lt;br&gt;";
+                            echo "Valor Total do Estoque: R$ " . number_format($valor_total_estoque, 2, ',', '.') . "&lt;br&gt;";
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 3 -->
+            <div id="exercise-3" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="exercise-header p-6 flex justify-between items-center bg-green-50">
+                    <h3 class="text-xl font-bold text-green-800">Exercício 3: Variáveis de Referência vs. Variáveis por Valor</h3>
+                    <button onclick="toggleResolution('res-3', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Simular e entender a diferença entre atribuição por valor (cópia de memória) e atribuição por referência (&).</p>
+                    <p class="text-sm font-semibold text-green-600 mb-3">Conceitos Chave: Atribuição por Valor (Cópia de Memória), Atribuição por Referência (&).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>Crie <code>$saldo_inicial</code> e atribua 1000.</li>
+                        <li>Cenário 1 (Atribuição por Valor): Atribua <code>$saldo_caixa = $saldo_inicial;</code>. Altere <code>$saldo_caixa</code> para 500. Exiba ambos os valores e confirme que o <code>$saldo_inicial</code> ainda é 1000.</li>
+                        <li>Cenário 2 (Atribuição por Referência): Começando do zero, atribua <code>$saldo_caixa</code> por referência a <code>$saldo_inicial</code> (usando o operador <code>&</code>). Altere <code>$saldo_caixa</code> para 200. Exiba <code>$saldo_inicial</code> e <code>$saldo_caixa</code>. O que você observa sobre os dois valores agora e por que isso acontece?</li>
+                    </ul>
+                </div>
+                <!-- Resolução 3 -->
+                <div id="res-3" class="resolution-section bg-green-50 border-t border-green-200">
+                    <h4 class="font-bold text-green-800 mb-3">Resolução em PHP (Referência vs. Valor)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // Cenário 1: Atribuição por VALOR (Cópia de Memória)
+                            echo "// --- Cenário 1: Por VALOR (Cópia) --- &lt;br&gt;";
+                            $saldo_inicial = 1000;
+                            $saldo_caixa = $saldo_inicial; // $saldo_caixa recebe uma cópia do valor
+                            $saldo_caixa = 500; // Altera apenas a cópia
+
+                            echo "Saldo Inicial (esperado 1000): " . $saldo_inicial . "&lt;br&gt;";
+                            echo "Saldo Caixa (esperado 500): " . $saldo_caixa . "&lt;br&gt;";
+
+                            echo "&lt;br&gt;";
+
+                            // Cenário 2: Atribuição por REFERÊNCIA
+                            echo "// --- Cenário 2: Por REFERÊNCIA (&) --- &lt;br&gt;";
+                            $saldo_inicial = 1000;
+                            $saldo_caixa = & $saldo_inicial; // $saldo_caixa aponta para o mesmo local de memória
+                            $saldo_caixa = 200; // Altera o valor na memória compartilhada
+
+                            echo "Saldo Inicial (esperado 200): " . $saldo_inicial . "&lt;br&gt;";
+                            echo "Saldo Caixa (esperado 200): " . $saldo_caixa . "&lt;br&gt;";
+                            
+                            // Explicação: No Cenário 2, ambas variáveis compartilham o mesmo dado. A mudança em uma afeta a outra.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 4 -->
+            <div id="exercise-4" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="exercise-header p-6 flex justify-between items-center bg-purple-50">
+                    <h3 class="text-xl font-bold text-purple-800">Exercício 4: Interpolação de Strings e Variáveis Variantes</h3>
+                    <button onclick="toggleResolution('res-4', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Construir uma mensagem dinâmica de boas-vindas e explorar o recurso de "Variáveis Variantes" do PHP.</p>
+                    <p class="text-sm font-semibold text-purple-600 mb-3">Conceitos Chave: Tipo String, Concatenação, Variáveis Variantes (Variable Variables).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>Crie a variável <code>$nome_loja</code> com o valor "Mercado Central" e <code>$produto_destaque</code> com o valor "Maçã".</li>
+                        <li>Use o comando <code>echo</code> para imprimir a mensagem: "Bem-vindo ao Mercado Central. A fruta do dia é a Maçã!". Utilize aspas duplas (" ") para inserir as variáveis diretamente na string (interpolação).</li>
+                        <li>Crie uma variável <code>$fruta_favorita</code> e atribua a ela a string "banana".</li>
+                        <li>Crie uma segunda variável chamada <code>$banana</code> e atribua a ela o valor "amarela".</li>
+                        <li>Utilize o conceito de Variável Variante (usando cifrão duplo, <code>$$</code>) para exibir o valor "amarela", utilizando apenas a variável <code>$fruta_favorita</code>.</li>
+                    </ul>
+                </div>
+                <!-- Resolução 4 -->
+                <div id="res-4" class="resolution-section bg-purple-50 border-t border-purple-200">
+                    <h4 class="font-bold text-purple-800 mb-3">Resolução em PHP (Interpolação e $$)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Interpolação de Strings
+                            $nome_loja = "Mercado Central";
+                            $produto_destaque = "Maçã";
+
+                            // Aspas duplas ("") permitem a interpolação das variáveis.
+                            echo "Bem-vindo ao $nome_loja. A fruta do dia é a $produto_destaque!&lt;br&gt;";
+
+                            // 2. Variáveis Variantes
+                            $fruta_favorita = "banana"; // Conteúdo: "banana"
+                            $banana = "amarela"; // Variável cujo nome é "banana" e valor é "amarela"
+
+                            // $$fruta_favorita é equivalente a $$("banana"), que se torna $banana.
+                            echo "Usando Variável Variante: " . $$fruta_favorita . "&lt;br&gt;"; 
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 5 -->
+            <div id="exercise-5" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="exercise-header p-6 flex justify-between items-center bg-red-50 rounded-b-xl">
+                    <h3 class="text-xl font-bold text-red-800">Exercício 5: Conversão Implícita e Tipagem</h3>
+                    <button onclick="toggleResolution('res-5', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Testar como o PHP lida com conversão automática (implícita) em operações e em contextos booleanos.</p>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Conceitos Chave: Conversão Implícita de Tipos, Tipo Booleano (TRUE/FALSE), Valores Falsos em Comparações.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>Crie a variável <code>$a</code> e atribua a ela a string "10". Crie a variável <code>$b</code> e atribua a ela o número inteiro 5.</li>
+                        <li>Utilize <code>echo</code> para exibir o resultado da soma <code>$a + $b</code>. O que acontece com a string "10" durante essa operação?</li>
+                        <li>Crie a variável <code>$status_pagamento</code> e atribua o número 0 (zero).</li>
+                        <li>Utilize uma estrutura <code>if</code> para testar a variável <code>$status_pagamento</code> (sem compará-la explicitamente a <code>FALSE</code> ou <code>0</code>). Se a condição for <code>TRUE</code>, imprima "Pagamento Válido". Caso contrário, imprima "Pagamento Inválido".</li>
+                        <li>O que o PHP considera como o valor booleano da variável <code>$status_pagamento = 0</code>? Explique por que o resultado foi "Pagamento Inválido". (Lembre-se que o PHP considera o inteiro 0 como FALSO em comparações booleanas).</li>
+                    </ul>
+                </div>
+                <!-- Resolução 5 -->
+                <div id="res-5" class="resolution-section bg-red-50 border-t border-red-200">
+                    <h4 class="font-bold text-red-800 mb-3">Resolução em PHP (Conversão Implícita)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Conversão Implícita na Soma
+                            $a = "10"; // String
+                            $b = 5;    // Inteiro
+                            $soma = $a + $b; // Resultado: 15
+
+                            echo "Resultado da soma ('10' + 5): " . $soma . "&lt;br&gt;";
+                            // Explicação: O PHP realizou a Conversão Implícita de Tipos. A string "10" foi convertida para o número inteiro 10
+                            // para que a operação aritmética pudesse ser realizada, resultando em 15.
+
+                            echo "&lt;br&gt;";
+
+                            // 2. Valores Falsos em Contexto Booleano
+                            $status_pagamento = 0; // Inteiro 0
+                            
+                            echo "Status do Pagamento (valor 0): ";
+                            if ($status_pagamento) {
+                                echo "Pagamento Válido&lt;br&gt;";
+                            } else {
+                                echo "Pagamento Inválido&lt;br&gt;";
+                            }
+
+                            // Explicação: O PHP considera o inteiro 0 (zero) como FALSE em um contexto booleano (falsy).
+                            // Por isso, a condição 'if (0)' falha, e o resultado é "Pagamento Inválido".
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function toggleResolution(id, button) {
+            const resolutionDiv = document.getElementById(id);
+            const isOpen = resolutionDiv.classList.contains('open');
+
+            // Itera sobre todos os botões e resoluções para fechar os que estiverem abertos
+            document.querySelectorAll('#exercises-container .resolution-section.open').forEach(res => {
+                if (res.id !== id) {
+                    res.classList.remove('open');
+                    // Encontra e atualiza o botão correspondente para "Ver Resolução"
+                    const correspondingButton = res.previousElementSibling.querySelector('button');
+                    if (correspondingButton) {
+                        correspondingButton.textContent = 'Ver Resolução';
+                        correspondingButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+                        correspondingButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    }
+                }
+            });
+
+            if (isOpen) {
+                // Fechar a seção atual
+                resolutionDiv.classList.remove('open');
+                button.textContent = 'Ver Resolução';
+                button.classList.remove('bg-red-600', 'hover:bg-red-700');
+                button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                // Abrir a seção atual
+                resolutionDiv.classList.add('open');
+                button.textContent = 'Ocultar Resolução';
+                button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                button.classList.add('bg-red-600', 'hover:bg-red-700');
+                
+                // Rola suavemente para o topo da seção de exercício
+                resolutionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

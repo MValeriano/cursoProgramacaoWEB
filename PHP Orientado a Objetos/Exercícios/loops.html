@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios PHP - Estruturas de Repetição (Loops)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; 
+            color: #1f2937;
+        }
+        .resolution-section {
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+        }
+        .resolution-section.open {
+            max-height: 3000px;
+            padding: 1.5rem;
+        }
+        .php-code {
+            background-color: #264653;
+            color: #e9c46a;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            line-height: 1.4;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 sm:p-10">
+        
+        <header class="text-center mb-10 border-b-4 border-emerald-600 pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-2">
+                PHP: Estruturas de Repetição (Loops)
+            </h1>
+            <p class="text-gray-600 text-lg">
+                WHILE, FOR, FOREACH: Comandos Essenciais para Iteração de Código.
+            </p>
+        </header>
+
+        <!-- Seção de Resumo -->
+        <section class="mb-8 p-6 bg-emerald-50 border-l-4 border-emerald-500 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-bold text-emerald-800 mb-3">Resumo: Loops em PHP</h2>
+            <p class="text-gray-700 leading-relaxed">
+                As estruturas de repetição, ou <span class="font-bold">loops</span>, são comandos essenciais em PHP que permitem a <span class="font-bold">execução repetitiva de um bloco de comandos</span> enquanto uma condição for verdadeira, ou para iterar sobre coleções de dados. Os loops garantem que o código seja repetido continuamente até que o programa diga para ele parar.
+            </p>
+            <p class="text-gray-700 leading-relaxed mt-3">
+                Os principais tipos de loops abordados nas fontes são: <span class="font-bold">`WHILE`</span> (enquanto uma condição for verdadeira), <span class="font-bold">`FOR`</span> (baseado em um contador), e <span class="font-bold">`FOREACH`</span> (específico para arrays e matrizes).
+            </p>
+        </section>
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">6 Exercícios sobre Estruturas de Repetição (Loops)</h2>
+
+        <section id="exercises-container" class="space-y-8">
+
+            <!-- Card do Exercício 1: FOR -->
+            <div id="exercise-1" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-blue-100 rounded-t-xl">
+                    <h3 class="text-xl font-bold text-blue-800">Exercício 1: Geração de Relatório Anual (Loop `FOR`)</h3>
+                    <button onclick="toggleResolution('res-1', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Você precisa gerar um relatório de vendas que exibe a taxa de crescimento anual (um valor fixo de 5%) para os próximos 10 anos, começando no ano atual. Você precisa de uma estrutura de repetição baseada em um contador exato.</p>
+                    <p class="text-sm font-semibold text-blue-600 mb-3">Conceitos Chave: `FOR` loop, Incremento (`++`), Condição de Parada.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Defina a variável <code>$ano_inicial</code> como o ano atual (simule com <code>2024</code>).</li>
+                        <li>2. Utilize um `FOR` loop para iterar por 10 vezes. A variável de iteração (<code>$i</code>) deve começar em 1 e ir até 10.</li>
+                        <li>3. Dentro do loop, exiba o ano (<code>$ano_inicial + $i</code>) e a taxa de crescimento, simulando um texto como: "No ano [ANO], a taxa de crescimento prevista é de 5%."</li>
+                        <li>4. Certifique-se de usar um incremento (<code>++</code>) na variável de controle do `FOR` para avançar a contagem.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: O aluno deve dominar os três parâmetros obrigatórios do `FOR`: valor inicial (`expr1`), condição de execução (`expr2`), e valor a ser incrementado (`expr3`).</p>
+                </div>
+                <!-- Resolução 1 -->
+                <div id="res-1" class="resolution-section bg-blue-50 border-t border-blue-200">
+                    <h4 class="font-bold text-blue-800 mb-3">Resolução em PHP (Loop FOR)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            $ano_inicial = 2024;
+                            echo "&lt;strong&gt;Relatório de Crescimento Anual:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // O FOR executa exatamente 10 vezes, de $i=1 até $i=10
+                            for ($i = 1; $i <= 10; $i++) {
+                                $ano_previsto = $ano_inicial + $i;
+                                echo "No ano &lt;strong&gt;{$ano_previsto}&lt;/strong&gt;, a taxa de crescimento prevista é de 5%.&lt;br&gt;";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 2: WHILE -->
+            <div id="exercise-2" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-amber-100">
+                    <h3 class="text-xl font-bold text-amber-800">Exercício 2: Simulação de Download com Condição (`WHILE`)</h3>
+                    <button onclick="toggleResolution('res-2', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> O download só deve continuar enquanto a porcentagem de progresso for inferior a 100%. Você precisa garantir que o loop não seja infinito, incrementando a porcentagem a cada iteração.</p>
+                    <p class="text-sm font-semibold text-amber-600 mb-3">Conceitos Chave: `WHILE` loop, Condição Baseada em Variável, Prevenção de Infinite Loop.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Defina a variável <code>$progresso_percentual = 0;</code>.</li>
+                        <li>2. Utilize um laço `WHILE` para executar o bloco de comandos enquanto <code>$progresso_percentual</code> for menor que 100.</li>
+                        <li>3. Dentro do loop, imprima o progresso atual: "Download em andamento: [PERCENTUAL]%" e adicione <code>10</code> à variável <code>$progresso_percentual</code> usando um operador de atribuição.</li>
+                        <li>4. Após o loop, imprima "Download concluído!".</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: O aluno deve entender que o `WHILE` testa a condição antes de cada execução e deve garantir que algo dentro do bloco mude o estado da condição para `FALSE`, evitando um loop infinito.</p>
+                </div>
+                <!-- Resolução 2 -->
+                <div id="res-2" class="resolution-section bg-amber-50 border-t border-amber-200">
+                    <h4 class="font-bold text-amber-800 mb-3">Resolução em PHP (Loop WHILE)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            $progresso_percentual = 0;
+
+                            echo "&lt;strong&gt;Iniciando Download...&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // Executa enquanto a condição for TRUE
+                            while ($progresso_percentual < 100) {
+                                echo "Download em andamento: {$progresso_percentual}%&lt;br&gt;";
+                                // O incremento é essencial para que a condição se torne FALSE em algum momento.
+                                $progresso_percentual += 10; 
+                            }
+                            
+                            echo "&lt;strong&gt;Download concluído!&lt;/strong&gt;&lt;br&gt;";
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 3: FOREACH -->
+            <div id="exercise-3" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-green-100">
+                    <h3 class="text-xl font-bold text-green-800">Exercício 3: Processamento de Itens de Carrinho (`FOREACH`)</h3>
+                    <button onclick="toggleResolution('res-3', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Calcular o valor total de um array associativo (`$carrinho_itens`) com produtos (Chave: Nome; Valor: Preço).</p>
+                    <p class="text-sm font-semibold text-green-600 mb-3">Conceitos Chave: `FOREACH` com Chave e Valor, Array Associativo, Acumulação de Soma.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie um array associativo <code>$carrinho_itens</code> com pelo menos três itens (Ex: <code>'Maçã' => 2.50</code>, <code>'Banana' => 1.99</code>).</li>
+                        <li>2. Crie a variável <code>$total = 0;</code>.</li>
+                        <li>3. Utilize um laço `FOREACH` para iterar sobre <code>$carrinho_itens</code>, capturando o nome do produto como chave e o preço como valor.</li>
+                        <li>4. Dentro do loop, imprima a chave e o valor do item, e acumule o preço na variável <code>$total</code>.</li>
+                        <li>5. Após o loop, exiba o <code>$total</code> do carrinho.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: O aluno deve saber como o `FOREACH` simplifica a iteração de arrays, especialmente ao acessar tanto a chave quanto o valor (`foreach ($array as $chave => $valor)`).</p>
+                </div>
+                <!-- Resolução 3 -->
+                <div id="res-3" class="resolution-section bg-green-50 border-t border-green-200">
+                    <h4 class="font-bold text-green-800 mb-3">Resolução em PHP (Loop FOREACH)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            $carrinho_itens = [
+                                'Maçã' => 2.50,
+                                'Banana' => 1.99,
+                                'Pera' => 3.00,
+                                'Uva' => 8.50
+                            ];
+                            $total = 0;
+
+                            echo "&lt;strong&gt;Itens no Carrinho:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // Itera sobre chave ($produto) e valor ($preco)
+                            foreach ($carrinho_itens as $produto => $preco) {
+                                echo "Produto: {$produto} | Preço: R\$ " . number_format($preco, 2, ',', '.') . "&lt;br&gt;";
+                                // Acumulação da soma
+                                $total += $preco;
+                            }
+                            
+                            echo "&lt;strong&gt;Valor Total: R\$ " . number_format($total, 2, ',', '.') . "&lt;/strong&gt;&lt;br&gt;";
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 4: CONTINUE e BREAK -->
+            <div id="exercise-4" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-red-100">
+                    <h3 class="text-xl font-bold text-red-800">Exercício 4: Controle de Fluxo Dentro do Loop (`CONTINUE` e `BREAK`)</h3>
+                    <button onclick="toggleResolution('res-4', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Processar uma lista de 10 números, mas aplicar regras de controle. Se o número for ímpar, ele deve ser pulado. Se o número for 8, a repetição deve ser interrompida imediatamente.</p>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Conceitos Chave: `FOR`, `CONTINUE`, `BREAK`, Condicionais.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Use um `FOR` loop que conte de 1 a 10.</li>
+                        <li>2. Dentro do loop, use uma condição (`IF`) para verificar se o número atual é ímpar. Se for, utilize o comando `CONTINUE` para ignorar a impressão e ir para a próxima iteração.</li>
+                        <li>3. Use uma segunda condição (`IF`) para verificar se o número atual é igual a 8. Se for, utilize o comando `BREAK` para abortar o loop completamente.</li>
+                        <li>4. Se o número for par e não for 8, imprima o número.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: Entender que `CONTINUE` pula a iteração atual, e `BREAK` encerra totalmente o loop.</p>
+                </div>
+                <!-- Resolução 4 -->
+                <div id="res-4" class="resolution-section bg-red-50 border-t border-red-200">
+                    <h4 class="font-bold text-red-800 mb-3">Resolução em PHP (BREAK e CONTINUE)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            echo "&lt;strong&gt;Números Processados (Apenas Pares, Parada no 8):&lt;/strong&gt;&lt;br&gt;";
+                            
+                            for ($i = 1; $i <= 10; $i++) {
+                                
+                                // 2. Se for ímpar, pula para a próxima iteração, ignorando o código abaixo.
+                                if ($i % 2 !== 0) {
+                                    echo "Número {$i} é ímpar, pulando. &lt;br&gt;";
+                                    continue;
+                                }
+                                
+                                // 3. Se for 8, encerra o loop completamente.
+                                if ($i === 8) {
+                                    echo "Número {$i} atingido, quebrando o loop. &lt;br&gt;";
+                                    break; 
+                                }
+                                
+                                // 4. Imprime apenas se for par e não for 8
+                                echo "Número Par processado: &lt;strong&gt;{$i}&lt;/strong&gt;&lt;br&gt;";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card do Exercício 5: DO WHILE -->
+            <div id="exercise-5" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-purple-100">
+                    <h3 class="text-xl font-bold text-purple-800">Exercício 5: Confirmação de Execução Mínima (`DO WHILE`)</h3>
+                    <button onclick="toggleResolution('res-5', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Você deve garantir que a ação (registro de log) seja executada pelo menos uma vez, mesmo que a condição de repetição falhe na primeira vez.</p>
+                    <p class="text-sm font-semibold text-purple-600 mb-3">Conceitos Chave: `DO WHILE` loop, Execução Mínima.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Defina a variável <code>$contador = 10;</code>.</li>
+                        <li>2. Utilize a estrutura `DO WHILE`.</li>
+                        <li>3. Dentro do bloco `DO`, imprima a mensagem: "Log registrado. Contador atual: [VALOR]" e decremente o contador (<code>$contador--</code>).</li>
+                        <li>4. Defina a condição `WHILE` como <code>$contador &lt; 10</code> (o que é falso, já que ele começa em 10).</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Raciocínio Estrutural: Explique por que a mensagem de log foi impressa uma vez, apesar da condição `WHILE` ter sido `FALSE` na primeira verificação.</p>
+                </div>
+                <!-- Resolução 5 -->
+                <div id="res-5" class="resolution-section bg-purple-50 border-t border-purple-200">
+                    <h4 class="font-bold text-purple-800 mb-3">Resolução em PHP (Loop DO WHILE)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            $contador = 10;
+                            
+                            echo "&lt;strong&gt;Execução DO WHILE:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            do {
+                                // 3. Este bloco é executado ANTES da condição ser checada pela primeira vez.
+                                echo "Log registrado. Contador atual: {$contador}&lt;br&gt;";
+                                $contador--;
+                            } while ($contador < 10); // 4. A condição é 9 < 10 (TRUE). Se $contador fosse 10, a condição seria FALSE.
+
+                            // Raciocínio Estrutural:
+                            // A mensagem de log foi impressa uma vez porque no 'DO WHILE' o bloco de comandos ('DO')
+                            // é executado uma primeira vez ANTES de a condição ('WHILE') ser avaliada. 
+                            // O loop só para após a primeira verificação da condição.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 6: WHILE Prático / Conceitual -->
+            <div id="exercise-6" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-gray-100 rounded-b-xl">
+                    <h3 class="text-xl font-bold text-gray-800">Exercício 6: Iteração sobre Arquivos (Loop Prático)</h3>
+                    <button onclick="toggleResolution('res-6', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Simular a leitura do conteúdo de um diretório, onde a leitura depende de um `WHILE` loop para ler arquivo por arquivo até o fim.</p>
+                    <p class="text-sm font-semibold text-gray-600 mb-3">Conceitos Chave: `WHILE`, Manipulação de Arquivos/Diretórios (Conceitual).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie (conceitualmente) um código que simule a abertura de um diretório e atribua o recurso a uma variável <code>$identificador_diretorio</code>.</li>
+                        <li>2. Utilize um laço `WHILE` cuja condição seja a leitura sequencial de arquivos do diretório (Ex: <code>while ($arquivo = readdir($identificador_diretorio))</code>).</li>
+                        <li>3. Dentro do loop, utilize <code>echo</code> para exibir o nome de cada <code>$arquivo</code> lido.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Raciocínio Estrutural: O que determina a condição de parada do `WHILE` neste contexto de leitura de arquivos ou diretórios? (Dica: A leitura de uma linha de arquivo, ou a leitura de um diretório, retorna `FALSE` ao atingir o fim).</p>
+                </div>
+                <!-- Resolução 6 -->
+                <div id="res-6" class="resolution-section bg-gray-50 border-t border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-3">Resolução em PHP (Loop WHILE Conceitual)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Simulação da abertura
+                            // $identificador_diretorio = opendir('./'); // Código PHP real
+
+                            // Simulação de lista de arquivos lidos sequencialmente
+                            $arquivos_simulados = ['..', '.', 'index.php', 'config.php', false];
+                            $indice_leitura = 0;
+
+                            echo "&lt;strong&gt;Simulação de Leitura de Diretório:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // 2. O WHILE executa o comando de leitura e testa o resultado.
+                            // Neste exemplo, simulamos a atribuição sequencial do array.
+                            while (
+                                $arquivo = ($indice_leitura < count($arquivos_simulados)) 
+                                    ? $arquivos_simulados[$indice_leitura++] 
+                                    : false
+                            ) {
+                                // O readdir real retornaria FALSE no final, encerrando o loop.
+                                if ($arquivo === false) { 
+                                    break; 
+                                }
+                                
+                                // 3. Exibe o nome do arquivo
+                                echo "Arquivo lido: {$arquivo}&lt;br&gt;";
+                            }
+
+                            // Raciocínio Estrutural:
+                            // A condição de parada do WHILE neste contexto (como com readdir() ou fgets()) é determinada
+                            // quando a função de leitura atinge o fim do recurso (diretório ou arquivo) e retorna o valor 
+                            // que é avaliado como FALSE (como NULL, 0, ou FALSE explícito). A atribuição ($arquivo = readdir(...)) 
+                            // ocorre, e o resultado da atribuição é usado para avaliar o teste do loop.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function toggleResolution(id, button) {
+            const resolutionDiv = document.getElementById(id);
+            const isOpen = resolutionDiv.classList.contains('open');
+
+            // Itera sobre todos os botões e resoluções para fechar os que estiverem abertos
+            document.querySelectorAll('#exercises-container .resolution-section.open').forEach(res => {
+                if (res.id !== id) {
+                    res.classList.remove('open');
+                    // Encontra e atualiza o botão correspondente para "Ver Resolução"
+                    const correspondingButton = res.previousElementSibling.querySelector('button');
+                    if (correspondingButton) {
+                        correspondingButton.textContent = 'Ver Resolução';
+                        correspondingButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+                        correspondingButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    }
+                }
+            });
+
+            if (isOpen) {
+                // Fechar a seção atual
+                resolutionDiv.classList.remove('open');
+                button.textContent = 'Ver Resolução';
+                button.classList.remove('bg-red-600', 'hover:bg-red-700');
+                button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                // Abrir a seção atual
+                resolutionDiv.classList.add('open');
+                button.textContent = 'Ocultar Resolução';
+                button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                button.classList.add('bg-red-600', 'hover:bg-red-700');
+                
+                // Rola suavemente para o topo da seção de exercício
+                resolutionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

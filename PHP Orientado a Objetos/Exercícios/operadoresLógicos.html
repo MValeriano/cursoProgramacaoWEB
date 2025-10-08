@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios sobre Operadores Lógicos em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .solution-code {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Operadores Lógicos em PHP: Teoria e Prática</h1>
+            <p class="text-lg text-cyan-400">6 Desafios práticos para dominar a lógica condicional.</p>
+        </header>
+
+        <!-- Resumo Section -->
+        <section class="bg-gray-800 rounded-xl p-6 md:p-8 mb-12 shadow-lg border border-gray-700">
+            <h2 class="text-3xl font-semibold text-white mb-4">Resumo</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Os <strong>Operadores Lógicos</strong> são ferramentas essenciais em PHP, utilizadas para <strong>combinar expressões lógicas</strong> entre si, agrupando testes condicionais. Eles retornam um valor booleano (`TRUE` ou `FALSE`) e são cruciais para a construção de estruturas de controle de fluxo, como os comandos `IF`.
+            </p>
+            <p class="mt-4 text-gray-300 leading-relaxed">
+                O PHP oferece vários operadores lógicos, sendo os principais: <strong class="text-cyan-400">`AND`</strong> (`&&`), <strong class="text-cyan-400">`OR`</strong> (`||`), <strong class="text-cyan-400">`XOR`</strong> (`xor`), e <strong class="text-cyan-400">`NOT`</strong> (`!`). O uso correto desses operadores permite evitar o aninhamento excessivo de condições (*nesting*), o que resulta em código mais limpo e legível.
+            </p>
+             <p class="mt-4 text-gray-300 leading-relaxed">
+                Abaixo estão 6 exercícios estruturados com problemas práticos que exigem o uso dos operadores lógicos para a sua resolução.
+            </p>
+        </section>
+
+        <!-- Exercises Section -->
+        <main>
+            <h2 class="text-3xl font-semibold text-center text-white mb-8">6 Exercícios sobre Operadores Lógicos em PHP</h2>
+            <div class="space-y-8">
+
+                <!-- Exercício 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 1: Validação de Múltiplos Critérios Obrigatórios (`AND` / `&&`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está implementando o *backend* de um sistema de pedidos online. Para que um pedido seja processado, ele deve atender a <strong>todas</strong> as seguintes condições: o valor total deve ser maior que R$ 50,00 <strong>E</strong> o estoque do produto principal (`$estoque_disponivel`) deve ser superior a 0.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador Lógico <strong>`AND`</strong> (`&&`), Operadores Relacionais (`>`, `> 0`), Estrutura `IF`.</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis: <code>$valor_pedido = 65.00;</code> e <code>$estoque_disponivel = 5;</code>.</li>
+                                <li>Use uma estrutura `IF` para checar se <strong>ambas</strong> as condições são verdadeiras: <code>$valor_pedido</code> é maior que 50 <strong>E</strong> <code>$estoque_disponivel</code> é maior que 0.</li>
+                                <li>Se a expressão composta retornar `TRUE`, imprima: "Pedido Aprovado e Enviado para o Depósito.".</li>
+                                <li>Se a expressão retornar `FALSE`, imprima: "Pedido Retido: Critérios insuficientes."</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Modifique <code>$estoque_disponivel</code> para `0`. Explique por que, embora <code>$valor_pedido</code> ainda satisfaça sua condição, o resultado final do `IF` foi `FALSE`.</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution1')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution1" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// --- Cenário 1 ---
+echo "--- Cenário 1 ---\n";
+// 1. Variáveis
+$valor_pedido = 65.00;
+$estoque_disponivel = 5;
+
+// 2. Estrutura IF com AND
+if ($valor_pedido > 50 && $estoque_disponivel > 0) {
+    // 3. Resultado TRUE
+    echo "Pedido Aprovado e Enviado para o Depósito.\n";
+} else {
+    // 4. Resultado FALSE
+    echo "Pedido Retido: Critérios insuficientes.\n";
+}
+
+// --- Cenário 2 (Desafio) ---
+echo "\n--- Desafio de Raciocínio ---\n";
+// 5. Modificando a variável
+$estoque_disponivel = 0;
+echo "Estoque modificado para: $estoque_disponivel\n";
+
+if ($valor_pedido > 50 && $estoque_disponivel > 0) {
+    echo "Pedido Aprovado e Enviado para o Depósito.\n";
+} else {
+    echo "Pedido Retido: Critérios insuficientes.\n";
+}
+
+echo "\nExplicação: O resultado é FALSE porque o operador 'AND' (&&) exige que TODAS as condições sejam verdadeiras. Embora a condição do valor (65 > 50) seja TRUE, a condição do estoque (0 > 0) é FALSE. Como uma das partes é falsa, a expressão inteira se torna falsa.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 2: Verificação de Erro em Formulário (`OR` / `||`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa validar a submissão de um formulário de login. Um erro de validação deve ser disparado se o campo <code>$email</code> estiver vazio <strong>OU</strong> se o campo <code>$senha</code> estiver vazio. Se houver falha em pelo menos um desses campos obrigatórios, o sistema deve impedir o login.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador Lógico <strong>`OR`</strong> (`||`), Função `empty()`.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis <code>$email = "usuario@exemplo.com";</code> e <code>$senha = "";</code> (vazia).</li>
+                                <li>Utilize o operador lógico `OR` (`||`) dentro de um `IF` para verificar se <code>$email</code> está vazio <strong>OU</strong> se <code>$senha</code> está vazio.</li>
+                                <li>Se a condição `OR` retornar `TRUE`, defina uma variável <code>$erro_login = TRUE;</code> e imprima "Login negado. Preencha todos os campos.".</li>
+                                <li>Se retornar `FALSE`, imprima "Tentativa de login processada.".</li>
+                                <li><strong>Foco Estrutural:</strong> Altere o valor de <code>$email</code> para uma *string* vazia e o de <code>$senha</code> para um valor. O resultado muda? Por que, neste cenário de validação, é impossível usar o operador `AND`?</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution2')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution2" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// --- Cenário 1 ---
+echo "--- Cenário 1 ---\n";
+// 1. Variáveis
+$email = "usuario@exemplo.com";
+$senha = "";
+$erro_login = FALSE;
+
+// 2. Verificação com OR
+if (empty($email) || empty($senha)) {
+    // 3. Resultado TRUE
+    $erro_login = TRUE;
+    echo "Login negado. Preencha todos os campos.\n";
+} else {
+    // 4. Resultado FALSE
+    echo "Tentativa de login processada.\n";
+}
+
+// --- Cenário 2 (Foco Estrutural) ---
+echo "\n--- Foco Estrutural ---\n";
+// 5. Alterando as variáveis
+$email = "";
+$senha = "123456";
+echo "Email: (vazio), Senha: (preenchida)\n";
+
+if (empty($email) || empty($senha)) {
+    echo "Login negado. Preencha todos os campos.\n";
+} else {
+    echo "Tentativa de login processada.\n";
+}
+
+echo "\nExplicação: O resultado não muda porque o operador 'OR' (||) precisa que APENAS UMA das condições seja verdadeira. No primeiro caso, a senha estava vazia. No segundo, o email estava vazio. Em ambos, uma das condições foi atendida.\n";
+echo "Seria impossível usar 'AND' aqui porque ele exigiria que AMBOS os campos estivessem vazios para dar o erro, o que não é a lógica desejada.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 3: Controle de Acesso Exclusivo (`XOR` / `xor`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Em um sistema de emissão de licenças, um usuário só pode emitir um novo documento se ele for um <strong>Administrador</strong> <strong>OU</strong> um <strong>Editor</strong>, mas <strong>NUNCA</strong> se ele for ambos. O acesso deve ser concedido se *apenas um* dos status for verdadeiro.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador Lógico <strong>`XOR`</strong> (`xor`), Condição Exclusiva.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis booleanas <code>$is_admin = TRUE;</code> e <code>$is_editor = TRUE;</code>.</li>
+                                <li>Utilize o operador lógico <strong>`XOR`</strong> (Ou Exclusivo) para verificar se <code>$is_admin</code> ou <code>$is_editor</code> é verdadeiro, <strong>de forma exclusiva</strong>.</li>
+                                <li>Se o `XOR` retornar `TRUE`, imprima "Acesso liberado para emissão."</li>
+                                <li>Se retornar `FALSE`, imprima "Acesso restrito. Condição exclusiva não atendida."</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Explique como o resultado muda se você alterar <code>$is_editor</code> para `FALSE`. O que o `XOR` garante que o `OR` simples não garante?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution3')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution3" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// --- Cenário 1 ---
+echo "--- Cenário 1 (Admin: TRUE, Editor: TRUE) ---\n";
+// 1. Variáveis
+$is_admin = TRUE;
+$is_editor = TRUE;
+
+// 2. Verificação com XOR
+if ($is_admin xor $is_editor) {
+    // 3. Resultado TRUE
+    echo "Acesso liberado para emissão.\n";
+} else {
+    // 4. Resultado FALSE
+    echo "Acesso restrito. Condição exclusiva não atendida.\n";
+}
+
+// --- Cenário 2 (Desafio) ---
+echo "\n--- Desafio de Raciocínio (Admin: TRUE, Editor: FALSE) ---\n";
+// 5. Alterando a variável
+$is_editor = FALSE;
+
+if ($is_admin xor $is_editor) {
+    echo "Acesso liberado para emissão.\n";
+} else {
+    echo "Acesso restrito. Condição exclusiva não atendida.\n";
+}
+
+echo "\nExplicação: O resultado muda para 'Acesso liberado' porque agora apenas UMA das condições é TRUE.\n";
+echo "O 'XOR' garante que a expressão só seja verdadeira se um e apenas um dos lados for verdadeiro. O 'OR' simples retornaria TRUE nos dois cenários (TRUE/TRUE e TRUE/FALSE), pois ele não se importa se ambos são verdadeiros.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                 <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 4: Negação Lógica e Inversão de Sentido (`NOT` / `!`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você tem uma variável booleana que rastreia se um erro <code>$tem_erro</code> ocorreu. Seu código de cálculo (`$pode_calcular`) só deve ser executado <strong>se não houver nenhum erro</strong>. Você precisa usar o operador de negação para inverter o valor booleano e controlar o fluxo do programa.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador Lógico <strong>`NOT`</strong> (`!`), Inversão Booleana, Estrutura `IF`.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie a variável <code>$tem_erro = FALSE;</code>.</li>
+                                <li>Use o operador de negação <strong>`!`</strong> na frente de <code>$tem_erro</code> dentro de um `IF` para verificar a condição "SE NÃO HOUVER ERRO".</li>
+                                <li>Se a condição for verdadeira, imprima "Cálculo Iniciado: Erro Inexistente.".</li>
+                                <li>Se a condição for falsa (o que significa que houve erro), imprima "Cálculo Interrompido: Erro Detectado.".</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Altere <code>$tem_erro</code> para `TRUE`. O que o operador `!` faz com o valor booleano da variável antes de o `IF` testar a condição?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution4')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution4" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// --- Cenário 1 ---
+echo "--- Cenário 1 (tem_erro = FALSE) ---\n";
+// 1. Variável
+$tem_erro = FALSE;
+
+// 2. Verificação com NOT (!)
+if (!$tem_erro) { // Se NÃO tem_erro (ou seja, se TRUE)
+    // 3. Resultado TRUE
+    echo "Cálculo Iniciado: Erro Inexistente.\n";
+} else {
+    // 4. Resultado FALSE
+    echo "Cálculo Interrompido: Erro Detectado.\n";
+}
+
+// --- Cenário 2 (Desafio) ---
+echo "\n--- Desafio de Raciocínio (tem_erro = TRUE) ---\n";
+// 5. Alterando a variável
+$tem_erro = TRUE;
+
+if (!$tem_erro) {
+    echo "Cálculo Iniciado: Erro Inexistente.\n";
+} else {
+    echo "Cálculo Interrompido: Erro Detectado.\n";
+}
+
+echo "\nExplicação: O operador '!' inverte o valor booleano da variável. Quando \$tem_erro é TRUE, a expressão '!\$tem_erro' se torna FALSE antes de ser avaliada pelo IF. Por isso, o bloco 'else' é executado.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 5: Múltiplas Condições Aninhadas (Uso Misto de `AND` e `OR`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Para liberar um pagamento, o cliente deve ser <strong>(1) VIP E ter pago o frete</strong> <strong>OU</strong> <strong>(2) Ter o status "Pronto para Envio"</strong>. Você precisa construir uma expressão lógica complexa que combine `AND` e `OR` (e parênteses para precedência) para determinar se o pagamento é liberado.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Precedência de Operadores (Parênteses), Combinação de `AND` e `OR`.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis: <code>$cliente_vip = FALSE;</code>, <code>$frete_pago = TRUE;</code>, e <code>$status_pronto = TRUE;</code>.</li>
+                                <li>Construa a expressão lógica completa no seu `IF` (utilizando parênteses para garantir que a condição VIP + Frete seja avaliada primeiro).<br><code class="text-cyan-300 bg-gray-700 p-1 rounded">Lógica: (Cliente VIP AND Frete Pago) OR (Status Pronto)</code></li>
+                                <li>Se a expressão for `TRUE`, imprima "Pagamento Liberado.".</li>
+                                <li>Se a expressão for `FALSE`, imprima "Pagamento Pendente.".</li>
+                                <li><strong>Foco Estrutural:</strong> Explique como os parênteses controlam a precedência e garanta que o resultado seja "Pagamento Liberado." neste caso, devido à variável <code>$status_pronto</code>.</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution5')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution5" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variáveis
+$cliente_vip = FALSE;
+$frete_pago = TRUE;
+$status_pronto = TRUE;
+
+// 2. Expressão Lógica com parênteses
+// ($cliente_vip && $frete_pago) -> (FALSE && TRUE) -> FALSE
+// (FALSE) || $status_pronto -> (FALSE || TRUE) -> TRUE
+if (($cliente_vip && $frete_pago) || $status_pronto) {
+    // 3. Resultado TRUE
+    echo "Pagamento Liberado.\n";
+} else {
+    // 4. Resultado FALSE
+    echo "Pagamento Pendente.\n";
+}
+
+// 5. Explicação
+echo "\nExplicação Estrutural: Os parênteses forçam a avaliação da expressão 'AND' primeiro. O resultado de (\$cliente_vip && \$frete_pago) é FALSE.\n";
+echo "A expressão se torna: 'FALSE || \$status_pronto'. Como \$status_pronto é TRUE e o operador 'OR' só precisa de um lado verdadeiro, a condição geral se torna TRUE, liberando o pagamento.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 6 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 6: Precedência e Tipos de Dados (Valores Falsos)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> O PHP considera certos valores (como `0` e *string* vazia) como `FALSE` em comparações lógicas. Você precisa testar como o operador `OR` lida com o valor numérico zero quando combinado com uma variável `TRUE`.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Precedência, Tipos de Dados Falsos (`0`), Operador Lógico `OR`.</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis: <code>$numero_de_erros = 0;</code> (inteiro) e <code>$usuario_logado = TRUE;</code> (booleano).</li>
+                                <li>Crie a expressão: <code>if ($numero_de_erros OR $usuario_logado)</code>.</li>
+                                <li>Imprima a mensagem: "Sistema está operacional.".</li>
+                                <li><strong>Raciocínio Estrutural:</strong> O que o PHP considerou como o valor booleano de <code>$numero_de_erros</code>? Mesmo sendo `FALSE`, por que o bloco de comandos foi executado? O que o `OR` requer para retornar `TRUE`?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution6')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution6" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variáveis
+$numero_de_erros = 0;
+$usuario_logado = TRUE;
+
+// 2. Expressão Lógica
+if ($numero_de_erros || $usuario_logado) {
+    // 3. Impressão
+    echo "Sistema está operacional.\n";
+} else {
+    echo "Sistema com falha ou usuário deslogado.\n";
+}
+
+// 4. Raciocínio Estrutural
+echo "\n--- Raciocínio Estrutural ---\n";
+echo "O PHP converteu o valor 0 (inteiro) para o booleano FALSE durante a avaliação da condição.\n";
+echo "O bloco de comandos foi executado porque a expressão se tornou (FALSE || TRUE). O operador 'OR' só precisa que um dos lados seja TRUE para que toda a expressão retorne TRUE. Como \$usuario_logado era TRUE, a condição foi satisfeita.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionDiv = document.getElementById(id);
+            const button = solutionDiv.previousElementSibling;
+            
+            solutionDiv.classList.toggle('hidden');
+            
+            if (solutionDiv.classList.contains('hidden')) {
+                button.textContent = 'Ver Resolução';
+            } else {
+                button.textContent = 'Ocultar Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

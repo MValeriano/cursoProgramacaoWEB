@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios sobre Operadores em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .solution-code {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Operadores em PHP: Teoria e Prática</h1>
+            <p class="text-lg text-cyan-400">Uma introdução completa com 6 desafios para fixar o conhecimento.</p>
+        </header>
+
+        <!-- Resumo Section -->
+        <section class="bg-gray-800 rounded-xl p-6 md:p-8 mb-12 shadow-lg border border-gray-700">
+            <h2 class="text-3xl font-semibold text-white mb-4">Resumo</h2>
+            <p class="text-gray-300 leading-relaxed">
+                As fontes definem <strong>Operadores</strong> como elementos que auxiliam na lógica, conexão de dados, matemática e qualquer coisa relacionada a operações no código. Eles são divididos em categorias como <strong class="text-cyan-400">Operadores de Atribuição</strong> (para definir o valor de uma variável), <strong class="text-cyan-400">Aritméticos</strong> (para cálculos matemáticos), <strong class="text-cyan-400">Relacionais</strong> (para comparações) e <strong class="text-cyan-400">Lógicos</strong> (para combinar expressões).
+            </p>
+            <p class="mt-4 text-gray-300 leading-relaxed">
+                Abaixo, estão 6 exercícios que cobrem os diferentes tipos de operadores essenciais em PHP, projetados para forçar o aluno a pensar em como estruturar a resolução de um problema.
+            </p>
+        </section>
+
+        <!-- Exercises Section -->
+        <main>
+            <h2 class="text-3xl font-semibold text-center text-white mb-8">6 Exercícios sobre Operadores em PHP</h2>
+            <div class="space-y-8">
+
+                <!-- Exercício 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 1: Cálculo de Faturamento Bruto (Operadores Aritméticos)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você é responsável por calcular o faturamento de um produto vendido por um e-commerce. Você precisa calcular o <strong>valor total da venda</strong> e o <strong>resto da divisão</strong> (módulo) após agrupar as unidades em caixas de 7.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operadores Aritméticos (`+`, `*`, `/`, `%`), Precedência.</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as seguintes variáveis: <code>$preco_unitario = 15.50;</code> e <code>$quantidade_vendida = 40;</code>.</li>
+                                <li>Calcule o <strong>Faturamento Bruto</strong> (<code>$faturamento_bruto</code>) usando o operador de multiplicação.</li>
+                                <li>Calcule o <strong>Número de Unidades Restantes</strong> após serem empacotadas em caixas de 7, usando o operador <strong>Módulo (`%`)</strong>.</li>
+                                <li>Utilize <code>echo</code> para exibir o Faturamento Bruto e o Número de Unidades Restantes.</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Se você tivesse uma variável <code>$desconto = 5;</code> e tentasse calcular <code>$faturamento_bruto - $desconto * 2</code>, o que seria calculado primeiro, e como você usaria <strong>parênteses</strong> para garantir que a subtração ocorresse antes da multiplicação?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution1')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution1" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação das variáveis
+$preco_unitario = 15.50;
+$quantidade_vendida = 40;
+
+// 2. Cálculo do Faturamento Bruto
+$faturamento_bruto = $preco_unitario * $quantidade_vendida;
+
+// 3. Cálculo das Unidades Restantes
+$unidades_restantes = $quantidade_vendida % 7;
+
+// 4. Exibição dos resultados
+echo "Faturamento Bruto: R$ " . number_format($faturamento_bruto, 2, ',', '.') . "\n";
+echo "Número de Unidades Restantes: " . $unidades_restantes . "\n";
+
+echo "\n--- Desafio de Raciocínio ---\n";
+
+// 5. Desafio de Precedência
+$desconto = 5;
+
+// Sem parênteses, a multiplicação ocorre primeiro (5 * 2 = 10)
+$calculo_sem_parenteses = $faturamento_bruto - $desconto * 2; 
+echo "Cálculo sem parênteses (620 - 5 * 2): " . $calculo_sem_parenteses . "\n";
+
+// Com parênteses, a subtração ocorre primeiro (620 - 5 = 615)
+$calculo_com_parenteses = ($faturamento_bruto - $desconto) * 2;
+echo "Cálculo com parênteses ((620 - 5) * 2): " . $calculo_com_parenteses . "\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 2: Atualização de Contador e Atribuição Simplificada</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está desenvolvendo um sistema de pontuação para um jogo. O jogador <code>$pontuacao</code> começa com 100 pontos. Ele ganha 25 pontos em uma fase e depois a pontuação total é dobrada. Você deve usar operadores de atribuição composta para simplificar a manipulação da variável.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador de Atribuição (`=`), Operadores de Atribuição Composta (`+=`, `*=`).</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie a variável <code>$pontuacao</code> e atribua o valor inicial de <strong>100</strong>.</li>
+                                <li>Use o operador <strong><code>+=</code></strong> para adicionar <strong>25 pontos</strong> à <code>$pontuacao</code> (ganho na fase).</li>
+                                <li>Use o operador <strong><code>*=</code></strong> para multiplicar a <code>$pontuacao</code> por <strong>2</strong> (dobrando o valor).</li>
+                                <li>Crie uma nova variável chamada <code>$pontuacao_final</code> e use o operador de atribuição simples (<code>=</code>) para atribuir o valor final da <code>$pontuacao</code> a ela.</li>
+                                <li>Exiba o valor final de <code>$pontuacao_final</code>.</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution2')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution2" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variável inicial
+$pontuacao = 100;
+echo "Pontuação inicial: " . $pontuacao . "\n";
+
+// 2. Adiciona 25 pontos
+$pontuacao += 25; // Equivalente a: $pontuacao = $pontuacao + 25;
+echo "Após ganhar 25 pontos: " . $pontuacao . "\n";
+
+// 3. Dobra a pontuação
+$pontuacao *= 2; // Equivalente a: $pontuacao = $pontuacao * 2;
+echo "Após dobrar: " . $pontuacao . "\n";
+
+// 4. Atribui a uma variável final
+$pontuacao_final = $pontuacao;
+
+// 5. Exibe o resultado final
+echo "\nPontuação Final do Jogador: " . $pontuacao_final . "\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 3 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 3: Verificação de Elegibilidade e Tipagem (Operadores Relacionais)</h3>
+                         <p class="mb-4"><strong>Problema:</strong> Um sistema de segurança precisa verificar se uma chave de acesso é válida. A chave é válida se o <code>$codigo_inteiro</code> é <strong>igual em valor E tipo</strong> ao <code>$codigo_fornecido</code>. Você também deve testar se o <code>$limite_tentativas</code> (valor 3) foi atingido.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador <strong>Idêntico</strong> (`===`), Operador <strong>Menor ou Igual</strong> (`<=`), Operadores Relacionais.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis: <code>$codigo_inteiro = 500;</code> (inteiro) e <code>$codigo_fornecido = "500";</code> (string).</li>
+                                <li>Crie <code>$tentativas_usadas = 3;</code> e <code>$limite_tentativas = 3;</code>.</li>
+                                <li>Use um <code>IF</code> para testar se <code>$codigo_inteiro</code> é <strong>idêntico</strong> (<code>===</code>) a <code>$codigo_fornecido</code>. Imprima se são idênticos ou se são iguais, mas de tipos diferentes.</li>
+                                <li>Use um segundo <code>IF</code> para checar se <code>$tentativas_usadas</code> é <strong>menor ou igual</strong> (<code><=</code>) a <code>$limite_tentativas</code>.</li>
+                                <li><strong>Raciocínio Estrutural:</strong> Explique o resultado do teste no Passo 3. Qual operador (<code>==</code> ou <code>===</code>) deve ser usado em programação para evitar a conversão automática de tipo de dado pelo PHP?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution3')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution3" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variáveis de código
+$codigo_inteiro = 500;
+$codigo_fornecido = "500";
+
+// 2. Variáveis de tentativa
+$tentativas_usadas = 3;
+$limite_tentativas = 3;
+
+echo "--- Teste de Identidade de Código ---\n";
+// 3. Teste de identidade (===)
+if ($codigo_inteiro === $codigo_fornecido) {
+    echo "Os códigos são IDÊNTICOS (mesmo valor e mesmo tipo).\n";
+} else {
+    echo "Os códigos NÃO são idênticos. Um é " . gettype($codigo_inteiro) . " e o outro é " . gettype($codigo_fornecido) . ".\n";
+}
+
+echo "\n--- Teste de Limite de Tentativas ---\n";
+// 4. Teste de menor ou igual (<=)
+if ($tentativas_usadas <= $limite_tentativas) {
+    echo "O usuário ainda está dentro do limite de tentativas.\n";
+} else {
+    echo "O usuário excedeu o limite de tentativas.\n";
+}
+
+echo "\n--- Raciocínio Estrutural ---\n";
+// 5. Explicação
+echo "O resultado do Passo 3 é 'NÃO são idênticos' porque, embora o valor seja 500 para ambos, um é do tipo 'integer' e o outro é 'string'.\n";
+echo "O operador '===' (idêntico) é mais seguro e deve ser preferido, pois ele verifica tanto o VALOR quanto o TIPO, evitando conversões automáticas que podem levar a bugs.\n";
+echo "Se usássemos '==' (igual), o PHP converteria a string '500' para um número e o resultado seria TRUE, o que poderia ser uma falha de segurança.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                 <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 4: Lógica de Combinação de Férias (`AND` e `OR`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está montando um agendamento de férias. Um funcionário pode tirar férias se ele tiver <strong>(A) 30 dias de saldo E não estiver em licença</strong> OU se <strong>(B) for um gerente</strong>.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operadores Lógicos (`AND` / `&&`, `OR` / `||`), Precedência Lógica (Parênteses).</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis: <code>$dias_saldo = 30;</code>, <code>$em_licenca = TRUE;</code>, <code>$is_gerente = FALSE;</code>.</li>
+                                <li>Crie uma única expressão lógica usando <code>AND</code> e <code>OR</code> dentro de um <code>IF</code> para verificar a regra complexa (Lembre-se de usar parênteses para agrupar as condições obrigatórias).
+                                <br><code class="text-cyan-300 bg-gray-700 p-1 rounded">Lógica: (($dias_saldo == 30) AND (!$em_licenca)) OR ($is_gerente)</code>
+                                </li>
+                                <li>Se a condição for <code>TRUE</code>, imprima "Férias Aprovadas". Caso contrário, imprima "Férias Negadas".</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Altere <code>$is_gerente</code> para <code>TRUE</code> e <code>$em_licenca</code> para <code>FALSE</code>. O que acontece com o resultado final do <code>IF</code> e por quê?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution4')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution4" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// --- Cenário 1 ---
+echo "--- Cenário 1 ---\n";
+// 1. Variáveis
+$dias_saldo = 30;
+$em_licenca = TRUE;
+$is_gerente = FALSE;
+
+echo "Dias: $dias_saldo, Licença: " . ($em_licenca ? 'Sim':'Não') . ", Gerente: " . ($is_gerente ? 'Sim':'Não') . "\n";
+
+// 2. Expressão Lógica
+// (($dias_saldo == 30) AND (!$em_licenca)) -> (TRUE AND FALSE) -> FALSE
+// (FALSE) OR ($is_gerente) -> (FALSE OR FALSE) -> FALSE
+if ((($dias_saldo == 30) && (!$em_licenca)) || ($is_gerente)) {
+    echo "Resultado: Férias Aprovadas\n";
+} else {
+    echo "Resultado: Férias Negadas\n";
+}
+
+// --- Cenário 2 (Desafio) ---
+echo "\n--- Cenário 2 (Desafio de Raciocínio) ---\n";
+// 4. Alterando as variáveis
+$em_licenca = FALSE;
+$is_gerente = TRUE;
+
+echo "Dias: $dias_saldo, Licença: " . ($em_licenca ? 'Sim':'Não') . ", Gerente: " . ($is_gerente ? 'Sim':'Não') . "\n";
+
+// Nova avaliação
+// (($dias_saldo == 30) AND (!$em_licenca)) -> (TRUE AND TRUE) -> TRUE
+// (TRUE) OR ($is_gerente) -> (TRUE OR TRUE) -> TRUE
+if ((($dias_saldo == 30) && (!$em_licenca)) || ($is_gerente)) {
+    echo "Resultado: Férias Aprovadas\n";
+} else {
+    echo "Resultado: Férias Negadas\n";
+}
+
+echo "\nExplicação: No cenário 2, ambas as condições principais se tornam verdadeiras. A primeira parte (saldo E não estar em licença) é TRUE, e a segunda parte (ser gerente) também é TRUE. Como o operador OR precisa que apenas UMA das condições seja verdadeira, o resultado final é 'Férias Aprovadas'.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 5: Contador de Loop e Incremento (Operadores de Incremento)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa simular um contador regressivo para um foguete, de 5 a 1. Você deve garantir que a contagem seja impressa <strong>antes</strong> que o valor da variável seja alterado na memória.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador de Pós-Decremento (`$var--`), Pré-Incremento vs. Pós-Incremento.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie a variável <code>$countdown = 5;</code>.</li>
+                                <li>Utilize um <em>loop</em> (como <code>WHILE</code>) que se repita enquanto <code>$countdown</code> for maior que 0.</li>
+                                <li>Dentro do <em>loop</em>, imprima o valor de <code>$countdown</code> e utilize o operador de <strong>Pós-Decremento</strong> (<code>--</code>).</li>
+                                <li>Após o <em>loop</em>, imprima "Decolagem!".</li>
+                                <li><strong>Raciocínio Estrutural:</strong> Se você tivesse usado o operador de <strong>Pré-Incremento</strong> (<code>++$contador</code>) ou <strong>Pré-Decremento</strong> (<code>--$contador</code>) na linha de <code>echo</code> dentro do <em>loop</em>, como o resultado na tela mudaria em relação ao que foi impresso na primeira iteração?</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution5')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution5" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variável inicial
+$countdown = 5;
+
+echo "Iniciando contagem regressiva...\n";
+
+// 2. Loop WHILE
+while ($countdown > 0) {
+    // 3. Imprime e depois decrementa
+    echo $countdown . "...\n";
+    $countdown--; // Pós-decremento: usa o valor atual e DEPOIS subtrai 1.
+}
+
+// 4. Mensagem final
+echo "Decolagem!\n";
+
+echo "\n--- Raciocínio Estrutural ---\n";
+echo "Se tivéssemos usado o pré-decremento (--\$countdown) dentro do echo, como em 'echo --\$countdown;', o valor seria alterado ANTES de ser impresso.\n";
+echo "Na primeira iteração, ele mudaria de 5 para 4 e então imprimiria '4...'. A contagem na tela seria de 4 a 0, em vez de 5 a 1.\n";
+echo "O pós-decremento (\$countdown--) garante que o valor atual (5) seja usado/impresso primeiro, e só então a variável é atualizada para 4 para a próxima verificação do loop.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 6 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 6: Conexão Dinâmica de Texto (Operador String)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa construir uma mensagem dinâmica para um cabeçalho de página. A mensagem deve concatenar o nome do usuário com uma mensagem fixa e incluir uma quebra de linha.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Operador String (Concatenação - `.`), Atribuição de String Composta (`.=`).</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis <code>$usuario = "Pedro";</code> e <code>$boas_vindas = "Seja bem-vindo";</code>.</li>
+                                <li>Use o operador de <strong>concatenação (`.`)</strong> para criar uma variável <code>$mensagem_final</code> que combine: <code>$boas_vindas</code> + <code>, </code> + <code>$usuario</code> + <code>!</code> (utilize o caractere de escape <code>\n</code> para simular uma quebra de linha).</li>
+                                <li>Começando com uma <code>$mensagem_log = "Log: ";</code>, use o operador de <strong>atribuição de string composta (`.=`)</strong> para adicionar (concatenar) a <code>$mensagem_final</code> a <code>$mensagem_log</code>.</li>
+                                <li>Exiba o valor final de <code>$mensagem_log</code>.</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution6')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution6" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Variáveis iniciais
+$usuario = "Pedro";
+$boas_vindas = "Seja bem-vindo";
+
+// 2. Concatenação simples com o operador '.'
+$mensagem_final = $boas_vindas . ", " . $usuario . "!\n";
+
+// 3. Concatenação composta com o operador '.='
+$mensagem_log = "Log: "; // Inicia a string de log
+$mensagem_log .= $mensagem_final; // Adiciona a mensagem final ao log
+
+// 4. Exibe o resultado final
+echo $mensagem_log;
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionDiv = document.getElementById(id);
+            const button = solutionDiv.previousElementSibling;
+            
+            solutionDiv.classList.toggle('hidden');
+            
+            if (solutionDiv.classList.contains('hidden')) {
+                button.textContent = 'Ver Resolução';
+            } else {
+                button.textContent = 'Ocultar Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

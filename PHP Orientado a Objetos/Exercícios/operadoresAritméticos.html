@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação: Operadores Aritméticos em PHP</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Título Principal */
+        header {
+            background-color: #007bff; /* Azul vibrante */
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin: -20px -20px 20px -20px; /* Alinha com as bordas do container */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Resumo */
+        .resumo {
+            background-color: #e6f7ff; /* Azul claro para destaque */
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .resumo strong {
+            color: #0056b3;
+        }
+
+        /* Seção de Exercícios */
+        .exercicios-titulo {
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Estilo Individual do Exercício */
+        .exercicio-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .exercicio-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .exercicio-card h3 {
+            color: #28a745; /* Verde para destaque do título do exercício */
+            margin-top: 0;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        .conceitos-chave {
+            background-color: #ffeeba; /* Amarelo suave */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-style: italic;
+            font-weight: bold;
+            color: #856404;
+        }
+
+        .enunciado ol {
+            padding-left: 20px;
+        }
+
+        .enunciado li {
+            margin-bottom: 8px;
+        }
+
+        /* Botão */
+        .btn-resolucao {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-resolucao:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Área de Resolução (Escondida por Padrão) */
+        .resolucao-area {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #28a745;
+            background-color: #e2f9e7;
+            border-radius: 5px;
+        }
+
+        /* Estilo para o Separador */
+        .separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
+
+        .sub-header {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Operadores Aritméticos Fundamentais em PHP</h1>
+        </header>
+
+        <section class="resumo">
+            <p><strong>Resumo:</strong></p>
+            <p>Os **Operadores Aritméticos** são utilizados para realizar cálculos matemáticos. Eles são fundamentais em PHP para qualquer tipo de operação matemática, incluindo adição, subtração, multiplicação, divisão e módulo (resto da divisão). Em cálculos mais complexos, o uso de parênteses é crucial para garantir a precedência correta das operações.</p>
+        </section>
+
+        <p class="sub-header">A seguir, estão 5 exercícios estruturados que utilizam operadores aritméticos para resolver problemas, forçando o aluno a considerar a precedência e o comportamento de cada operador:</p>
+
+        <hr class="separator">
+
+        <h2 class="exercicios-titulo">5 Exercícios sobre Operadores Aritméticos em PHP</h2>
+
+        <div class="exercicio-card">
+            <h3>Exercício 1: Cálculo de Preço com Margem e Imposto (Precedência)</h3>
+            <p class="sub-header"><strong>Problema:</strong> Você precisa calcular o preço final de um produto. O custo base é de R$ 50,00. Primeiro, você aplica uma margem de lucro de 20% (multiplicação). Em seguida, você adiciona um imposto fixo de R$ 5,00. Você deve calcular o valor correto do preço de venda final e garantir que a margem de lucro seja calculada **antes** de somar o imposto.</p>
+
+            <div class="conceitos-chave">
+                <strong>Conceitos Chave:</strong> Adição (`+`), Multiplicação (`*`), Precedência de Operadores (Uso de Parênteses).
+            </div>
+
+            <p class="sub-header"><strong>Enunciado do Exercício:</strong></p>
+            <div class="enunciado">
+                <ol>
+                    <li>Crie as variáveis `$custo_base = 50;`, `$margem_percentual = 0.20;` e `$imposto_fixo = 5;`.</li>
+                    <li>Calcule o **Valor do Lucro** (`$lucro`) multiplicando `$custo_base` por `$margem_percentual`.</li>
+                    <li>Calcule o **Preço de Venda Final** (`$preco_final`) somando o `$custo_base` ao `$lucro` e ao `$imposto_fixo`.</li>
+                    <li>**Desafio de Precedência:** Tente calcular o `$preco_final_errado` em uma única linha, omitindo os parênteses: `$custo_base + $margem_percentual * $custo_base + $imposto_fixo`. Explique por que, matematicamente, a multiplicação sempre ocorre antes da adição.</li>
+                    <li>Imprima o `$preco_final` correto e o `$preco_final_errado` para comparação.</li>
+                </ol>
+            </div>
+
+            <button class="btn-resolucao" onclick="toggleResolution('resolucao1')">Ver Resolução</button>
+            <div id="resolucao1" class="resolucao-area">
+                <p><strong>Resolução Sugerida em PHP:</strong></p>
+                <pre>
+$custo_base = 50;
+$margem_percentual = 0.20;
+$imposto_fixo = 5;
+
+// 2. Cálculo do Lucro
+$lucro = $custo_base * $margem_percentual; // 50 * 0.20 = 10
+
+// 3. Cálculo Correto do Preço Final
+$preco_final = $custo_base + $lucro + $imposto_fixo; // 50 + 10 + 5 = 65
+
+// 4. Desafio de Precedência (Cálculo Errado)
+$preco_final_errado = $custo_base + $margem_percentual * $custo_base + $imposto_fixo;
+/*
+Explicação: Sem parênteses, a multiplicação tem precedência.
+A ordem de cálculo será: $margem_percentual * $custo_base (0.20 * 50 = 10),
+e só então as adições: 50 + 10 + 5 = 65.
+Neste caso específico (onde a margem é calculada com a multiplicação),
+o resultado será o mesmo, mas a ordem de raciocínio é crucial.
+Se o problema fosse "Aplicar 20% APÓS a soma do custo e imposto", os parênteses
+seriam MANDATÓRIOS. Ex: ($custo_base + $imposto_fixo) * (1 + $margem_percentual)
+*/
+
+// 5. Impressão
+echo "Preço Final Correto: R$ " . $preco_final . "\n"; // Saída: R$ 65
+echo "Preço Final Errado: R$ " . $preco_final_errado . "\n"; // Saída: R$ 65
+                </pre>
+            </div>
+        </div>
+
+        <div class="exercicio-card">
+            <h3>Exercício 2: Divisão de Estoque e Resto de Unidades (Módulo)</h3>
+            <p class="sub-header"><strong>Problema:</strong> Uma loja recebeu 85 camisetas e precisa empacotá-las em caixas que cabem exatamente 12 camisetas cada. Você precisa saber quantas caixas completas serão usadas **e** quantas camisetas sobrarão (o resto) que não completarão uma caixa.</p>
+
+            <div class="conceitos-chave">
+                <strong>Conceitos Chave:</strong> Divisão (`/`), Módulo (Resto da Divisão - `%`).
+            </div>
+
+            <p class="sub-header"><strong>Enunciado do Exercício:</strong></p>
+            <div class="enunciado">
+                <ol>
+                    <li>Crie as variáveis `$total_camisetas = 85;` e `$capacidade_caixa = 12;`.</li>
+                    <li>Use o operador de **divisão (`/`)** para calcular o **Número Total de Caixas** (o resultado pode ser um número decimal, o que é esperado).</li>
+                    <li>Use o operador **Módulo (`%`)** para calcular o **Número de Camisetas Restantes** (o resto da divisão).</li>
+                    <li>Imprima o número de caixas completas (ignore as casas decimais) e o número de camisetas restantes.</li>
+                    <li>**Raciocínio Estrutural:** Explique o que o operador Módulo (`%`) representa. Por exemplo, qual seria o resultado de `10 % 3`?</li>
+                </ol>
+            </div>
+
+            <button class="btn-resolucao" onclick="toggleResolution('resolucao2')">Ver Resolução</button>
+            <div id="resolucao2" class="resolucao-area">
+                <p><strong>Resolução Sugerida em PHP:</strong></p>
+                <pre>
+$total_camisetas = 85;
+$capacidade_caixa = 12;
+
+// 2. Divisão (Resultado decimal esperado)
+$numero_total_caixas_decimal = $total_camisetas / $capacidade_caixa; // 7.0833...
+
+// 3. Cálculo do Resto (Módulo)
+$camisetas_restantes = $total_camisetas % $capacidade_caixa; // 85 % 12 = 1
+
+// Cálculo de Caixas Completas (usando floor para remover casas decimais)
+$caixas_completas = floor($numero_total_caixas_decimal); // 7
+
+// 4. Impressão
+echo "Número Total de Caixas (incluindo incompletas): " . $numero_total_caixas_decimal . "\n";
+echo "Número de Caixas Completas: " . $caixas_completas . "\n"; // Saída: 7
+echo "Número de Camisetas Restantes: " . $camisetas_restantes . "\n"; // Saída: 1
+
+// 5. Raciocínio Estrutural:
+/*
+O operador Módulo (%) retorna o **resto da divisão** de dois números.
+Exemplo: 10 % 3.
+10 dividido por 3 é 3, com resto 1. (3 * 3 = 9. 10 - 9 = 1).
+Portanto, o resultado de `10 % 3` é **1**.
+*/
+                </pre>
+            </div>
+        </div>
+
+        <div class="exercicio-card">
+            <h3>Exercício 3: Cálculo de Juros Compostos (Exponenciação)</h3>
+            <p class="sub-header"><strong>Problema:</strong> Você precisa calcular o valor futuro de um investimento simples sujeito a juros compostos por um curto período de tempo. O cálculo envolve elevar um número à potência de outro (exponenciação).</p>
+
+            <div class="conceitos-chave">
+                <strong>Conceitos Chave:</strong> Exponenciação (dois asteriscos - `**`), Multiplicação (`*`).
+            </div>
+
+            <p class="sub-header"><strong>Enunciado do Exercício:</strong></p>
+            <div class="enunciado">
+                <ol>
+                    <li>Crie as variáveis: `$principal = 1000;` (capital inicial) e `$taxa_juros = 1.05;` (juros de 5%).</li>
+                    <li>Calcule o valor do investimento após 4 anos. A fórmula é: `Principal * (Taxa de Juros) ^ Anos`.</li>
+                    <li>Utilize o operador de **Exponenciação (`**`)** (ou `pow()`, se preferir, como visto nas funções matemáticas) para elevar `$taxa_juros` à potência de 4.</li>
+                    <li>Atribua o resultado a `$valor_futuro`.</li>
+                    <li>Imprima o `$valor_futuro`.</li>
+                </ol>
+            </div>
+
+            <button class="btn-resolucao" onclick="toggleResolution('resolucao3')">Ver Resolução</button>
+            <div id="resolucao3" class="resolucao-area">
+                <p><strong>Resolução Sugerida em PHP:</strong></p>
+                <pre>
+$principal = 1000;
+$taxa_juros = 1.05;
+$anos = 4;
+
+// 3. e 4. Cálculo do Valor Futuro usando o operador **
+// A fórmula completa: $valor_futuro = $principal * ($taxa_juros ** $anos);
+$valor_futuro = $principal * ($taxa_juros ** $anos);
+// Resultado de 1.05 ** 4 é aproximadamente 1.2155
+// 1000 * 1.2155 = 1215.50625
+
+// Ou utilizando a função pow()
+// $valor_futuro = $principal * pow($taxa_juros, $anos);
+
+// 5. Impressão
+echo "Valor Futuro do Investimento (após 4 anos): R$ " . number_format($valor_futuro, 2, ',', '.') . "\n";
+// Saída: R$ 1.215,51 (aproximadamente, após formatação)
+                </pre>
+            </div>
+        </div>
+
+        <div class="exercicio-card">
+            <h3>Exercício 4: Operação Mista e Conversão de Tipo</h3>
+            <p class="sub-header"><strong>Problema:</strong> O PHP realiza conversão automática de tipos (*type casting*) em operações aritméticas. Você precisa testar o que acontece quando uma *string* que parece um número é somada a um número inteiro.</p>
+
+            <div class="conceitos-chave">
+                <strong>Conceitos Chave:</strong> Adição (`+`), Conversão Automática de Tipo (Implícita).
+            </div>
+
+            <p class="sub-header"><strong>Enunciado do Exercício:</strong></p>
+            <div class="enunciado">
+                <ol>
+                    <li>Crie as variáveis: `$string_dez = "10";` (tipo *string*) e `$numero_cinco = 5;` (tipo numérico).</li>
+                    <li>Crie a variável `$resultado_soma = $string_dez + $numero_cinco;`.</li>
+                    <li>Utilize `echo` para exibir o `$resultado_soma`.</li>
+                    <li>**Raciocínio Estrutural:** O PHP realiza automaticamente a conversão de tipos em operações. Qual tipo de dado o PHP considera para `$string_dez` para que a adição funcione e qual será o tipo de dado da variável `$resultado_soma` após a operação?</li>
+                </ol>
+            </div>
+
+            <button class="btn-resolucao" onclick="toggleResolution('resolucao4')">Ver Resolução</button>
+            <div id="resolucao4" class="resolucao-area">
+                <p><strong>Resolução Sugerida em PHP:</strong></p>
+                <pre>
+$string_dez = "10";
+$numero_cinco = 5;
+
+// 2. A adição é realizada. PHP converte a string "10" para o número inteiro 10.
+$resultado_soma = $string_dez + $numero_cinco; // 10 + 5 = 15
+
+// 3. Impressão
+echo "Resultado da Soma: " . $resultado_soma . "\n"; // Saída: 15
+echo "Tipo de dado do resultado: " . gettype($resultado_soma) . "\n"; // Saída: integer
+
+// 4. Raciocínio Estrutural:
+/*
+Para que a adição funcione, o PHP realiza uma **Conversão de Tipo Implícita (Type Casting)**.
+Ele converte a string `$string_dez` ("10") para o tipo de dado **Integer (número inteiro)**.
+O tipo de dado da variável `$resultado_soma` após a operação será **Integer**, pois a adição
+de dois números inteiros (ou de um inteiro e um float) resulta em um tipo numérico.
+*/
+                </pre>
+            </div>
+        </div>
+
+        <div class="exercicio-card">
+            <h3>Exercício 5: Manipulação de Número Negativo (Valor Absoluto)</h3>
+            <p class="sub-header"><strong>Problema:</strong> Você está processando uma variação de temperatura ou saldo bancário, e o resultado é um número negativo (`-15.5`). Para fins de exibição, você precisa apenas do valor numérico (a magnitude), independentemente de ser negativo ou positivo.</p>
+
+            <div class="conceitos-chave">
+                <strong>Conceitos Chave:</strong> Funções Matemáticas (`abs()`), Números Negativos.
+            </div>
+
+            <p class="sub-header"><strong>Enunciado do Exercício:</strong></p>
+            <div class="enunciado">
+                <ol>
+                    <li>Crie a variável `$variacao_saldo = -15.5;`.</li>
+                    <li>Utilize a função **`abs()`** (valor absoluto) para obter o valor positivo da variação de saldo.</li>
+                    <li>Atribua o resultado a `$valor_magnitude`.</li>
+                    <li>Exiba o `$valor_magnitude`.</li>
+                    <li>**Desafio de Raciocínio:** Se `$variacao_saldo` fosse `15.5` positivo, qual seria a saída de `abs($variacao_saldo)`? Explique por que essa função é útil em casos onde você só precisa da magnitude do número, ignorando o sinal.</li>
+                </ol>
+            </div>
+
+            <button class="btn-resolucao" onclick="toggleResolution('resolucao5')">Ver Resolução</button>
+            <div id="resolucao5" class="resolucao-area">
+                <p><strong>Resolução Sugerida em PHP:</strong></p>
+                <pre>
+$variacao_saldo = -15.5;
+
+// 2. Uso da função abs()
+$valor_magnitude = abs($variacao_saldo); // abs(-15.5) = 15.5
+
+// 4. Impressão
+echo "Variação de Saldo (Original): " . $variacao_saldo . "\n"; // Saída: -15.5
+echo "Valor da Magnitude (Absoluto): " . $valor_magnitude . "\n"; // Saída: 15.5
+
+// 5. Desafio de Raciocínio:
+/*
+Se `$variacao_saldo` fosse 15.5 positivo, a saída de `abs($variacao_saldo)`
+também seria **15.5**.
+
+A função `abs()` é útil porque ela retorna o **valor absoluto** ou a **magnitude**
+de um número, removendo qualquer sinal negativo. Em contextos como distância,
+variação, erro ou diferença, muitas vezes o que importa é o tamanho da alteração,
+e não se ela foi para cima ou para baixo (positivo ou negativo).
+*/
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleResolution(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

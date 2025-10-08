@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao PHP e Programação</title>
+    <!-- Carregando Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Estilo para simular slides de apresentação */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1rem;
+            color: white;
+            background-color: #111827; /* Dark Grey/Blue background */
+        }
+        .card {
+            background-color: #1f2937; /* Slightly lighter card background */
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 900px;
+            width: 95%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        .highlight {
+            color: #6366f1; /* Indigo 500 for PHP accent */
+            font-weight: 700;
+        }
+        .list-style-disc > li {
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Introdução ao Curso -->
+    <section class="slide bg-gray-900">
+        <div class="card text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 text-white">
+                Introdução à Programação
+            </h1>
+            <h2 class="text-2xl md:text-4xl font-light highlight">
+                Nós vamos ver neste curso a linguagem de programação <span class="text-yellow-400">PHP</span>.
+            </h2>
+            <p class="mt-8 text-xl text-gray-300">O que é PHP? O que podemos fazer com esta linguagem?</p>
+            <p class="mt-4 text-lg text-gray-400">Mas antes, o que é uma linguagem de programação?</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: O que é Linguagem de Programação? -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-yellow-400">🧠</span>
+                O que é uma Linguagem de Programação?
+            </h2>
+            <p class="text-xl text-gray-300 mb-6">
+                Vamos imaginar a linguagem de programação como se fosse uma forma de conversar com o computador.
+            </p>
+            <ul class="space-y-4 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    É um conjunto de regras e comandos que os humanos usam para dar instruções ao computador.
+                </li>
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    Com ela, você pode criar programas, sites, jogos, aplicativos, sistemas e muito mais.
+                </li>
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    Cada linguagem tem sintaxe própria, como se fossem diferentes idiomas: <span class="highlight">PHP</span>, <span class="highlight">Python</span>, <span class="highlight">JavaScript</span>, <span class="highlight">C++</span>, etc.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: Por que existem várias linguagens? -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-green-400">🌍</span>
+                Por que existem várias linguagens?
+            </h2>
+            <p class="text-xl text-gray-300 mb-6">
+                Assim como temos português, inglês, espanhol… cada linguagem de programação tem vantagens específicas:
+            </p>
+            <ul class="space-y-4 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-green-500">
+                    Algumas são melhores para sites (como <span class="highlight">PHP</span> e <span class="highlight">JavaScript</span>)
+                </li>
+                <li class="pl-4 border-l-4 border-green-500">
+                    Outras para inteligência artificial (como <span class="highlight">Python</span>)
+                </li>
+                <li class="pl-4 border-l-4 border-green-500">
+                    Outras para jogos e sistemas complexos (como <span class="highlight">C++</span>)
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: O que dá pra fazer com elas? -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-red-400">🛠️</span>
+                O que dá pra fazer com elas?
+            </h2>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-red-500">Criar sites interativos</li>
+                <li class="pl-4 border-l-4 border-red-500">Desenvolver aplicativos de celular</li>
+                <li class="pl-4 border-l-4 border-red-500">Automatizar tarefas repetitivas</li>
+                <li class="pl-4 border-l-4 border-red-500">Criar jogos e animações</li>
+                <li class="pl-4 border-l-4 border-red-500">Fazer robôs e inteligência artificial</li>
+                <li class="pl-4 border-l-4 border-red-500">Controlar sensores e dispositivos físicos</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 5: Entendendo a Sintaxe -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-yellow-400">🗣️</span>
+                Ok, entendi, mas como conversar com o computador?
+            </h2>
+
+            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">
+                Entendendo a sintaxe na programação com uma analogia simples
+            </h3>
+
+            <p class="text-lg text-gray-300 mb-4">
+                Para que seres humanos se comuniquem entre si, usamos idiomas — como português, inglês ou espanhol. Cada idioma possui um conjunto de regras que organizam as palavras e frases: isso é a gramática. Ela define, por exemplo, onde colocar acentos, vírgulas, ponto final, como conjugar verbos e estruturar sentenças.
+            </p>
+
+            <p class="text-lg text-gray-300 mb-6">
+                Da mesma forma, quando queremos nos comunicar com um computador, usamos uma linguagem de programação. E essa linguagem também tem suas regras próprias, que chamamos de sintaxe. A sintaxe na programação funciona como a gramática de um idioma: ela determina como escrever os comandos corretamente para que o computador entenda e execute o que queremos. Se você escrever algo fora dessas regras, o computador não consegue interpretar — assim como uma frase mal escrita pode confundir uma pessoa.
+            </p>
+
+            <div class="p-4 bg-indigo-900/50 rounded-lg text-center">
+                <p class="text-xl font-medium">
+                    Em resumo: Assim como usamos gramática para conversar com pessoas, usamos sintaxe para conversar com computadores. É ela que garante que nossa “fala digital” seja clara, precisa e compreensível.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Sintaxe: a gramática do código -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-pink-400">📝</span>
+                Sintaxe: a gramática do código
+            </h2>
+            <p class="text-lg text-gray-300 mb-4">
+                - Imagine que você está escrevendo uma frase em português:
+            </p>
+            <ul class="space-y-2 mb-6 text-lg">
+                <li class="ml-8 text-red-400 font-mono">
+                    Se você escrever: “Eu comer banana”, a gente entende, mas está gramaticalmente errado.
+                </li>
+                <li class="ml-8 text-green-400 font-mono">
+                    O certo seria: “Eu como banana”.
+                </li>
+            </ul>
+            <p class="text-lg text-gray-300 mb-6">
+                Assim como o português tem regras de escrita, as linguagens de programação também têm regras — e essas regras são chamadas de <span class="highlight">sintaxe</span>.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">No mundo da programação:</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    A sintaxe define como escrever os comandos corretamente para que o computador entenda e execute.
+                </li>
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    Se você errar a sintaxe, o computador não entende e mostra um erro.
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mt-6 mb-3">Por que a sintaxe é importante?</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-indigo-500">Garante que o código funcione corretamente</li>
+                <li class="pl-4 border-l-4 border-indigo-500">Facilita a leitura e manutenção do programa</li>
+                <li class="pl-4 border-l-4 border-indigo-500">Evita erros e confusões no sistema</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 7: Palavras Reservadas -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-cyan-400">🔑</span>
+                Palavras Reservadas
+            </h2>
+            <p class="text-lg text-gray-300 mb-4">
+                Como vimos cada linguagem de programação possui um conjunto de regras que define como os comandos devem ser escritos — esse conjunto é chamado de <span class="highlight">sintaxe</span>. A sintaxe funciona como a gramática de um idioma, orientando a forma correta de organizar os elementos do código para que o computador consiga entender e executar as instruções.
+            </p>
+            <p class="text-lg text-gray-300 mb-6">
+                Dentro dessa sintaxe, existem as chamadas <span class="highlight">palavras reservadas</span>. Elas são como comandos especiais que já têm um significado definido pela linguagem. São instruções que dizem ao computador o que fazer — como tomar decisões, repetir ações ou criar funções.
+            </p>
+
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg mb-6">
+                <li class="pl-4 border-l-4 border-cyan-500">
+                    Palavras reservadas são termos que têm um significado fixo para o computador.
+                </li>
+                <li class="pl-4 border-l-4 border-cyan-500">
+                    Elas são usadas para controlar o fluxo do programa, definir estruturas, executar ações.
+                </li>
+                <li class="pl-4 border-l-4 border-cyan-500">
+                    Você não pode usá-las como nomes de variáveis, funções ou identificadores, porque isso causaria confusão.
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Algumas palavras reservadas comuns:</h3>
+            <div class="grid grid-cols-2 gap-4 text-center">
+                <div class="bg-gray-800 p-3 rounded-lg"><span class="font-mono text-yellow-300">if</span> → usado para fazer uma condição</div>
+                <div class="bg-gray-800 p-3 rounded-lg"><span class="font-mono text-yellow-300">while</span> → usado para criar um laço de repetição</div>
+                <div class="bg-gray-800 p-3 rounded-lg"><span class="font-mono text-yellow-300">function</span> → usado para criar uma função</div>
+                <div class="bg-gray-800 p-3 rounded-lg"><span class="font-mono text-yellow-300">echo</span> → usado para mostrar algo na tela</div>
+                <div class="bg-gray-800 p-3 rounded-lg"><span class="font-mono text-yellow-300">return</span> → usado para devolver um valor</div>
+            </div>
+
+            <p class="mt-6 text-xl font-medium text-center p-2 bg-indigo-900/50 rounded-lg">
+                Em resumo: Palavras reservadas são comandos fixos da linguagem de programação. Elas têm funções específicas e não podem ser usadas para outras coisas, como nomes de variáveis ou funções.
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 8: O que é PHP? -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-yellow-400 flex items-center">
+                <span class="mr-3">🐘</span>
+                PHP: O Que É e Sua Origem
+            </h2>
+
+            <p class="text-xl text-gray-300 mb-6">
+                <span class="highlight">PHP</span> é uma linguagem de programação de código aberto voltada principalmente para o desenvolvimento de aplicações web dinâmicas, executadas no servidor.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Definição e Origem</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    <span class="highlight">PHP</span> é um acrônimo recursivo para <span class="highlight">PHP: Hypertext Preprocessor</span> (Pré-Processador de Hipertexto).
+                </li>
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    Foi criado em <span class="highlight">1994</span> por Rasmus Lerdorf como um conjunto de scripts para monitorar acessos ao seu site pessoal.
+                </li>
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    Inicialmente chamado de Personal Home Page Tools, evoluiu para uma linguagem robusta e amplamente usada na web.
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mt-6 mb-3">Como Funciona</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    <span class="highlight">Executado no servidor:</span> Diferente do JavaScript, que roda no navegador, o PHP processa os dados no servidor e envia apenas o resultado (HTML) para o usuário.
+                </li>
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    <span class="highlight">Embutido no HTML:</span> Você pode misturar código PHP com HTML, o que facilita a criação de páginas dinâmicas.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 9: Analogia do Servidor -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-red-400">👨‍🍳</span>
+                Mas o que é um servidor?
+            </h2>
+            <p class="text-xl text-gray-300 mb-6">
+                Vamos imaginar o servidor como se fosse um <span class="highlight">garçom em um restaurante digital</span>.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Imagine que você está em um restaurante:</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-red-500">
+                    Você (<span class="highlight">cliente</span>) faz um pedido ao garçom.
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    O garçom (<span class="highlight">servidor</span>) leva esse pedido para a cozinha (onde estão os dados e os programas).
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    A cozinha prepara o prato (a página ou informação que você quer).
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    O garçom traz o prato até sua mesa (mostra a página no seu navegador).
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mt-6 mb-3">Trazendo para o mundo da tecnologia:</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-red-500">
+                    Você usa um navegador (como Chrome ou Firefox) e acessa um site.
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    Esse pedido vai para um <span class="highlight">servidor</span>, que é um computador potente e sempre ligado.
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    O servidor processa o pedido, busca os dados, executa o código (como PHP) e envia a resposta para você.
+                </li>
+                <li class="pl-4 border-l-4 border-red-500">
+                    Você vê o resultado na tela: uma página, uma imagem, um vídeo, etc.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 10: Tipos de Servidores e Popularidade do PHP -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-highlight flex items-center">
+                <span class="mr-3 text-blue-400">⚙️</span>
+                Tipos de Servidores e Popularidade do PHP
+            </h2>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Exemplos práticos:</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg mb-6">
+                <li class="pl-4 border-l-4 border-blue-500">
+                    Quando você entra no Instagram, o servidor envia suas fotos, comentários e mensagens.
+                </li>
+                <li class="pl-4 border-l-4 border-blue-500">
+                    Quando você acessa um site de notícias, o servidor monta a página com as manchetes atualizadas.
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Tipos de servidores:</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg mb-6">
+                <li class="pl-4 border-l-4 border-blue-500">Servidor web: entrega páginas da internet.</li>
+                <li class="pl-4 border-l-4 border-blue-500">Servidor de banco de dados: guarda e organiza informações.</li>
+                <li class="pl-4 border-l-4 border-blue-500">Servidor de e-mail: envia e recebe mensagens.</li>
+                <li class="pl-4 border-l-4 border-blue-500">Servidor de arquivos: armazena documentos, fotos, vídeos.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-yellow-400 mt-6 mb-3">Popularidade do PHP</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-yellow-500">
+                    Mais de <span class="highlight">75% dos sites na internet usam PHP</span> em seus servidores, incluindo plataformas como <span class="highlight">WordPress</span>, <span class="highlight">Facebook</span> e <span class="highlight">Slack</span>.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 11: Vantagens e Aplicações do PHP -->
+    <section class="slide">
+        <div class="card">
+            <h2 class="text-4xl font-bold mb-6 text-yellow-400 flex items-center">
+                <span class="mr-3">🏆</span>
+                Vantagens e Aplicações do PHP
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-3">Vantagens</h3>
+                    <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                        <li class="pl-4 border-l-4 border-indigo-500">Gratuito e de código aberto</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Fácil de aprender para iniciantes, mas poderoso o suficiente para aplicações complexas</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Compatível com diversos sistemas operacionais e servidores web</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Grande comunidade e vasta documentação</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-3">O que dá pra fazer com PHP?</h3>
+                    <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                        <li class="pl-4 border-l-4 border-indigo-500">Criar sistemas de login</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Conectar com bancos de dados</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Enviar e-mails automáticos</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Criar lojas virtuais</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Fazer painéis administrativos</li>
+                        <li class="pl-4 border-l-4 border-indigo-500">Construir blogs e sites interativos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-indigo-400 mt-6 mb-3">Onde o PHP é usado?</h3>
+            <ul class="space-y-3 list-style-disc text-gray-200 text-lg">
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    <span class="highlight">WordPress</span> (a maior plataforma de blogs do mundo) é feito em PHP.
+                </li>
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    Sites como <span class="highlight">Facebook</span> começaram com PHP.
+                </li>
+                <li class="pl-4 border-l-4 border-indigo-500">
+                    Muitos sistemas internos de empresas usam PHP para gerenciar dados e usuários.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 12: Encerramento -->
+    <section class="slide">
+        <div class="card text-center bg-yellow-900/50">
+            <h2 class="text-5xl font-extrabold mb-4 text-yellow-300">
+                Próximos Passos!
+            </h2>
+            <p class="text-2xl text-gray-100">
+                Agora você entende o básico sobre linguagens de programação, sintaxe, palavras reservadas e o papel do servidor.
+            </p>
+            <p class="mt-4 text-xl text-gray-200">
+                Estamos prontos para mergulhar na sintaxe específica do <span class="font-extrabold text-yellow-400">PHP</span>!
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>

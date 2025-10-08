@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios sobre Arrays (Vetores e Matrizes) em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .solution-code {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Arrays (Vetores e Matrizes) em PHP</h1>
+            <p class="text-lg text-cyan-400">5 Desafios para dominar a manipulação de listas de dados.</p>
+        </header>
+
+        <!-- Resumo Section -->
+        <section class="bg-gray-800 rounded-xl p-6 md:p-8 mb-12 shadow-lg border border-gray-700">
+            <h2 class="text-3xl font-semibold text-white mb-4">Resumo</h2>
+            <p class="text-gray-300 leading-relaxed">
+                O tema <strong>Arrays</strong> (vetores e matrizes) é fundamental em PHP, pois esta estrutura de dados permite <strong>armazenar múltiplos valores dentro de uma única variável</strong>. Arrays servem como verdadeiros <strong>contêineres</strong> e podem crescer dinamicamente com a adição de novos itens.
+            </p>
+            <p class="mt-4 text-gray-300 leading-relaxed">
+                Os *arrays* em PHP são acessados por uma <strong>chave</strong>, que pode ser um <strong class="text-cyan-400">índice numérico</strong> (array indexado/vetor) ou uma <strong class="text-cyan-400">string</strong> (array associativo). Arrays multidimensionais são aqueles que <strong>contêm outros *arrays* dentro deles</strong>.
+            </p>
+             <p class="mt-4 text-gray-300 leading-relaxed">
+                Abaixo, estão 5 exercícios estruturados que utilizam diferentes tipos de *arrays* e as funções de manipulação mencionadas nas fontes, projetados para levar o aluno a pensar na solução:
+            </p>
+        </section>
+
+        <!-- Exercises Section -->
+        <main>
+            <h2 class="text-3xl font-semibold text-center text-white mb-8">5 Exercícios sobre Arrays em PHP</h2>
+            <div class="space-y-8">
+
+                <!-- Exercício 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 1: Gerenciamento de Lista Indexada e Acesso</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está criando uma lista de tarefas básicas (`TO-DO List`) para o dia, onde a ordem importa. Você precisa criar a lista, listar o primeiro item (lembrando que a contagem começa em zero) e, em seguida, adicionar um novo item no final da lista.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> Criação de *Array* Indexado (Vetor), Índice Zero, Adição de Item no Final, Acesso Direto.</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* chamado <code>$tarefas_semanais</code> contendo: "Comprar Pão", "Estudar PHP" e "Pagar Contas".</li>
+                                <li>Utilize <code>echo</code> para exibir <strong>apenas o segundo item</strong> da lista ("Estudar PHP").</li>
+                                <li>Adicione um novo item, "Enviar Email", ao final do *array*, utilizando a sintaxe de colchetes vazios.</li>
+                                <li>Use o <code>var_dump()</code> para exibir o *array* completo e confirmar a adição.</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution1')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution1" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array indexado
+$tarefas_semanais = ["Comprar Pão", "Estudar PHP", "Pagar Contas"];
+
+echo "--- Acessando o segundo item ---\n";
+// 2. Acesso ao segundo item (índice 1)
+echo $tarefas_semanais[1] . "\n\n";
+
+// 3. Adição de um novo item ao final
+$tarefas_semanais[] = "Enviar Email";
+
+echo "--- Array completo após adição ---\n";
+// 4. Exibição da estrutura final do array
+var_dump($tarefas_semanais);
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 2: Manipulação e Alteração de Array Associativo</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está configurando um perfil de usuário onde cada dado é rotulado. Você precisa definir um perfil associativo, atualizar um dado existente e, em seguida, simular a exclusão de uma informação chave.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> *Array* Associativo, Acesso por String, Alteração de Valor, `unset()`.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* associativo <code>$perfil_cliente</code> com as chaves: <code>'nome'</code> => <code>"João Silva"</code>, <code>'idade'</code> => <code>30</code>, e <code>'status'</code> => <code>"Ativo"</code>.</li>
+                                <li>Altere o valor da chave <code>'status'</code> para <code>"Inativo"</code>.</li>
+                                <li>Remova a informação <code>'idade'</code> do *array* utilizando a função <strong><code>unset()</code></strong>.</li>
+                                <li>Utilize <code>print_r()</code> para exibir o *array* final.</li>
+                                <li><strong>Raciocínio Estrutural:</strong> Por que, no *array* associativo, você precisa usar as *strings* `'nome'` e `'idade'` para acessar os dados, em vez de índices numéricos?</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution2')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution2" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array associativo
+$perfil_cliente = [
+    'nome' => "João Silva",
+    'idade' => 30,
+    'status' => "Ativo"
+];
+
+// 2. Alteração de um valor
+$perfil_cliente['status'] = "Inativo";
+
+// 3. Remoção de um elemento
+unset($perfil_cliente['idade']);
+
+echo "--- Perfil do cliente atualizado ---\n";
+// 4. Exibição do array final
+print_r($perfil_cliente);
+
+echo "\n--- Raciocínio Estrutural ---\n";
+// 5. Explicação
+echo "Em arrays associativos, as chaves são strings (rótulos) que dão nome aos valores. Elas servem como identificadores únicos e significativos. Usar índices numéricos como 0 ou 1 não faria sentido, pois a ordem dos elementos não é o principal meio de identificação, e sim o nome da chave.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 3: Iteração e Contagem (`FOREACH` e `count`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você recebeu um *array* associativo representando o estoque. Você precisa listar cada produto e sua quantidade, e informar o total de tipos de produtos.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `FOREACH` loop, `count()`, Iteração por Chave e Valor.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* associativo <code>$estoque_produtos</code> (Ex: <code>'Teclado' => 150</code>, <code>'Mouse' => 200</code>).</li>
+                                <li>Use <strong><code>count()</code></strong> para exibir o total de produtos distintos.</li>
+                                <li>Utilize um laço <strong><code>FOREACH</code></strong> que capture a chave e o valor.</li>
+                                <li>Dentro do *loop*, imprima uma mensagem formatada para cada item: "Produto: [NOME] - Quantidade disponível: [QUANTIDADE]".</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution3')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution3" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array de estoque
+$estoque_produtos = [
+    'Teclado' => 150,
+    'Mouse' => 200,
+    'Monitor' => 80,
+    'Webcam' => 50
+];
+
+// 2. Contagem do total de produtos distintos
+echo "Total de tipos de produtos no estoque: " . count($estoque_produtos) . "\n\n";
+
+echo "--- Lista de Estoque ---\n";
+// 3. Loop FOREACH para iterar sobre o array
+foreach ($estoque_produtos as $produto => $quantidade) {
+    // 4. Impressão formatada
+    echo "Produto: " . $produto . " - Quantidade disponível: " . $quantidade . "\n";
+}
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                 <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 4: Criação e Acesso a Matriz (Array Multidimensional)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa armazenar dados de vários alunos (nome e nota). Isso exige uma matriz. Você deve acessar e exibir uma informação específica do segundo aluno.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> *Array* Multidimensional (Matriz), Acesso Aninhado.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* <code>$alunos</code> contendo dois *arrays* internos (Ex: <code>['Alice', 9.5]</code> e <code>['Bruno', 7.0]</code>).</li>
+                                <li>Utilize <code>var_dump()</code> para inspecionar a estrutura da matriz.</li>
+                                <li>Utilize <code>echo</code> e acesso aninhado para exibir <strong>apenas o nome do segundo aluno</strong>.</li>
+                                <li><strong>Raciocínio Estrutural:</strong> Se você quisesse acessar a nota de Alice, quais seriam os índices numéricos que você precisaria usar?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution4')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution4" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array multidimensional (matriz)
+$alunos = [
+    ['Alice', 9.5], // índice 0
+    ['Bruno', 7.0]  // índice 1
+];
+
+echo "--- Estrutura da Matriz ---\n";
+// 2. Inspeção da estrutura
+var_dump($alunos);
+
+echo "\n--- Acesso a um dado específico ---\n";
+// 3. Acesso aninhado: índice 1 (segundo aluno), índice 0 (primeiro item, o nome)
+echo "Nome do segundo aluno: " . $alunos[1][0] . "\n";
+
+echo "\n--- Raciocínio Estrutural ---\n";
+// 4. Explicação
+echo "Para acessar a nota de Alice, você usaria os índices [0][1].\n";
+echo "  \$alunos[0] -> Acessa o primeiro array interno: ['Alice', 9.5]\n";
+echo "  \$alunos[0][1] -> Acessa o segundo item (índice 1) desse array interno: 9.5\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 5: Mesclagem e Combinação de Dados (`array_merge`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você tem dois *arrays* de frutas separados e precisa combiná-los em uma única lista para um catálogo.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `array_merge()`, Arrays Indexados.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie <code>$tropicais = ['Manga', 'Maracujá'];</code>.</li>
+                                <li>Crie <code>$citricas = ['Laranja', 'Limão'];</code>.</li>
+                                <li>Utilize <strong><code>array_merge()</code></strong> para combinar os dois em um novo *array* <code>$catalogo_frutas</code>.</li>
+                                <li>Utilize <code>print_r()</code> para exibir o resultado.</li>
+                                <li><strong>Desafio de Raciocínio:</strong> Se ambos os *arrays* tivessem chaves associativas iguais, o que aconteceria com os valores da chave repetida?</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution5')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution5" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Array de frutas tropicais
+$tropicais = ['Manga', 'Maracujá'];
+
+// 2. Array de frutas cítricas
+$citricas = ['Laranja', 'Limão'];
+
+// 3. Mesclagem dos arrays
+$catalogo_frutas = array_merge($tropicais, $citricas);
+
+echo "--- Catálogo de Frutas Combinado ---\n";
+// 4. Exibição do resultado
+print_r($catalogo_frutas);
+
+echo "\n--- Desafio de Raciocínio ---\n";
+// 5. Explicação
+echo "Se os arrays tivessem chaves associativas iguais, o valor da chave no SEGUNDO array ('\$citricas') sobrescreveria o valor da mesma chave no PRIMEIRO array ('\$tropicais'). O último valor sempre prevalece.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionDiv = document.getElementById(id);
+            const button = solutionDiv.previousElementSibling;
+            
+            solutionDiv.classList.toggle('hidden');
+            
+            if (solutionDiv.classList.contains('hidden')) {
+                button.textContent = 'Ver Resolução';
+            } else {
+                button.textContent = 'Ocultar Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

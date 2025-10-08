@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios sobre Estruturas de Entrada e Saída em PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .solution-code {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Estruturas de Entrada e Saída em PHP</h1>
+            <p class="text-lg text-cyan-400">5 Exercícios práticos para dominar Input/Output.</p>
+        </header>
+
+        <!-- Resumo Section -->
+        <section class="bg-gray-800 rounded-xl p-6 md:p-8 mb-12 shadow-lg border border-gray-700">
+            <h2 class="text-3xl font-semibold text-white mb-4">Resumo</h2>
+            <p class="text-gray-300 leading-relaxed">
+                O tema <strong>Estruturas de Entrada e Saída (Input/Output)</strong> é fundamental em PHP, pois permite que o programa receba dados (entrada) e exiba informações para o usuário ou para fins de depuração (saída).
+            </p>
+            <p class="mt-4 text-gray-300 leading-relaxed">As fontes destacam os seguintes comandos de saída:</p>
+            <ul class="list-disc list-inside mt-2 space-y-2 text-gray-300">
+                <li><strong><code>echo</code></strong>: Comando utilizado para imprimir uma ou mais variáveis no console.</li>
+                <li><strong><code>print</code></strong>: Função que imprime uma *string* no console.</li>
+                <li><strong><code>var_dump()</code></strong>: Imprime o conteúdo de uma variável de forma explanatória, muito útil para *debug*, mostrando o tipo e o valor dos dados.</li>
+                <li><strong><code>print_r()</code></strong>: Imprime o conteúdo de uma variável em um formato mais legível para o programador, suprimindo os tipos de dados.</li>
+            </ul>
+            <p class="mt-4 text-gray-300 leading-relaxed">Para a <strong>Entrada de Dados (*Input*)</strong>, em um contexto de *website*, as fontes referenciam a captura de dados via formulário HTML usando as superglobais:</p>
+            <ul class="list-disc list-inside mt-2 space-y-2 text-gray-300">
+                <li><strong class="text-cyan-400"><code>$_POST</code></strong>: Usada para capturar dados submetidos por formulários.</li>
+                <li><strong class="text-cyan-400"><code>$_GET</code></strong>: Usada para capturar dados na URL, frequentemente usada para mensagens de sucesso.</li>
+            </ul>
+             <p class="mt-4 text-gray-300 leading-relaxed">
+                Abaixo estão 5 exercícios práticos que utilizam esses comandos de entrada e saída para resolver problemas.
+            </p>
+        </section>
+
+        <!-- Exercises Section -->
+        <main>
+            <h2 class="text-3xl font-semibold text-center text-white mb-8">5 Exercícios sobre Entrada e Saída em PHP</h2>
+            <div class="space-y-8">
+
+                <!-- Exercício 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 1: Exibição Simples e Concatenação (`echo` / `print`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa gerar uma mensagem de boas-vindas na tela para um cliente, que deve incluir o nome do cliente, o produto comprado e uma quebra de linha HTML para formatação.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `echo`, `print`, Concatenação, Quebra de Linha.</p>
+                        
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                            <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie as variáveis <code>$nome_cliente = "Maria";</code> e <code>$produto = "Curso de PHP";</code>.</li>
+                                <li>Utilize <strong><code>echo</code></strong> para imprimir o nome, uma quebra de linha HTML (<code>&lt;br&gt;</code>), e a mensagem: "Obrigado por adquirir o [PRODUTO]".</li>
+                                <li>Repita a operação com <strong><code>print</code></strong>, usando o caractere de escape de nova linha (<code>\n</code>).</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution1')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+                        
+                        <div id="solution1" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação das variáveis
+$nome_cliente = "Maria";
+$produto = "Curso de PHP";
+
+echo "--- Usando echo com &lt;br&gt; ---\n";
+// 2. Exibição com echo e quebra de linha HTML
+echo $nome_cliente . "&lt;br&gt;";
+echo "Obrigado por adquirir o " . $produto . "\n\n";
+
+echo "--- Usando print com \\n ---\n";
+// 3. Exibição com print e nova linha
+print($produto . " adquirido por " . $nome_cliente . ".\n");
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 2: Captura de Dados via URL (`$_GET`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Após um cadastro, o sistema redireciona o usuário com uma mensagem de sucesso na URL (ex: `index.php?status=sucesso`). Você precisa verificar a URL e exibir uma mensagem de confirmação.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `$_GET`, Estrutura `IF`.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Simule o recebimento de dados verificando se <code>$_GET['status']</code> existe e é igual a <code>"sucesso"</code>.</li>
+                                <li>Se a condição for verdadeira, exiba: <code>&lt;p style="color: green;"&gt;Cadastro realizado com sucesso!&lt;/p&gt;</code>.</li>
+                                <li>Caso contrário, exiba: "Aguardando ação do usuário."</li>
+                            </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution2')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution2" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// Para testar, acesse este script com ?status=sucesso na URL.
+// Exemplo: http://localhost/seu_script.php?status=sucesso
+
+// 1. Simulação: Definindo a superglobal para o exemplo funcionar
+$_GET['status'] = 'sucesso'; // Comente esta linha para testar o 'else'
+
+// 2. Verificação da variável na URL
+if (isset($_GET['status']) && $_GET['status'] == 'sucesso') {
+    // 3. Exibição da mensagem de sucesso
+    echo '&lt;p style="color: green;"&gt;Cadastro realizado com sucesso!&lt;/p&gt;';
+} else {
+    // 4. Exibição da mensagem padrão
+    echo "Aguardando ação do usuário.";
+}
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exercício 3 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 3: Depuração Detalhada de Arrays (`var_dump()`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa inspecionar o conteúdo de um *array* de configurações para verificar o <strong>tipo de dado</strong> de cada elemento e sua estrutura exata.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `var_dump()` para *debug*, *Array* Associativo.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* <code>$configuracao</code> com: <code>'versao' => "1.0"</code>, <code>'limite' => 500</code>, e <code>'ativo' => TRUE</code>.</li>
+                                <li>Utilize <strong><code>var_dump()</code></strong> para exibir o conteúdo da variável.</li>
+                                <li>Responda: Por que <code>var_dump()</code> é superior ao <code>echo</code> para *debugging* de tipagem?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution3')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution3" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array associativo
+$configuracao = [
+    'versao' => "1.0",
+    'limite' => 500,
+    'ativo'  => TRUE
+];
+
+// 2. Exibição com var_dump()
+var_dump($configuracao);
+
+echo "\n--- Resposta do Raciocínio ---\n";
+// 3. Explicação
+echo "Não, o 'echo' normal exibiria apenas o valor '1.0', sem indicar que é uma string. \n";
+echo "O var_dump() é superior para debugging de tipagem porque ele mostra explicitamente o tipo de cada valor (string, int, bool), o tamanho (para strings) e o valor exato. Isso é crucial para encontrar erros onde, por exemplo, um número está sendo tratado como texto.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 4 -->
+                 <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 4: Saída Formatada e Legível (`print_r()`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você precisa exibir o conteúdo de um *array* aninhado de forma legível para um programador, sem a poluição visual dos tipos de dados detalhados.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `print_r()`, *Array* Multidimensional.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Crie um *array* <code>$estoque</code> com a chave <code>'Frutas'</code> apontando para um sub-array: <code>['Maçã', 'Banana', 'Laranja']</code>.</li>
+                                <li>Utilize <strong><code>print_r()</code></strong> para exibir o conteúdo completo do *array*.</li>
+                                <li><strong>Raciocínio Estrutural:</strong> Compare a saída de <code>print_r()</code> com <code>var_dump()</code>. Quando um é preferível ao outro?</li>
+                            </ol>
+                        </div>
+                        
+                        <button onclick="toggleSolution('solution4')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution4" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Criação do array multidimensional
+$estoque = [
+    'Frutas' => ['Maçã', 'Banana', 'Laranja']
+];
+
+echo "--- Saída com print_r() ---\n";
+// 2. Exibição com print_r()
+print_r($estoque);
+
+echo "\n--- Raciocínio Estrutural ---\n";
+// 3. Explicação
+echo "O print_r() é preferível quando você só quer ver a estrutura e os valores de um array de forma limpa e rápida. É ótimo para visualização.\n";
+echo "O var_dump() é melhor quando você precisa de uma depuração profunda, especialmente para verificar os tipos exatos dos dados (ex: '5' vs 5) e o tamanho das strings, o que é crucial para encontrar bugs sutis.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercício 5 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Exercício 5: Recebendo Dados de Formulário (`$_POST`)</h3>
+                        <p class="mb-4"><strong>Problema:</strong> Você está construindo o processador para um formulário de contato. Precisa capturar o nome e o telefone submetidos via `POST` e exibi-los em um formato de *ticket*.</p>
+                        <p class="mb-4"><strong class="text-gray-400">Conceitos Chave:</strong> `$_POST`, `echo`, Concatenação.</p>
+
+                        <div class="text-left text-gray-300 space-y-2 mb-6">
+                            <p><strong>Enunciado do Exercício:</strong></p>
+                             <ol class="list-decimal list-inside pl-4 space-y-2">
+                                <li>Simule o recebimento de dados via <code>$_POST</code> para os campos <code>cliente_nome</code> e <code>cliente_telefone</code>.</li>
+                                <li>Atribua esses valores a duas variáveis, <code>$nome</code> e <code>$telefone</code>.</li>
+                                <li>Utilize <code>echo</code> para exibir um *ticket* de atendimento formatado.</li>
+                                <li>O que a superglobal <code>$_POST</code> contém e como difere da <code>$_GET</code>?</li>
+                             </ol>
+                        </div>
+
+                        <button onclick="toggleSolution('solution5')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">Ver Resolução</button>
+
+                        <div id="solution5" class="hidden solution-code mt-6 bg-gray-900 rounded-lg p-4">
+<pre><code class="language-php text-sm">
+&lt;?php
+// 1. Simulação do recebimento de dados via POST
+$_POST['cliente_nome'] = 'Carlos Pereira';
+$_POST['cliente_telefone'] = '(11) 98765-4321';
+
+// 2. Atribuição dos valores a variáveis
+$nome = $_POST['cliente_nome'];
+$telefone = $_POST['cliente_telefone'];
+
+// 3. Exibição do ticket formatado
+echo "* TICKET DE ATENDIMENTO *\n";
+echo "Nome: " . $nome . "\n";
+echo "Telefone: " . $telefone . "\n";
+
+echo "\n--- Raciocínio Estrutural ---\n";
+// 4. Explicação
+echo "\$_POST é um array associativo que contém os dados enviados ao script através do método HTTP POST. \n";
+echo "A principal diferença para \$_GET é que os dados do \$_POST são enviados no corpo da requisição HTTP, tornando-os invisíveis na URL. \$_GET envia os dados diretamente na URL, o que é menos seguro para informações sensíveis.\n";
+?&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionDiv = document.getElementById(id);
+            const button = solutionDiv.previousElementSibling;
+            
+            solutionDiv.classList.toggle('hidden');
+            
+            if (solutionDiv.classList.contains('hidden')) {
+                button.textContent = 'Ver Resolução';
+            } else {
+                button.textContent = 'Ocultar Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

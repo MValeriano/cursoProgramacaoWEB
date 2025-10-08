@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios PHP - Funções (Functions)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Fundo suave */
+            color: #1e293b;
+        }
+        .resolution-section {
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+        }
+        .resolution-section.open {
+            max-height: 3000px; /* Suficiente para todo o conteúdo */
+            padding: 1.5rem;
+        }
+        .php-code {
+            background-color: #334155; /* Cor escura para código (Slate-700) */
+            color: #f1f5f9;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            line-height: 1.4;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 sm:p-10">
+        
+        <header class="text-center mb-10 border-b-4 border-indigo-600 pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-indigo-800 mb-2">
+                PHP: Funções (Functions)
+            </h1>
+            <p class="text-gray-600 text-lg">
+                Reutilização de Código, Parâmetros, Escopo e Retorno.
+            </p>
+        </header>
+
+        <!-- Seção de Resumo -->
+        <section class="mb-8 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-3">Resumo: Funções em PHP</h2>
+            <p class="text-gray-700 leading-relaxed">
+                As funções são blocos de código encapsulados sob uma estrutura única, projetados para executar um objetivo específico, permitindo a reutilização de código. Em PHP, uma função é declarada usando o operador `function` seguido pelo nome, que deve começar obrigatoriamente com uma letra.
+            </p>
+            <hr class="my-4 border-indigo-200">
+            <p class="text-gray-700 leading-relaxed font-semibold">
+                As fontes destacam os seguintes aspectos das funções que devem ser explorados nos exercícios:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 ml-4 mt-2">
+                <li>Reusabilidade: Evitar reescrever o mesmo código várias vezes.</li>
+                <li>Propósito Único: Uma função deve ter um propósito particular.</li>
+                <li>Parâmetros: Receber dados externos para alterar seu comportamento.</li>
+                <li>Retorno vs. Saída (`return` vs. `echo`): É mais comum retornar um valor do que apenas exibi-lo.</li>
+                <li>Escopo: Variáveis declaradas dentro de uma função são locais (localmente *scoped*) e só são acessíveis dentro dela.</li>
+            </ul>
+        </section>
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">6 Exercícios sobre Funções (Functions) em PHP</h2>
+
+        <section id="exercises-container" class="space-y-8">
+
+            <!-- Card do Exercício 1: Função Básica e Retorno -->
+            <div id="exercise-1" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-blue-100 rounded-t-xl">
+                    <h3 class="text-xl font-bold text-blue-800">Exercício 1: Cálculo e Retorno de Valor (Função Básica)</h3>
+                    <button onclick="toggleResolution('res-1', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Criar uma função reutilizável que receba o peso e a altura e retorne o valor do IMC calculado (IMC = peso / (altura * altura)).</p>
+                    <p class="text-sm font-semibold text-blue-600 mb-3">Conceitos Chave: Criação de Função (`function`), Parâmetros, Palavra-chave `return`.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie uma função chamada <code>calculaIMC</code> que aceite dois parâmetros numéricos: <code>$peso</code> e <code>$altura</code>.</li>
+                        <li>2. Dentro da função, calcule o IMC usando a fórmula e utilize a instrução `return` para devolver o resultado.</li>
+                        <li>3. Crie duas variáveis externas: <code>$meu_peso = 70;</code> e <code>$minha_altura = 1.75;</code>.</li>
+                        <li>4. Chame a função <code>calculaIMC</code>, passando essas variáveis. Atribua o resultado retornado a uma nova variável <code>$meu_imc</code>.</li>
+                        <li>5. Utilize <code>echo</code> para exibir o valor final de <code>$meu_imc</code>. Por que foi necessário usar <code>echo</code> (ou <code>print</code>) na chamada da função se você usou <code>return</code> dentro dela?</li>
+                    </ul>
+                </div>
+                <!-- Resolução 1 -->
+                <div id="res-1" class="resolution-section bg-blue-50 border-t border-blue-200">
+                    <h4 class="font-bold text-blue-800 mb-3">Resolução em PHP (Função Básica)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Criação da função com parâmetros e retorno
+                            function calculaIMC($peso, $altura) {
+                                $imc = $peso / ($altura * $altura);
+                                return $imc; // 2. Retorna o valor calculado
+                            }
+
+                            // 3. Variáveis externas
+                            $meu_peso = 70;
+                            $minha_altura = 1.75;
+
+                            // 4. Chamada da função e atribuição
+                            $meu_imc = calculaIMC($meu_peso, $minha_altura);
+
+                            // 5. Exibição do resultado
+                            echo "Meu peso: {$meu_peso}kg, Minha altura: {$minha_altura}m &lt;br&gt;";
+                            echo "Meu IMC calculado é: &lt;strong&gt;" . number_format($meu_imc, 2) . "&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // Explicação: Foi necessário usar 'echo' na chamada da função porque 'return' apenas envia o valor de volta para onde a função foi chamada, 
+                            // mas não o exibe na tela. O 'echo' é o comando responsável por produzir a saída (output) para o usuário.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 2: Parâmetro Opcional -->
+            <div id="exercise-2" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-teal-100">
+                    <h3 class="text-xl font-bold text-teal-800">Exercício 2: Configuração de Mensagem com Parâmetro Opcional</h3>
+                    <button onclick="toggleResolution('res-2', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Criar uma função que gera uma saudação personalizada (`saudar_usuario`), mas use um nome padrão ("Visitante") se nenhum argumento for fornecido.</p>
+                    <p class="text-sm font-semibold text-teal-600 mb-3">Conceitos Chave: Parâmetros com Valor Padrão (*Default Value*).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie uma função chamada <code>saudar_usuario</code> que aceite um parâmetro <code>$nome</code>.</li>
+                        <li>2. Defina o valor padrão de <code>$nome</code> como <code>"Visitante"</code> dentro da declaração da função.</li>
+                        <li>3. A função deve retornar a *string* formatada: "Olá, [NOME]! Bem-vindo(a) ao sistema."</li>
+                        <li>4. Chame a função duas vezes: a. Uma vez sem passar nenhum argumento; b. Uma vez passando o argumento <code>"Daniel"</code>.</li>
+                        <li>5. Exiba o resultado de ambas as chamadas.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: O aluno deve reescrever a função anterior, definindo o *default value* do parâmetro `$nome`.</p>
+                </div>
+                <!-- Resolução 2 -->
+                <div id="res-2" class="resolution-section bg-teal-50 border-t border-teal-200">
+                    <h4 class="font-bold text-teal-800 mb-3">Resolução em PHP (Parâmetro Opcional)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. e 2. Função com parâmetro opcional (Default Value)
+                            function saudar_usuario($nome = "Visitante") {
+                                // 3. Retorna a string formatada
+                                return "Olá, {$nome}! Bem-vindo(a) ao sistema.&lt;br&gt;";
+                            }
+
+                            echo "&lt;strong&gt;Testes de Saudação:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // 4a. Chamada sem argumento (usa "Visitante")
+                            echo saudar_usuario(); 
+
+                            // 4b. Chamada com argumento
+                            echo saudar_usuario("Daniel");
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 3: Variável Estática -->
+            <div id="exercise-3" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-yellow-100">
+                    <h3 class="text-xl font-bold text-yellow-800">Exercício 3: Acumulação de Valor com Variável Estática</h3>
+                    <button onclick="toggleResolution('res-3', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Acumular o total de quilômetros percorridos globalmente a cada chamada da função, utilizando uma variável que persista seu valor entre as chamadas.</p>
+                    <p class="text-sm font-semibold text-yellow-600 mb-3">Conceitos Chave: Variáveis Estáticas (`static`), Escopo Local e Persistência de Valor.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie uma função chamada <code>registrar_distancia</code> que receba um parâmetro <code>$quilometros</code>.</li>
+                        <li>2. Dentro da função, declare uma variável estática (<code>static</code>) chamada <code>$total</code> e inicialize-a com 0 (zero).</li>
+                        <li>3. A cada chamada, adicione o valor de <code>$quilometros</code> a <code>$total</code> e exiba (não retorne) o total acumulado.</li>
+                        <li>4. Chame a função três vezes: <code>registrar_distancia(100)</code>, <code>registrar_distancia(200)</code>, <code>registrar_distancia(50)</code>.</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Raciocínio Estrutural: Se você tivesse usado uma variável local `$total` em vez de uma variável `static`, qual seria o resultado de cada chamada e por quê?</p>
+                </div>
+                <!-- Resolução 3 -->
+                <div id="res-3" class="resolution-section bg-yellow-50 border-t border-yellow-200">
+                    <h4 class="font-bold text-yellow-800 mb-3">Resolução em PHP (Variável Estática)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Função de registro
+                            function registrar_distancia($quilometros) {
+                                // 2. Variável estática (mantém o valor entre as chamadas)
+                                static $total = 0; 
+                                
+                                // 3. Acumulação e exibição
+                                $total += $quilometros;
+                                echo "Distância registrada: {$quilometros}km. Total acumulado: &lt;strong&gt;{$total}km&lt;/strong&gt;.&lt;br&gt;";
+                            }
+
+                            echo "&lt;strong&gt;Registro de Distâncias:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // 4. Chamadas
+                            registrar_distancia(100); 
+                            registrar_distancia(200); 
+                            registrar_distancia(50); 
+                            
+                            // Raciocínio Estrutural:
+                            // Se fosse usada uma variável local ($total), ela seria reinicializada para 0 em CADA chamada.
+                            // Os resultados seriam: 100km, 200km, 50km. A variável local não persiste seu valor fora da execução da função.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 4: Passagem por Referência -->
+            <div id="exercise-4" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-red-100">
+                    <h3 class="text-xl font-bold text-red-800">Exercício 4: Inversão de Lógica com Passagem por Referência</h3>
+                    <button onclick="toggleResolution('res-4', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Mudar o valor de uma variável externa (`$status_login`) permanentemente dentro de uma função (`alternar_status`) sem precisar reatribuir o resultado.</p>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Conceitos Chave: Passagem de Parâmetros por Referência (`&`).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie a variável externa <code>$status_login = 'OFFLINE';</code>.</li>
+                        <li>2. Crie uma função chamada <code>alternar_status</code> que aceite o parâmetro <code>$estado</code> por referência (usando <code>&</code> na declaração do parâmetro).</li>
+                        <li>3. A função deve conter uma lógica condicional para mudar o valor de <code>$estado</code> de 'OFFLINE' para 'ONLINE' ou vice-versa.</li>
+                        <li>4. Chame a função <code>alternar_status</code> duas vezes, passando <code>$status_login</code>.</li>
+                        <li>5. Exiba o valor de <code>$status_login</code> após a segunda chamada. Observe que a variável externa foi alterada sem usar o operador de atribuição fora da função.</li>
+                    </ul>
+                </div>
+                <!-- Resolução 4 -->
+                <div id="res-4" class="resolution-section bg-red-50 border-t border-red-200">
+                    <h4 class="font-bold text-red-800 mb-3">Resolução em PHP (Passagem por Referência)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variável externa
+                            $status_login = 'OFFLINE';
+                            echo "Status Inicial: &lt;strong&gt;{$status_login}&lt;/strong&gt;&lt;br&gt;";
+
+                            // 2. Função aceitando parâmetro por referência (&)
+                            function alternar_status(&$estado) {
+                                // 3. Lógica de inversão, alterando a variável original
+                                if ($estado === 'OFFLINE') {
+                                    $estado = 'ONLINE';
+                                } else {
+                                    $estado = 'OFFLINE';
+                                }
+                            }
+
+                            // 4. Chamadas
+                            alternar_status($status_login); // $status_login agora é 'ONLINE'
+                            echo "Status após 1ª chamada: &lt;strong&gt;{$status_login}&lt;/strong&gt;&lt;br&gt;";
+
+                            alternar_status($status_login); // $status_login agora é 'OFFLINE'
+                            echo "Status após 2ª chamada: &lt;strong&gt;{$status_login}&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // A variável externa foi alterada diretamente porque ela foi passada por referência.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 5: Propósito Único e Reutilização -->
+            <div id="exercise-5" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-green-100">
+                    <h3 class="text-xl font-bold text-green-800">Exercício 5: Criação de um *Handler* de Erros (Propósito Único)</h3>
+                    <button onclick="toggleResolution('res-5', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Criar uma função específica (`isInputEmpty`) que apenas valide se uma *string* de entrada (`$input`) é vazia e retorne o resultado (verdadeiro ou falso), aderindo ao princípio de ter um propósito particular.</p>
+                    <p class="text-sm font-semibold text-green-600 mb-3">Conceitos Chave: Propósito Único, `empty()` (Função nativa), Retorno Booleano.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie uma função chamada <code>isInputEmpty</code> que aceite uma variável <code>$input</code> como parâmetro.</li>
+                        <li>2. A função deve usar a função nativa <code>empty()</code> para verificar se <code>$input</code> está vazia e retornar o resultado booleano (TRUE se estiver vazia, FALSE caso contrário).</li>
+                        <li>3. Crie as variáveis <code>$nome_submetido = "";</code> e <code>$email_submetido = "teste@email.com";</code>.</li>
+                        <li>4. Utilize a função <code>isInputEmpty</code> em dois comandos <code>if</code>: a. Se <code>isInputEmpty($nome_submetido)</code> retornar TRUE, exiba "Erro: Nome é obrigatório." b. Se <code>isInputEmpty($email_submetido)</code> retornar TRUE, exiba "Erro: Email é obrigatório."</li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: Explique por que delegar essa verificação de vazio a uma função separada aumenta a reutilização do código em sua aplicação.</p>
+                </div>
+                <!-- Resolução 5 -->
+                <div id="res-5" class="resolution-section bg-green-50 border-t border-green-200">
+                    <h4 class="font-bold text-green-800 mb-3">Resolução em PHP (Propósito Único e Reutilização)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. e 2. Função de propósito único: apenas checar se está vazio.
+                            function isInputEmpty($input) {
+                                return empty($input);
+                            }
+
+                            // 3. Variáveis de teste
+                            $nome_submetido = ""; 
+                            $email_submetido = "teste@email.com";
+
+                            echo "&lt;strong&gt;Resultados da Validação:&lt;/strong&gt;&lt;br&gt;";
+                            
+                            // 4a. Teste do nome
+                            if (isInputEmpty($nome_submetido)) {
+                                echo "Erro: Nome é obrigatório.&lt;br&gt;";
+                            }
+
+                            // 4b. Teste do email
+                            if (isInputEmpty($email_submetido)) {
+                                echo "Erro: Email é obrigatório.&lt;br&gt;";
+                            } else {
+                                echo "Email validado com sucesso.&lt;br&gt;";
+                            }
+                            
+                            // Foco Estrutural:
+                            // Delegar essa verificação a uma função separada aumenta a reutilização porque a lógica de checagem de vazio 
+                            // pode ser usada em qualquer parte da aplicação (validação de formulário, validação de URL, checagem de variáveis, etc.) 
+                            // sem precisar reescrever 'return empty($variavel)' repetidamente. Isso torna o código mais limpo e fácil de manter.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 6: Argumentos Variáveis -->
+            <div id="exercise-6" class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-gray-100 rounded-b-xl">
+                    <h3 class="text-xl font-bold text-gray-800">Exercício 6: Funções com Número Variável de Argumentos</h3>
+                    <button onclick="toggleResolution('res-6', this)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Criar uma função de registro de logs (`registrarLog`) que pode receber de um a quatro parâmetros (*strings* que descrevem o erro), e deve conseguir lidar com qualquer quantidade e exibi-los.</p>
+                    <p class="text-sm font-semibold text-gray-600 mb-3">Conceitos Chave: Argumentos Variáveis (Obtenção Dinâmica de Argumentos).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie uma função chamada <code>registrarLog</code> que não declare parâmetros na sua assinatura (mas esteja pronta para recebê-los).</li>
+                        <li>2. Dentro da função, use a função nativa <code>func_get_args()</code> para obter todos os argumentos passados e armazene-os em uma variável <code>$mensagens</code>.</li>
+                        <li>3. Utilize um laço `FOR` para iterar sobre o array <code>$mensagens</code>, exibindo cada mensagem de log com um prefixo "LOG: ".</li>
+                        <li>4. Chame a função duas vezes com diferentes quantidades de argumentos: a. <code>registrarLog("Erro Crítico", "Falha no Banco de Dados");</code> b. <code>registrarLog("Aviso", "Memória baixa", "Servidor lento");</code></li>
+                    </ul>
+                    <p class="mt-3 text-xs font-bold text-gray-500">Foco Estrutural: O aluno deve usar as funções dinâmicas (`func_get_args`) para trabalhar com o número variável de argumentos, conforme visto nos exemplos do Capítulo 1.</p>
+                </div>
+                <!-- Resolução 6 -->
+                <div id="res-6" class="resolution-section bg-gray-50 border-t border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-3">Resolução em PHP (Argumentos Variáveis)</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Função sem declaração de parâmetros
+                            function registrarLog() {
+                                // 2. Obtém todos os argumentos passados dinamicamente
+                                $mensagens = func_get_args();
+                                
+                                echo "&lt;strong&gt;Novo Log Iniciado:&lt;/strong&gt;&lt;br&gt;";
+
+                                // 3. Itera sobre o array de mensagens
+                                for ($i = 0; $i < count($mensagens); $i++) {
+                                    echo "LOG: {$mensagens[$i]}&lt;br&gt;";
+                                }
+                                echo "----&lt;br&gt;";
+                            }
+
+                            // 4a. Chamada com 2 argumentos
+                            registrarLog("Erro Crítico", "Falha no Banco de Dados");
+
+                            // 4b. Chamada com 3 argumentos
+                            registrarLog("Aviso", "Memória baixa", "Servidor lento");
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function toggleResolution(id, button) {
+            const resolutionDiv = document.getElementById(id);
+            const isOpen = resolutionDiv.classList.contains('open');
+
+            // Itera sobre todos os botões e resoluções para fechar os que estiverem abertos
+            document.querySelectorAll('#exercises-container .resolution-section.open').forEach(res => {
+                if (res.id !== id) {
+                    res.classList.remove('open');
+                    // Encontra e atualiza o botão correspondente para "Ver Resolução"
+                    const correspondingButton = res.previousElementSibling.querySelector('button');
+                    if (correspondingButton) {
+                        correspondingButton.textContent = 'Ver Resolução';
+                        correspondingButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+                        correspondingButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                    }
+                }
+            });
+
+            if (isOpen) {
+                // Fechar a seção atual
+                resolutionDiv.classList.remove('open');
+                button.textContent = 'Ver Resolução';
+                button.classList.remove('bg-red-600', 'hover:bg-red-700');
+                button.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+            } else {
+                // Abrir a seção atual
+                resolutionDiv.classList.add('open');
+                button.textContent = 'Ocultar Resolução';
+                button.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                button.classList.add('bg-red-600', 'hover:bg-red-700');
+                
+                // Rola suavemente para o topo da seção de exercício
+                resolutionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

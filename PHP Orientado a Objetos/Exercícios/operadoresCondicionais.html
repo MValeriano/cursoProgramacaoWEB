@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios PHP - Condicionais e Lógicos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2f6; /* Cor de fundo suave */
+            color: #1f2937;
+        }
+        .resolution-section {
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+        }
+        .resolution-section.open {
+            max-height: 2500px; /* Suficiente para todo o conteúdo */
+            padding: 1.5rem;
+        }
+        .php-code {
+            background-color: #1e293b; /* Cor escura para código (Slate-800) */
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            line-height: 1.4;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 sm:p-10">
+        
+        <header class="text-center mb-10 border-b-4 border-purple-600 pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-purple-800 mb-2">
+                PHP: Operadores Condicionais e Estruturas de Controle
+            </h1>
+            <p class="text-gray-600 text-lg">
+                IF, ELSE IF, SWITCH, Operadores Relacionais e Lógicos.
+            </p>
+        </header>
+
+        <!-- Resumo -->
+        <section class="mb-8 p-6 bg-purple-50 border-l-4 border-purple-500 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-bold text-purple-800 mb-3">Resumo: Operadores Condicionais e Estruturas</h2>
+            <p class="text-gray-700 leading-relaxed">
+                <strong class="font-bold">Operadores Condicionais</strong> (Relacionais e Lógicos) e Estruturas de Controle condicionais (`IF`, `ELSE IF`, `SWITCH`), que são amplamente utilizados para navegar o código em diferentes direções, apresento 5 exercícios estruturados para levar o aluno a pensar na resolução de problemas.
+            </p>
+            <hr class="my-4 border-purple-300">
+            <p class="text-gray-700 leading-relaxed">
+                Os operadores condicionais (*comparison operators*) são usados para realizar comparações entre valores ou expressões, resultando sempre em um valor booleano (`TRUE` ou `FALSE`).
+            </p>
+        </section>
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">5 Exercícios sobre Operadores Condicionais (Relacionais e Lógicos)</h2>
+
+        <section id="exercises-container" class="space-y-8">
+
+            <!-- Card do Exercício 1 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-indigo-100 rounded-t-xl">
+                    <h3 class="text-xl font-bold text-indigo-800">Exercício 1: Verificação de Elegibilidade para Promoção</h3>
+                    <button onclick="toggleResolution('res-1', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> A promoção exige duas condições que devem ser obrigatoriamente verdadeiras ao mesmo tempo: o salário deve ser superior a R$ 3000,00 E o tempo de serviço deve ser de 12 meses ou mais.</p>
+                    <p class="text-sm font-semibold text-indigo-600 mb-3">Conceitos Chave: Operador Lógico `AND` (`&&`), Operadores Relacionais (`>`, `>=`), Estrutura `IF`.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie as variáveis <code>$salario = 3200;</code> e <code>$tempo_servico = 10;</code>.</li>
+                        <li>2. Utilize o comando `IF` e o operador lógico `AND` para verificar se o `$salario` é maior que 3000 E se o `$tempo_servico` é maior ou igual a 12.</li>
+                        <li>3. Se a condição for `TRUE`, imprima "Parabéns, você foi promovido!".</li>
+                        <li>4. Se a condição for `FALSE`, imprima "Você ainda não atende aos critérios para promoção.".</li>
+                        <li>5. Desafio de Raciocínio: Modifique apenas o valor de `$tempo_servico` para 12 e explique por que a saída do programa mudou.</li>
+                    </ul>
+                </div>
+                <!-- Resolução 1 -->
+                <div id="res-1" class="resolution-section bg-indigo-50 border-t border-indigo-200">
+                    <h4 class="font-bold text-indigo-800 mb-3">Resolução em PHP</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variáveis Iniciais
+                            $salario = 3200;
+                            $tempo_servico = 10;
+
+                            echo "// Teste 1: Salário ok, Tempo insuficiente (10 meses)&lt;br&gt;";
+                            if ($salario > 3000 && $tempo_servico >= 12) {
+                                echo "Parabéns, você foi promovido!&lt;br&gt;";
+                            } else {
+                                echo "Você ainda não atende aos critérios para promoção.&lt;br&gt;";
+                            }
+                            
+                            echo "&lt;br&gt;// Teste 2: Tempo modificado para 12 meses&lt;br&gt;";
+                            $tempo_servico = 12;
+
+                            if ($salario > 3000 && $tempo_servico >= 12) {
+                                echo "Parabéns, você foi promovido!&lt;br&gt;";
+                            } else {
+                                echo "Você ainda não atende aos critérios para promoção.&lt;br&gt;";
+                            }
+                            
+                            // Explicação: A saída mudou porque o operador AND (&&) exige que ambas as subcondições sejam TRUE.
+                            // No Teste 1, a segunda subcondição (10 >= 12) é FALSE, então o resultado final é FALSE.
+                            // No Teste 2, ambas subcondições são TRUE, resultando em TRUE, e a mensagem de promoção é exibida.
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 2 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-teal-100">
+                    <h3 class="text-xl font-bold text-teal-800">Exercício 2: Validação de Campos Opcionais no Formulário</h3>
+                    <button onclick="toggleResolution('res-2', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Retornar `TRUE` para um erro se o `username` estiver vazio OU se a `password` estiver vazia. O preenchimento do email é opcional.</p>
+                    <p class="text-sm font-semibold text-teal-600 mb-3">Conceitos Chave: Operador Lógico `OR` (`||`), `empty()`.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie as variáveis <code>$username = "joao123";</code>, <code>$password = "";</code> e <code>$email = "joao@email.com";</code>.</li>
+                        <li>2. Crie uma variável booleana <code>$tem_erro</code> e defina seu valor inicial como <code>FALSE</code>.</li>
+                        <li>3. Use o comando `IF` com o operador lógico `OR` (`||`) para verificar se `$username` está vazio OU se `$password` está vazio (utilize a função <code>empty()</code>).</li>
+                        <li>4. Se a condição for `TRUE` (houver erro em pelo menos um dos campos obrigatórios), atribua `TRUE` à variável `$tem_erro` e exiba "Erro de submissão: Preencha todos os campos obrigatórios.".</li>
+                        <li>5. O que aconteceria se você usasse o operador `AND` (`&&`) em vez de `OR` neste cenário e por que ele seria incorreto?</li>
+                    </ul>
+                </div>
+                <!-- Resolução 2 -->
+                <div id="res-2" class="resolution-section bg-teal-50 border-t border-teal-200">
+                    <h4 class="font-bold text-teal-800 mb-3">Resolução em PHP</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variáveis (Password está vazia)
+                            $username = "joao123";
+                            $password = ""; 
+                            $email = "joao@email.com";
+
+                            // 2. Variável de Controle
+                            $tem_erro = false;
+
+                            // 3. Verificação com OR (||)
+                            if (empty($username) || empty($password)) {
+                                // 4. Se qualquer uma for TRUE (vazia), a condição total é TRUE.
+                                $tem_erro = true;
+                                echo "Erro de submissão: Preencha todos os campos obrigatórios.&lt;br&gt;";
+                            } else {
+                                echo "Formulário validado com sucesso.&lt;br&gt;";
+                            }
+
+                            // 5. Raciocínio:
+                            // Se usássemos AND (&&), a mensagem de erro só seria exibida se AMBOS $username E $password estivessem vazios.
+                            // Como $username não está vazio, a condição total seria FALSE, e o erro não seria detectado.
+                        ?>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card do Exercício 3 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-sky-100">
+                    <h3 class="text-xl font-bold text-sky-800">Exercício 3: Comparação Estrita de Tipos de Dados</h3>
+                    <button onclick="toggleResolution('res-3', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Garantir que duas variáveis sejam iguais em valor E no tipo de dado para evitar a comparação "solta" do PHP.</p>
+                    <p class="text-sm font-semibold text-sky-600 mb-3">Conceitos Chave: Operador Relacional Idêntico (`===`), Operador Relacional Não Idêntico (`!==`).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie as variáveis: <code>$valor_a = 1234;</code> (inteiro) e <code>$valor_b = "1234";</code> (string).</li>
+                        <li>2. Use um `IF` para comparar `$valor_a` e `$valor_b` usando o operador de igualdade simples (`==`). Imprima o resultado ("Valores são iguais, ignorando o tipo.").</li>
+                        <li>3. Use um `ELSE IF` para comparar `$valor_a` e `$valor_b` usando o operador idêntico (`===`). Se a condição for `TRUE`, imprima "Valores são idênticos (mesmo tipo).".</li>
+                        <li>4. Adicione um `ELSE` que imprima "Valores não são idênticos (tipos diferentes)."</li>
+                        <li>5. Raciocínio Estrutural: Explique o que aconteceu no passo 2 e 3 e demonstre qual operador (relacional) você usaria para verificar se as variáveis são diferentes em valor ou tipo ao mesmo tempo.</li>
+                    </ul>
+                </div>
+                <!-- Resolução 3 -->
+                <div id="res-3" class="resolution-section bg-sky-50 border-t border-sky-200">
+                    <h4 class="font-bold text-sky-800 mb-3">Resolução em PHP</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variáveis
+                            $valor_a = 1234; // integer
+                            $valor_b = "1234"; // string
+
+                            // 2. Comparação Solta (==)
+                            if ($valor_a == $valor_b) {
+                                echo "Resultado do (==): Valores são iguais, ignorando o tipo. &lt;br&gt;";
+                            } 
+                            // 3. Comparação Estrita (===)
+                            else if ($valor_a === $valor_b) {
+                                echo "Resultado do (===): Valores são idênticos (mesmo tipo). &lt;br&gt;";
+                            } 
+                            // 4. Caso contrário
+                            else {
+                                echo "Resultado do ELSE: Valores não são idênticos (tipos diferentes). &lt;br&gt;";
+                            }
+
+                            // Explicação e Operador de Diferença
+                            echo "&lt;br&gt;";
+                            if ($valor_a !== $valor_b) {
+                                echo "Usando (!==): Variáveis são diferentes em valor OU tipo (resultado TRUE).&lt;br&gt;";
+                            }
+
+                            // O passo 2 (==) é TRUE porque PHP converte a string "1234" para int 1234 antes da comparação.
+                            // O passo 3 (===) é FALSE, e por isso o código nunca entra nele (pois o IF anterior já foi TRUE).
+                            // O operador para verificar se são diferentes em valor OU tipo ao mesmo tempo é o Não Idêntico: (!==).
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 4 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-orange-100">
+                    <h3 class="text-xl font-bold text-orange-800">Exercício 4: Atribuição Condicional Simplificada (Operador Ternário)</h3>
+                    <button onclick="toggleResolution('res-4', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Atribuir um valor a uma variável `$mensagem` baseado em uma condição simples usando o Operador Ternário.</p>
+                    <p class="text-sm font-semibold text-orange-600 mb-3">Conceitos Chave: Operador Ternário (Atribuição Condicional Simplificada).</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie a variável <code>$valor_venda = 85;</code>.</li>
+                        <li>2. Utilize o Operador Ternário (`condição ? valor_se_verdadeiro : valor_se_falso`) para atribuir o valor à variável `$resultado`.</li>
+                        <li>3. A condição deve ser: <code>$valor_venda > 100</code>.</li>
+                        <li>4. O valor se verdadeiro deve ser `'muito caro'`.</li>
+                        <li>5. O valor se falso deve ser `'pode comprar'`.</li>
+                        <li>6. Exiba o valor de `$resultado`. (Altere o `$valor_venda` para 120 e teste novamente).</li>
+                    </ul>
+                </div>
+                <!-- Resolução 4 -->
+                <div id="res-4" class="resolution-section bg-orange-50 border-t border-orange-200">
+                    <h4 class="font-bold text-orange-800 mb-3">Resolução em PHP</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variável
+                            $valor_venda_1 = 85;
+
+                            // 2. Operador Ternário para $valor_venda_1 (85)
+                            $resultado_1 = ($valor_venda_1 > 100) ? 'muito caro' : 'pode comprar';
+                            echo "Valor R$85,00: " . $resultado_1 . "&lt;br&gt;"; // Saída: pode comprar
+
+                            // 6. Teste com 120
+                            $valor_venda_2 = 120;
+                            $resultado_2 = ($valor_venda_2 > 100) ? 'muito caro' : 'pode comprar';
+                            echo "Valor R$120,00: " . $resultado_2 . "&lt;br&gt;"; // Saída: muito caro
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Exercício 5 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 flex justify-between items-center bg-red-100 rounded-b-xl">
+                    <h3 class="text-xl font-bold text-red-800">Exercício 5: Controle de Fluxo por Múltiplos Estados (`SWITCH`)</h3>
+                    <button onclick="toggleResolution('res-5', this)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105">
+                        Ver Resolução
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3"><strong>Problema:</strong> Processar o *status* de um pedido que pode assumir valores inteiros específicos (1, 2, 3, ou qualquer outro) usando o comando `SWITCH`.</p>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Conceitos Chave: Comando `SWITCH`, `CASE`, `BREAK`, `DEFAULT`.</p>
+                    
+                    <h4 class="font-bold text-gray-800 mb-2">Enunciado do Exercício:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 ml-4">
+                        <li>1. Crie a variável <code>$status_pedido</code> e atribua o valor <code>2</code>.</li>
+                        <li>2. Utilize o comando `SWITCH` para testar a variável `$status_pedido`.</li>
+                        <li>3. Crie os seguintes casos: Case 1: Imprima "Pedido Recebido."; Case 2: Imprima "Em Processamento."; Case 3: Imprima "Enviado.". Use `break` após cada `CASE`.</li>
+                        <li>4. Crie a cláusula `default` para todos os outros valores, exibindo "Status Desconhecido ou Inválido.".</li>
+                        <li>5. Raciocínio Estrutural: Explique a principal diferença entre usar esta estrutura `SWITCH` e usar uma série de comandos `IF/ELSE IF` para resolver o mesmo problema, e quando o `SWITCH` é mais apropriado.</li>
+                    </ul>
+                </div>
+                <!-- Resolução 5 -->
+                <div id="res-5" class="resolution-section bg-red-50 border-t border-red-200">
+                    <h4 class="font-bold text-red-800 mb-3">Resolução em PHP</h4>
+                    <div class="php-code">
+                        &lt;?php
+                            // 1. Variável de Status
+                            $status_pedido = 2;
+
+                            echo "Status do Pedido ($status_pedido): ";
+                            
+                            // 2, 3 e 4. Estrutura SWITCH
+                            switch ($status_pedido) {
+                                case 1:
+                                    echo "Pedido Recebido.&lt;br&gt;";
+                                    break;
+                                case 2:
+                                    echo "Em Processamento.&lt;br&gt;";
+                                    break;
+                                case 3:
+                                    echo "Enviado.&lt;br&gt;";
+                                    break;
+                                default:
+                                    echo "Status Desconhecido ou Inválido.&lt;br&gt;";
+                                    break;
+                            }
+                            
+                            // 5. Raciocínio Estrutural:
+                            // A principal diferença é que o SWITCH testa o valor de UMA ÚNICA VARIÁVEL contra múltiplos valores.
+                            // O IF/ELSE IF testa MULTIPLAS EXPRESSÕES (que podem envolver diferentes variáveis e operadores).
+                            // O SWITCH é mais apropriado (e geralmente mais legível e eficiente) quando você está comparando uma única variável
+                            // contra uma lista de possíveis valores discretos (como inteiros, strings ou enums).
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function toggleResolution(id, button) {
+            const resolutionDiv = document.getElementById(id);
+            const isOpen = resolutionDiv.classList.contains('open');
+
+            // Itera sobre todos os botões e resoluções para fechar os que estiverem abertos
+            document.querySelectorAll('#exercises-container .resolution-section.open').forEach(res => {
+                if (res.id !== id) {
+                    res.classList.remove('open');
+                    const correspondingButton = res.previousElementSibling.querySelector('button');
+                    if (correspondingButton) {
+                        correspondingButton.textContent = 'Ver Resolução';
+                        correspondingButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+                        correspondingButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    }
+                }
+            });
+
+            if (isOpen) {
+                // Fechar a seção atual
+                resolutionDiv.classList.remove('open');
+                button.textContent = 'Ver Resolução';
+                button.classList.remove('bg-red-600', 'hover:bg-red-700');
+                button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                // Abrir a seção atual
+                resolutionDiv.classList.add('open');
+                button.textContent = 'Ocultar Resolução';
+                button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                button.classList.add('bg-red-600', 'hover:bg-red-700');
+                
+                // Rola suavemente para o topo da seção de exercício
+                resolutionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>
