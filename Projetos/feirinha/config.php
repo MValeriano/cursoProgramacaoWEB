@@ -204,10 +204,10 @@ function cadastrarProduto($dados) {
     while ($tentativas < $max_tentativas) {
         try {
             $pdo = conectarBanco();
-            
+
             $sql = "INSERT INTO produtos (usuario_id, categoria_id, nome, descricao, preco, contato, imagem) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
-            
+
             $stmt = $pdo->prepare($sql);
             
             return $stmt->execute([

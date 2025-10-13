@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Caixa Registradora - Exercício de Lógica</title>
+    <!-- Carrega Tailwind CSS para estilização moderna e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* Estilo para o bloco de código PHP */
+        .php-code {
+            background-color: #1e293b; /* Cor escura para código (slate-900) */
+            color: #f8fafc; /* Cor clara para texto */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Estilo para a lista de Algoritmo */
+        .algorithm-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+        .algorithm-list li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: #10b981; /* Esmeralda-500 */
+            font-weight: bold;
+        }
+        
+        /* Cor de destaque principal (verde esmeralda) */
+        .accent-color {
+            color: #10b981;
+        }
+
+        /* Estilo do botão de toggle */
+        #toggle-button {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="max-w-4xl mx-auto p-6 lg:p-10">
+
+        <!-- Título Principal -->
+        <header class="text-center mb-10 bg-white p-6 rounded-xl shadow-lg border-b-4 border-emerald-500">
+            <h1 class="text-3xl font-bold text-gray-800">
+                <span class="text-emerald-500">✅ MINI CAIXA REGISTRADORA</span>
+            </h1>
+            <p class="text-lg text-gray-600 mt-2">Um exercício prático de lógica e programação.</p>
+        </header>
+
+        <!-- Seção 1: Explicação do Problema -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-8 border-l-8 border-blue-500">
+            <h2 class="text-2xl font-semibold mb-3 text-blue-600">1. Explicação do problema</h2>
+            <p class="text-gray-700">Você vai criar um programa que simula uma caixa registradora simples.</p>
+            <p class="text-gray-700 mt-2">O usuário digita o valor de cada produto comprado.</p>
+            <p class="text-gray-700 mt-2">Quando terminar, digita 0 para parar.</p>
+            <p class="text-gray-700 mt-2">O sistema soma todos os valores digitados e mostra o total da compra.</p>
+        </div>
+
+        <!-- Seções 2, 3 e 4: Entradas, Processamento e Saídas (Grid Responsivo) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            
+            <!-- Cartão 2: Entradas -->
+            <div class="bg-green-50 p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                <h3 class="text-lg font-semibold mb-2 text-green-700">2. Entradas</h3>
+                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                    <li>Valor de cada produto (número decimal).</li>
+                    <li>O valor 0 será usado para encerrar.</li>
+                </ul>
+            </div>
+
+            <!-- Cartão 3: Processamento -->
+            <div class="bg-yellow-50 p-6 rounded-xl shadow-md border-l-4 border-yellow-500">
+                <h3 class="text-lg font-semibold mb-2 text-yellow-700">3. Processamento</h3>
+                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                    <li>Repetir a leitura de valores usando um loop.</li>
+                    <li>Somar os valores em uma variável acumuladora.</li>
+                    <li>Parar o loop quando o valor digitado for 0.</li>
+                </ul>
+            </div>
+
+            <!-- Cartão 4: Saídas -->
+            <div class="bg-red-50 p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                <h3 class="text-lg font-semibold mb-2 text-red-700">4. Saídas</h3>
+                <p class="text-gray-700">O total final da compra.</p>
+            </div>
+        </div>
+
+        <!-- Seção 5: Algoritmo Passo a Passo -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-10 border-l-8 border-purple-500">
+            <h2 class="text-2xl font-semibold mb-4 text-purple-600">5. Algoritmo passo a passo (bem detalhado)</h2>
+            <ol class="algorithm-list pl-0 text-gray-700 text-lg">
+                <li>Criar uma variável para guardar o total da compra e começar com 0.</li>
+                <li>Repetir o seguinte:</li>
+                <ul class="list-none ml-6 mt-2 space-y-2 text-base">
+                    <li>2.1. Pedir para o usuário digitar o valor de um produto.</li>
+                    <li>2.2. Se o valor digitado for 0, parar a repetição.</li>
+                    <li>2.3. Caso contrário, somar o valor digitado ao total.</li>
+                </ul>
+                <li>Após sair do loop, mostrar o total da compra.</li>
+            </ol>
+        </div>
+
+        <!-- Botão para Esconder/Mostrar Resolução -->
+        <div class="text-center mb-8">
+            <button id="toggle-button" onclick="toggleResolution()" 
+                    class="px-8 py-3 bg-emerald-500 text-white font-bold rounded-full 
+                           hover:bg-emerald-600 shadow-xl shadow-emerald-200 
+                           focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                Mostrar Resolução
+            </button>
+        </div>
+
+        <!-- Seção de Resolução (Oculta por padrão) -->
+        <div id="resolution-content" class="hidden">
+            
+            <!-- Seção 6: Código PHP -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700 border-b-2 border-gray-300 pb-2">6. Código PHP funcional e comentado</h2>
+                <pre class="php-code">
+&lt;?php
+
+$total = 0; // Variável acumuladora para somar os valores
+
+while (true) { // Loop infinito (vamos quebrar com break)
+    
+    // Pede o valor do produto
+    echo "Digite o valor do produto (0 para finalizar): ";
+    $valor = floatval(trim(fgets(STDIN))); // Lê e converte para número
+
+    // Se o valor for 0, sai do loop
+    if ($valor == 0) {
+        break;
+    }
+
+    // Soma o valor ao total
+    $total += $valor;
+}
+
+// Exibe o total da compra
+echo "Total da compra: R$ " . number_format($total, 2, ',', '.') . "\n";
+?&gt;
+                </pre>
+            </div>
+</div>
+            <!-- Seção 7: O que o Exercício Ensina -->
+            <div class="bg-indigo-50 p-6 rounded-xl shadow-lg border-l-8 border-indigo-500">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-700">7. O que esse exercício ensina?</h2>
+                <ul class="list-disc pl-6 text-gray-700 space-y-2 text-lg">
+                    <li><span class="font-bold accent-color">✔ Uso de loop (while)</span>: Como criar repetições de forma controlada.</li>
+                    <li><span class="font-bold accent-color">✔ Uso de variável acumuladora</span>: Como somar valores sequenciais de forma eficiente.</li>
+                    <li><span class="font-bold accent-color">✔ Entrada e saída de dados</span>: Como interagir com o usuário (lê entrada e mostra resultado).</li>
+                    <li><span class="font-bold accent-color">✔ Condição para encerrar o loop (if + break)</span>: Como quebrar um loop infinito com base em uma condição.</li>
+                    <li><span class="font-bold accent-color">✔ Formatação de valores (number_format)</span>: Como apresentar números de forma amigável ao usuário (padrão monetário brasileiro).</li>
+                </ul>
+            </div>
+    </div>
+
+    <script>
+        function toggleResolution() {
+            const resolution = document.getElementById('resolution-content');
+            const button = document.getElementById('toggle-button');
+            
+            // Verifica o estado atual e inverte
+            if (resolution.classList.contains('hidden')) {
+                resolution.classList.remove('hidden');
+                button.textContent = 'Esconder Resolução';
+                button.classList.remove('bg-emerald-500', 'hover:bg-emerald-600', 'shadow-emerald-200');
+                button.classList.add('bg-red-500', 'hover:bg-red-600', 'shadow-red-200');
+            } else {
+                resolution.classList.add('hidden');
+                button.textContent = 'Mostrar Resolução';
+                button.classList.remove('bg-red-500', 'hover:bg-red-600', 'shadow-red-200');
+                button.classList.add('bg-emerald-500', 'hover:bg-emerald-600', 'shadow-emerald-200');
+            }
+        }
+    </script>
+
+</body>
+</html>

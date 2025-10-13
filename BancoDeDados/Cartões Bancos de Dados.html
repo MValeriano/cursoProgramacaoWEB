@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartões Didáticos: Bancos de Dados Relacionais e Normalização</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #2c3e50; /* Cor mais escura para tema de BD */
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Estilo para as Seções */
+        .secao {
+            margin-bottom: 50px;
+        }
+
+        .secao h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            border-bottom: 3px solid #e74c3c; /* Destaque em vermelho para contraste */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Grid para os Cartões */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Estilo do Cartão (Container para a Animação 3D) */
+        .card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px; 
+            cursor: pointer;
+        }
+
+        /* Container Interno que Gira */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 12px 0 rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        /* Rotação ao clicar */
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso do Cartão */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; 
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        /* Estilo da Frente */
+        .card-front {
+            background-color: #ffffff;
+            color: #2c3e50;
+            border: 2px solid #e74c3c;
+        }
+        
+        /* Estilo do Verso */
+        .card-back {
+            background-color: #e74c3c; /* Vermelho principal do tema */
+            color: white;
+            transform: rotateY(180deg); 
+        }
+
+        .card-numero {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #2c3e50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .card-back .card-numero {
+             background-color: #fff;
+             color: #e74c3c;
+        }
+
+        .card-texto {
+            font-size: 1.15em;
+            font-weight: 700;
+        }
+
+        .card-back .card-texto {
+            font-size: 1.05em;
+            font-weight: 400;
+            text-align: left;
+            line-height: 1.4;
+            max-height: 100%;
+            overflow: auto; /* Permite scroll se o texto for muito longo */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Cartões Didáticos de Bancos de Dados</h1>
+            <p>Conceitos Fundamentais, Design e Normalização</p>
+        </header>
+
+        <!-- Seção 1 -->
+        <section class="secao">
+            <h2>1. Conceito Fundamental de Banco de Dados Relacional</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 1 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">1</div>
+                            <p class="card-texto"><strong>O que é um Banco de Dados Relacional (BDR)?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">1</div>
+                            <p class="card-texto">Um BDR é um tipo de banco de dados que representa os dados como <strong>coleções de tabelas</strong>, também chamadas de <strong>relações</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 2 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">2</div>
+                            <p class="card-texto"><strong>Qual é a base fundamental desse modelo?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">2</div>
+                            <p class="card-texto">O modelo relacional é fundamentado na <strong>teoria dos conjuntos</strong> e na <strong>lógica de predicados de primeira ordem</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2 -->
+        <section class="secao">
+            <h2>2. Origem e Uso Comum</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 3 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">3</div>
+                            <p class="card-texto"><strong>Quem introduziu o modelo relacional e quando?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">3</div>
+                            <p class="card-texto">Foi introduzido por <strong>Ted Codd</strong> da IBM Research em <strong>1970</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 4 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">4</div>
+                            <p class="card-texto"><strong>Qual é o termo técnico que geralmente se usa para "banco de dados" em um contexto profissional?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">4</div>
+                            <p class="card-texto">Profissionalmente, o termo "banco de dados" geralmente se refere a um <strong>Sistema de Gerenciamento de Banco de Dados Relacional (RDBMS)</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3 -->
+        <section class="secao">
+            <h2>3. Funções Críticas da SQL</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 5 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">5</div>
+                            <p class="card-texto"><strong>Qual é o papel dos comandos SQL em relação aos BDRs?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">5</div>
+                            <p class="card-texto">Os comandos SQL (como DDL e DML) formam a base para a interação com bancos de dados relacionais. Eles permitem a <strong>criação da estrutura</strong> (DDL) e a <strong>manipulação e recuperação de dados</strong> (DML e consultas) de forma eficiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4 -->
+        <section class="secao">
+            <h2>4. A Importância do Design de Banco de Dados</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 6 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">6</div>
+                            <p class="card-texto"><strong>Por que é crucial ter um design de banco de dados relacional robusto e planejado?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">6</div>
+                            <p class="card-texto">Um bom design inicial é a chave para um <strong>banco de dados resiliente e de fácil manutenção</strong>. Um design robusto de tabelas e relacionamentos bem planejados permite criar associações de forma <strong>fácil e eficiente</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 7 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto"><strong>Quais são as perguntas críticas que devem orientar o design?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto">As perguntas críticas incluem: Quais são os requisitos do negócio? Que tabelas serão necessárias? Que colunas cada tabela conterá? Como as tabelas serão normalizadas? Quais serão seus relacionamentos pai/filho?.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5 -->
+        <section class="secao">
+            <h2>5. Integridade de Dados (Restrições de Chave Estrangeira)</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 8 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto"><strong>Qual é a principal função das restrições de chave externa?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto">Elas são cruciais para a <strong>integridade dos dados</strong>. Elas <strong>impedem a inserção de registros "órfãos"</strong> (registros filhos sem um pai correspondente).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 9 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto"><strong>O que acontece se um usuário tentar inserir um registro "órfão"?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto">Uma tentativa de inserir um registro com um valor de chave externa que não existe na tabela pai resultará em um <strong>erro</strong>, demonstrando a funcionalidade da restrição.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 6 -->
+        <section class="secao">
+            <h2>6. Conceito de Normalização</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 10 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto"><strong>Qual é o propósito do processo de normalização em um projeto relacional?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto">O processo de normalização visa alcançar propriedades desejáveis, sendo as principais: <strong>minimização de redundância</strong> e <strong>minimização de anomalias</strong> (inserção, exclusão e atualização).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 11 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto"><strong>Quais são os dois critérios formais que uma decomposição (divisão de tabelas) deve garantir para ser considerada um bom projeto?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto">1. <strong>Propriedade da junção sem perda (ou não aditiva)</strong>, que é extremamente crítica e deve ser alcançada a qualquer preço. 2. <strong>Propriedade da preservação da dependência</strong>, que garante que cada dependência funcional será representada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 7 -->
+        <section class="secao">
+            <h2>7. Mapeamento de Modelos</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 12 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto"><strong>O que é o Mapeamento no contexto do design de banco de dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto">O <strong>Mapeamento</strong> (ou Projeto Lógico) é a fase em que o <strong>esquema conceitual de alto nível</strong> (geralmente criado usando modelos ER ou EER) é <strong>transformado em um esquema de banco de dados que segue um modelo de dados específico</strong>, como o relacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 8 -->
+        <section class="secao">
+            <h2>8. Diferença entre Álgebra e Cálculo Relacional</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 13 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto"><strong>Qual a diferença fundamental entre a Álgebra Relacional e o Cálculo Relacional em termos de como a consulta é especificada?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto">A <strong>Álgebra Relacional</strong> é uma linguagem <strong>procedural</strong> (deve-se escrever uma sequência de operações, especificando *como* recuperar os dados). Já o <strong>Cálculo Relacional</strong> é uma linguagem <strong>não procedural</strong> (especifica *o que* será recuperado, sem descrever como fazê-lo).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

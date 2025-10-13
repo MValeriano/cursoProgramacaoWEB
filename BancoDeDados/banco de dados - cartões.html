@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartões Didáticos: Bancos de Dados Relacionais e Normalização</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #2c3e50; /* Cor mais escura para tema de BD */
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Estilo para as Seções */
+        .secao {
+            margin-bottom: 50px;
+        }
+
+        .secao h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            border-bottom: 3px solid #e74c3c; /* Destaque em vermelho para contraste */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Grid para os Cartões */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Estilo do Cartão (Container para a Animação 3D) */
+        .card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px; 
+            cursor: pointer;
+        }
+
+        /* Container Interno que Gira */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 12px 0 rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        /* Rotação ao clicar */
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso do Cartão */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; 
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        /* Estilo da Frente */
+        .card-front {
+            background-color: #ffffff;
+            color: #2c3e50;
+            border: 2px solid #e74c3c;
+        }
+        
+        /* Estilo do Verso */
+        .card-back {
+            background-color: #e74c3c; /* Vermelho principal do tema */
+            color: white;
+            transform: rotateY(180deg); 
+        }
+
+        .card-numero {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #2c3e50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .card-back .card-numero {
+             background-color: #fff;
+             color: #e74c3c;
+        }
+
+        .card-texto {
+            font-size: 1.15em;
+            font-weight: 700;
+        }
+
+        .card-back .card-texto {
+            font-size: 1.0em;
+            font-weight: 400;
+            text-align: center;
+            line-height: 1.4;
+            max-height: 100%;
+            overflow: auto; /* Permite scroll se o texto for muito longo */
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .card {
+                height: 250px;
+            }
+            .card-texto {
+                font-size: 1.1em;
+            }
+            .card-back .card-texto {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Cartões Didáticos de Bancos de Dados</h1>
+            <p>Modelo Relacional, SQL, Projeto e Normalização.</p>
+        </header>
+
+        <!-- Seção 1: Fundamentos e Conceitos Básicos -->
+        <section class="secao">
+            <h2>I. Fundamentos e Conceitos Básicos</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 1 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">1</div>
+                            <p class="card-texto"><strong>O que é um Banco de Dados Relacional (BDR)?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">1</div>
+                            <p class="card-texto">Um BDR é um tipo de banco de dados que representa os dados como <strong>coleções de tabelas</strong>, também conhecidas como relações.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 2 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">2</div>
+                            <p class="card-texto"><strong>Quem introduziu o modelo relacional e em que ano?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">2</div>
+                            <p class="card-texto">Foi introduzido por Ted Codd da IBM Research em 1970.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 3 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">3</div>
+                            <p class="card-texto"><strong>Qual é a base fundamental (matemática) do modelo relacional?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">3</div>
+                            <p class="card-texto">É fundamentado na teoria dos conjuntos e na lógica de predicados de primeira ordem.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 4 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">4</div>
+                            <p class="card-texto"><strong>Qual é a definição mais ampla de "banco de dados"?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">4</div>
+                            <p class="card-texto">É qualquer coisa que colete e organize dados, como uma planilha ou um arquivo de texto simples com dados de horários de voos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 5 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">5</div>
+                            <p class="card-texto"><strong>Qual termo é geralmente usado para "banco de dados" em um contexto profissional?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">5</div>
+                            <p class="card-texto">Profissionalmente, ele geralmente se refere a um Sistema de Gerenciamento de Banco de Dados Relacional (RDBMS).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 6 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">6</div>
+                            <p class="card-texto"><strong>O que é um RDBMS?</strong></p>
+                        </div>
+                        <div class="card-back">
+                             <div class="card-numero">6</div>
+                            <p class="card-texto">É um tipo de banco de dados que contém uma ou mais tabelas que podem estar relacionadas entre si.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: SQL e Manipulação de Dados -->
+        <section class="secao">
+            <h2>II. SQL e Manipulação de Dados</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 7 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto"><strong>Qual é o papel dos comandos SQL (DDL e DML) em relação aos BDRs?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">7</div>
+                            <p class="card-texto">Eles formam a base para a interação, permitindo desde a criação da estrutura até a manipulação e recuperação de dados de forma eficiente.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 8 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto"><strong>Qual é o principal propósito da instrução SELECT?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">8</div>
+                            <p class="card-texto">Solicitar dados de uma ou mais tabelas e exibi-los.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 9 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto"><strong>O que a instrução SELECT permite além de simplesmente recuperar dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">9</div>
+                            <p class="card-texto">Permite transformar esses dados de maneira significativa e construir resumos poderosos a partir de milhões de registros.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 10 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto"><strong>Para que a instrução WHERE é fundamental em uma consulta SELECT?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">10</div>
+                            <p class="card-texto">É fundamental para filtrar registros de uma consulta, exibindo apenas aqueles que atendem a um ou mais critérios especificados.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 11 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto"><strong>Quando o uso do ponto e vírgula (;) é necessário na execução de comandos SQL?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">11</div>
+                            <p class="card-texto">É necessário na execução de várias instruções SQL de uma só vez, o que é útil para gravar dados.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 12 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto"><strong>Como se pode inserir vários registros de uma só vez de maneira eficiente?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">12</div>
+                            <p class="card-texto">Repetindo a cláusula VALUES e separando cada conjunto de valores por vírgula.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 13 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto"><strong>O que a instrução INSERT pode fazer usando os resultados de uma consulta SELECT?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">13</div>
+                            <p class="card-texto">É possível inserir registros a partir dos resultados de uma consulta SELECT, desde que os campos estejam alinhados em ordem e tipo de dados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Design, Integridade e Restrições -->
+        <section class="secao">
+            <h2>III. Design, Integridade e Restrições</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 14 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">14</div>
+                            <p class="card-texto"><strong>Qual é a principal função das restrições de chave externa?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">14</div>
+                            <p class="card-texto">São cruciais para a integridade dos dados, impedindo a inserção de registros "órfãos" (registros filhos sem um pai correspondente).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 15 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">15</div>
+                            <p class="card-texto"><strong>O que acontece se um usuário tentar inserir um registro com um valor de chave externa que não existe na tabela pai?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">15</div>
+                            <p class="card-texto">Isso resultará em um erro, demonstrando a funcionalidade da restrição.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 16 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">16</div>
+                            <p class="card-texto"><strong>Qual restrição garante que não são permitidas duplicatas da chave primária?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">16</div>
+                            <p class="card-texto">A restrição PRIMARY KEY.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 17 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">17</div>
+                            <p class="card-texto"><strong>Qual o resumo do papel dos JOINs (junções) em bancos de dados (Capítulo 8)?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">17</div>
+                            <p class="card-texto">JOINs são ferramentas poderosas que transformam dados normalizados em informações interconectadas e compreensíveis.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 18 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">18</div>
+                            <p class="card-texto"><strong>Por que o design de banco de dados relacional deve ser planejado com cuidado?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">18</div>
+                            <p class="card-texto">Um design inadequado causará arrependimentos mais à frente.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 19 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">19</div>
+                            <p class="card-texto"><strong>O que é um design de banco de dados considerado resiliente?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">19</div>
+                            <p class="card-texto">É aquele que possui um bom design inicial e é de fácil manutenção.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 20 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">20</div>
+                            <p class="card-texto"><strong>Quais são três das perguntas críticas que devem orientar o design de BD?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">20</div>
+                            <p class="card-texto">Quais são os requisitos do negócio? Que tabelas serão necessárias? Que colunas cada tabela conterá? Como as tabelas serão normalizadas? Quais serão seus relacionamentos pai/filho?.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 21 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">21</div>
+                            <p class="card-texto"><strong>Qual é o fator crítico, frequentemente negligenciado, que pode fazer um projeto de banco de dados falhar?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">21</div>
+                            <p class="card-texto">O fornecimento de dados (se eles não forem editáveis e atuais).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 22 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">22</div>
+                            <p class="card-texto"><strong>O que é um esquema de banco de dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">22</div>
+                            <p class="card-texto">É um diagrama que exibe as tabelas, suas colunas e seus relacionamentos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 23 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">23</div>
+                            <p class="card-texto"><strong>No diagrama de esquema de banco de dados, como o relacionamento pai-filho é demonstrado pelas setas?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">23</div>
+                            <p class="card-texto">O lado sem ponta da seta sai de uma chave primária e o outro lado aponta para uma chave externa.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 24 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">24</div>
+                            <p class="card-texto"><strong>Quais restrições são importantes para manter a consistência dos dados, além das chaves? (Cite duas)</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">24</div>
+                            <p class="card-texto">NOT NULL, AUTOINCREMENT e DEFAULT.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 25 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">25</div>
+                            <p class="card-texto"><strong>Por que ter um design robusto e restrições bem definidas (restrições de bloqueio) é útil ao inserir dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">25</div>
+                            <p class="card-texto">Restrições de bloqueio suficientes devem impedir que dados incorretos entrem no banco de dados.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 26 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">26</div>
+                            <p class="card-texto"><strong>O que o SGBD deve prover em relação às restrições de integridade?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">26</div>
+                            <p class="card-texto">Deve prover funcionalidades para a definição e a garantia dessas restrições.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 27 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">27</div>
+                            <p class="card-texto"><strong>O que é um exemplo de restrição de integridade de domínio?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">27</div>
+                            <p class="card-texto">Especificar um tipo de dado para cada item (ex: que um valor de Turma em ALUNO deve ser um inteiro entre 1 e 5).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Teoria da Normalização e Modelagem -->
+        <section class="secao">
+            <h2>IV. Teoria da Normalização e Modelagem</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 28 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">28</div>
+                            <p class="card-texto"><strong>Qual é a principal meta da teoria da normalização no projeto de esquemas relacionais?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">28</div>
+                            <p class="card-texto">Medir formalmente por que um conjunto de agrupamentos de atributos em esquemas de relação é melhor que outro.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 29 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">29</div>
+                            <p class="card-texto"><strong>Quais são as duas propriedades desejáveis que o processo de normalização (por decomposição) visa alcançar?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">29</div>
+                            <p class="card-texto">Minimização de redundância e minimização de anomalias (inserção, exclusão e atualização).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 30 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">30</div>
+                            <p class="card-texto"><strong>Em que se baseiam as formas normais (1FN, 2FN, 3FN e BCNF)?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">30</div>
+                            <p class="card-texto">São baseadas nas dependências funcionais entre os atributos de uma relação.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 31 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">31</div>
+                            <p class="card-texto"><strong>Qual propriedade de decomposição é considerada "extremamente crítica" e deve ser alcançada a qualquer preço?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">31</div>
+                            <p class="card-texto">A Propriedade da junção sem perda (ou junção não aditiva).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 32 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">32</div>
+                            <p class="card-texto"><strong>O que a Propriedade da preservação da dependência garante?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">32</div>
+                            <p class="card-texto">Garante que cada dependência funcional será representada em alguma relação individual resultante da decomposição.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 33 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">33</div>
+                            <p class="card-texto"><strong>O que a Primeira Forma Normal (1FN) proíbe em um atributo?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">33</div>
+                            <p class="card-texto">Impede a criação de atributos multivalorados e atributos compostos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 34 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">34</div>
+                            <p class="card-texto"><strong>O que é a desnormalização?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">34</div>
+                            <p class="card-texto">É o processo de armazenamento de junções de relações de formas normais altas em relações básicas de formas normais mais baixas (geralmente por razões de desempenho).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 35 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">35</div>
+                            <p class="card-texto"><strong>Qual é o propósito da BCNF?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">35</div>
+                            <p class="card-texto">É uma definição mais forte da 3FN.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 36 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">36</div>
+                            <p class="card-texto"><strong>Qual a diferença entre uma superchave e uma chave?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">36</div>
+                            <p class="card-texto">Uma chave é uma superchave com a propriedade adicional de ser mínima (a remoção de qualquer atributo fará com que não seja mais uma superchave).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 37 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">37</div>
+                            <p class="card-texto"><strong>O que é um atributo primário?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">37</div>
+                            <p class="card-texto">É um atributo que é membro de alguma chave candidata de uma relação.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 38 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">38</div>
+                            <p class="card-texto"><strong>O que é um Modelo de Dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">38</div>
+                            <p class="card-texto">Um conjunto de conceitos que podem ser usados para descrever a estrutura de um banco de dados (tipos de dados, relacionamentos e restrições).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 39 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">39</div>
+                            <p class="card-texto"><strong>Quais são os conceitos utilizados em modelos de dados conceituais (alto nível)? (Cite dois)</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">39</div>
+                            <p class="card-texto">Entidades, atributos e relacionamentos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 40 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">40</div>
+                            <p class="card-texto"><strong>Qual é o modelo de dados conceitual de alto nível muito utilizado?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">40</div>
+                            <p class="card-texto">O Modelo Entidade-Relacionamento (ER).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 41 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">41</div>
+                            <p class="card-texto"><strong>O que é a fase de Projeto Conceitual do banco de dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">41</div>
+                            <p class="card-texto">A fase em que se cria um esquema conceitual de alto nível que é uma descrição concisa dos requisitos de dados dos usuários.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 42 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">42</div>
+                            <p class="card-texto"><strong>Na modelagem conceitual, de onde geralmente surgem os nomes dos tipos entidade?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">42</div>
+                            <p class="card-texto">Dos substantivos do texto narrativo dos requisitos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 43 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">43</div>
+                            <p class="card-texto"><strong>Na modelagem conceitual, de onde geralmente surgem os nomes dos tipos relacionamento?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">43</div>
+                            <p class="card-texto">Dos verbos do texto narrativo dos requisitos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 44 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">44</div>
+                            <p class="card-texto"><strong>Qual fase do projeto transforma o esquema conceitual de alto nível em um esquema para um modelo de dados específico (como o relacional)?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">44</div>
+                            <p class="card-texto">O Mapeamento do Modelo (ou Projeto Lógico).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Álgebra Relacional e Desempenho -->
+        <section class="secao">
+            <h2>V. Álgebra Relacional e Desempenho</h2>
+            <div class="flashcard-grid">
+                <!-- Cartão 45 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">45</div>
+                            <p class="card-texto"><strong>O que a Álgebra Relacional e o Cálculo Relacional fazem, formalmente?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">45</div>
+                            <p class="card-texto">São linguagens formais para o modelo de dados relacional usadas para manipular as relações e produzir novas relações como respostas para as consultas.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 46 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">46</div>
+                            <p class="card-texto"><strong>Qual a diferença entre Álgebra Relacional e Cálculo Relacional em termos de procedimento?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">46</div>
+                            <p class="card-texto">Álgebra Relacional é procedural (especifica *como*); Cálculo Relacional é não procedural (especifica *o que*).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 47 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">47</div>
+                            <p class="card-texto"><strong>O que é uma "condição de junção" no Cálculo Relacional de Domínio?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">47</div>
+                            <p class="card-texto">Uma condição que relaciona duas variáveis de domínio que abrangem os atributos de duas relações.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 48 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">48</div>
+                            <p class="card-texto"><strong>Qual é a principal linguagem gráfica de consulta que foi baseada no Cálculo Relacional de Domínio?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">48</div>
+                            <p class="card-texto">Query-By-Example (QBE).</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 49 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">49</div>
+                            <p class="card-texto"><strong>Qual é o maior gargalo no desempenho de aplicações de bancos de dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">49</div>
+                            <p class="card-texto">Localizar dados no disco, devido ao alto tempo de transferência (milissegundos) em comparação com o processamento na memória principal.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cartão 50 -->
+                <div class="card" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-numero">50</div>
+                            <p class="card-texto"><strong>Qual é a principal meta a ser minimizada na otimização de consultas para grandes bancos de dados?</strong></p>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-numero">50</div>
+                            <p class="card-texto">O custo de acesso ao armazenamento secundário (busca, leitura e escrita de blocos de dados em disco).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
