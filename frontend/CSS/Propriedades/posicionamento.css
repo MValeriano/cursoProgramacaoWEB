@@ -1,0 +1,195 @@
+/*POSITIONING */
+    /* bottom
+        A propriedade bottom afeta a posição vertical de um elemento posicionado. Esta propriedade não tem efeito em elementos não posicionados.
+        Se posição: absoluta; ou posição: fixa; - a propriedade bottom define a borda inferior de um elemento para uma unidade acima/abaixo da borda inferior de seu ancestral posicionado mais próximo.
+        Se posição: relativa; - a propriedade bottom faz com que a borda inferior do elemento se mova acima/abaixo de sua posição normal.
+        Se posição: pegajosa; - a propriedade bottom se comporta como sua posição é relativa quando o elemento está dentro da viewport, e como sua posição é fixa quando está fora.
+        Se posição: estática; - a propriedade bottom não tem efeito.
+
+        Valores possíveis :
+            valor	    Descrição
+            auto	    Permite que o navegador calcule a posição da borda inferior. Isso é padrão
+            length	    Define a posição da borda inferior em px, cm, etc. Valores negativos são permitidos.
+            %	        Define a posição da borda inferior em % do elemento contido. Valores negativos são permitidos
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a borda inferior do elemento <div> para 10px acima da borda inferior do elemento pai mais próximo com algum posicionamento:
+            div.absolute {
+                position: absolute;
+                bottom: 10px;
+                width: 50%;
+                border: 3px solid #8AC007;
+            }
+    */
+
+    /* clip
+        O que acontece se uma imagem for maior que o elemento que a contém?
+        A propriedade clip permite especificar um retângulo para recortar um elemento posicionado de forma absoluta. O retângulo é especificado como quatro coordenadas, todas do canto superior esquerdo do elemento a ser recortado.
+        Nota: A propriedade clip não funciona se for "overflow:visible".
+        Nota: A propriedade clip está obsoleta e será substituída pela propriedade clip-path no futuro.    
+
+        Valores possíveis :
+            valor	    Descrição
+            auto	    Nenhum recorte será aplicado. Isso é padrão
+            shape	    Recorta um elemento. O único valor válido é: rect (superior, direita, inferior, esquerda)
+            initial	    Configura esta propriedade para seu valor padrão. 
+            inherit	    Herda esta propriedade de seu elemento pai. 
+
+        Exemplo
+            img {
+                position: absolute;
+                clip: rect(0px,60px,200px,0px);
+            }        
+    */
+
+    /* clip-path
+        A propriedade clip-path permite recortar um elemento em uma forma básica ou em uma fonte SVG.
+        Nota: A propriedade clip-path substituirá a propriedade clip obsoleta.
+
+        Valores possíveis :
+            valor	    Descrição
+            clip-source	Define um URL para um elemento SVG <clipPath>
+            basic-shape	Recorta um elemento em uma forma básica: círculo, elipse, polígono ou inserção
+            margin-box	Usa a caixa de margem como caixa de referência
+            border-box	Usa a caixa de borda como caixa de referência
+            padding-box	Usa a caixa de preenchimento como a caixa de referência
+            content-box	Usa a caixa de conteúdo como a caixa de referência
+            fill-box	Usa a caixa delimitadora do objeto como caixa de referência
+            stroke-box	Usa a caixa delimitadora de traçado como caixa de referência
+            view-box	Usa a janela de visualização SVG como caixa de referência
+            none	    Este é o padrão. Nenhum recorte é feito
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo    
+            img {
+                clip-path: circle(50%);
+            }
+    */    
+    
+    /* left
+        A propriedade left afeta a posição horizontal de um elemento posicionado. Esta propriedade não tem efeito em elementos não posicionados.
+
+        Se posição: absoluta; ou posição: fixa; - a propriedade left define a borda esquerda de um elemento para uma unidade à esquerda da borda esquerda de seu ancestral posicionado mais próximo.
+        Se posição: relativa; - a propriedade left define a borda esquerda de um elemento para uma unidade à esquerda/direita de sua posição normal.
+        Se posição: pegajosa; - a propriedade left se comporta como sua posição é relativa quando o elemento está dentro da viewport, e como sua posição é fixa quando está fora.
+        Se posição: estática; - a propriedade left não tem efeito.
+
+        Valores possíveis :
+            valor	    Descrição
+            auto	    Permite que o navegador calcule a posição da borda esquerda. Isso é padrão
+            length	    Define a posição da borda esquerda em px, cm, etc. Valores negativos são permitidos. Leia sobre unidades de comprimento
+            %	        Define a posição da borda esquerda em % do elemento contido. Valores negativos são permitidos
+            initial	    Configura esta propriedade para seu valor padrão. 
+            inherit	    Herda esta propriedade de seu elemento pai. 
+            
+        Exemplo
+            Defina a borda esquerda de um elemento <div> posicionado para 150px da borda esquerda de seu ancestral posicionado mais próximo:    
+            div.c {
+                position: absolute;
+                left: 150px;
+                width: 200px;
+                height: 120px;
+                border: 3px solid green;
+            }            
+    */
+
+    /* position
+        A propriedade position especifica o tipo de método de posicionamento usado para um elemento (estático, relativo, absoluto, fixo ou fixo).
+
+        Valores possíveis :
+            valor	    Descrição  
+            static	    Valor padrão. Os elementos são renderizados em ordem, conforme aparecem no fluxo de documentos
+            absolute	O elemento é posicionado em relação ao seu primeiro elemento ancestral posicionado (não estático)    
+            fixed	    O elemento é posicionado em relação à janela do navegador
+            relative	O elemento é posicionado em relação à sua posição normal, então "esquerda:20px" adiciona 20 pixels à posição ESQUERDA do elemento    
+            sticky	    O elemento é posicionado com base na posição de rolagem do usuário 
+                        Um elemento sticky alterna entre relativo e fixo, dependendo da posição de rolagem. Ele é posicionado em relação até que uma determinada 
+                        posição de deslocamento seja encontrada na janela de visualização - então ele "gruda" no lugar (como position:fixed). 
+                        Nota: Não suportado no IE/Edge 15 ou anterior. Suportado no Safari a partir da versão 6.1 com um prefixo -webkit-.
+            initial	    Configura esta propriedade para seu valor padrão. 
+            inherit	    Herda esta propriedade de seu elemento pai. 
+
+        Exemplo
+            h2 {
+                position: absolute;
+                left: 100px;
+                top: 150px;
+            }   
+    */  
+
+    /* right
+        A propriedade right afeta a posição horizontal de um elemento posicionado. Esta propriedade não tem efeito em elementos não posicionados.
+        Se posição: absoluta; ou posição: fixa; - a propriedade right define a borda direita de um elemento para uma unidade à direita da borda direita de seu ancestral posicionado mais próximo.
+        Se posição: relativa; - a propriedade right define a borda direita de um elemento para uma unidade à esquerda/direita de sua posição normal.
+        Se posição: pegajosa; - a propriedade right se comporta como sua posição é relativa quando o elemento está dentro da viewport, e como sua posição é fixa quando está fora.
+        Se posição: estática; - a propriedade certa não tem efeito.
+
+        Valores possíveis :
+            valor	    Descrição      
+            auto	    Permite que o navegador calcule a posição da borda direita. Isso é padrão
+            length	    Define a posição da borda direita em px, cm, etc. Valores negativos são permitidos. Leia sobre unidades de comprimento
+            %	        Define a posição da borda direita em % do elemento contido. Valores negativos são permitidos
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a borda direita do elemento <div> posicionado 150px à esquerda da borda direita de seu ancestral posicionado mais próximo:
+            div.absolute {
+                position: absolute;
+                right: 150px;
+                width: 200px;
+                height: 120px;
+                border: 3px solid green;
+            } 
+    */
+
+    /* top
+        A propriedade top afeta a posição vertical de um elemento posicionado. Esta propriedade não tem efeito em elementos não posicionados.
+        Se posição: absoluta; ou posição: fixa; - a propriedade top define a borda superior de um elemento para uma unidade acima/abaixo da borda superior de seu ancestral posicionado mais próximo.
+        Se posição: relativa; - a propriedade top faz com que a borda superior do elemento se mova acima/abaixo de sua posição normal.
+        Se posição: pegajosa; - a propriedade top se comporta como sua posição é relativa quando o elemento está dentro da viewport, e como sua posição é fixa quando está fora.
+        Se posição: estática; - a propriedade superior não tem efeito.
+
+        Valores possíveis :
+            valor	    Descrição  
+            auto	    Permite que o navegador calcule a posição da borda superior. Isso é padrão
+            length	    Define a posição da borda superior em px, cm, etc. Valores negativos são permitidos. Leia sobre unidades de comprimento
+            %	        Define a posição da borda superior em % do elemento contido. Valores negativos são permitidos
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a borda superior do elemento <div> posicionado 50px abaixo da borda superior de seu ancestral posicionado mais próximo:
+            div {
+                position: absolute;
+                top: 50px;
+                border: 3px solid green;
+            }
+
+    */
+
+    /* z-index
+        A propriedade z-index especifica a ordem de pilha de um elemento.
+        Um elemento com maior ordem de pilha está sempre na frente de um elemento com menor ordem de pilha.
+        Nota: o z-index só funciona em elementos posicionados (posição: absoluto, posição: relativa, posição: fixo ou posição: fixo) e itens flex (elementos que são filhos diretos de elementos display:flex).
+        Nota: Se dois elementos posicionados se sobrepuserem sem um z-index especificado, o elemento posicionado por último no código HTML será mostrado na parte superior.
+
+        Valores possíveis :
+            valor	    Descrição  
+            auto	    Define a ordem da pilha igual a seus pais. Isso é padrão
+            number	    Define a ordem de pilha do elemento. Números negativos são permitidos
+            initial	    Configura esta propriedade para seu valor padrão. Leia sobre inicial
+            inherit	    Herda esta propriedade de seu elemento pai. Leia sobre herdar
+
+        Exemplo
+            Defina o z-index para uma imagem:
+            img {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: -1;
+            }            
+    */

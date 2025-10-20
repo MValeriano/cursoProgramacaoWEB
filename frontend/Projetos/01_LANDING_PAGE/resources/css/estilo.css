@@ -1,0 +1,111 @@
+/*
+    este é um bloco de comentário
+*/
+
+* {
+	 box-sizing: border-box;
+	margin:0px;
+	padding:0px;	
+}
+
+body{
+   background-color: #222;
+    color: #ffffff;
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+header{
+	margin-top:20px;
+}
+.container{
+	overflow: hidden;
+	height: 100px;		
+}
+
+.principal{
+	overflow:hidden;
+	width: 100 vw;         
+	padding-top: 50px;   	        
+}
+
+footer{
+	background-color: red;
+	width: 100 vw;  
+	height :50px;         	        
+}
+
+.menu{
+	width:50%;
+	float:right;
+	margin-top: 40px;
+}
+
+.logo{
+	padding-left: 50px;
+	padding-bottom: 15px;
+	width:20%;
+	float: left;
+	line-height: 30px;
+}
+
+li{
+	display:inline-block;	
+}
+
+a{
+	text-decoration: none;
+	color: white;
+	padding: 0 20px;
+}
+
+.formulario{
+	padding-left: 50px;
+	width: 50%;
+	float: left;
+}
+
+.foto{
+	width:50%;
+	float:right;
+}
+
+.conta{
+	border-size: 2px;
+	border-style: solid;
+	border-color: violet;
+	border-radius:10px;
+	padding: 10px 30px;
+}
+
+span{
+	display: block;
+	color: #751f86;
+}
+
+h2{
+	font-size: 70px;
+	line-height: 70px;
+}
+
+p{
+	margin: 40px 0;
+}
+
+input{
+	width:70%;
+	display: block;
+	height: 60px;
+	margin: 20px 0;
+	border-radius:25px;
+	border: none;
+	padding-left: 15px;
+	font-weight: bold;
+	font-size: 20px;
+	color: #222;
+}
+
+input[type="submit"]{
+	width:35%;
+	background-color: #751f86;
+	color:white;
+}

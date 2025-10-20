@@ -1,0 +1,39 @@
+/* UNIDADES DE MEDIDA  */
+/*
+    MEDIÇÃO ABSOLUTA
+        As unidades de comprimento absoluto são fixas e um comprimento expresso em qualquer uma delas aparecerá exatamente com esse tamanho.
+        Unidades de comprimento absoluto não são recomendadas para uso na tela, porque os tamanhos das telas variam muito. No entanto, eles podem ser usados se a mídia de saída for conhecida, como para layout de impressão.
+
+        %  => percentagem ( Em relação ao elemento pai )
+        cm => centímetro
+        in => polegada
+        mm => milímetro
+        pc => pica (1p = 12 pontos)
+        pt => ponto (1pt = 1/72 polegada)
+
+    MEDIÇÃO RELATIVA
+        As unidades de comprimento relativo especificam um comprimento relativo a outra propriedade de comprimento. As unidades de comprimento relativo são melhor dimensionadas entre diferentes meios de renderização.
+
+        ch => largura do glifo "0" encontrado na fonte para o tamanho da fonte usada para renderizar
+            Em relação à largura do "0" (zero)
+        em => 1em = tamanho da fonte atual do elemento atual
+            Em relação ao tamanho da fonte do elemento (2em significa 2 vezes o tamanho da fonte atual)
+        ex => altura x da fonte do elemento
+            Em relação à altura x da fonte atual (raramente usada)
+        gd => a grade definida por 'layout-grid'
+        px => pixel do dispositivo de visualização
+        rem => o tamanho da fonte do elemento raiz
+            Relativo ao tamanho da fonte do elemento raiz
+        vh => a altura da janela de visualização
+            Relativo a 1% da altura da janela de visualização
+        vw => a largura da janela de visualização
+            Relativo a 1% da largura da janela de visualização
+        vm => altura ou largura da janela de visualização, o que for menor dos dois
+        vmin =>	Relativo a 1% da dimensão menor da janela de visualização
+        vmax =>	Relativo a 1% da dimensão maior da janela de visualização
+
+        Pixels (px) são relativos ao dispositivo de visualização. Para dispositivos de baixo dpi, 1px é um pixel de dispositivo (ponto) da tela. Para impressoras e telas de alta resolução, 1px implica em vários pixels de dispositivo.
+        As unidades em e rem são práticas na criação de layout perfeitamente escalável!
+        vw,vw,vmin,vmax (Viewport) = o tamanho da janela do navegador. Se a janela de visualização tiver 50 cm de largura, 1vw = 0,5 cm.
+        
+*/

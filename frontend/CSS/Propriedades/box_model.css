@@ -1,0 +1,626 @@
+/* BOX MODEL */
+    /* clear 	
+        A propriedade clear controla o fluxo próximo aos elementos flutuantes.
+        A propriedade clear especifica o que deve acontecer com o elemento que está próximo a um elemento flutuante.
+
+        Valores possíveis :
+            valor	    Descrição
+            none	    Default. O elemento não é empurrado abaixo dos elementos flutuantes à esquerda ou à direita
+            left	    O elemento é empurrado abaixo dos elementos flutuantes à esquerda
+            right	    O elemento é empurrado abaixo dos elementos flutuantes à direita
+            both	    O elemento é empurrado abaixo dos elementos flutuantes esquerdo e direito
+            initial	    Define esta propriedade para seu valor padrão
+            inherit	    Herda esta propriedade de seu elemento pai
+
+        Exemplo
+            O elemento <p> é empurrado abaixo dos elementos flutuantes à esquerda:             
+            img {
+                float: left;
+            }
+            O elemento <p> não permite elementos flutuantes no lado esquerdo:
+            p.clear {
+                clear: left;
+            }            
+    */
+
+    /* display
+        A propriedade display especifica se/como um elemento é exibido.
+        Cada elemento HTML tem um valor de exibição padrão dependendo do tipo de elemento que é. O valor de exibição padrão para a 
+        maioria dos elementos é block ou inline.
+        Definir a propriedade display de um elemento altera apenas a forma como o elemento é exibido , NÃO o tipo de elemento que ele é. 
+        Portanto, um elemento inline com display: block;não pode ter outros elementos de bloco dentro dele.    
+    
+        Valores possíveis :
+            Valor	            Descrição
+            inline          	Exibe um elemento como um elemento embutido (como <span>). Quaisquer propriedades de altura e largura não terão efeito;
+            block           	Exibe um elemento como um elemento de bloco (como <p>). Começa em uma nova linha e ocupa toda a largura;
+            contents            Faz o container desaparecer, tornando os elementos filhos filhos do elemento do próximo nível no DOM;
+            flex            	Exibe um elemento como um contêiner flexível de nível de bloco;
+            grid            	Exibe um elemento como um contêiner de grade em nível de bloco;
+            inline-block        Exibe um elemento como um contêiner de bloco de nível embutido. O próprio elemento é formatado como um elemento embutido, mas você pode aplicar valores de altura e largura;
+            inline-flex         Exibe um elemento como um contêiner flex de nível embutido;
+            inline-grid         Exibe um elemento como um contêiner de grade em nível embutido;
+            inline-table        O elemento é exibido como uma tabela de nível embutido;
+            list-item           Deixe o elemento se comportar como um elemento <li>;
+            run-in          	Exibe um elemento como bloco ou embutido, dependendo do contexto;
+            table           	Deixe o elemento se comportar como um elemento <table>;
+            table-caption       Deixe o elemento se comportar como um elemento <caption>;
+            table-column-group  Deixe o elemento se comportar como um elemento <colgroup>;
+            table-header-group  Deixe o elemento se comportar como um elemento <thead>;
+            table-footer-group  Deixe o elemento se comportar como um elemento <tfoot>;
+            table-row-group     Deixe o elemento se comportar como um elemento <tbody>;
+            table-cell          Deixe o elemento se comportar como um elemento <td>;
+            table-column        Deixe o elemento se comportar como um elemento <col>;
+            table-row           Deixe o elemento se comportar como um elemento <tr>;
+            none            	O elemento é completamente removido;
+            initial         	Configura esta propriedade para seu valor padrão;
+            inherit         	Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Uso de alguns valores de exibição diferentes:
+            p.ex1 {display: none;}
+            p.ex2 {display: inline;}
+            p.ex3 {display: block;}
+            p.ex4 {display: inline-block;}            
+    */
+    /* float
+        A propriedade float especifica se um elemento deve flutuar para a esquerda, direita ou nada.
+        Nota: Elementos absolutamente posicionados ignoram a propriedade float!
+        Nota: Elementos próximos a um elemento flutuante fluirão ao redor dele. Para evitar isso, 
+        use a propriedade clear ou o hack clearfix.    
+
+        Valores possíveis :
+            Valor	    Descrição
+            none	    O elemento não flutua (será exibido exatamente onde ocorre no texto). Isso é padrão
+            left	    O elemento flutua à esquerda de seu contêiner
+            right	    O elemento flutua à direita de seu contêiner
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Deixe uma imagem flutuar para a direita:
+            img  {
+                float: right;
+            }            
+    */
+    /* height
+        A propriedade height define a altura de um elemento.
+        A altura de um elemento não inclui preenchimento, bordas ou margens!
+        Se height: auto; o elemento ajustará automaticamente sua altura para permitir que seu conteúdo seja exibido corretamente.
+        Se height for definido como um valor numérico (como pixels, (r)em, porcentagens), 
+        se o conteúdo não se encaixar na altura especificada, ele transbordará. 
+        Como o contêiner manipulará o conteúdo transbordante é definido pela propriedade overflow .
+        Nota: As propriedades min-height e max-height substituem a propriedade height.
+
+        Valores possíveis :
+            Valor	    Descrição
+            auto	    The browser calculates the height. This is default	
+            length	    Defines the height in px, cm, etc. Read about length units	
+            %	        Defines the height in percent of the containing block	
+            initial	    Sets this property to its default value.
+            inherit	    Inherits this property from its parent element.
+
+        Exemplo
+            Defina a altura de um elemento para 50% da altura do elemento pai:
+            #parent {
+                height: 100px;
+            }
+            #child {
+                height: 50%;
+            }            
+    */
+    /* max-height 
+        A propriedade max-height define a altura máxima de um elemento.
+        Se o conteúdo for maior que a altura máxima, ele transbordará. Como o contêiner manipulará o conteúdo transbordante 
+        é definido pela propriedade overflow .
+        Se o conteúdo for menor que a altura máxima, a propriedade max-height não terá efeito.
+        Nota: Isso evita que o valor da propriedade height fique maior que max-height. 
+        O valor da propriedade max-height substitui a propriedade height.
+
+        Valores possíveis :
+            Valor	    Descrição
+            none	    Sem altura máxima. Isso é padrão
+            length	    Define a altura máxima em px, cm, etc.
+            %	        Define a altura máxima em porcentagem do bloco que contém
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a altura máxima de um elemento <p> para 50 pixels:
+            p.ex1 {
+                max-height: 50px;
+            }            
+    */
+    /* min-height
+        A propriedade min-height define a altura mínima de um elemento.
+        Se o conteúdo for menor que a altura mínima, a altura mínima será aplicada.
+        Se o conteúdo for maior que a altura mínima, a propriedade min-height não tem efeito.
+        Nota: Isso evita que o valor da propriedade height fique menor que min-height.    
+
+        Valores possíveis :
+            Valor	    Descrição        
+            length	    O valor padrão é 0. Define a altura mínima em px, cm, etc.
+            %	        Define a altura mínima em porcentagem do bloco que contém
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+        
+        Exemplo
+            Defina a altura mínima de um elemento <p> para 200 pixels:
+            p.ex1 {
+                min-height: 200px;
+            }
+    */
+    /* width 
+        A propriedade width define a largura de um elemento.
+        A largura de um elemento não inclui preenchimento, bordas ou margens!
+        Nota: As propriedades min-width e max-width substituem a propriedade width.
+
+        Valores possíveis :
+            Valor	    Descrição   
+            auto	    Valor padrão. O navegador calcula a largura.
+            length	    Define a largura em px, cm, etc.
+            %	        Define a largura em porcentagem do bloco que o contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a largura de três elementos <div>:
+            div.a {
+                width: auto;
+            }
+            div.b {
+                width: 150px;
+            }
+            div.c {
+                width: 50%;
+            }            
+    */
+    /* max-width 
+        A propriedade max-width define a largura máxima de um elemento.
+        Se o conteúdo for maior que a largura máxima, ele alterará automaticamente a altura do elemento.
+        Se o conteúdo for menor que a largura máxima, a propriedade max-width não terá efeito.
+        Nota: Isso evita que o valor da propriedade largura fique maior que max-width. 
+            O valor da propriedade max-width substitui a propriedade width.
+
+        Valores possíveis :
+            Valor	    Descrição 
+            none	    Sem largura máxima. Isso é padrão.
+            length	    Define a largura máxima em px, cm, etc.
+            %	        Define a largura máxima em porcentagem do bloco que contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a largura máxima de um elemento <p> para 150 pixels:
+            p.ex1 {
+                max-width: 150px;
+            }
+    */    
+    /* min-width
+        A propriedade min-width define a largura mínima de um elemento.
+        Se o conteúdo for menor que a largura mínima, a largura mínima será aplicada.
+        Se o conteúdo for maior que a largura mínima, a propriedade min-width não terá efeito.
+        Nota: Isso evita que o valor da propriedade largura fique menor que min-width.    
+
+        Valores possíveis :
+            Valor	    Descrição  
+            length	    O valor padrão é 0. Define a largura mínima em px, cm, etc.
+            %	        Define a largura mínima em porcentagem do bloco que contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a largura mínima de um elemento <span> para 500 pixels:           
+    */    
+    /* overflow (estouro)
+        A propriedade overflow especifica o que deve acontecer se o conteúdo ultrapassar a caixa de um elemento.
+        Esta propriedade especifica se o conteúdo deve ser recortado ou adicionado barras de rolagem quando o conteúdo
+        de um elemento é muito grande para caber em uma área especificada.
+        Nota: A propriedade overflow só funciona para elementos de bloco com uma altura especificada.    
+
+        Valores possíveis :
+            Valor	    Descrição   
+            visible	    O estouro não é cortado. Ele renderiza fora da caixa do elemento. Isso é padrão.
+            hidden	    O estouro é cortado e o restante do conteúdo ficará invisível. O conteúdo pode ser rolado programaticamente (por exemplo, definindo scrollLeft ou scrollTo()).
+            clip	    O estouro é cortado e o restante do conteúdo ficará invisível. Proíbe a rolagem, incluindo rolagem programática.
+            scroll	    O estouro é cortado, mas uma barra de rolagem é adicionada para ver o restante do conteúdo.
+            auto	    Se o estouro for cortado, uma barra de rolagem deve ser adicionada para ver o restante do conteúdo.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Mostrar diferentes valores de propriedade overflow(estouro):            
+            div.ex1 {
+                overflow: scroll;
+            }
+            div.ex2 {
+                overflow: hidden;
+            }
+            div.ex3 {
+                overflow: auto;
+            }
+            div.ex4 {
+                overflow: clip;
+            }
+            div.ex5 {
+                overflow: visible;
+            }        
+    */      
+    /* overflow-wrap
+        A propriedade overflow-wrap especifica se o navegador pode ou não quebrar linhas com palavras longas, se elas ultrapassarem o contêiner.
+
+        Valores possíveis :
+            Valor	    Descrição   
+            normal	    Palavras longas não quebram, mesmo que transbordem o recipiente. Este é o padrão.
+            anywhere	Palavras longas serão quebradas se transbordarem o contêiner.
+            break-word	Palavras longas serão quebradas se transbordarem o contêiner.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Permita que o navegador tenha permissão para quebrar linhas com palavras longas, se elas ultrapassarem o contêiner:    
+            div {
+                overflow-wrap: break-word;
+            }        
+    */
+    /* overflow-style
+        Especifica os métodos de rolagem preferidos para elementos que estouram.
+        A propriedade overflow-style só tem efeito em elementos que estouram usando a propriedade overflow. 
+        Ao usar barras de rolagem de ocultação automática, você deve garantir que seu conteúdo tenha preenchimento suficiente 
+        para evitar que o conteúdo interativo seja obscurecido abaixo da barra de rolagem.        
+
+        Valores possíveis :
+            Valor	    Descrição   
+            auto      Valor inicial. Não indica preferência.
+            none      Indica que o elemento não exibe nenhum mecanismo de rolagem, mesmo quando seu conteúdo transborda. Ao contrário de overflow: hidden, elementos com estilo overflow: nenhum ainda pode ser rolado via toque panorâmico, teclado ou roda do mouse.
+            scrollbar Indica que o elemento exibe um controle clássico do tipo barra de rolagem quando seu conteúdo transborda. As barras de rolagem não sobrepõem o conteúdo e, portanto, ocupam espaço de layout extra ao longo das bordas do elemento onde aparecem.
+            panner    Um panner é normalmente um retângulo mostrado em um canto do elemento, com um retângulo menor dentro. O retângulo maior representa todo o conteúdo disponível do elemento e o menor a parte visível. O retângulo menor pode ser movido pelo usuário para mover o conteúdo do elemento de acordo.
+            move      O valor ‘move’ refere-se a um método onde o usuário pode mover o conteúdo do elemento diretamente (em vez de indiretamente movendo uma barra de rolagem ou um panner). Normalmente, o ponteiro do mouse muda para uma mão ou uma cruz de quatro setas para indicar que o usuário pode arrastar o conteúdo com o mouse. Às vezes, o usuário precisa ativar explicitamente o modo de movimentação e, nesse caso, muitas vezes pode usar arrastar (com o mouse) e eventos de tecla para mover o conteúdo.
+            marquee   O efeito letreiro (valor ‘marquee’) consiste na movimentação do conteúdo de forma autônoma, sem nenhum evento de usuário para controlá-lo. Um usuário que espera o suficiente acabará vendo todo o conteúdo que transborda.
+
+        Exemplos
+            A preferência superior para um mecanismo de rolagem é um panner. Se não estiver disponível, nenhum mecanismo de rolagem visível deve ser exibido.
+            div {
+                overflow-style: panner;
+            }    
+    */
+    /* overflow-x
+        A propriedade overflow-x especifica se o conteúdo deve ser recortado, adicionado uma barra de rolagem ou exibido o conteúdo de estouro de um elemento de nível de bloco, quando ele transborda nas bordas esquerda e direita.
+        Dica: Use a propriedade overflow-y para determinar o corte nas bordas superior e inferior.    
+
+        Valores possíveis :
+            Valor	    Descrição
+            visible	    O conteúdo não é recortado e pode ser renderizado fora das bordas esquerda e direita. Isso é padrão.
+            hidden	    O conteúdo é cortado - e nenhum mecanismo de rolagem é fornecido.
+            scroll	    O conteúdo é cortado e um mecanismo de rolagem é fornecido.
+            auto	    Deve fazer com que um mecanismo de rolagem seja fornecido para caixas transbordantes.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Mostrar diferentes valores de propriedade overflow-x:
+            div.ex1 {
+                overflow-x: scroll;
+            }
+            div.ex2 {
+                overflow-x: hidden;
+            }
+            div.ex3 {
+                overflow-x: auto;
+            }
+            div.ex4 {
+                overflow-x: visible;
+            }
+
+    */
+    /* overflow-y
+        A propriedade overflow-y especifica se o conteúdo deve ser recortado, adicionado uma barra de rolagem ou exibido o conteúdo de estouro de um elemento de nível de bloco, quando ele transborda nas bordas superior e inferior.
+        Dica: Use a propriedade overflow-x para determinar o corte nas bordas esquerda e direita.
+
+        Valores possíveis :
+            Valor	    Descrição
+            visible	    O conteúdo não é recortado e pode ser renderizado fora da caixa de conteúdo. Isso é padrão.
+            hidden	    O conteúdo é cortado - e nenhum mecanismo de rolagem é fornecido.
+            scroll	    O conteúdo é cortado e um mecanismo de rolagem é fornecido.
+            auto	    Deve fazer com que um mecanismo de rolagem seja fornecido para caixas transbordantes.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+            
+        Exemplo
+            Mostrar diferentes valores de propriedade overflow-y:
+            div.ex1 {
+                overflow-y: scroll;
+            }
+            div.ex2 {
+                overflow-y: hidden;
+            }
+            div.ex3 {
+                overflow-y: auto;
+            }
+            div.ex4 {
+                overflow-y: visible;
+            }
+    */    
+    /* margin
+        A propriedade margin define as margens de um elemento e é uma propriedade abreviada para as seguintes propriedades:
+            margem superior,margem direita,margem inferior,margem esquerda.
+
+        Valores possíveis :
+            Valor	    Descrição 
+            length	    Especifica uma margem em px, pt, cm, etc. O valor padrão é 0. Valores negativos são permitidos.
+            %	        Especifica uma margem em porcentagem da largura do elemento contido.
+            auto	    O navegador calcula uma margem.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a margem para todos os quatro lados de um elemento <p> para 35 pixels:
+            p {
+                margin: 35px;
+            }
+    */
+    /* margin-bottom
+        A propriedade margin-bottom define a margem inferior de um elemento.
+        Nota: Valores negativos são permitidos.   
+
+        Valores possíveis :
+            Valor	    Descrição
+            length	    Especifica uma margem inferior fixa em px, cm, em, etc. O valor padrão é 0. Valores negativos são permitidos.
+            %	        Especifica uma margem inferior em porcentagem da largura do elemento contido.
+            auto	    O navegador calcula uma margem inferior.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina a margem inferior de um elemento <p> para 25 pixels: 
+            p.ex1 {
+                margin-bottom: 25px;
+            }
+    */
+    /* margin-left
+        A propriedade margin-left define a margem esquerda de um elemento.
+        Nota: Valores negativos são permitidos.    
+
+        Valores possíveis :
+            Valor	    Descrição
+            length      Especifica uma margem esquerda fixa em px, pt, cm, etc. O valor padrão é 0px. Valores negativos são permitidos.
+            %           Especifica uma margem esquerda em porcentagem da largura do elemento contido.
+            auto        O navegador calcula uma margem esquerda.
+            initial     Configura esta propriedade para seu valor padrão.
+            inherit     Herda esta propriedade de seu elemento pai.
+            
+        Exemplo
+            Defina a margem esquerda de um elemento <p> para 30 pixels:
+            p.ex1 {
+                margin-left: 30px;
+            }
+    */
+    /* margin-right
+        A propriedade margin-right define a margem direita de um elemento.
+        Nota: Valores negativos são permitidos.
+
+        Valores possíveis :
+            Valor	    Descrição
+            length	    Especifica uma margem direita fixa em px, pt, cm, etc. O valor padrão é 0px.
+            %	        Especifica uma margem direita em porcentagem da largura do elemento contido.
+            auto	    O navegador calcula uma margem direita.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+        Defina a margem direita de um elemento <p> para 150 pixels:
+        p.ex1 {
+            margin-right: 150px;
+        }    
+    */
+    /* margin-top
+        A propriedade margin-top define a margem superior de um elemento.
+        Nota: Valores negativos são permitidos.
+
+        Valores possíveis :
+            Valor	    Descrição
+            length	    Especifica uma margem superior fixa em px, pt, cm, etc. O valor padrão é 0px. Valores negativos são permitidos.
+            %	        Especifica uma margem superior em porcentagem da largura do elemento contido
+            auto	    O navegador calcula uma margem superior
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+            
+        Exemplo
+        Defina a margem superior de um elemento <p> para 25 pixels:
+        p.ex1 {
+            margin-top: 25px;
+        }    
+    */
+    /* padding
+        O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.
+        A propriedade padding é uma propriedade abreviada para:
+        padding-top, padding-right, padding-bottom, padding-left
+        Nota: O preenchimento cria espaço extra dentro de um elemento, enquanto a margem cria espaço extra ao redor de um elemento.
+        Esta propriedade pode ter de um a quatro valores.
+
+        Valores possíveis :
+            Valor	    Descrição   
+            length	    Especifica o preenchimento em px, pt, cm, etc. O valor padrão é 0.
+            %	        Especifica o preenchimento em porcentagem da largura do elemento que o contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+            
+        Exemplo
+            Defina o preenchimento para todos os quatro lados de um elemento <p> para 35 pixels:
+            p {
+                padding: 35px;
+            }    
+    */
+    /* padding-bottom
+        O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.
+        A propriedade padding-bottom define o preenchimento inferior (espaço) de um elemento.
+        Nota: Valores negativos não são permitidos.
+
+        Valores possíveis :
+            Valor	    Descrição
+            length	    Especifica um preenchimento inferior fixo em px, pt, cm, etc. O valor padrão é 0.
+            %	        Especifica um preenchimento inferior em porcentagem da largura do elemento contido.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina o preenchimento inferior de um elemento <p> para 25 pixels:
+            p.ex1 {
+                padding-bottom: 25px;
+            }    
+    */
+    /* padding-left
+        O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.
+        A propriedade padding-left define o preenchimento esquerdo (espaço) de um elemento.
+        Nota: Valores negativos não são permitidos.
+
+        Valores possíveis :
+            Valor	    Descrição        
+            length	    Especifica um preenchimento esquerdo fixo em px, pt, cm, etc. O valor padrão é 0.
+            %	        Especifica um preenchimento esquerdo em porcentagem da largura do elemento que o contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina o preenchimento esquerdo de um elemento <p> para 50 pixels:
+            p.ex1 {
+                padding-left: 50px;
+            }    
+    */
+    /* padding-right
+        O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.
+        A propriedade padding-right define o preenchimento direito (espaço) de um elemento.
+        Nota: Valores negativos não são permitidos
+
+        Valores possíveis :
+            Valor	    Descrição 
+            length	    Especifica um preenchimento direito fixo em px, pt, cm, etc. O valor padrão é 0.
+            %	        Especifica um preenchimento à direita em porcentagem da largura do elemento que o contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina o preenchimento correto de um elemento <p> para 150 pixels:
+            p.ex1 {
+                padding-right: 150px;
+            }    
+    */
+    /* padding-top
+        O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.
+        A propriedade padding-top define o preenchimento superior (espaço) de um elemento.
+        Nota: Valores negativos não são permitidos.
+
+        Valores possíveis :
+            Valor	    Descrição 
+            length	    Especifica um preenchimento superior fixo em px, pt, cm, etc. O valor padrão é 0.
+            %	        Especifica um preenchimento superior em porcentagem da largura do elemento que o contém.
+            initial	    Configura esta propriedade para seu valor padrão.
+            inherit	    Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Defina o preenchimento superior de um elemento <p> para 25 pixels:
+            p.ex1 {
+                padding-top: 25px;
+            }    
+    */
+    /* marquee-direction */
+    /* marquee-loop */
+    /* marquee-play-count */
+    /* marquee-speed  */
+    /* marquee-style  */  
+    /* rotate
+        A propriedade de rotação permite girar elementos.
+        A propriedade de rotação define um valor para quanto um elemento é girado no sentido horário em torno do eixo z. Para girar um elemento em torno do eixo x ou eixo y ou de outras maneiras, isso deve ser definido.
+        Os valores para a propriedade de rotação podem ser fornecidos como um ângulo, nome do eixo + ângulo ou três valores + ângulo.
+        Se for dado um ângulo, o elemento é girado no sentido horário em torno do eixo z.
+        Se o nome do eixo + ângulo for fornecido, o elemento será girado no sentido horário em torno desse eixo fornecido.
+        Se três valores são fornecidos + ângulo, os três valores definem um vetor em torno do qual o elemento é girado.
+        Para entender melhor a propriedade de rotação, veja uma demonstração.
+        Nota: Uma técnica alternativa para girar um elemento é usar a propriedade de transformação CSS com a função Rotate() do CSS. A propriedade de rotação do CSS, conforme explicado nesta página da Web, é sem dúvida uma maneira mais simples e direta de dimensionar um elemento.
+
+        Valores possíveis :
+            Valor	        Descrição 
+            axis	        Opcional. Se não estiver definido, o eixo z será o padrão. Define o eixo para girar o elemento ao redor. Valores possíveis: x, y, z
+            angle	        Define o quanto um elemento é girado. Unidades possíveis: graus, rad, volta.
+            vector angle	Três números definem um vetor para o elemento a ser girado. Os números são as coordenadas x, y e z para o vetor, respectivamente. O último valor é o ângulo de quanto girar. Valores possíveis: número, número, número, ângulo.
+            initial	        Configura esta propriedade para seu valor padrão. 
+            inherit	        Herda esta propriedade de seu elemento pai.
+                        
+        Exemplo
+            Alterar a rotação de um elemento:
+            div {
+                rotate: 30deg;
+            }
+            Quando a propriedade de rotação é definida com vetor e ângulo, o elemento é girado em torno 
+            desse vetor. Aqui, o vetor é [1 1 0] no plano 2D com coordenadas x e y e, em seguida, 
+            girado 60 graus:
+            div {
+                rotate: 1 1 0 60deg;
+            }
+    */
+    /* rotation-point
+        A propriedade do ponto de rotação é um par de valores que define um ponto como um deslocamento da borda superior esquerda da borda.
+        Dica: A propriedade do ponto de rotação é usada em conjunto com a propriedade de rotação.    
+
+        Valores possíveis :
+            Valor	        Descrição 
+            left top        Se você especificar apenas uma palavra-chave, o segundo valor será "centro"
+            left center
+            left bottom
+            right top
+            right center
+            right bottom
+            center top
+            center center
+            center bottom	
+            x% y%	        As porcentagens referem-se à largura e altura da caixa de borda
+
+        Exemplo
+            Gire os elementos h1 180 graus (de cabeça para baixo):
+            h1
+            {
+                rotation-point:50% 50%;
+                rotation:180deg;
+            }    
+    */
+    /* rotation
+        A propriedade de rotação gira um elemento de nível de bloco no sentido anti-horário em torno de um determinado ponto definido pela propriedade de ponto de rotação.
+        Dica: A borda, preenchimento, conteúdo e planos de fundo (que não são fixos) também são girados!    
+
+        Valores possíveis :
+            Valor	        Descrição       
+            angle	        A rotação do elemento. Valores possíveis: 0deg a 360deg
+            
+        Exemplo
+            Gire os elementos h1 180 graus (de cabeça para baixo):    
+            h1
+            {
+                rotation-point:50% 50%;
+                rotation:180deg;
+            }
+    */
+    /* visibility
+        A propriedade de visibilidade especifica se um elemento é visível ou não.
+        Dica: Elementos ocultos ocupam espaço na página. Use a propriedade display para ocultar 
+        e remover um elemento do layout do documento!
+
+        Valores possíveis :
+            Valor	        Descrição 
+            visible	        Valor padrão. O elemento é visível.
+            hidden	        O elemento está oculto (mas ainda ocupa espaço).
+            collapse	    Somente para linhas de tabela (<tr>), grupos de linhas (<tbody>), colunas (<col>), grupos de colunas (<colgroup>). 
+                            Esse valor remove uma linha ou coluna, mas não afeta o layout da tabela. O espaço ocupado pela linha ou coluna 
+                            estará disponível para outros conteúdos.
+                            Se o recolhimento for usado em outros elementos, ele será renderizado como "oculto".
+            initial	        Configura esta propriedade para seu valor padrão.
+            inherit	        Herda esta propriedade de seu elemento pai.
+
+        Exemplo
+            Torne os elementos <h2> visíveis e ocultos:    
+            h2.a {
+                visibility: visible;
+            }
+            h2.b {
+                visibility: hidden;
+            }
+    */

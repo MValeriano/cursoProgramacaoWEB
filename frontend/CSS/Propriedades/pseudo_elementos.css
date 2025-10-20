@@ -1,0 +1,7 @@
+/*PSEUDO-ELEMENT*/		
+/*
+    div::first-letter{background-color:green} Adiciona um estilo especial à primeira letra de um texto
+    div::first-line{background-color:green}   Adiciona um estilo especial à primeira linha de um texto
+    div::before{background-color:green}       Insere algum conteúdo antes de um elemento
+    div::after{background-color:green}        Insere algum conteúdo após um elemento
+*/

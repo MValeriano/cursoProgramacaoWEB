@@ -1,0 +1,21 @@
+/*LINE BOX */
+/*
+    alignment-adjust: ; 	      auto | baseline | before-  edge | text-before-edge |  middle | central | after-edge | text-after-edge | ideo-  graphic | alphabetic | hang-  ing | mathematical length % 
+    alignment-baseline: ; 	      baseline | use-script | be-  fore-edge | text-before-  edge | after-edge | text-  after-edge | central | middle | ideographic | alphabetic |  hanging | mathematical  
+    baseline-shift: ;   	      baseline | sub | super length % 
+    dominant-baseline: ; 	      auto | use-script | no-  change | reset-size | alpha-  betic | hanging | ideo-  graphic | mathematical |  central | middle | text-after-  edge | text-before-edge 
+    drop-initial-after-align: ;   alignment-baseline 
+    drop-initial-after-adjust: ;  central | middle | after-edge | text-after-edge | ideo-  graphic | alphabetic |  mathematical length % 
+    drop-initial-before-align: ;  caps-height alignment-baseline 
+    drop-initial-before-adjust: ; before-edge | text-before-  edge | central | middle |  hanging | mathematical  length % 
+    drop-initial-value: ;    	  initial integer 
+    drop-initial-size: ;          auto integer % line 
+    inline-box-align: ;           initial | last integer 
+    line-height: ;                normal  number  length % 
+    line-stacking: ; 	          line-stacking-strategy  line-stacking-ruby  line-stacking-shift 
+    line-stacking-strategy: ; 	  inline-line-height | block-  line-height | max-height |  grid-height 
+    line-stacking-ruby: ;         exclude-ruby | include-ruby 
+    line-stacking-shift: ;        consider-shifts | disregard-  shifts 
+    text-height: ;                auto | font-size | text-size |  max-size 
+    vertical-align: ;             Baseline | sub | super | top | text-top | middle | bottom | text-bottom length % 
+*/
