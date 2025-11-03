@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomia de um Elemento HTML</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. THE SETUP */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f4f8; /* Fundo cinza-azulado claro */
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 0;
+  place-items: center;
+}
+
+.slide-container {
+  align-items: center;
+  background-color: #f8fafc; /* Fundo quase branco */
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 920px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+}
+
+/* 1.1 BACKGROUND STYLING (Subtle Gradient) */
+.slide-container::before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  background-image: linear-gradient(135deg, rgba(238, 242, 255, 0.5) 0%, rgba(248, 250, 252, 0) 30%);
+}
+
+.slide-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. CONSISTENT TYPOGRAPHY */
+
+/* Headings Font */
+.slide-container h1,
+.slide-container h2,
+.slide-container h3 {
+  color: #1e293b; /* Azul escuro */
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+/* Body Text Font */
+.slide-container p,
+.slide-container li,
+.slide-container .subtitle {
+  color: #334155; /* Cinza ardósia escuro */
+  font-family: 'Lato', sans-serif;
+}
+
+/* Consistent Font Sizes */
+.slide-container h1 {
+  font-size: 70px;
+}
+
+.slide-container .slide-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px; /* Margem reduzida */
+  text-align: left;
+  width: 100%;
+}
+
+.slide-container h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #4f46e5; /* Índigo */
+}
+
+/* Unified body text size */
+.slide-container p,
+.slide-container li {
+  font-size: 18px; /* Texto do corpo padrão */
+  line-height: 1.5;
+}
+
+.slide-container .subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 20px auto;
+}
+
+.slide-container .content-area {
+  align-items: flex-start; /* Alterado para flex-start para slides de texto */
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column; /* Padrão para coluna para slides de texto */
+}
+
+/* Code Block Styling */
+.slide-container pre {
+  background-color: #1e293b; /* Fundo Azul Escuro */
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.slide-container code {
+  color: #e2e8f0; /* Texto cinza-azulado claro */
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+}
+
+.slide-container code.inline {
+  background-color: #e2e8f0;
+  color: #1e293b;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* 3. LAYOUT DEFINITIONS */
+.title-layout {
+  text-align: center;
+}
+
+.two-column {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  width: 100%;
+  flex-grow: 1; /* Fazer colunas preencherem a área de conteúdo */
+}
+
+.three-column {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.three-column > div {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 30px;
+  text-align: center;
+  height: 100%;
+}
+
+.three-column i {
+    font-size: 40px;
+    color: #4f46e5;
+    margin-bottom: 20px;
+}
+
+.three-column h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.two-column ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 25px;
+}
+
+.two-column li {
+  margin-bottom: 15px;
+}
+
+.image-wrapper {
+  border-radius: 12px;
+  height: 100%; /* Preencher a altura da coluna */
+  overflow: hidden;
+  width: 100%;
+  max-height: 450px; /* Altura máxima para imagens */
+}
+
+.image-wrapper img {
+  height: 100%;
+  object-fit: contain; /* Alterado para contain */
+  width: 100%;
+}
+
+
+/* Helper for text-heavy slides */
+.text-slide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaço entre parágrafos */
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+/* Diagram */
+.diagram-container {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.diagram-element {
+    font-family: 'Courier New', monospace;
+    font-size: 24px;
+    font-weight: bold;
+}
+.diagram-tag {
+    color: #d946ef; /* Fúcsia */
+}
+.diagram-content {
+    color: #1e293b; /* Azul escuro */
+}
+.diagram-label {
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #4f46e5;
+    font-weight: 700;
+}
+.diagram-label span {
+    color: #334155;
+    font-weight: 400;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title_Slide -->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1 style="color: #1e293b;">Anatomia de um Elemento HTML</h1>
+        <p class="subtitle" style="color: #334155;">Explorando a anatomia de um elemento HTML, atributos e elementos vazios.</p>
+    </div>
+	<div class="image-wrapper">
+        <img src="aula0101.webp"alt="Diagrama de um atributo HTML">
+    </div>
+</div>
+
+<!-- Slide 2: As 3 Partes -->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">As 3 Partes de um Elemento</h2>
+    <div class="content-area">
+        <div class="diagram-container">
+            <div class="diagram-element">
+                <span class="diagram-tag">&lt;p&gt;</span>
+                <span class="diagram-content">Este é o conteúdo do parágrafo.</span>
+                <span class="diagram-tag">&lt;/p&gt;</span>
+            </div>
+            <p class="diagram-label">O elemento de parágrafo da imagem acima é divido em 3 partes:</p>
+        </div>
+        <div class="three-column" style="margin-top: 30px; height: 300px;">
+            <div>
+                <i class="fa-solid fa-code-branch"></i>
+                <h3>1. Tag de abertura</h3>
+                <p>Definida a partir do elemento (<code class="inline">&lt;p&gt;</code>). É criada com o sinal <code class="inline">&lt;</code>, seguido do nome da tag <code class="inline">p</code> e do sinal <code class="inline">&gt;</code>.</p>
+				<div class="image-wrapper" style="margin-top: 30px; max-height: 300px;">
+					<img src="aula0102.webp"alt="Diagrama de um atributo HTML">
+				</div>				
+            </div>
+            <div>
+                <i class="fa-solid fa-file-alt"></i>
+                <h3>2. Conteúdo</h3>
+                <p>Tudo aquilo entre a tag de abertura e a tag de fechamento. No caso de um parágrafo, o conteúdo será texto.</p>
+				<div class="image-wrapper" style="margin-top: 30px; max-height: 300px;">
+					<img src="aula0103.webp"alt="Diagrama de um atributo HTML">
+				</div>				
+            </div>
+            <div>
+                <i class="fa-solid fa-code-commit"></i>
+                <h3>3. Tag de fechamento</h3>
+                <p>Usa o mesmo nome da tag, mas com uma barra após o sinal de menor: <code class="inline">&lt;/p&gt;</code>.</p>
+				<div class="image-wrapper" style="margin-top: 30px; max-height: 300px;">
+					<img src="aula0104.webp"alt="Diagrama de um atributo HTML">
+				</div>				
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Elementos com Atributos -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Elementos com Atributos</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p>Elementos também podem ter <strong>atributos</strong> que possuem informações extras para uma tag. Importante ressaltar que os atributos devem ser inseridos na <strong>tag de abertura</strong> e não no conteúdo do elemento.</p>
+                <pre><code>&lt;p class="destaque"&gt;Meu parágrafo.&lt;/p&gt;
+&lt;input type="text" required&gt;</code></pre>
+            </div>
+            <div>
+                <p>O atributo <code class="inline">class</code> é um atributo que deve receber um valor. Para isso, é necessário usar o sinal <code class="inline">=</code> e atribuímos um valor para ele entre aspas.</p>
+                <p>Mas também existem atributos que não recebem valor, como o atributo <code class="inline">required</code> (um atributo booleano).</p>
+            </div>
+        </div>
+        <div class="image-wrapper" style="margin-top: 30px; max-height: 300px;">
+            <img src="aula0105.webp"alt="Diagrama de um atributo HTML">
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Elementos Vazios -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Elementos Vazios</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p>Até agora vimos elementos que precisam de conteúdo, mas no HTML também existem elementos que não possuem conteúdo. Chamamos esses elementos de <strong>elementos vazios</strong>.</p>
+                <p>Esses elementos não possuem uma tag de fechamento e nem precisam envolver qualquer tipo de conteúdo para cumprir seu objetivo.</p>
+                <p>Um exemplo de elemento vazio é a tag de imagem:</p>
+                <pre><code>&lt;img src="imagem.png" alt="Minha imagem"&gt;</code></pre>
+                <p style="margin-top: 15px;"><strong>Observação importante:</strong> Antigamente, elementos vazios possuíam uma barra antes do sinal de maior (<code class="inline">&lt;img /&gt;</code>), uma prática do XHTML. Em HTML5 moderno, isso não é mais necessário, mas ainda é válido.</p>
+            </div>
+            <div>
+                <div class="image-wrapper" style="max-height: 400px;">
+                    <img src="aula0106.webp" alt="Exemplo de um elemento vazio, como uma imagem">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
