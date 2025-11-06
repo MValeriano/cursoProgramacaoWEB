@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico de HTML: Listas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* 4. ESTRUTURA DAS SEÇÕES */
+        .section {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e2e8f0; /* Divisor suave */
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* 5. ESTILOS DE CONTEÚDO */
+
+        /* Tabela Resumo (Tag | Função) */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table th {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+            font-size: 16px;
+            background-color: #eef2ff;
+        }
+
+        .summary-table td:first-child {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #4f46e5;
+            font-size: 17px;
+        }
+        .summary-table td {
+            font-size: 17px;
+        }
+
+        /* Card de Definição de Tag */
+        .tag-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .tag-card-header {
+            padding: 20px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tag-card-header h3 {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            font-size: 24px;
+        }
+        
+        .tag-card-content {
+            padding: 30px;
+        }
+        
+        .tag-card-content p, 
+        .tag-card-content li {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .tag-card-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        /* Lista de Características */
+        .char-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .char-list li {
+             position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .char-list li::before {
+            content: '✓'; /* Checkmark */
+            color: #16a34a; /* Verde */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* Lista de Atributos */
+        .attr-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .attr-list li {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .attr-list li code {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        /* Bloco de Declaração (Código) */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>6. Listas</h1>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="section">
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;ul&gt;</td>
+                        <td>Lista não ordenada (com bolinhas)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;ol&gt;</td>
+                        <td>Lista ordenada (numerada)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;li&gt;</td>
+                        <td>Item de lista</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <ul> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;ul&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;ul&gt; é usada para agrupar uma coleção de itens que não têm uma ordem numérica ou sequencial específica. Cada item da lista é marcado com um bullet point (marcador) por padrão.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Pode conter apenas elementos &lt;li&gt; como filhos diretos</li>
+                        <li>Os marcadores podem ser customizados com CSS (disc, circle, square, none)</li>
+                        <li>Pode ser aninhado para criar sublistas</li>
+                        <li>Comumente usado para menus, índices e listas de itens sem ordem específica</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>type</code> - Define o tipo de marcador (disc, circle, square) - Obsoleto em HTML5, use CSS</li>
+                        <li><code>class</code> - Para aplicar estilos CSS</li>
+                        <li><code>id</code> - Para identificação única</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Lista com sublista --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item principal 1
+        &lt;ul&gt;
+            &lt;li&gt;Subitem 1.1&lt;/li&gt;
+            &lt;li&gt;Subitem 1.2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Item principal 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Lista com CSS personalizado --&gt;
+&lt;ul class="lista-personalizada"&gt;
+    &lt;li&gt;Item com estilo customizado&lt;/li&gt;
+    &lt;li&gt;Outro item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <ol> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;ol&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;ol&gt; é usada para agrupar uma coleção de itens onde a sequência é importante. Cada item é numerado automaticamente em ordem crescente.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Pode conter apenas elementos &lt;li&gt; como filhos diretos</li>
+                        <li>A numeração é automática e começa em 1 por padrão</li>
+                        <li>Suporta diferentes tipos de numeração (números, letras, algarismos romanos)</li>
+                        <li>Pode ser invertida ou começar de um número específico</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>type</code> - Define o tipo de numeração (1, A, a, I, i)</li>
+                        <li><code>start</code> - Define o número inicial da lista</li>
+                        <li><code>reversed</code> - Inverte a ordem da numeração (do maior para o menor)</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Lista ordenada padrão (numérica) --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Primeiro item&lt;/li&gt;
+    &lt;li&gt;Segundo item&lt;/li&gt;
+    &lt;li&gt;Terceiro item&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Lista ordenada com letras maiúsculas --&gt;
+&lt;ol type="A"&gt;
+    &lt;li&gt;Item A&lt;/li&gt;
+    &lt;li&gt;Item B&lt;/li&gt;
+    &lt;li&gt;Item C&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Lista ordenada começando em 10 --&gt;
+&lt;ol start="10"&gt;
+    &lt;li&gt;Item 10&lt;/li&gt;
+    &lt;li&gt;Item 11&lt;/li&gt;
+    &lt;li&gt;Item 12&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Lista ordenada reversa --&gt;
+&lt;ol reversed&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Lista com algarismos romanos --&gt;
+&lt;ol type="I"&gt;
+    &lt;li&gt;Capítulo I&lt;/li&gt;
+    &lt;li&gt;Capítulo II&lt;/li&gt;
+    &lt;li&gt;Capítulo III&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <li> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;li&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;li&gt; (list item) é usada para definir cada item em uma lista, seja ela ordenada (&lt;ol&gt;) ou não ordenada (&lt;ul&gt;). É o elemento que contém o conteúdo real de cada item da lista.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Deve estar dentro de um elemento &lt;ul&gt;, &lt;ol&gt; ou &lt;menu&gt;</li>
+                        <li>Pode conter outros elementos HTML (texto, imagens, links, outras listas)</li>
+                        <li>Em listas ordenadas, o valor de um item pode ser alterado com o atributo value</li>
+                    </ul>
+
+                    <h4>Dicas de Uso</h4>
+                    <ul class="char-list">
+                        <li>Para menus de navegação: Use &lt;ul&gt; com &lt;li&gt; contendo links</li>
+                        <li>Para instruções passo a passo: Use &lt;ol&gt; para indicar sequência</li>
+                        <li>Para listas de recursos/benefícios: Use &lt;ul&gt; com ícones customizados</li>
+                        <li>Para rankings/classificações: Use &lt;ol&gt; com numeração</li>
+                        <li>Sempre aninhe &lt;li&gt; dentro de &lt;ul&gt; ou &lt;ol&gt; - não use &lt;li&gt; sozinho</li>
+                    </ul>
+                    
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>value</code> - Em listas ordenadas, define o número do item (apenas para &lt;ol&gt;)</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Item em lista não ordenada --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item sem ordem específica&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Item em lista ordenada --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Primeiro item&lt;/li&gt;
+    &lt;li value="5"&gt;Item com valor 5 (a numeração pula para 5)&lt;/li&gt;
+    &lt;li&gt;Próximo item será 6&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Item com conteúdo complexo --&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;h3&gt;Título do item&lt;/h3&gt;
+        &lt;p&gt;Descrição do item.&lt;/p&gt;
+        &lt;img src="imagem.jpg" alt="Imagem do item"&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Item com link --&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

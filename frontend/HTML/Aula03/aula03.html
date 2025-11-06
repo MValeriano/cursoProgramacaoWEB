@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico de HTML: Links e Mídia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* 4. ESTRUTURA DAS SEÇÕES */
+        .section {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e2e8f0; /* Divisor suave */
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* 5. ESTILOS DE CONTEÚDO */
+
+        /* Tabela Resumo (Tag | Função) */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table th {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+            font-size: 16px;
+            background-color: #eef2ff;
+        }
+
+        .summary-table td:first-child {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #4f46e5;
+            font-size: 17px;
+        }
+        .summary-table td {
+            font-size: 17px;
+        }
+
+        /* Card de Definição de Tag */
+        .tag-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .tag-card-header {
+            padding: 20px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tag-card-header h3 {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            font-size: 24px;
+        }
+        
+        .tag-card-content {
+            padding: 30px;
+        }
+        
+        .tag-card-content p, 
+        .tag-card-content li {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .tag-card-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        /* Lista de Características */
+        .char-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .char-list li {
+             position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .char-list li::before {
+            content: '✓'; /* Checkmark */
+            color: #16a34a; /* Verde */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* Lista de Atributos */
+        .attr-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .attr-list li {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .attr-list li code {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        /* Bloco de Declaração (Código) */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>5. Links e Mídia</h1>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="section">
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;a&gt;</td>
+                        <td>Link / âncora</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;img&gt;</td>
+                        <td>Imagem</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;video&gt;</td>
+                        <td>Vídeo incorporado</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;audio&gt;</td>
+                        <td>Áudio</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;iframe&gt;</td>
+                        <td>Incorporar outra página / mapas / vídeos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <a> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;a&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;a&gt; (âncora) é fundamental para a navegação na web, permitindo conectar documentos e recursos. Pode linkar para páginas externas, seções internas da mesma página, emails, telefones e arquivos.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento inline</li>
+                        <li>Pode conter texto, imagens ou outros elementos</li>
+                        <li>O atributo href define o destino do link</li>
+                        <li>Pode ser usado para criar âncoras dentro da mesma página</li>
+                        <li>Suporta diferentes protocolos (http, mailto, tel, etc.)</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>href</code> - URL de destino (obrigatório para links funcionais)</li>
+                        <li><code>target</code> - Onde abrir o link (_blank, _self, _parent, _top)</li>
+                        <li><code>rel</code> - Relação com o documento de destino (nofollow, noopener, etc.)</li>
+                        <li><code>download</code> - Força o download do recurso</li>
+                        <li><code>title</code> - Informações adicionais sobre o link</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Link para página externa --&gt;
+&lt;a href="https://www.exemplo.com" target="_blank"&gt;Visite nosso site&lt;/a&gt;
+
+&lt;!-- Link para página interna --&gt;
+&lt;a href="sobre.html"&gt;Sobre nós&lt;/a&gt;
+
+&lt;!-- Âncora interna --&gt;
+&lt;a href="#secao1"&gt;Ir para seção 1&lt;/a&gt;
+
+&lt;!-- Link para email --&gt;
+&lt;a href="mailto:contato@empresa.com"&gt;Envie um email&lt;/a&gt;
+
+&lt;!-- Link para telefone --&gt;
+&lt;a href="tel:+5511999999999"&gt;Ligue para nós&lt;/a&gt;
+
+&lt;!-- Link de download --&gt;
+&lt;a href="documento.pdf" download&gt;Baixar PDF&lt;/a&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <img> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;img&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;img&gt; é usada para incorporar imagens em documentos HTML. É uma tag vazia (não possui tag de fechamento) e requer o atributo src para funcionar corretamente.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento inline</li>
+                        <li>Tag vazia (self-closing)</li>
+                        <li>Suporta formatos como JPEG, PNG, GIF, SVG, WebP</li>
+                        <li>O atributo alt é essencial para acessibilidade</li>
+                        <li>Pode ser tornada responsiva com CSS</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>src</code> - Caminho para o arquivo de imagem (obrigatório)</li>
+                        <li><code>alt</code> - Texto alternativo para acessibilidade (obrigatório)</li>
+                        <li><code>width</code> e <code>height</code> - Dimensões da imagem</li>
+                        <li><code>loading</code> - Controle de carregamento (lazy, eager)</li>
+                        <li><code>srcset</code> - Para imagens responsivas</li>
+                        <li><code>sizes</code> - Tamanhos para diferentes viewports</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Imagem básica --&gt;
+&lt;img src="foto.jpg" alt="Descrição da imagem"&gt;
+
+&lt;!-- Imagem com dimensões --&gt;
+&lt;img src="logo.png" alt="Logo da empresa" width="200" height="100"&gt;
+
+&lt;!-- Imagem responsiva --&gt;
+&lt;img src="imagem.jpg" 
+     srcset="imagem-pequena.jpg 480w, imagem-grande.jpg 1080w"
+     sizes="(max-width: 600px) 480px, 1080px"
+     alt="Imagem responsiva"&gt;
+
+&lt;!-- Imagem com carregamento lazy --&gt;
+&lt;img src="produto.jpg" alt="Foto do produto" loading="lazy"&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <video> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;video&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;video&gt; permite embedar conteúdo de vídeo com controles de reprodução nativos. Suporta múltiplos formatos através da tag &lt;source&gt;.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento inline</li>
+                        <li>Possui controles nativos de play, pause, volume</li>
+                        <li>Suporta formatos como MP4, WebM, OGG</li>
+                        <li>Pode conter múltiplas fontes para compatibilidade</li>
+                        <li>Texto dentro da tag é exibido se o vídeo não carregar</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>src</code> - Caminho para o arquivo de vídeo</li>
+                        <li><code>controls</code> - Exibe controles de reprodução</li>
+                        <li><code>autoplay</code> - Inicia a reprodução automaticamente</li>
+                        <li><code>loop</code> - Reproduz em loop</li>
+                        <li><code>muted</code> - Inicia sem áudio</li>
+                        <li><code>poster</code> - Imagem de capa antes da reprodução</li>
+                        <li><code>width</code> e <code>height</code> - Dimensões do player</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Vídeo básico com controles --&gt;
+&lt;video src="video.mp4" controls&gt;
+    Seu navegador não suporta o elemento de vídeo.
+&lt;/video&gt;
+
+&lt;!-- Vídeo com múltiplas fontes --&gt;
+&lt;video controls width="640" height="360"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    Seu navegador não suporta a tag de vídeo.
+&lt;/video&gt;
+
+&lt;!-- Vídeo autoplay em loop (muted é geralmente necessário para autoplay) --&gt;
+&lt;video autoplay muted loop&gt;
+    &lt;source src="animacao.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- Vídeo com imagem de capa --&gt;
+&lt;video controls poster="capa.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <audio> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;audio&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;audio&gt; funciona de forma similar à tag &lt;video&gt;, mas para conteúdo apenas de áudio. Também suporta múltiplos formatos através da tag &lt;source&gt;.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento inline</li>
+                        <li>Possui controles de reprodução específicos para áudio</li>
+                        <li>Suporta formatos como MP3, WAV, OGG</li>
+                        <li>Pode conter múltiplas fontes para compatibilidade</li>
+                        <li>Texto dentro da tag é exibido se o áudio não carregar</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>src</code> - Caminho para o arquivo de áudio</li>
+                        <li><code>controls</code> - Exibe controles de reprodução</li>
+                        <li><code>autoplay</code> - Inicia a reprodução automaticamente</li>
+                        <li><code>loop</code> - Reproduz em loop</li>
+                        <li><code>muted</code> - Inicia mudo</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Áudio básico com controles --&gt;
+&lt;audio src="musica.mp3" controls&gt;
+    Seu navegador não suporta o elemento de áudio.
+&lt;/audio&gt;
+
+&lt;!-- Áudio com múltiplas fontes --&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    Seu navegador não suporta a tag de áudio.
+&lt;/audio&gt;
+
+&lt;!-- Áudio autoplay em loop --&gt;
+&lt;audio autoplay loop&gt;
+    &lt;source src="background.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <iframe> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;iframe&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;iframe&gt; (inline frame) permite embedar conteúdo externo como outras páginas web, mapas, vídeos do YouTube, documentos PDF, etc. Cria um contexto de navegação separado.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento inline</li>
+                        <li>Cria um "navegador dentro do navegador"</li>
+                        <li>Útil para incorporar conteúdo de terceiros</li>
+                        <li>Requer cuidados com segurança e performance</li>
+                        <li>Pode ser restrito com atributos de sandboxing</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>src</code> - URL do conteúdo a ser incorporado</li>
+                        <li><code>width</code> e <code>height</code> - Dimensões do iframe</li>
+                        <li><code>title</code> - Descrição para acessibilidade (obrigatório)</li>
+                        <li><code>frameborder</code> - Exibe ou oculta a borda (0 ou 1)</li>
+                        <li><code>allowfullscreen</code> - Permite modo tela cheia</li>
+                        <li><code>sandbox</code> - Restringe permissões do iframe</li>
+                        <li><code>loading</code> - Controle de carregamento (lazy, eager)</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!-- Incorporar página externa --&gt;
+&lt;iframe src="https://www.exemplo.com" 
+        width="800" 
+        height="600"
+        title="Página de exemplo"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Incorporar vídeo do YouTube --&gt;
+&lt;iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Vídeo do YouTube"
+        frameborder="0" 
+        allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Incorporar mapa do Google Maps --&gt;
+&lt;iframe src="https://www.google.com/maps/embed?pb=..."
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy"
+        title="Localização no mapa"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Iframe com sandbox para segurança --&gt;
+&lt;iframe src="conteudo-externo.html"
+        sandbox="allow-scripts"
+        title="Conteúdo externo seguro"&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

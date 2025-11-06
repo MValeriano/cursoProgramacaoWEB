@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico de HTML</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* 4. ESTRUTURA DAS SEÇÕES */
+        .section {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e2e8f0; /* Divisor suave */
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            color: #1e293b;
+            margin: 0 0 30px 0;
+            border-bottom: 3px solid #4f46e5; /* Destaque índigo */
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* 5. ESTILOS DE CONTEÚDO */
+        
+        /* Lista de características (atributos) */
+        .char-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .char-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .char-list li::before {
+            content: '●';
+            color: #4f46e5; /* Índigo */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+        }
+
+        /* Lista de Atributos Globais */
+        .attribute-list {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .attribute-list h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #1e293b;
+            margin: 0 0 20px 0;
+        }
+
+        .attribute-list dl {
+            margin: 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 20px;
+        }
+
+        .attribute-list dt {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 17px;
+            white-space: nowrap;
+        }
+
+        .attribute-list dd {
+            margin-left: 0;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        /* Tabela Resumo (Tag | Função) */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table th {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+            font-size: 16px;
+            background-color: #eef2ff;
+        }
+
+        .summary-table td:first-child {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #4f46e5;
+            font-size: 17px;
+        }
+        .summary-table td {
+            font-size: 17px;
+        }
+
+        /* Card de Definição de Tag */
+        .tag-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .tag-card-header {
+            padding: 20px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tag-card-header h3 {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            font-size: 24px;
+        }
+        
+        .tag-card-content {
+            padding: 30px;
+        }
+        
+        .tag-card-content p, 
+        .tag-card-content li {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .tag-card-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .tag-card-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .tag-card-content li {
+             position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .tag-card-content li::before {
+            content: '✓'; /* Checkmark */
+            color: #16a34a; /* Verde */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* Bloco de Declaração (Código) */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+        /* Tabela de Atributos (ex: <html>) */
+        .attr-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .attr-table th, .attr-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+        .attr-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+        }
+        .attr-table td:first-child {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Guia de Referência HTML</h1>
+        </header>
+
+        <!-- SEÇÃO: ATRIBUTOS -->
+        <section class="section">
+            <h2 class="section-title">Sobre os Atributos</h2>
+            
+            <ul class="char-list">
+                <li>Todos os elementos HTML podem ter atributos;</li>
+                <li>Os atributos fornecem informações adicionais sobre um elemento;</li>
+                <li>Os atributos sempre são definidos na tag de abertura do elemento;</li>
+                <li>Os atributos podem ser em pares nome/valor (ex: nome=”valor”) ou apenas o nome;</li>
+            </ul>
+
+            <div class="attribute-list">
+                <h3>Atributos Globais</h3>
+                <dl>
+                    <dt>accesskey</dt>
+                    <dd>Define uma tecla de atalho para focar no elemento.</dd>
+                    
+                    <dt>class</dt>
+                    <dd>Define quais classes CSS serão aplicadas no elemento.</dd>
+                    
+                    <dt>hidden</dt>
+                    <dd>Define o elemento como oculto.</dd>
+                    
+                    <dt>id</dt>
+                    <dd>Define uma identificação única para o elemento.</dd>
+                    
+                    <dt>style</dt>
+                    <dd>Define estilos CSS diretamente no elemento.</dd>
+                    
+                    <dt>tabindex</dt>
+                    <dd>Define a posição do elemento na ordem de tabulação da página.</dd>
+                    
+                    <dt>title</dt>
+                    <dd>Define informações sobre o elemento.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: 1. ESTRUTURA BÁSICA -->
+        <section class="section">
+            <h2 class="section-title">1. Estrutura básica da página</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;!DOCTYPE&gt;</td>
+                        <td>Define o tipo de documento</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;html&gt;</td>
+                        <td>Define o documento HTML</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;head&gt;</td>
+                        <td>Contém metadados e configurações</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;title&gt;</td>
+                        <td>Define o título da aba do navegador</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;body&gt;</td>
+                        <td>Contém o conteúdo visível da página</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <!DOCTYPE> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;!DOCTYPE&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A Tag &lt;!DOCTYPE&gt; representa o tipo de documento e ajuda os navegadores a exibir as páginas da web corretamente.</p>
+                    <ul>
+                        <li>Deve aparecer apenas uma vez, no topo da página (antes de quaisquer tags HTML).</li>
+                        <li>A Tag &lt;!DOCTYPE&gt; não diferencia maiúsculas de minúsculas.</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <html> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;html&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>Tag usada para definir um documento HTML.<br>
+                    Esta é a tag raíz da estrutura do documento.<br>
+                    Com exceção do DOCTYPE todas as tags são filhas ou descendentes da tag html.</p>
+                    
+                    <table class="attr-table">
+                        <thead><tr><th>atributo</th><th>descrição</th><th>exemplo de uso</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td>xmlns</td>
+                                <td>Define que o arquivo está em conformidade com XHTML.</td>
+                                <td>http://www.w3.org/1999/xhtml</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Declaração :</h4>
+                    <pre><code>&lt;html&gt; 
+    &lt;!-- Conteúdo aqui --&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <head> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;head&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>Tag usada para definir o cabeçalho do documento HTML.<br>
+                    Esta tag serve como contêiner para as tags de cabeçalho.<br>
+                    Dentro desta tag pode ser incluído o título do documento, estilos, scripts, meta informações e etc.</p>
+                    <h4>Declaração :</h4>
+                    <pre><code>&lt;head&gt;
+    &lt;!-- Metadados aqui --&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: <title> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;title&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>Tag usada para definir o título do documento.<br>
+                    Esta tag deve ser usada dentro da tag head.</p>
+                    <ul>
+                        <li>O título da página normalmente é visto na janela do navegador.</li>
+                        <li>O título também é apresentado quando o usuário adiciona a página nos favoritos.</li>
+                        <li>O título é importante para mecanismos de pesquisas.</li>
+                    </ul>
+                    <h4>Declaração :</h4>
+                    <pre><code>&lt;title&gt;Título da Página&lt;/title&gt;</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: <body> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;body&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>Tag usada para definir o corpo do documento.<br>
+                    Todo o conteúdo da página deve estar dentro da tag body.<br>
+                    Todos atributos de layout foram removidos no HTML5.</p>
+                    <h4>Declaração :</h4>
+                    <pre><code>&lt;body&gt;
+    &lt;!-- Conteúdo visível aqui --&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: 2. CONTEÚDO E TEXTO -->
+        <section class="section">
+            <h2 class="section-title">2. Conteúdo e texto</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;h1&gt; até &lt;h6&gt;</td>
+                        <td>Títulos (h1 é o mais importante)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;p&gt;</td>
+                        <td>Parágrafo de texto</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;span&gt;</td>
+                        <td>Agrupa texto inline (sem quebra de linha)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;br&gt;</td>
+                        <td>Quebra de linha</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;hr&gt;</td>
+                        <td>Linha horizontal (separador)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <h1> a <h6> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;h1&gt; a &lt;h6&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>As tags de heading (&lt;h1&gt; a &lt;h6&gt;) representam seis níveis de títulos, onde &lt;h1&gt; é o mais importante e &lt;h6&gt; o menos importante. Essas tags são fundamentais para a estruturação do conteúdo e têm grande importância para SEO.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>&lt;h1&gt; deve ser usado apenas uma vez por página, representando o título principal</li>
+                        <li>A hierarquia deve ser respeitada (não pular de &lt;h1&gt; para &lt;h3&gt; sem usar &lt;h2&gt;)</li>
+                        <li>São elementos de bloco que ocupam toda a largura disponível</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;h1&gt;Título Principal da Página&lt;/h1&gt;
+&lt;h2&gt;Seção Importante&lt;/h2&gt;
+&lt;h3&gt;Subseção&lt;/h3&gt;
+&lt;h4&gt;Tópico específico&lt;/h4&gt;
+&lt;h5&gt;Detalhe&lt;/h5&gt;
+&lt;h6&gt;Informação menos relevante&lt;/h6&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <p> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;p&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;p&gt; é usada para agrupar sentenças e formar parágrafos. Os navegadores adicionam automaticamente uma margem antes e depois de cada parágrafo.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>É um elemento de bloco</li>
+                        <li>Automaticamente adiciona espaçamento vertical entre parágrafos</li>
+                        <li>Não deve ser usado para criar espaçamento entre outros elementos (use CSS para isso)</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;Este é um parágrafo de texto comum que contém várias sentenças formando uma unidade de pensamento.&lt;/p&gt;
+&lt;p&gt;Este é outro parágrafo separado do anterior pelo espaçamento automático.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <span> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;span&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;span&gt; é um contêiner genérico inline que não adiciona nenhuma formatação visual por si só, mas é muito útil para aplicar CSS ou manipular partes específicas do texto via JavaScript.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>É uma tag vazia (self-closing)</li>
+                        <li>É um elemento inline (não causa quebra de linha)</li>
+                        <li>Não tem significado semântico por padrão</li>
+                        <li>Ideal para selecionar trechos específicos de texto</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;Este é um texto com &lt;span class="destaque"&gt;uma parte destacada&lt;/span&gt; usando span.&lt;/p&gt;
+&lt;p&gt;Preço: R$ &lt;span id="preco-produto"&gt;99,90&lt;/span&gt;&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <br> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;br&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;br&gt; força uma quebra de linha no texto, sem adicionar o espaçamento vertical que um parágrafo novo adicionaria. É uma tag vazia (self-closing).</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Não possui tag de fechamento</li>
+                        <li>Útil para endereços, poemas ou situações onde a estrutura de linha é importante</li>
+                        <li>Não deve ser usado para criar espaçamento entre elementos (use CSS para isso)</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;Nome: João Silva&lt;br&gt;
+Endereço: Rua das Flores, 123&lt;br&gt;
+Cidade: São Paulo&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <hr> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;hr&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;hr&gt; cria uma linha horizontal que funciona como uma quebra temática entre parágrafos ou seções do conteúdo. No HTML5, representa uma quebra temática, não apenas visual.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>É uma tag vazia (self-closing)</li>
+                        <li>No HTML5 ganhou significado semântico de "mudança temática"</li>
+                        <li>Por padrão, os navegadores renderizam com uma borda e margens</li>
+                        <li>Pode ser estilizada com CSS para diferentes aparências</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;section&gt;
+    &lt;h2&gt;Primeira Seção&lt;/h2&gt;
+    &lt;p&gt;Conteúdo da primeira seção...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;Segunda Seção&lt;/h2&gt;
+    &lt;p&gt;Conteúdo da segunda seção...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO: 3. FORMATAÇÃO E ÊNFASE -->
+        <section class="section">
+            <h2 class="section-title">3. Formatação e ênfase</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;b&gt;</td>
+                        <td>Negrito (sem significado semântico)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;strong&gt;</td>
+                        <td>Texto importante (semântico + negrito)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;i&gt;</td>
+                        <td>Itálico</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;em&gt;</td>
+                        <td>Ênfase (semântico + itálico)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;mark&gt;</td>
+                        <td>Destacar texto (marca-texto)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <b> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;b&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;b&gt; é usada para chamar a atenção para um trecho de texto sem indicar que ele tem importância especial. Deve ser usada apenas quando nenhuma outra tag semântica for apropriada.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Apenas altera a aparência visual (negrito)</li>
+                        <li>Não transmite importância semântica</li>
+                        <li>Útil para palavras-chave, nomes de produtos ou outros elementos que precisam se destacar visualmente</li>
+                        <li>Elemento inline</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;Este é um texto normal e &lt;b&gt;esta parte está em negrito&lt;/b&gt; para destacar visualmente.&lt;/p&gt;
+&lt;p&gt;O produto &lt;b&gt;SuperClean&lt;/b&gt; está em promoção esta semana.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <strong> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;strong&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;strong&gt; dá ao texto um forte sentido de importância. Visualmente é renderizado em negrito, mas semanticamente transmite que o conteúdo é significativo.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Renderizado visualmente em negrito</li>
+                        <li>Transmite importância semântica</li>
+                        <li>Leitores de tela dão ênfase vocal ao conteúdo</li>
+                        <li>Elemento inline</li>
+                        <li>Pode ser aninhado para aumentar a importância</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;&lt;strong&gt;Atenção:&lt;/strong&gt; Este site requer JavaScript para funcionar corretamente.&lt;/p&gt;
+&lt;p&gt;Não &lt;strong&gt;nunca&lt;/strong&gt; compartilhe sua senha com outras pessoas.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <i> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;i&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;i&gt; é usada para texto que deve ser diferenciado do texto normal por razões tipográficas, sem significado especial.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Apenas altera a aparência visual (itálico)</li>
+                        <li>Não transmite ênfase semântica</li>
+                        <li>Usado para termos técnicos, pensamentos, ou texto em outra língua</li>
+                        <li>Elemento inline</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;O termo &lt;i&gt;quantum computing&lt;/i&gt; refere-se à computação quântica.&lt;/p&gt;
+&lt;p&gt;Ele pensou: &lt;i&gt;Será que isso vai funcionar?&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;O nome da espécie é &lt;i&gt;Felis catus&lt;/i&gt;.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <em> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;em&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;em&gt; indica ênfase textual. Visualmente é renderizado em itálico, mas semanticamente transmite que o conteúdo deve ser enfatizado.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Renderizado visualmente em itálico</li>
+                        <li>Transmite ênfase semântica</li>
+                        <li>Leitores de tela modificam a entonação para o conteúdo</li>
+                        <li>Elemento inline</li>
+                        <li>O nível de ênfase aumenta com o aninhamento</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;Você &lt;em&gt;precisa&lt;/em&gt; terminar este projeto até sexta-feira.&lt;/p&gt;
+&lt;p&gt;Eu &lt;em&gt;realmente&lt;/em&gt; gostei do filme.&lt;/p&gt;
+&lt;p&gt;É importante &lt;em&gt;&lt;em&gt;muito&lt;/em&gt; importante&lt;/em&gt; chegar no horário.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <mark> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;mark&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;mark&gt; é usada para destacar partes do texto que são relevantes no contexto atual, como se tivessem sido marcadas com um marcador amarelo.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Renderizado com fundo amarelo por padrão</li>
+                        <li>Útil para destacar termos em resultados de busca ou trechos relevantes</li>
+                        <li>Elemento inline</li>
+                        <li>A cor de destaque pode ser customizada com CSS</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;p&gt;O documento menciona que a reunião será na &lt;mark&gt;sala de conferências B&lt;/mark&gt; às 15h.&lt;/p&gt;
+&lt;p&gt;Search results for: HTML tags&lt;br&gt;
+HTML &lt;mark&gt;semantic&lt;/mark&gt; elements provide meaning to the content.&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: 4. ORGANIZAÇÃO DE LAYOUT -->
+        <section class="section">
+            <h2 class="section-title">4. Organização de layout</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;div&gt;</td>
+                        <td>Bloco genérico (ocupa toda linha)</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;section&gt;</td>
+                        <td>Seção da página</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;header&gt;</td>
+                        <td>Cabeçalho</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;footer&gt;</td>
+                        <td>Rodapé</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;nav&gt;</td>
+                        <td>Menu de navegação</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;article&gt;</td>
+                        <td>Conteúdo independente</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;main&gt;</td>
+                        <td>Conteúdo principal da página</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Card: <div> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;div&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;div&gt; é o elemento de bloco mais básico e versátil do HTML. Não possui significado semântico intrínseco e é usado principalmente para agrupamento e aplicação de estilos CSS.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>É um elemento de bloco (ocupa toda a largura disponível)</li>
+                        <li>Não possui significado semântico</li>
+                        <li>Pode conter qualquer tipo de conteúdo</li>
+                        <li>Amplamente usado para criar layouts com CSS</li>
+                        <li>Deve ser usado quando nenhum elemento semântico for apropriado</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;div class="container"&gt;
+    &lt;h1&gt;Título&lt;/h1&gt;
+    &lt;p&gt;Parágrafo dentro de uma div.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="sidebar" class="lateral"&gt;
+    &lt;h3&gt;Menu Lateral&lt;/h3&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <section> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;section&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;section&gt; representa uma seção genérica de conteúdo que forma uma parte autônoma da funcionalidade do documento. Deve conter um título (h1-h6) para identificar seu tema.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Possui significado semântico (agrupa conteúdo por tema)</li>
+                        <li>Deve ser usado para divisões temáticas, não apenas para estilização</li>
+                        <li>Pode ser aninhado</li>
+                        <li>Ideal para agrupar conteúdo relacionado</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;section class="introducao"&gt;
+    &lt;h2&gt;Introdução&lt;/h2&gt;
+    &lt;p&gt;Texto introdutório sobre o assunto...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class="beneficios"&gt;
+    &lt;h2&gt;Benefícios&lt;/h2&gt;
+    &lt;p&gt;Lista de benefícios...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <header> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;header&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;header&gt; é usada para agrupar elementos introdutórios ou links de navegação. Pode conter logos, títulos, menus e outras informações de cabeçalho.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Pode ser usado múltiplas vezes (em cada seção ou artigo)</li>
+                        <li>Normalmente contém elementos de heading (h1-h6)</li>
+                        <li>Pode conter elementos de navegação</li>
+                        <li>Não deve ser confundido com a tag &lt;head&gt;</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;header class="cabecalho-principal"&gt;
+    &lt;h1&gt;Meu Site&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href="#home"&gt;Home&lt;/a&gt;
+        &lt;a href="#sobre"&gt;Sobre&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;article&gt;
+    &lt;header&gt;
+        &lt;h2&gt;Título do Artigo&lt;/h2&gt;
+        &lt;p&gt;Por: Autor&lt;/p&gt;
+    &lt;/header&gt;
+&lt;/article&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <footer> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;footer&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;footer&gt; contém informações sobre o autor, copyright, links relacionados e informações de contato. Pode ser usado no nível da página ou em seções específicas.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Pode ser usado múltiplas vezes na página</li>
+                        <li>Normalmente contém informações de copyright, autor, links de contato</li>
+                        <li>Pode aparecer no final de artigos, seções ou da página inteira</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;footer class="rodape-principal"&gt;
+    &lt;p&gt;&amp;copy; 2024 Minha Empresa. Todos os direitos reservados.&lt;/p&gt;
+    &lt;address&gt;
+        Contato: &lt;a href="mailto:contato@empresa.com"&gt;contato@empresa.com&lt;/a&gt;
+    &lt;/address&gt;
+&lt;/footer&gt;
+
+&lt;article&gt;
+    &lt;p&gt;Conteúdo do artigo...&lt;/p&gt;
+    &lt;footer&gt;
+        &lt;p&gt;Publicado em 15 de Março, 2024&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/article&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <nav> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;nav&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;nav&gt; é usada para agrupar os principais links de navegação do site. Não é necessário colocar todos os links dentro de &lt;nav&gt;, apenas os blocos principais de navegação.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Usado para navegação principal, menus, índices</li>
+                        <li>Pode aparecer em diferentes partes da página</li>
+                        <li>Normalmente contém listas de links</li>
+                        <li>Não deve ser usado para todos os grupos de links, apenas para navegação principal</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;nav class="menu-principal"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#servicos"&gt;Serviços&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contato"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;nav class="breadcrumb"&gt;
+    &lt;a href="#home"&gt;Home&lt;/a&gt; &gt; 
+    &lt;a href="#produtos"&gt;Produtos&lt;/a&gt; &gt; 
+    &lt;span&gt;Detalhes&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <article> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;article&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;article&gt; é usada para conteúdo que pode ser distribuído independentemente, como posts de fórum, artigos de blog, notícias, comentários, etc.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Deve fazer sentido por si só, independente do resto do site</li>
+                        <li>Pode ser aninhado, mas o conteúdo interno deve ser relacionado ao artigo</li>
+                        <li>Pode conter &lt;header&gt;, &lt;footer&gt;, e outras seções</li>
+                        <li>Ideal para conteúdo que pode ser sindicado</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;article class="post-blog"&gt;
+    &lt;header&gt;
+        &lt;h2&gt;Título do Artigo&lt;/h2&gt;
+        &lt;p&gt;Publicado em &lt;time datetime="2024-03-15"&gt;15 de Março de 2024&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;p&gt;Conteúdo principal do artigo...&lt;/p&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;Autor: João Silva&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#comentarios"&gt;Comentários&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/footer&gt;
+&lt;/article&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <main> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;main&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;main&gt; é usada para envolver o conteúdo central único da página. Deve conter o conteúdo que é diretamente relacionado ao tópico central da página.</p>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Elemento de bloco</li>
+                        <li>Deve ser único por página (não pode haver múltiplos &lt;main&gt;)</li>
+                        <li>Não deve ser descendente de &lt;article&gt;, &lt;aside&gt;, &lt;footer&gt;, &lt;header&gt;, ou &lt;nav&gt;</li>
+                        <li>Ajuda na acessibilidade, permitindo que leitores de tela identifiquem o conteúdo principal</li>
+                        <li>Não substitui a estrutura semântica, complementa-a</li>
+                    </ul>
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;main class="conteudo-principal"&gt;
+    &lt;h1&gt;Título Principal da Página&lt;/h1&gt;
+    
+    &lt;section&gt;
+        &lt;h2&gt;Introdução&lt;/h2&gt;
+        &lt;p&gt;Texto introdutório...&lt;/p&gt;
+    &lt;/section&gt;
+    
+    &lt;article&gt;
+        &lt;h2&gt;Artigo em Destaque&lt;/h2&gt;
+        &lt;p&gt;Conteúdo do artigo...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
