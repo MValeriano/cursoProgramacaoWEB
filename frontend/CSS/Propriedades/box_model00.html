@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Box Model & Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #4f46e5, #3730a3);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+
+        /* Tabela de Valores */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #d946ef; /* Magenta */
+            white-space: nowrap;
+        }
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Guia CSS: Box Model & Layout</h1>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: clear -->
+            <div class="property-card">
+                <h3>clear</h3>
+                <div class="card-body">
+                    <p>A propriedade clear controla o fluxo próximo aos elementos flutuantes.</p>
+                    <p>A propriedade clear especifica o que deve acontecer com o elemento que está próximo a um elemento flutuante.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>none</td>
+                                <td>Default. O elemento não é empurrado abaixo dos elementos flutuantes à esquerda ou à direita</td>
+                            </tr>
+                            <tr>
+                                <td>left</td>
+                                <td>O elemento é empurrado abaixo dos elementos flutuantes à esquerda</td>
+                            </tr>
+                            <tr>
+                                <td>right</td>
+                                <td>O elemento é empurrado abaixo dos elementos flutuantes à direita</td>
+                            </tr>
+                            <tr>
+                                <td>both</td>
+                                <td>O elemento é empurrado abaixo dos elementos flutuantes esquerdo e direito</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Define esta propriedade para seu valor padrão</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>O elemento &lt;p&gt; é empurrado abaixo dos elementos flutuantes à esquerda:</p>
+                        <pre><code>img {
+    float: left;
+}</code></pre>
+                        <p>O elemento &lt;p&gt; não permite elementos flutuantes no lado esquerdo:</p>
+                        <pre><code>p.clear {
+    clear: left;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: display -->
+            <div class="property-card">
+                <h3>display</h3>
+                <div class="card-body">
+                    <p>A propriedade display especifica se/como um elemento é exibido.</p>
+                    <p>Cada elemento HTML tem um valor de exibição padrão dependendo do tipo de elemento que é. O valor de exibição padrão para a maioria dos elementos é block ou inline.</p>
+                    <p>Definir a propriedade display de um elemento altera apenas a forma como o elemento é exibido , NÃO o tipo de elemento que ele é. Portanto, um elemento inline com display: block;não pode ter outros elementos de bloco dentro dele.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>inline</td>
+                                <td>Exibe um elemento como um elemento embutido (como &lt;span&gt;). Quaisquer propriedades de altura e largura não terão efeito;</td>
+                            </tr>
+                            <tr>
+                                <td>block</td>
+                                <td>Exibe um elemento como um elemento de bloco (como &lt;p&gt;). Começa em uma nova linha e ocupa toda a largura;</td>
+                            </tr>
+                            <tr>
+                                <td>contents</td>
+                                <td>Faz o container desaparecer, tornando os elementos filhos filhos do elemento do próximo nível no DOM;</td>
+                            </tr>
+                            <tr>
+                                <td>flex</td>
+                                <td>Exibe um elemento como um contêiner flexível de nível de bloco;</td>
+                            </tr>
+                            <tr>
+                                <td>grid</td>
+                                <td>Exibe um elemento como um contêiner de grade em nível de bloco;</td>
+                            </tr>
+                            <tr>
+                                <td>inline-block</td>
+                                <td>Exibe um elemento como um contêiner de bloco de nível embutido. O próprio elemento é formatado como um elemento embutido, mas você pode aplicar valores de altura e largura;</td>
+                            </tr>
+                            <tr>
+                                <td>inline-flex</td>
+                                <td>Exibe um elemento como um contêiner flex de nível embutido;</td>
+                            </tr>
+                            <tr>
+                                <td>inline-grid</td>
+                                <td>Exibe um elemento como um contêiner de grade em nível embutido;</td>
+                            </tr>
+                            <tr>
+                                <td>inline-table</td>
+                                <td>O elemento é exibido como uma tabela de nível embutido;</td>
+                            </tr>
+                            <tr>
+                                <td>list-item</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;li&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>run-in</td>
+                                <td>Exibe um elemento como bloco ou embutido, dependendo do contexto;</td>
+                            </tr>
+                            <tr>
+                                <td>table</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;table&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-caption</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;caption&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-column-group</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;colgroup&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-header-group</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;thead&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-footer-group</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;tfoot&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-row-group</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;tbody&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-cell</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;td&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-column</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;col&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>table-row</td>
+                                <td>Deixe o elemento se comportar como um elemento &lt;tr&gt;;</td>
+                            </tr>
+                            <tr>
+                                <td>none</td>
+                                <td>O elemento é completamente removido;</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão;</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Uso de alguns valores de exibição diferentes:</p>
+                        <pre><code>p.ex1 {display: none;}
+p.ex2 {display: inline;}
+p.ex3 {display: block;}
+p.ex4 {display: inline-block;}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: float -->
+            <div class="property-card">
+                <h3>float</h3>
+                <div class="card-body">
+                    <p>A propriedade float especifica se um elemento deve flutuar para a esquerda, direita ou nada.</p>
+                    <p>Nota: Elementos absolutamente posicionados ignoram a propriedade float!</p>
+                    <p>Nota: Elementos próximos a um elemento flutuante fluirão ao redor dele. Para evitar isso, use a propriedade clear ou o hack clearfix.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>none</td>
+                                <td>O elemento não flutua (será exibido exatamente onde ocorre no texto). Isso é padrão</td>
+                            </tr>
+                            <tr>
+                                <td>left</td>
+                                <td>O elemento flutua à esquerda de seu contêiner</td>
+                            </tr>
+                            <tr>
+                                <td>right</td>
+                                <td>O elemento flutua à direita de seu contêiner</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Deixe uma imagem flutuar para a direita:</p>
+                        <pre><code>img {
+    float: right;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: height -->
+            <div class="property-card">
+                <h3>height</h3>
+                <div class="card-body">
+                    <p>A propriedade height define a altura de um elemento.</p>
+                    <p>A altura de um elemento não inclui preenchimento, bordas ou margens!</p>
+                    <p>Se height: auto; o elemento ajustará automaticamente sua altura para permitir que seu conteúdo seja exibido corretamente.</p>
+                    <p>Se height for definido como um valor numérico (como pixels, (r)em, porcentagens), se o conteúdo não se encaixar na altura especificada, ele transbordará. Como o contêiner manipulará o conteúdo transbordante é definido pela propriedade overflow .</p>
+                    <p>Nota: As propriedades min-height e max-height substituem a propriedade height.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>auto</td>
+                                <td>The browser calculates the height. This is default</td>
+                            </tr>
+                            <tr>
+                                <td>length</td>
+                                <td>Defines the height in px, cm, etc. Read about length units</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Defines the height in percent of the containing block</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Sets this property to its default value.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Inherits this property from its parent element.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a altura de um elemento para 50% da altura do elemento pai:</p>
+                        <pre><code>#parent {
+    height: 100px;
+}
+#child {
+    height: 50%;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: max-height -->
+            <div class="property-card">
+                <h3>max-height</h3>
+                <div class="card-body">
+                    <p>A propriedade max-height define a altura máxima de um elemento.</p>
+                    <p>Se o conteúdo for maior que a altura máxima, ele transbordará. Como o contêiner manipulará o conteúdo transbordante é definido pela propriedade overflow .</p>
+                    <p>Se o conteúdo for menor que a altura máxima, a propriedade max-height não terá efeito.</p>
+                    <p>Nota: Isso evita que o valor da propriedade height fique maior que max-height. O valor da propriedade max-height substitui a propriedade height.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>none</td>
+                                <td>Sem altura máxima. Isso é padrão</td>
+                            </tr>
+                            <tr>
+                                <td>length</td>
+                                <td>Define a altura máxima em px, cm, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Define a altura máxima em porcentagem do bloco que contém</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a altura máxima de um elemento &lt;p&gt; para 50 pixels:</p>
+                        <pre><code>p.ex1 {
+    max-height: 50px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: min-height -->
+            <div class="property-card">
+                <h3>min-height</h3>
+                <div class="card-body">
+                    <p>A propriedade min-height define a altura mínima de um elemento.</p>
+                    <p>Se o conteúdo for menor que a altura mínima, a altura mínima será aplicada.</p>
+                    <p>Se o conteúdo for maior que a altura mínima, a propriedade min-height não tem efeito.</p>
+                    <p>Nota: Isso evita que o valor da propriedade height fique menor que min-height.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>O valor padrão é 0. Define a altura mínima em px, cm, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Define a altura mínima em porcentagem do bloco que contém</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a altura mínima de um elemento &lt;p&gt; para 200 pixels:</p>
+                        <pre><code>p.ex1 {
+    min-height: 200px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: width -->
+            <div class="property-card">
+                <h3>width</h3>
+                <div class="card-body">
+                    <p>A propriedade width define a largura de um elemento.</p>
+                    <p>A largura de um elemento não inclui preenchimento, bordas ou margens!</p>
+                    <p>Nota: As propriedades min-width e max-width substituem a propriedade width.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>auto</td>
+                                <td>Valor padrão. O navegador calcula a largura.</td>
+                            </tr>
+                            <tr>
+                                <td>length</td>
+                                <td>Define a largura em px, cm, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Define a largura em porcentagem do bloco que o contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a largura de três elementos &lt;div&gt;:</p>
+                        <pre><code>div.a {
+    width: auto;
+}
+div.b {
+    width: 150px;
+}
+div.c {
+    width: 50%;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: max-width -->
+            <div class="property-card">
+                <h3>max-width</h3>
+                <div class="card-body">
+                    <p>A propriedade max-width define a largura máxima de um elemento.</p>
+                    <p>Se o conteúdo for maior que a largura máxima, ele alterará automaticamente a altura do elemento.</p>
+                    <p>Se o conteúdo for menor que a largura máxima, a propriedade max-width não terá efeito.</p>
+                    <p>Nota: Isso evita que o valor da propriedade largura fique maior que max-width. O valor da propriedade max-width substitui a propriedade width.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>none</td>
+                                <td>Sem largura máxima. Isso é padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>length</td>
+                                <td>Define a largura máxima em px, cm, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Define a largura máxima em porcentagem do bloco que contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a largura máxima de um elemento &lt;p&gt; para 150 pixels:</p>
+                        <pre><code>p.ex1 {
+    max-width: 150px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: min-width -->
+            <div class="property-card">
+                <h3>min-width</h3>
+                <div class="card-body">
+                    <p>A propriedade min-width define a largura mínima de um elemento.</p>
+                    <p>Se o conteúdo for menor que a largura mínima, a largura mínima será aplicada.</p>
+                    <p>Se o conteúdo for maior que a largura mínima, a propriedade min-width não terá efeito.</p>
+                    <p>Nota: Isso evita que o valor da propriedade largura fique menor que min-width.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>O valor padrão é 0. Define a largura mínima em px, cm, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Define a largura mínima em porcentagem do bloco que contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a largura mínima de um elemento &lt;span&gt; para 500 pixels:</p>
+                        <pre><code>/* (O exemplo de código estava faltando no seu texto, 
+   mas esta seria a sintaxe) */
+span.ex1 {
+    min-width: 500px;
+    display: inline-block; /* min-width não se aplica a inline */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: overflow -->
+            <div class="property-card">
+                <h3>overflow</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow especifica o que deve acontecer se o conteúdo ultrapassar a caixa de um elemento.</p>
+                    <p>Esta propriedade especifica se o conteúdo deve ser recortado ou adicionado barras de rolagem quando o conteúdo de um elemento é muito grande para caber em uma área especificada.</p>
+                    <p>Nota: A propriedade overflow só funciona para elementos de bloco com uma altura especificada.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>visible</td>
+                                <td>O estouro não é cortado. Ele renderiza fora da caixa do elemento. Isso é padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>hidden</td>
+                                <td>O estouro é cortado e o restante do conteúdo ficará invisível. O conteúdo pode ser rolado programaticamente (por exemplo, definindo scrollLeft ou scrollTo()).</td>
+                            </tr>
+                            <tr>
+                                <td>clip</td>
+                                <td>O estouro é cortado e o restante do conteúdo ficará invisível. Proíbe a rolagem, incluindo rolagem programática.</td>
+                            </tr>
+                            <tr>
+                                <td>scroll</td>
+                                <td>O estouro é cortado, mas uma barra de rolagem é adicionada para ver o restante do conteúdo.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>Se o estouro for cortado, uma barra de rolagem deve ser adicionada para ver o restante do conteúdo.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Mostrar diferentes valores de propriedade overflow(estouro):</p>
+                        <pre><code>div.ex1 {
+    overflow: scroll;
+}
+div.ex2 {
+    overflow: hidden;
+}
+div.ex3 {
+    overflow: auto;
+}
+div.ex4 {
+    overflow: clip;
+}
+div.ex5 {
+    overflow: visible;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: overflow-wrap -->
+            <div class="property-card">
+                <h3>overflow-wrap</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow-wrap especifica se o navegador pode ou não quebrar linhas com palavras longas, se elas ultrapassarem o contêiner.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>normal</td>
+                                <td>Palavras longas não quebram, mesmo que transbordem o recipiente. Este é o padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>anywhere</td>
+                                <td>Palavras longas serão quebradas se transbordarem o contêiner.</td>
+                            </tr>
+                            <tr>
+                                <td>break-word</td>
+                                <td>Palavras longas serão quebradas se transbordarem o contêiner.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Permita que o navegador tenha permissão para quebrar linhas com palavras longas, se elas ultrapassarem o contêiner:</p>
+                        <pre><code>div {
+    overflow-wrap: break-word;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: overflow-style -->
+            <div class="property-card">
+                <h3>overflow-style</h3>
+                <div class="card-body">
+                    <p>Especifica os métodos de rolagem preferidos para elementos que estouram.</p>
+                    <p>A propriedade overflow-style só tem efeito em elementos que estouram usando a propriedade overflow.</p>
+                    <p>Ao usar barras de rolagem de ocultação automática, você deve garantir que seu conteúdo tenha preenchimento suficiente para evitar que o conteúdo interativo seja obscurecido abaixo da barra de rolagem.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>auto</td>
+                                <td>Valor inicial. Não indica preferência.</td>
+                            </tr>
+                            <tr>
+                                <td>none</td>
+                                <td>Indica que o elemento não exibe nenhum mecanismo de rolagem, mesmo quando seu conteúdo transborda. Ao contrário de overflow: hidden, elementos com estilo overflow: nenhum ainda pode ser rolado via toque panorâmico, teclado ou roda do mouse.</td>
+                            </tr>
+                            <tr>
+                                <td>scrollbar</td>
+                                <td>Indica que o elemento exibe um controle clássico do tipo barra de rolagem quando seu conteúdo transborda. As barras de rolagem não sobrepõem o conteúdo e, portanto, ocupam espaço de layout extra ao longo das bordas do elemento onde aparecem.</td>
+                            </tr>
+                            <tr>
+                                <td>panner</td>
+                                <td>Um panner é normalmente um retângulo mostrado em um canto do elemento, com um retângulo menor dentro. O retângulo maior representa todo o conteúdo disponível do elemento e o menor a parte visível. O retângulo menor pode ser movido pelo usuário para mover o conteúdo do elemento de acordo.</td>
+                            </tr>
+                            <tr>
+                                <td>move</td>
+                                <td>O valor ‘move’ refere-se a um método onde o usuário pode mover o conteúdo do elemento diretamente (em vez de indiretamente movendo uma barra de rolagem ou um panner). Normalmente, o ponteiro do mouse muda para uma mão ou uma cruz de quatro setas para indicar que o usuário pode arrastar o conteúdo com o mouse. Às vezes, o usuário precisa ativar explicitamente o modo de movimentação e, nesse caso, muitas vezes pode usar arrastar (com o mouse) e eventos de tecla para mover o conteúdo.</td>
+                            </tr>
+                            <tr>
+                                <td>marquee</td>
+                                <td>O efeito letreiro (valor ‘marquee’) consiste na movimentação do conteúdo de forma autônoma, sem nenhum evento de usuário para controlá-lo. Um usuário que espera o suficiente acabará vendo todo o conteúdo que transborda.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>A preferência superior para um mecanismo de rolagem é um panner. Se não estiver disponível, nenhum mecanismo de rolagem visível deve ser exibido.</p>
+                        <pre><code>div {
+    overflow-style: panner;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: overflow-x -->
+            <div class="property-card">
+                <h3>overflow-x</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow-x especifica se o conteúdo deve ser recortado, adicionado uma barra de rolagem ou exibido o conteúdo de estouro de um elemento de nível de bloco, quando ele transborda nas bordas esquerda e direita.</p>
+                    <p>Dica: Use a propriedade overflow-y para determinar o corte nas bordas superior e inferior.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>visible</td>
+                                <td>O conteúdo não é recortado e pode ser renderizado fora das bordas esquerda e direita. Isso é padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>hidden</td>
+                                <td>O conteúdo é cortado - e nenhum mecanismo de rolagem é fornecido.</td>
+                            </tr>
+                            <tr>
+                                <td>scroll</td>
+                                <td>O conteúdo é cortado e um mecanismo de rolagem é fornecido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>Deve fazer com que um mecanismo de rolagem seja fornecido para caixas transbordantes.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Mostrar diferentes valores de propriedade overflow-x:</p>
+                        <pre><code>div.ex1 {
+    overflow-x: scroll;
+}
+div.ex2 {
+    overflow-x: hidden;
+}
+div.ex3 {
+    overflow-x: auto;
+}
+div.ex4 {
+    overflow-x: visible;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: overflow-y -->
+            <div class="property-card">
+                <h3>overflow-y</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow-y especifica se o conteúdo deve ser recortado, adicionado uma barra de rolagem ou exibido o conteúdo de estouro de um elemento de nível de bloco, quando ele transborda nas bordas superior e inferior.</p>
+                    <p>Dica: Use a propriedade overflow-x para determinar o corte nas bordas esquerda e direita.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>visible</td>
+                                <td>O conteúdo não é recortado e pode ser renderizado fora da caixa de conteúdo. Isso é padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>hidden</td>
+                                <td>O conteúdo é cortado - e nenhum mecanismo de rolagem é fornecido.</td>
+                            </tr>
+                            <tr>
+                                <td>scroll</td>
+                                <td>O conteúdo é cortado e um mecanismo de rolagem é fornecido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>Deve fazer com que um mecanismo de rolagem seja fornecido para caixas transbordantes.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Mostrar diferentes valores de propriedade overflow-y:</p>
+                        <pre><code>div.ex1 {
+    overflow-y: scroll;
+}
+div.ex2 {
+    overflow-y: hidden;
+}
+div.ex3 {
+    overflow-y: auto;
+}
+div.ex4 {
+    overflow-y: visible;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: margin -->
+            <div class="property-card">
+                <h3>margin</h3>
+                <div class="card-body">
+                    <p>A propriedade margin define as margens de um elemento e é uma propriedade abreviada para as seguintes propriedades: margem superior,margem direita,margem inferior,margem esquerda.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica uma margem em px, pt, cm, etc. O valor padrão é 0. Valores negativos são permitidos.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica uma margem em porcentagem da largura do elemento contido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>O navegador calcula uma margem.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a margem para todos os quatro lados de um elemento &lt;p&gt; para 35 pixels:</p>
+                        <pre><code>p {
+    margin: 35px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: margin-bottom -->
+            <div class="property-card">
+                <h3>margin-bottom</h3>
+                <div class="card-body">
+                    <p>A propriedade margin-bottom define a margem inferior de um elemento.</p>
+                    <p>Nota: Valores negativos são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica uma margem inferior fixa em px, cm, em, etc. O valor padrão é 0. Valores negativos são permitidos.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica uma margem inferior em porcentagem da largura do elemento contido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>O navegador calcula uma margem inferior.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a margem inferior de um elemento &lt;p&gt; para 25 pixels:</p>
+                        <pre><code>p.ex1 {
+    margin-bottom: 25px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: margin-left -->
+            <div class="property-card">
+                <h3>margin-left</h3>
+                <div class="card-body">
+                    <p>A propriedade margin-left define a margem esquerda de um elemento.</p>
+                    <p>Nota: Valores negativos são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica uma margem esquerda fixa em px, pt, cm, etc. O valor padrão é 0px. Valores negativos são permitidos.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica uma margem esquerda em porcentagem da largura do elemento contido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>O navegador calcula uma margem esquerda.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a margem esquerda de um elemento &lt;p&gt; para 30 pixels:</p>
+                        <pre><code>p.ex1 {
+    margin-left: 30px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: margin-right -->
+            <div class="property-card">
+                <h3>margin-right</h3>
+                <div class="card-body">
+                    <p>A propriedade margin-right define a margem direita de um elemento.</p>
+                    <p>Nota: Valores negativos são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica uma margem direita fixa em px, pt, cm, etc. O valor padrão é 0px.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica uma margem direita em porcentagem da largura do elemento contido.</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>O navegador calcula uma margem direita.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a margem direita de um elemento &lt;p&gt; para 150 pixels:</p>
+                        <pre><code>p.ex1 {
+    margin-right: 150px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: margin-top -->
+            <div class="property-card">
+                <h3>margin-top</h3>
+                <div class="card-body">
+                    <p>A propriedade margin-top define a margem superior de um elemento.</p>
+                    <p>Nota: Valores negativos são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica uma margem superior fixa em px, pt, cm, etc. O valor padrão é 0px. Valores negativos são permitidos.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica uma margem superior em porcentagem da largura do elemento contido</td>
+                            </tr>
+                            <tr>
+                                <td>auto</td>
+                                <td>O navegador calcula uma margem superior</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina a margem superior de um elemento &lt;p&gt; para 25 pixels:</p>
+                        <pre><code>p.ex1 {
+    margin-top: 25px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: padding -->
+            <div class="property-card">
+                <h3>padding</h3>
+                <div class="card-body">
+                    <p>O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.</p>
+                    <p>A propriedade padding é uma propriedade abreviada para: padding-top, padding-right, padding-bottom, padding-left</p>
+                    <p>Nota: O preenchimento cria espaço extra dentro de um elemento, enquanto a margem cria espaço extra ao redor de um elemento.</p>
+                    <p>Esta propriedade pode ter de um a quatro valores.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica o preenchimento em px, pt, cm, etc. O valor padrão é 0.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica o preenchimento em porcentagem da largura do elemento que o contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina o preenchimento para todos os quatro lados de um elemento &lt;p&gt; para 35 pixels:</p>
+                        <pre><code>p {
+    padding: 35px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: padding-bottom -->
+            <div class="property-card">
+                <h3>padding-bottom</h3>
+                <div class="card-body">
+                    <p>O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.</p>
+                    <p>A propriedade padding-bottom define o preenchimento inferior (espaço) de um elemento.</p>
+                    <p>Nota: Valores negativos não são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica um preenchimento inferior fixo em px, pt, cm, etc. O valor padrão é 0.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica um preenchimento inferior em porcentagem da largura do elemento contido.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina o preenchimento inferior de um elemento &lt;p&gt; para 25 pixels:</p>
+                        <pre><code>p.ex1 {
+    padding-bottom: 25px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: padding-left -->
+            <div class="property-card">
+                <h3>padding-left</h3>
+                <div class="card-body">
+                    <p>O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.</p>
+                    <p>A propriedade padding-left define o preenchimento esquerdo (espaço) de um elemento.</p>
+                    <p>Nota: Valores negativos não são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica um preenchimento esquerdo fixo em px, pt, cm, etc. O valor padrão é 0.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica um preenchimento esquerdo em porcentagem da largura do elemento que o contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina o preenchimento esquerdo de um elemento &lt;p&gt; para 50 pixels:</p>
+                        <pre><code>p.ex1 {
+    padding-left: 50px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: padding-right -->
+            <div class="property-card">
+                <h3>padding-right</h3>
+                <div class="card-body">
+                    <p>O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.</p>
+                    <p>A propriedade padding-right define o preenchimento direito (espaço) de um elemento.</p>
+                    <p>Nota: Valores negativos não são permitidos</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica um preenchimento direito fixo em px, pt, cm, etc. O valor padrão é 0.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica um preenchimento à direita em porcentagem da largura do elemento que o contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina o preenchimento correto de um elemento &lt;p&gt; para 150 pixels:</p>
+                        <pre><code>p.ex1 {
+    padding-right: 150px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: padding-top -->
+            <div class="property-card">
+                <h3>padding-top</h3>
+                <div class="card-body">
+                    <p>O preenchimento de um elemento é o espaço entre seu conteúdo e sua borda.</p>
+                    <p>A propriedade padding-top define o preenchimento superior (espaço) de um elemento.</p>
+                    <p>Nota: Valores negativos não são permitidos.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>length</td>
+                                <td>Especifica um preenchimento superior fixo em px, pt, cm, etc. O valor padrão é 0.</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Especifica um preenchimento superior em porcentagem da largura do elemento que o contém.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Defina o preenchimento superior de um elemento &lt;p&gt; para 25 pixels:</p>
+                        <pre><code>p.ex1 {
+    padding-top: 25px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Marquee -->
+            <div class="property-card">
+                <h3>Propriedades Marquee (Obsoletas)</h3>
+                <div class="card-body">
+                    <p>As seguintes propriedades são listadas para referência, mas são obsoletas e não devem ser usadas em projetos modernos:</p>
+                    <pre><code>/* marquee-direction */
+/* marquee-loop */
+/* marquee-play-count */
+/* marquee-speed */
+/* marquee-style */</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: rotate -->
+            <div class="property-card">
+                <h3>rotate</h3>
+                <div class="card-body">
+                    <p>A propriedade de rotação permite girar elementos.</p>
+                    <p>A propriedade de rotação define um valor para quanto um elemento é girado no sentido horário em torno do eixo z. Para girar um elemento em torno do eixo x ou eixo y ou de outras maneiras, isso deve ser definido.</p>
+                    <p>Os valores para a propriedade de rotação podem ser fornecidos como um ângulo, nome do eixo + ângulo ou três valores + ângulo.</p>
+                    <p>Se for dado um ângulo, o elemento é girado no sentido horário em torno do eixo z.</p>
+                    <p>Se o nome do eixo + ângulo for fornecido, o elemento será girado no sentido horário em torno desse eixo fornecido.</p>
+                    <p>Se três valores são fornecidos + ângulo, os três valores definem um vetor em torno do qual o elemento é girado.</p>
+                    <p>Para entender melhor a propriedade de rotação, veja uma demonstração.</p>
+                    <p>Nota: Uma técnica alternativa para girar um elemento é usar a propriedade de transformação CSS com a função Rotate() do CSS. A propriedade de rotação do CSS, conforme explicado nesta página da Web, é sem dúvida uma maneira mais simples e direta de dimensionar um elemento.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>axis</td>
+                                <td>Opcional. Se não estiver definido, o eixo z será o padrão. Define o eixo para girar o elemento ao redor. Valores possíveis: x, y, z</td>
+                            </tr>
+                            <tr>
+                                <td>angle</td>
+                                <td>Define o quanto um elemento é girado. Unidades possíveis: graus, rad, volta.</td>
+                            </tr>
+                            <tr>
+                                <td>vector angle</td>
+                                <td>Três números definem um vetor para o elemento a ser girado. Os números são as coordenadas x, y e z para o vetor, respectivamente. O último valor é o ângulo de quanto girar. Valores possíveis: número, número, número, ângulo.</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Alterar a rotação de um elemento:</p>
+                        <pre><code>div {
+    rotate: 30deg;
+}</code></pre>
+                        <p>Quando a propriedade de rotação é definida com vetor e ângulo, o elemento é girado em torno desse vetor. Aqui, o vetor é [1 1 0] no plano 2D com coordenadas x e y e, em seguida, girado 60 graus:</p>
+                        <pre><code>div {
+    rotate: 1 1 0 60deg;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: rotation-point -->
+            <div class="property-card">
+                <h3>rotation-point</h3>
+                <div class="card-body">
+                    <p>A propriedade do ponto de rotação é um par de valores que define um ponto como um deslocamento da borda superior esquerda da borda.</p>
+                    <p>Dica: A propriedade do ponto de rotação é usada em conjunto com a propriedade de rotação.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>left top</td>
+                                <td>Se você especificar apenas uma palavra-chave, o segundo valor será "centro"</td>
+                            </tr>
+                            <tr>
+                                <td>left center</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>left bottom</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>right top</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>right center</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>right bottom</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>center top</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>center center</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>center bottom</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>x% y%</td>
+                                <td>As porcentagens referem-se à largura e altura da caixa de borda</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Gire os elementos h1 180 graus (de cabeça para baixo):</p>
+                        <pre><code>h1
+{
+    rotation-point:50% 50%;
+    rotation:180deg;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: rotation -->
+            <div class="property-card">
+                <h3>rotation</h3>
+                <div class="card-body">
+                    <p>A propriedade de rotação gira um elemento de nível de bloco no sentido anti-horário em torno de um determinado ponto definido pela propriedade de ponto de rotação.</p>
+                    <p>Dica: A borda, preenchimento, conteúdo e planos de fundo (que não são fixos) também são girados!</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>angle</td>
+                                <td>A rotação do elemento. Valores possíveis: 0deg a 360deg</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Gire os elementos h1 180 graus (de cabeça para baixo):</p>
+                        <pre><code>h1
+{
+    rotation-point:50% 50%;
+    rotation:180deg;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: visibility -->
+            <div class="property-card">
+                <h3>visibility</h3>
+                <div class="card-body">
+                    <p>A propriedade de visibilidade especifica se um elemento é visível ou não.</p>
+                    
+                    <div class="tip-box">
+                        <p><strong>Dica:</strong> Elementos ocultos ocupam espaço na página. Use a propriedade display para ocultar e remover um elemento do layout do documento!</p>
+                    </div>
+
+                    <h4>Valores possíveis:</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>visible</td>
+                                <td>Valor padrão. O elemento é visível.</td>
+                            </tr>
+                            <tr>
+                                <td>hidden</td>
+                                <td>O elemento está oculto (mas ainda ocupa espaço).</td>
+                            </tr>
+                            <tr>
+                                <td>collapse</td>
+                                <td>Somente para linhas de tabela (&lt;tr&gt;), grupos de linhas (&lt;tbody&gt;), colunas (&lt;col&gt;), grupos de colunas (&lt;colgroup&gt;). Esse valor remove uma linha ou coluna, mas não afeta o layout da tabela. O espaço ocupado pela linha ou coluna estará disponível para outros conteúdos. Se o recolhimento for usado em outros elementos, ele será renderizado como "oculto".</td>
+                            </tr>
+                            <tr>
+                                <td>initial</td>
+                                <td>Configura esta propriedade para seu valor padrão.</td>
+                            </tr>
+                            <tr>
+                                <td>inherit</td>
+                                <td>Herda esta propriedade de seu elemento pai.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <p>Torne os elementos &lt;h2&gt; visíveis e ocultos:</p>
+                        <pre><code>h2.a {
+    visibility: visible;
+}
+h2.b {
+    visibility: hidden;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Exemplo') {
+                    btn.textContent = 'Ver Exemplo';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Exemplo';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplo';
+            }
+        }
+    </script>
+
+</body>
+</html>

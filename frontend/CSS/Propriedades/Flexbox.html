@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades Flexbox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #e0f2fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #16a34a;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f0fdf4;
+            border-bottom: 1px solid #dcfce7;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #16a34a;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #16a34a;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #15803d;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        .live-demo-area {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .live-demo-area .container {
+            border: 2px solid #333;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: #f9f9f9;
+        }
+
+        .live-demo-area .item {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .live-demo-area .special {
+            background: #2196F3;
+        }
+
+        .live-demo-area .highlight {
+            background: #FF9800;
+        }
+
+        /* Exemplo 1: Navigation Bar */
+        .live-demo-area .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            padding: 15px 20px;
+        }
+
+        .live-demo-area .nav-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .live-demo-area .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .live-demo-area .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .live-demo-area .nav-links a:hover {
+            background: #555;
+        }
+
+        /* Exemplo 2: Card Grid */
+        .live-demo-area .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .live-demo-area .card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .live-demo-area .card.featured {
+            flex: 2 1 400px;
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+        
+        .live-demo-area .card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #1e293b;
+            background: none;
+            padding: 0;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        /* Exemplo 3: Holy Grail Layout */
+        .live-demo-area .holy-grail {
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+            border: 2px solid #333;
+        }
+
+        .live-demo-area .hg-header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .live-demo-area .hg-main {
+            display: flex;
+            flex: 1;
+        }
+
+        .live-demo-area .hg-sidebar {
+            flex: 0 0 200px;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .live-demo-area .hg-content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+        }
+        
+        .live-demo-area .hg-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #1e293b;
+            background: none;
+            padding: 0;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .live-demo-area .hg-footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Exemplo 4: Form com labels alinhadas */
+        .live-demo-area .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+        }
+
+        .live-demo-area .form-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-demo-area .form-group label {
+            flex: 0 0 120px;
+            text-align: right;
+        }
+
+        .live-demo-area .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Exemplo 5: Gallery com align-self */
+        .live-demo-area .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+            min-height: 300px;
+            background: #f4f4f4;
+            padding: 10px;
+        }
+
+        .live-demo-area .gallery-item {
+            flex: 1 1 200px;
+            background: #ffeb3b;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .live-demo-area .gallery-item.tall {
+            align-self: stretch;
+            background: #8bc34a;
+        }
+
+        .live-demo-area .gallery-item.wide {
+            flex: 2 1 300px;
+            background: #03a9f4;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades Flexbox CSS</h1>
+            <p class="subtitle">O Flexbox é essencial para layouts modernos e responsivos, substituindo muitas técnicas complexas de posicionamento com CSS tradicional.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>display</td>
+                                <td>flex, inline-flex</td>
+                                <td>Cria contêiner flex</td>
+                            </tr>
+                            <tr>
+                                <td>flex-direction</td>
+                                <td>row, column</td>
+                                <td>Direção dos itens</td>
+                            </tr>
+                            <tr>
+                                <td>flex-wrap</td>
+                                <td>wrap, nowrap</td>
+                                <td>Quebra de linha</td>
+                            </tr>
+                            <tr>
+                                <td>flex-flow</td>
+                                <td>row wrap</td>
+                                <td>Shorthand direction + wrap</td>
+                            </tr>
+                            <tr>
+                                <td>justify-content</td>
+                                <td>center, space-between</td>
+                                <td>Alinhamento no eixo principal</td>
+                            </tr>
+                            <tr>
+                                <td>align-items</td>
+                                <td>center, stretch</td>
+                                <td>Alinhamento no eixo transversal</td>
+                            </tr>
+                            <tr>
+                                <td>align-content</td>
+                                <td>space-around</td>
+                                <td>Alinhamento de múltiplas linhas</td>
+                            </tr>
+                            <tr>
+                                <td>order</td>
+                                <td>-1, 0, 1</td>
+                                <td>Ordem dos itens</td>
+                            </tr>
+                            <tr>
+                                <td>flex-grow</td>
+                                <td>0, 1, 2</td>
+                                <td>Capacidade de crescimento</td>
+                            </tr>
+                            <tr>
+                                <td>flex-shrink</td>
+                                <td>0, 1</td>
+                                <td>Capacidade de redução</td>
+                            </tr>
+                            <tr>
+                                <td>flex-basis</td>
+                                <td>auto, 200px</td>
+                                <td>Tamanho inicial</td>
+                            </tr>
+                            <tr>
+                                <td>flex</td>
+                                <td>1, 0 0 auto</td>
+                                <td>Shorthand grow + shrink + basis</td>
+                            </tr>
+                            <tr>
+                                <td>align-self</td>
+                                <td>flex-start, center</td>
+                                <td>Alinhamento individual</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use flex: 1 para itens que devem ocupar espaço igual</li>
+                        <li>Combine flex-wrap: wrap com flex-basis para grids responsivos</li>
+                        <li>Prefira gap em vez de margins para espaçamento entre itens</li>
+                        <li>Use align-items: center para centralização vertical fácil</li>
+                        <li>Experimente flex: auto vs flex: 1 para comportamentos diferentes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: display: flex -->
+            <div class="property-card">
+                <h3>display: flex</h3>
+                <div class="card-body">
+                    <p>A propriedade display: flex define um contêiner flexível. Quando aplicada a um elemento, torna seus filhos diretos em itens flex.</p>
+                    <h4>Comportamento:</h4>
+                    <ul>
+                        <li>Cria um contexto flex para os filhos diretos</li>
+                        <li>Os itens se organizam em uma direção (linha ou coluna)</li>
+                        <li>Permite controle avançado de alinhamento e distribuição</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Contêiner flex básico */
+.container {
+    display: flex;
+}
+
+/* Flex inline */
+.inline-flex {
+    display: inline-flex;
+}
+
+/* Uso prático */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-direction -->
+            <div class="property-card">
+                <h3>flex-direction</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-direction define a direção principal na qual os itens flex são dispostos no contêiner.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>row (padrão) - Esquerda para direita</li>
+                        <li>row-reverse - Direita para esquerda</li>
+                        <li>column - Topo para base</li>
+                        <li>column-reverse - Base para topo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Direção padrão (linha) */
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Linha invertida */
+.row-reverse-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* Coluna */
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Coluna invertida */
+.column-reverse-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+/* Uso prático */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.horizontal-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-wrap -->
+            <div class="property-card">
+                <h3>flex-wrap</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-wrap especifica se os itens flex devem quebrar linha ou não quando não couberem no contêiner.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>nowrap (padrão) - Todos os itens em uma linha</li>
+                        <li>wrap - Quebra em múltiplas linhas (topo para base)</li>
+                        <li>wrap-reverse - Quebra em múltiplas linhas (base para topo)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Sem quebra (padrão) */
+.nowrap-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* Com quebra normal */
+.wrap-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Com quebra reversa */
+.wrap-reverse-container {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+/* Uso prático */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.responsive-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-flow -->
+            <div class="property-card">
+                <h3>flex-flow</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-flow é uma shorthand que combina flex-direction e flex-wrap.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>flex-flow: &lt;flex-direction&gt; &lt;flex-wrap&gt;;</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Direction e wrap separados */
+.container {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* Shorthand equivalente */
+.container {
+    flex-flow: row wrap;
+}
+
+/* Outros exemplos */
+.column-wrap {
+    flex-flow: column wrap;
+}
+
+.row-nowrap {
+    flex-flow: row nowrap;
+}
+
+.row-reverse-wrap {
+    flex-flow: row-reverse wrap;
+}
+
+/* Uso prático */
+.nav-menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.vertical-stack {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: justify-content -->
+            <div class="property-card">
+                <h3>justify-content</h3>
+                <div class="card-body">
+                    <p>A propriedade justify-content alinha os itens flex ao longo do eixo principal (horizontal em row, vertical em column).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>flex-start (padrão) - Alinha no início</li>
+                        <li>flex-end - Alinha no final</li>
+                        <li>center - Alinha ao centro</li>
+                        <li>space-between - Espaço igual entre itens</li>
+                        <li>space-around - Espaço igual ao redor</li>
+                        <li>space-evenly - Espaço igual entre e ao redor</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Alinhamento inicial */
+.start-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Alinhamento final */
+.end-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Centralizado */
+.center-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Espaço entre */
+.space-between-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Espaço ao redor */
+.space-around-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Espaço uniforme */
+.space-evenly-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Uso prático */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-group {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: align-items -->
+            <div class="property-card">
+                <h3>align-items</h3>
+                <div class="card-body">
+                    <p>A propriedade align-items alinha os itens flex ao longo do eixo transversal (vertical em row, horizontal em column).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>stretch (padrão) - Estica para preencher</li>
+                        <li>flex-start - Alinha no início</li>
+                        <li>flex-end - Alinha no final</li>
+                        <li>center - Alinha ao centro</li>
+                        <li>baseline - Alinha pela linha de base do texto</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Esticar (padrão) */
+.stretch-container {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Alinhamento inicial */
+.start-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Alinhamento final */
+.end-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Centralizado */
+.center-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Por linha de base */
+.baseline-container {
+    display: flex;
+    align-items: baseline;
+}
+
+/* Uso prático */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: align-content -->
+            <div class="property-card">
+                <h3>align-content</h3>
+                <div class="card-body">
+                    <p>A propriedade align-content alinha as linhas flex quando há espaço extra no eixo transversal (só funciona com múltiplas linhas).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>stretch (padrão) - Estica as linhas</li>
+                        <li>flex-start - Linhas no início</li>
+                        <li>flex-end - Linhas no final</li>
+                        <li>center - Linhas centralizadas</li>
+                        <li>space-between - Espaço igual entre linhas</li>
+                        <li>space-around - Espaço igual ao redor das linhas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Apenas funciona com múltiplas linhas */
+.multi-line-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px; /* Espaço extra necessário */
+    align-content: stretch;
+}
+
+/* Linhas no início */
+.start-lines {
+    align-content: flex-start;
+}
+
+/* Linhas no final */
+.end-lines {
+    align-content: flex-end;
+}
+
+/* Linhas centralizadas */
+.center-lines {
+    align-content: center;
+}
+
+/* Espaço entre linhas */
+.space-between-lines {
+    align-content: space-between;
+}
+
+/* Espaço ao redor */
+.space-around-lines {
+    align-content: space-around;
+}
+
+/* Uso prático */
+.gallery-wall {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    gap: 10px;
+    height: 500px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: order -->
+            <div class="property-card">
+                <h3>order</h3>
+                <div class="card-body">
+                    <p>A propriedade order controla a ordem em que os itens aparecem no contêiner flex.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Número inteiro (positivo, negativo ou zero)</li>
+                        <li>Valor padrão: 0</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Ordem padrão */
+.item {
+    order: 0;
+}
+
+/* Primeiro item */
+.first-item {
+    order: -1;
+}
+
+/* Último item */
+.last-item {
+    order: 1;
+}
+
+/* Ordem específica */
+.item-1 { order: 3; }
+.item-2 { order: 1; }
+.item-3 { order: 2; }
+
+/* Uso prático */
+.featured {
+    order: -1; /* Move para o início */
+}
+
+.archived {
+    order: 999; /* Move para o final */
+}
+
+/* Reordenamento responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        order: 2;
+    }
+    
+    .main-content {
+        order: 1;
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-grow -->
+            <div class="property-card">
+                <h3>flex-grow</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-grow define a capacidade de um item crescer se necessário. Especifica quanto espaço o item deve ocupar no contêiner.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Número (incluindo decimais)</li>
+                        <li>Valor padrão: 0 (não cresce)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Não cresce (padrão) */
+.no-grow {
+    flex-grow: 0;
+}
+
+/* Cresce para preencher espaço disponível */
+.grow-1 {
+    flex-grow: 1;
+}
+
+.grow-2 {
+    flex-grow: 2; /* Ocupa o dobro do espaço que grow-1 */
+}
+
+.grow-3 {
+    flex-grow: 3; /* Ocupa o triplo do espaço que grow-1 */
+}
+
+/* Uso prático */
+.sidebar {
+    flex-grow: 1;
+}
+
+.main-content {
+    flex-grow: 3; /* 3 vezes maior que a sidebar */
+}
+
+.equal-columns > * {
+    flex-grow: 1; /* Todas as colunas com tamanho igual */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-shrink -->
+            <div class="property-card">
+                <h3>flex-shrink</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-shrink define a capacidade de um item encolher se necessário.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Número (incluindo decimais)</li>
+                        <li>Valor padrão: 1 (encolhe proporcionalmente)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Encolhe normalmente (padrão) */
+.shrink-normal {
+    flex-shrink: 1;
+}
+
+/* Não encolhe */
+.no-shrink {
+    flex-shrink: 0;
+}
+
+/* Encolhe mais que o normal */
+.shrink-double {
+    flex-shrink: 2; /* Encolhe o dobro dos itens com valor 1 */
+}
+
+/* Uso prático */
+.fixed-sidebar {
+    flex-shrink: 0; /* Nunca encolhe */
+    width: 250px;
+}
+
+.flexible-content {
+    flex-shrink: 1; /* Encolhe normally */
+}
+
+.image-container {
+    flex-shrink: 0; /* Mantém o tamanho da imagem */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex-basis -->
+            <div class="property-card">
+                <h3>flex-basis</h3>
+                <div class="card-body">
+                    <p>A propriedade flex-basis define o tamanho inicial de um item flex antes que o espaço restante seja distribuído.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto (padrão) - Tamanho base no conteúdo</li>
+                        <li>Tamanho fixo: 200px, 50%, 10rem</li>
+                        <li>content - Tamanho base apenas no conteúdo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Tamanho automático (padrão) */
+.auto-basis {
+    flex-basis: auto;
+}
+
+/* Tamanho fixo em pixels */
+.pixel-basis {
+    flex-basis: 200px;
+}
+
+/* Tamanho percentual */
+.percent-basis {
+    flex-basis: 33.33%;
+}
+
+/* Base apenas no conteúdo */
+.content-basis {
+    flex-basis: content;
+}
+
+/* Uso prático */
+.grid-item {
+    flex-basis: 300px;
+    flex-grow: 1;
+}
+
+.responsive-column {
+    flex-basis: 250px;
+    flex-shrink: 0;
+}
+
+.fluid-layout {
+    flex-basis: 0; /* Distribuição igual */
+    flex-grow: 1;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: flex -->
+            <div class="property-card">
+                <h3>flex</h3>
+                <div class="card-body">
+                    <p>A propriedade flex é uma shorthand que combina flex-grow, flex-shrink e flex-basis.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>flex: &lt;flex-grow&gt; &lt;flex-shrink&gt; &lt;flex-basis&gt;;</code></pre>
+                    <h4>Valores comuns:</h4>
+                    <ul>
+                        <li>flex: initial - Equivale a 0 1 auto</li>
+                        <li>flex: auto - Equivale a 1 1 auto</li>
+                        <li>flex: none - Equivale a 0 0 auto</li>
+                        <li>flex: &lt;number&gt; - Equivale a &lt;number&gt; 1 0</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Shorthand completa */
+.complete-flex {
+    flex: 1 1 200px;
+}
+
+/* Apenas grow */
+.grow-only {
+    flex: 1; /* Equivale a 1 1 0 */
+}
+
+/* Valores pré-definidos */
+.initial {
+    flex: initial; /* 0 1 auto */
+}
+
+.auto {
+    flex: auto; /* 1 1 auto */
+}
+
+.none {
+    flex: none; /* 0 0 auto */
+}
+
+/* Uso prático */
+.equal-flex > * {
+    flex: 1; /* Itens com tamanho igual */
+}
+
+.fixed-size {
+    flex: 0 0 200px; /* Tamanho fixo, não cresce nem encolhe */
+}
+
+.fluid-item {
+    flex: 1 1 0; /* Cresce e encolhe igualmente */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: align-self -->
+            <div class="property-card">
+                <h3>align-self</h3>
+                <div class="card-body">
+                    <p>A propriedade align-self permite sobrescrever o align-items do contêiner para um item específico.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto (padrão) - Herda do contêiner</li>
+                        <li>stretch - Estica para preencher</li>
+                        <li>flex-start - Alinha no início</li>
+                        <li>flex-end - Alinha no final</li>
+                        <li>center - Alinha ao centro</li>
+                        <li>baseline - Alinha pela linha de base</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Container com alinhamento padrão */
+.container {
+    display: flex;
+    align-items: center;
+}
+
+/* Sobrescreve alinhamento para itens específicos */
+.top-aligned {
+    align-self: flex-start;
+}
+
+.bottom-aligned {
+    align-self: flex-end;
+}
+
+.centered {
+    align-self: center;
+}
+
+.stretched {
+    align-self: stretch;
+}
+
+.baseline-aligned {
+    align-self: baseline;
+}
+
+/* Uso prático */
+.sticky-header {
+    align-self: flex-start;
+    position: sticky;
+    top: 0;
+}
+
+.pushed-to-bottom {
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.special-card {
+    align-self: stretch; /* Preenche altura disponível */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area">
+                    <p>Este exemplo renderiza ao vivo o código HTML e CSS fornecido, demonstrando várias propriedades do Flexbox em ação para construir layouts comuns.</p>
+
+                    <!-- Exemplo 1: Navigation Bar -->
+                    <section class="container" style="border-color: #333; padding: 0;">
+                        <h2 style="padding: 20px 20px 0 20px;">1. Navigation Bar</h2>
+                        <nav class="navbar">
+                            <div class="nav-logo">Meu Site</div>
+                            <ul class="nav-links">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#sobre">Sobre</a></li>
+                                <li><a href="#servicos">Serviços</a></li>
+                                <li><a href="#contato">Contato</a></li>
+                            </ul>
+                        </nav>
+                    </section>
+
+                    <!-- Exemplo 2: Card Grid -->
+                    <section class="container">
+                        <h2>2. Card Grid Responsivo</h2>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h3>Card Normal</h3>
+                                <p>Conteúdo do card normal.</p>
+                            </div>
+                            <div class="card featured">
+                                <h3>Card em Destaque</h3>
+                                <p>Este card é maior e tem destaque.</p>
+                            </div>
+                            <div class="card">
+                                <h3>Card Normal</h3>
+                                <p>Conteúdo do card normal.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Exemplo 3: Holy Grail Layout -->
+                    <section class="container">
+                        <h2>3. Holy Grail Layout</h2>
+                        <div class="holy-grail">
+                            <header class="hg-header">Cabeçalho</header>
+                            <div class="hg-main">
+                                <aside class="hg-sidebar">Sidebar</aside>
+                                <main class="hg-content">
+                                    <h3>Conteúdo Principal</h3>
+                                    <p>Conteúdo flexível que ocupa o espaço restante.</p>
+                                </main>
+                            </div>
+                            <footer class="hg-footer">Rodapé</footer>
+                        </div>
+                    </section>
+
+                    <!-- Exemplo 4: Form Alinhado -->
+                    <section class="container">
+                        <h2>4. Formulário com Labels Alinhadas</h2>
+                        <form class="form-container">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" id="nome" name="nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem:</label>
+                                <input type="text" id="mensagem" name="mensagem">
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Exemplo 5: Gallery com align-self -->
+                    <section class="container">
+                        <h2>5. Gallery com align-self</h2>
+                        <div class="gallery">
+                            <div class="gallery-item">Item 1</div>
+                            <div class="gallery-item tall">Item Alto</div>
+                            <div class="gallery-item">Item 3</div>
+                            <div class="gallery-item wide">Item Largo</div>
+                            <div class="gallery-item">Item 5</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Exemplos') {
+                    btn.textContent = 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

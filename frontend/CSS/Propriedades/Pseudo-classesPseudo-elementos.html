@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Pseudo-classes e Pseudo-elementos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ecf0f1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #1e3a8a;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #1e40af;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #eef2ff;
+            border-bottom: 1px solid #dbeafe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #1d4ed8;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .live-demo-area * {
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area h1 {
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+            text-align: center;
+            margin-bottom: 20px; /* Adicionado */
+        }
+        .live-demo-area h2 {
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+            margin-top: 20px; /* Adicionado */
+            margin-bottom: 10px; /* Adicionado */
+            border-bottom: 2px solid #f0f0f0; /* Adicionado */
+            padding-bottom: 5px; /* Adicionado */
+        }
+        
+        /* :hover examples */
+        .live-demo-area .hover-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .live-demo-area .hover-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* :focus examples */
+        .live-demo-area .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .live-demo-area input, .live-demo-area textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px; /* Adicionado */
+        }
+        
+        .live-demo-area input:focus, .live-demo-area textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        /* :required e :invalid */
+        .live-demo-area input:required {
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .live-demo-area input:valid {
+            border-left-color: #27ae60;
+        }
+        
+        .live-demo-area input:invalid {
+            border-left-color: #e74c3c;
+        }
+        
+        /* :checked examples */
+        .live-demo-area .checkbox-group {
+            margin: 20px 0;
+        }
+        
+        .live-demo-area input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .live-demo-area input[type="checkbox"]:checked + label {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        /* :nth-child examples */
+        .live-demo-area .list-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .live-demo-area .list-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+            transition: background-color 0.2s ease;
+        }
+        
+        .live-demo-area .list-item:first-child {
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            background: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .live-demo-area .list-item:last-child {
+            border-bottom: none;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        
+        .live-demo-area .list-item:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .live-demo-area .list-item:nth-child(odd) {
+            background: white;
+        }
+        
+        .live-demo-area .list-item:not(:first-child):hover { /* Evita hover no header */
+            background: #3498db;
+            color: white;
+        }
+        
+        /* ::before e ::after examples */
+        .live-demo-area .feature-list {
+            list-style: none;
+            margin: 20px 0;
+            padding-left: 0; /* Reset */
+        }
+        
+        .live-demo-area .feature-list li::before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .live-demo-area .price::after {
+            content: ",00";
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        
+        .live-demo-area .external-link::after {
+            content: " ↗";
+            font-size: 0.8em;
+            color: #3498db;
+        }
+        
+        /* ::first-letter e ::first-line */
+        .live-demo-area .article {
+            margin: 30px 0;
+            line-height: 1.8;
+        }
+        
+        .live-demo-area .article p:first-of-type::first-letter {
+            font-size: 4em;
+            float: left;
+            line-height: 1;
+            margin: 0 10px 0 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .live-demo-area .article p:first-of-type::first-line {
+            font-weight: bold;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ::selection */
+        .live-demo-area ::selection {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .live-demo-area .article::selection {
+            background-color: #2c3e50;
+        }
+        
+        /* ::placeholder */
+        .live-demo-area textarea::placeholder {
+            color: #95a5a6;
+            font-style: italic;
+            transition: opacity 0.3s ease;
+        }
+        
+        .live-demo-area textarea:focus::placeholder {
+            opacity: 0.5;
+        }
+        
+        /* :target para navegação */
+        .live-demo-area .chapter {
+            margin: 40px 0;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .live-demo-area .chapter:target {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            animation: highlight 2s ease;
+        }
+        
+        @keyframes highlight {
+            0% { background: #fff3cd; }
+            50% { background: #ffeaa7; }
+            100% { background: #fff3cd; }
+        }
+        
+        /* :not() examples */
+        .live-demo-area .button-group button:not(:last-child) {
+            margin-right: 10px;
+        }
+        
+        .live-demo-area .content p:not(.special) {
+            color: #6c757d;
+        }
+        
+        /* :disabled */
+        .live-demo-area button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .live-demo-area button:disabled:hover {
+            background: #6c757d !important;
+        }
+        
+        /* Botões com múltiplos estados */
+        .live-demo-area .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #3498db;
+            color: white;
+        }
+        
+        .live-demo-area .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .live-demo-area .btn:active {
+            transform: translateY(0);
+        }
+        
+        .live-demo-area .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Pseudo-classes e Pseudo-elementos CSS</h1>
+            <p class="subtitle">Essas pseudo-classes e pseudo-elementos são essenciais para criar interfaces ricas, acessíveis e interativas!</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <h4>Pseudo-classes Comuns</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo-classe</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>:hover</td>
+                                <td>Quando o mouse está sobre o elemento</td>
+                            </tr>
+                            <tr>
+                                <td>:focus</td>
+                                <td>Quando o elemento recebe foco</td>
+                            </tr>
+                            <tr>
+                                <td>:active</td>
+                                <td>Quando o elemento está sendo ativado</td>
+                            </tr>
+                            <tr>
+                                <td>:visited</td>
+                                <td>Links que foram visitados</td>
+                            </tr>
+                            <tr>
+                                <td>:first-child</td>
+                                <td>Primeiro elemento entre irmãos</td>
+                            </tr>
+                            <tr>
+                                <td>:nth-child()</td>
+                                <td>Elementos baseados na posição</td>
+                            </tr>
+                            <tr>
+                                <td>:not()</td>
+                                <td>Elementos que não correspondem ao seletor</td>
+                            </tr>
+                            <tr>
+                                <td>:checked</td>
+                                <td>Checkboxes/radios marcados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top: 30px;">Pseudo-elementos Comuns</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo-elemento</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>::before</td>
+                                <td>Inserir conteúdo antes do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>::after</td>
+                                <td>Inserir conteúdo depois do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>::first-letter</td>
+                                <td>Estilizar a primeira letra</td>
+                            </tr>
+                            <tr>
+                                <td>::selection</td>
+                                <td>Texto selecionado pelo usuário</td>
+                            </tr>
+                            <tr>
+                                <td>::placeholder</td>
+                                <td>Texto de placeholder em inputs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Sempre forneça feedback visual com :hover e :focus</li>
+                        <li>Use :focus para acessibilidade (navegação por teclado)</li>
+                        <li>Combine pseudo-classes como :hover:focus para estados complexos</li>
+                        <li>Use ::before e ::after para conteúdo decorativo, não essencial</li>
+                        <li>Teste em diferentes dispositivos (touch vs mouse)</li>
+                        <li>Mantenha a consistência nos estados interativos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Pseudo-classes</h2>
+
+            <!-- Card: :hover -->
+            <div class="property-card">
+                <h3>:hover</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :hover é acionada quando o usuário passa o cursor sobre um elemento.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>seletor:hover {
+    propriedade: valor;
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Botão com efeito hover */
+button:hover {
+    background-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Link com hover */
+a:hover {
+    color: #ff6b6b;
+    text-decoration: underline;
+}
+
+/* Card com hover */
+.card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Menu dropdown */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :focus -->
+            <div class="property-card">
+                <h3>:focus</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :focus é acionada quando um elemento recebe foco (geralmente via teclado ou clique).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Input com foco */
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+/* Botão com foco para acessibilidade */
+button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Links com foco para navegação por teclado */
+a:focus {
+    background-color: yellow;
+    color: black;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: :active -->
+            <div class="property-card">
+                <h3>:active</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :active é acionada quando um elemento está sendo ativado (clicado).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Botão sendo pressionado */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Link sendo clicado */
+a:active {
+    color: #cc0000;
+}
+
+/* Efeito de clique em cards */
+.card:active {
+    transform: scale(0.98);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :visited -->
+            <div class="property-card">
+                <h3>:visited</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :visited seleciona links que já foram visitados pelo usuário.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Links visitados */
+a:visited {
+    color: #8e44ad;
+}
+
+/* Diferenciar links não visitados e visitados */
+a:link {
+    color: #3498db;
+}
+
+a:visited {
+    color: #9b59b6;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :link -->
+            <div class="property-card">
+                <h3>:link</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :link seleciona links não visitados.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Apenas links não visitados */
+a:link {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+/* Combinando com visited */
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+a:active { color: green; }</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :target -->
+            <div class="property-card">
+                <h3>:target</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :target seleciona o elemento que é o alvo da URL atual.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Destacar seção alvo */
+section:target {
+    background-color: #ffffcc;
+    border-left: 4px solid #007bff;
+    padding: 20px;
+}
+
+/* Scroll suave para o alvo */
+html {
+    scroll-behavior: smooth;
+}
+
+:target::before {
+    content: "";
+    display: block;
+    height: 80px;
+    margin: -80px 0 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :first-child -->
+            <div class="property-card">
+                <h3>:first-child</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :first-child seleciona o primeiro elemento entre seus irmãos.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Primeiro item da lista */
+li:first-child {
+    font-weight: bold;
+    border-top: 2px solid #333;
+}
+
+/* Primeiro parágrafo */
+p:first-child {
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+
+/* Primeiro elemento em um container */
+.container > :first-child {
+    margin-top: 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :last-child -->
+            <div class="property-card">
+                <h3>:last-child</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :last-child seleciona o último elemento entre seus irmãos.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Último item da lista */
+li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Último parágrafo */
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Remover margem do último elemento */
+.card > *:last-child {
+    margin-bottom: 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :nth-child() -->
+            <div class="property-card">
+                <h3>:nth-child()</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :nth-child() seleciona elementos com base em sua posição.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>:nth-child(an+b)</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Itens pares */
+li:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Itens ímpares */
+li:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Terceiro elemento */
+li:nth-child(3) {
+    color: #e74c3c;
+}
+
+/* A cada 3 elementos (3, 6, 9...) */
+div:nth-child(3n) {
+    border-right: none;
+}
+
+/* Primeiros 5 elementos */
+li:nth-child(-n+5) {
+    font-weight: bold;
+}
+
+/* A partir do 4º elemento */
+li:nth-child(n+4) {
+    opacity: 0.8;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :nth-of-type() -->
+            <div class="property-card">
+                <h3>:nth-of-type()</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :nth-of-type() seleciona elementos do mesmo tipo com base na posição.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Segundo parágrafo */
+p:nth-of-type(2) {
+    font-style: italic;
+}
+
+/* Imagens pares */
+img:nth-of-type(even) {
+    float: right;
+    margin-left: 20px;
+}
+
+/* Terceiro elemento de cada tipo */
+:nth-of-type(3) {
+    border: 2px solid #3498db;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :not() -->
+            <div class="property-card">
+                <h3>:not()</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :not() seleciona elementos que não correspondem ao seletor.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Todos os inputs exceto submit */
+input:not([type="submit"]) {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Todos os elementos exceto o primeiro */
+p:not(:first-child) {
+    margin-top: 1em;
+}
+
+/* Listas sem a classe 'special' */
+ul:not(.special) {
+    list-style-type: disc;
+}
+
+/* Combinando múltiplas exclusões */
+div:not(.hidden):not(.disabled) {
+    display: block;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :checked -->
+            <div class="property-card">
+                <h3>:checked</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :checked seleciona inputs checkboxes e radio buttons que estão marcados.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Checkbox marcado */
+input[type="checkbox"]:checked {
+    background-color: #27ae60;
+}
+
+/* Label quando o checkbox está marcado */
+input[type="checkbox"]:checked + label {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Custom checkbox */
+.custom-checkbox:checked::before {
+    content: "✓";
+    color: white;
+}
+
+/* Mostrar conteúdo quando marcado */
+#toggle:checked ~ .content {
+    display: block;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :disabled -->
+            <div class="property-card">
+                <h3>:disabled</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :disabled seleciona elementos desabilitados.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Input desabilitado */
+input:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Botão desabilitado */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Estilizar label de campo desabilitado */
+input:disabled + label {
+    color: #999;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :required -->
+            <div class="property-card">
+                <h3>:required</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :required seleciona inputs com o atributo required.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Campo obrigatório */
+input:required {
+    border-left: 3px solid #e74c3c;
+}
+
+/* Label para campo obrigatório */
+input:required + label::after {
+    content: " *";
+    color: #e74c3c;
+}
+
+/* Background para campos obrigatórios */
+input:required {
+    background-color: #fff9f9;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :valid -->
+            <div class="property-card">
+                <h3>:valid</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :valid seleciona inputs com conteúdo válido.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Campo válido */
+input:valid {
+    border-color: #27ae60;
+    background-color: #f8fff8;
+}
+
+/* Feedback visual para campos válidos */
+input:valid + .validation::before {
+    content: "✓";
+    color: #27ae60;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: :invalid -->
+            <div class="property-card">
+                <h3>:invalid</h3>
+                <div class="card-body">
+                    <p>A pseudo-classe :invalid seleciona inputs com conteúdo inválido.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Campo inválido */
+input:invalid {
+    border-color: #e74c3c;
+    background-color: #fff9f9;
+}
+
+/* Mostrar mensagem de erro apenas quando inválido */
+input:invalid + .error-message {
+    display: block;
+    color: #e74c3c;
+}
+
+/* Estilo para email inválido */
+input[type="email"]:invalid {
+    border-color: #e74c3c;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Pseudo-elementos</h2>
+
+            <!-- Card: ::before -->
+            <div class="property-card">
+                <h3>::before</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::before insere conteúdo antes do conteúdo do elemento.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Adicionar ícone antes do link */
+.external-link::before {
+    content: "🔗 ";
+    margin-right: 5px;
+}
+
+/* Citação com aspas */
+blockquote::before {
+    content: open-quote;
+    font-size: 2em;
+    color: #7f8c8d;
+}
+
+/* Número de capítulo */
+.chapter::before {
+    content: "Capítulo " counter(chapter) ": ";
+    counter-increment: chapter;
+    font-weight: bold;
+}
+
+/* Decoração visual */
+.decorative::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    margin-bottom: 10px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: ::after -->
+            <div class="property-card">
+                <h3>::after</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::after insere conteúdo após o conteúdo do elemento.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Adicionar unidade após input */
+.price::after {
+    content: " R$";
+    color: #27ae60;
+}
+
+/* Tooltip */
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Seta em dropdown */
+.dropdown::after {
+    content: "▼";
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* Clearfix */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: ::first-letter -->
+            <div class="property-card">
+                <h3>::first-letter</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::first-letter estiliza a primeira letra do elemento.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Letra capitular */
+p::first-letter {
+    font-size: 3em;
+    float: left;
+    line-height: 1;
+    margin-right: 5px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Destaque no primeiro parágrafo */
+.article p:first-of-type::first-letter {
+    font-size: 4em;
+    color: #e74c3c;
+    font-family: serif;
+}
+
+/* Estilo para títulos */
+h1::first-letter {
+    color: #3498db;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: ::first-line -->
+            <div class="property-card">
+                <h3>::first-line</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::first-line estiliza a primeira linha do elemento.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Destaque na primeira linha */
+.intro::first-line {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+
+/* Artigo com primeira linha especial */
+.article p:first-of-type::first-line {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7f8c8d;
+}
+
+/* Lead paragraph */
+.lead::first-line {
+    font-variant: small-caps;
+    font-weight: 600;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: ::selection -->
+            <div class="property-card">
+                <h3>::selection</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::selection estiliza o texto selecionado pelo usuário.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Seleção personalizada */
+::selection {
+    background-color: #3498db;
+    color: white;
+    text-shadow: none;
+}
+
+/* Seleção diferente para código */
+code::selection {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+/* Remover seleção em elementos específicos */
+.no-select::selection {
+    background-color: transparent;
+    color: inherit;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: ::placeholder -->
+            <div class="property-card">
+                <h3>::placeholder</h3>
+                <div class="card-body">
+                    <p>O pseudo-elemento ::placeholder estiliza o texto placeholder dos inputs.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Placeholder personalizado */
+input::placeholder {
+    color: #95a5a6;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Placeholder com transição */
+input:focus::placeholder {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+/* Diferentes placeholders para diferentes inputs */
+input[type="email"]::placeholder {
+    color: #3498db;
+}
+
+input[type="password"]::placeholder {
+    color: #e74c3c;
+    font-family: monospace;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area">
+                    <div class="container">
+                        <h1>Demonstração de Pseudo-classes e Pseudo-elementos</h1>
+                
+                        <!-- :hover Example -->
+                        <section class="hover-card">
+                            <h2>:hover - Passe o mouse sobre este card</h2>
+                            <p>Este card tem efeitos especiais quando você passa o mouse sobre ele.</p>
+                        </section>
+                
+                        <!-- :focus Example -->
+                        <section class="form-group">
+                            <h2>:focus - Campos de formulário</h2>
+                            <input type="text" placeholder="Nome (obrigatório)" required>
+                            <input type="email" placeholder="Email (obrigatório)" required>
+                            <textarea placeholder="Mensagem (opcional)" rows="4"></textarea>
+                        </section>
+                
+                        <!-- :checked Example -->
+                        <section class="checkbox-group">
+                            <h2>:checked - Checkboxes</h2>
+                            <div>
+                                <input type="checkbox" id="opt1">
+                                <label for="opt1">Opção 1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="opt2">
+                                <label for="opt2">Opção 2</label>
+                            </div>
+                        </section>
+                
+                        <!-- :nth-child Example -->
+                        <section class="list-container">
+                            <h2>:nth-child - Lista estilizada</h2>
+                            <div class="list-item">Primeiro item</div>
+                            <div class="list-item">Segundo item</div>
+                            <div class="list-item">Terceiro item</div>
+                            <div class="list-item">Quarto item</div>
+                            <div class="list-item">Quinto item</div>
+                        </section>
+                
+                        <!-- ::before and ::after -->
+                        <section>
+                            <h2>::before e ::after - Conteúdo gerado</h2>
+                            <ul class="feature-list">
+                                <li>Recurso importante</li>
+                                <li>Outro recurso útil</li>
+                                <li>Funcionalidade especial</li>
+                            </ul>
+                            <p>Preço: <span class="price">R$ 99</span></p>
+                            <p><a href="#" class="external-link">Link externo exemplo</a></p>
+                        </section>
+                
+                        <!-- ::first-letter and ::first-line -->
+                        <section class="article">
+                            <h2>::first-letter e ::first-line</h2>
+                            <p>Este é o primeiro parágrafo do artigo. Observe como a primeira letra é grande e decorativa, e a primeira linha tem um estilo diferente. O resto do texto continua normalmente, mas essas pequenas diferenças tornam a leitura mais agradável e profissional.</p>
+                            <p class="special">Este parágrafo é especial e não segue as regras normais.</p>
+                            <p>Este é outro parágrafo normal que demonstra como o texto flui normalmente após o primeiro parágrafo estilizado.</p>
+                        </section>
+                
+                        <!-- :target Navigation -->
+                        <section>
+                            <h2>:target - Navegação por âncora</h2>
+                            <nav>
+                                <a href="#cap1">Capítulo 1</a> |
+                                <a href="#cap2">Capítulo 2</a> |
+                                <a href="#cap3">Capítulo 3</a>
+                            </nav>
+                            <div id="cap1" class="chapter">
+                                <h3>Capítulo 1</h3>
+                                <p>Conteúdo do capítulo 1. Clique nos links acima para ver o efeito :target.</p>
+                            </div>
+                            <div id="cap2" class="chapter">
+                                <h3>Capítulo 2</h3>
+                                <p>Conteúdo do capítulo 2.</p>
+                            </div>
+                            <div id="cap3" class="chapter">
+                                <h3>Capítulo 3</h3>
+                                <p>Conteúdo do capítulo 3.</p>
+                            </div>
+                        </section>
+                
+                        <!-- Button States -->
+                        <section class="button-group">
+                            <h2>Estados de Botão</h2>
+                            <button class="btn">Botão Normal</button>
+                            <button class="btn" disabled>Botão Desabilitado</button>
+                            <button class="btn">Outro Botão</button>
+                        </section>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Pseudo-classes e Pseudo-elementos&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Demonstração de Pseudo-classes e Pseudo-elementos&lt;/h1&gt;
+
+        &lt;!-- :hover Example --&gt;
+        &lt;section class="hover-card"&gt;
+            &lt;h2&gt;:hover - Passe o mouse sobre este card&lt;/h2&gt;
+            &lt;p&gt;Este card tem efeitos especiais quando você passa o mouse sobre ele.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;!-- :focus Example --&gt;
+        &lt;section class="form-group"&gt;
+            &lt;h2&gt;:focus - Campos de formulário&lt;/h2&gt;
+            &lt;input type="text" placeholder="Nome (obrigatório)" required&gt;
+            &lt;input type="email" placeholder="Email (obrigatório)" required&gt;
+            &lt;textarea placeholder="Mensagem (opcional)" rows="4"&gt;&lt;/textarea&gt;
+        &lt;/section&gt;
+
+        &lt;!-- :checked Example --&gt;
+        &lt;section class="checkbox-group"&gt;
+            &lt;h2&gt;:checked - Checkboxes&lt;/h2&gt;
+            &lt;div&gt;
+                &lt;input type="checkbox" id="opt1"&gt;
+                &lt;label for="opt1"&gt;Opção 1&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;input type="checkbox" id="opt2"&gt;
+                &lt;label for="opt2"&gt;Opção 2&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- :nth-child Example --&gt;
+        &lt;section class="list-container"&gt;
+            &lt;h2&gt;:nth-child - Lista estilizada&lt;/h2&gt;
+            &lt;div class="list-item"&gt;Primeiro item&lt;/div&gt;
+            &lt;div class="list-item"&gt;Segundo item&lt;/div&gt;
+            &lt;div class="list-item"&gt;Terceiro item&lt;/div&gt;
+            &lt;div class="list-item"&gt;Quarto item&lt;/div&gt;
+            &lt;div class="list-item"&gt;Quinto item&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- ::before and ::after --&gt;
+        &lt;section&gt;
+            &lt;h2&gt;::before e ::after - Conteúdo gerado&lt;/h2&gt;
+            &lt;ul class="feature-list"&gt;
+                &lt;li&gt;Recurso importante&lt;/li&gt;
+                &lt;li&gt;Outro recurso útil&lt;/li&gt;
+                &lt;li&gt;Funcionalidade especial&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Preço: &lt;span class="price"&gt;R$ 99&lt;/span&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="external-link"&gt;Link externo exemplo&lt;/a&gt;&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;!-- ::first-letter and ::first-line --&gt;
+        &lt;section class="article"&gt;
+            &lt;h2&gt;::first-letter e ::first-line&lt;/h2&gt;
+            &lt;p&gt;Este é o primeiro parágrafo do artigo. Observe como a primeira letra é grande e decorativa, e a primeira linha tem um estilo diferente. O resto do texto continua normalmente, mas essas pequenas diferenças tornam a leitura mais agradável e profissional.&lt;/p&gt;
+            &lt;p class="special"&gt;Este parágrafo é especial e não segue as regras normais.&lt;/p&gt;
+            &lt;p&gt;Este é outro parágrafo normal que demonstra como o texto flui normalmente após o primeiro parágrafo estilizado.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;!-- :target Navigation --&gt;
+        &lt;section&gt;
+            &lt;h2&gt;:target - Navegação por âncora&lt;/h2&gt;
+            &lt;nav&gt;
+                &lt;a href="#cap1"&gt;Capítulo 1&lt;/a&gt; |
+                &lt;a href="#cap2"&gt;Capítulo 2&lt;/a&gt; |
+                &lt;a href="#cap3"&gt;Capítulo 3&lt;/a&gt;
+            &lt;/nav&gt;
+            &lt;div id="cap1" class="chapter"&gt;
+                &lt;h3&gt;Capítulo 1&lt;/h3&gt;
+                &lt;p&gt;Conteúdo do capítulo 1. Clique nos links acima para ver o efeito :target.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div id="cap2" class="chapter"&gt;
+                &lt;h3&gt;Capítulo 2&lt;/h3&gt;
+                &lt;p&gt;Conteúdo do capítulo 2.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div id="cap3" class="chapter"&gt;
+                &lt;h3&gt;Capítulo 3&lt;/h3&gt;
+                &lt;p&gt;Conteúdo do capítulo 3.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- Button States --&gt;
+        &lt;section class="button-group"&gt;
+            &lt;h2&gt;Estados de Botão&lt;/h2&gt;
+            &lt;button class="btn"&gt;Botão Normal&lt;/button&gt;
+            &lt;button class="btn" disabled&gt;Botão Desabilitado&lt;/button&gt;
+            &lt;button class="btn"&gt;Outro Botão&lt;/button&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+/* :hover examples */
+.hover-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.hover-card:hover {
+    border-color: #3498db;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* :focus examples */
+.form-group {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* :required e :invalid */
+input:required {
+    border-left: 4px solid #e74c3c;
+}
+
+input:valid {
+    border-left-color: #27ae60;
+}
+
+input:invalid {
+    border-left-color: #e74c3c;
+}
+
+/* :checked examples */
+.checkbox-group {
+    margin: 20px 0;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked + label {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* :nth-child examples */
+.list-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.list-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s ease;
+}
+
+.list-item:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background: #2c3e50;
+    color: white;
+    font-weight: bold;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.list-item:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.list-item:nth-child(odd) {
+    background: white;
+}
+
+.list-item:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* ::before e ::after examples */
+.feature-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.feature-list li::before {
+    content: "✓ ";
+    color: #27ae60;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price::after {
+    content: ",00";
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.external-link::after {
+    content: " ↗";
+    font-size: 0.8em;
+    color: #3498db;
+}
+
+/* ::first-letter e ::first-line */
+.article {
+    margin: 30px 0;
+    line-height: 1.8;
+}
+
+.article p:first-of-type::first-letter {
+    font-size: 4em;
+    float: left;
+    line-height: 1;
+    margin: 0 10px 0 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.article p:first-of-type::first-line {
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+
+/* ::selection */
+::selection {
+    background-color: #3498db;
+    color: white;
+}
+
+.article::selection {
+    background-color: #2c3e50;
+}
+
+/* ::placeholder */
+textarea::placeholder {
+    color: #95a5a6;
+    font-style: italic;
+    transition: opacity 0.3s ease;
+}
+
+textarea:focus::placeholder {
+    opacity: 0.5;
+}
+
+/* :target para navegação */
+.chapter {
+    margin: 40px 0;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.chapter:target {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+    0% { background: #fff3cd; }
+    50% { background: #ffeaa7; }
+    100% { background: #fff3cd; }
+}
+
+/* :not() examples */
+.button-group button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.content p:not(.special) {
+    color: #6c757d;
+}
+
+/* :disabled */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+button:disabled:hover {
+    background: #6c757d !important;
+}
+
+/* Botões com múltiplos estados */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #3498db;
+    color: white;
+}
+
+.btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

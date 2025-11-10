@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Guia Infográfico CSS: Propriedades Grid Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ffedd5;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #c2410c;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fff7ed;
+            border-bottom: 1px solid #fed7aa;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #ea580c;
+            white-space: nowrap;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ea580c;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #c2410c;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        .live-demo-area {
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8fafc;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr;
+            grid-template-rows: 80px 1fr 100px;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main main"
+                "footer footer footer";
+            gap: 20px;
+            height: 70vh; /* Ajustado para caber no infográfico */
+            justify-items: stretch;
+            align-items: stretch;
+            border: 2px solid #fdba74;
+            font-family: Arial, sans-serif;
+        }
+
+        .grid-container .header {
+            grid-area: header;
+            background: #2c3e50;
+            color: white;
+            display: grid;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .grid-container .sidebar {
+            grid-area: sidebar;
+            background: #34495e;
+            color: white;
+            padding: 20px;
+        }
+
+        .grid-container .main {
+            grid-area: main;
+            background: #ecf0f1;
+            padding: 20px;
+            
+            /* Sub-grid dentro do main */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajustado */
+            gap: 15px;
+            align-content: start;
+            overflow-y: auto; /* Adicionado para caso o conteúdo estoure */
+        }
+
+        .grid-container .footer {
+            grid-area: footer;
+            background: #2c3e50;
+            color: white;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cards dentro do main */
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            color: #1e293b;
+            background: none;
+            padding: 0;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        /* Exemplo de grid responsivo */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Ajustado */
+            gap: 10px; /* Ajustado */
+            margin-top: 20px; /* Ajustado */
+        }
+
+        .responsive-item {
+            background: #3498db;
+            color: white;
+            padding: 15px; /* Ajustado */
+            text-align: center;
+        }
+
+        /* Exemplo com posicionamento explícito */
+        .explicit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 80px 80px 80px; /* Ajustado */
+            gap: 10px;
+            margin-top: 20px; /* Ajustado */
+        }
+
+        .explicit-grid [class^="item-"] {
+             display: grid;
+             align-items: center;
+             justify-content: center;
+             color: white;
+             font-weight: bold;
+             font-size: 1.2rem;
+             border-radius: 4px;
+        }
+
+        .item-1 {
+            grid-column: 1 / 3;
+            grid-row: 1;
+            background: #e74c3c;
+        }
+
+        .item-2 {
+            grid-column: 3;
+            grid-row: 1 / 3;
+            background: #2ecc71;
+        }
+
+        .item-3 {
+            grid-column: 1;
+            grid-row: 2 / 4;
+            background: #f39c12;
+        }
+
+        .item-4 {
+            grid-column: 2 / 4;
+            grid-row: 3;
+            background: #9b59b6;
+        }
+
+        /* Estilos básicos */
+        .live-demo-area h1, .live-demo-area h2, .live-demo-area h3 {
+            margin: 0;
+        }
+        .live-demo-area ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades CSS Grid Layout</h1>
+            <p class="subtitle">O CSS Grid é extremamente poderoso para criar layouts complexos e responsivos de forma intuitiva e eficiente!</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>display</td>
+                                <td>grid, inline-grid</td>
+                                <td>Define o contêiner grid</td>
+                            </tr>
+                            <tr>
+                                <td>grid-template-columns</td>
+                                <td>1fr 2fr, repeat(3, 1fr)</td>
+                                <td>Define colunas do grid</td>
+                            </tr>
+                            <tr>
+                                <td>grid-template-rows</td>
+                                <td>100px 1fr, minmax()</td>
+                                <td>Define linhas do grid</td>
+                            </tr>
+                            <tr>
+                                <td>grid-template-areas</td>
+                                <td>Nomes entre aspas</td>
+                                <td>Define áreas nomeadas</td>
+                            </tr>
+                            <tr>
+                                <td>gap</td>
+                                <td>20px, 10px 15px</td>
+                                <td>Espaço entre células</td>
+                            </tr>
+                            <tr>
+                                <td>justify-items</td>
+                                <td>start, center, stretch</td>
+                                <td>Alinha itens horizontalmente</td>
+                            </tr>
+                            <tr>
+                                <td>align-items</td>
+                                <td>start, center, stretch</td>
+                                <td>Alinha itens verticalmente</td>
+                            </tr>
+                            <tr>
+                                <td>grid-column</td>
+                                <td>1 / 3, span 2</td>
+                                <td>Posiciona item nas colunas</td>
+                            </tr>
+                            <tr>
+                                <td>grid-row</td>
+                                <td>2 / 4, span 3</td>
+                                <td>Posiciona item nas linhas</td>
+                            </tr>
+                            <tr>
+                                <td>grid-area</td>
+                                <td>Nome ou 1 / 1 / 3 / 3</td>
+                                <td>Define área ou posição</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: display: grid -->
+            <div class="property-card">
+                <h3>display: grid</h3>
+                <div class="card-body">
+                    <p>A propriedade display: grid transforma um elemento em um contêiner de grid. Seus filhos diretos se tornam automaticamente itens do grid.</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>grid - Cria um grid de nível de bloco</li>
+                        <li>inline-grid - Cria um grid de nível inline</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <pre><code>.container {
+    display: grid;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: grid-template-columns -->
+            <div class="property-card">
+                <h3>grid-template-columns</h3>
+                <div class="card-body">
+                    <p>Define as colunas do grid especificando o tamanho de cada coluna.</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>px, %, em, rem - Unidades de medida</li>
+                        <li>fr - Unidade fracionária (fraction)</li>
+                        <li>auto - Tamanho automático</li>
+                        <li>minmax(min, max) - Define um intervalo de tamanho</li>
+                        <li>repeat(n, size) - Repete um padrão</li>
+                        <li>min-content, max-content - Baseado no conteúdo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    /* 3 colunas fixas */
+    grid-template-columns: 100px 200px 150px;
+    
+    /* 3 colunas com frações iguais */
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    /* Colunas responsivas */
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* Layout com sidebar */
+    grid-template-columns: 250px 1fr;
+    
+    /* Colunas com tamanho mínimo e máximo */
+    grid-template-columns: minmax(200px, 1fr) 2fr;
+    
+    /* Colunas automáticas */
+    grid-template-columns: auto 1fr auto;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: grid-template-rows -->
+            <div class="property-card">
+                <h3>grid-template-rows</h3>
+                <div class="card-body">
+                    <p>Define as linhas do grid especificando o tamanho de cada linha.</p>
+                    <h4>Valores:</h4>
+                    <p>(mesmos que grid-template-columns)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    /* Linhas fixas */
+    grid-template-rows: 50px 100px 150px;
+    
+    /* Linhas com frações */
+    grid-template-rows: 1fr 2fr 1fr;
+    
+    /* Linha de cabeçalho e conteúdo */
+    grid-template-rows: 80px 1fr;
+    
+    /* Linhas com minmax */
+    grid-template-rows: minmax(100px, auto) 1fr;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: grid-template-areas -->
+            <div class="property-card">
+                <h3>grid-template-areas</h3>
+                <div class="card-body">
+                    <p>Define um template visual para o grid usando nomes de áreas.</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>Nomes de áreas entre aspas</li>
+                        <li>. para células vazias</li>
+                        <li>Múltiplas strings representando linhas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    grid-template-areas: 
+        "header header header"
+        "sidebar content content"
+        "footer footer footer";
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
+.footer { grid-area: footer; }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: gap (grid-gap) -->
+            <div class="property-card">
+                <h3>gap (grid-gap)</h3>
+                <div class="card-body">
+                    <p>Shorthand para definir row-gap e column-gap simultaneamente.</p>
+                    <h4>Valores:</h4>
+                    <p>grid-gap: &lt;row-gap&gt; &lt;column-gap&gt;;</p>
+                    <p>Nota: Em versões modernas do CSS, usa-se gap em vez de grid-gap.</p>
+                    <h4>Valores (grid-column-gap / grid-row-gap):</h4>
+                    <ul>
+                        <li>px, em, rem, %</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos (Antigo):</h4>
+                        <pre><code>.container {
+    grid-column-gap: 20px;
+    grid-row-gap: 15px;
+}</code></pre>
+                        <h4>Exemplos (Moderno):</h4>
+                        <pre><code>.container {
+    gap: 20px;            /* row e column 20px */
+    gap: 15px 10px;       /* row 15px, column 10px */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: justify-items -->
+            <div class="property-card">
+                <h3>justify-items</h3>
+                <div class="card-body">
+                    <p>Alinha os itens do grid ao longo do eixo inline (horizontal).</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>start - Alinha no início</li>
+                        <li>end - Alinha no final</li>
+                        <li>center - Centraliza</li>
+                        <li>stretch - Estica para preencher (padrão)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    justify-items: start;   /* Alinha à esquerda */
+    justify-items: center;  /* Centraliza horizontalmente */
+    justify-items: stretch; /* Estica para preencher a célula */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: align-items -->
+            <div class="property-card">
+                <h3>align-items</h3>
+                <div class="card-body">
+                    <p>Alinha os itens do grid ao longo do eixo block (vertical).</p>
+                    <h4>Valores:</h4>
+                    <p>(mesmos que justify-items)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    align-items: start;    /* Alinha no topo */
+    align-items: center;   /* Centraliza verticalmente */
+    align-items: stretch;  /* Estica para preencher a célula */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: justify-content -->
+            <div class="property-card">
+                <h3>justify-content</h3>
+                <div class="card-body">
+                    <p>Alinha todo o grid dentro do contêiner ao longo do eixo inline (horizontal).</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>start, end, center</li>
+                        <li>stretch, space-around, space-between, space-evenly</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    justify-content: start;         /* Alinha à esquerda */
+    justify-content: center;        /* Centraliza horizontalmente */
+    justify-content: space-between; /* Espaço entre as colunas */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: align-content -->
+            <div class="property-card">
+                <h3>align-content</h3>
+                <div class="card-body">
+                    <p>Alinha todo o grid dentro do contêiner ao longo do eixo block (vertical).</p>
+                    <h4>Valores:</h4>
+                    <p>(mesmos que justify-content)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    align-content: start;         /* Alinha no topo */
+    align-content: center;        /* Centraliza verticalmente */
+    align-content: space-around;  /* Espaço ao redor das linhas */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: grid-auto-columns / grid-auto-rows -->
+            <div class="property-card">
+                <h3>grid-auto-columns / grid-auto-rows</h3>
+                <div class="card-body">
+                    <p>Define o tamanho das colunas/linhas criadas implicitamente (quando há mais itens do que células definidas).</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>px, fr, auto, minmax(), etc.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    grid-auto-rows: 100px;     /* Novas linhas terão 100px */
+    grid-auto-columns: 1fr;    /* Novas colunas terão 1fr */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: grid-auto-flow -->
+            <div class="property-card">
+                <h3>grid-auto-flow</h3>
+                <div class="card-body">
+                    <p>Controla como os itens são colocados automaticamente no grid.</p>
+                    <h4>Valores:</h4>
+                    <ul>
+                        <li>row - Preenche por linhas (padrão)</li>
+                        <li>column - Preenche por colunas</li>
+                        <li>dense - Tenta preencher espaços vazios</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.container {
+    grid-auto-flow: row;       /* Preenche linha por linha */
+    grid-auto-flow: column;    /* Preenche coluna por coluna */
+    grid-auto-flow: row dense; /* Preenche linhas com densidade */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Propriedades para Itens do Grid -->
+            <div class="property-card">
+                <h3>Propriedades para Itens do Grid</h3>
+                <div class="card-body">
+                    <p>Estas propriedades são aplicadas diretamente aos itens filhos do contêiner grid.</p>
+                    
+                    <h4>grid-column-start / grid-column-end</h4>
+                    <p>Define onde um item começa e termina nas colunas.</p>
+                    
+                    <h4>grid-row-start / grid-row-end</h4>
+                    <p>Define onde um item começa e termina nas linhas.</p>
+                    
+                    <h4>grid-column / grid-row</h4>
+                    <p>Shorthands para definir início e fim de coluna/linha.</p>
+                    <p>Valores: <code>grid-column: &lt;start&gt; / &lt;end&gt;;</code></p>
+                    <p>Valores: <code>grid-row: &lt;start&gt; / &lt;end&gt;;</code></p>
+                    
+                    <h4>grid-area</h4>
+                    <p>Pode ser usado para:</p>
+                    <ul>
+                        <li>Atribuir um nome de área (para usar com grid-template-areas)</li>
+                        <li>Shorthand para grid-row-start, grid-column-start, grid-row-end, grid-column-end</li>
+                    </ul>
+                    <p>Valores: <code>grid-area: &lt;name&gt;;</code></p>
+                    <p>Valores: <code>grid-area: &lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;;</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos (grid-column/row):</h4>
+                        <pre><code>.item {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.item {
+    grid-column: 1 / 3;        /* Ocupa da linha 1 à 3 */
+    grid-row: 2 / 4;           /* Ocupa da linha 2 à 4 */
+    grid-column: 1 / span 2;   /* Começa na 1 e ocupa 2 colunas */
+}</code></pre>
+                        <h4>Exemplos (grid-area):</h4>
+                        <pre><code>/* Para áreas nomeadas */
+.item {
+    grid-area: header;
+}
+
+/* Como shorthand de posicionamento */
+.item {
+    grid-area: 1 / 2 / 3 / 4; /* row-start / col-start / row-end / col-end */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso</h3>
+                <div class="card-body live-demo-area">
+                    <p>Este exemplo renderiza ao vivo o código HTML e CSS fornecido, demonstrando um layout "Holy Grail" e outros padrões comuns de Grid.</p>
+                    
+                    <div class="grid-container">
+                        <header class="header">
+                            <h1>Meu Site com CSS Grid</h1>
+                        </header>
+                        
+                        <aside class="sidebar">
+                            <h3>Menu</h3>
+                            <ul>
+                                <li>Home</li>
+                                <li>Sobre</li>
+                                <li>Contato</li>
+                            </ul>
+                        </aside>
+                        
+                        <main class="main">
+                            <h2>Conteúdo Principal</h2>
+                            
+                            <div class="card">
+                                <h3>Card 1</h3>
+                                <p>Conteúdo do card 1</p>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Card 2</h3>
+                                <p>Conteúdo do card 2</p>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Card 3</h3>
+                                <p>Conteúdo do card 3</p>
+                            </div>
+
+                            <!-- Grid Responsivo -->
+                            <div class="responsive-grid">
+                                <div class="responsive-item">Item 1</div>
+                                <div class="responsive-item">Item 2</div>
+                                <div class="responsive-item">Item 3</div>
+                                <div class="responsive-item">Item 4</div>
+                                <div class="responsive-item">Item 5</div>
+                                <div class="responsive-item">Item 6</div>
+                            </div>
+
+                            <!-- Grid com Posicionamento Explícito -->
+                            <div class="explicit-grid">
+                                <div class="item-1">1</div>
+                                <div class="item-2">2</div>
+                                <div class="item-3">3</div>
+                                <div class="item-4">4</div>
+                            </div>
+                        </main>
+                        
+                        <footer class="footer">
+                            <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Padrões Comuns de Layout -->
+            <div class="property-card">
+                <h3>Padrões Comuns de Layout</h3>
+                <div class="card-body">
+                    <p>Exemplos de código para padrões de layout comuns usando CSS Grid.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Layout Básico com Áreas</h4>
+                        <pre><code>.container {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar content"
+        "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px 1fr 60px;
+    gap: 20px;
+    height: 100vh;
+}</code></pre>
+                        
+                        <h4>Grid Responsivo</h4>
+                        <pre><code>.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}</code></pre>
+
+                        <h4>Galeria de Imagens</h4>
+                        <pre><code>.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 10px;
+}</code></pre>
+
+                        <h4>Formulário com Grid</h4>
+                        <pre><code>.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    align-items: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplo' || btn.textContent === 'Ocultar Exemplos')) {
+                    btn.textContent = 'Ver Exemplo';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = (button.textContent === 'Ver Exemplo' || button.textContent === 'Ver Exemplos') ? 'Ocultar Exemplos' : 'Ver Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

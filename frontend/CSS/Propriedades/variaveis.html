@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Variáveis e Funções</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #fff7ed;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #9a3412;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #fed7aa;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #9a3412;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fff7ed;
+            border-bottom: 1px solid #fed7aa;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #c2410c;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f97316;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #ea580c;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        /* VARIÁVEIS GLOBAIS */
+        .live-demo-area {
+            /* Cores */
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            
+            --text-color: #2c3e50;
+            --bg-color: #ecf0f1;
+            --surface-color: #ffffff;
+            
+            /* Espaçamento */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            
+            /* Tipografia */
+            --font-base: 1rem;
+            --font-sm: 0.875rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            
+            /* Layout */
+            --border-radius: 0.375rem;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            --container-max-width: 1200px;
+            --header-height: 60px;
+        }
+        
+        /* DARK THEME VARIABLES */
+        .live-demo-area[data-theme="dark"] {
+            --text-color: #ecf0f1;
+            --bg-color: #2c3e50;
+            --surface-color: #34495e;
+        }
+        
+        /* ESTILOS BASE USANDO VARIÁVEIS */
+        .live-demo-area * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: var(--font-base);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px dashed #fed7aa;
+        }
+        
+        .live-demo-area .container {
+            width: min(100% - var(--space-xl) * 2, var(--container-max-width));
+            margin-inline: auto;
+            padding: var(--space-md);
+        }
+        
+        /* HEADER */
+        .live-demo-area .header {
+            background-color: var(--surface-color);
+            box-shadow: var(--shadow);
+            position: relative; /* Mudado de fixed para caber no demo */
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1000;
+        }
+        
+        .live-demo-area .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--space-md); /* Adicionado padding */
+        }
+        
+        /* MAIN CONTENT */
+        .live-demo-area .main {
+            margin-top: var(--space-lg); /* Removido calc() para demo */
+        }
+        
+        .live-demo-area .grid {
+            display: grid;
+            gap: var(--space-lg);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        /* CARDS */
+        .live-demo-area .card {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .live-demo-area .card:hover {
+            transform: translateY(calc(-1 * var(--space-xs)));
+            box-shadow: var(--shadow-md);
+        }
+        
+        .live-demo-area .card-title {
+            font-size: var(--font-xl);
+            color: var(--primary-color);
+            margin-bottom: var(--space-md);
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+        }
+        
+        /* BUTTONS */
+        .live-demo-area .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-md);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: var(--font-base);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--btn-bg, var(--primary-color));
+            color: var(--btn-color, white);
+        }
+        
+        .live-demo-area .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .live-demo-area .btn-primary {
+            --btn-bg: var(--primary-color);
+            --btn-color: white;
+        }
+        
+        .live-demo-area .btn-secondary {
+            --btn-bg: var(--secondary-color);
+            --btn-color: white;
+        }
+        
+        .live-demo-area .btn-success {
+            --btn-bg: var(--success-color);
+            --btn-color: white;
+        }
+        
+        /* UTILITY CLASSES */
+        .live-demo-area .text-sm { font-size: var(--font-sm); }
+        .live-demo-area .text-lg { font-size: var(--font-lg); }
+        .live-demo-area .text-xl { font-size: var(--font-xl); }
+        
+        .live-demo-area .p-sm { padding: var(--space-sm); }
+        .live-demo-area .p-md { padding: var(--space-md); }
+        .live-demo-area .p-lg { padding: var(--space-lg); }
+        
+        .live-demo-area .m-sm { margin: var(--space-sm); }
+        .live-demo-area .m-md { margin: var(--space-md); }
+        .live-demo-area .m-lg { margin: var(--space-lg); }
+        
+        /* RESPONSIVE TYPOGRAPHY */
+        .live-demo-area .responsive-heading {
+            font-size: clamp(
+                var(--font-lg), 
+                calc(1.5rem + 1vw), 
+                var(--font-2xl)
+            );
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+            color: var(--text-color); /* Adicionado */
+        }
+        
+        /* THEME TOGGLE */
+        .live-demo-area .theme-toggle {
+            /* Posição alterada para caber no demo */
+            margin-top: var(--space-md);
+        }
+        
+        /* CALC EXAMPLES */
+        .live-demo-area .calc-example {
+            width: calc(100% - var(--space-md) * 2);
+            height: calc(20vh - var(--header-height)); /* Ajustado para demo */
+            margin: calc(var(--space-sm) + 2px);
+            padding: calc(var(--space-md) / 2);
+            font-size: calc(var(--font-base) + 0.25vw);
+            min-height: 50px; /* Adicionado */
+        }
+        
+        .live-demo-area .aspect-ratio-box {
+            width: 100%;
+            height: 0;
+            padding-bottom: calc(100% * 9 / 16); /* 16:9 aspect ratio */
+            background: var(--primary-color);
+            border-radius: var(--border-radius);
+        }
+        
+        /* GRID WITH CALC */
+        .live-demo-area .auto-grid {
+            display: grid;
+            gap: var(--space-md);
+            grid-template-columns: repeat(auto-fill, 
+                minmax(calc(150px - var(--space-md) * 2), 1fr) /* Ajustado para demo */
+            );
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>CSS Variables (Custom Properties) e Funções</h1>
+            <p class="subtitle">Essas funcionalidades modernas do CSS tornam o código mais maintainable, flexível e poderoso, especialmente para sistemas de design e theming.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Recurso</th>
+                                <th>Sintaxe</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Custom Properties</td>
+                                <td>--nome: valor;</td>
+                                <td>Armazenar valores reutilizáveis</td>
+                            </tr>
+                            <tr>
+                                <td>var()</td>
+                                <td>var(--nome, fallback)</td>
+                                <td>Acessar valores de variáveis</td>
+                            </tr>
+                            <tr>
+                                <td>calc()</td>
+                                <td>calc(expressão)</td>
+                                <td>Cálculos matemáticos com CSS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Vantagens e Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Vantagens e Boas Práticas</h3>
+                <div class="card-body">
+                    <h4>Vantagens:</h4>
+                    <ul>
+                        <li>Manutenibilidade: Mudanças centralizadas</li>
+                        <li>Consistência: Valores padronizados</li>
+                        <li>Flexibilidade: Fácil theming e customização</li>
+                        <li>Performance: Melhor que pré-processadores</li>
+                    </ul>
+
+                    <h4>Boas Práticas:</h4>
+                    <ul>
+                        <li>Use nomes semânticos (--cor-primaria em vez de --azul)</li>
+                        <li>Defina variáveis globais no :root</li>
+                        <li>Use fallbacks para resiliência</li>
+                        <li>Agrupe variáveis relacionadas</li>
+                        <li>Documente suas variáveis com comentários</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Título da Seção -->
+            <h2 class="section-title">CSS Custom Properties (--*)</h2>
+
+            <!-- Card: --* (Definindo Variáveis) -->
+            <div class="property-card">
+                <h3>--* (Definindo Variáveis)</h3>
+                <div class="card-body">
+                    <p>Função: Criar variáveis customizadas para armazenar valores que serão reutilizados.</p>
+                    <h4>Escopo das variáveis:</h4>
+                    <ul>
+                        <li>Global: Declaradas no :root ou html</li>
+                        <li>Local: Declaradas em seletores específicos</li>
+                    </ul>
+                    <h4>Características importantes:</h4>
+                    <ul>
+                        <li>Os nomes são case-sensitive (--cor e --Cor são diferentes)</li>
+                        <li>Podem ser declaradas em qualquer seletor</li>
+                        <li>Herdam valores dos elementos pais</li>
+                        <li>Podem ser modificadas via JavaScript</li>
+                        <li>Suportam fallback values</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* VARIÁVEIS GLOBAIS */
+:root {
+    --cor-primaria: #3498db;
+    --cor-secundaria: #2c3e50;
+    --cor-texto: #333333;
+    --cor-fundo: #ffffff;
+    
+    --espacamento-pequeno: 8px;
+    --espacamento-medio: 16px;
+    --espacamento-grande: 24px;
+    
+    --fonte-titulo: "Georgia", serif;
+    --fonte-corpo: "Arial", sans-serif;
+    
+    --borda-radius: 4px;
+    --sombra: 0 2px 4px rgba(0,0,0,0.1);
+    
+    --largura-maxima: 1200px;
+    --breakpoint-mobile: 768px;
+}
+
+/* VARIÁVEIS LOCAIS */
+.card {
+    --card-bg: #f8f9fa;
+    --card-padding: var(--espacamento-medio);
+    --card-border: 1px solid #dee2e6;
+}
+
+.botao {
+    --botao-bg: var(--cor-primaria);
+    --botao-cor-texto: white;
+    --botao-padding: 12px 24px;
+}
+
+/* VARIÁVEIS COM VALORES DINÂMICOS */
+.responsivo {
+    --tamanho-fonte: clamp(1rem, 2.5vw, 2rem);
+    --largura-coluna: min(100%, 300px);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: var() (Usando Variáveis) -->
+            <div class="property-card">
+                <h3>var() (Usando Variáveis)</h3>
+                <div class="card-body">
+                    <p>Função: Acessar o valor de uma custom property (variável CSS).</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>propriedade: var(--nome-variavel, valor-fallback);</code></pre>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Primeiro parâmetro: nome da variável</li>
+                        <li>Segundo parâmetro (opcional): valor fallback caso a variável não exista</li>
+                        <li>Pode ser usado em qualquer propriedade CSS</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Uso básico */
+.elemento {
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    margin: var(--espacamento-medio);
+}
+
+/* Com fallback */
+.titulo {
+    font-family: var(--fonte-titulo, "Georgia", serif);
+    font-size: var(--tamanho-titulo, 2rem);
+}
+
+/* Fallback múltiplo */
+.botao {
+    background: var(--botao-cor, var(--cor-primaria, blue));
+}
+
+/* Em propriedades complexas */
+.card {
+    box-shadow: var(--sombra);
+    border-radius: var(--borda-radius);
+    padding: var(--card-padding, 16px);
+}
+
+/* Em cálculos */
+.container {
+    width: calc(100% - var(--espacamento-grande) * 2);
+}
+
+/* Fallback em cadeia */
+.texto {
+    color: var(--cor-inexistente, var(--cor-texto, black));
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Funções CSS</h2>
+
+            <!-- Card: calc() (Cálculos Matemáticos) -->
+            <div class="property-card">
+                <h3>calc() (Cálculos Matemáticos)</h3>
+                <div class="card-body">
+                    <p>Função: Realizar cálculos matemáticos com diferentes unidades CSS.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>propriedade: calc(expressão);</code></pre>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Suporta operadores: +, -, *, /</li>
+                        <li>Pode misturar diferentes unidades (px, %, em, rem, vh, vw)</li>
+                        <li>Espaços são obrigatórios ao redor dos operadores + e -</li>
+                        <li>Parênteses podem ser usados para agrupamento</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Cálculos básicos */
+.elemento {
+    width: calc(100% - 80px);
+    height: calc(50vh + 100px);
+    font-size: calc(1rem + 1vw);
+}
+
+/* Com variáveis */
+.container {
+    width: calc(100% - var(--espacamento-grande) * 2);
+    margin: calc(var(--espacamento-pequeno) / 2);
+}
+
+/* Operações complexas */
+.grid {
+    width: calc((100% / 3) - 20px);
+    height: calc(100vh - 2rem - 60px);
+}
+
+/* Mix de unidades */
+.responsivo {
+    font-size: calc(12px + 0.5vw);
+    padding: calc(1em + 10px);
+}
+
+/* Com funções CSS */
+.hero {
+    height: calc(100vh - min(80px, 10vh));
+}
+
+/* Cálculos aninhados */
+.complexo {
+    width: calc(100% - (var(--margin) * 2 + var(--padding)));
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Casos de Uso Avançados -->
+            <div class="property-card">
+                <h3>Casos de Uso Avançados</h3>
+                <div class="card-body">
+                    <h4>1. Theme Switching</h4>
+                    <pre><code>:root[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --text-primary: #ffffff;
+}
+
+:root[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --text-primary: #000000;
+}</code></pre>
+                    <h4>2. Responsive Spacing</h4>
+                    <pre><code>:root {
+    --space: clamp(1rem, 2vw, 2rem);
+}</code></pre>
+                    <h4>3. Complex Calculations</h4>
+                    <pre><code>.container {
+    --columns: 4;
+    --gap: 20px;
+    grid-template-columns: repeat(var(--columns), 
+        calc((100% - (var(--gap) * (var(--columns) - 1))) / var(--columns))
+    );
+}</code></pre>
+                    <h4>4. Fallback Chains</h4>
+                    <pre><code>.element {
+    color: var(--cor-custom, var(--cor-tema, var(--cor-padrao, black)));
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area" id="live-demo-root">
+                    <header class="header">
+                        <div class="container">
+                            <div class="header-content">
+                                <h1 class="responsive-heading">CSS Variables & Functions</h1>
+                                <button class="btn btn-secondary" id="themeToggle">
+                                    Toggle Theme
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+                
+                    <main class="main container">
+                        <section class="grid">
+                            <article class="card">
+                                <h2 class="card-title">Variáveis CSS</h2>
+                                <p>Custom properties permitem armazenar valores reutilizáveis.</p>
+                                <div class="m-md">
+                                    <button class="btn btn-primary m-sm">Primary</button>
+                                    <button class="btn btn-success m-sm">Success</button>
+                                </div>
+                            </article>
+                
+                            <article class="card">
+                                <h2 class="card-title">Função calc()</h2>
+                                <p>Cálculos matemáticos com diferentes unidades CSS.</p>
+                                <div class="calc-example card m-md">
+                                    Elemento com cálculos responsivos
+                                </div>
+                            </article>
+                
+                            <article class="card">
+                                <h2 class="card-title">Aspect Ratio</h2>
+                                <p>Usando calc() para manter proporções.</p>
+                                <div class="aspect-ratio-box"></div>
+                            </article>
+                        </section>
+                
+                        <section class="auto-grid m-lg">
+                            <div class="card p-sm">Item 1</div>
+                            <div class="card p-sm">Item 2</div>
+                            <div class="card p-sm">Item 3</div>
+                            <div class="card p-sm">Item 4</div>
+                            <div class="card p-sm">Item 5</div>
+                            <div class="card p-sm">Item 6</div>
+                        </section>
+                    </main>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;CSS Variables e Funções&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;div class="container"&gt;
+            &lt;div class="header-content"&gt;
+                &lt;h1 class="responsive-heading"&gt;CSS Variables & Functions&lt;/h1&gt;
+                &lt;button class="btn btn-secondary" id="themeToggle"&gt;
+                    Toggle Theme
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main class="main container"&gt;
+        &lt;section class="grid"&gt;
+            &lt;article class="card"&gt;
+                &lt;h2 class="card-title"&gt;Variáveis CSS&lt;/h2&gt;
+                &lt;p&gt;Custom properties permitem armazenar valores reutilizáveis.&lt;/p&gt;
+                &lt;div class="m-md"&gt;
+                    &lt;button class="btn btn-primary m-sm"&gt;Primary&lt;/button&gt;
+                    &lt;button class="btn btn-success m-sm"&gt;Success&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/article&gt;
+
+            &lt;article class="card"&gt;
+                &lt;h2 class="card-title"&gt;Função calc()&lt;/h2&gt;
+                &lt;p&gt;Cálculos matemáticos com diferentes unidades CSS.&lt;/p&gt;
+                &lt;div class="calc-example card m-md"&gt;
+                    Elemento com cálculos responsivos
+                &lt;/div&gt;
+            &lt;/article&gt;
+
+            &lt;article class="card"&gt;
+                &lt;h2 class="card-title"&gt;Aspect Ratio&lt;/h2&gt;
+                &lt;p&gt;Usando calc() para manter proporções.&lt;/p&gt;
+                &lt;div class="aspect-ratio-box"&gt;&lt;/div&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;section class="auto-grid m-lg"&gt;
+            &lt;div class="card p-sm"&gt;Item 1&lt;/div&gt;
+            &lt;div class="card p-sm"&gt;Item 2&lt;/div&gt;
+            &lt;div class="card p-sm"&gt;Item 3&lt;/div&gt;
+            &lt;div class="card p-sm"&gt;Item 4&lt;/div&gt;
+            &lt;div class="card p-sm"&gt;Item 5&lt;/div&gt;
+            &lt;div class="card p-sm"&gt;Item 6&lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;script&gt;
+        // JavaScript para alternar temas
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+
+        themeToggle.addEventListener('click', () =&gt; {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            
+            // Atualizar texto do botão
+            themeToggle.textContent = `Toggle Theme (${newTheme})`;
+        });
+
+        // Exemplo: Modificar variáveis CSS via JavaScript
+        function changePrimaryColor(newColor) {
+            root.style.setProperty('--primary-color', newColor);
+        }
+
+        // Exemplo de uso:
+        // changePrimaryColor('#ff6b6b');
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* VARIÁVEIS GLOBAIS */
+:root {
+    /* Cores */
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    
+    --text-color: #2c3e50;
+    --bg-color: #ecf0f1;
+    --surface-color: #ffffff;
+    
+    /* Espaçamento */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    
+    /* Tipografia */
+    --font-base: 1rem;
+    --font-sm: 0.875rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    
+    /* Layout */
+    --border-radius: 0.375rem;
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    
+    --container-max-width: 1200px;
+    --header-height: 60px;
+}
+
+/* DARK THEME VARIABLES */
+[data-theme="dark"] {
+    --text-color: #ecf0f1;
+    --bg-color: #2c3e50;
+    --surface-color: #34495e;
+}
+
+/* ESTILOS BASE USANDO VARIÁVEIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: var(--font-base);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
+}
+
+.container {
+    width: min(100% - var(--space-xl) * 2, var(--container-max-width));
+    margin-inline: auto;
+    padding: var(--space-md);
+}
+
+/* HEADER */
+.header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* MAIN CONTENT */
+.main {
+    margin-top: calc(var(--header-height) + var(--space-lg));
+}
+
+.grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* CARDS */
+.card {
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(calc(-1 * var(--space-xs)));
+    box-shadow: var(--shadow-md);
+}
+
+.card-title {
+    font-size: var(--font-xl);
+    color: var(--primary-color);
+    margin-bottom: var(--space-md);
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-base);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--btn-bg, var(--primary-color));
+    color: var(--btn-color, white);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+    --btn-bg: var(--primary-color);
+    --btn-color: white;
+}
+
+.btn-secondary {
+    --btn-bg: var(--secondary-color);
+    --btn-color: white;
+}
+
+.btn-success {
+    --btn-bg: var(--success-color);
+    --btn-color: white;
+}
+
+/* UTILITY CLASSES */
+.text-sm { font-size: var(--font-sm); }
+.text-lg { font-size: var(--font-lg); }
+.text-xl { font-size: var(--font-xl); }
+
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+
+/* RESPONSIVE TYPOGRAPHY */
+.responsive-heading {
+    font-size: clamp(
+        var(--font-lg), 
+        calc(1.5rem + 1vw), 
+        var(--font-2xl)
+    );
+}
+
+/* THEME TOGGLE */
+.theme-toggle {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 1000;
+}
+
+/* CALC EXAMPLES */
+.calc-example {
+    width: calc(100% - var(--space-md) * 2);
+    height: calc(50vh - var(--header-height));
+    margin: calc(var(--space-sm) + 2px);
+    padding: calc(var(--space-md) / 2);
+    font-size: calc(var(--font-base) + 0.25vw);
+}
+
+.aspect-ratio-box {
+    width: 100%;
+    height: 0;
+    padding-bottom: calc(100% * 9 / 16); /* 16:9 aspect ratio */
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+}
+
+/* GRID WITH CALC */
+.auto-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill, 
+        minmax(calc(250px - var(--space-md) * 2), 1fr)
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+        
+        // JavaScript para alternar temas (para o exemplo vivo)
+        const demoRoot = document.getElementById('live-demo-root');
+        if (demoRoot) {
+            const themeToggle = demoRoot.querySelector('#themeToggle');
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = demoRoot.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                demoRoot.setAttribute('data-theme', newTheme);
+                
+                // Atualizar texto do botão
+                themeToggle.textContent = `Toggle Theme (${newTheme})`;
+            });
+        }
+    </script>
+
+</body>
+</html>
