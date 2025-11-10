@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de HTML: Estrutura Básica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe; /* Azul claro */
+        }
+
+        /* 4. SEÇÃO DOS EXERCÍCIOS */
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0; /* Divisor suave */
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5; /* Índigo */
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .enunciado {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0;
+            color: #1e293b;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+
+        /* Bloco de Código */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Exercícios de HTML</h1>
+            <h2>1. Estrutura básica da página</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página HTML básica para um blog pessoal. A página deve ter a estrutura completa com DOCTYPE, html, head e body. No head, inclua o título "Meu Blog Pessoal" e charset UTF-8.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Meu Blog Pessoal&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Conteúdo do blog será adicionado aqui --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie a estrutura básica de uma página de receitas. Inclua o título "Receitas da Vovó" e defina o idioma como português brasileiro.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Receitas da Vovó&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bem-vindo às Receitas da Vovó&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva a estrutura inicial de um site de notícias chamado "Jornal Diário". Inclua todos os elementos essenciais de uma página HTML.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Jornal Diário&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Jornal Diário&lt;/h1&gt;
+    &lt;/header&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página HTML para um portfólio profissional. A página deve ter estrutura completa e título "Meu Portfólio - João Silva".</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="Portfólio profissional de João Silva"&gt;
+    &lt;title&gt;Meu Portfólio - João Silva&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;João Silva - Desenvolvedor Web&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Construa a estrutura básica de uma landing page para um produto. Inclua metadados para SEO com descrição e palavras-chave.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Produto revolucionário para facilitar seu dia a dia"&gt;
+    &lt;meta name="keywords" content="produto, inovação, tecnologia, facilidade"&gt;
+    &lt;title&gt;SuperProduto - Revolucione Seu Dia&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Conheça o SuperProduto&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 6 -->
+            <div class="exercise-card">
+                <h3>Exercício 6</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página HTML para uma loja virtual chamada "TechStore". Inclua a estrutura completa e título apropriado.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;TechStore - Eletrônicos e Tecnologia&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;TechStore&lt;/h1&gt;
+        &lt;p&gt;Sua loja de confiança em tecnologia&lt;/p&gt;
+    &lt;/header&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 7 -->
+            <div class="exercise-card">
+                <h3>Exercício 7</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página HTML para um restaurante italiano. A página deve ter estrutura completa e título "Ristorante Bella Italia".</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Ristorante Bella Italia - Autêntica Cozinha Italiana&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bem-vindo ao Ristorante Bella Italia&lt;/h1&gt;
+    &lt;p&gt;Sabores autênticos da Itália&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 8 -->
+            <div class="exercise-card">
+                <h3>Exercício 8</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Construa a estrutura básica de um site institucional para uma escola. Inclua título e metadados apropriados.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Escola Exemplo - Educação de qualidade para o futuro"&gt;
+    &lt;title&gt;Escola Exemplo - Educação Transformadora&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Escola Exemplo&lt;/h1&gt;
+    &lt;p&gt;Educação que transforma vidas&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 9 -->
+            <div class="exercise-card">
+                <h3>Exercício 9</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página HTML para um blog de viagens. Inclua estrutura completa e título atrativo.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Dicas e relatos de viagens pelo mundo todo"&gt;
+    &lt;title&gt;Viajante Digital - Descubra o Mundo Conosco&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Viajante Digital&lt;/h1&gt;
+    &lt;p&gt;Suas próximas aventuras começam aqui&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 10 -->
+            <div class="exercise-card">
+                <h3>Exercício 10</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página HTML para um serviço de consultoria. Inclua todos os elementos essenciais e título profissional.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Consultoria empresarial especializada em transformação digital"&gt;
+    &lt;title&gt;NextConsult - Consultoria Empresarial&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;NextConsult&lt;/h1&gt;
+    &lt;p&gt;Transformando negócios através da inovação&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            // Oculta todas as outras resoluções abertas
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            // Alterna a resolução atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

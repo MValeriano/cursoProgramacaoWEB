@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Texto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #0d9488, #0f766e);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ccfbf1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #0d9488;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f0fdfa;
+            border-bottom: 1px solid #ccfbf1;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #0d9488;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d9488;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #0f766e;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Texto CSS</h1>
+            <p class="subtitle">Essas propriedades são essenciais para o controle tipográfico avançado e layout de texto em CSS.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>direction</td>
+                                <td>ltr, rtl</td>
+                                <td>Direção do texto</td>
+                            </tr>
+                            <tr>
+                                <td>letter-spacing</td>
+                                <td>normal, 2px, -1px</td>
+                                <td>Espaço entre caracteres</td>
+                            </tr>
+                            <tr>
+                                <td>text-align</td>
+                                <td>left, center, right, justify</td>
+                                <td>Alinhamento horizontal</td>
+                            </tr>
+                            <tr>
+                                <td>text-decoration</td>
+                                <td>none, underline, line-through</td>
+                                <td>Decoração do texto</td>
+                            </tr>
+                            <tr>
+                                <td>text-indent</td>
+                                <td>2em, 40px, 10%</td>
+                                <td>Recuo da primeira linha</td>
+                            </tr>
+                            <tr>
+                                <td>text-shadow</td>
+                                <td>2px 2px 4px #000</td>
+                                <td>Sombra do texto</td>
+                            </tr>
+                            <tr>
+                                <td>text-transform</td>
+                                <td>none, uppercase, capitalize</td>
+                                <td>Capitalização</td>
+                            </tr>
+                            <tr>
+                                <td>white-space</td>
+                                <td>normal, nowrap, pre</td>
+                                <td>Tratamento de espaços</td>
+                            </tr>
+                            <tr>
+                                <td>word-break</td>
+                                <td>normal, break-all</td>
+                                <td>Quebra de palavras</td>
+                            </tr>
+                            <tr>
+                                <td>word-spacing</td>
+                                <td>normal, 0.5em</td>
+                                <td>Espaço entre palavras</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-wrap</td>
+                                <td>normal, break-word</td>
+                                <td>Quebra de palavras longas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use text-align: justify com moderação - pode criar rios de espaço</li>
+                        <li>Combine letter-spacing com text-transform: uppercase para títulos</li>
+                        <li>Use overflow-wrap: break-word para conteúdo com URLs longas</li>
+                        <li>Evite text-decoration: blink - é irritante e não é suportado</li>
+                        <li>Teste white-space em conteúdo dinâmico</li>
+                        <li>Use text-shadow sutilmente para melhor legibilidade</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: direction -->
+            <div class="property-card">
+                <h3>direction</h3>
+                <div class="card-body">
+                    <p>A propriedade direction especifica a direção do texto: da direita para a esquerda (rtl) ou da esquerda para a direita (ltr).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>ltr - Da esquerda para a direita (padrão)</li>
+                        <li>rtl - Da direita para a esquerda</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Texto normal (ocidental) */
+.portugues {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Texto árabe/hebraico */
+.arabe {
+    direction: rtl;
+    text-align: right;
+    font-family: "Arabic Typesetting", serif;
+}
+
+/* Exemplo prático */
+.rtl-text {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: letter-spacing -->
+            <div class="property-card">
+                <h3>letter-spacing</h3>
+                <div class="card-body">
+                    <p>A propriedade letter-spacing aumenta ou diminui o espaço entre caracteres.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Espaçamento normal (padrão)</li>
+                        <li>length - Espaço adicional em px, em, rem, etc.</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Espaçamento normal */
+.normal {
+    letter-spacing: normal;
+}
+
+/* Espaçamento aumentado */
+.wide {
+    letter-spacing: 2px;
+}
+
+/* Espaçamento reduzido */
+.tight {
+    letter-spacing: -1px;
+}
+
+/* Uso prático */
+.heading {
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.caption {
+    letter-spacing: 0.5px;
+}
+
+.emphasis {
+    letter-spacing: 2px;
+    font-weight: bold;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-align -->
+            <div class="property-card">
+                <h3>text-align</h3>
+                <div class="card-body">
+                    <p>A propriedade text-align especifica o alinhamento horizontal do texto.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>left - Alinha à esquerda (padrão)</li>
+                        <li>right - Alinha à direita</li>
+                        <li>center - Centraliza</li>
+                        <li>justify - Justifica (alinha às duas margens)</li>
+                        <li>start - Alinha ao início (depende da direção)</li>
+                        <li>end - Alinha ao fim (depende da direção)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Alinhamentos básicos */
+.left-align {
+    text-align: left;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.justify-align {
+    text-align: justify;
+}
+
+/* Uso prático */
+.header {
+    text-align: center;
+}
+
+.article {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.caption {
+    text-align: right;
+    font-style: italic;
+}
+
+.quote {
+    text-align: center;
+    font-style: italic;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-align-last -->
+            <div class="property-card">
+                <h3>text-align-last</h3>
+                <div class="card-body">
+                    <p>A propriedade text-align-last especifica como alinhar a última linha de um texto.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Aplicado pelo navegador (padrão)</li>
+                        <li>left - Alinha à esquerda</li>
+                        <li>right - Alinha à direita</li>
+                        <li>center - Centraliza</li>
+                        <li>justify - Justifica</li>
+                        <li>start - Alinha ao início</li>
+                        <li>end - Alinha ao fim</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Justificar a última linha */
+.justify-last {
+    text-align: justify;
+    text-align-last: justify;
+}
+
+/* Centralizar a última linha */
+.center-last {
+    text-align: justify;
+    text-align-last: center;
+}
+
+/* Alinhar à direita a última linha */
+.right-last {
+    text-align: justify;
+    text-align-last: right;
+}
+
+/* Uso em parágrafos */
+.paragraph {
+    text-align: justify;
+    text-align-last: left;
+    margin-bottom: 1em;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-decoration -->
+            <div class="property-card">
+                <h3>text-decoration</h3>
+                <div class="card-body">
+                    <p>A propriedade text-decoration especifica a decoração adicionada ao texto (shorthand).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem decoração (padrão)</li>
+                        <li>underline - Linha abaixo do texto</li>
+                        <li>overline - Linha acima do texto</li>
+                        <li>line-through - Linha através do texto</li>
+                        <li>blink - Texto piscante (não recomendado)</li>
+                        <li>Combinações múltiplas</li>
+                    </ul>
+                    <h4>Propriedades individuais:</h4>
+                    <ul>
+                        <li>text-decoration-line</li>
+                        <li>text-decoration-color</li>
+                        <li>text-decoration-style</li>
+                        <li>text-decoration-thickness</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Decorações básicas */
+.underline {
+    text-decoration: underline;
+}
+
+.overline {
+    text-decoration: overline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.multiple {
+    text-decoration: underline overline;
+}
+
+/* Decorações avançadas */
+.fancy-underline {
+    text-decoration: underline wavy red 2px;
+}
+
+.custom-line {
+    text-decoration-line: underline;
+    text-decoration-color: blue;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 3px;
+}
+
+/* Remover sublinhado de links */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-indent -->
+            <div class="property-card">
+                <h3>text-indent</h3>
+                <div class="card-body">
+                    <p>A propriedade text-indent especifica o recuo da primeira linha de um bloco de texto.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>length - Recuo fixo em px, em, rem, etc.</li>
+                        <li>percentage - Recuo em % da largura do elemento pai</li>
+                        <li>each-line - Recua a primeira linha após quebra forçada</li>
+                        <li>hanging - Inverte o recuo (primeira linha sem recuo, demais com recuo)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Recuo básico */
+.indent-para {
+    text-indent: 2em;
+}
+
+.indent-px {
+    text-indent: 40px;
+}
+
+/* Recuo percentual */
+.indent-percent {
+    text-indent: 10%;
+}
+
+/* Recuo negativo (extensão) */
+.hanging-indent {
+    text-indent: -2em;
+    padding-left: 2em;
+}
+
+/* Recuo especial para cada linha */
+.each-line-indent {
+    text-indent: 2em each-line;
+}
+
+/* Uso prático */
+.article p {
+    text-indent: 1.5em;
+    margin-bottom: 1em;
+}
+
+.blockquote {
+    text-indent: -1em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-justify -->
+            <div class="property-card">
+                <h3>text-justify</h3>
+                <div class="card-body">
+                    <p>A propriedade text-justify especifica o método de justificação quando text-align: justify é usado.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Navegador escolhe (padrão)</li>
+                        <li>none - Justificação desativada</li>
+                        <li>inter-word - Ajusta espaços entre palavras</li>
+                        <li>inter-character - Ajusta espaços entre caracteres</li>
+                        <li>distribute - Similar ao inter-word (legado)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Justificação entre palavras */
+.justify-words {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Justificação entre caracteres */
+.justify-chars {
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+/* Para idiomas asiáticos */
+.cjk-text {
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+/* Uso prático */
+.newspaper {
+    text-align: justify;
+    text-justify: inter-word;
+    column-count: 2;
+}
+
+.article {
+    text-align: justify;
+    text-justify: auto;
+    line-height: 1.6;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-shadow -->
+            <div class="property-card">
+                <h3>text-shadow</h3>
+                <div class="card-body">
+                    <p>A propriedade text-shadow adiciona sombra ao texto.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>text-shadow: offset-x offset-y blur-radius color;</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem sombra (padrão)</li>
+                        <li>offset-x - Deslocamento horizontal (obrigatório)</li>
+                        <li>offset-y - Deslocamento vertical (obrigatório)</li>
+                        <li>blur-radius - Raio de desfoque (opcional)</li>
+                        <li>color - Cor da sombra (opcional)</li>
+                        <li>Múltiplas sombras separadas por vírgula</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Sombra simples */
+.shadow-basic {
+    text-shadow: 2px 2px #000;
+}
+
+/* Sombra com desfoque */
+.shadow-blur {
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Sombra colorida */
+.shadow-color {
+    text-shadow: 1px 1px 2px red;
+}
+
+/* Múltiplas sombras */
+.shadow-multiple {
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+/* Efeitos criativos */
+.emboss {
+    text-shadow: 1px 1px 1px #fff, -1px -1px 1px #000;
+    color: #808080;
+}
+
+.glow {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: text-transform -->
+            <div class="property-card">
+                <h3>text-transform</h3>
+                <div class="card-body">
+                    <p>A propriedade text-transform controla a capitalização do texto.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem transformação (padrão)</li>
+                        <li>capitalize - Primeira letra de cada palavra em maiúscula</li>
+                        <li>uppercase - Todas as letras em maiúscula</li>
+                        <li>lowercase - Todas as letras em minúscula</li>
+                        <li>full-width - Caracteres de largura total (CJK)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Transformações básicas */
+.none-case {
+    text-transform: none;
+}
+
+.capitalize-case {
+    text-transform: capitalize;
+}
+
+.uppercase-case {
+    text-transform: uppercase;
+}
+
+.lowercase-case {
+    text-transform: lowercase;
+}
+
+/* Uso prático */
+.heading {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.caption {
+    text-transform: capitalize;
+}
+
+.code {
+    text-transform: lowercase;
+    font-family: monospace;
+}
+
+.menu-item {
+    text-transform: capitalize;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: white-space -->
+            <div class="property-card">
+                <h3>white-space</h3>
+                <div class="card-body">
+                    <p>A propriedade white-space especifica como os espaços em branco são tratados.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Colapsa espaços, quebra linhas normalmente (padrão)</li>
+                        <li>nowrap - Colapsa espaços, sem quebra de linha</li>
+                        <li>pre - Preserva espaços, quebra apenas em <br> e nova linha</li>
+                        <li>pre-wrap - Preserva espaços, quebra normally</li>
+                        <li>pre-line - Colapsa espaços, preserva quebras</li>
+                        <li>break-spaces - Similar ao pre-wrap, quebra espaços</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Comportamentos básicos */
+.normal-space {
+    white-space: normal;
+}
+
+.nowrap-space {
+    white-space: nowrap;
+}
+
+.pre-space {
+    white-space: pre;
+}
+
+.pre-wrap-space {
+    white-space: pre-wrap;
+}
+
+.pre-line-space {
+    white-space: pre-line;
+}
+
+/* Uso prático */
+.code-block {
+    white-space: pre;
+    font-family: monospace;
+    background: #f4f4f4;
+}
+
+.nowrap-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.poem {
+    white-space: pre-line;
+    font-style: italic;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: word-break -->
+            <div class="property-card">
+                <h3>word-break</h3>
+                <div class="card-body">
+                    <p>A propriedade word-break especifica como quebrar palavras quando atingem o final da linha.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Quebra padrão (padrão)</li>
+                        <li>break-all - Quebra em qualquer caractere</li>
+                        <li>keep-all - Não quebra em caracteres CJK</li>
+                        <li>break-word - Quebra palavras longas (legado, use overflow-wrap)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Comportamentos de quebra */
+.normal-break {
+    word-break: normal;
+}
+
+.break-all {
+    word-break: break-all;
+}
+
+.keep-all {
+    word-break: keep-all;
+}
+
+/* Uso prático */
+.long-words {
+    word-break: break-all;
+}
+
+.cjk-text {
+    word-break: keep-all;
+}
+
+.url-break {
+    word-break: break-all;
+    font-family: monospace;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: word-spacing -->
+            <div class="property-card">
+                <h3>word-spacing</h3>
+                <div class="card-body">
+                    <p>A propriedade word-spacing aumenta ou diminui o espaço entre palavras.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Espaço normal (padrão)</li>
+                        <li>length - Espaço adicional em px, em, rem, etc.</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Espaçamento normal */
+.normal-word-space {
+    word-spacing: normal;
+}
+
+/* Espaçamento aumentado */
+.wide-word-space {
+    word-spacing: 0.5em;
+}
+
+/* Espaçamento reduzido */
+.tight-word-space {
+    word-spacing: -1px;
+}
+
+/* Uso prático */
+.justified-text {
+    word-spacing: 0.1em;
+    text-align: justify;
+}
+
+.heading {
+    word-spacing: 0.2em;
+    letter-spacing: 1px;
+}
+
+.poetic {
+    word-spacing: 0.3em;
+    line-height: 1.8;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: word-wrap / overflow-wrap -->
+            <div class="property-card">
+                <h3>word-wrap / overflow-wrap</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow-wrap (antiga word-wrap) especifica se o navegador pode quebrar palavras para evitar transbordamento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Quebra apenas em pontos de quebra normais (padrão)</li>
+                        <li>break-word - Quebra palavras longas</li>
+                        <li>anywhere - Quebra em qualquer ponto</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Comportamentos de quebra */
+.normal-wrap {
+    overflow-wrap: normal;
+}
+
+.break-word {
+    overflow-wrap: break-word;
+}
+
+.anywhere-wrap {
+    overflow-wrap: anywhere;
+}
+
+/* Uso prático */
+.container {
+    overflow-wrap: break-word;
+}
+
+.long-content {
+    overflow-wrap: anywhere;
+}
+
+.url-container {
+    overflow-wrap: break-word;
+    font-family: monospace;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas propriedades de texto para criar uma página bem formatada.</p>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Propriedades de Texto CSS&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #2c3e50;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .demo-heading {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        /* Direction Example */
+        .ltr-example {
+            direction: ltr;
+            text-align: left;
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        .rtl-example {
+            direction: rtl;
+            text-align: right;
+            background: #f8e8e8;
+            padding: 15px;
+            border-right: 4px solid #e74c3c;
+        }
+
+        /* Letter Spacing Examples */
+        .spacing-tight {
+            letter-spacing: -1px;
+            background: #fff3cd;
+            padding: 10px;
+        }
+
+        .spacing-normal {
+            letter-spacing: normal;
+            background: #d1ecf1;
+            padding: 10px;
+        }
+
+        .spacing-wide {
+            letter-spacing: 5px;
+            background: #d4edda;
+            padding: 10px;
+        }
+
+        /* Text Align Examples */
+        .align-demo {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .align-left { text-align: left; background: #e8f4f8; }
+        .align-center { text-align: center; background: #fff3cd; }
+        .align-right { text-align: right; background: #d4edda; }
+        .align-justify { 
+            text-align: justify; 
+            text-justify: inter-word;
+            background: #f8e8e8;
+        }
+
+        /* Text Decoration Examples */
+        .decoration-underline {
+            text-decoration: underline;
+            padding: 5px;
+        }
+
+        .decoration-overline {
+            text-decoration: overline;
+            padding: 5px;
+        }
+
+        .decoration-line-through {
+            text-decoration: line-through;
+            padding: 5px;
+        }
+
+        .decoration-fancy {
+            text-decoration: underline wavy #e74c3c;
+            padding: 5px;
+        }
+
+        /* Text Transform Examples */
+        .transform-none { text-transform: none; background: #e8f4f8; padding: 5px; }
+        .transform-capitalize { text-transform: capitalize; background: #fff3cd; padding: 5px; }
+        .transform-uppercase { text-transform: uppercase; background: #d4edda; padding: 5px; }
+        .transform-lowercase { text-transform: lowercase; background: #f8e8e8; padding: 5px; }
+
+        /* Text Shadow Examples */
+        .shadow-simple {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+
+        .shadow-glow {
+            text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
+            font-size: 1.5em;
+            color: white;
+            background: #2c3e50;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* White Space Examples */
+        .whitespace-pre {
+            white-space: pre;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            font-family: monospace;
+        }
+
+        .whitespace-nowrap {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: #e8f4f8;
+            padding: 10px;
+            border: 1px solid #3498db;
+        }
+
+        /* Word Break Examples */
+        .break-demo {
+            width: 200px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .break-normal { word-break: normal; background: #e8f4f8; }
+        .break-all { word-break: break-all; background: #fff3cd; }
+        .break-word { overflow-wrap: break-word; background: #d4edda; }
+
+        /* Code Example */
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demonstração de Propriedades de Texto CSS&lt;/h1&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Direction&lt;/h2&gt;
+        &lt;div class="ltr-example"&gt;
+            Texto da esquerda para direita (Left to Right)
+        &lt;/div&gt;
+        &lt;div class="rtl-example"&gt;
+            Texto da direita para esquerda (Right to Left) - exemplo para árabe/hebraico
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Letter Spacing&lt;/h2&gt;
+        &lt;p class="spacing-tight"&gt;Espaçamento reduzido entre letras (-1px)&lt;/p&gt;
+        &lt;p class="spacing-normal"&gt;Espaçamento normal entre letras&lt;/p&gt;
+        &lt;p class="spacing-wide"&gt;Espaçamento aumentado entre letras (5px)&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Text Align&lt;/h2&gt;
+        &lt;div class="align-demo align-left"&gt;Texto alinhado à esquerda&lt;/div&gt;
+        &lt;div class="align-demo align-center"&gt;Texto centralizado&lt;/div&gt;
+        &lt;div class="align-demo align-right"&gt;Texto alinhado à direita&lt;/div&gt;
+        &lt;div class="align-demo align-justify"&gt;
+            Texto justificado. Este texto será distribuído igualmente entre as margens esquerda e direita.
+            O espaçamento entre as palavras é ajustado para criar um bloco de texto alinhado em ambas as extremidades.
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Text Decoration&lt;/h2&gt;
+        &lt;p class="decoration-underline"&gt;Texto sublinhado&lt;/p&gt;
+        &lt;p class="decoration-overline"&gt;Texto com linha acima&lt;/p...&gt;
+        &lt;p class="decoration-line-through"&gt;Texto com linha através&lt;/p&gt;
+        &lt;p class="decoration-fancy"&gt;Texto com decoração personalizada&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Text Transform&lt;/h2&gt;
+        &lt;p class="transform-none"&gt;texto sem transformação (none)&lt;/p&gt;
+        &lt;p class="transform-capitalize"&gt;texto com primeira letra maiúscula (capitalize)&lt;/p&gt;
+        &lt;p class="transform-uppercase"&gt;texto em letras maiúsculas (uppercase)&lt;/p&gt;
+        &lt;p class="transform-lowercase"&gt;TEXTO EM LETRAS MINÚSCULAS (lowercase)&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Text Shadow&lt;/h2&gt;
+        &lt;p class="shadow-simple"&gt;Texto com sombra simples&lt;/p&gt;
+        &lt;p class="shadow-glow"&gt;Texto com efeito glow&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;White Space&lt;/h2&gt;
+        &lt;p&gt;Normal (colapsa espaços):&lt;/p&gt;
+        &lt;p&gt;Texto   com   múltiplos   espaços&lt;/p&gt;
+        
+        &lt;p&gt;Pre (preserva espaços):&lt;/p&gt;
+        &lt;div class="whitespace-pre"&gt;Texto   com   múltiplos   espaços&lt;/div&gt;
+        
+        &lt;p&gt;No wrap (sem quebra):&lt;/p&gt;
+        &lt;div class="whitespace-nowrap"&gt;Este texto muito longo não quebrará automaticamente e será truncado com ellipsis se necessário&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Word Break & Overflow Wrap&lt;/h2&gt;
+        &lt;p&gt;Normal:&lt;/p&gt;
+        &lt;div class="break-demo break-normal"&gt;
+            URLmuitolongaparanãoquebrar: https://exemplo.com/pagina/super/longa/url/que/nao/cabe
+        &lt;/div&gt;
+        
+        &lt;p&gt;Break All:&lt;/p&gt;
+        &lt;div class="break-demo break-all"&gt;
+            URLmuitolongaparanãoquebrar: https://exemplo.com/pagina/super/longa/url/que/nao/cabe
+        &lt;/div&gt;
+        
+        &lt;p&gt;Break Word:&lt;/p&gt;
+        &lt;div class="break-demo break-word"&gt;
+            URLmuitolongaparanãoquebrar: https://exemplo.com/pagina/super/longa/url/que/nao/cabe
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+        &lt;h2 class="demo-heading"&gt;Exemplo de Código&lt;/h2&gt;
+        &lt;div class="code-block"&gt;
+// Exemplo de código com múltiplas propriedades
+.texto-exemplo {
+    direction: ltr;
+    letter-spacing: 1px;
+    text-align: justify;
+    text-decoration: none;
+    text-transform: capitalize;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Exemplos') {
+                    btn.textContent = 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

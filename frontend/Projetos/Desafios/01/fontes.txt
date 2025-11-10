@@ -1,0 +1,2 @@
+tag  p    font-family: 'Open Sans',sans-serif;
+ tag h2  font-family: 'PT Sans',sans-serif;

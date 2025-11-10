@@ -1,0 +1,7 @@
+paragrafos
+	    color: #808080 !important;
+
+body
+	color: #2e2f33;
+	 background-color: #ffffff;
+

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de HTML: Organização de Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe; /* Azul claro */
+        }
+
+        /* 4. SEÇÃO DOS EXERCÍCIOS */
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0; /* Divisor suave */
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5; /* Índigo */
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .enunciado {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0;
+            color: #1e293b;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+
+        /* Bloco de Código */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Exercícios de HTML</h1>
+            <h2>4. Organização de layout</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie a estrutura básica de um blog usando header, main, footer, article e section.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Meu Blog Pessoal&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Blog do Desenvolvedor&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#home"&gt;Home&lt;/a&gt; |
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt; |
+            &lt;a href="#contato"&gt;Contato&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h2&gt;Como Aprender HTML em 2024&lt;/h2&gt;
+                &lt;p&gt;Publicado em: 15 de Março, 2024&lt;/p&gt;
+            &lt;/header&gt;
+            
+            &lt;section&gt;
+                &lt;h3&gt;Introdução&lt;/h3&gt;
+                &lt;p&gt;HTML continua sendo a base fundamental para desenvolvimento web...&lt;/p&gt;
+            &lt;/section&gt;
+            
+            &lt;section&gt;
+                &lt;h3&gt;Recursos Recomendados&lt;/h3&gt;
+                &lt;p&gt;Confira os melhores materiais para começar...&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2024 Blog do Desenvolvedor. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva um site institucional com estrutura semântica completa.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Empresa ABC - Soluções Inovadoras&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;div class="logo"&gt;
+            &lt;h1&gt;Empresa ABC&lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#home"&gt;Início&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#servicos"&gt;Serviços&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#sobre"&gt;Sobre Nós&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#contato"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="destaque"&gt;
+            &lt;h2&gt;Soluções Inovadoras para seu Negócio&lt;/h2&gt;
+            &lt;p&gt;Transformamos ideias em resultados concretos.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="servicos"&gt;
+            &lt;h2&gt;Nossos Serviços&lt;/h2&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Consultoria Digital&lt;/h3&gt;
+                &lt;p&gt;Otimizamos seus processos com tecnologia de ponta.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Desenvolvimento Web&lt;/h3&gt;
+                &lt;p&gt;Sites e aplicações modernas e responsivas.&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;aside&gt;
+        &lt;h3&gt;Depoimentos&lt;/h3&gt;
+        &lt;p&gt;"Excelente trabalho e profissionalismo!" - Cliente Satisfeito&lt;/p&gt;
+    &lt;/aside&gt;
+
+    &lt;footer&gt;
+        &lt;div class="contato"&gt;
+            &lt;p&gt;Email: contato@empresaabc.com&lt;/p&gt;
+            &lt;p&gt;Telefone: (11) 3456-7890&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;p&gt;&amp;copy; 2024 Empresa ABC. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de portfólio com estrutura semântica adequada.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Portfólio - João Designer&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;João Silva&lt;/h1&gt;
+        &lt;p&gt;Designer Gráfico &amp; UI/UX Designer&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt; |
+            &lt;a href="#projetos"&gt;Projetos&lt;/a&gt; |
+            &lt;a href="#contato"&gt;Contato&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="sobre"&gt;
+            &lt;h2&gt;Sobre Mim&lt;/h2&gt;
+            &lt;p&gt;Designer com 8 anos de experiência criando soluções visuais impactantes...&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="projetos"&gt;
+            &lt;h2&gt;Projetos Destacados&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Redesign App Bancário&lt;/h3&gt;
+                &lt;p&gt;Interface moderna e intuitiva para aplicativo mobile.&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Identidade Visual - Café Artesanal&lt;/h3&gt;
+                &lt;p&gt;Branding completo para rede de cafeterias.&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="contato"&gt;
+            &lt;h2&gt;Vamos Trabalhar Juntos?&lt;/h2&gt;
+            &lt;p&gt;Email: joao@design.com&lt;/p&gt;
+            &lt;p&gt;LinkedIn: /joaodesigner&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;p&gt;&amp;copy; 2024 João Silva. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de e-commerce com estrutura semântica.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;TechStore - Eletrônicos e Tecnologia&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;div class="top-bar"&gt;
+            &lt;h1&gt;TechStore&lt;/h1&gt;
+            &lt;nav&gt;
+                &lt;a href="#categorias"&gt;Categorias&lt;/a&gt;
+                &lt;a href="#ofertas"&gt;Ofertas&lt;/a&gt;
+                &lt;a href="#carrinho"&gt;Carrinho&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="destaque"&gt;
+            &lt;h2&gt;Produtos em Destaque&lt;/h2&gt;
+            &lt;div class="produtos"&gt;
+                &lt;article&gt;
+                    &lt;h3&gt;Smartphone XYZ&lt;/h3&gt;
+                    &lt;p&gt;R$ 1.299,00&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;article&gt;
+                    &lt;h3&gt;Notebook Pro&lt;/h3&gt;
+                    &lt;p&gt;R$ 3.499,00&lt;/p&gt;
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;aside id="ofertas"&gt;
+            &lt;h3&gt;Ofertas Relâmpago&lt;/h3&gt;
+            &lt;p&gt;Fones de ouvido com 40% OFF - Apenas hoje!&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="informacoes"&gt;
+            &lt;div class="atendimento"&gt;
+                &lt;h4&gt;Atendimento&lt;/h4&gt;
+                &lt;p&gt;Segunda a Sexta: 8h às 18h&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="social"&gt;
+                &lt;h4&gt;Siga-nos&lt;/h4&gt;
+                &lt;p&gt;Instagram | Facebook | Twitter&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;p&gt;&amp;copy; 2024 TechStore. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de receita culinária com estrutura semântica.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Receita - Lasanha à Bolonhesa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Lasanha à Bolonhesa Caseira&lt;/h1&gt;
+        &lt;p&gt;Receita tradicional da família, perfeita para ocasiões especiais&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;section id="ingredientes"&gt;
+                &lt;h2&gt;Ingredientes&lt;/h2&gt;
+                &lt;div class="massa"&gt;
+                    &lt;h3&gt;Para a Massa:&lt;/h3&gt;
+                    &lt;p&gt;500g de massa para lasanha&lt;/p&gt;
+                    &lt;p&gt;Água e sal para cozimento&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="molho"&gt;
+                    &lt;h3&gt;Para o Molho:&lt;/h3&gt;
+                    &lt;p&gt;500g de carne moída&lt;/p&gt;
+                    &lt;p&gt;2 latas de molho de tomate&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;section id="preparo"&gt;
+                &lt;h2&gt;Modo de Preparo&lt;/h2&gt;
+                &lt;div class="etapas"&gt;
+                    &lt;h3&gt;Passo 1: Preparar a Carne&lt;/h3&gt;
+                    &lt;p&gt;Refogue a carne moída com cebola e alho...&lt;/p&gt;
+                    
+                    &lt;h3&gt;Passo 2: Montagem&lt;/h3&gt;
+                    &lt;p&gt;Alterne camadas de massa, molho e queijo...&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+
+        &lt;aside id="dicas"&gt;
+            &lt;h3&gt;Dicas da Chef&lt;/h3&gt;
+            &lt;p&gt;Deixe a lasanha descansar por 10 minutos antes de servir.&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Receita da Vovó Maria - Tradição desde 1985&lt;/p&gt;
+        &lt;p&gt;Tempo de preparo: 1h30min | Rendimento: 8 porções&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 6 -->
+            <div class="exercise-card">
+                <h3>Exercício 6</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de curso online com estrutura organizada.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Curso de Marketing Digital - Academia Digital&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Academia Digital&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#cursos"&gt;Cursos&lt;/a&gt; |
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt; |
+            &lt;a href="#contato"&gt;Contato&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article id="curso-principal"&gt;
+            &lt;header&gt;
+                &lt;h2&gt;Marketing Digital Completo&lt;/h2&gt;
+                &lt;p&gt;Domine as principais estratégias do marketing digital&lt;/p&gt;
+            &lt;/header&gt;
+
+            &lt;section id="modulos"&gt;
+                &lt;h3&gt;Módulos do Curso&lt;/h3&gt;
+                
+                &lt;article&gt;
+                    &lt;h4&gt;Módulo 1: Fundamentos&lt;/h4&gt;
+                    &lt;p&gt;Conceitos básicos e panorama do mercado&lt;/p&gt;
+                &lt;/article&gt;
+                
+                &lt;article&gt;
+                    &lt;h4&gt;Módulo 2: Redes Sociais&lt;/h4&gt;
+                    &lt;p&gt;Estratégias para Facebook, Instagram e LinkedIn&lt;/p&gt;
+                &lt;/article&gt;
+            &lt;/section&gt;
+
+            &lt;section id="beneficios"&gt;
+                &lt;h3&gt;O que você vai aprender&lt;/h3&gt;
+                &lt;p&gt;Criar campanhas eficientes e mensurar resultados&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+
+        &lt;aside id="instrutor"&gt;
+            &lt;h3&gt;Sobre o Instrutor&lt;/h3&gt;
+            &lt;p&gt;Carlos Silva - Especialista com 10 anos de experiência&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;div class="info-curso"&gt;
+            &lt;p&gt;Duração: 60 horas | Certificado incluído&lt;/p&gt;
+            &lt;p&gt;Suporte individualizado&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;p&gt;&amp;copy; 2024 Academia Digital. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 7 -->
+            <div class="exercise-card">
+                <h3>Exercício 7</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de hotel com estrutura semântica completa.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hotel Paraíso - Luxo e Conforto&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Hotel Paraíso&lt;/h1&gt;
+        &lt;p&gt;5 estrelas - Praia do Futuro&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#acomodacoes"&gt;Acomodações&lt;/a&gt; |
+            &lt;a href="#servicos"&gt;Serviços&lt;/a&gt; |
+            &lt;a href="#reservas"&gt;Reservas&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="destaque"&gt;
+            &lt;h2&gt;Bem-vindo ao Luxo&lt;/h2&gt;
+            &lt;p&gt;Experiência única à beira-mar&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="acomodacoes"&gt;
+            &lt;h2&gt;Nossas Acomodações&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Suíte Master&lt;/h3&gt;
+                &lt;p&gt;Vista para o mar e varanda privativa&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Suíte Executiva&lt;/h3&gt;
+                &lt;p&gt;Conforto e sofisticação para negócios&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside id="ofertas"&gt;
+            &lt;h3&gt;Oferta Especial&lt;/h3&gt;
+            &lt;p&gt;Hospedagem + Café da Manhã - 15% OFF&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="contato"&gt;
+            &lt;h3&gt;Entre em Contato&lt;/h3&gt;
+            &lt;p&gt;Telefone: (85) 3456-7890&lt;/p&gt;
+            &lt;p&gt;Email: reservas@hotelparaiso.com&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="endereco"&gt;
+            &lt;h3&gt;Localização&lt;/h3&gt;
+            &lt;p&gt;Av. Beira Mar, 1234 - Praia do Futuro&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;p&gt;&amp;copy; 2024 Hotel Paraíso. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 8 -->
+            <div class="exercise-card">
+                <h3>Exercício 8</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de consultório médico com estrutura adequada.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Clínica Saúde Total - Especialidades Médicas&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Clínica Saúde Total&lt;/h1&gt;
+        &lt;p&gt;Cuidando da sua saúde com excelência&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#especialidades"&gt;Especialidades&lt;/a&gt; |
+            &lt;a href="#corpo-clinico"&gt;Corpo Clínico&lt;/a&gt; |
+            &lt;a href="#contato"&gt;Contato&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="sobre"&gt;
+            &lt;h2&gt;Sobre Nossa Clínica&lt;/h2&gt;
+            &lt;p&gt;Mais de 20 anos oferecendo atendimento médico de qualidade&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="especialidades"&gt;
+            &lt;h2&gt;Especialidades&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Cardiologia&lt;/h3&gt;
+                &lt;p&gt;Cuidados especializados para o coração&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Ortopedia&lt;/h3&gt;
+                &lt;p&gt;Tratamento para ossos e articulações&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Pediatria&lt;/h3&gt;
+                &lt;p&gt;Cuidados para crianças e adolescentes&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside id="urgencia"&gt;
+            &lt;h3&gt;Atendimento de Urgência&lt;/h3&gt;
+            &lt;p&gt;Plantão 24 horas - Todos os dias&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="contato"&gt;
+            &lt;h3&gt;Agende sua Consulta&lt;/h3&gt;
+            &lt;p&gt;Telefone: (11) 3456-7890&lt;/p&gt;
+            &lt;p&gt;WhatsApp: (11) 98765-4321&lt;/p&gt;
+            &lt;p&gt;Horário: Segunda a Sexta, 7h às 19h&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;p&gt;&amp;copy; 2024 Clínica Saúde Total. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 9 -->
+            <div class="exercise-card">
+                <h3>Exercício 9</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de biblioteca com estrutura semântica.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Biblioteca Municipal - Conhecimento para Todos&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Biblioteca Municipal&lt;/h1&gt;
+        &lt;p&gt;Desde 1950 servindo nossa comunidade&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#acervo"&gt;Acervo&lt;/a&gt; |
+            &lt;a href="#servicos"&gt;Serviços&lt;/a&gt; |
+            &lt;a href="#eventos"&gt;Eventos&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="destaque"&gt;
+            &lt;h2&gt;Bem-vindo ao Mundo dos Livros&lt;/h2&gt;
+            &lt;p&gt;Mais de 50.000 títulos à sua disposição&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="acervo"&gt;
+            &lt;h2&gt;Nosso Acervo&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Literatura Brasileira&lt;/h3&gt;
+                &lt;p&gt;Obras clássicas e contemporâneas&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Ciência e Tecnologia&lt;/h3&gt;
+                &lt;p&gt;Livros técnicos e científicos atualizados&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Infantojuvenil&lt;/h3&gt;
+                &lt;p&gt;Seção especial para crianças e jovens&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside id="novidades"&gt;
+            &lt;h3&gt;Novas Aquisições&lt;/h3&gt;
+            &lt;p&gt;Confira os livros recém-adquiridos este mês&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="informacoes"&gt;
+            &lt;div class="horario"&gt;
+                &lt;h4&gt;Horário de Funcionamento&lt;/h4&gt;
+                &lt;p&gt;Segunda a Sexta: 8h às 20h&lt;/p&gt;
+                &lt;p&gt;Sábados: 9h às 17h&lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="localizacao"&gt;
+                &lt;h4&gt;Localização&lt;/h4&gt;
+                &lt;p&gt;Praça da Cultura, 100 - Centro&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;p&gt;&amp;copy; 2024 Biblioteca Municipal. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 10 -->
+            <div class="exercise-card">
+                <h3>Exercício 10</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de restaurante com estrutura completa.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Restaurante Sabor &amp; Arte - Gastronomia Refinada&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Sabor &amp; Arte&lt;/h1&gt;
+        &lt;p&gt;Gastronomia que encanta os sentidos&lt;/p&gt;
+        &lt;nav&gt;
+            &lt;a href="#cardapio"&gt;Cardápio&lt;/a&gt; |
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt; |
+            &lt;a href="#reservas"&gt;Reservas&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="destaque"&gt;
+            &lt;h2&gt;Experiência Gastronômica Única&lt;/h2&gt;
+            &lt;p&gt;Pratos elaborados com ingredientes selecionados&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="cardapio"&gt;
+            &lt;h2&gt;Cardápio&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Entradas&lt;/h3&gt;
+                &lt;p&gt;Bruschetta do Chef - R$ 28,00&lt;/p&gt;
+                &lt;p&gt;Carpaccio de Filé - R$ 42,00&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Pratos Principais&lt;/h3&gt;
+                &lt;p&gt;Risotto de Cogumelos - R$ 68,00&lt;/p&gt;
+                &lt;p&gt;Filé Mignon ao Molho Madeira - R$ 89,00&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Sobremesas&lt;/h3&gt;
+                &lt;p&gt;Tiramisu Tradicional - R$ 24,00&lt;/p&gt;
+                &lt;p&gt;Crème Brûlée - R$ 26,00&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside id="especial"&gt;
+            &lt;h3&gt;Prato do Dia&lt;/h3&gt;
+            &lt;p&gt;Lasagna à Bolonhesa - Apenas R$ 45,00&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;section id="contato"&gt;
+            &lt;h3&gt;Reservas e Contato&lt;/h3&gt;
+            &lt;p&gt;Telefone: (21) 3456-7890&lt;/p&gt;
+            &lt;p&gt;Email: contato@saborearte.com&lt;/p&gt;
+            &lt;p&gt;Endereço: Rua Gourmet, 123 - Jardins&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="horario"&gt;
+            &lt;h3&gt;Horário de Funcionamento&lt;/h3&gt;
+            &lt;p&gt;Terça a Domingo: 12h às 23h&lt;/p&gt;
+            &lt;p&gt;Segunda: Fechado&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;p&gt;&amp;copy; 2024 Restaurante Sabor &amp; Arte. Todos os direitos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            // Oculta todas as outras resoluções abertas
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            // Alterna a resolução atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

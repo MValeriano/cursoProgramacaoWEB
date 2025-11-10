@@ -1,0 +1,7 @@
+Informar gratuidade
+
+	Solicitar a idade de um(a) usuário(a) e testar :
+	 se for menor ou igual à 12 anos informar que o(a) usuário(a) possui gratuidade;
+	caso contrário informar um valor à sua escolha de pagamento obrigatório.
+
+	obs 1.: usar um operador de comparação para os testes.

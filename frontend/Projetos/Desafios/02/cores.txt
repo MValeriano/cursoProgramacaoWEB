@@ -1,0 +1,7 @@
+   card :hover
+	 color: #111111;
+	    background-color: #f2f2f2;
+
+   geral 
+	   color: #111111;
+	    background-color: #ffffff;

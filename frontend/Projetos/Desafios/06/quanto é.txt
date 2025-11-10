@@ -1,0 +1,6 @@
+Quanto é ? 
+
+	Será solicitado duas entradas de dados, dois valores de pontos flutuantes, um para o valor do produto e outro para o valor que foi pago.
+	após retornar na tela o valor do troco. 
+	O retorno deverá ser informado com um R$ à frente do valor retornado, também deverá ser inserido na frente da mensagem de retorno  "Seu troco é : "  e ao final da mensagem 
+	"Muito obrigado e volte sempre.".

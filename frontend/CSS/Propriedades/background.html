@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Background</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #ec4899, #d946ef);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #fbcfe8;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #c026d3;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fdf4ff;
+            border-bottom: 1px solid #f5d0fe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #d946ef;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #d946ef;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #c026d3;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Background CSS</h1>
+            <p class="subtitle">Essas propriedades oferecem controle completo sobre a aparência do fundo dos elementos, permitindo criar designs complexos e visualmente atraentes.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Padrão</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>background</td>
+                                <td>shorthand</td>
+                                <td>-</td>
+                                <td>Define todas as propriedades de fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-attachment</td>
+                                <td>scroll, fixed, local</td>
+                                <td>scroll</td>
+                                <td>Comportamento de rolagem do fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-clip</td>
+                                <td>border-box, padding-box, content-box, text</td>
+                                <td>border-box</td>
+                                <td>Área de pintura do fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-color</td>
+                                <td>color, transparent</td>
+                                <td>transparent</td>
+                                <td>Cor de fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-image</td>
+                                <td>url(), linear-gradient(), none</td>
+                                <td>none</td>
+                                <td>Imagem de fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-origin</td>
+                                <td>padding-box, border-box, content-box</td>
+                                <td>padding-box</td>
+                                <td>Área de posicionamento do fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-position</td>
+                                <td>top, center, bottom, left, right, x% y%</td>
+                                <td>0% 0%</td>
+                                <td>Posição da imagem</td>
+                            </tr>
+                            <tr>
+                                <td>background-repeat</td>
+                                <td>repeat, repeat-x, repeat-y, no-repeat</td>
+                                <td>repeat</td>
+                                <td>Repetição da imagem</td>
+                            </tr>
+                            <tr>
+                                <td>background-size</td>
+                                <td>auto, cover, contain, length, percentage</td>
+                                <td>auto</td>
+                                <td>Tamanho da imagem</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use a shorthand background para código mais limpo, mas lembre-se da ordem</li>
+                        <li>Sempre forneça uma background-color de fallback caso a imagem não carregue</li>
+                        <li>Use background-size: cover para imagens de fundo que devem preencher o elemento</li>
+                        <li>Experimente background-attachment: fixed para efeitos parallax</li>
+                        <li>Use múltiplas imagens de fundo para sobreposições complexas</li>
+                        <li>Teste background-clip: text para textos com fundo criativo (com prefixo -webkit-)</li>
+                        <li>Combine gradientes com imagens para overlays e efeitos visuais</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: background -->
+            <div class="property-card">
+                <h3>background</h3>
+                <div class="card-body">
+                    <p>A propriedade background é uma shorthand que permite definir todas as propriedades de fundo em uma única declaração.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>background: [color] [image] [repeat] [attachment] [position] / [size] [origin] [clip];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Combina todas as propriedades individuais de background</li>
+                        <li>A ordem geralmente não importa, exceto para:</li>
+                        <li>background-position e background-size devem ser separados por /</li>
+                        <li>background-origin e background-clip - se apenas um valor for especificado, aplica-se a ambos</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Shorthand completo */
+.element {
+    background: #ffffff url("imagem.jpg") no-repeat fixed center / cover padding-box content-box;
+}
+
+/* Apenas cor */
+.simple {
+    background: #f0f0f0;
+}
+
+/* Cor e imagem */
+.color-image {
+    background: #000 url("textura.png") repeat;
+}
+
+/* Gradiente */
+.gradient {
+    background: linear-gradient(45deg, red, blue);
+}
+
+/* Múltiplos backgrounds */
+.multiple {
+    background: 
+        url("image1.jpg") no-repeat left top,
+        url("image2.png") repeat-x center bottom,
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-attachment -->
+            <div class="property-card">
+                <h3>background-attachment</h3>
+                <div class="card-body">
+                    <p>A propriedade background-attachment define se a imagem de fundo rola com o conteúdo ou é fixa.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>scroll - A imagem rola com o elemento (padrão)</li>
+                        <li>fixed - A imagem é fixa em relação à viewport</li>
+                        <li>local - A imagem rola com o conteúdo do elemento</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Fundo que rola com a página */
+.scroll-bg {
+    background-attachment: scroll;
+}
+
+/* Efeito parallax - fundo fixo */
+.parallax {
+    background-image: url("fundo.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Fundo que rola com o conteúdo do elemento */
+.local-bg {
+    background-attachment: local;
+    overflow: auto;
+    height: 200px;
+}
+
+/* Múltiplos backgrounds com attachments diferentes */
+.multi-attach {
+    background: 
+        url("bg1.jpg") fixed,
+        url("bg2.png") scroll;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-clip -->
+            <div class="property-card">
+                <h3>background-clip</h3>
+                <div class="card-body">
+                    <p>A propriedade background-clip define a área de pintura do fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>border-box - O fundo se estende até a borda (padrão)</li>
+                        <li>padding-box - O fundo se estende até o padding</li>
+                        <li>content-box - O fundo se estende apenas até o conteúdo</li>
+                        <li>text - O fundo é recortado pelo texto (experimental)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Fundo até a borda */
+.border-clip {
+    background-clip: border-box;
+    border: 10px dashed rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+/* Fundo até o padding */
+.padding-clip {
+    background-clip: padding-box;
+    border: 10px dashed rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+/* Fundo apenas no conteúdo */
+.content-clip {
+    background-clip: content-box;
+    border: 10px dashed rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+/* Fundo recortado pelo texto */
+.text-clip {
+    background: linear-gradient(45deg, red, blue);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 3em;
+    font-weight: bold;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-color -->
+            <div class="property-card">
+                <h3>background-color</h3>
+                <div class="card-body">
+                    <p>A propriedade background-color define a cor de fundo de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>color - Qualquer valor de cor CSS</li>
+                        <li>transparent - Fundo transparente (padrão)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Cores básicas */
+.red { background-color: red; }
+.hex { background-color: #ff0000; }
+.rgb { background-color: rgb(255, 0, 0); }
+.rgba { background-color: rgba(255, 0, 0, 0.5); }
+.hsl { background-color: hsl(0, 100%, 50%); }
+
+/* Transparente */
+.transparent { background-color: transparent; }
+
+/* Com fallback para imagens */
+.with-fallback {
+    background-color: #f0f0f0;
+    background-image: url("imagem.jpg");
+}
+
+/* Gradiente (usando background-image) */
+.gradient-bg {
+    background-image: linear-gradient(to right, red, yellow);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-image -->
+            <div class="property-card">
+                <h3>background-image</h3>
+                <div class="card-body">
+                    <p>A propriedade background-image define uma ou mais imagens de fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem imagem (padrão)</li>
+                        <li>url() - Caminho para a imagem</li>
+                        <li>linear-gradient() - Gradiente linear</li>
+                        <li>radial-gradient() - Gradiente radial</li>
+                        <li>conic-gradient() - Gradiente cônico</li>
+                        <li>repeating-linear-gradient() - Gradiente linear repetido</li>
+                        <li>repeating-radial-gradient() - Gradiente radial repetido</li>
+                        <li>Múltiplas imagens separadas por vírgula</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Imagem única */
+.single-image {
+    background-image: url("fundo.jpg");
+}
+
+/* Múltiplas imagens */
+.multiple-images {
+    background-image: 
+        url("textura.png"),
+        url("padrao.png");
+}
+
+/* Gradiente linear */
+.linear-gradient {
+    background-image: linear-gradient(45deg, #ff0000, #0000ff);
+}
+
+/* Gradiente radial */
+.radial-gradient {
+    background-image: radial-gradient(circle, red, yellow, green);
+}
+
+/* Gradiente cônico */
+.conic-gradient {
+    background-image: conic-gradient(red, yellow, green, blue, red);
+}
+
+/* Combinação de gradiente e imagem */
+.combined {
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
+        url("fundo.jpg");
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-origin -->
+            <div class="property-card">
+                <h3>background-origin</h3>
+                <div class="card-body">
+                    <p>A propriedade background-origin define a área de posicionamento da imagem de fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>padding-box - A imagem é posicionada em relação ao padding (padrão)</li>
+                        <li>border-box - A imagem é posicionada em relação à borda</li>
+                        <li>content-box - A imagem é posicionada em relação ao conteúdo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento em relação ao padding */
+.padding-origin {
+    background-origin: padding-box;
+    border: 10px dashed rgba(0,0,0,0.5);
+    padding: 20px;
+}
+
+/* Posicionamento em relação à borda */
+.border-origin {
+    background-origin: border-box;
+    border: 10px dashed rgba(0,0,0,0.5);
+    padding: 20px;
+}
+
+/* Posicionamento em relação ao conteúdo */
+.content-origin {
+    background-origin: content-box;
+    border: 10px dashed rgba(0,0,0,0.5);
+    padding: 20px;
+}
+
+/* Diferente do clip */
+.different-origin-clip {
+    background-origin: content-box;
+    background-clip: padding-box;
+    border: 10px dashed rgba(0,0,0,0.5);
+    padding: 20px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-position -->
+            <div class="property-card">
+                <h3>background-position</h3>
+                <div class="card-body">
+                    <p>A propriedade background-position define a posição inicial da imagem de fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>keyword - top, bottom, left, right, center</li>
+                        <li>percentage - Porcentagem horizontal e vertical</li>
+                        <li>length - Valor em px, em, rem, etc.</li>
+                        <li>Combinações de dois valores (horizontal e vertical)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Palavras-chave */
+.top-left { background-position: top left; }
+.center { background-position: center; }
+.bottom-right { background-position: bottom right; }
+
+/* Porcentagens */
+.percentage { background-position: 25% 75%; }
+
+/* Valores específicos */
+.pixel { background-position: 10px 20px; }
+.mixed { background-position: center 20%; }
+
+/* Múltiplas imagens com posições diferentes */
+.multiple-positions {
+    background-image: url("imagem1.png"), url("imagem2.png");
+    background-position: top left, bottom right;
+}
+
+/* Posicionamento com calc() */
+.calc-position {
+    background-position: calc(100% - 20px) calc(100% - 10px);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-repeat -->
+            <div class="property-card">
+                <h3>background-repeat</h3>
+                <div class="card-body">
+                    <p>A propriedade background-repeat define como a imagem de fundo é repetida.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>repeat - Repete em ambas as direções (padrão)</li>
+                        <li>repeat-x - Repete apenas horizontalmente</li>
+                        <li>repeat-y - Repete apenas verticalmente</li>
+                        <li>no-repeat - Não repete</li>
+                        <li>space - Repete sem cortar, distribuindo espaço entre as imagens</li>
+                        <li>round - Repete e redimensiona para caber sem cortar</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Repetição padrão */
+.repeat { background-repeat: repeat; }
+
+/* Repetição horizontal */
+.repeat-x { background-repeat: repeat-x; }
+
+/* Repetição vertical */
+.repeat-y { background-repeat: repeat-y; }
+
+/* Não repetir */
+.no-repeat { background-repeat: no-repeat; }
+
+/* Repetir com espaçamento */
+.space { background-repeat: space; }
+
+/* Repetir e redimensionar */
+.round { background-repeat: round; }
+
+/* Múltiplas imagens com repetições diferentes */
+.multiple-repeat {
+    background-image: url("imagem1.png"), url("imagem2.png");
+    background-repeat: no-repeat, repeat-x;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-size -->
+            <div class="property-card">
+                <h3>background-size</h3>
+                <div class="card-body">
+                    <p>A propriedade background-size define o tamanho da imagem de fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Tamanho original (padrão)</li>
+                        <li>length - Largura e altura em px, em, rem, etc.</li>
+                        <li>percentage - Porcentagem da área do elemento</li>
+                        <li>cover - Redimensiona para cobrir todo o elemento (pode cortar a imagem)</li>
+                        <li>contain - Redimensiona para caber todo o elemento (sem cortar)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Tamanho automático */
+.auto { background-size: auto; }
+
+/* Tamanho específico */
+.specific { background-size: 100px 200px; }
+
+/* Porcentagem */
+.percentage { background-size: 50% 75%; }
+
+/* Cobrir todo o elemento */
+.cover { background-size: cover; }
+
+/* Conter a imagem sem cortar */
+.contain { background-size: contain; }
+
+/* Múltiplas imagens com tamanhos diferentes */
+.multiple-sizes {
+    background-image: url("imagem1.png"), url("imagem2.png");
+    background-size: cover, contain;
+}
+
+/* Usando na shorthand */
+.shorthand-size {
+    background: url("imagem.jpg") center / cover no-repeat;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas propriedades de fundo para criar uma página visualmente rica e funcional.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Exemplo Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML + CSS:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Propriedades de Background CSS&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #636e72;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .section-title {
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dfe6e9;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: #2d3436;
+        }
+
+        /* Background Color Examples */
+        .bg-color-1 { background-color: #ff6b6b; }
+        .bg-color-2 { background-color: rgba(255, 107, 107, 0.7); }
+        .bg-color-3 { background-color: hsl(204, 100%, 50%); }
+
+        /* Background Image Examples */
+        .bg-image-1 { 
+            background-image: url('https://via.placeholder.com/150/ff6b6b/ffffff?text=Imagem+1');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+        .bg-image-2 { 
+            background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+        .bg-image-3 { 
+            background-image: 
+                radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1),
+                linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
+        }
+
+        /* Background Repeat Examples */
+        .bg-repeat-1 { 
+            background-image: url('https://via.placeholder.com/50/ff6b6b/ffffff?text=R');
+            background-repeat: repeat;
+        }
+        .bg-repeat-2 { 
+            background-image: url('https://via.placeholder.com/50/4ecdc4/ffffff?text=X');
+            background-repeat: repeat-x;
+        }
+        .bg-repeat-3 { 
+            background-image: url('https://via.placeholder.com/50/45b7d1/ffffff?text=Y');
+            background-repeat: repeat-y;
+        }
+        .bg-repeat-4 { 
+            background-image: url('https://via.placeholder.com/150/ff6b6b/ffffff?text=No+Repeat');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Background Position Examples */
+        .bg-position-1 { 
+            background-image: url('https://via.placeholder.com/100/ff6b6b/ffffff?text=TL');
+            background-repeat: no-repeat;
+            background-position: top left;
+        }
+        .bg-position-2 { 
+            background-image: url('https://via.placeholder.com/100/4ecdc4/ffffff?text=C');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .bg-position-3 { 
+            background-image: url('https://via.placeholder.com/100/45b7d1/ffffff?text=BR');
+            background-repeat: no-repeat;
+            background-position: bottom right;
+        }
+
+        /* Background Size Examples */
+        .bg-size-1 { 
+            background-image: url('https://via.placeholder.com/200/ff6b6b/ffffff?text=Auto');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: auto;
+        }
+        .bg-size-2 { 
+            background-image: url('https://via.placeholder.com/200/4ecdc4/ffffff?text=Cover');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .bg-size-3 { 
+            background-image: url('https://via.placeholder.com/200/45b7d1/ffffff?text=Contain');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        /* Background Attachment Examples */
+        .bg-attachment-scroll { 
+            background-image: url('https://via.placeholder.com/600/ff6b6b/ffffff?text=Scroll');
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-position: center;
+            height: 300px;
+            overflow: auto;
+        }
+        .bg-attachment-fixed { 
+            background-image: url('https://via.placeholder.com/600/4ecdc4/ffffff?text=Fixed');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 300px;
+        }
+
+        /* Background Clip Examples */
+        .bg-clip-1 { 
+            background-color: #ff6b6b;
+            background-clip: border-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        .bg-clip-2 { 
+            background-color: #4ecdc4;
+            background-clip: padding-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        .bg-clip-3 { 
+            background-color: #45b7d1;
+            background-clip: content-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+
+        /* Background Origin Examples */
+        .bg-origin-1 { 
+            background-image: url('https://via.placeholder.com/150/ff6b6b/ffffff?text=Border');
+            background-repeat: no-repeat;
+            background-origin: border-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        .bg-origin-2 { 
+            background-image: url('https://via.placeholder.com/150/4ecdc4/ffffff?text=Padding');
+            background-repeat: no-repeat;
+            background-origin: padding-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        .bg-origin-3 { 
+            background-image: url('https://via.placeholder.com/150/45b7d1/ffffff?text=Content');
+            background-repeat: no-repeat;
+            background-origin: content-box;
+            border: 10px dashed rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+
+        /* Multiple Backgrounds */
+        .bg-multiple {
+            background: 
+                url('https://via.placeholder.com/100/ff6b6b/ffffff?text=1') no-repeat top left,
+                url('https://via.placeholder.com/100/4ecdc4/ffffff?text=2') no-repeat top right,
+                url('https://via.placeholder.com/100/45b7d1/ffffff?text=3') no-repeat bottom left,
+                url('https://via.placeholder.com/100/f9ca24/ffffff?text=4') no-repeat bottom right,
+                linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.8));
+        }
+
+        /* Text Background Clip */
+        .text-bg-clip {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Parallax Effect */
+        .parallax-section {
+            background-image: url('https://via.placeholder.com/1920x1080/667eea/ffffff?text=Parallax');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Code Examples */
+        .code-block {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .property-name {
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .value {
+            color: #55efc4;
+        }
+
+        .comment {
+            color: #636e72;
+            font-style: italic;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Propriedades de Background CSS&lt;/h1&gt;
+        &lt;p class="subtitle"&gt;Controle completo sobre a aparência do fundo dos elementos&lt;/p&gt;
+
+        &lt;!-- Background Color --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-color&lt;/h2&gt;
+            &lt;p&gt;Define a cor de fundo do elemento.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-color-1"&gt;Cor Sólida&lt;/div&gt;
+                &lt;div class="demo-card bg-color-2"&gt;Cor com Transparência (RGBA)&lt;/div&gt;
+                &lt;div class="demo-card bg-color-3"&gt;Cor HSL&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-color-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-color&lt;/span&gt;: &lt;span class="value"&gt;#ff6b6b&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-color-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-color&lt;/span&gt;: &lt;span class="value"&gt;rgba(255, 107, 107, 0.7)&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-color-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-color&lt;/span&gt;: &lt;span class="value"&gt;hsl(204, 100%, 50%)&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Image --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-image&lt;/h2&gt;
+            &lt;p&gt;Define uma ou mais imagens de fundo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-image-1"&gt;Imagem URL&lt;/div&gt;
+                &lt;div class="demo-card bg-image-2"&gt;Gradiente Linear&lt;/div&gt;
+                &lt;div class="demo-card bg-image-3"&gt;Gradiente Radial + Overlay&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-image-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-image&lt;/span&gt;: &lt;span class="value"&gt;url('imagem.jpg')&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-image-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-image&lt;/span&gt;: &lt;span class="value"&gt;linear-gradient(45deg, #ff6b6b, #4ecdc4)&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-image-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-image&lt;/span&gt;: &lt;span class="value"&gt;radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1), linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8))&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Repeat --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-repeat&lt;/h2&gt;
+            &lt;p&gt;Define como a imagem de fundo é repetida.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-repeat-1"&gt;Repeat (padrão)&lt;/div&gt;
+                &lt;div class="demo-card bg-repeat-2"&gt;Repeat-X&lt;/div&gt;
+                &lt;div class="demo-card bg-repeat-3"&gt;Repeat-Y&lt;/div&gt;
+                &lt;div class="demo-card bg-repeat-4"&gt;No-Repeat&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-repeat-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-repeat&lt;/span&gt;: &lt;span class="value"&gt;repeat&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-repeat-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-repeat&lt;/span&gt;: &lt;span class="value"&gt;repeat-x&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-repeat-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-repeat&lt;/span&gt;: &lt;span class="value"&gt;repeat-y&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-repeat-4&lt;/span&gt; { &lt;span class="property-name"&gt;background-repeat&lt;/span&gt;: &lt;span class="value"&gt;no-repeat&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Position --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-position&lt;/h2&gt;
+            &lt;p&gt;Define a posição inicial da imagem de fundo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-position-1"&gt;Top Left&lt;/div&gt;
+                &lt;div class="demo-card bg-position-2"&gt;Center&lt;/div&gt;
+                &lt;div class="demo-card bg-position-3"&gt;Bottom Right&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-position-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-position&lt;/span&gt;: &lt;span class="value"&gt;top left&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-position-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-position&lt;/span&gt;: &lt;span class="value"&gt;center&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-position-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-position&lt;/span&gt;: &lt;span class="value"&gt;bottom right&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Size --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-size&lt;/h2&gt;
+            &lt;p&gt;Define o tamanho da imagem de fundo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-size-1"&gt;Auto (tamanho original)&lt;/div&gt;
+                &lt;div class="demo-card bg-size-2"&gt;Cover (cobrir todo o elemento)&lt;/div&gt;
+                &lt;div class="demo-card bg-size-3"&gt;Contain (caber sem cortar)&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-size-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-size&lt;/span&gt;: &lt;span class="value"&gt;auto&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-size-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-size&lt;/span&gt;: &lt;span class="value"&gt;cover&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-size-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-size&lt;/span&gt;: &lt;span class="value"&gt;contain&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Attachment --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-attachment&lt;/h2&gt;
+            &lt;p&gt;Define se a imagem de fundo é fixa ou rola com o conteúdo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-attachment-scroll"&gt;
+                    Scroll (rola com o elemento)
+                    &lt;div style="height: 600px;"&gt;Conteúdo para rolar&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="demo-card bg-attachment-fixed"&gt;
+                    Fixed (fixo na viewport)
+                    &lt;div style="height: 600px;"&gt;Conteúdo para rolar&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-attachment-scroll&lt;/span&gt; { &lt;span class="property-name"&gt;background-attachment&lt;/span&gt;: &lt;span class="value"&gt;scroll&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-attachment-fixed&lt;/span&gt; { &lt;span class="property-name"&gt;background-attachment&lt;/span&gt;: &lt;span class="value"&gt;fixed&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Clip --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-clip&lt;/h2&gt;
+            &lt;p&gt;Define a área de pintura do fundo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-clip-1"&gt;Border-Box (até a borda)&lt;/div&gt;
+                &lt;div class="demo-card bg-clip-2"&gt;Padding-Box (até o padding)&lt;/div&gt;
+                &lt;div class="demo-card bg-clip-3"&gt;Content-Box (apenas conteúdo)&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-clip-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-clip&lt;/span&gt;: &lt;span class="value"&gt;border-box&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-clip-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-clip&lt;/span&gt;: &lt;span class="value"&gt;padding-box&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-clip-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-clip&lt;/span&gt;: &lt;span class="value"&gt;content-box&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Background Origin --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-origin&lt;/h2&gt;
+            &lt;p&gt;Define a área de posicionamento da imagem de fundo.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-origin-1"&gt;Border-Box&lt;/div&gt;
+                &lt;div class="demo-card bg-origin-2"&gt;Padding-Box&lt;/div&gt;
+                &lt;div class="demo-card bg-origin-3"&gt;Content-Box&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-origin-1&lt;/span&gt; { &lt;span class="property-name"&gt;background-origin&lt;/span&gt;: &lt;span class="value"&gt;border-box&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-origin-2&lt;/span&gt; { &lt;span class="property-name"&gt;background-origin&lt;/span&gt;: &lt;span class="value"&gt;padding-box&lt;/span&gt;; }
+.&lt;span class="property-name"&gt;bg-origin-3&lt;/span&gt; { &lt;span class="property-name"&gt;background-origin&lt;/span&gt;: &lt;span class="value"&gt;content-box&lt;/span&gt;; }
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Text Background Clip --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;background-clip: text&lt;/h2&gt;
+            &lt;p&gt;Recorta o fundo pelo texto (efeito de texto colorido).&lt;/p&gt;
+            &lt;div class="text-bg-clip"&gt;
+                Texto com Fundo Gradiente
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;text-bg-clip&lt;/span&gt; {
+    &lt;span class="property-name"&gt;background&lt;/span&gt;: &lt;span class="value"&gt;linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)&lt;/span&gt;;
+    &lt;span class="property-name"&gt;background-clip&lt;/span&gt;: &lt;span class="value"&gt;text&lt;/span&gt;;
+    &lt;span class="property-name"&gt;-webkit-background-clip&lt;/span&gt;: &lt;span class="value"&gt;text&lt;/span&gt;;
+    &lt;span class="property-name"&gt;color&lt;/span&gt;: &lt;span class="value"&gt;transparent&lt;/span&gt;;
+}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Multiple Backgrounds --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Múltiplos Backgrounds&lt;/h2&gt;
+            &lt;p&gt;É possível definir várias imagens de fundo separadas por vírgula.&lt;/p&gt;
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card bg-multiple"&gt;Quatro Imagens + Gradiente Overlay&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;bg-multiple&lt;/span&gt; {
+    &lt;span class="property-name"&gt;background&lt;/span&gt;: 
+        &lt;span class="value"&gt;url('https://via.placeholder.com/100/ff6b6b/ffffff?text=1') no-repeat top left&lt;/span&gt;,
+        &lt;span class="value"&gt;url('https://via.placeholder.com/100/4ecdc4/ffffff?text=2') no-repeat top right&lt;/span&gt;,
+        &lt;span class="value"&gt;url('https://via.placeholder.com/100/45b7d1/ffffff?text=3') no-repeat bottom left&lt;/span&gt;,
+        &lt;span class="value"&gt;url('https://via.placeholder.com/100/f9ca24/ffffff?text=4') no-repeat bottom right&lt;/span&gt;,
+        &lt;span class="value"&gt;linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.8))&lt;/span&gt;;
+}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Parallax Effect --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Efeito Parallax&lt;/h2&gt;
+            &lt;p&gt;Usando background-attachment: fixed para criar efeito parallax.&lt;/p&gt;
+            &lt;div class="parallax-section"&gt;
+                Efeito Parallax
+            &lt;/div&gt;
+            &lt;div class="code-block"&gt;
+.&lt;span class="property-name"&gt;parallax-section&lt;/span&gt; {
+    &lt;span class="property-name"&gt;background-image&lt;/span&gt;: &lt;span class="value"&gt;url('https::/via.placeholder.com/1920x1080/667eea/ffffff?text=Parallax')&lt;/span&gt;;
+    &lt;span class="property-name"&gt;background-attachment&lt;/span&gt;: &lt;span class="value"&gt;fixed&lt;/span&gt;;
+    &lt;span class="property-name"&gt;background-position&lt;/span&gt;: &lt;span class="value"&gt;center&lt;/span&gt;;
+    &lt;span class="property-name"&gt;background-repeat&lt;/span&gt;: &lt;span class="value"&gt;no-repeat&lt;/span&gt;;
+    &lt;span class="property-name"&gt;background-size&lt;/span&gt;: &lt;span class="value"&gt;cover&lt;/span&gt;;
+}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Shorthand Background --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Shorthand: background&lt;/h2&gt;
+            &lt;p&gt;A propriedade shorthand `background` permite definir várias propriedades de uma vez.&lt;/pD&gt;
+            &lt;div class="code-block"&gt;
+&lt;span class="comment"&gt;/* Sintaxe completa (nem todas as propriedades são obrigatórias) */&lt;/span&gt;
+&lt;span class="property-name"&gt;background&lt;/span&gt;: &lt;span class="value"&gt;[background-color] [background-image] [background-repeat] [background-attachment] [background-position] / [background-size] [background-origin] [background-clip]&lt;/span&gt;;
+
+&lt;span class="comment"&gt;/* Exemplos */&lt;/span&gt;
+&lt;span class="property-name"&gt;background&lt;/span&gt;: &lt;span class="value"&gt;#ffffff url('imagem.jpg') no-repeat fixed center / cover padding-box content-box&lt;/span&gt;;
+&lt;span class="property-name"&gt;background&lt;/span&gt;: &lt;span class="value"gt;linear-gradient(45deg, red, blue) no-repeat center / contain&lt;/span&gt;;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;

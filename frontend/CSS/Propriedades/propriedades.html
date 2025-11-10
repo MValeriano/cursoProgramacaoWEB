@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriedades CSS Mais Usadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #4f46e5, #3730a3);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (INTRODUÇÃO) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        .content-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .content-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .content-card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            color: #1e293b;
+            margin: 25px 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eef2ff;
+        }
+        .content-card-body h4:first-child {
+            margin-top: 0;
+        }
+        
+        .content-card-body p {
+            margin: 0 0 15px 0;
+        }
+        .content-card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS ESPECÍFICOS DOS CARDS */
+        
+        /* Ranking de Estrelas */
+        .stars {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #f59e0b;
+        }
+
+        /* Níveis de Frequência */
+        .level-card.level-1 h3 {
+            background-color: #f0fdf4;
+            color: #15803d;
+            border-bottom-color: #bbf7d0;
+        }
+        .level-card.level-2 h3 {
+            background-color: #f0f9ff;
+            color: #0c4a6e;
+            border-bottom-color: #bae6fd;
+        }
+        .level-card.level-3 h3 {
+            background-color: #fefce8;
+            color: #854d0e;
+            border-bottom-color: #fde68a;
+        }
+        .level-card.level-4 h3 {
+            background-color: #fff7ed;
+            color: #9a3412;
+            border-bottom-color: #fed7aa;
+        }
+
+        /* Dicas de Aprendizado */
+        .tip-card {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-card h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding-bottom: 0;
+        }
+        .tip-card .content-card-body {
+            padding-top: 15px;
+        }
+
+        /* Estatísticas */
+        .stats-card {
+            background-color: #f0f5ff;
+            border-left: 5px solid #4f46e5;
+        }
+        .stats-card h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #3730a3;
+            padding-bottom: 0;
+        }
+        .stats-card .content-card-body {
+            padding-top: 15px;
+        }
+        .stats-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .stats-list li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .stats-list strong {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            color: #4f46e5;
+            min-width: 200px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades CSS Mais Usadas</h1>
+            <p class="subtitle">Aqui está uma lista abrangente das propriedades CSS mais utilizadas, organizadas por categorias:</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Top 20 Essenciais -->
+            <div class="content-card">
+                <h3>🎯 Top 20 Mais Essenciais</h3>
+                <div class="content-card-body">
+                    <h4>1. Propriedades de Box Model (Fundamentais)</h4>
+<pre><code>/* AS 5 MAIS IMPORTANTES */
+margin: 10px;         /* Espaço externo */
+padding: 20px;        /* Espaço interno */
+width: 100%;          /* Largura */
+height: 200px;        /* Altura */
+border: 1px solid #ccc; /* Borda */</code></pre>
+
+                    <h4>2. Layout e Posicionamento</h4>
+<pre><code>display: block;         /* Tipo de exibição */
+position: relative;     /* Posicionamento */
+flex-direction: row;    /* Direção do flexbox */
+justify-content: center; /* Alinhamento horizontal */
+align-items: center;    /* Alinhamento vertical */</code></pre>
+
+                    <h4>3. Cores e Fundos</h4>
+<pre><code>color: #333;            /* Cor do texto */
+background-color: #fff; /* Cor de fundo */
+background-image: url(); /* Imagem de fundo */</code></pre>
+
+                    <h4>4. Texto e Tipografia</h4>
+<pre><code>font-size: 16px;        /* Tamanho da fonte */
+font-weight: bold;      /* Peso da fonte */
+text-align: center;     /* Alinhamento do texto */
+line-height: 1.5;       /* Altura da linha */</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Ranking por Categorias -->
+            <div class="content-card">
+                <h3>📊 Ranking por Categorias</h3>
+                <div class="content-card-body">
+                    <h4>1. Box Model & Layout</h4>
+                    <p class="stars">⭐⭐⭐⭐⭐ ESSENCIAIS</p>
+<pre><code>margin: 0 auto;       /* Centralização */
+padding: 1rem;         /* Espaçamento interno */
+width: 100%;           /* Largura responsiva */
+height: auto;          /* Altura automática */
+box-sizing: border-box; /* Modelo de caixa */</code></pre>
+                    <p class="stars">⭐⭐⭐⭐ MUITO USADAS</p>
+<pre><code>max-width: 1200px;     /* Largura máxima */
+min-height: 100vh;     /* Altura mínima */
+overflow: hidden;      /* Controle de overflow */
+box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra */</code></pre>
+
+                    <h4>2. Flexbox (Crucial para layouts modernos)</h4>
+                    <p class="stars">⭐⭐⭐⭐⭐ FUNDAMENTAIS</p>
+<pre><code>display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: row;</code></pre>
+                    <p class="stars">⭐⭐⭐⭐ IMPORTANTES</p>
+<pre><code>flex-wrap: wrap;
+gap: 1rem;
+flex: 1;
+align-self: stretch;</code></pre>
+
+                    <h4>3. Cores & Backgrounds</h4>
+                    <p class="stars">⭐⭐⭐⭐⭐</p>
+<pre><code>background-color: #ffffff;
+color: #333333;
+background: linear-gradient(to right, #ff0000, #0000ff);
+opacity: 0.8;</code></pre>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>background-image: url('imagem.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;</code></pre>
+
+                    <h4>4. Tipografia</h4>
+                    <p class="stars">⭐⭐⭐⭐⭐</p>
+<pre><code>font-family: Arial, sans-serif;
+font-size: 16px;
+font-weight: 400;
+line-height: 1.6;
+text-align: left;</code></pre>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>text-decoration: none;
+text-transform: uppercase;
+letter-spacing: 1px;
+white-space: nowrap;</code></pre>
+
+                    <h4>5. Posicionamento</h4>
+                    <p class="stars">⭐⭐⭐⭐⭐</p>
+<pre><code>position: relative;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 10;</code></pre>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>position: fixed;
+position: sticky;
+float: left;
+clear: both;</code></pre>
+
+                    <h4>6. Grid Layout</h4>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>display: grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 20px;
+grid-template-areas: "header header" "main sidebar";</code></pre>
+
+                    <h4>7. Transições & Animações</h4>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>transition: all 0.3s ease;
+transform: translateX(50px);
+animation: slideIn 0.5s forwards;
+cursor: pointer;</code></pre>
+
+                    <h4>8. Responsividade</h4>
+                    <p class="stars">⭐⭐⭐⭐</p>
+<pre><code>@media (max-width: 768px) {
+    /* Media queries são essenciais */
+}
+max-width: 100%;
+height: auto;
+object-fit: cover;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Nível 1 -->
+            <div class="content-card level-card level-1">
+                <h3>Nível 1: Usadas em TODOS os projetos</h3>
+                <div class="content-card-body">
+<pre><code>/* BOX MODEL */
+margin, padding, width, height, border
+display, position, box-sizing
+
+/* CORES E FUNDOS */
+color, background-color
+
+/* TIPOGRAFIA */
+font-size, font-family, text-align, line-height
+
+/* FLEXBOX */
+display: flex, justify-content, align-items</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Nível 2 -->
+            <div class="content-card level-card level-2">
+                <h3>Nível 2: Usadas na MAIORIA dos projetos</h3>
+                <div class="content-card-body">
+<pre><code>/* LAYOUT AVANÇADO */
+max-width, min-height, overflow
+box-shadow, border-radius
+
+/* FLEXBOX COMPLETO */
+flex-direction, flex-wrap, gap
+flex-grow, flex-shrink
+
+/* POSICIONAMENTO */
+top, right, bottom, left, z-index
+float, clear</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Nível 3 -->
+            <div class="content-card level-card level-3">
+                <h3>Nível 3: Usadas frequentemente</h3>
+                <div class="content-card-body">
+<pre><code>/* ANIMAÇÕES */
+transition, transform, opacity
+cursor, pointer-events
+
+/* BACKGROUNDS */
+background-image, background-size
+background-position, background-repeat
+
+/* GRID */
+display: grid, grid-template-columns
+grid-gap, grid-template-areas</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Nível 4 -->
+            <div class="content-card level-card level-4">
+                <h3>Nível 4: Uso específico mas importante</h3>
+                <div class="content-card-body">
+<pre><code>/* TEXTO AVANÇADO */
+text-decoration, text-transform
+white-space, text-overflow
+
+/* VISIBILIDADE */
+visibility, opacity, display: none
+clip-path, filter
+
+/* SCROLL */
+overflow-x, overflow-y
+scroll-behavior</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Prático Completo -->
+            <div class="content-card">
+                <h3>💡 Exemplo Prático Completo</h3>
+                <div class="content-card-body">
+<pre><code>/* CSS MODERNO - PROPRIEDADES MAIS USADAS */
+
+.container {
+    /* Box Model */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    
+    /* Flexbox */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    
+    /* Cores & Fundos */
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header {
+    /* Posicionamento */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    
+    /* Cores */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.nav-item {
+    /* Tipografia */
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: inherit;
+    
+    /* Interatividade */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    color: #ffeb3b;
+    transform: translateY(-2px);
+}
+
+.button {
+    /* Box Model */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    
+    /* Cores */
+    background-color: #007bff;
+    color: white;
+    
+    /* Tipografia */
+    font-size: 1rem;
+    font-weight: 600;
+    
+    /* Interatividade */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .header {
+        position: relative;
+        padding: 1rem;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Aprendizado -->
+            <div class="content-card tip-card">
+                <h3>🚀 Dicas de Aprendizado</h3>
+                <div class="content-card-body">
+                    <h4>Comece por estas 15 propriedades:</h4>
+<pre><code>1. margin & padding
+2. width & height
+3. display
+4. color & background-color
+5. font-size & font-family
+6. text-align
+7. border
+8. position
+9. flexbox (display: flex, justify-content, align-items)
+10. box-sizing</code></pre>
+                    <h4>Depois domine estas:</h4>
+<pre><code>11. transition
+12. transform
+13. box-shadow
+14. border-radius
+15. media queries</code></pre>
+                    <h4>Para se tornar avançado:</h4>
+<pre><code>16. CSS Grid
+17. CSS Variables (--var)
+18. Animations (@keyframes)
+19. Filters & Blend-modes
+20. Clip-path & Mask</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Estatísticas de Uso -->
+            <div class="content-card stats-card">
+                <h3>📈 Estatísticas de Uso</h3>
+                <div class="content-card-body">
+                    <ul class="stats-list">
+                        <li><strong>98% dos projetos usam:</strong> margin, padding, color, font-size</li>
+                        <li><strong>95% dos projetos usam:</strong> display, width, height</li>
+                        <li><strong>90% dos projetos usam:</strong> Flexbox</li>
+                        <li><strong>85% dos projetos usam:</strong> position, background-color</li>
+                        <li><strong>80% dos projetos usam:</strong> Media Queries</li>
+                        <li><strong>70% dos projetos usam:</strong> CSS Grid</li>
+                    </ul>
+                    <p>Essas propriedades formam a base do CSS moderno e são essenciais para qualquer desenvolvedor front-end!</p>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

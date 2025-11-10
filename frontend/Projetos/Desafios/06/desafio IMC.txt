@@ -1,0 +1,6 @@
+Calculadora de IMC (e peso ideal)
+
+	 Criar uma calculadora para medir o indice de massa corpórea de um indivíduo, 
+o sistema deve solicitar a entrada de  dois valores altura e peso, e fazer o cálculo . 
+	O cálculo do IMC é feito usando a seguinte fórmula matemática: Peso ÷ (altura x altura).como entrada pode ser usado o window.prompt e a 
+apresentação do resultado o window.document.writeln.

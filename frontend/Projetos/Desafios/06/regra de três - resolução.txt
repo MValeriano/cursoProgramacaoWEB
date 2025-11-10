@@ -1,0 +1,11 @@
+Como resolver uma regra de três simples ?
+
+Para resolver-se situações utilizando a regra de três, é fundamental que exista a proporcionalidade, além disso, é de grande importância a identificação da relação entre as grandezas.
+
+Os problemas que envolvem regra de três simples podem ser separados em dois casos, quando as grandezas são diretamente proporcionais ou inversamente proporcionais.
+
+passos:
+
+1º passo – Identificar as grandezas e construção da tabela.
+2º passo – Analisar se as grandezas são diretamente ou inversamente proporcionais.
+3º passo – Aplicar o método de resolução correto para cada um dos casos, e, por fim, resolver a equação.

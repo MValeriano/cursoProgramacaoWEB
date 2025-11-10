@@ -1,0 +1,4 @@
+cabeçalhos
+	font-family: Montserrat,sans-serif;
+toda a página
+	font-family: 'Open Sans',sans-serif;

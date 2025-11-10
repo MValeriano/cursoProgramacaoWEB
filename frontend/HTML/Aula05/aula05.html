@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico de HTML: Tabelas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* 4. ESTRUTURA DAS SEÇÕES */
+        .section {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e2e8f0; /* Divisor suave */
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* 5. ESTILOS DE CONTEÚDO */
+
+        /* Tabela Resumo (Tag | Função) */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table th {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+            font-size: 16px;
+            background-color: #eef2ff;
+        }
+
+        .summary-table td:first-child {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #4f46e5;
+            font-size: 17px;
+        }
+        .summary-table td {
+            font-size: 17px;
+        }
+
+        /* Caixa de Dicas de Uso */
+        .tips-box {
+            background: #eef2ff; /* Fundo índigo bem claro */
+            border-left: 5px solid #4f46e5; /* Destaque índigo */
+            padding: 25px 30px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
+        
+        .tips-box h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #3730a3; /* Índigo escuro */
+            margin: 0 0 15px 0;
+            font-size: 22px;
+        }
+
+        .tips-box p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+        
+        .tips-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .tips-box li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .tips-box li::before {
+            content: '✓'; /* Checkmark */
+            color: #16a34a; /* Verde */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+
+        /* Card de Definição de Tag */
+        .tag-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .tag-card-header {
+            padding: 20px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tag-card-header h3 {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            font-size: 24px;
+        }
+        
+        .tag-card-content {
+            padding: 30px;
+        }
+        
+        .tag-card-content p, 
+        .tag-card-content li {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .tag-card-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        /* Lista de Características */
+        .char-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .char-list li {
+             position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .char-list li::before {
+            content: '✓'; /* Checkmark */
+            color: #16a34a; /* Verde */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* Lista de Atributos */
+        .attr-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .attr-list li {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .attr-list li code {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        /* Bloco de Declaração (Código) */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>7. Tabelas</h1>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="section">
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;table&gt;</td>
+                        <td>Tabela</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;tr&gt;</td>
+                        <td>Linha</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;td&gt;</td>
+                        <td>Célula</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;th&gt;</td>
+                        <td>Cabeçalho da tabela</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;thead&gt;, &lt;tbody&gt;</td>
+                        <td>Divisão semântica da tabela</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tips-box">
+                <h3>Dicas de Uso</h3>
+                <p>As tabelas são ideais para exibir dados tabulares, como planilhas, listas de preços, horários, comparações e dados estatísticos.</p>
+                <ul>
+                    <li>Use &lt;thead&gt;, &lt;tbody&gt; e &lt;tfoot&gt; para melhorar a semântica e acessibilidade</li>
+                    <li>Use scope em &lt;th&gt; para indicar se o cabeçalho é para linha ou coluna</li>
+                    <li>Use caption para fornecer uma legenda descritiva para a tabela</li>
+                    <li>Use colspan e rowspan para mesclar células quando necessário</li>
+                    <li>Evite usar tabelas para layout - use CSS Grid ou Flexbox para layout de página</li>
+                    <li>Sempre forneça títulos ou descrições para tabelas complexas</li>
+                    <li>Use CSS para estilização em vez de atributos obsoletos como border, cellpadding</li>
+                </ul>
+            </div>
+
+            <!-- Card: <table> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;table&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;table&gt; é o elemento container que define uma tabela HTML. Todas as outras tags de tabela devem estar contidas dentro dela. As tabelas são usadas para exibir dados em formato tabular, com linhas e colunas.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Pode conter elementos como &lt;caption&gt;, &lt;colgroup&gt;, &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;, &lt;tr&gt;</li>
+                        <li>A estrutura semântica é importante para acessibilidade</li>
+                        <li>Pode ser estilizada com CSS para controlar aparência e layout</li>
+                        <li>Não deve ser usada para layout de página (use CSS Grid ou Flexbox)</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>border</code> - Define a borda da tabela (obsoleto em HTML5, use CSS)</li>
+                        <li><code>cellpadding</code> - Espaço entre o conteúdo da célula e sua borda (obsoleto)</li>
+                        <li><code>cellspacing</code> - Espaço entre células (obsoleto)</li>
+                        <li><code>width</code> - Largura da tabela (obsoleto, use CSS)</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Nome&lt;/th&gt;
+        &lt;th&gt;Idade&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;João&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <tr> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;tr&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;tr&gt; (table row) é usada para criar uma linha dentro de uma tabela. Cada &lt;tr&gt; pode conter uma ou mais células, que podem ser &lt;th&gt; (cabeçalho) ou &lt;td&gt; (dados).</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>Deve estar dentro de &lt;table&gt;, &lt;thead&gt;, &lt;tbody&gt; ou &lt;tfoot&gt;</li>
+                        <li>Pode conter apenas &lt;th&gt; ou &lt;td&gt; como filhos diretos</li>
+                        <li>Pode ser estilizada com CSS para alterar a aparência da linha</li>
+                        <li>As linhas são renderizadas na ordem em que aparecem no código</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt; &lt;!-- Linha 1: Cabeçalho --&gt;
+        &lt;th&gt;Produto&lt;/th&gt;
+        &lt;th&gt;Preço&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt; &lt;!-- Linha 2: Dados --&gt;
+        &lt;td&gt;Notebook&lt;/td&gt;
+        &lt;td&gt;R$ 2500,00&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <td> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;td&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;td&gt; (table data) é usada para criar uma célula que contém dados em uma tabela. Deve estar dentro de uma linha (&lt;tr&gt;).</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Deve estar dentro de um &lt;tr&gt;</li>
+                        <li>Pode conter qualquer conteúdo (texto, imagens, links, outras tabelas, etc.)</li>
+                        <li>Pode usar atributos para mesclagem de células (colspan e rowspan)</li>
+                        <li>Por padrão, o texto é alinhado à esquerda e verticalmente ao meio</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>colspan</code> - Número de colunas que a célula deve ocupar</li>
+                        <li><code>rowspan</code> - Número de linhas que a célula deve ocupar</li>
+                        <li><code>headers</code> - Associar a célula a um ou mais cabeçalhos (para acessibilidade)</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Nome&lt;/td&gt;
+        &lt;td&gt;João&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Idade&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Exemplo com colspan --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td colspan="2"&gt;Célula que ocupa duas colunas&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Coluna 1&lt;/td&gt;
+        &lt;td&gt;Coluna 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Exemplo com rowspan --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Célula que ocupa duas linhas&lt;/td&gt;
+        &lt;td&gt;Linha 1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Linha 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <th> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;th&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;th&gt; (table header) é usada para criar uma célula de cabeçalho. Normalmente é exibida em negrito e centralizada por padrão. Fornece contexto semântico para os dados da coluna ou linha.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>É um elemento de bloco</li>
+                        <li>Deve estar dentro de um &lt;tr&gt;</li>
+                        <li>Por padrão, o texto é em negrito e centralizado</li>
+                        <li>Pode usar scope para definir o escopo (col, row, colgroup, rowgroup)</li>
+                        <li>Pode usar abbr para uma versão abreviada do conteúdo</li>
+                        <li>Importante para acessibilidade e SEO</li>
+                    </ul>
+
+                    <h4>Atributos principais:</h4>
+                    <ul class="attr-list">
+                        <li><code>scope</code> - Define o escopo do cabeçalho (col, row, colgroup, rowgroup)</li>
+                        <li><code>abbr</code> - Fornece uma abreviação para o conteúdo do cabeçalho</li>
+                        <li><code>colspan</code> - Mesclagem de colunas</li>
+                        <li><code>rowspan</code> - Mesclagem de linhas</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th scope="col"&gt;Nome&lt;/th&gt;
+        &lt;th scope="col"&gt;Idade&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Maria&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Exemplo com scope row --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th scope="row"&gt;Nome:&lt;/th&gt;
+        &lt;td&gt;Maria&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th scope="row"&gt;Idade:&lt;/th&gt;
+        &lt;td&gt;30&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Exemplo com abbr --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th abbr="Preço unitário"&gt;Preço Unit.&lt;/th&gt;
+        &lt;th abbr="Quantidade"&gt;Qtd&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <thead> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;thead&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;thead&gt; (table head) é usada para agrupar um conjunto de linhas que formam o cabeçalho da tabela. Deve conter uma ou mais tags &lt;tr&gt; com células &lt;th&gt;.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>Deve ser usado dentro de &lt;table&gt;</li>
+                        <li>Deve conter pelo menos uma linha (&lt;tr&gt;)</li>
+                        <li>Normalmente é seguido por &lt;tbody&gt; e &lt;tfoot&gt;</li>
+                        <li>Útil para rolagem de tabelas longas, onde o cabeçalho permanece visível</li>
+                        <li>Melhora a acessibilidade e a semântica</li>
+                        <li>Pode ser estilizado separadamente do corpo da tabela</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Mês&lt;/th&gt;
+            &lt;th&gt;Vendas&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Janeiro&lt;/td&gt;
+            &lt;td&gt;R$ 1000,00&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: <tbody> -->
+            <div class="tag-card">
+                <div class="tag-card-header"><h3>Tag &lt;tbody&gt;</h3></div>
+                <div class="tag-card-content">
+                    <p>A tag &lt;tbody&gt; (table body) é usada para agrupar o conteúdo principal da tabela. Pode aparecer uma ou mais vezes, mas normalmente é usado uma vez. Deve conter as linhas com os dados da tabela.</p>
+                    
+                    <h4>Características importantes:</h4>
+                    <ul class="char-list">
+                        <li>Deve ser usado dentro de &lt;table&gt;</li>
+                        <li>Pode conter uma ou mais linhas (&lt;tr&gt;)</li>
+                        <li>Normalmente segue &lt;thead&gt; e precede &lt;tfoot&gt;</li>
+                        <li>Útil para estilização e rolagem de tabelas longas</li>
+                        <li>Se não for especificado, o navegador cria um &lt;tbody&gt; implícito</li>
+                    </ul>
+
+                    <h4>Declaração:</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Produto&lt;/th&gt;
+            &lt;th&gt;Preço&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Notebook&lt;/td&gt;
+            &lt;td&gt;R$ 2500,00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Mouse&lt;/td&gt;
+            &lt;td&gt;R$ 50,00&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

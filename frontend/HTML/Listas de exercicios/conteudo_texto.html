@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de HTML: Conteúdo e Texto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9; /* Fundo cinza-azulado claro */
+            margin: 0;
+            padding: 0;
+            color: #334155; /* Cinza ardósia escuro */
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b; /* Azul escuro */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe; /* Azul claro */
+        }
+
+        /* 4. SEÇÃO DOS EXERCÍCIOS */
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0; /* Divisor suave */
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5; /* Índigo */
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .enunciado {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0;
+            color: #1e293b;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+
+        /* Bloco de Código */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        code {
+            white-space: pre-wrap; /* Quebra de linha no código */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Exercícios de HTML</h1>
+            <h2>2. Conteúdo e texto</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página sobre sustentabilidade com um título principal (h1), dois subtítulos (h2 e h3) e parágrafos explicativos. Use quebras de linha onde necessário.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sustentabilidade Ambiental&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Sustentabilidade: Nosso Compromisso com o Futuro&lt;/h1&gt;
+    
+    &lt;h2&gt;O que é Sustentabilidade?&lt;/h2&gt;
+    &lt;p&gt;Sustentabilidade é a capacidade de satisfazer as necessidades do presente&lt;br&gt;
+    sem comprometer a capacidade das gerações futuras de satisfazerem as suas próprias necessidades.&lt;/p&gt;
+    
+    &lt;h3&gt;Práticas Sustentáveis&lt;/h3&gt;
+    &lt;p&gt;Adotar práticas sustentáveis no dia a dia é essencial para preservar&lt;br&gt;
+    nossos recursos naturais e garantir um planeta saudável para as futuras gerações.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de perfil profissional com diferentes níveis de cabeçalho e parágrafos de apresentação.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Perfil Profissional - Maria Santos&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Maria Santos&lt;/h1&gt;
+    &lt;h2&gt;Desenvolvedora Full Stack&lt;/h2&gt;
+    
+    &lt;p&gt;Desenvolvedora com 5 anos de experiência em criação de aplicações web modernas e responsivas.&lt;/p&gt;
+    
+    &lt;h3&gt;Especializações&lt;/h3&gt;
+    &lt;p&gt;JavaScript, React, Node.js, Python e Banco de Dados&lt;/p&gt;
+    
+    &lt;h3&gt;Formação Acadêmica&lt;/h3&gt;
+    &lt;p&gt;Bacharelado em Ciência da Computação - Universidade Federal&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de artigo sobre inteligência artificial usando span para destacar termos técnicos.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Inteligência Artificial: O Futuro Chegou&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Inteligência Artificial: Transformando Nosso Mundo&lt;/h1&gt;
+    
+    &lt;p&gt;A &lt;span style="font-weight: bold;"&gt;Inteligência Artificial&lt;/span&gt; está revolucionando 
+    diversos setores da economia e da sociedade. Desde &lt;span&gt;machine learning&lt;/span&gt; até 
+    &lt;span&gt;deep learning&lt;/span&gt;, as tecnologias IA estão se tornando cada vez mais presentes.&lt;/p&gt;
+    
+    &lt;p&gt;Empresas que adotam soluções de &lt;span&gt;IA&lt;/span&gt; estão obtendo vantagens competitivas 
+    significativas no mercado atual.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de contatos empresarial com informações formatadas usando br para quebras de linha.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Contatos - Empresa XYZ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Entre em Contato&lt;/h1&gt;
+    
+    &lt;h2&gt;Escritório Central&lt;/h2&gt;
+    &lt;p&gt;
+        Rua das Flores, 123&lt;br&gt;
+        Centro&lt;br&gt;
+        São Paulo - SP&lt;br&gt;
+        CEP: 01234-567
+    &lt;/p&gt;
+    
+    &lt;h2&gt;Telefones&lt;/h2&gt;
+    &lt;p&gt;
+        Comercial: (11) 3456-7890&lt;br&gt;
+        WhatsApp: (11) 98765-4321&lt;br&gt;
+        SAC: 0800-123-456
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página com regras de convivência usando hr para separar as seções.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Regras de Convivência&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Regras de Convivência Harmoniosa&lt;/h1&gt;
+    
+    &lt;h2&gt;Respeito ao Próximo&lt;/h2&gt;
+    &lt;p&gt;Trate todos com educação e consideração, independentemente de diferenças individuais.&lt;/p&gt;
+    
+    &lt;hr&gt;
+    
+    &lt;h2&gt;Responsabilidade Coletiva&lt;/h2&gt;
+    &lt;p&gt;Cada membro é responsável pela manutenção e limpeza dos espaços compartilhados.&lt;/pV&gt;
+    
+    &lt;hr&gt;
+    
+    &lt;h2&gt;Comunicação Assertiva&lt;/h2&gt;
+    &lt;p&gt;Expressar ideias e preocupações de forma clara e respeitosa é fundamental.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 6 -->
+            <div class="exercise-card">
+                <h3>Exercício 6</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de FAQ (Perguntas Frequentes) usando diferentes níveis de cabeçalho.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;FAQ - Perguntas Frequentes&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Perguntas Frequentes&lt;/h1&gt;
+    
+    &lt;h2&gt;Informações Gerais&lt;/h2&gt;
+    
+    &lt;h3&gt;Como criar uma conta?&lt;/h3&gt;
+    &lt;p&gt;Clique em "Registrar" no canto superior direito e preencha o formulário com seus dados.&lt;/p&gt;
+    
+    &lt;h3&gt;Esqueci minha senha, o que fazer?&lt;/h3&gt;
+    &lt;p&gt;Clique em "Esqueci a senha" na página de login e siga as instruções enviadas por email.&lt;/p&gt;
+    
+    &lt;h2&gt;Suporte Técnico&lt;/h2&gt;
+    
+    &lt;h3&gt;O site não está carregando, o que pode ser?&lt;/h3&gt;
+    &lt;p&gt;Verifique sua conexão com a internet e tente atualizar a página. Se o problema persistir, entre em contato.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 7 -->
+            <div class="exercise-card">
+                <h3>Exercício 7</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de receita de bolo com instruções formatadas usando br.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Receita - Bolo de Chocolate&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bolo de Chocolate Simples&lt;/h1&gt;
+    &lt;h2&gt;Ingredientes&lt;/h2&gt;
+    
+    &lt;p&gt;
+        2 xícaras de farinha de trigo&lt;br&gt;
+        1 xícara de açúcar&lt;br&gt;
+        1 xícara de chocolate em pó&lt;br&gt;
+        1 xícara de leite&lt;br&gt;
+        3 ovos&lt;br&gt;
+        1/2 xícara de óleo&lt;br&gt;
+        1 colher de sopa de fermento
+    &lt;/p&gt;
+    
+    &lt;h2&gt;Modo de Preparo&lt;/h2&gt;
+    &lt;p&gt;
+        Pré-aqueça o forno a 180°C.&lt;br&gt;
+        Misture todos os ingredientes secos.&lt;br&gt;
+        Adicione os ingredientes líquidos e misture bem.&lt;br&gt;
+        Unte uma forma e despeje a massa.&lt;br&gt;
+        Asse por aproximadamente 40 minutos.
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 8 -->
+            <div class="exercise-card">
+                <h3>Exercício 8</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de anúncio de produto usando span para destacar características importantes.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;SmartWatch Pro - Revolução em Seu Pulso&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;SmartWatch Pro&lt;/h1&gt;
+    &lt;h2&gt;Mais que um relógio, um estilo de vida&lt;/h2&gt;
+    
+    &lt;p&gt;O &lt;span style="font-weight: bold;"&gt;SmartWatch Pro&lt;/span&gt; chega ao mercado com 
+    &lt;span&gt;tecnologia de ponta&lt;/span&gt; e design elegante. Monitoramento de 
+    &lt;span&gt;saúde 24/7&lt;/span&gt;, notificações inteligentes e 
+    &lt;span&gt;bateria que dura 7 dias&lt;/span&gt;.&lt;/p&gt;
+    
+    &lt;p&gt;Com &lt;span&gt;resistência à água&lt;/span&gt; e mais de 
+    &lt;span&gt;50 modos de exercício&lt;/span&gt;, é o companheiro perfeito para sua rotina.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 9 -->
+            <div class="exercise-card">
+                <h3>Exercício 9</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Desenvolva uma página de política de privacidade com estrutura hierárquica clara.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Política de Privacidade - Nossa Empresa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Política de Privacidade&lt;/h1&gt;
+    
+    &lt;h2&gt;1. Coleta de Informações&lt;/h2&gt;
+    &lt;p&gt;Coletamos informações que você nos fornece diretamente quando utiliza nossos serviços.&lt;/p&gt;
+    
+    &lt;h3&gt;1.1. Informações Pessoais&lt;/h3&gt;
+    &lt;p&gt;Nome, email, telefone e dados de cadastro são armazenados com segurança.&lt;/p&gt;
+    
+    &lt;h3&gt;1.2. Dados de Navegação&lt;/h3&gt;
+    &lt;p&gt;Informações sobre como você interage com nosso site são coletadas para melhorar a experiência.&lt;/p&gt;
+    
+    &lt;h2&gt;2. Uso das Informações&lt;/h2&gt;
+    &lt;p&gt;Utilizamos suas informações para fornecer, manter e melhorar nossos services.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 10 -->
+            <div class="exercise-card">
+                <h3>Exercício 10</h3>
+                <div class="card-body">
+                    <p class="enunciado">Enunciado: Crie uma página de boas-vindas para novos funcionários com formatação adequada.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Boas-vindas - Novo Funcionário&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Seja Bem-vindo à Nossa Equipe!&lt;/h1&gt;
+    
+    &lt;p&gt;Estamos muito felizes em tê-lo conosco. Sua experiência e talento serão 
+    valiosos para nosso crescimento coletivo.&lt;/p&gt;
+    
+    &lt;h2&gt;Primeiros Passos&lt;/h2&gt;
+    &lt;p&gt;
+        Nosso RH entrará em contato para agendar sua integração.&lt;br&gt;
+        Você receberá acesso aos sistemas corporativos.&lt;br&gt;
+        Será apresentado à sua equipe e mentor.
+    &lt;/p&gt;
+    
+    &lt;h2&gt;Expectativas&lt;/h2&gt;
+    &lt;p&gt;Valorizamos a colaboração, inovação e comprometimento com resultados.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            // Oculta todas as outras resoluções abertas
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            // Alterna a resolução atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+Boas vindas
+
+ Crie um script que à partir de um window.prompt receba um nome qualquer e após exiba um window.alert dando boas vindas ao usuário(a).

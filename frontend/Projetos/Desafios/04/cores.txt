@@ -1,0 +1,16 @@
+  fundo 
+ 	color: #111111;
+	    background-color: #f2f2f2;
+
+faixa 
+	 color: #ffffff;
+	    background-color: #6dadbf;
+
+paragrafo
+ 	  color: #5d8590;
+
+cabeçalho
+	color: #6dadbf 
+
+cabeçalho principal 
+	color: #475c62 

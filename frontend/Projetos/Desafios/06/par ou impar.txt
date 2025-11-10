@@ -1,0 +1,4 @@
+par ou impar ?
+
+	Solicite um número ao usuário(a) e retorne se o número informado é par ou se é impar.
+	obs.: utilize o operador aritimético de módulo para este desafio.

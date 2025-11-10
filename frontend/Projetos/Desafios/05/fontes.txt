@@ -1,0 +1,6 @@
+cabeçalhos
+	    font-family: Montserrat,sans-serif;
+
+paragrafos e botão
+
+	font-family: 'Open Sans',sans-serif;

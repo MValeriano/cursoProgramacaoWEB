@@ -1,0 +1,126 @@
+MENU
+1 - https://www.youtube.com/watch?v=CNiH_hkvcDA
+2 - https://www.youtube.com/watch?v=qxwqDcGHB50
+3 - https://www.youtube.com/watch?v=CFmMNuxZ3YY
+4 - https://www.youtube.com/watch?v=yDlddqhuoGY
+5 - https://www.youtube.com/watch?v=P9cSVCGj0I0
+6 - https://www.youtube.com/watch?v=IKCAnqcZC4c
+7 - https://www.youtube.com/watch?v=3RtJjNS1qOQ
+8 - https://www.youtube.com/watch?v=4iq1qjrTNu0
+9 - https://www.youtube.com/watch?v=SZB6gMaaV84
+10 - https://www.youtube.com/watch?v=Fgdjvclw_bM
+11 - https://www.youtube.com/watch?v=ORzve9AYEeE
+12 - https://www.youtube.com/watch?v=gJ21oN9jFsw
+
+FORMULÁRIOS - https://www.youtube.com/results?search_query=Formul%C3%A1rio+com+HTML+e+CSS
+1 - https://www.youtube.com/watch?v=wwqOJ2o84S4
+2 - https://www.youtube.com/watch?v=zWw0npNDkVM
+3 - https://www.youtube.com/watch?v=oCG2H_g-Jm8
+4 - https://www.youtube.com/watch?v=VCsNIRXNsmY
+5 - https://www.youtube.com/watch?v=Ph-60-pkAQM
+6 - https://www.youtube.com/watch?v=oCG2H_g-Jm8&t=126s
+7 - https://www.youtube.com/watch?v=MkXuQ9CcHqU
+8 - https://www.youtube.com/watch?v=TOTB9jpNn38
+9 - https://www.youtube.com/watch?v=6sBDwe4fTAU
+10 - https://www.youtube.com/watch?v=yWU4WxJ_z7Y
+11 - https://www.youtube.com/watch?v=21SgvliKQk8
+12 - https://www.youtube.com/watch?v=2umsItNQ9mI
+13 - https://www.youtube.com/watch?v=xMSJTO8I_Bg
+14 - https://www.youtube.com/watch?v=zWw0npNDkVM&t=1s
+15 - https://www.youtube.com/watch?v=Q68vbJplf7I
+
+TELA DE LOGIN - https://www.youtube.com/results?search_query=login+com+HTML+e+CSS
+1 - https://www.youtube.com/watch?v=1BGYXamH5Vk
+2 - https://www.youtube.com/watch?v=69-WfrVBli8
+3 - https://www.youtube.com/watch?v=nU2Lpy79Q3M
+4 - https://www.youtube.com/watch?v=Fg6ayE-sYj4
+5 - https://www.youtube.com/watch?v=LUMFITn510U
+6- https://www.youtube.com/watch?v=t2sAcA5CAcI
+7 - https://www.youtube.com/watch?v=hmkTPZ_nOik
+8 - https://www.youtube.com/watch?v=GSjd-glAmBk
+9 - https://www.youtube.com/watch?v=_t-M1o1-aAs
+10 - https://www.youtube.com/watch?v=TpawIZdeMDI
+
+JANELA MODAL
+1 - https://www.youtube.com/watch?v=1jnVK-hJFYg
+2 - https://www.youtube.com/watch?v=UF3pQ145chY
+3 - https://www.youtube.com/watch?v=IcbnEYaVs24
+4 - https://www.youtube.com/watch?v=J9EyKSK0vzw
+5 - https://www.youtube.com/watch?v=HL4R6se1y8g
+6 - https://www.youtube.com/watch?v=fu-enUG2VEE
+7 - https://www.youtube.com/watch?v=aO-8M7EUuoM
+8 - https://www.youtube.com/watch?v=C7F4UBCjZEE
+9 - https://www.youtube.com/watch?v=pGJB5FgfdMI
+10 - https://www.youtube.com/watch?v=nAAZs9xLYQk
+11 - https://www.youtube.com/watch?v=J9EyKSK0vzw
+
+CARDS - https://www.youtube.com/results?search_query=cards+com+HTML+e+CSS
+1 - https://www.youtube.com/watch?v=CMYJbI1Dgl4
+2 - https://www.youtube.com/watch?v=_-3nHZHkn4M&t=1024s
+3 - https://www.youtube.com/watch?v=UEm65E2_Y2Q
+4 - https://www.youtube.com/watch?v=Ws8C1ZwFJ2Q
+5 - https://www.youtube.com/watch?v=00LpIJ58FZ4
+6 - https://www.youtube.com/watch?v=qK9-HI37c6w
+7 - https://www.youtube.com/watch?v=PYLQs-f1G1Q
+8 - https://www.youtube.com/watch?v=ap_KHxw4Q_E
+9 - https://www.youtube.com/watch?v=47cnrnW00q4
+10 - https://www.youtube.com/watch?v=JB43DtlexQY
+11- https://www.youtube.com/watch?v=yiIMekAfl24
+
+PÁGINA DE PRODUTO
+1 - https://www.youtube.com/watch?v=kINd2eGQzz4
+
+PORTFOLIO
+1 - https://www.youtube.com/watch?v=jZurhyJTJOM
+2 - https://www.youtube.com/watch?v=526wnMJLWjI
+3 - https://www.youtube.com/watch?v=PGix-dh2nIw
+4 - https://www.youtube.com/watch?v=aEHN3HKxpGs
+5 - https://www.youtube.com/watch?v=ANY_VeuJxvw
+6 - https://www.youtube.com/watch?v=pElHjuZycv4&t=11s
+10 - https://www.youtube.com/watch?v=pElHjuZycv4
+
+LANDING PAGE 
+1 - https://www.youtube.com/watch?v=xBJebak-ddY
+2 - https://www.youtube.com/watch?v=-KE8n2JU8e4
+3 - https://www.youtube.com/watch?v=7-orzsht98k
+4 - https://www.youtube.com/watch?v=duNwZHP3NR4
+5 - https://www.youtube.com/watch?v=I5yTz8_atT0
+6 - https://www.youtube.com/watch?v=UR0Dx9OABnU
+7 - https://www.youtube.com/watch?v=gqrLT6bfLwY
+
+PROJETO COMPLETO 
+1 - https://www.youtube.com/watch?v=WzO5QlkjVLA&t=1s
+2 - https://www.youtube.com/watch?v=nWNg07zOvDc
+3 - https://www.youtube.com/watch?v=eKi3UlBZEXI
+4 - https://www.youtube.com/watch?v=vdytGGKyJKE
+5 - https://www.youtube.com/watch?v=RacwEvoTz_Y
+6 - https://www.youtube.com/watch?v=xarRciYWT5Q
+7 - https://www.youtube.com/watch?v=Uptu3NrBFBM
+8 - https://www.youtube.com/watch?v=KNH_-_esmaI
+9 - https://www.youtube.com/watch?v=UftSB4DaRU4
+10 - https://www.youtube.com/watch?v=GK0ok3ZCXwM
+11- https://www.youtube.com/watch?v=G4PQvXtHLyc
+12 - https://www.youtube.com/watch?v=yiDq9wUiUjc
+13 - https://www.youtube.com/watch?v=Ph_1k5d1y_s
+14 - https://www.youtube.com/watch?v=DmDjt-Rwoqk (Clonando o instagram com HTML e CSS)
+15 - https://www.youtube.com/watch?v=hF_VMWnsY00
+16 - https://www.youtube.com/watch?v=W3WZaAQiQq0
+17- https://www.youtube.com/watch?v=gkW1S6-aSTQ
+18 - https://www.youtube.com/watch?v=r9buAwVBDhA
+
+PROJETOS JAVASCRIPT
+1 - https://www.youtube.com/watch?v=0EiX9c4vzRs
+2 - https://www.youtube.com/watch?v=ATd9r0BQ9lI
+3 - https://www.youtube.com/watch?v=qLeQccg_vL0
+4 - https://www.youtube.com/watch?v=oshvAg-6Mbk
+5 - https://www.youtube.com/watch?v=xzf4DOnG-fo
+6 - https://www.youtube.com/watch?v=0bNeKAzVvlE
+7 - https://www.youtube.com/watch?v=Q0Gg98jgZQ8
+8 - https://www.youtube.com/watch?v=rZRXjU6KyMI
+9 - https://www.youtube.com/watch?v=hTgwBJqPIm0
+10 - https://www.youtube.com/watch?v=sW_A60eMQzs
+11 - https://www.youtube.com/watch?v=dcxzSV2C0VI
+12 - https://www.youtube.com/watch?v=onKjZID-QP0
+13 - https://www.youtube.com/watch?v=WRZxr5egEoE
+14 - https://www.youtube.com/watch?v=g3xJhlxNPbw
+15 - https://www.youtube.com/watch?v=6Zs_yyeMeZw
