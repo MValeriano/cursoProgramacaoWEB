@@ -1,0 +1,3 @@
+cabecalho - #840ec9
+fundo - #222222
+botão - #840ec9
