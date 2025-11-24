@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletores CSS e Exercícios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (INTRODUÇÃO) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        .content-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .content-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .content-card-body p {
+            margin: 0 0 15px 0;
+        }
+        .content-card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-card-body ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .content-card-body li {
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* Tabela de Resumo */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 15px 20px;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        /* 5. SEÇÃO DE EXERCÍCIOS */
+        .exercise-header {
+            padding: 40px 60px;
+            background-color: #4f46e5;
+            color: #ffffff;
+            text-align: center;
+        }
+        .exercise-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 6. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        /* Estilos para respostas dos exercícios */
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+        .resolution-content p strong {
+            color: #16a34a; /* Verde para Verdadeiro */
+        }
+        .resolution-content p em {
+            color: #dc2626; /* Vermelho para Falso */
+            font-style: normal;
+        }
+        .resolution-content .code-answer {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #1d4ed8; /* Azul escuro */
+        }
+        
+        .resolution-content table {
+            width: auto;
+            border-collapse: collapse;
+        }
+        .resolution-content th, .resolution-content td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            text-align: left;
+        }
+        .resolution-content th {
+            background-color: #f8fafc;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Seletores CSS</h1>
+            <p class="subtitle">Os seletores CSS são usados para encontrar (selecionar) os elementos HTML que você deseja estilizar.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Categorias -->
+            <div class="content-card">
+                <h3>Categorias Principais</h3>
+                <div class="content-card-body">
+                    <p>Eles podem ser agrupados em cinco categorias principais:</p>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>O que faz</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seletores Simples</td>
+                                <td>Selecionam elementos pelo nome, ID ou classe</td>
+                            </tr>
+                            <tr>
+                                <td>Seletores Combinatórios</td>
+                                <td>Selecionam elementos com base em sua relação com outros elementos</td>
+                            </tr>
+                            <tr>
+                                <td>Pseudo-classes</td>
+                                <td>Selecionam elementos em um estado específico (ex.: hover, foco, visitado)</td>
+                            </tr>
+                            <tr>
+                                <td>Pseudo-elementos</td>
+                                <td>Selecionam parte de um elemento (ex.: primeira letra, primeira linha)</td>
+                            </tr>
+                            <tr>
+                                <td>Seletores de Atributos</td>
+                                <td>Selecionam elementos por atributos ou valores de atributos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: 1) Seletores Simples -->
+            <div class="content-card">
+                <h3>1) Seletores Simples</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Seletor</th>
+                                <th>Exemplo</th>
+                                <th>Função</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#id</td>
+                                <td><code>#titulo</code></td>
+                                <td>Seleciona o elemento com id="titulo"</td>
+                            </tr>
+                            <tr>
+                                <td>.classe</td>
+                                <td><code>.intro</code></td>
+                                <td>Seleciona todos os elementos com class="intro"</td>
+                            </tr>
+                            <tr>
+                                <td>*</td>
+                                <td><code>*</code></td>
+                                <td>Seleciona todos os elementos</td>
+                            </tr>
+                            <tr>
+                                <td>element</td>
+                                <td><code>p</code></td>
+                                <td>Seleciona todos os elementos &lt;p&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>element, element</td>
+                                <td><code>div, p</code></td>
+                                <td>Seleciona todos os &lt;div&gt; e &lt;p&gt;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Seletor de ID</h4>
+                    <pre><code>#para1 {
+    text-align: center;
+    color: red;
+}</code></pre>
+                    <p>Regra: um ID não pode começar com número.</p>
+
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Seletor de Classe</h4>
+                    <pre><code>.center {
+    text-align: center;
+    color: red;
+}</code></pre>
+                    <p>Aplicando apenas ao &lt;p&gt;:</p>
+                    <pre><code>p.center {
+    text-align: center;
+    color: red;
+}</code></pre>
+                    <p>Um elemento pode ter várias classes:</p>
+                    <pre><code>&lt;p class="center grande"&gt;Texto&lt;/p&gt;</code></pre>
+
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Seletor Universal</h4>
+                    <pre><code>* {
+    margin: 0;
+}</code></pre>
+
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Agrupamento de Seletores</h4>
+                    <pre><code>h1, h2, p {
+    text-align: center;
+    color: red;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: 2) Seletores Combinatórios -->
+            <div class="content-card">
+                <h3>2) Seletores Combinatórios</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Símbolo</th>
+                                <th>Exemplo</th>
+                                <th>Seleciona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Descendente</td>
+                                <td>(espaço)</td>
+                                <td><code>div p</code></td>
+                                <td>Todos &lt;p&gt; dentro de um &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Filho Direto</td>
+                                <td>&gt;</td>
+                                <td><code>div &gt; p</code></td>
+                                <td>&lt;p&gt; que são filhos diretos de &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Próximo Irmão</td>
+                                <td>+</td>
+                                <td><code>div + p</code></td>
+                                <td>Primeiro &lt;p&gt; logo após um &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Irmãos Subsequentes</td>
+                                <td>~</td>
+                                <td><code>div ~ p</code></td>
+                                <td>Todos &lt;p&gt; que tenham o mesmo pai após o &lt;div&gt;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Card: 3) Pseudo-classes -->
+            <div class="content-card">
+                <h3>3) Pseudo-classes</h3>
+                <div class="content-card-body">
+                    <p>Usadas para estilizar elementos em certos estados.</p>
+                    <p><b>Exemplos comuns:</b></p>
+                    <pre><code>a:link { color: red; }       /* link não visitado */
+a:visited { color: green; }   /* link visitado */
+a:hover { color: magenta; }  /* mouse sobre */
+a:active { color: blue; }    /* clicando */</code></pre>
+                    <p><b>Exemplo com foco em campo:</b></p>
+                    <pre><code>input:focus {
+    background-color: yellow;
+}</code></pre>
+                    <p><b>Exemplo com primeiros filhos:</b></p>
+                    <pre><code>p:first-child {
+    color: blue;
+}</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: 4) Pseudo-elementos -->
+            <div class="content-card">
+                <h3>4) Pseudo-elementos</h3>
+                <div class="content-card-body">
+                    <p>Usados para estilizar parte de um elemento.</p>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo-elemento</th>
+                                <th>Exemplo</th>
+                                <th>Função</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>::first-line</td>
+                                <td><code>p::first-line</code></td>
+                                <td>Estiliza a primeira linha de um texto</td>
+                            </tr>
+                            <tr>
+                                <td>::first-letter</td>
+                                <td><code>p::first-letter</code></td>
+                                <td>Estiliza a primeira letra</td>
+                            </tr>
+                            <tr>
+                                <td>::before</td>
+                                <td><code>h3::before</code></td>
+                                <td>Insere conteúdo antes</td>
+                            </tr>
+                            <tr>
+                                <td>::after</td>
+                                <td><code>h3::after</code></td>
+                                <td>Insere conteúdo depois</td>
+                            </tr>
+                            <tr>
+                                <td>::selection</td>
+                                <td><code>::selection</code></td>
+                                <td>Estiliza texto selecionado</td>
+                            </tr>
+                            <tr>
+                                <td>::marker</td>
+                                <td><code>::marker</code></td>
+                                <td>Estiliza marcadores de listas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 20px;"><b>Exemplo:</b></p>
+                    <pre><code>p::first-letter {
+    color: red;
+    font-size: xx-large;
+}</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: 5) Seletores de Atributo -->
+            <div class="content-card">
+                <h3>5) Seletores de Atributo</h3>
+                <div class="content-card-body">
+                     <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Seletor</th>
+                                <th>Seleciona elementos...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>[attr]</code></td>
+                                <td>com o atributo presente</td>
+                            </tr>
+                            <tr>
+                                <td><code>[attr="valor"]</code></td>
+                                <td>cujo valor é exatamente igual</td>
+                            </tr>
+                            <tr>
+                                <td><code>[attr~="valor"]</code></td>
+                                <td>contendo uma palavra específica</td>
+                            </tr>
+                            <tr>
+                                <td><code>[attr^="valor"]</code></td>
+                                <td>que começam com o valor</td>
+                            </tr>
+                            <tr>
+                                <td><code>[attr$="valor"]</code></td>
+                                <td>que terminam com o valor</td>
+                            </tr>
+                            <tr>
+                                <td><code>[attr*="valor"]</code></td>
+                                <td>que contêm o valor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 20px;"><b>Exemplo estilizando formulários:</b></p>
+                    <pre><code>input[type="text"] {
+    background-color: pink;
+}
+input[type="button"] {
+    background-color: lightgreen;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: MAPA VISUAL -->
+            <div class="content-card">
+                <h3>MAPA VISUAL — Seletores CSS</h3>
+                <div class="content-card-body">
+                    <pre><code>        SELETORES CSS
+              |
+-------------------------------------------------
+|              |               |               |
+Simples     Combinatórios   Pseudo-classes   Pseudo-elementos   Atributos
+  |              |               |               |               |
+  |- Elemento     |- (espaço)     |- :hover        |- ::before       |- [attr]
+  |- Classe       |- &gt; (filho)    |- :active       |- ::after        |- [attr=""]
+  |- ID           |- + (irmão)    |- :focus        |- ::first-line   |- [attr*=""]
+  |- * universal  |- ~ (irmãos)   |- :first-child  |- ::first-letter |- etc.</code></pre>
+                    <p>Objetivo do mapa: ajudar a lembrar como os seletores são organizados mentalmente.</p>
+                </div>
+            </div>
+            
+            <!-- Card: TABELA RESUMO -->
+            <div class="content-card">
+                <h3>📋 TABELA RESUMO — Principais Seletores</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Sintaxe</th>
+                                <th>Exemplo</th>
+                                <th>O que seleciona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Elemento</td>
+                                <td>tag</td>
+                                <td><code>p {}</code></td>
+                                <td>Todos os &lt;p&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Classe</td>
+                                <td>.classe</td>
+                                <td><code>.info {}</code></td>
+                                <td>Todos os elementos com class="info"</td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td>#id</td>
+                                <td><code>#titulo {}</code></td>
+                                <td>O elemento com id="titulo"</td>
+                            </tr>
+                            <tr>
+                                <td>Universal</td>
+                                <td>*</td>
+                                <td><code>* { margin:0; }</code></td>
+                                <td>Todos os elementos</td>
+                            </tr>
+                            <tr>
+                                <td>Agrupamento</td>
+                                <td>A, B</td>
+                                <td><code>h1, h2, p {}</code></td>
+                                <td>Aplica a múltiplos seletores</td>
+                            </tr>
+                            <tr>
+                                <td>Descendente</td>
+                                <td>A B</td>
+                                <td><code>div p {}</code></td>
+                                <td>&lt;p&gt; dentro de &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Filho direto</td>
+                                <td>A &gt; B</td>
+                                <td><code>div &gt; p {}</code></td>
+                                <td>&lt;p&gt; filho direto de &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Próximo irmão</td>
+                                <td>A + B</td>
+                                <td><code>h1 + p {}</code></td>
+                                <td>Primeiro &lt;p&gt; depois de &lt;h1&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Irmãos seguintes</td>
+                                <td>A ~ B</td>
+                                <td><code>h1 ~ p {}</code></td>
+                                <td>Todos &lt;p&gt; após &lt;h1&gt; no mesmo nível</td>
+                            </tr>
+                            <tr>
+                                <td>Pseudo-classe</td>
+                                <td>A:estado</td>
+                                <td><code>a:hover</code></td>
+                                <td>Estado (mouse, foco, posição, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td>Pseudo-elemento</td>
+                                <td>A::parte</td>
+                                <td><code>p::first-letter</code></td>
+                                <td>Apenas um trecho do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>Atributo</td>
+                                <td>[atributo]</td>
+                                <td><code>input[type="text"]</code></td>
+                                <td>Elementos com o atributo correspondente</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CABEÇALHO DOS EXERCÍCIOS -->
+        <header class="exercise-header">
+            <h2>📝 EXERCÍCIOS</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1: Identificação</h3>
+                <div class="card-body">
+                    <p>Classifique cada seletor como: (E) Elemento, (C) Classe, (ID), (PC) Pseudo-classe, (PE) Pseudo-elemento, (A) Atributo.</p>
+                    <table class="styled-table">
+                        <thead>
+                            <tr><th>Seletor</th><th>Tipo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>p</td><td>____</td></tr>
+                            <tr><td>.menu</td><td>____</td></tr>
+                            <tr><td>#principal</td><td>____</td></tr>
+                            <tr><td>a:hover</td><td>____</td></tr>
+                            <tr><td>p::first-letter</td><td>____</td></tr>
+                            <tr><td>input[type="password"]</td><td>____</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr><th>Seletor</th><th>Tipo</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>p</td><td>(<b>E</b>) Elemento</td></tr>
+                                <tr><td>.menu</td><td>(<b>C</b>) Classe</td></tr>
+                                <tr><td>#principal</td><td>(<b>ID</b>)</td></tr>
+                                <tr><td>a:hover</td><td>(<b>PC</b>) Pseudo-classe</td></tr>
+                                <tr><td>p::first-letter</td><td>(<b>PE</b>) Pseudo-elemento</td></tr>
+                                <tr><td>input[type="password"]</td><td>(<b>A</b>) Atributo</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2: Complete</h3>
+                <div class="card-body">
+                    <p>a) O seletor # é usado para selecionar elementos pelo _______.</p>
+                    <p>b) O seletor . é usado para selecionar elementos pela _______.</p>
+                    <p>c) O seletor A B significa que B está _______ dentro de A.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>a) O seletor # é usado para selecionar elementos pelo <span class="code-answer">ID</span>.</p>
+                        <p>b) O seletor . é usado para selecionar elementos pela <span class="code-answer">Classe</span>.</p>
+                        <p>c) O seletor A B significa que B está <span class="code-answer">descendente (dentro)</span> de A.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3: Escreva o CSS pedido</h3>
+                <div class="card-body">
+                    <p>a) Todos os &lt;h2&gt; com texto verde.</p>
+                    <pre><code>________________ {
+    color: green;
+}</code></pre>
+                    <p>b) Todos os elementos com classe "aviso" devem ficar com fundo amarelo:</p>
+                    <pre><code>______________ {
+    background-color: yellow;
+}</code></pre>
+                    <p>c) O elemento com id "titulo" deve ficar centralizado:</p>
+                    <pre><code>______________ {
+    text-align: center;
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>a) Todos os &lt;h2&gt; com texto verde.</p>
+                        <pre><code><span class="code-answer">h2</span> {
+    color: green;
+}</code></pre>
+                        <p>b) Todos os elementos com classe "aviso" devem ficar com fundo amarelo:</p>
+                        <pre><code><span class="code-answer">.aviso</span> {
+    background-color: yellow;
+}</code></pre>
+                        <p>c) O elemento com id "titulo" deve ficar centralizado:</p>
+                        <pre><code><span class="code-answer">#titulo</span> {
+    text-align: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4: Corrija o código</h3>
+                <div class="card-body">
+                    <pre><code>p {
+    color red
+    text-align center;
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>Faltou um dois-pontos (:) após 'color' e um ponto-e-vírgula (;) após 'red'.</p>
+                        <pre><code>p {
+    color<span class="code-answer">:</span> red<span class="code-answer">;</span>
+    text-align: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5: Desafio</h3>
+                <div class="card-body">
+                    <p>Dado o HTML:</p>
+                    <pre><code>&lt;h1&gt;Bem-vindo!&lt;/h1&gt;
+&lt;p class="destaque"&gt;Aprender CSS é divertido!&lt;/p&gt;</code></pre>
+                    <p>Crie um CSS onde:</p>
+                    <ul>
+                        <li>&lt;h1&gt; é azul</li>
+                        <li>.destaque tem fonte 20px e cor laranja</li>
+                    </ul>
+                    <pre><code>/* Resposta aqui */</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>h1 {
+    color: blue;
+}
+
+.destaque {
+    font-size: 20px;
+    color: orange;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Box Model</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #2dd4bf 0%, #0d9488 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #f0fdfa;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #0f766e;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #ccfbf1;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #0f766e;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f0fdfa;
+            border-bottom: 1px solid #ccfbf1;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #0d9488;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #14b8a6;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #0d9488;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            border: 2px dashed #ccfbf1;
+            border-radius: 8px;
+        }
+
+        /* Reset básico com box-sizing */
+        .live-demo-area * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .live-demo-area .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Demonstração de width e height */
+        .live-demo-area .box-sizing-demo {
+            width: 300px;
+            height: 150px;
+            padding: 20px;
+            border: 5px solid #333;
+            margin: 20px 0;
+            background: #e0e0e0;
+        }
+        
+        .live-demo-area .content-box {
+            box-sizing: content-box;
+            /* Largura total: 300 + 20 + 20 + 5 + 5 = 350px */
+        }
+        
+        .live-demo-area .border-box {
+            box-sizing: border-box;
+            /* Largura total: 300px (inclui padding e border) */
+        }
+        
+        /* Demonstração de max/min dimensions */
+        .live-demo-area .responsive-card {
+            max-width: 400px;
+            min-width: 200px;
+            min-height: 100px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+        
+        /* Demonstração de margin e padding */
+        .live-demo-area .spacing-demo {
+            background: #3498db;
+            color: white;
+            margin: 20px 10px 30px 10px;
+            padding: 15px 25px;
+            border-radius: 4px;
+        }
+        
+        .live-demo-area .nested-box {
+            background: #2ecc71;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        /* Demonstração de overflow */
+        .live-demo-area .overflow-demo {
+            width: 300px;
+            height: 150px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        
+        .live-demo-area .overflow-visible {
+            overflow: visible;
+            background: #ffeaa7;
+        }
+        
+        .live-demo-area .overflow-hidden {
+            overflow: hidden;
+            background: #fab1a0;
+        }
+        
+        .live-demo-area .overflow-scroll {
+            overflow: scroll;
+            background: #74b9ff;
+        }
+        
+        .live-demo-area .overflow-auto {
+            overflow: auto;
+            background: #a29bfe;
+        }
+        
+        .live-demo-area .long-content {
+            width: 500px;
+            height: 200px;
+            background: linear-gradient(45deg, #666, #999);
+            color: white;
+            padding: 10px;
+        }
+        
+        /* Layout prático usando box model */
+        .live-demo-area .header {
+            width: 100%;
+            min-height: 80px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .live-demo-area .main-content {
+            max-width: 800px;
+            min-height: 400px;
+            margin: 0 auto 20px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area .sidebar {
+            width: 300px;
+            min-height: 200px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+        
+        .live-demo-area .footer {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 60px;
+            margin: 40px auto 0 auto;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Grid de cards responsivo */
+        .live-demo-area .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .live-demo-area .card {
+            min-height: 150px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Utility classes */
+        .live-demo-area .mb-10 { margin-bottom: 10px; }
+        .live-demo-area .mb-20 { margin-bottom: 20px; }
+        .live-demo-area .mb-30 { margin-bottom: 30px; }
+        .live-demo-area .p-10 { padding: 10px; }
+        .live-demo-area .p-20 { padding: 20px; }
+        .live-demo-area .w-100 { width: 100%; }
+        .live-demo-area .w-50 { width: 50%; }
+        .live-demo-area .max-w-500 { max-width: 500px; }
+        .live-demo-area .min-h-200 { min-height: 200px; }
+        
+        /* Adicionando alguns h-tags para o demo */
+        .live-demo-area h1, .live-demo-area h2, .live-demo-area h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .live-demo-area .header h1 {
+            color: white;
+        }
+        .live-demo-area .footer p {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades do Box Model CSS</h1>
+            <p class="subtitle">Essas propriedades formam a base do layout CSS e são essenciais para criar designs responsivos e bem estruturados.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>width/height</td>
+                                <td>300px, 50%, auto</td>
+                                <td>Dimensões do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>max-width/height</td>
+                                <td>100%, 1200px, none</td>
+                                <td>Limites máximos de dimensão</td>
+                            </tr>
+                            <tr>
+                                <td>min-width/height</td>
+                                <td>200px, 100vh, 0</td>
+                                <td>Limites mínimos de dimensão</td>
+                            </tr>
+                            <tr>
+                                <td>margin</td>
+                                <td>20px, 0 auto, 10px 20px</td>
+                                <td>Espaço externo</td>
+                            </tr>
+                            <tr>
+                                <td>padding</td>
+                                <td>15px, 10px 20px, 0</td>
+                                <td>Espaço interno</td>
+                            </tr>
+                            <tr>
+                                <td>box-sizing</td>
+                                <td>border-box, content-box</td>
+                                <td>Modelo de cálculo de dimensões</td>
+                            </tr>
+                            <tr>
+                                <td>overflow</td>
+                                <td>auto, hidden, scroll</td>
+                                <td>Controle de conteúdo transbordante</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use box-sizing: border-box globalmente para facilitar cálculos</li>
+                        <li>Prefira max-width em containers para responsividade</li>
+                        <li>Use margin: auto para centralização horizontal</li>
+                        <li>Combine min-height e max-height para controle flexível</li>
+                        <li>Prefira overflow: auto sobre scroll para melhor UX</li>
+                        <li>Use unidades relativas (%, vw/vh) para layouts responsivos</li>
+                        <li>Teste diferentes combinações de margin/padding para espaçamento consistente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: width -->
+            <div class="property-card">
+                <h3>width</h3>
+                <div class="card-body">
+                    <p>A propriedade width define a largura de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Largura automática (padrão)</li>
+                        <li>length - Valor fixo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem da largura do elemento pai</li>
+                        <li>fit-content - Largura baseada no conteúdo</li>
+                        <li>max-content - Largura mínima para caber todo conteúdo</li>
+                        <li>min-content - Largura mínima baseada no maior pedaço de conteúdo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.fixed-width {
+    width: 300px;
+}
+
+.percentage-width {
+    width: 50%;
+}
+
+.viewport-width {
+    width: 100vw;
+}
+
+.auto-width {
+    width: auto;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
+.max-content {
+    width: max-content;
+}
+
+.min-content {
+    width: min-content;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: height -->
+            <div class="property-card">
+                <h3>height</h3>
+                <div class="card-body">
+                    <p>A propriedade height define a altura de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Altura automática (padrão)</li>
+                        <li>length - Valor fixo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem da altura do elemento pai</li>
+                        <li>fit-content - Altura baseada no conteúdo</li>
+                        <li>vh - Porcentagem da altura da viewport</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.fixed-height {
+    height: 200px;
+}
+
+.percentage-height {
+    height: 75%;
+}
+
+.viewport-height {
+    height: 100vh;
+}
+
+.auto-height {
+    height: auto;
+}
+
+.min-height {
+    height: min-content;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: max-width -->
+            <div class="property-card">
+                <h3>max-width</h3>
+                <div class="card-body">
+                    <p>A propriedade max-width define a largura máxima de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem largura máxima (padrão)</li>
+                        <li>length - Valor máximo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem máxima da largura do elemento pai</li>
+                        <li>fit-content - Largura máxima baseada no conteúdo</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.responsive-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.fluid-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-container {
+    max-width: 65ch; /* Ótimo para legibilidade */
+}
+
+.no-max {
+    max-width: none;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: min-width -->
+            <div class="property-card">
+                <h3>min-width</h3>
+                <div class="card-body">
+                    <p>A propriedade min-width define a largura mínima de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>0 - Largura mínima zero (padrão)</li>
+                        <li>length - Valor mínimo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem mínima da largura do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.button {
+    min-width: 120px;
+}
+
+.sidebar {
+    min-width: 250px;
+}
+
+.responsive-element {
+    min-width: 300px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.no-wrap {
+    min-width: max-content;
+    white-space: nowrap;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: max-height -->
+            <div class="property-card">
+                <h3>max-height</h3>
+                <div class="card-body">
+                    <p>A propriedade max-height define a altura máxima de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem altura máxima (padrão)</li>
+                        <li>length - Valor máximo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem máxima da altura do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.modal {
+    max-height: 80vh;
+}
+
+.scrollable-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.image-container {
+    max-height: 500px;
+}
+
+.collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: min-height -->
+            <div class="property-card">
+                <h3>min-height</h3>
+                <div class="card-body">
+                    <p>A propriedade min-height define a altura mínima de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>0 - Altura mínima zero (padrão)</li>
+                        <li>length - Valor mínimo em px, em, rem, etc.</li>
+                        <li>% - Porcentagem mínima da altura do elemento pai</li>
+                        <li>vh - Porcentagem mínima da altura da viewport</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.page-section {
+    min-height: 100vh;
+}
+
+.card {
+    min-height: 200px;
+}
+
+.button {
+    min-height: 44px; /* Tamanho mínimo para touch */
+}
+
+.flex-container {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: margin -->
+            <div class="property-card">
+                <h3>margin</h3>
+                <div class="card-body">
+                    <p>A propriedade margin define o espaço externo ao redor de um elemento (shorthand).</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>margin: [top] [right] [bottom] [left];
+margin: [vertical] [horizontal];
+margin: [all];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>length - Valor em px, em, rem, etc.</li>
+                        <li>% - Porcentagem da largura do elemento pai</li>
+                        <li>auto - Centralização automática</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Todos os lados iguais */
+.margin-all {
+    margin: 20px;
+}
+
+/* Vertical | Horizontal */
+.margin-vh {
+    margin: 10px 20px;
+}
+
+/* Top | Right | Bottom | Left */
+.margin-trb {
+    margin: 10px 15px 20px 25px;
+}
+
+/* Centralização horizontal */
+.margin-center {
+    margin: 0 auto;
+}
+
+/* Margem negativa */
+.margin-negative {
+    margin: -10px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: margin-top, margin-right, ... -->
+            <div class="property-card">
+                <h3>margin-top, margin-right, margin-bottom, margin-left</h3>
+                <div class="card-body">
+                    <p>Propriedades individuais para cada lado da margem.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.custom-margins {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+.push-down {
+    margin-top: 50px;
+}
+
+.push-right {
+    margin-left: auto;
+}
+
+.no-top-margin {
+    margin-top: 0;
+}
+
+.negative-margin {
+    margin-left: -20px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: padding -->
+            <div class="property-card">
+                <h3>padding</h3>
+                <div class="card-body">
+                    <p>A propriedade padding define o espaço interno dentro de um elemento (shorthand).</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>padding: [top] [right] [bottom] [left];
+padding: [vertical] [horizontal];
+padding: [all];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>length - Valor em px, em, rem, etc.</li>
+                        <li>% - Porcentagem da largura do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Todos os lados iguais */
+.padding-all {
+    padding: 20px;
+}
+
+/* Vertical | Horizontal */
+.padding-vh {
+    padding: 10px 20px;
+}
+
+/* Top | Right | Bottom | Left */
+.padding-trb {
+    padding: 10px 15px 20px 25px;
+}
+
+/* Padding em unidades relativas */
+.padding-relative {
+    padding: 1em;
+}
+
+/* Padding zero */
+.no-padding {
+    padding: 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: padding-top, padding-right, ... -->
+            <div class="property-card">
+                <h3>padding-top, padding-right, padding-bottom, padding-left</h3>
+                <div class="card-body">
+                    <p>Propriedades individuais para cada lado do padding.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.custom-padding {
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+}
+
+.extra-top-padding {
+    padding-top: 30px;
+}
+
+.symmetric-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.no-side-padding {
+    padding-left: 0;
+    padding-right: 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: box-sizing -->
+            <div class="property-card">
+                <h3>box-sizing</h3>
+                <div class="card-body">
+                    <p>A propriedade box-sizing altera como a largura e altura de um elemento são calculadas.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>content-box - Largura/altura incluem apenas o conteúdo (padrão)</li>
+                        <li>border-box - Largura/altura incluem conteúdo, padding e border</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Modelo tradicional */
+.content-box {
+    box-sizing: content-box;
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #000;
+    /* Largura total: 300 + 20 + 20 + 5 + 5 = 350px */
+}
+
+/* Modelo moderno (recomendado) */
+.border-box {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #000;
+    /* Largura total: 300px (já inclui padding e border) */
+}
+
+/* Aplicar para todos os elementos */
+* {
+    box-sizing: border-box;
+}
+
+.legacy-element {
+    box-sizing: content-box;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: overflow -->
+            <div class="property-card">
+                <h3>overflow</h3>
+                <div class="card-body">
+                    <p>A propriedade overflow controla o que acontece quando o conteúdo transborda do elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>visible - Conteúdo transborda visivelmente (padrão)</li>
+                        <li>hidden - Conteúdo é cortado, sem scrollbars</li>
+                        <li>scroll - Sempre mostra scrollbars</li>
+                        <li>auto - Mostra scrollbars apenas quando necessário</li>
+                        <li>clip - Similar ao hidden, mas não permite programmatic scrolling</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.visible-overflow {
+    overflow: visible;
+}
+
+.hidden-overflow {
+    overflow: hidden;
+}
+
+.scroll-overflow {
+    overflow: scroll;
+}
+
+.auto-overflow {
+    overflow: auto;
+}
+
+.clip-overflow {
+    overflow: clip;
+}
+
+/* Combinado */
+.both-overflow {
+    overflow: auto hidden; /* x: auto, y: hidden */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: overflow-x e overflow-y -->
+            <div class="property-card">
+                <h3>overflow-x e overflow-y</h3>
+                <div class="card-body">
+                    <p>Propriedades individuais para controle de overflow horizontal e vertical.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>.horizontal-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.vertical-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.custom-scroll {
+    overflow-x: scroll;
+    overflow-y: auto;
+}
+
+.no-horizontal-scroll {
+    overflow-x: hidden;
+}
+
+.no-vertical-scroll {
+    overflow-y: hidden;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area">
+                    <div class="container">
+                        <header class="header">
+                            <h1>Box Model CSS - Demonstração Completa</h1>
+                        </header>
+                
+                        <main class="main-content">
+                            <section class="mb-30">
+                                <h2>1. Box-Sizing: Content-box vs Border-box</h2>
+                                
+                                <div class="box-sizing-demo content-box">
+                                    <strong>Content-box</strong><br>
+                                    width: 300px + padding: 40px + border: 10px = 350px total
+                                </div>
+                                
+                                <div class="box-sizing-demo border-box">
+                                    <strong>Border-box</strong><br>
+                                    width: 300px (inclui padding e border)
+                                </div>
+                            </section>
+                
+                            <section class="mb-30">
+                                <h2>2. Margin e Padding</h2>
+                                
+                                <div class="spacing-demo">
+                                    Margin: 20px 10px 30px 10px<br>
+                                    Padding: 15px 25px
+                                    <div class="nested-box">
+                                        Elemento aninhado com margin e padding próprios
+                                    </div>
+                                </div>
+                            </section>
+                
+                            <section class="mb-30">
+                                <h2>3. Overflow</h2>
+                                
+                                <h3>Visible (padrão)</h3>
+                                <div class="overflow-demo overflow-visible">
+                                    <div class="long-content">
+                                        Este conteúdo é muito grande e transborda do container visivelmente.
+                                    </div>
+                                </div>
+                
+                                <h3>Hidden</h3>
+                                <div class="overflow-demo overflow-hidden">
+                                    <div class="long-content">
+                                        Este conteúdo é cortado e não é visível fora do container.
+                                    </div>
+                                </div>
+                
+                                <h3>Scroll</h3>
+                                <div class="overflow-demo overflow-scroll">
+                                    <div class="long-content">
+                                        Sempre mostra barras de scroll, mesmo quando não necessário.
+                                    </div>
+                                </div>
+                
+                                <h3>Auto</h3>
+                                <div class="overflow-demo overflow-auto">
+                                    <div class="long-content">
+                                        Mostra barras de scroll apenas quando necessário (recomendado).
+                                    </div>
+                                </div>
+                            </section>
+                
+                            <section class="mb-30">
+                                <h2>4. Dimensões Mínimas e Máximas</h2>
+                                
+                                <div class="card-grid">
+                                    <div class="responsive-card">
+                                        Card responsivo com:<br>
+                                        max-width: 400px<br>
+                                        min-width: 200px<br>
+                                        min-height: 100px
+                                    </div>
+                                    
+                                    <div class="responsive-card">
+                                        Redimensione a janela para ver o comportamento responsivo.
+                                    </div>
+                                </div>
+                            </section>
+                
+                            <section>
+                                <h2>5. Layout Prático</h2>
+                                
+                                <div style="display: flex;">
+                                    <div class="main-content" style="flex: 1; margin: 0;">
+                                        Conteúdo principal flexível
+                                    </div>
+                                    
+                                    <div class="sidebar">
+                                        Sidebar fixo com width: 300px
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+                
+                        <footer class="footer">
+                            <p>Footer com max-width: 1200px e margin: 0 auto para centralização</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Box Model CSS - Exemplos Completos&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;header class="header"&gt;
+            &lt;h1&gt;Box Model CSS - Demonstração Completa&lt;/h1&gt;
+        &lt;/header&gt;
+
+        &lt;main class="main-content"&gt;
+            &lt;section class="mb-30"&gt;
+                &lt;h2&gt;1. Box-Sizing: Content-box vs Border-box&lt;/h2&gt;
+                
+                &lt;div class="box-sizing-demo content-box"&gt;
+                    &lt;strong&gt;Content-box&lt;/strong&gt;&lt;br&gt;
+                    width: 300px + padding: 40px + border: 10px = 350px total
+                &lt;/div&gt;
+                
+                &lt;div class="box-sizing-demo border-box"&gt;
+                    &lt;strong&gt;Border-box&lt;/strong&gt;&lt;br&gt;
+                    width: 300px (inclui padding e border)
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;section class="mb-30"&gt;
+                &lt;h2&gt;2. Margin e Padding&lt;/h2&gt;
+                
+                &lt;div class="spacing-demo"&gt;
+                    Margin: 20px 10px 30px 10px&lt;br&gt;
+                    Padding: 15px 25px
+                    &lt;div class="nested-box"&gt;
+                        Elemento aninhado com margin e padding próprios
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;section class="mb-30"&gt;
+                &lt;h2&gt;3. Overflow&lt;/h2&gt;
+                
+                &lt;h3&gt;Visible (padrão)&lt;/h3&gt;
+                &lt;div class="overflow-demo overflow-visible"&gt;
+                    &lt;div class="long-content"&gt;
+                        Este conteúdo é muito grande e transborda do container visivelmente.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;h3&gt;Hidden&lt;/h3&gt;
+                &lt;div class="overflow-demo overflow-hidden"&gt;
+                    &lt;div class="long-content"&gt;
+                        Este conteúdo é cortado e não é visível fora do container.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;h3&gt;Scroll&lt;/h3&gt;
+                &lt;div class="overflow-demo overflow-scroll"&gt;
+                    &lt;div class="long-content"&gt;
+                        Sempre mostra barras de scroll, mesmo quando não necessário.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;h3&gt;Auto&lt;/h3&gt;
+                &lt;div class="overflow-demo overflow-auto"&gt;
+                    &lt;div class="long-content"&gt;
+                        Mostra barras de scroll apenas quando necessário (recomendado).
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;section class="mb-30"&gt;
+                &lt;h2&gt;4. Dimensões Mínimas e Máximas&lt;/h2&gt;
+                
+                &lt;div class="card-grid"&gt;
+                    &lt;div class="responsive-card"&gt;
+                        Card responsivo com:&lt;br&gt;
+                        max-width: 400px&lt;br&gt;
+                        min-width: 200px&lt;br&gt;
+                        min-height: 100px
+                    &lt;/div&gt;
+                    
+                    &lt;div class="responsive-card"&gt;
+                        Redimensione a janela para ver o comportamento responsivo.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;section&gt;
+                &lt;h2&gt;5. Layout Prático&lt;/h2&gt;
+                
+                &lt;div style="display: flex;"&gt;
+                    &lt;div class="main-content" style="flex: 1; margin: 0;"&gt;
+                        Conteúdo principal flexível
+                    &lt;/div&gt;
+                    
+                    &lt;div class="sidebar"&gt;
+                        Sidebar fixo com width: 300px
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+        &lt;/main&gt;
+
+        &lt;footer class="footer"&gt;
+            &lt;p&gt;Footer com max-width: 1200px e margin: 0 auto para centralização&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* Reset básico com box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Demonstração de width e height */
+.box-sizing-demo {
+    width: 300px;
+    height: 150px;
+    padding: 20px;
+    border: 5px solid #333;
+    margin: 20px 0;
+    background: #e0e0e0;
+}
+
+.content-box {
+    box-sizing: content-box;
+    /* Largura total: 300 + 20 + 20 + 5 + 5 = 350px */
+}
+
+.border-box {
+    box-sizing: border-box;
+    /* Largura total: 300px (inclui padding e border) */
+}
+
+/* Demonstração de max/min dimensions */
+.responsive-card {
+    max-width: 400px;
+    min-width: 200px;
+    min-height: 100px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+}
+
+/* Demonstração de margin e padding */
+.spacing-demo {
+    background: #3498db;
+    color: white;
+    margin: 20px 10px 30px 10px;
+    padding: 15px 25px;
+    border-radius: 4px;
+}
+
+.nested-box {
+    background: #2ecc71;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+/* Demonstração de overflow */
+.overflow-demo {
+    width: 300px;
+    height: 150px;
+    border: 2px solid #333;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.overflow-visible {
+    overflow: visible;
+    background: #ffeaa7;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+    background: #fab1a0;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+    background: #74b9ff;
+}
+
+.overflow-auto {
+    overflow: auto;
+    background: #a29bfe;
+}
+
+.long-content {
+    width: 500px;
+    height: 200px;
+    background: linear-gradient(45deg, #666, #999);
+    color: white;
+    padding: 10px;
+}
+
+/* Layout prático usando box model */
+.header {
+    width: 100%;
+    min-height: 80px;
+    padding: 20px;
+    background: #2c3e50;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    max-width: 800px;
+    min-height: 400px;
+    margin: 0 auto 20px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+    width: 300px;
+    min-height: 200px;
+    padding: 20px;
+    background: #ecf0f1;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.footer {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 60px;
+    margin: 40px auto 0 auto;
+    padding: 20px;
+    background: #34495e;
+    color: white;
+    text-align: center;
+}
+
+/* Grid de cards responsivo */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.card {
+    min-height: 150px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Utility classes */
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+.p-10 { padding: 10px; }
+.p-20 { padding: 20px; }
+.w-100 { width: 100%; }
+.w-50 { width: 50%; }
+.max-w-500 { max-width: 500px; }
+.min-h-200 { min-height: 200px; }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

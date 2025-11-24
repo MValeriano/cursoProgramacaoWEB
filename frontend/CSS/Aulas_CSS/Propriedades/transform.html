@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Transformação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #e9d5ff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #5b21b6;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f5f3ff;
+            border-bottom: 1px solid #ddd6fe;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .obsolete-tag {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #b91c1c;
+            background-color: #fee2e2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #fecaca;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #6d28d9;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #6d28d9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #5b21b6;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        .live-demo-area {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            min-height: 200vh; /* Para garantir o scroll e testar 'fixed' e 'sticky' */
+        }
+
+        .live-demo-area * {
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area h1 {
+            text-align: center;
+            color: #333; /* Ajustado para ser visível no fundo claro */
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Sombra mais sutil */
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .live-demo-area .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .live-demo-area .example-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra mais sutil */
+            text-align: center;
+            min-height: 300px; /* Altura mínima para os cards */
+        }
+        
+        .live-demo-area h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Exemplos de transform */
+        .live-demo-area .translate-box {
+            width: 150px;
+            height: 150px;
+            background: #ff6b6b;
+            margin: 0 auto;
+            transform: translate(20px, -10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .live-demo-area .translate-box:hover {
+            transform: translate(40px, -20px);
+        }
+        
+        .live-demo-area .rotate-box {
+            width: 150px;
+            height: 150px;
+            background: #4ecdc4;
+            margin: 0 auto;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .live-demo-area .rotate-box:hover {
+            transform: rotate(90deg);
+        }
+        
+        .live-demo-area .scale-box {
+            width: 150px;
+            height: 150px;
+            background: #45b7d1;
+            margin: 0 auto;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .live-demo-area .scale-box:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Exemplos de transform-origin */
+        .live-demo-area .origin-demo {
+            width: 150px;
+            height: 150px;
+            background: #96ceb4;
+            margin: 0 auto;
+            transform-origin: top left;
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .live-demo-area .origin-demo:hover {
+            transform-origin: center center;
+            transform: rotate(90deg);
+        }
+        
+        /* Exemplo de transform-style 3D */
+        .live-demo-area .scene-3d {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto; /* Aumentado margin para visibilidade */
+            perspective: 800px;
+        }
+        
+        .live-demo-area .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(25deg) rotateY(25deg);
+            transition: transform 1s ease;
+        }
+        
+        .live-demo-area .cube:hover {
+            transform: rotateX(65deg) rotateY(125deg);
+        }
+        
+        .live-demo-area .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            color: #333;
+        }
+        
+        .live-demo-area .front { 
+            background: #ff6b6b; 
+            transform: translateZ(100px); 
+        }
+        .live-demo-area .back { 
+            background: #4ecdc4; 
+            transform: rotateY(180deg) translateZ(100px); 
+        }
+        .live-demo-area .right { 
+            background: #45b7d1; 
+            transform: rotateY(90deg) translateZ(100px); 
+        }
+        .live-demo-area .left { 
+            background: #96ceb4; 
+            transform: rotateY(-90deg) translateZ(100px); 
+        }
+        .live-demo-area .top { 
+            background: #ffeaa7; 
+            transform: rotateX(90deg) translateZ(100px); 
+        }
+        .live-demo-area .bottom { 
+            background: #dda0dd; 
+            transform: rotateX(-90deg) translateZ(100px); 
+        }
+        
+        /* Exemplo de perspective-origin */
+        .live-demo-area .perspective-scene {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto; /* Aumentado margin */
+            perspective: 600px;
+            perspective-origin: top left;
+        }
+        
+        .live-demo-area .perspective-box {
+            width: 100%;
+            height: 100%;
+            background: #ff9ff3;
+            transform: rotateY(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .live-demo-area .perspective-scene:hover .perspective-box {
+            transform: rotateY(135deg);
+        }
+        
+        /* Exemplo de backface-visibility */
+        .live-demo-area .flip-card {
+            width: 200px;
+            height: 250px;
+            margin: 20px auto; /* Aumentado margin */
+            perspective: 1000px;
+        }
+        
+        .live-demo-area .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .live-demo-area .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .live-demo-area .flip-card-front, .live-demo-area .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .live-demo-area .flip-card-front {
+            background: #74b9ff;
+            color: white;
+        }
+        
+        .live-demo-area .flip-card-back {
+            background: #a29bfe;
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .live-demo-area .code-sample {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            margin-top: 15px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Transformação CSS</h1>
+            <p class="subtitle">Essas propriedades são essenciais para criar interfaces modernas, animações suaves e efeitos 3D impressionantes no CSS.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>transform</td>
+                                <td>translate(), rotate(), scale()</td>
+                                <td>Aplica transformações 2D/3D</td>
+                            </tr>
+                            <tr>
+                                <td>transform-origin</td>
+                                <td>center, top left, 50px 100px</td>
+                                <td>Define origem da transformação</td>
+                            </tr>
+                            <tr>
+                                <td>transform-style</td>
+                                <td>flat, preserve-3d</td>
+                                <td>Controla renderização 3D de filhos</td>
+                            </tr>
+                            <tr>
+                                <td>perspective</td>
+                                <td>none, 500px, 1000px</td>
+                                <td>Define profundidade 3D</td>
+                            </tr>
+                            <tr>
+                                <td>perspective-origin</td>
+                                <td>center, top left, 25% 75%</td>
+                                <td>Define ponto de fuga da perspectiva</td>
+                            </tr>
+                            <tr>
+                                <td>backface-visibility</td>
+                                <td>visible, hidden</td>
+                                <td>Controla visibilidade da face traseira</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use transform para animações - Mais eficiente que mudar left/top</li>
+                        <li>Combine transformações - Use múltiplas transformações em uma declaração</li>
+                        <li>Defina transform-style: preserve-3d para hierarquias 3D complexas</li>
+                        <li>Use backface-visibility: hidden para elementos que giram 180°+</li>
+                        <li>Teste performance - Transformações 3D complexas podem ser pesadas</li>
+                        <li>Forneça fallbacks para navegadores que não suportam transformações 3D</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: transform -->
+            <div class="property-card">
+                <h3>transform</h3>
+                <div class="card-body">
+                    <p>A propriedade transform aplica transformações 2D ou 3D a um elemento. Permite rotacionar, escalar, inclinar ou transladar elementos.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li><b>Transformações 2D:</b> translate(x, y), rotate(angle), scale(x, y), skew(x-angle, y-angle), matrix(...)</li>
+                        <li><b>Transformações 3D:</b> translate3d(x, y, z), rotate3d(x, y, z, angle), scale3d(x, y, z), perspective(n)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Translação (movimento) */
+.translate {
+    transform: translate(50px, 100px);
+}
+
+.translateX {
+    transform: translateX(100px);
+}
+
+.translateY {
+    transform: translateY(50px);
+}
+
+/* Rotação */
+.rotate {
+    transform: rotate(45deg);
+}
+
+.rotate3d {
+    transform: rotate3d(1, 1, 1, 45deg);
+}
+
+/* Escala */
+.scale {
+    transform: scale(1.5);
+}
+
+.scaleX {
+    transform: scaleX(2);
+}
+
+.scaleY {
+    transform: scaleY(0.5);
+}
+
+/* Inclinação */
+.skew {
+    transform: skew(30deg, 20deg);
+}
+
+.skewX {
+    transform: skewX(25deg);
+}
+
+/* Múltiplas transformações */
+.multiple {
+    transform: translate(50px, 50px) rotate(45deg) scale(1.2);
+}
+
+/* Transformações 3D */
+.transform3d {
+    transform: perspective(500px) rotateY(45deg) translateZ(100px);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transform-origin -->
+            <div class="property-card">
+                <h3>transform-origin</h3>
+                <div class="card-body">
+                    <p>A propriedade transform-origin permite mudar a posição da origem das transformações. Por padrão, a origem é o centro do elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Valores de posição: left, center, right, top, bottom</li>
+                        <li>Porcentagens: 50% 50% (padrão)</li>
+                        <li>Unidades de comprimento: px, em, rem, etc.</li>
+                    </ul>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>transform-origin: x-axis y-axis z-axis;</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posições básicas */
+.origin-top-left {
+    transform-origin: left top;
+    transform: rotate(45deg);
+}
+
+.origin-bottom-right {
+    transform-origin: right bottom;
+    transform: rotate(-45deg);
+}
+
+.origin-center {
+    transform-origin: center center;
+    transform: scale(1.5);
+}
+
+/* Valores em porcentagem */
+.origin-percentage {
+    transform-origin: 25% 75%;
+    transform: rotate(30deg);
+}
+
+/* Valores em pixels */
+.origin-pixels {
+    transform-origin: 100px 200px;
+    transform: skew(15deg);
+}
+
+/* Para transformações 3D */
+.origin-3d {
+    transform-origin: center center 100px;
+    transform: rotate3d(1, 0, 0, 60deg);
+}
+
+/* Exemplo prático - ponto de rotação personalizado */
+.hinge-effect {
+    transform-origin: top left;
+    transform: rotate(15deg);
+}
+
+.scale-from-corner {
+    transform-origin: bottom right;
+    transform: scale(1.3);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transform-style -->
+            <div class="property-card">
+                <h3>transform-style</h3>
+                <div class="card-body">
+                    <p>A propriedade transform-style define como os elementos filhos são renderizados no espaço 3D.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>flat - Elementos filhos são renderizados no plano do elemento (padrão)</li>
+                        <li>preserve-3d - Elementos filhos são posicionados no espaço 3D</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Plano 2D (padrão) */
+.container-2d {
+    transform-style: flat;
+    transform: rotateY(45deg);
+}
+
+/* Espaço 3D preservado */
+.container-3d {
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.child-3d {
+    transform: rotateX(45deg) translateZ(50px);
+}
+
+/* Exemplo de cubo 3D */
+.cube {
+    transform-style: preserve-3d;
+    transform: rotateX(45deg) rotateY(45deg);
+}
+
+.cube-face {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.front { transform: translateZ(50px); }
+.back { transform: translateZ(-50px) rotateY(180deg); }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: perspective -->
+            <div class="property-card">
+                <h3>perspective</h3>
+                <div class="card-body">
+                    <p>A propriedade perspective define a distância entre o plano z=0 e o usuário, criando um efeito de profundidade para elementos 3D transformados.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem perspectiva (padrão)</li>
+                        <li>length - Distância em px, em, etc. (valores menores criam efeito mais dramático)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Perspectiva suave */
+.perspective-mild {
+    perspective: 1000px;
+}
+
+.perspective-strong {
+    perspective: 500px;
+}
+
+/* Aplicado diretamente no elemento */
+.direct-perspective {
+    transform: perspective(500px) rotateY(45deg);
+}
+
+/* Aplicado no container */
+.container-perspective {
+    perspective: 800px;
+}
+
+.container-perspective .child {
+    transform: rotateY(45deg);
+}
+
+/* Comparação de diferentes perspectivas */
+.mild-depth {
+    perspective: 1200px;
+}
+
+.medium-depth {
+    perspective: 600px;
+}
+
+.strong-depth {
+    perspective: 300px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: perspective-origin -->
+            <div class="property-card">
+                <h3>perspective-origin</h3>
+                <div class="card-body">
+                    <p>A propriedade perspective-origin define a posição de onde o usuário está olhando (ponto de fuga da perspectiva).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Posições: left, center, right, top, bottom</li>
+                        <li>Porcentagens: 50% 50% (padrão - centro)</li>
+                        <li>Unidades de comprimento: px, em, etc.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posições básicas */
+.origin-top {
+    perspective: 500px;
+    perspective-origin: top;
+}
+
+.origin-left {
+    perspective: 500px;
+    perspective-origin: left;
+}
+
+.origin-bottom-right {
+    perspective: 500px;
+    perspective-origin: right bottom;
+}
+
+/* Valores em porcentagem */
+.origin-custom {
+    perspective: 600px;
+    perspective-origin: 25% 75%;
+}
+
+/* Valores em pixels */
+.origin-pixel {
+    perspective: 800px;
+    perspective-origin: 200px 100px;
+}
+
+/* Efeitos visuais diferentes */
+.above-view {
+    perspective: 500px;
+    perspective-origin: center top;
+}
+
+.below-view {
+    perspective: 500px;
+    perspective-origin: center bottom;
+}
+
+.side-view {
+    perspective: 500px;
+    perspective-origin: left center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: backface-visibility -->
+            <div class="property-card">
+                <h3>backface-visibility</h3>
+                <div class="card-body">
+                    <p>A propriedade backface-visibility define se a face traseira de um elemento é visível quando está de costas para o visualizador.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>visible - Face traseira é visível (padrão)</li>
+                        <li>hidden - Face traseira é invisível</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Face traseira visível */
+.backface-visible {
+    backface-visibility: visible;
+    transform: rotateY(180deg);
+}
+
+/* Face traseira oculta (útil para cartões 3D) */
+.backface-hidden {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+/* Exemplo de cartão 3D */
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card-face {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+/* Para elementos que giram completamente */
+.spinning-element {
+    backface-visibility: hidden;
+    animation: spin 3s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area">
+                    <p>Este exemplo renderiza ao vivo o código HTML e CSS fornecido, demonstrando várias transformações 2D e 3D, incluindo um cubo e um cartão que vira.</p>
+
+                    <div class="container">
+                        <!-- Transform básico -->
+                        <div class="example-box">
+                            <h2>Transform: Translate</h2>
+                            <div class="translate-box"></div>
+                            <div class="code-sample">
+                                transform: translate(20px, -10px);<br>
+                                hover: translate(40px, -20px);
+                            </div>
+                        </div>
+                
+                        <!-- Rotação -->
+                        <div class="example-box">
+                            <h2>Transform: Rotate</h2>
+                            <div class="rotate-box"></div>
+                            <div class="code-sample">
+                                transform: rotate(45deg);<br>
+                                hover: rotate(90deg);
+                            </div>
+                        </div>
+                
+                        <!-- Escala -->
+                        <div class="example-box">
+                            <h2>Transform: Scale</h2>
+                            <div class="scale-box"></div>
+                            <div class="code-sample">
+                                transform: scale(0.8);<br>
+                                hover: scale(1.1);
+                            </div>
+                        </div>
+                
+                        <!-- Transform Origin -->
+                        <div class="example-box">
+                            <h2>Transform Origin</h2>
+                            <div class="origin-demo"></div>
+                            <div class="code-sample">
+                                transform-origin: top left;<br>
+                                transform: rotate(45deg);<br>
+                                hover: origin: center; rotate(90deg);
+                            </div>
+                        </div>
+                
+                        <!-- Transform Style 3D -->
+                        <div class="example-box">
+                            <h2>Transform Style 3D</h2>
+                            <div class="scene-3d">
+                                <div class="cube">
+                                    <div class="cube-face front">Frente</div>
+                                    <div class="cube-face back">Trás</div>
+                                    <div class="cube-face right">Direita</div>
+                                    <div class="cube-face left">Esquerda</div>
+                                    <div class="cube-face top">Topo</div>
+                                    <div class="cube-face bottom">Base</div>
+                                </div>
+                            </div>
+                            <div class="code-sample">
+                                transform-style: preserve-3d;<br>
+                                perspective: 800px;
+                            </div>
+                        </div>
+                
+                        <!-- Perspective Origin -->
+                        <div class="example-box">
+                            <h2>Perspective Origin</h2>
+                            <div class="perspective-scene">
+                                <div class="perspective-box"></div>
+                            </div>
+                            <div class="code-sample">
+                                perspective: 600px;<br>
+                                perspective-origin: top left;<br>
+                                transform: rotateY(45deg);
+                            </div>
+                        </div>
+                
+                        <!-- Backface Visibility -->
+                        <div class="example-box">
+                            <h2>Backface Visibility</h2>
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h3>Frente</h3>
+                                        <p>Passe o mouse</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3>Verso</h3>
+                                        <p>Cartão 3D</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-sample">
+                                backface-visibility: hidden;<br>
+                                transform-style: preserve-3d;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Transformações CSS 3D&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;!-- Transform básico --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Transform: Translate&lt;/h2&gt;
+            &lt;div class="translate-box"&gt;&lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                transform: translate(20px, -10px);&lt;br&gt;
+                hover: translate(40px, -20px);
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Rotação --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Transform: Rotate&lt;/h2&gt;
+            &lt;div class="rotate-box"&gt;&lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                transform: rotate(45deg);&lt;br&gt;
+                hover: rotate(90deg);
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Escala --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Transform: Scale&lt;/h2&gt;
+            &lt;div class="scale-box"&gt;&lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                transform: scale(0.8);&lt;br&gt;
+                hover: scale(1.1);
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Transform Origin --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Transform Origin&lt;/h2&gt;
+            &lt;div class="origin-demo"&gt;&lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                transform-origin: top left;&lt;br&gt;
+                transform: rotate(45deg);&lt;br&gt;
+                hover: origin: center; rotate(90deg);
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Transform Style 3D --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Transform Style 3D&lt;/h2&gt;
+            &lt;div class="scene-3d"&gt;
+                &lt;div class="cube"&gt;
+                    &lt;div class="cube-face front"&gt;Frente&lt;/div&gt;
+                    &lt;div class="cube-face back"&gt;Trás&lt;/div&gt;
+                    &lt;div class="cube-face right"&gt;Direita&lt;/div&gt;
+                    &lt;div class="cube-face left"&gt;Esquerda&lt;/div&gt;
+                    &lt;div class="cube-face top"&gt;Topo&lt;/div&gt;
+                    &lt;div class="cube-face bottom"&gt;Base&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                transform-style: preserve-3d;&lt;br&gt;
+                perspective: 800px;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Perspective Origin --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Perspective Origin&lt;/h2&gt;
+            &lt;div class="perspective-scene"&gt;
+                &lt;div class="perspective-box"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                perspective: 600px;&lt;br&gt;
+                perspective-origin: top left;&lt;br&gt;
+                transform: rotateY(45deg);
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Backface Visibility --&gt;
+        &lt;div class="example-box"&gt;
+            &lt;h2&gt;Backface Visibility&lt;/h2&gt;
+            &lt;div class="flip-card"&gt;
+                &lt;div class="flip-card-inner"&gt;
+                    &lt;div class="flip-card-front"&gt;
+                        &lt;h3&gt;Frente&lt;/h3&gt;
+                        &lt;p&gt;Passe o mouse&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flip-card-back"&gt;
+                        &lt;h3&gt;Verso&lt;/h3&gt;
+                        &lt;p&gt;Cartão 3D&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="code-sample"&gt;
+                backface-visibility: hidden;&lt;br&gt;
+                transform-style: preserve-3d;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.example-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+/* Exemplos de transform */
+.translate-box {
+    width: 150px;
+    height: 150px;
+    background: #ff6b6b;
+    margin: 0 auto;
+    transform: translate(20px, -10px);
+    transition: transform 0.3s ease;
+}
+
+.translate-box:hover {
+    transform: translate(40px, -20px);
+}
+
+.rotate-box {
+    width: 150px;
+    height: 150px;
+    background: #4ecdc4;
+    margin: 0 auto;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.rotate-box:hover {
+    transform: rotate(90deg);
+}
+
+.scale-box {
+    width: 150px;
+    height: 150px;
+    background: #45b7d1;
+    margin: 0 auto;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.scale-box:hover {
+    transform: scale(1.1);
+}
+
+/* Exemplos de transform-origin */
+.origin-demo {
+    width: 150px;
+    height: 150px;
+    background: #96ceb4;
+    margin: 0 auto;
+    transform-origin: top left;
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.origin-demo:hover {
+    transform-origin: center center;
+    transform: rotate(90deg);
+}
+
+/* Exemplo de transform-style 3D */
+.scene-3d {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    perspective: 800px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(25deg) rotateY(25deg);
+    transition: transform 1s ease;
+}
+
+.cube:hover {
+    transform: rotateX(65deg) rotateY(125deg);
+}
+
+.cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.front  { 
+    background: #ff6b6b; 
+    transform: translateZ(100px); 
+}
+.back   { 
+    background: #4ecdc4; 
+    transform: rotateY(180deg) translateZ(100px); 
+}
+.right  { 
+    background: #45b7d1; 
+    transform: rotateY(90deg) translateZ(100px); 
+}
+.left   { 
+    background: #96ceb4; 
+    transform: rotateY(-90deg) translateZ(100px); 
+}
+.top    { 
+    background: #ffeaa7; 
+    transform: rotateX(90deg) translateZ(100px); 
+}
+.bottom { 
+    background: #dda0dd; 
+    transform: rotateX(-90deg) translateZ(100px); 
+}
+
+/* Exemplo de perspective-origin */
+.perspective-scene {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    perspective: 600px;
+    perspective-origin: top left;
+}
+
+.perspective-box {
+    width: 100%;
+    height: 100%;
+    background: #ff9ff3;
+    transform: rotateY(45deg);
+    transition: all 0.5s ease;
+}
+
+.perspective-scene:hover .perspective-box {
+    transform: rotateY(135deg);
+}
+
+/* Exemplo de backface-visibility */
+.flip-card {
+    width: 200px;
+    height: 250px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.flip-card-front {
+    background: #74b9ff;
+    color: white;
+}
+
+.flip-card-back {
+    background: #a29bfe;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.code-sample {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-top: 15px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao CSS e Exercícios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (INTRODUÇÃO) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        .content-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .content-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .content-card-body p {
+            margin: 0 0 15px 0;
+        }
+        .content-card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-card-body ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .content-card-body li {
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* Tabela de Resumo */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 15px 20px;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        /* 5. SEÇÃO DE EXERCÍCIOS */
+        .exercise-header {
+            padding: 40px 60px;
+            background-color: #4f46e5;
+            color: #ffffff;
+            text-align: center;
+        }
+        .exercise-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 6. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        /* Estilos para respostas dos exercícios */
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+        .resolution-content p strong {
+            color: #16a34a; /* Verde para Verdadeiro */
+        }
+        .resolution-content p em {
+            color: #dc2626; /* Vermelho para Falso */
+            font-style: normal;
+        }
+        .resolution-content .code-answer {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #1d4ed8; /* Azul escuro */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>CSS</h1>
+            <p class="subtitle">CSS é a linguagem usada para estilizar documentos HTML. Ela descreve como os elementos HTML devem ser exibidos na tela, no papel ou em outras mídias.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: O que é CSS? -->
+            <div class="content-card">
+                <h3>O que é CSS?</h3>
+                <div class="content-card-body">
+                    <ul>
+                        <li>CSS significa Cascading Style Sheets (Folhas de Estilo em Cascata).</li>
+                        <li>O CSS define a aparência e a formatação dos elementos HTML.</li>
+                        <li>Ele permite controlar o design, o layout e a estilização de várias páginas ao mesmo tempo.</li>
+                        <li>As folhas de estilo externas são armazenadas em arquivos com extensão .css.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: Por que usar CSS? -->
+            <div class="content-card">
+                <h3>Por que usar CSS?</h3>
+                <div class="content-card-body">
+                    <ul>
+                        <li>O CSS separa conteúdo (HTML) de estilo (cores, tamanhos, posicionamento).</li>
+                        <li>Facilita a manutenção: você pode alterar o visual de um site inteiro editando apenas um arquivo CSS.</li>
+                        <li>Permite adaptar o design para diferentes tamanhos de tela e dispositivos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: Sintaxe do CSS -->
+            <div class="content-card">
+                <h3>Sintaxe do CSS</h3>
+                <div class="content-card-body">
+                    <p>Uma regra CSS é composta por:</p>
+                    <ul>
+                        <li><b>Seletor</b> → indica quais elementos HTML receberão o estilo.</li>
+                        <li><b>Bloco de declaração</b> → contém uma ou mais propriedades e seus valores.</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px;"><b>Estrutura:</b></p>
+                    <pre><code>seletor {
+    propriedade1: valor1;
+    propriedade2: valor2;
+}</code></pre>
+                    <p>Cada propriedade é seguida de dois pontos.<br>
+                    Cada valor termina com ponto e vírgula.<br>
+                    O bloco é delimitado por chaves { }.</p>
+                    
+                    <p style="margin-top: 20px;"><b>Exemplo</b></p>
+                    <p>Este exemplo aplica estilos a todos os elementos &lt;p&gt;:</p>
+                    <pre><code>p {
+    color: red;
+    text-align: center;
+}</code></pre>
+                    <p><b>Explicação do exemplo</b></p>
+                    <ul>
+                        <li><b>p</b> → é o seletor, representando todos os parágrafos &lt;p&gt;.</li>
+                        <li><b>color</b> → é a propriedade que define a cor do texto.</li>
+                        <li><b>red</b> → é o valor da propriedade color.</li>
+                        <li><b>text-align</b> → é a propriedade que define o alinhamento do texto.</li>
+                        <li><b>center</b> → é o valor que centraliza o texto.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: Resumo Visual -->
+            <div class="content-card">
+                <h3>Resumo Visual — CSS (Mapa / Tabela)</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Conceito</th>
+                                <th>Significa</th>
+                                <th>Exemplo</th>
+                                <th>Explicação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seletor</td>
+                                <td>Indica qual elemento será estilizado</td>
+                                <td><code>p { }</code></td>
+                                <td>Afeta todos os parágrafos &lt;p&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Propriedade</td>
+                                <td>O que será modificado</td>
+                                <td><code>color</code></td>
+                                <td>Define a cor do texto</td>
+                            </tr>
+                            <tr>
+                                <td>Valor</td>
+                                <td>Como a propriedade será aplicada</td>
+                                <td><code>red</code></td>
+                                <td>Torna o texto vermelho</td>
+                            </tr>
+                            <tr>
+                                <td>Declaração</td>
+                                <td>Propriedade + valor</td>
+                                <td><code>color: red;</code></td>
+                                <td>Termina sempre com ;</td>
+                            </tr>
+                            <tr>
+                                <td>Bloco de Declaração</td>
+                                <td>Conjunto de declarações</td>
+                                <td><code>{ color: red; text-align: center; }</code></td>
+                                <td>Entre chaves { }</td>
+                            </tr>
+                            <tr>
+                                <td>Arquivo Externo</td>
+                                <td>Arquivo .css separado</td>
+                                <td><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td>
+                                <td>Reutilizável no site inteiro</td>
+                            </tr>
+                            <tr>
+                                <td>Inline Style</td>
+                                <td>CSS escrito no próprio elemento</td>
+                                <td><code>&lt;p style="color:red;"&gt;</code></td>
+                                <td>Usado apenas para casos rápidos</td>
+                            </tr>
+                            <tr>
+                                <td>Classes</td>
+                                <td>Estilizam elementos específicos</td>
+                                <td><code>.btn { }</code></td>
+                                <td>Usado quando há vários elementos semelhantes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CABEÇALHO DOS EXERCÍCIOS -->
+        <header class="exercise-header">
+            <h2>Exercícios sobre CSS</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1: Identificação</h3>
+                <div class="card-body">
+                    <p>Diga se cada frase é Verdadeira (V) ou Falsa (F):</p>
+                    <p>( ) CSS é usado para definir o layout e o estilo das páginas da web.</p>
+                    <p>( ) O seletor define qual elemento HTML será estilizado.</p>
+                    <p>( ) A propriedade CSS sempre termina com vírgula.</p>
+                    <p>( ) O CSS pode ser reutilizado em várias páginas através de arquivos externos.</p>
+                    <p>( ) O valor de uma propriedade vem antes do nome da propriedade.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>(<strong>V</strong>) CSS é usado para definir o layout e o estilo das páginas da web.</p>
+                        <p>(<strong>V</strong>) O seletor define qual elemento HTML será estilizado.</p>
+                        <p>(<em>F</em>) A propriedade CSS sempre termina com vírgula. (Falso, a declaração termina com ponto e vírgula).</p>
+                        <p>(<strong>V</strong>) O CSS pode ser reutilizado em várias páginas através de arquivos externos.</p>
+                        <p>(<em>F</em>) O valor de uma propriedade vem antes do nome da propriedade. (Falso, o nome da propriedade vem antes).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2: Complete os espaços</h3>
+                <div class="card-body">
+                    <p>a) CSS significa C________ S______ S______.</p>
+                    <p>b) Arquivos externos de CSS usam a extensão: ._____</p>
+                    <p>c) Uma regra CSS é formada por um s________ e um b_____ de d__________.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>a) CSS significa <span class="code-answer">Cascading</span> <span class="code-answer">Style</span> <span class="code-answer">Sheets</span>.</p>
+                        <p>b) Arquivos externos de CSS usam a extensão: .<span class="code-answer">css</span></p>
+                        <p>c) Uma regra CSS é formada por um <span class="code-answer">seletor</span> e um <span class="code-answer">bloco</span> de <span class="code-answer">declaração</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3: Estilização básica</h3>
+                <div class="card-body">
+                    <p>Escreva o CSS correto para:</p>
+                    <p>a) Todos os parágrafos terem cor azul.</p>
+                    <pre><code>________________ {
+    color: ________;
+}</code></pre>
+                    <p>b) O texto de todos os &lt;h1&gt; ficar centralizado:</p>
+                    <pre><code>h1 {
+    __________________;
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>a) Todos os parágrafos terem cor azul.</p>
+                        <pre><code><span class="code-answer">p</span> {
+    color: <span class="code-answer">blue</span>;
+}</code></pre>
+                        <p>b) O texto de todos os &lt;h1&gt; ficar centralizado:</p>
+                        <pre><code>h1 {
+    <span class="code-answer">text-align: center;</span>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4: Corrija os erros no código abaixo</h3>
+                <div class="card-body">
+                    <pre><code>p {
+    color red;
+    text-align center
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>Faltaram os dois-pontos (:) depois das propriedades e os ponto-e-vírgula (;) no final das declarações.</p>
+                        <pre><code>p {
+    color<span class="code-answer">:</span> red<span class="code-answer">;</span>
+    text-align<span class="code-answer">:</span> center<span class="code-answer">;</span>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5: Desafio prático</h3>
+                <div class="card-body">
+                    <p>Dado o HTML:</p>
+                    <pre><code>&lt;p class="mensagem"&gt;Bem-vindo ao site!&lt;/p&gt;</code></pre>
+                    <p>Crie o CSS para:</p>
+                    <ul>
+                        <li>Cor do texto: verde</li>
+                        <li>Tamanho da fonte: 20px</li>
+                        <li>Alinhamento: centro</li>
+                    </ul>
+                    <pre><code>/* escreva aqui */
+</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>.mensagem {
+    color: green;
+    font-size: 20px;
+    text-align: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

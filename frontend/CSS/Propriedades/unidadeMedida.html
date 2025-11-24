@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Unidades de Medida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #38bdf8 0%, #0891b2 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ecfeff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #0369a1;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #e0f2fe;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: #0369a1;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f0f9ff;
+            border-bottom: 1px solid #e0f2fe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-body p strong {
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #0ea5e9;
+            white-space: nowrap;
+            background-color: #f0f9ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0ea5e9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #0284c7;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* EXEMPLOS VISUAIS */
+        .ruler-box {
+            height: 1in;
+            width: 100%;
+            border: 2px dashed #0891b2;
+            background: #f0f9ff;
+            padding: 10px;
+            position: relative;
+        }
+        .ruler-box p {
+            margin: 0;
+            font-family: 'Fira Code', monospace;
+            color: #075985;
+            font-weight: 600;
+        }
+        
+        .line-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .line-demo div {
+            width: 100%;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        .line-demo .line {
+            height: 0;
+            padding: 0;
+        }
+        .line-0_5pt { border-bottom: 0.5pt solid #0ea5e9; }
+        .line-1px { border-bottom: 1px solid #0ea5e9; }
+        .line-1pt { border-bottom: 1pt solid #0ea5e9; }
+        .line-1_5px { border-bottom: 1.5px solid #0ea5e9; }
+        .line-2px { border-bottom: 2px solid #0ea5e9; }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>UNIDADES DE MEDIDA CSS</h1>
+            <p class="subtitle">O CSS possui diversas unidades diferentes para expressar um comprimento.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Introdução -->
+            <div class="property-card">
+                <h3>O que são Unidades de Medida?</h3>
+                <div class="card-body">
+                    <p>Muitas propriedades CSS aceitam valores de "comprimento", como width, margin, padding, font-size, etc.</p>
+                    <p>O comprimento é um número seguido por uma unidade de comprimento, como 10px, 2em, etc.</p>
+                    <p><strong>Observação:</strong> Não pode haver espaço em branco entre o número e a unidade. No entanto, se o valor for 0, a unidade pode ser omitida.</p>
+                    <p>Para algumas propriedades CSS, são permitidos comprimentos negativos.</p>
+                    <p>Existem dois tipos de unidades de comprimento: <strong>absolutas</strong> e <strong>relativas</strong>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>Exemplo:</h4>
+                        <pre><code>h1 {
+    font-size: 60px;
+}
+
+p {
+    font-size: 25px;
+    line-height: 50px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Medição Absoluta -->
+            <div class="property-card">
+                <h3>MEDIÇÃO ABSOLUTA</h3>
+                <div class="card-body">
+                    <p>As unidades de comprimento absoluto são fixas e um comprimento expresso em qualquer uma delas aparecerá exatamente com esse tamanho.</p>
+                    <p>Unidades de comprimento absoluto não são recomendadas para uso na tela, porque os tamanhos das telas variam muito. No entanto, eles podem ser usados se a mídia de saída for conhecida, como para layout de impressão.</p>
+                    
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Unidade</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>px</code></td>
+                                <td>Pixels</td>
+                                <td>Um pixel é uma unidade fixa, ideal para ajustes precisos em elementos como bordas e sombras.</td>
+                            </tr>
+                            <tr>
+                                <td><code>%</code></td>
+                                <td>Percentagem</td>
+                                <td>Em relação ao elemento pai (Nota: O texto original lista % aqui, mas é funcionalmente relativa)</td>
+                            </tr>
+                            <tr>
+                                <td><code>cm</code></td>
+                                <td>Centímetro</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><code>in</code></td>
+                                <td>Polegada</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><code>mm</code></td>
+                                <td>Milímetro</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><code>pc</code></td>
+                                <td>Pica</td>
+                                <td>1p = 12 pontos</td>
+                            </tr>
+                            <tr>
+                                <td><code>pt</code></td>
+                                <td>Ponto</td>
+                                <td>1pt = 1/72 polegada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4 style="margin-top: 20px;">Nota sobre Pixels (px)</h4>
+                    <p>Os pixels (px) são relativos ao dispositivo de visualização. Para dispositivos de baixa resolução (dpi), 1 px corresponde a um pixel (ponto) da tela. Para impressoras e telas de alta resolução, 1 px implica múltiplos pixels da tela.</p>
+                </div>
+            </div>
+
+            <!-- Card: Medição Relativa -->
+            <div class="property-card">
+                <h3>MEDIÇÃO RELATIVA</h3>
+                <div class="card-body">
+                    <p>As unidades de comprimento relativo especificam um comprimento relativo a outra propriedade de comprimento. As unidades de comprimento relativo são melhor dimensionadas entre diferentes meios de renderização.</p>
+                    
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Unidade</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>ch</code></td>
+                                <td>Largura do glifo "0" (Em relação à largura do "0" (zero))</td>
+                            </tr>
+                            <tr>
+                                <td><code>em</code></td>
+                                <td>1em = tamanho da fonte atual do elemento atual (Em relação ao tamanho da fonte do elemento)</td>
+                            </tr>
+                            <tr>
+                                <td><code>ex</code></td>
+                                <td>Altura x da fonte do elemento (Em relação à altura x da fonte atual, raramente usada)</td>
+                            </tr>
+                            <tr>
+                                <td><code>gd</code></td>
+                                <td>A grade definida por 'layout-grid'</td>
+                            </tr>
+                            <tr>
+                                <td><code>px</code></td>
+                                <td>Pixel do dispositivo de visualização (Nota: O texto original lista px aqui também)</td>
+                            </tr>
+                            <tr>
+                                <td><code>rem</code></td>
+                                <td>Relativo ao tamanho da fonte do elemento raiz (geralmente o HTML)</td>
+                            </tr>
+                            <tr>
+                                <td><code>vh</code></td>
+                                <td>Relativo a 1% da altura da janela de visualização (viewport)</td>
+                            </tr>
+                            <tr>
+                                <td><code>vw</code></td>
+                                <td>Relativo a 1% da largura da janela de visualização (viewport)</td>
+                            </tr>
+                            <tr>
+                                <td><code>vm</code></td>
+                                <td>Altura ou largura da janela de visualização, o que for menor dos dois</td>
+                            </tr>
+                            <tr>
+                                <td><code>vmin</code></td>
+                                <td>Relativo a 1% da dimensão menor da janela de visualização</td>
+                            </tr>
+                            <tr>
+                                <td><code>vmax</code></td>
+                                <td>Relativo a 1% da dimensão maior da janela de visualização</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4 style="margin-top: 20px;">Notas Importantes</h4>
+                    <p>As unidades <strong>em</strong> e <strong>rem</strong> são práticas na criação de layout perfeitamente escalável!</p>
+                    <p><strong>vw, vh, vmin, vmax (Viewport)</strong> = o tamanho da janela do navegador. Se a janela de visualização tiver 50 cm de largura, 1vw = 0,5 cm.</p>
+                </div>
+            </div>
+            
+            <!-- Título da Seção -->
+            <h2 class="section-title">Recomendações de Uso (Tela vs. Impressão)</h2>
+
+            <!-- Card: Tela vs Impressão -->
+            <div class="property-card">
+                <h3>em, px, pt, cm, in…</h3>
+                <div class="card-body">
+                    <p>CSS oferece um número de unidades diferentes para a expressão de comprimento. Algumas têm sua história em tipografia, como o ponto (pt) e a paica (pc), outros são conhecidos devido a seu uso diário, como centímetro (cm) e polegada (in). E há, também, uma unidade "mágica" que foi inventada especificamente para CSS: px. Isso significa que diferentes propriedades precisam de diferente unidades?</p>
+                    <p>Não, as unidades não têm nada a ver com as propriedades, mas têm tudo a ver com a mídia de saída: tela ou papel.</p>
+                    <p>Não há qualquer restrição sobre quais unidades podem ser usada em qual lugar. Se uma propriedade aceita um valor em px ('margin: 5px') ela também aceita o valor em polegadas ou centímetros ('margin: 1.2in; margin: 0.5cm') e vice-versa.</p>
+                    <p>Mas, em geral, você deve usar um conjunto diferente de unidades para exibição em tela do que para a impressão em papel. A tabela abaixo apresenta o uso recomendado:</p>
+                    
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Mídia</th>
+                                <th>Recomendado</th>
+                                <th>Uso ocasional</th>
+                                <th>Não recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Tela</strong></td>
+                                <td><code>em</code>, <code>px</code>, <code>%</code></td>
+                                <td><code>ex</code></td>
+                                <td><code>pt</code>, <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pc</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Impresso</strong></td>
+                                <td><code>em</code>, <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pt</code>, <code>pc</code>, <code>%</code></td>
+                                <td><code>px</code>, <code>ex</code></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top: 20px;">Exemplo Visual: 1 Polegada</h4>
+                    <p>Se você tiver uma régua pode checar o quão preciso seu dispositivo é: aqui está uma caixa com altura de 1in (2,54cm)</p>
+                    <div class="ruler-box">
+                        <p style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);">↑<br>72pt<br>↓</p>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">Explicação: Unidades Absolutas</h4>
+                    <p>As assim chamadas medidas absolutas (cm, mm, in, pt e pc) significam o mesmo em CSS como em qualquer lugar. Uma medida expressa em qualquer uma dessas aparecerá exatamente do tamanho que é (dentro da precisão do hardware e do software). Elas não são recomendadas para uso em tela porque tamanhos de tela variam muito. Uma tela grande pode ter 60cm (24in); uma pequena e portátil, talvez apenas 8cm. E você não olha pra elas a partir da mesma distância.</p>
+                    
+                    <h4 style="margin-top: 20px;">Explicação: em e ex</h4>
+                    <p>As unidades em e ex dependem da fonte e podem ser diferentes para cada elemento no documento. em é, simplesmente, o tamanho da fonte. Em um elemento com a fonte de 2in, 1em será, portanto, 2in. Empressando tamanhos, como margins e paddings, com em significa que eles são relativos ao tamanho da fonte e se o usuário tem uma fonte grande (ex. uma tela grande) ou uma fonte pequena (ex. dispositivo handheld) , os tamanhos serão proporcionais. Declarações como 'text-indent: 1.5em' e 'margin: 1em' são extremamente comuns em CSS.</p>
+                    <p>A unidade ex é raramente usada. Seu propósito é expressar tamanhos relacionados à "altura do x" de uma fonte. A altura do x é, grosso modo, a altura de letras em mínusculo como a, c, m, ou o. Fontes que têm o mesmo tamanho (e, portanto, o mesmo em) podem variar muito o tamanho de suas letras em minúsculo, e, quando é importante que alguma imagem, por exemplo, se iguale à altura do x, a unidade ex está disponível.</p>
+                    
+                    <h4 style="margin-top: 20px;">Explicação: px (A Unidade Mágica)</h4>
+                    <p>A unidade px é a unidade mágica das CSS. Ela não é relacionada ao tamanho da fonte atual nem a unidades absolutas. A unidade px é definida para ser pequena, mas visível, e tal como uma linha de 1px de largura, pode ser apresentada com "serrilhamento" (sem anti-aliasing). O quão nítida, pequena e visível será, depende do dispositivo e da maneira como ele está sendo usado: você o está segurando perto de seus olhos, como em um celular, no comprimento dos braços, como num monitor de computador ou alguma coisa entre um e outro, como se fosse um livro? O px, portanto, não é definido como uma medida constante, mas algo que depende do tipo de dispositivo e o uso típico deste.</p>
+                    <p>Para ter uma idéia da aparência do de um px, imagine um monitor CRT de 1990: o menor ponto nele consegue exibir medidas de 1/100 de polegada (0,25mm) ou um pouco mais. A unidade px tem esse nome em função dos pixels da tela.</p>
+                    <p>Atualmente, existem dispositivos que podem, a princípio, exibir pontos menores (embora você possa precisar de uma lupa para vê-los). Mas documentos do século passado que usaram px em CSS continuam sendo exibidos da mesma forma, não importando o dispositivo. Impressoras, especialmente, conseguem mostrar linhas com muito mais detalhes que 1px, mas, até nas impressoras, uma linha de 1px parece muito com como sua exibição ficaria em um monitor de computador. Dispositivos mudam, mas o px tem sempre a mesma aparência.</p>
+                    <p>CSS também define que imagens rasterizadas (como fotos) são, por padrão, exibidas com um mapeamento de pixels de 1px. Assim, uma foto de resolução 600 por 400 será 600px comprida e 400px alta. Os pixels na foto, portanto, não mapeiam os pixels do dispositivo de exibição (que pode ser bem pequeno), mas mapeia para unidades em px. Isso torna possível fazer alinhamentos precisos de imagens com outros elementos do documento, desde que você use unidades em px em sua folha de estilos ao invés de pt, cm, etc.</p>
+                </div>
+            </div>
+
+            <!-- Card: Use em ou px -->
+            <div class="property-card">
+                <h3>Use em ou px para tamanhos de fonte</h3>
+                <div class="card-body">
+                    <p>CSS herdou as unidades pt (ponto) e pc (paica) da tipografia. Impressoras têm, tradicionalmente, usado essas e unidades similares, com preferência a cm ou in. Em CSS, não há razão para usar pt, use qualquer outra unidade que preferir. Mas existe uma boa razão para não usar nem pt nem outra unidade absoluta e usar somente em e px.</p>
+                    <p>Aqui estão algumas linhas com diferentes espessuras. Algumas ou todas elas podem ser nítidas, mas, pelo menos as linhas de 1px e 2px devem ser nítidas e visíveis:</p>
+                    
+                    <div class="line-demo">
+                        <div>0,5pt:</div> <div class="line line-0_5pt"></div>
+                        <div>1px:</div>   <div class="line line-1px"></div>
+                        <div>1pt:</div>   <div class="line line-1pt"></div>
+                        <div>1,5px:</div> <div class="line line-1_5px"></div>
+                        <div>2px:</div>   <div class="line line-2px"></div>
+                    </div>
+                    
+                    <p style="margin-top: 20px;">Se as quatro primeiras linhas parecerem todas iguais (ou se a linha de 0,5pt estiver faltando), provavelmente você está olhando para um monitor de computador que não consegue exibir pontos menores do que 1px. Se as linhas parecem aumentar de espessura, provavelmente você está olhando para esta página em uma tela de computador de alta qualidade ou papel. E se a de 1pt parece mais espessa que a de 1,5px, você, provavelmente, tem a tela de um dispositivo móvel.</p>
+                    <p>A unidade mágica de CSS, o px, frequentemente é uma boa unidade para se usar, especialmente se o estilo requer alinhamento do texto com imagens ou, simplesmente, porque tudo o que tem 1px ou é múltiplo de 1px de largura é garantido de parecer nítido.</p>
+                    <p>Mas, para tamanhos de fonte, é ainda melhor usar em. A ideia é (1) não especificar o tamanho de fonte do elemento BODY (em HTML), mas usar o tamanho padrão do dispositivo porque esse é um tamanho que o leitor consegue ler confortavelmente; e (2) expressar o tamanho da fonte de outros elementos em em: 'H1 {font-size: 2.5em}' para fazer o H1 2½ vezes maior que o normal.</p>
+                    <p>O único lugar que você pode usar pt (ou cm ou in) para especificar o tamanho da fonte é em folhas de estilo para impressão, se você precisar ter certeza de que a fonte impressa será, exatamente, de um certo tamanho. Mas, mesmo assim, usar o tamanho de fonte padrão é, geralmente, melhor.</p>
+                </div>
+            </div>
+
+            <!-- Card: Mais unidades -->
+            <div class="property-card">
+                <h3>Mais unidades em CSS no futuro</h3>
+                <div class="card-body">
+                    <p>Para tornar ainda mais fácil de fazer as regras de estilo que dependem somente do tamanho de fonte padrão, uma nova unidade está em desenvolvimento: a rem. A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. Diferentemente do em, que pode ser diferente para cada elemento, o rem é constante em todo o documento.</p>
+                    <p>Outras unidades em desenvolvimento permitem especificar tamanhos relativos à janela do leitor. São a vw e vh. A vw é 1/100 da largura da janela e vh é 1/100 da altura da janela.</p>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplo')) {
+                    btn.textContent = 'Ver Exemplo';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Exemplo';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplo';
+            }
+        }
+    </script>
+
+</body>
+</html>

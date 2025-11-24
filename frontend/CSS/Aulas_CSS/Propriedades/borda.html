@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Borda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ddd6fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #6d28d9;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f5f3ff;
+            border-bottom: 1px solid #ddd6fe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #7c3aed;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #6d28d9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #5b21b6;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Borda CSS</h1>
+            <p class="subtitle">Essas propriedades são essenciais para criar layouts visualmente atraentes e interfaces de usuário modernas em CSS.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>border</td>
+                                <td>2px solid #000</td>
+                                <td>Shorthand completa</td>
+                            </tr>
+                            <tr>
+                                <td>border-style</td>
+                                <td>solid, dashed, dotted</td>
+                                <td>Estilo da borda</td>
+                            </tr>
+                            <tr>
+                                <td>border-width</td>
+                                <td>thin, 2px, 0.5em</td>
+                                <td>Espessura da borda</td>
+                            </tr>
+                            <tr>
+                                <td>border-color</td>
+                                <td>#000, red, rgba()</td>
+                                <td>Cor da borda</td>
+                            </tr>
+                            <tr>
+                                <td>border-radius</td>
+                                <td>5px, 50%, 10px 20px</td>
+                                <td>Cantos arredondados</td>
+                            </tr>
+                            <tr>
+                                <td>box-shadow</td>
+                                <td>2px 2px 5px #000</td>
+                                <td>Sombra do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>border-collapse</td>
+                                <td>separate, collapse</td>
+                                <td>Bordas de tabela</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use box-sizing: border-box para cálculo consistente de dimensões</li>
+                        <li>Combine border-radius com box-shadow para designs modernos</li>
+                        <li>Use bordas semitransparentes com rgba() para designs sutis</li>
+                        <li>Experimente border-image para designs criativos (com fallback)</li>
+                        <li>Use border-collapse: collapse para tabelas com aparência limpa</li>
+                        <li>Combine múltiplas sombras para efeitos de profundidade realistas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: border -->
+            <div class="property-card">
+                <h3>border</h3>
+                <div class="card-body">
+                    <p>A propriedade border é uma shorthand que define todas as propriedades de borda em uma única declaração.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>border: [width] [style] [color];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Combina border-width, border-style, e border-color</li>
+                        <li>Pode ser aplicada a todos os lados ou lados específicos</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Borda completa */
+.element {
+    border: 2px solid #000;
+}
+
+/* Borda apenas inferior */
+.title {
+    border-bottom: 1px solid #ccc;
+}
+
+/* Bordas diferentes por lado */
+.box {
+    border-top: 3px double red;
+    border-right: 1px dashed blue;
+    border-bottom: 2px dotted green;
+    border-left: 4px groove #333;
+}
+
+/* Borda mínima */
+.minimal {
+    border: 1px solid #ddd;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-style -->
+            <div class="property-card">
+                <h3>border-style</h3>
+                <div class="card-body">
+                    <p>A propriedade border-style define o estilo da borda.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem borda (padrão)</li>
+                        <li>hidden - Bordas ocultas (em tabelas)</li>
+                        <li>dotted - Pontilhada</li>
+                        <li>dashed - Tracejada</li>
+                        <li>solid - Sólida</li>
+                        <li>double - Dupla</li>
+                        <li>groove - 3D ranhurada</li>
+                        <li>ridge - 3D em relevo</li>
+                        <li>inset - 3D interna</li>
+                        <li>outset - 3D externa</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Estilos básicos */
+.dotted { border-style: dotted; }
+.dashed { border-style: dashed; }
+.solid { border-style: solid; }
+.double { border-style: double; }
+
+/* Estilos 3D */
+.groove { border-style: groove; }
+.ridge { border-style: ridge; }
+.inset { border-style: inset; }
+.outset { border-style: outset; }
+
+/* Múltiplos lados */
+.mixed-sides {
+    border-style: solid dotted dashed double;
+}
+
+/* Por lado individual */
+.individual {
+    border-top-style: dotted;
+    border-right-style: solid;
+    border-bottom-style: dashed;
+    border-left-style: double;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-width -->
+            <div class="property-card">
+                <h3>border-width</h3>
+                <div class="card-body">
+                    <p>A propriedade border-width define a espessura da borda.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>thin - Fina (≈ 1px)</li>
+                        <li>medium - Média (≈ 3px, padrão)</li>
+                        <li>thick - Grossa (≈ 5px)</li>
+                        <li>length - Valor específico em px, em, rem, etc.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Palavras-chave */
+.thin-border { border-width: thin; }
+.medium-border { border-width: medium; }
+.thick-border { border-width: thick; }
+
+/* Valores específicos */
+.pixel-border { border-width: 2px; }
+.em-border { border-width: 0.5em; }
+.rem-border { border-width: 0.25rem; }
+
+/* Múltiplos lados */
+.different-widths {
+    border-width: 1px 2px 3px 4px; /* top right bottom left */
+}
+
+.vertical-horizontal {
+    border-width: 2px 4px; /* vertical horizontal */
+}
+
+/* Por lado individual */
+.sides-individual {
+    border-top-width: 3px;
+    border-right-width: 1px;
+    border-bottom-width: 2px;
+    border-left-width: 4px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-color -->
+            <div class="property-card">
+                <h3>border-color</h3>
+                <div class="card-body">
+                    <p>A propriedade border-color define a cor da borda.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>color - Qualquer valor de cor CSS</li>
+                        <li>transparent - Transparente</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Cores básicas */
+.red-border { border-color: red; }
+.hex-border { border-color: #ff0000; }
+.rgb-border { border-color: rgb(255, 0, 0); }
+.rgba-border { border-color: rgba(255, 0, 0, 0.5); }
+
+/* Cores por lado */
+.multi-color {
+    border-color: red green blue yellow;
+}
+
+.transparent-border {
+    border-color: transparent;
+}
+
+/* Por lado individual */
+.sides-color {
+    border-top-color: #ff0000;
+    border-right-color: #00ff00;
+    border-bottom-color: #0000ff;
+    border-left-color: #ffff00;
+}
+
+/* Com variáveis CSS */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+}
+
+.themed-border {
+    border-color: var(--primary-color) var(--secondary-color);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-radius -->
+            <div class="property-card">
+                <h3>border-radius</h3>
+                <div class="card-body">
+                    <p>A propriedade border-radius arredonda os cantos do elemento.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>border-radius: [top-left] [top-right] [bottom-right] [bottom-left];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>length - Raio em px, em, rem, %</li>
+                        <li>percentage - Raio em % da dimensão do elemento</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Cantos iguais */
+.rounded { border-radius: 10px; }
+.circle { border-radius: 50%; }
+.pill { border-radius: 9999px; }
+
+/* Cantos diferentes */
+.mixed-corners {
+    border-radius: 10px 20px 30px 40px;
+}
+
+.elliptical {
+    border-radius: 10px 20px / 20px 10px;
+}
+
+/* Por canto individual */
+.individual-corners {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 10px;
+}
+
+/* Usos comuns */
+.button {
+    border-radius: 4px;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.bubble {
+    border-radius: 20px 20px 20px 5px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: box-shadow -->
+            <div class="property-card">
+                <h3>box-shadow</h3>
+                <div class="card-body">
+                    <p>A propriedade box-shadow adiciona sombra ao elemento.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>box-shadow: [offset-x] [offset-y] [blur-radius] [spread-radius] [color] [inset];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>offset-x - Deslocamento horizontal (obrigatório)</li>
+                        <li>offset-y - Deslocamento vertical (obrigatório)</li>
+                        <li>blur-radius - Raio de desfoque (opcional)</li>
+                        <li>spread-radius - Expansão da sombra (opcional)</li>
+                        <li>color - Cor da sombra (opcional)</li>
+                        <li>inset - Sombra interna (opcional)</li>
+                        <li>Múltiplas sombras separadas por vírgula</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Sombra básica */
+.shadow-basic {
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Sombra com spread */
+.shadow-spread {
+    box-shadow: 0 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Sombra interna */
+.shadow-inset {
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Múltiplas sombras */
+.shadow-multiple {
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.1),
+        0 4px 8px rgba(0,0,0,0.1),
+        0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Efeitos comuns */
+.card-shadow {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.button-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.button-shadow-hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.neomorphic {
+    box-shadow: 
+        5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-collapse -->
+            <div class="property-card">
+                <h3>border-collapse</h3>
+                <div class="card-body">
+                    <p>A propriedade border-collapse define se as bordas da tabela são separadas ou colapsadas.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>separate - Bordas separadas (padrão)</li>
+                        <li>collapse - Bordas colapsadas</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Tabela com bordas separadas */
+.separate-table {
+    border-collapse: separate;
+    border-spacing: 10px; /* Espaço entre células */
+}
+
+/* Tabela com bordas colapsadas */
+.collapse-table {
+    border-collapse: collapse;
+}
+
+/* Estilo de tabela moderna */
+.modern-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.modern-table th,
+.modern-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.modern-table th {
+    background-color: #f2f2f2;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-image -->
+            <div class="property-card">
+                <h3>border-image</h3>
+                <div class="card-body">
+                    <p>A propriedade border-image permite usar uma imagem como borda.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>border-image: source slice width outset repeat;</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>source - URL da imagem</li>
+                        <li>slice - Como cortar a imagem (1-4 valores)</li>
+                        <li>width - Largura da borda (opcional)</li>
+                        <li>outset - Extensão para fora (opcional)</li>
+                        <li>repeat - Como repetir (stretch, repeat, round, space)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Borda imagem básica */
+.image-border {
+    border: 10px solid transparent;
+    border-image: url('border.png') 30 round;
+}
+
+/* Borda imagem com slice */
+.detailed-image-border {
+    border: 15px solid transparent;
+    border-image: url('border.png') 30 30 30 30 stretch;
+}
+
+/* Borda imagem com width e outset */
+.complex-image-border {
+    border-image: url('border.png') 20 / 10px / 5px round;
+}
+
+/* Fallback para navegadores antigos */
+.fallback-border {
+    border: 2px solid #000;
+    border-image: url('modern-border.png') 30 fill / 30px / 15px round;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Propriedades Individuais por Lado -->
+            <div class="property-card">
+                <h3>Propriedades Individuais por Lado</h3>
+                <div class="card-body">
+                    <p>border-top, border-right, border-bottom, border-left</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Bordas por lado com shorthand */
+.top-border {
+    border-top: 3px double #ff0000;
+}
+
+.right-border {
+    border-right: 2px dashed #00ff00;
+}
+
+.bottom-border {
+    border-bottom: 1px dotted #0000ff;
+}
+
+.left-border {
+    border-left: 4px groove #ffff00;
+}
+
+/* Uso prático */
+.navigation {
+    border-bottom: 2px solid #3498db;
+}
+
+.sidebar {
+    border-right: 1px solid #ecf0f1;
+}
+
+.alert {
+    border-left: 4px solid #e74c3c;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Propriedades específicas por lado -->
+            <div class="property-card">
+                <h3>Propriedades específicas por lado</h3>
+                <div class="card-body">
+                    <p>Você pode controlar individualmente o estilo, largura e cor de cada lado.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Lados individuais com propriedades específicas */
+.custom-sides {
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: red;
+    
+    border-right-width: 1px;
+    border-right-style: dashed;
+    border-right-color: blue;
+    
+    border-bottom-width: 3px;
+    border-bottom-style: dotted;
+    border-bottom-color: green;
+    
+    border-left-width: 4px;
+    border-left-style: double;
+    border-left-color: yellow;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas propriedades de borda para criar uma página visualmente rica.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML + CSS:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Propriedades de Borda CSS&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .demo-title {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Border Style Examples */
+        .style-demo {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+        }
+
+        .dotted { border: 2px dotted #e74c3c; }
+        .dashed { border: 2px dashed #e67e22; }
+        .solid { border: 2px solid #f1c40f; }
+        .double { border: 4px double #2ecc71; }
+        .groove { border: 4px groove #3498db; }
+        .ridge { border: 4px ridge #9b59b6; }
+        .inset { border: 4px inset #1abc9c; }
+        .outset { border: 4px outset #e74c3c; }
+
+        /* Border Width Examples */
+        .width-demo {
+            border-style: solid;
+            border-color: #3498db;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #ecf0f1;
+        }
+
+        .thin { border-width: thin; }
+        .medium { border-width: medium; }
+        .thick { border-width: thick; }
+        .custom { border-width: 8px; }
+
+        /* Border Radius Examples */
+        .radius-demo {
+            background: #3498db;
+            color: white;
+            padding: 2rem;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        .small-radius { border-radius: 5px; }
+        .medium-radius { border-radius: 15px; }
+        .large-radius { border-radius: 25px; }
+        .circle { border-radius: 50%; width: 100px; height: 100px; }
+        .pill { border-radius: 50px; }
+
+        /* Box Shadow Examples */
+        .shadow-demo {
+            background: white;
+            padding: 2rem;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        .shadow-light { box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .shadow-medium { box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .shadow-heavy { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .shadow-inset { box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+        .shadow-multiple { 
+            box-shadow: 
+                0 2px 5px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.1),
+                0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Border Color Examples */
+        .color-demo {
+            border-style: solid;
+            border-width: 4px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .color-hex { border-color: #e74c3c; }
+        .color-rgb { border-color: rgb(52, 152, 219); }
+        .color-rgba { border-color: rgba(46, 204, 113, 0.7); }
+        .color-hsl { border-color: hsl(318, 100%, 50%); }
+
+        /* Practical Examples */
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border: 2px solid #2980b9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+            border-radius: 25px;
+        }
+
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Table Example */
+        .table-demo {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .separate-table {
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        .collapse-table {
+            border-collapse: collapse;
+        }
+
+        .separate-table th,
+        .separate-table td {
+            border: 2px solid #3498db;
+            padding: 10px;
+            background: white;
+        }
+
+        .collapse-table th,
+        .collapse-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .collapse-table th {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Code Example */
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border-left: 4px solid #3498db;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Propriedades de Borda CSS&lt;/h1&gt;
+        
+        &lt;div class="grid"&gt;
+            &lt;!-- Border Styles --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Border Style&lt;/h2&gt;
+                &lt;div class="style-demo dotted"&gt;Dotted Border&lt;/div&gt;
+                &lt;div class="style-demo dashed"&gt;Dashed Border&lt;/div&gt;
+                &lt;div class="style-demo solid"&gt;Solid Border&lt;/div&gt;
+                &lt;div class="style-demo double"&gt;Double Border&lt;/div&gt;
+                &lt;div class="style-demo groove"&gt;Groove Border&lt;/div&gt;
+                &lt;div class="style-demo ridge"&gt;Ridge Border&lt;/div&gt;
+                &lt;div class="style-demo inset"&gt;Inset Border&lt;/div&gt;
+                &lt;div class="style-demo outset"&gt;Outset Border&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Border Width --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Border Width&lt;/h2&gt;
+                &lt;div class="width-demo thin"&gt;Thin Border&lt;/div&gt;
+                &lt;div class="width-demo medium"&gt;Medium Border&lt;/div&gt;
+                &lt;div class="width-demo thick"&gt;Thick Border&lt;/div&gt;
+                &lt;div class="width-demo custom"&gt;Custom 8px Border&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Border Radius --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Border Radius&lt;/h2&gt;
+                &lt;div class="radius-demo small-radius"&gt;Small Radius (5px)&lt;/div&gt;
+                &lt;div class="radius-demo medium-radius"&gt;Medium Radius (15px)&lt;/div&gt;
+                &lt;div class="radius-demo large-radius"&gt;Large Radius (25px)&lt;/div&gt;
+                &lt;div class="radius-demo circle"&gt;Circle&lt;/div&gt;
+                &lt;div class="radius-demo pill"&gt;Pill Shape&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Box Shadow --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Box Shadow&lt;/h2&gt;
+                &lt;div class="shadow-demo shadow-light"&gt;Light Shadow&lt;/div&gt;
+                &lt;div class="shadow-demo shadow-medium"&gt;Medium Shadow&lt;/div&gt;
+                &lt;div class="shadow-demo shadow-heavy"&gt;Heavy Shadow&lt;/div&gt;
+                &lt;div class="shadow-demo shadow-inset"&gt;Inset Shadow&lt;/div&gt;
+                &lt;div class="shadow-demo shadow-multiple"&gt;Multiple Shadows&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Border Color --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Border Color&lt;/h2&gt;
+                &lt;div class="color-demo color-hex"&gt;Hex Color (#e74c3c)&lt;/div&gt;
+                &lt;div class="color-demo color-rgb"&gt;RGB Color (rgb(52, 152, 219))&lt;/div&gt;
+                &lt;div class="color-demo color-rgba"&gt;RGBA Color (rgba(46, 204, 113, 0.7))&lt;/div&gt;
+                &lt;div class="color-demo color-hsl"&gt;HSL Color (hsl(318, 100%, 50%))&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Practical Examples --&gt;
+            &lt;div class="card"&gt;
+                &lt;h2 class="demo-title"&gt;Exemplos Práticos&lt;/h2&gt;
+                &lt;div style="text-align: center; margin: 1rem 0;"&gt;
+                    &lt;a href="#" class="button btn-primary"&gt;Botão Primário&lt;/a&gt;
+                    &lt;a href="#" class="button btn-outline"&gt;Botão Outline&lt;/a&gt;
+                &lt;/div&gt;
+                
+                &lt;h3 style="margin: 1rem 0 0.5rem 0;"&gt;Tabela com border-collapse: separate&lt;/h3&gt;
+                &lt;table class="table-demo separate-table"&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Nome&lt;/th&gt;
+                        &lt;th&gt;Idade&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;João&lt;/td&gt;
+                        &lt;td&gt;25&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Maria&lt;/td&gt;
+                        &lt;td&gt;30&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+
+                &lt;h3 style="margin: 1rem 0 0.5rem 0;"&gt;Tabela com border-collapse: collapse&lt;/h3&gt;
+                &lt;table class="table-demo collapse-table"&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Nome&lt;/th&gt;
+                        &lt;th&gt;Idade&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;João&lt;/td&gt;
+                        &lt;td&gt;25&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Maria&lt;/td&gt;
+                        &lt;td&gt;30&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Code Examples --&gt;
+        &lt;div class="card"&gt;
+            &lt;h2 class="demo-title"&gt;Exemplos de Código&lt;/h2&gt;
+            
+            &lt;h3&gt;Border Shorthand&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+.element {
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+            &lt;/div&gt;
+
+            &lt;h3&gt;Bordas Individuais&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+.card {
+    border-top: 1px solid #ecf0f1;
+    border-right: 2px dashed #bdc3c7;
+    border-bottom: 3px dotted #95a5a6;
+    border-left: 4px double #7f8c8d;
+}
+            &lt;/div&gt;
+
+            &lt;h3&gt;Sombra Avançada&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+.advanced-shadow {
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.1),
+        0 4px 8px rgba(0,0,0,0.1),
+        0 8px 16px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Exemplo Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Exemplo Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Exemplo Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Exemplo Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

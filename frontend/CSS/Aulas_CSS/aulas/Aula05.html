@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cores em CSS e Exercícios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #ec4899, #f59e0b, #84cc16, #22d3ee, #4f46e5);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ffffff;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (INTRODUÇÃO) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        .content-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .content-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .content-card-body p {
+            margin: 0 0 15px 0;
+        }
+        .content-card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-card-body ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .content-card-body li {
+            margin-bottom: 10px;
+        }
+        
+        .content-card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            color: #1e293b;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* Tabela de Resumo */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 15px 20px;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        /* 5. SEÇÃO DE EXERCÍCIOS */
+        .exercise-header {
+            padding: 40px 60px;
+            background-color: #4f46e5;
+            color: #ffffff;
+            text-align: center;
+        }
+        .exercise-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 6. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        /* Estilos para respostas dos exercícios */
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .resolution-content .code-answer {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #1d4ed8; /* Azul escuro */
+            background-color: #eef2ff;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>🎨 Cores em CSS</h1>
+            <p class="subtitle">Em CSS, as cores podem ser definidas de diferentes maneiras. Você pode usar nomes de cores ou valores numéricos, como RGB, HEX, HSL, RGBA e HSLA.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: 1. Nomes de Cores -->
+            <div class="content-card">
+                <h3>✅ 1. Nomes de Cores</h3>
+                <div class="content-card-body">
+                    <p>Você pode usar nomes pré-definidos, como red, blue, tomato, violet, etc.</p>
+                    <h4>Exemplos:</h4>
+                    <pre><code>&lt;h1 style="background-color:DodgerBlue;"&gt;Hello World&lt;/h1&gt;
+&lt;p style="background-color:Tomato;"&gt;Lorem ipsum...&lt;/p&gt;
+
+&lt;h1 style="color:Tomato;"&gt;Hello World&lt;/h1&gt;
+&lt;p style="color:DodgerBlue;"&gt;Lorem ipsum...&lt;/p&gt;
+&lt;p style="color:MediumSeaGreen;"&gt;Ut wisi enim...&lt;/p&gt;
+
+&lt;h1 style="border:2px solid Tomato;"&gt;Hello World&lt;/h1&gt;
+&lt;h1 style="border:2px solid DodgerBlue;"&gt;Hello World&lt;/h1&gt;
+&lt;h1 style="border:2px solid Violet;"&gt;Hello World&lt;/h1&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: 2. RGB -->
+            <div class="content-card">
+                <h3>🌈 2. RGB</h3>
+                <div class="content-card-body">
+                    <p>Representa as cores vermelho, verde e azul, cada um variando de 0 a 255:</p>
+                    <pre><code>rgb(vermelho, verde, azul)</code></pre>
+                    <h4>Exemplos:</h4>
+                    <pre><code>color: rgb(255, 0, 0);    /* vermelho */
+color: rgb(0, 0, 0);      /* preto */
+color: rgb(255, 255, 255); /* branco */</code></pre>
+
+                    <h4>RGBA → RGB + Transparência</h4>
+                    <pre><code>rgba(vermelho, verde, azul, alfa)</code></pre>
+                    <ul>
+                        <li>alfa = 0.0 → transparente</li>
+                        <li>alfa = 1.0 → opaco</li>
+                    </ul>
+                    <h4>Exemplo:</h4>
+                    <pre><code>background-color: rgba(255, 0, 0, 0.5); /* vermelho semi-transparente */</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: 3. HEX -->
+            <div class="content-card">
+                <h3>💠 3. HEX</h3>
+                <div class="content-card-body">
+                    <p>Usa valores hexadecimais:</p>
+                    <pre><code>#RRGGBB</code></pre>
+                    <h4>Exemplos:</h4>
+                    <pre><code>color: #ff0000; /* vermelho */
+color: #000000; /* preto */
+color: #ffffff; /* branco */</code></pre>
+                    
+                    <h4>Abreviação (3 dígitos)</h4>
+                    <pre><code>#rrggbb → #rgb</code></pre>
+                    <h4>Exemplos:</h4>
+                    <pre><code>body { background-color: #fc9; } /* #ffcc99 */
+h1 { color: #f0f; }  /* #ff00ff */
+p  { color: #b58; }  /* #bb5588 */</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: 4. HSL -->
+            <div class="content-card">
+                <h3>🎚️ 4. HSL</h3>
+                <div class="content-card-body">
+                    <p>HSL significa:</p>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Significa</th>
+                                <th>Faixa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>H</td>
+                                <td>Matiz (Hue)</td>
+                                <td>0–360</td>
+                            </tr>
+                            <tr>
+                                <td>S</td>
+                                <td>Saturação (Saturation)</td>
+                                <td>0%–100%</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>Luminosidade (Lightness)</td>
+                                <td>0%–100%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pre style="margin-top: 20px;"><code>hsl(matiz, saturação, luminosidade)</code></pre>
+                    <h4>Exemplos:</h4>
+                    <pre><code>color: hsl(0, 100%, 50%);    /* vermelho puro */
+color: hsl(120, 100%, 50%); /* verde puro */
+color: hsl(240, 100%, 50%); /* azul puro */</code></pre>
+                    
+                    <h4>HSLA → HSL + Transparência</h4>
+                    <pre><code>hsla(matiz, saturação, luminosidade, alfa)</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Mapa Visual -->
+            <div class="content-card">
+                <h3>🧭 Mapa Visual (Resumo Rápido)</h3>
+                <div class="content-card-body">
+                    <pre><code>        FORMAS DE DEFINIR CORES EM CSS
+                     │
+ ┌─────────────┬──────────────┬──────────────┬─────────────┬───────────────┐
+ │   Nome      │     RGB      │     HEX      │     HSL     │ Versões com   │
+ │ (Tomato)    │ rgb(255,0,0) │ #ff0000      │ hsl(0,100,50)│ Transparência │
+ └─────────────┴──────────────┴──────────────┴─────────────┴───────┬───────┘
+                                                                   │
+                                                            RGBA / HSLA
+                                                 rgba(..., alfa) / hsla(..., alfa)</code></pre>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- CABEÇALHO DOS EXERCÍCIOS -->
+        <header class="exercise-header">
+            <h2>📝 Exercícios</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1: Escreva uma regra CSS para deixar um texto azul</h3>
+                <div class="card-body">
+                    <p>Nome de cor:</p>
+                    <p>RGB:</p>
+                    <p>HEX:</p>
+                    <p>HSL:</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>Nome de cor: <span class="code-answer">color: blue;</span></p>
+                        <p>RGB: <span class="code-answer">color: rgb(0, 0, 255);</span></p>
+                        <p>HEX: <span class="code-answer">color: #0000ff;</span></p>
+                        <p>HSL: <span class="code-answer">color: hsl(240, 100%, 50%);</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2: Converta para HEX</h3>
+                <div class="card-body">
+                    <p>rgb(255, 0, 0) = ?</p>
+                    <p>rgb(0, 0, 0) = ?</p>
+                    <p>rgb(255, 255, 255) = ?</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>rgb(255, 0, 0) = <span class="code-answer">#ff0000</span></p>
+                        <p>rgb(0, 0, 0) = <span class="code-answer">#000000</span></p>
+                        <p>rgb(255, 255, 255) = <span class="code-answer">#ffffff</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3: O que significa o valor 0.3 em rgba(0, 200, 100, 0.3)?</h3>
+                <div class="card-body">
+                    <p>...?</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>Significa o valor do canal <b>alfa (transparência)</b>.</p>
+                        <p>Um valor de <span class="code-answer">0.3</span> indica que a cor terá <b>30% de opacidade</b> (ou 70% de transparência).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4: Complete</h3>
+                <div class="card-body">
+                    <p>hsl(0, ___%, ___%) representa um tom de cinza.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>Para criar um tom de cinza, a <b>Saturação (S)</b> deve ser <b>0%</b>. A Matiz (H) pode ser qualquer valor (inclusive 0) e a Luminosidade (L) define o quão claro ou escuro é o cinza (ex: 50% para cinza médio).</p>
+                        <p>Resposta: hsl(0, <span class="code-answer">0</span>%, <span class="code-answer">50</span>%)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5: Crie uma caixa com</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>fundo verde claro</li>
+                        <li>borda preta</li>
+                        <li>texto branco</li>
+                    </ul>
+                    <p>(Use qualquer formato de cor)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução (Exemplo):</h4>
+                        <p>Usando uma classe <code>.caixa</code>:</p>
+                        <pre><code>.caixa {
+  background-color: lightgreen;
+  border: 1px solid #000000;
+  color: white;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

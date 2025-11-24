@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Adicionar CSS e Exercícios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background-color: #1e293b;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #c7d2fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (INTRODUÇÃO) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        .content-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .content-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .content-card-body p {
+            margin: 0 0 15px 0;
+        }
+        .content-card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-card-body ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .content-card-body li {
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* Callouts */
+        .callout {
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .callout-tip {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            color: #15803d;
+        }
+        .callout-warning {
+            background-color: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            color: #b45309;
+        }
+        .callout-warning code {
+            color: #b45309;
+            background-color: #fef3c7;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        
+        /* Lista de Prioridade */
+        .priority-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .priority-list li {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .priority-list span {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #4f46e5;
+        }
+        .priority-list .priority-desc {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            color: #334155;
+            display: block;
+            font-size: 1rem;
+        }
+
+        /* Tabela de Resumo */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 15px 20px;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        /* 5. SEÇÃO DE EXERCÍCIOS */
+        .exercise-header {
+            padding: 40px 60px;
+            background-color: #4f46e5;
+            color: #ffffff;
+            text-align: center;
+        }
+        .exercise-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .exercise-list {
+            padding: 40px 60px;
+        }
+
+        /* 6. CARD DE EXERCÍCIO */
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .exercise-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: #4f46e5;
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 25px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-footer {
+            padding: 0 25px 25px 25px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #3730a3;
+        }
+        
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Como Adicionar CSS a uma Página HTML</h1>
+            <p class="subtitle">Quando o navegador carrega uma página HTML, ele pode usar CSS para controlar a aparência dos elementos (cores, tamanhos, alinhamentos, margens, etc.).</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+            <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">Existem três maneiras principais de incluir CSS em um documento HTML:</p>
+
+            <!-- Card: 1. CSS Externo -->
+            <div class="content-card">
+                <h3>1. CSS Externo</h3>
+                <div class="content-card-body">
+                    <p>O CSS externo é escrito em um arquivo separado, com extensão .css.</p>
+                    <p><b>Vantagem:</b> permite estilizar várias páginas usando apenas um arquivo.</p>
+                    <p>O arquivo CSS é linkado dentro da tag &lt;head&gt; do HTML.</p>
+                    
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Exemplo de HTML usando CSS externo</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="mystyle.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Exemplo do arquivo mystyle.css</h4>
+                    <pre><code>body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}</code></pre>
+                    <div class="callout callout-warning">
+                        <b>Atenção:</b>
+                        <p style="margin-top: 10px; margin-bottom: 0;">Não coloque espaço entre número e unidade:<br>
+                        ✅ <code>20px</code><br>
+                        ❌ <code>20 px</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: 2. CSS Interno -->
+            <div class="content-card">
+                <h3>2. CSS Interno</h3>
+                <div class="content-card-body">
+                    <p>O CSS interno é usado dentro da própria página, na tag &lt;style&gt; localizada no &lt;head&gt;.</p>
+                    <p>Use quando apenas essa página precisa desse estilo.</p>
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Exemplo</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+body {
+    background-color: linen;
+}
+
+h1 {
+    color: maroon;
+    margin-left: 40px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: 3. CSS Embutido (Inline) -->
+            <div class="content-card">
+                <h3>3. CSS Embutido (Inline)</h3>
+                <div class="content-card-body">
+                    <p>O CSS embutido é inserido diretamente no elemento através do atributo <code>style</code>.</p>
+                    <p>Use apenas quando quiser estilizar um elemento específico de forma pontual.</p>
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Exemplo</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1 style="color:blue; text-align:center;"&gt;This is a heading&lt;/h1&gt;
+&lt;p style="color:red;"&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <div class="callout callout-tip">
+                        <b>Dica:</b> Evite usar CSS embutido em excesso, pois mistura conteúdo com aparência e dificulta a manutenção.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Várias Folhas de Estilo e Ordem de Prioridade (Cascata) -->
+            <div class="content-card">
+                <h3>Várias Folhas de Estilo e Ordem de Prioridade (Cascata)</h3>
+                <div class="content-card-body">
+                    <p>Se um mesmo elemento receber estilos de vários lugares, o navegador seguirá esta ordem de prioridade:</p>
+                    
+                    <ul class="priority-list">
+                        <li>
+                            <span>1️⃣</span>
+                            <div>
+                                Prioridade (da maior para a menor): CSS embutido (inline)
+                                <span class="priority-desc">Tipo de Estilo</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span>2️⃣</span>
+                            <div>
+                                Prioridade (da maior para a menor): CSS interno e CSS externo
+                                <span class="priority-desc">Tipo de Estilo</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span>3️⃣</span>
+                            <div>
+                                Prioridade (da maior para a menor): Estilos padrão do navegador
+                                <span class="priority-desc">Tipo de Estilo</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Exemplo de conflito</h4>
+                    <p>CSS externo:</p>
+                    <pre><code>h1 { color: navy; }</code></pre>
+                    <p>CSS interno:</p>
+                    <pre><code>&lt;style&gt;
+h1 { color: orange; }
+&lt;/style&gt;</code></pre>
+                    <p>Se o CSS interno vier depois do externo, o título ficará laranja.</p>
+                </div>
+            </div>
+
+            <!-- Card: Resumo Rápido -->
+            <div class="content-card">
+                <h3>Resumo Rápido</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Onde fica?</th>
+                                <th>Ideal para?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Externo (.css)</td>
+                                <td>Arquivo separado</td>
+                                <td>Sites com várias páginas</td>
+                            </tr>
+                            <tr>
+                                <td>Interno (&lt;style&gt;)</td>
+                                <td>No &lt;head&gt; do HTML</td>
+                                <td>Estilo exclusivo de uma página</td>
+                            </tr>
+                            <tr>
+                                <td>Embutido (style="")</td>
+                                <td>Dentro da tag HTML</td>
+                                <td>Estilizações pontuais</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Card: MAPA VISUAL -->
+            <div class="content-card">
+                <h3>🌐 MAPA VISUAL – Formas de Adicionar CSS</h3>
+                <div class="content-card-body">
+                    <pre><code>                      COMO ADICIONAR CSS
+                               │
+       ┌───────────────────────┼───────────────────────┐
+       │                       │                       │
+ CSS EXTERNO             CSS INTERNO             CSS EMBUTIDO
+(Arquivo separado)     (Dentro do &lt;style&gt;)     (Dentro do atributo style)
+       │                       │                       │
+ Arquivo .css          Aplicado no &lt;head&gt;        Aplicado diretamente no
+Ex.: mystyle.css       de uma única página     elemento HTML específico
+       │                       │                       │
+       │                       │                       │
+   Vantagens:              Vantagens:              Vantagens:
+- Reutilizável em várias - Fácil de editar em uma   - Útil para ajustes
+  páginas                única página              rápidos
+- Melhor organização     - Não precisa de arquivo  - Específico e direto
+                         externo
+       │                       │                       │
+   Desvantagens:           Desvantagens:           Desvantagens:
+- Depende de arquivo     - Não reutilizável em     - Polui o HTML
+  externo                várias páginas            - Difícil manutenção
+- Pode exigir caminhos   - Pode ficar longo e      - Quebra separação entre
+  relativos              bagunçado                 layout e conteúdo
+</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Resumo de Prioridade (Cascata) -->
+            <div class="content-card">
+                <h3>✅ Resumo de Prioridade (Cascata)</h3>
+                <div class="content-card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Ordem</th>
+                                <th>Tipo</th>
+                                <th>Prioridade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1️⃣</td>
+                                <td>CSS Embutido (style="")</td>
+                                <td>Maior</td>
+                            </tr>
+                            <tr>
+                                <td>2️⃣</td>
+                                <td>CSS Interno / Externo</td>
+                                <td>Média</td>
+                            </tr>
+                            <tr>
+                                <td>3️⃣</td>
+                                <td>Estilo padrão do navegador</td>
+                                <td>Menor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CABEÇALHO DOS EXERCÍCIOS -->
+        <header class="exercise-header">
+            <h2>🧠 EXERCÍCIOS (PRÁTICOS)</h2>
+        </header>
+
+        <!-- SEÇÃO: LISTA DE EXERCÍCIOS -->
+        <section class="exercise-list">
+
+            <!-- Exercício 1 -->
+            <div class="exercise-card">
+                <h3>Exercício 1: CSS Externo</h3>
+                <div class="card-body">
+                    <p>Crie um arquivo HTML chamado index.html e um arquivo CSS chamado style.css.</p>
+                    <p>No style.css, adicione:</p>
+                    <pre><code>body {
+    background-color: lightgray;
+}
+
+p {
+    color: blue;
+}</code></pre>
+                    <p>No index.html, linke o arquivo CSS e mostre um texto.</p>
+                    <p>→ O que acontece quando você muda a cor no CSS externo?</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p>O <b>index.html</b> deve ficar assim:</p>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Exercício 1&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Este parágrafo será azul.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <p>O <b>style.css</b> já foi fornecido no enunciado.</p>
+                        <p><b>→ O que acontece?</b> Ao mudar a cor no <code>style.css</code> (ex: de <code>blue</code> para <code>green</code>) e salvar, o texto no navegador mudará de cor automaticamente (após atualizar a página). Isso prova que o arquivo externo está controlando o estilo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-card">
+                <h3>Exercício 2: CSS Interno</h3>
+                <div class="card-body">
+                    <p>Crie uma página HTML usando apenas CSS interno que:</p>
+                    <ul>
+                        <li>Deixa o fundo da página rosa claro</li>
+                        <li>Colora os títulos &lt;h1&gt; de verde</li>
+                        <li>Alinha os parágrafos ao centro</li>
+                    </ul>
+                    <p>Escreva o código no &lt;style&gt;.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+body {
+    background-color: lightpink; /* Rosa claro */
+}
+
+h1 {
+    color: green; /* Verde */
+}
+
+p {
+    text-align: center; /* Centralizado */
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Este título é verde&lt;/h1&gt;
+&lt;p&gt;Este parágrafo está centralizado.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 3 -->
+            <div class="exercise-card">
+                <h3>Exercício 3: CSS Embutido</h3>
+                <div class="card-body">
+                    <p>Use apenas CSS embutido para:</p>
+                    <ul>
+                        <li>Colocar um &lt;h2&gt; de cor vermelha</li>
+                        <li>Colocar um &lt;p&gt; com tamanho de fonte 20px</li>
+                    </ul>
+                    <p>Exemplo:</p>
+                    <pre><code>&lt;h2 style="color: red;"&gt;Texto exemplo&lt;/h2&gt;
+&lt;p style="font-size: 20px;"&gt;Parágrafo exemplo.&lt;/p&gt;</code></pre>
+                    <p>Agora crie o seu próprio exemplo com outro texto.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução (Exemplo):</h4>
+                        <p>Seu código HTML poderia ser assim:</p>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2 style="color: purple;"&gt;Meu próprio exemplo de título&lt;/h2&gt;
+&lt;p style="font-size: 24px; font-family: Arial;"&gt;Meu próprio parágrafo com 24px.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 4 -->
+            <div class="exercise-card">
+                <h3>Exercício 4: Ordem em Cascata</h3>
+                <div class="card-body">
+                    <p>Observe o código abaixo e responda:<br>Qual será a cor final do texto &lt;h1&gt;?</p>
+                    <pre><code>&lt;head&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;style&gt;
+    h1 { color: purple; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 style="color: orange;"&gt;Título&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução:</h4>
+                        <p><b>Resposta esperada: Laranja, pois CSS embutido tem maior prioridade.</b></p>
+                        <p>O estilo embutido (<code>style="color: orange;"</code>) é o mais específico (Prioridade 1), por isso ele sobrescreve o CSS interno (<code>purple</code>) e qualquer CSS externo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercício 5 -->
+            <div class="exercise-card">
+                <h3>Exercício 5: Desafio</h3>
+                <div class="card-body">
+                    <p>Explique, com suas palavras, quando é melhor usar:</p>
+                    <ul>
+                        <li>CSS externo</li>
+                        <li>CSS interno</li>
+                        <li>CSS embutido</li>
+                    </ul>
+                    <p>(Resposta livre, para fixação.)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução</button>
+                    <div class="resolution-content">
+                        <h4>Resolução (Sugestão):</h4>
+                        <p><b>CSS externo:</b> É a melhor opção na maioria das vezes. Deve ser usado quando você quer que os mesmos estilos (cores, fontes, layout) se apliquem a <b>várias páginas</b> do seu site. Facilita muito a manutenção.</p>
+                        <p><b>CSS interno:</b> Deve ser usado quando os estilos são <b>exclusivos para uma única página</b>. Se você tem uma página de "Contato" que é visualmente muito diferente das outras, pode usar o CSS interno nela.</p>
+                        <p><b>CSS embutido:</b> Deve ser evitado, mas é útil para <b>testes rápidos</b> ou para aplicar um estilo muito específico a <b>um único elemento</b> (ex: um <code>&lt;p&gt;</code> específico em uma página que precisa ser vermelho por um motivo especial).</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Resolução') {
+                    btn.textContent = 'Ver Resolução';
+                }
+            });
+
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

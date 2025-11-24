@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico: JavaScript Básico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #f7df1e 0%, #f0a500 100%);
+            color: #2c2c2c;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+        }
+        
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #ca8a04;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #fef9c3;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #a16207;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fefce8;
+            border-bottom: 1px solid #fef9c3;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-body p strong {
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #ca8a04;
+            white-space: nowrap;
+            background-color: #fefce8;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eab308;
+            color: #422006;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #d97706;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            border: 2px dashed #fef9c3;
+            border-radius: 8px;
+        }
+        
+        /* Aplicando estilos do body do exemplo */
+        .live-demo-area-body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .live-demo-area-body .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area-body button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .live-demo-area-body button:hover {
+            background: #0056b3;
+        }
+        
+        .live-demo-area-body .lista-tarefas {
+            margin: 20px 0;
+        }
+        
+        .live-demo-area-body .tarefa {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .live-demo-area-body .tarefa.concluida {
+            text-decoration: line-through;
+            background-color: #e8f5e8;
+        }
+        
+        .live-demo-area-body input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 70%;
+            margin-right: 10px;
+        }
+        
+        .live-demo-area-body h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>JavaScript Básico - Guia Completo</h1>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: 1. Introdução ao JavaScript -->
+            <div class="property-card">
+                <h3>1. Introdução ao JavaScript</h3>
+                <div class="card-body">
+                    <h4>O que é JavaScript?</h4>
+                    <p>JavaScript é uma linguagem de programação que permite adicionar interatividade e comportamento dinâmico às páginas web.</p>
+                    <p><strong>Características principais:</strong></p>
+                    <ul>
+                        <li>Linguagem de script do lado do cliente</li>
+                        <li>Interpretada pelos navegadores</li>
+                        <li>Multiparadigma (orientada a objetos, funcional, imperativa)</li>
+                        <li>Não precisa de compilação</li>
+                        <li>Padronizada como ECMAScript</li>
+                    </ul>
+                    <h4>Incluindo JavaScript em HTML</h4>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo de Inclusão</button>
+                    <div class="resolution-content">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JavaScript Básico&lt;/title&gt;
+    &lt;!-- JavaScript externo --&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+    
+    &lt;!-- JavaScript interno --&gt;
+    &lt;script&gt;
+        console.log("JavaScript carregado!");
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- JavaScript inline (não recomendado) --&gt;
+    &lt;button onclick="alert('Clique!')"&gt;Clique aqui&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 2. Sintaxe Básica e Estrutura -->
+            <div class="property-card">
+                <h3>2. Sintaxe Básica e Estrutura</h3>
+                <div class="card-body">
+                    <h4>Comentários</h4>
+                    <p>Formas de adicionar comentários ao seu código.</p>
+                    <h4>Pontuação e Regras</h4>
+                    <p>Regras básicas de sintaxe do JavaScript.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Sintaxe</button>
+                    <div class="resolution-content">
+                        <h4>Comentários:</h4>
+                        <pre><code>// Comentário de uma linha
+
+/*
+  Comentário de 
+  múltiplas linhas
+*/
+
+/**
+ * Comentário de documentação
+ * @param {string} nome - Nome do usuário
+ */</code></pre>
+                        <h4>Pontuação e Regras:</h4>
+                        <pre><code>// Ponto e vírgula é opcional mas recomendado
+let nome = "João";
+
+// Case sensitive
+let nome = "João";
+let Nome = "Maria"; // Variáveis diferentes
+
+// Chaves para blocos de código
+if (condicao) {
+    // código
+}
+
+// Parênteses para expressões e funções
+function exemplo() {
+    return (2 + 2) * 3;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 3. Variáveis e Tipos de Dados -->
+            <div class="property-card">
+                <h3>3. Variáveis e Tipos de Dados</h3>
+                <div class="card-body">
+                    <h4>Declaração de Variáveis</h4>
+                    <p>Como declarar variáveis com <code>var</code>, <code>let</code> e <code>const</code>.</p>
+                    <h4>Tipos de Dados Primitivos</h4>
+                    <p>String, Number, Boolean, Undefined, Null, Symbol, BigInt.</p>
+                    <h4>Verificação de Tipos</h4>
+                    <p>Usando o operador <code>typeof</code>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Variáveis</button>
+                    <div class="resolution-content">
+                        <h4>Declaração:</h4>
+                        <pre><code>// var (escopo de função - evite usar)
+var nomeVar = "valor antigo";
+
+// let (escopo de bloco - use para variáveis que mudam)
+let nome = "João";
+nome = "Maria"; // Reatribuição permitida
+
+// const (escopo de bloco - use para constantes)
+const PI = 3.14159;
+// PI = 3.14; // ERRO: Não pode reatribuir</code></pre>
+                        <h4>Tipos Primitivos:</h4>
+                        <pre><code>// String (texto)
+let nome = "João";
+let sobrenome = 'Silva';
+let template = `Olá, ${nome}!`; // Template literal
+
+// Number (números)
+let idade = 25;
+let preco = 19.99;
+let infinito = Infinity;
+let naoNumero = NaN;
+
+// Boolean (verdadeiro/falso)
+let ativo = true;
+let desativado = false;
+
+// Undefined (não definido)
+let indefinido;
+console.log(indefinido); // undefined
+
+// Null (nulo)
+let vazio = null;
+
+// Symbol (ES6 - valor único)
+let id = Symbol("id");
+
+// BigInt (números grandes)
+let numeroGrande = 9007199254740991n;</code></pre>
+                        <h4>Verificação de Tipos:</h4>
+                        <pre><code>typeof "Hello";       // "string"
+typeof 42;            // "number"
+typeof true;          // "boolean"
+typeof undefined;     // "undefined"
+typeof null;          // "object" (peculiaridade do JavaScript)
+typeof Symbol("id");  // "symbol"
+typeof 42n;           // "bigint"</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 4. Operadores -->
+            <div class="property-card">
+                <h3>4. Operadores</h3>
+                <div class="card-body">
+                    <h4>Operadores Aritméticos</h4>
+                    <p>+, -, *, /, %, **, ++, --</p>
+                    <h4>Operadores de Atribuição</h4>
+                    <p>=, +=, -=, *=, /=, %=, **=</p>
+                    <h4>Operadores de Comparação</h4>
+                    <p>==, ===, !=, !==, >, <, >=, <=</p>
+                    <h4>Operadores Lógicos</h4>
+                    <p>&&, ||, !</p>
+                    <h4>Operador Ternário</h4>
+                    <p>condição ? valorSeVerdadeiro : valorSeFalso</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Operadores</button>
+                    <div class="resolution-content">
+                        <h4>Aritméticos:</h4>
+                        <pre><code>let a = 10, b = 3;
+console.log(a + b);   // 13 (adição)
+console.log(a - b);   // 7 (subtração)
+console.log(a * b);   // 30 (multiplicação)
+console.log(a / b);   // 3.333... (divisão)
+console.log(a % b);   // 1 (resto da divisão)
+console.log(a ** b);  // 1000 (exponenciação)
+
+let contador = 5;
+contador++;           // 6 (pós-incremento)
+++contador;           // 7 (pré-incremento)</code></pre>
+                        <h4>Atribuição:</h4>
+                        <pre><code>let x = 10;
+x += 5;   // x = x + 5 → 15
+x -= 3;   // x = x - 3 → 12
+x *= 2;   // x = x * 2 → 24</code></pre>
+                        <h4>Comparação:</h4>
+                        <pre><code>// Igualdade simples (valor)
+5 == "5";     // true
+
+// Igualdade estrita (valor e tipo)
+5 === "5";    // false
+
+// Diferença estrita
+5 !== "5";    // true
+
+// Comparações numéricas
+10 > 5;       // true</code></pre>
+                        <h4>Lógicos:</h4>
+                        <pre><code>// AND (E) - &&
+true && true;     // true
+
+// OR (OU) - ||
+true || false;    // true
+
+// NOT (NÃO) - !
+!true;            // false</code></pre>
+                        <h4>Ternário:</h4>
+                        <pre><code>let idade = 20;
+let status = idade >= 18 ? "Adulto" : "Menor";</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 5. Estruturas de Controle -->
+            <div class="property-card">
+                <h3>5. Estruturas de Controle</h3>
+                <div class="card-body">
+                    <h4>Condicionais</h4>
+                    <p><code>if/else if/else</code> e <code>switch/case</code>.</p>
+                    <h4>Loops</h4>
+                    <p><code>for</code>, <code>while</code>, <code>do...while</code>, <code>for...of</code>, <code>for...in</code>.</p>
+                    <h4>Controle de Loops</h4>
+                    <p><code>break</code> e <code>continue</code>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Estruturas</button>
+                    <div class="resolution-content">
+                        <h4>if/else if/else:</h4>
+                        <pre><code>let hora = 14;
+if (hora < 12) {
+    console.log("Bom dia!");
+} else if (hora < 18) {
+    console.log("Boa tarde!");
+} else {
+    console.log("Boa noite!");
+}</code></pre>
+                        <h4>switch/case:</h4>
+                        <pre><code>let diaSemana = 3;
+let nomeDia;
+switch (diaSemana) {
+    case 1: nomeDia = "Domingo"; break;
+    case 2: nomeDia = "Segunda-feira"; break;
+    case 3: nomeDia = "Terça-feira"; break;
+    default: nomeDia = "Dia inválido";
+}
+console.log(nomeDia); // "Terça-feira"</code></pre>
+                        <h4>for loop:</h4>
+                        <pre><code>for (let i = 0; i < 5; i++) {
+    console.log("Número: " + i);
+}</code></pre>
+                        <h4>while loop:</h4>
+                        <pre><code>let contador = 0;
+while (contador < 5) {
+    console.log("Contador: " + contador);
+    contador++;
+}</code></pre>
+                        <h4>for...of (arrays):</h4>
+                        <pre><code>let frutas = ["maçã", "banana", "laranja"];
+for (let fruta of frutas) {
+    console.log(fruta);
+}</code></pre>
+                        <h4>for...in (objetos):</h4>
+                        <pre><code>let pessoa = {nome: "João", idade: 30};
+for (let propriedade in pessoa) {
+    console.log(propriedade + ": " + pessoa[propriedade]);
+}</code></pre>
+                        <h4>break/continue:</h4>
+                        <pre><code>for (let i = 0; i < 10; i++) {
+    if (i === 5) {
+        break; // para o loop
+    }
+    if (i % 2 === 0) {
+        continue; // pula para a próxima iteração
+    }
+    console.log(i); // 1, 3
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 6. Funções -->
+            <div class="property-card">
+                <h3>6. Funções</h3>
+                <div class="card-body">
+                    <h4>Declaração de Função</h4>
+                    <p>A forma clássica de definir uma função.</p>
+                    <h4>Expressão de Função</h4>
+                    <p>Atribuir uma função anônima a uma variável.</p>
+                    <h4>Arrow Function (ES6)</h4>
+                    <p>Sintaxe mais curta para funções.</p>
+                    <h4>Parâmetros e Argumentos</h4>
+                    <p>Definindo valores padrão e passando dados.</p>
+                    <h4>Escopo de Função</h4>
+                    <p>Entendendo variáveis globais e locais.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Funções</button>
+                    <div class="resolution-content">
+                        <h4>Declaração:</h4>
+                        <pre><code>function cumprimentar(nome) {
+    return "Olá, " + nome + "!";
+}</code></pre>
+                        <h4>Expressão:</h4>
+                        <pre><code>const somar = function(a, b) {
+    return a + b;
+};</code></pre>
+                        <h4>Arrow Function:</h4>
+                        <pre><code>// Forma completa
+const multiplicar = (a, b) => {
+    return a * b;
+};
+
+// Forma simplificada (retorno implícito)
+const dividir = (a, b) => a / b;
+
+// Um parâmetro (parênteses opcionais)
+const quadrado = x => x * x;</code></pre>
+                        <h4>Parâmetros Padrão:</h4>
+                        <pre><code>function calcular(a, b, operacao = "somar") {
+    if (operacao === "somar") return a + b;
+    if (operacao === "subtrair") return a - b;
+    return "Operação inválida";
+}
+console.log(calcular(10, 5)); // 15</code></pre>
+                        <h4>Escopo:</h4>
+                        <pre><code>let global = "Sou global";
+function testeEscopo() {
+    let local = "Sou local";
+    console.log(global); // Acessível
+    console.log(local);  // Acessível
+}
+// console.log(local); // ERRO</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 7. Arrays -->
+            <div class="property-card">
+                <h3>7. Arrays</h3>
+                <div class="card-body">
+                    <h4>Criando e Acessando Arrays</h4>
+                    <p>Como criar e manipular listas de dados.</p>
+                    <h4>Métodos de Arrays Comuns</h4>
+                    <p><code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>indexOf</code>, <code>includes</code>.</p>
+                    <h4>Iteração em Arrays</h4>
+                    <p><code>forEach</code>, <code>map</code>, <code>filter</code>, <code>find</code>, <code>reduce</code>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Arrays</button>
+                    <div class="resolution-content">
+                        <h4>Criando e Acessando:</h4>
+                        <pre><code>let frutas = ["maçã", "banana", "laranja"];
+console.log(frutas[0]); // "maçã"
+frutas[1] = "pera";
+console.log(frutas); // ["maçã", "pera", "laranja"]</code></pre>
+                        <h4>Métodos Comuns:</h4>
+                        <pre><code>let array = [1, 2, 3];
+array.push(4);       // [1, 2, 3, 4]
+let ultimo = array.pop(); // [1, 2, 3], ultimo = 4
+array.unshift(0);    // [0, 1, 2, 3]
+let primeiro = array.shift(); // [1, 2, 3], primeiro = 0
+let indice = array.indexOf(2); // 1
+let existe = array.includes(3); // true</code></pre>
+                        <h4>Iteração:</h4>
+                        <pre><code>let numeros = [1, 2, 3, 4, 5];
+
+// forEach
+numeros.forEach((numero, index) => {
+    console.log(`Índice ${index}: ${numero}`);
+});
+
+// map (cria novo array)
+let quadrados = numeros.map(num => num * num);
+
+// filter (filtra elementos)
+let pares = numeros.filter(num => num % 2 === 0);
+
+// reduce (agrega valores)
+let soma = numeros.reduce((acc, val) => acc + val, 0); // 15</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 8. Objetos -->
+            <div class="property-card">
+                <h3>8. Objetos</h3>
+                <div class="card-body">
+                    <h4>Criando e Acessando Objetos</h4>
+                    <p>Como criar e manipular estruturas de chave-valor.</p>
+                    <h4>Métodos Úteis de Objetos</h4>
+                    <p><code>Object.keys()</code>, <code>Object.values()</code>, <code>Object.entries()</code>, <code>Object.assign()</code>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Objetos</button>
+                    <div class="resolution-content">
+                        <h4>Criando e Acessando:</h4>
+                        <pre><code>let pessoa = {
+    nome: "João",
+    idade: 30,
+    "país de origem": "Brasil",
+    saudacao: function() {
+        return `Olá, meu nome é ${this.nome}`;
+    }
+};
+
+console.log(pessoa.nome); // "João"
+console.log(pessoa["idade"]); // 30
+pessoa.profissao = "Desenvolvedor";
+console.log(pessoa.saudacao()); // "Olá, meu nome é João"</code></pre>
+                        <h4>Métodos Úteis:</h4>
+                        <pre><code>let carro = {
+    marca: "Toyota",
+    modelo: "Corolla",
+    ano: 2022
+};
+
+console.log(Object.keys(carro)); // ["marca", "modelo", "ano"]
+console.log(Object.values(carro)); // ["Toyota", "Corolla", 2022]
+console.log(Object.entries(carro));
+// [["marca", "Toyota"], ["modelo", "Corolla"], ["ano", 2022]]
+
+let carroCopia = Object.assign({}, carro);</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 9. Manipulação do DOM -->
+            <div class="property-card">
+                <h3>9. Manipulação do DOM</h3>
+                <div class="card-body">
+                    <h4>Selecionando Elementos</h4>
+                    <p><code>getElementById</code>, <code>getElementsByClassName</code>, <code>getElementsByTagName</code>, <code>querySelector</code>, <code>querySelectorAll</code>.</p>
+                    <h4>Modificando Conteúdo</h4>
+                    <p><code>innerHTML</code>, <code>textContent</code>, <code>innerText</code>.</p>
+                    <h4>Modificando Atributos e Classes</h4>
+                    <p><code>setAttribute</code>, <code>getAttribute</code>, <code>classList.add</code>, <code>classList.remove</code>, <code>classList.toggle</code>.</p>
+                    <h4>Criando e Removendo Elementos</h4>
+                    <p><code>createElement</code>, <code>appendChild</code>, <code>insertBefore</code>, <code>remove</code>.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de DOM</button>
+                    <div class="resolution-content">
+                        <h4>Selecionando:</h4>
+                        <pre><code>// Por ID
+let elemento = document.getElementById("meuId");
+// Por classe
+let elementos = document.getElementsByClassName("minhaClasse");
+// Por seletor CSS (primeiro elemento)
+let primeiro = document.querySelector(".classe");
+// Por seletor CSS (todos os elementos)
+let todos = document.querySelectorAll("div.classe");</code></pre>
+                        <h4>Modificando Conteúdo:</h4>
+                        <pre><code>let elemento = document.getElementById("meuElemento");
+// innerHTML (permite HTML)
+elemento.innerHTML = "&lt;strong&gt;Texto em negrito&lt;/strong&gt;";
+// textContent (apenas texto)
+elemento.textContent = "Texto simples";</code></pre>
+                        <h4>Classes e Atributos:</h4>
+                        <pre><code>let imagem = document.getElementById("minhaImagem");
+imagem.setAttribute("src", "nova-imagem.jpg");
+imagem.classList.add("nova-classe");
+imagem.classList.remove("classe-antiga");
+imagem.classList.toggle("ativa");</code></pre>
+                        <h4>Criando e Removendo:</h4>
+                        <pre><code>// Criar elemento
+let novoParagrafo = document.createElement("p");
+novoParagrafo.textContent = "Novo parágrafo";
+// Adicionar ao DOM
+document.body.appendChild(novoParagrafo);
+// Remover elemento
+novoParagrafo.remove();</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: 10. Eventos -->
+            <div class="property-card">
+                <h3>10. Eventos</h3>
+                <div class="card-body">
+                    <h4>Adicionando Event Listeners</h4>
+                    <p><code>addEventListener</code> e <code>onclick</code>.</p>
+                    <h4>Eventos Comuns</h4>
+                    <p><code>click</code>, <code>mouseover</code>, <code>keydown</code>, <code>submit</code>, <code>load</code>, <code>resize</code>.</p>
+                    <h4>Prevenindo Comportamento Padrão</h4>
+                    <p>Usando <code>event.preventDefault()</code>.</p>
+                    <h4>Delegação de Eventos</h4>
+                    <p>Otimizando eventos em listas.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos de Eventos</button>
+                    <div class="resolution-content">
+                        <h4>Adicionando Eventos:</h4>
+                        <pre><code>let botao = document.getElementById("meuBotao");
+botao.addEventListener("click", function(event) {
+    console.log("Botão clicado!");
+    console.log(event.target);
+});</code></pre>
+                        <h4>Prevenindo Padrão:</h4>
+                        <pre><code>let link = document.getElementById("meuLink");
+link.addEventListener("click", function(event) {
+    event.preventDefault(); // Impede o link de navegar
+    console.log("Link clicado, mas não navega");
+});
+
+let formulario = document.getElementById("meuFormulario");
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    console.log("Formulário não enviado");
+});</code></pre>
+                        <h4>Delegação de Eventos:</h4>
+                        <pre><code>let lista = document.getElementById("minhaLista");
+lista.addEventListener("click", function(event) {
+    if (event.target.tagName === "LI") {
+        console.log("Item da lista clicado:", event.target.textContent);
+    }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: 11. Exemplo Prático Completo -->
+            <div class="property-card">
+                <h3>11. Exemplo Prático Completo</h3>
+                <div class="card-body live-demo-area">
+                    <div class="live-demo-area-body">
+                        <div class="container">
+                            <h1>Gerenciador de Tarefas</h1>
+                            
+                            <div class="controles">
+                                <input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa...">
+                                <button id="btnAdicionar">Adicionar Tarefa</button>
+                                <button id="btnLimpar">Limpar Concluídas</button>
+                            </div>
+                            
+                            <div class="lista-tarefas" id="listaTarefas">
+                                <!-- Tarefas serão adicionadas aqui dinamicamente -->
+                            </div>
+                            
+                            <div class="estatisticas">
+                                <p>Total: <span id="totalTarefas">0</span> | 
+                                   Concluídas: <span id="tarefasConcluidas">0</span> | 
+                                   Pendentes: <span id="tarefasPendentes">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JavaScript Básico - Exemplo Prático&lt;/title&gt;
+    &lt;!-- CSS está no bloco &lt;style&gt; --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Gerenciador de Tarefas&lt;/h1&gt;
+        
+        &lt;div class="controles"&gt;
+            &lt;input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa..."&gt;
+            &lt;button id="btnAdicionar"&gt;Adicionar Tarefa&lt;/button&gt;
+            &lt;button id="btnLimpar"&gt;Limpar Concluídas&lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="lista-tarefas" id="listaTarefas"&gt;
+            &lt;!-- Tarefas serão adicionadas aqui dinamicamente --&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="estatisticas"&gt;
+            &lt;p&gt;Total: &lt;span id="totalTarefas"&gt;0&lt;/span&gt; | 
+               Concluídas: &lt;span id="tarefasConcluidas"&gt;0&lt;/span&gt; | 
+               Pendentes: &lt;span id="tarefasPendentes"&gt;0&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- JavaScript está no bloco &lt;script&gt; --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.lista-tarefas {
+    margin: 20px 0;
+}
+
+.tarefa {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarefa.concluida {
+    text-decoration: line-through;
+    background-color: #e8f5e8;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 70%;
+    margin-right: 10px;
+}</code></pre>
+                        <h4>JavaScript (embutido no &lt;script&gt;):</h4>
+                        <pre><code>// Array para armazenar as tarefas
+let tarefas = [];
+
+// Elementos do DOM
+const inputTarefa = document.getElementById('novaTarefa');
+const btnAdicionar = document.getElementById('btnAdicionar');
+const btnLimpar = document.getElementById('btnLimpar');
+const listaTarefas = document.getElementById('listaTarefas');
+const totalTarefas = document.getElementById('totalTarefas');
+const tarefasConcluidas = document.getElementById('tarefasConcluidas');
+const tarefasPendentes = document.getElementById('tarefasPendentes');
+
+// Função para adicionar tarefa
+function adicionarTarefa() {
+    const texto = inputTarefa.value.trim();
+    
+    if (texto === '') {
+        alert('Por favor, digite uma tarefa!');
+        return;
+    }
+    
+    // Criar objeto da tarefa
+    const tarefa = {
+        id: Date.now(), // ID único baseado no timestamp
+        texto: texto,
+        concluida: false,
+        dataCriacao: new Date()
+    };
+    
+    // Adicionar ao array
+    tarefas.push(tarefa);
+    
+    // Limpar input
+    inputTarefa.value = '';
+    
+    // Atualizar a interface
+    renderizarTarefas();
+    atualizarEstatisticas();
+}
+
+// Função para renderizar todas as tarefas
+function renderizarTarefas() {
+    // Limpar lista
+    listaTarefas.innerHTML = '';
+    
+    // Adicionar cada tarefa
+    tarefas.forEach(tarefa => {
+        const elemento = document.createElement('div');
+        elemento.className = `tarefa ${tarefa.concluida ? 'concluida' : ''}`;
+        elemento.innerHTML = `
+            &lt;span&gt;${tarefa.texto}&lt;/span&gt;
+            &lt;div&gt;
+                &lt;button onclick="alternarTarefa(${tarefa.id})"&gt;
+                    ${tarefa.concluida ? 'Desfazer' : 'Concluir'}
+                &lt;/button&gt;
+                &lt;button onclick="removerTarefa(${tarefa.id})"&gt;Remover&lt;/button&gt;
+            &lt;/div&gt;
+        `;
+        listaTarefas.appendChild(elemento);
+    });
+}
+
+// Função para alternar estado da tarefa
+function alternarTarefa(id) {
+    tarefas = tarefas.map(tarefa => {
+        if (tarefa.id === id) {
+            return { ...tarefa, concluida: !tarefa.concluida };
+        }
+        return tarefa;
+    });
+    
+    renderizarTarefas();
+    atualizarEstatisticas();
+}
+
+// Função para remover tarefa
+function removerTarefa(id) {
+    tarefas = tarefas.filter(tarefa => tarefa.id !== id);
+    renderizarTarefas();
+    atualizarEstatisticas();
+}
+
+// Função para limpar tarefas concluídas
+function limparConcluidas() {
+    tarefas = tarefas.filter(tarefa => !tarefa.concluida);
+    renderizarTarefas();
+    atualizarEstatisticas();
+}
+
+// Função para atualizar estatísticas
+function atualizarEstatisticas() {
+    const total = tarefas.length;
+    const concluidas = tarefas.filter(t => t.concluida).length;
+    const pendentes = total - concluidas;
+    
+    totalTarefas.textContent = total;
+    tarefasConcluidas.textContent = concluidas;
+    tarefasPendentes.textContent = pendentes;
+}
+
+// Event Listeners
+btnAdicionar.addEventListener('click', adicionarTarefa);
+
+btnLimpar.addEventListener('click', limparConcluidas);
+
+// Adicionar tarefa pressionando Enter
+inputTarefa.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarTarefa();
+    }
+});
+
+// Inicializar estatísticas
+atualizarEstatisticas();
+
+// Adicionar algumas tarefas de exemplo
+tarefas = [
+    { id: 1, texto: 'Aprender JavaScript básico', concluida: true, dataCriacao: new Date() },
+    { id: 2, texto: 'Praticar com exercícios', concluida: false, dataCriacao: new Date() },
+    { id: 3, texto: 'Criar um projeto simples', concluida: false, dataCriacao: new Date() }
+];
+
+renderizarTarefas();
+atualizarEstatisticas();</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+            
+            var isFullExample = button.classList.contains('full-example');
+            var buttonText = isFullExample ? 'Ver Código Completo' : 'Ver Exemplos';
+            var buttonTextHide = isFullExample ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button) {
+                    let text = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                    if(btn.textContent !== text) {
+                         btn.textContent = text;
+                    }
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = buttonTextHide;
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = buttonText;
+            }
+        }
+        
+        // SCRIPT DO EXEMPLO COMPLETO (CARD 11)
+        // Precisamos anexar as funções ao 'window' para que o 'onclick' inline funcione
+        // E precisamos garantir que o DOM do infográfico esteja carregado
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecionar elementos DENTRO do live-demo-area
+            const demoArea = document.querySelector('.live-demo-area-body');
+            
+            if (demoArea) {
+                const inputTarefa = demoArea.querySelector('#novaTarefa');
+                const btnAdicionar = demoArea.querySelector('#btnAdicionar');
+                const btnLimpar = demoArea.querySelector('#btnLimpar');
+                const listaTarefas = demoArea.querySelector('#listaTarefas');
+                const totalTarefas = demoArea.querySelector('#totalTarefas');
+                const tarefasConcluidas = demoArea.querySelector('#tarefasConcluidas');
+                const tarefasPendentes = demoArea.querySelector('#tarefasPendentes');
+
+                let tarefas = [];
+
+                // Função para adicionar tarefa
+                function adicionarTarefa() {
+                    const texto = inputTarefa.value.trim();
+                    if (texto === '') {
+                        alert('Por favor, digite uma tarefa!');
+                        return;
+                    }
+                    const tarefa = {
+                        id: Date.now(),
+                        texto: texto,
+                        concluida: false,
+                        dataCriacao: new Date()
+                    };
+                    tarefas.push(tarefa);
+                    inputTarefa.value = '';
+                    renderizarTarefas();
+                    atualizarEstatisticas();
+                }
+
+                // Função para renderizar todas as tarefas
+                function renderizarTarefas() {
+                    listaTarefas.innerHTML = '';
+                    tarefas.forEach(tarefa => {
+                        const elemento = document.createElement('div');
+                        elemento.className = `tarefa ${tarefa.concluida ? 'concluida' : ''}`;
+                        // Usamos os atributos onclick como no original
+                        elemento.innerHTML = `
+                            <span>${tarefa.texto}</span>
+                            <div>
+                                <button onclick="alternarTarefa(${tarefa.id})">
+                                    ${tarefa.concluida ? 'Desfazer' : 'Concluir'}
+                                </button>
+                                <button onclick="removerTarefa(${tarefa.id})">Remover</button>
+                            </div>
+                        `;
+                        listaTarefas.appendChild(elemento);
+                    });
+                }
+
+                // ANEXAR AO WINDOW para que o onclick inline funcione
+                window.alternarTarefa = function(id) {
+                    tarefas = tarefas.map(tarefa => {
+                        if (tarefa.id === id) {
+                            return { ...tarefa, concluida: !tarefa.concluida };
+                        }
+                        return tarefa;
+                    });
+                    renderizarTarefas();
+                    atualizarEstatisticas();
+                }
+
+                window.removerTarefa = function(id) {
+                    tarefas = tarefas.filter(tarefa => tarefa.id !== id);
+                    renderizarTarefas();
+                    atualizarEstatisticas();
+                }
+
+                // Função para limpar tarefas concluídas
+                function limparConcluidas() {
+                    tarefas = tarefas.filter(tarefa => !tarefa.concluida);
+                    renderizarTarefas();
+                    atualizarEstatisticas();
+                }
+
+                // Função para atualizar estatísticas
+                function atualizarEstatisticas() {
+                    const total = tarefas.length;
+                    const concluidas = tarefas.filter(t => t.concluida).length;
+                    const pendentes = total - concluidas;
+                    
+                    totalTarefas.textContent = total;
+                    tarefasConcluidas.textContent = concluidas;
+                    tarefasPendentes.textContent = pendentes;
+                }
+
+                // Event Listeners
+                btnAdicionar.addEventListener('click', adicionarTarefa);
+                btnLimpar.addEventListener('click', limparConcluidas);
+                inputTarefa.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        adicionarTarefa();
+                    }
+                });
+
+                // Adicionar tarefas de exemplo
+                tarefas = [
+                    { id: 1, texto: 'Aprender JavaScript básico', concluida: true, dataCriacao: new Date() },
+                    { id: 2, texto: 'Praticar com exercícios', concluida: false, dataCriacao: new Date() },
+                    { id: 3, texto: 'Criar um projeto simples', concluida: false, dataCriacao: new Date() }
+                ];
+                
+                renderizarTarefas();
+                atualizarEstatisticas();
+            }
+        });
+    </script>
+
+</body>
+</html>
