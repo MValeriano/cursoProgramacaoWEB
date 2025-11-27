@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Git Básico — Passo a Passo Didático Interativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Azul muito claro */
+            color: #334155; /* Cinza escuro */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .infographic-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        /* Títulos */
+        .main-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #1e3a8a; /* Azul escuro */
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #bfdbfe; /* Linha clara */
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e40af; /* Azul forte */
+            margin-top: 40px;
+            padding-top: 10px;
+            border-left: 5px solid #3b82f6; /* Destaque */
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937; /* Quase preto */
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* Blocos de Conteúdo */
+        .content-block {
+            margin-bottom: 30px;
+            padding: 15px 0;
+        }
+
+        /* Listas */
+        ul {
+            padding-left: 25px;
+            list-style-type: none; /* Remove bullet padrão */
+        }
+        
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        ul li::before {
+            content: '💻'; /* Ícone atraente */
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 16px;
+            top: 0;
+        }
+        
+        .concept-list ul li::before {
+             content: '💡';
+        }
+        
+        .command-list ul li::before {
+             content: '▶️';
+        }
+        
+        .error-list ul li::before {
+             content: '❌';
+        }
+
+        /* Citação / Destaque */
+        blockquote {
+            background-color: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #1e3a8a;
+            border-radius: 4px;
+        }
+        
+        /* Código e Botões */
+        .code-example {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            background-color: #f0f4f8;
+        }
+        
+        .command-block {
+            background-color: #1f2937; /* Cor escura para terminal */
+            color: #e5e7eb;
+            font-family: 'Fira Code', monospace;
+            padding: 15px 20px;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .resolution-section {
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .toggle-button:hover {
+            background-color: #2563eb;
+        }
+
+        .resolution-content {
+            display: none;
+            padding: 15px 0;
+            border-top: 1px dashed #cbd5e1;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .resolution-content p {
+            margin: 5px 0;
+        }
+        
+        .resolution-content .command-block {
+            margin: 10px 0;
+        }
+        
+        .resolution-content strong {
+            color: #1e3a8a;
+        }
+
+        /* Separador Visual */
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(59, 130, 246, 0.5), rgba(0, 0, 0, 0));
+            margin: 50px 0;
+        }
+        
+        /* Estrutura para comandos práticos (B, D, etc.) */
+        .step-container {
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #f0f9ff;
+        }
+        
+        .step-container h3 {
+            color: #0369a1;
+            margin-top: 0;
+            border-bottom: 1px solid #bfdbfe;
+            padding-bottom: 10px;
+        }
+        
+        .step-item {
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para a Cheatsheet */
+        .cheatsheet-container {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <h1 class="main-header">Aula de Git Básico — Passo a Passo Didático</h1>
+
+        <div class="content-block">
+            <h2 id="section1">1) O que é Git? e o que é um repositório?</h2>
+            
+            <ul class="concept-list">
+                <li>O **Git** é uma ferramenta que registra as mudanças feitas em arquivos ao longo do tempo. Pense nela como um histórico automático de tudo que foi alterado em um projeto.</li>
+                <li>**Repositório (repo)** é o local onde esse histórico e os arquivos ficam guardados.
+                    <ul>
+                        <li>**Repositório local:** está no seu computador (uma pasta onde o Git guarda arquivos escondidos).</li>
+                        <li>**Repositório remoto (on-line):** é uma cópia do repositório guardada na internet (ex.: GitHub, GitLab, Bitbucket). Permite compartilhar e sincronizar com outras pessoas.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Repositórios mais usados</h3>
+            <ul class="concept-list">
+                <li>**GitHub** — muito popular, fácil de usar, usado por pessoas e empresas.</li>
+                <li>**GitLab** — parecido com GitHub; tem versões on-line e versões que empresas instalam internamente.</li>
+                <li>**Bitbucket** — também popular; integrado com outras ferramentas (ex.: Jira).</li>
+            </ul>
+            
+            <blockquote>Usar GitHub é suficiente: é grátis para projetos públicos e tem interface amigável.</blockquote>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section2">2) Conceitos-chave</h2>
+            <ul class="concept-list">
+                <li>**Commit:** como “tirar uma foto” do estado atual dos arquivos. Cada commit tem uma mensagem que explica a mudança.</li>
+                <li>**Stage / Staging area:** é como uma bandeja onde você coloca os arquivos que quer incluir na próxima foto (commit).</li>
+                <li>**Branch (ramo):** uma estrada paralela. Permite trabalhar em algo novo (ex.: uma nova funcionalidade) sem mexer na estrada principal.</li>
+                <li>**Merge:** juntar o trabalho da branch de volta para a branch principal.</li>
+                <li>**Remote:** o repositório on-line (por exemplo, `origin` é o nome comum dado ao repositório remoto principal).</li>
+                <li>**Clone:** criar uma cópia local de um repositório remoto.</li>
+                <li>**Pull:** pegar alterações do remoto e aplicar na sua cópia local.</li>
+                <li>**Push:** enviar suas alterações locais para o remoto.</li>
+            </ul>
+        </div>
+        
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section3">3) Principais comandos</h2>
+            <ul class="command-list">
+                <li>`git init` — cria um repositório Git novo na pasta atual.</li>
+                <li>`git clone <url>` — copia um repositório remoto para o seu computador.</li>
+                <li>`git status` — mostra o estado atual (o que foi modificado, o que está na stage, etc.).</li>
+                <li>`git add <arquivo>` — coloca o arquivo na stage (prepara para commit). `git add .` adiciona tudo.</li>
+                <li>`git commit -m "Mensagem"` — cria um commit com as mudanças staged.</li>
+                <li>`git push origin main` — envia commits para o repositório remoto (substitua `main` pela branch).</li>
+                <li>`git pull` — puxa (baixa) mudanças do remoto e aplica aqui.</li>
+                <li>`git branch` — lista branches locais. `git branch nome-da-branch` cria uma nova.</li>
+                <li>`git checkout nome-da-branch` — muda para a branch especificada. (Hoje se usa `git switch` também.)</li>
+                <li>`git merge nome-da-branch` — junta a branch indicada na branch atual.</li>
+                <li>`git log` — mostra o histórico de commits.</li>
+                <li>`git remote add origin <url>` — associa um repositório remoto à sua pasta local com o nome `origin`.</li>
+                <li>`.gitignore` — arquivo onde você lista arquivos/pastas que o Git deve ignorar.</li>
+            </ul>
+        </div>
+        
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section4">4) Passo-a-passo prático: criar projeto local e enviar para um repositório on-line</h2>
+            <p> - Windows (com *Git Bash*), Mac ou Linux — os comandos são os mesmos.</p>
+
+            <div class="step-container">
+                <h3>A) Preparar o ambiente</h3>
+                <ol>
+                    <li>Instalar Git: ir ao site do Git e instalar.
+                        <p>- Após instalar, abrir o Terminal.</p>
+                    </li>
+                    <li class="step-item">Configurar seu nome e e-mail (apenas da primeira vez):
+                        <div class="code-example">
+                            <div class="command-block">
+                                <p>Em casa digitar :</p>
+                                <pre><code>git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@exemplo.com"</code></pre>
+                                <p>Porque isso grava o nome e o e-mail para todos os usuários que usarem aquela máquina depois.</p>
+
+                                <p>Aqui digitaremos :</p>
+                                <pre><code>git config user.name "Seu Nome"
+git config user.email "seu.email@exemplo.com"</code></pre>
+                                <p>Assim ninguém que acesse o git depois nesta máquina verá seus dados.</p>
+                            </div>
+                        </div>
+
+                        <button class="toggle-button" onclick="toggleResolution(this)">Ver Explicações e Comandos Úteis</button>
+                        <div class="resolution-content">
+                            <p><strong>Explicação:</strong></p>
+                            <ul style="list-style-type: disc;">
+                                <li>o Git registra quem fez cada commit.</li>
+                                <li>Esses comandos dizem ao Git: “Quando você fizer commits nesta pasta, use este nome e este e-mail.”</li>
+                                <li>Nada será salvo como configuração global da máquina.</li>
+                                <li>Se outro aluno abrir outro projeto diferente, precisará configurar novamente — o que é bom, pois evita misturar identidades.</li>
+                            </ul>
+                            
+                            <p><strong>Como verificar a configuração local:</strong></p>
+                            <div class="command-block">
+                                <pre><code>git config --list</code></pre>
+                                <p>Ou somente as informações de usuário:</p>
+                                <pre><code>git config user.name
+git config user.email</code></pre>
+                            </div>
+
+                            <p><strong>Como apagar a configuração local (se precisar):</strong></p>
+                            <div class="command-block">
+                                <pre><code>git config --unset user.name
+git config --unset user.email</code></pre>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="step-container">
+                <h3>B) Criar um projeto local e inicializar o Git</h3>
+                <div class="step-item">
+                    <p>1. Criar uma pasta para o projeto e entrar nela:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>mkdir meu-projeto
+cd meu-projeto</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>2. Inicializar o Git (cria a pasta oculta `.git`):</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git init</code></pre>
+                        </div>
+                    </div>
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Resultado Esperado</button>
+                    <div class="resolution-content">
+                        <p><strong>Resultado esperado:</strong> Git informa que um repositório foi criado. Agora sua pasta é um repositório local.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>3. Criar um arquivo simples (por exemplo `README.md`) e escrever algo:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>echo "# Meu Projeto" > README.md</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>4. Verificar o estado:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git status</code></pre>
+                        </div>
+                    </div>
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Explicação</button>
+                    <div class="resolution-content">
+                        <p><strong>Explicação:</strong> mostrará que `README.md` é um arquivo novo não rastreado.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>5. Adicionar o arquivo à stage:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git add README.md</code></pre>
+                            <p>ou adicionar tudo:</p>
+                            <pre><code>git add .</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>6. Fazer o primeiro commit:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git commit -m "Primeiro commit: adiciona README"</code></pre>
+                        </div>
+                    </div>
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Explicação</button>
+                    <div class="resolution-content">
+                        <p><strong>Explicação:</strong> agora há uma “foto” do projeto.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-container">
+                <h3>C) Criar o repositório remoto (no GitHub/GitLab/Bitbucket)</h3>
+                <p>(Explique em sala mostrando a interface do site; passos gerais:)</p>
+                <ol>
+                    <li>Entrar no site github.com e fazer login.</li>
+                    <li>Clicar em “New repository” / “Criar repositório”.</li>
+                    <li>Dar um nome (ex.: `landing_page`) e clicar em criar — normalmente escolher sem criar README (já temos um local).</li>
+                    <li>O site vai mostrar instruções com uma URL (algo como `https://github.com/usuario/landing_page.git`).</li>
+                </ol>
+                <p><blockquote>Observação: se o repositório está privado, talvez precise autenticação (senha, token). Hoje é comum usar token em vez de senha para enviar (push).</blockquote></p>
+            </div>
+
+            <div class="step-container">
+                <h3>D) Conectar o repositório local ao remoto e enviar (push)</h3>
+                
+                <div class="step-item">
+                    <p>1. Associar o remoto com nome `origin` (substitua a URL):</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git remote add origin https://github.com/usuario/landing_page.git</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>2. Enviar sua branch principal (ex.: `main`) para o remoto:</p>
+                    <p>Se sua branch local se chama `master`, mude o nome ou use `master`. Hoje o padrão costuma ser `main`. Para renomear:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git branch -M main</code></pre>
+                        </div>
+                    </div>
+
+                    <p>Agora enviar:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git push -u origin main</code></pre>
+                        </div>
+                    </div>
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Explicação</button>
+                    <div class="resolution-content">
+                        <p><strong>Explicação:</strong> `-u` configura `origin/main` como destino padrão para futuros `git push`. Depois disso, no site você verá os arquivos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section5">5) Clonar um repositório (pegar do remoto para o seu computador)</h2>
+            <p>Se alguém já tem o projeto no GitHub e você quer uma cópia:</p>
+            <div class="code-example">
+                <div class="command-block">
+                    <pre><code>git clone https://github.com/usuario/landing_page.git</code></pre>
+                </div>
+            </div>
+            <button class="toggle-button" onclick="toggleResolution(this)">Ver Próxima Etapa</button>
+            <div class="resolution-content">
+                <p>Isso cria a pasta `landing_page` com todo o histórico. Depois:</p>
+                <div class="command-block">
+                    <pre><code>cd meu-projeto</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section6">6) Fluxo de trabalho diário (simples e seguro)</h2>
+            <ol class="command-list">
+                <li>`git pull` — atualizar sua cópia local com as mudanças do remoto.</li>
+                <li>Fazer alterações nos arquivos (editar).</li>
+                <li>`git status` — ver o que mudou.</li>
+                <li>`git add <arquivo>` ou `git add .` ou `git add *` — preparar as mudanças.</li>
+                <li>`git commit -m "mensagem explicando as mudanças"` — salvar localmente.</li>
+                <li>`git push` — enviar para o remoto.</li>
+            </ol>
+            <p style="font-style: italic; color: #1e3a8a;">sempre puxe (pull) antes de começar (para evitar conflitos), commit localmente, e envie quando terminar.</p>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section7">7) Branches (o que são e como usar)</h2>
+            
+            <h3>O que é uma branch?</h3>
+            <ul class="concept-list">
+                <li>É uma linha separada de trabalho. A branch principal costuma se chamar `main` (ou `master`).</li>
+                <li>Imagine: a branch `main` é a versão pública; você cria uma branch `nova-funcionalidade` para trabalhar sem estragar o que está em `main`.</li>
+            </ul>
+
+            <h3>Como criar, usar e juntar uma branch</h3>
+            <div class="step-container">
+                <div class="step-item">
+                    <p>1. Criar uma branch:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git branch nova-funcionalidade</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>2. Mudar para a branch (começar a trabalhar nela):</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git checkout nova-funcionalidade (ou `git switch nova-funcionalidade` — comando mais novo e direto)</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>3. Fazer mudanças, `git add`, `git commit` normalmente.</p>
+                </div>
+
+                <div class="step-item">
+                    <p>4. Voltar para `main`:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git checkout main</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <p>5. Juntar (merge) a branch na `main`:</p>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git merge nova-funcionalidade</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <p>6. Enviar (`push`) a branch ou `main` para o remoto:</p>
+                    <ul style="list-style-type: disc;">
+                        <li>Para enviar a nova branch para o remoto:
+                            <div class="command-block">
+                                <pre><code>git push -u origin nova-funcionalidade</code></pre>
+                            </div>
+                        </li>
+                        <li>Para enviar a `main` depois do merge:
+                            <div class="command-block">
+                                <pre><code>git push origin main</code></pre>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-item">
+                    <h3>Delete branch local quando não for mais necessária:</h3>
+                    <div class="code-example">
+                        <div class="command-block">
+                            <pre><code>git branch -d nova-funcionalidade</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section8">8) Conflitos (quando duas pessoas mudam a mesma linha)</h2>
+            <ul class="concept-list">
+                <li>Acontece ao fazer `git merge` ou `git pull` quando existe alteração conflitante.</li>
+                <li>O Git marca o arquivo com sinais `<<<<<<<`, `=======`, `>>>>>>>`.</li>
+            </ul>
+            
+            <h3>Resolução simples:</h3>
+            <ol>
+                <li>Abra o arquivo, leia as duas versões e escolha o que manter (ou junte manualmente).</li>
+                <li>Salve o arquivo.</li>
+                <li>`git add <arquivo>` e `git commit` (o commit conclui a resolução do conflito).</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section9">9) Arquivo `.gitignore`</h2>
+            <p>Coloque nomes de arquivos/pastas que não devem entrar no repositório (ex.: arquivos de configuração pessoal, pastas `node_modules`, arquivos de build).</p>
+            
+            <h3>Exemplo simples de .gitignore:</h3>
+            <div class="code-example">
+                <div class="command-block">
+                    <pre><code># arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# node
+node_modules/
+
+# logs
+*.log
+
+# IDEs
+.vscode/
+.idea/</code></pre>
+                </div>
+            </div>
+            <p>Crie esse arquivo na raiz do seu projeto antes de commitar as coisas que não quer subir.</p>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section10">10) Comandos úteis de recuperação / inspeção</h2>
+            <ul class="command-list">
+                <li>`git log --oneline` — ver histórico resumido.</li>
+                <li>`git diff` — ver diferenças não staged.</li>
+                <li>`git checkout -- arquivo` — desfazer mudanças em um arquivo (irá substituí-lo pela versão do último commit).</li>
+                <li>`git reset HEAD arquivo` — tirar um arquivo da stage antes do commit (não apaga as mudanças locais).</li>
+                <li>`git restore --staged arquivo` — alternativa moderna para tirar da stage.</li>
+            </ul>
+            <p style="color: #ef4444; font-weight: 500;">Atenção: alguns comandos podem perder trabalho se usados sem cuidado. Sempre explique em aula e demonstre com exemplos.</p>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section11">11) Exercício prático</h2>
+            <p>Objetivo: cada aluno cria um repositório local, envia para o GitHub, cria uma branch, faz mudanças e faz merge.</p>
+            <div class="step-container" style="background-color: #fef2f2; border-color: #fecaca;">
+                <ol style="color: #b91c1c;">
+                    <li>Criar pasta `exercicio-git` e `git init`.</li>
+                    <li>Criar `README.md` e adicionar um parágrafo com nome e data.</li>
+                    <li>`git add .` → `git commit -m "Cria README"`.</li>
+                    <li>Criar repositório no GitHub (nome `exercicio-git`) e conectar remoto (`git remote add origin ...`).</li>
+                    <li>`git push -u origin main`.</li>
+                    <li>Criar branch `minha-alteracao`: `git checkout -b minha-alteracao`.</li>
+                    <li>Editar o `README.md` (adicionar linha “Este é meu primeiro exercício de Git”).</li>
+                    <li>`git add README.md` → `git commit -m "Adiciona frase de exercício"`.</li>
+                    <li>`git push -u origin minha-alteracao`.</li>
+                    <li>No GitHub, abrir um *Pull Request* (ou fazer merge local: voltar `git checkout main` e `git merge minha-alteracao` e `git push`).</li>
+                    <li>Apagar a branch local e remota quando concluído (opcional).</li>
+                </ol>
+            </div>
+            <button class="toggle-button" onclick="toggleResolution(this)">Ver Resolução/Sequência de Comandos</button>
+            <div class="resolution-content">
+                <p>Aqui está a sequência completa de comandos para este exercício (substitua URL e branch se necessário):</p>
+                <div class="command-block">
+                    <pre><code>mkdir exercicio-git
+cd exercicio-git
+git init
+echo "Meu Nome e Data: 2024-01-01" > README.md
+git add .
+git commit -m "Cria README"
+git remote add origin &lt;URL DO SEU REPO NO GITHUB&gt;
+git push -u origin main
+git checkout -b minha-alteracao
+echo "Este é meu primeiro exercício de Git" >> README.md
+git add README.md
+git commit -m "Adiciona frase de exercício"
+git push -u origin minha-alteracao
+
+# PARA FAZER O MERGE LOCALMENTE (Passo 10)
+git checkout main
+git merge minha-alteracao
+git push origin main
+
+# PARA DELETAR (Passo 11)
+git branch -d minha-alteracao
+# Opcional: git push origin --delete minha-alteracao</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section12">12) Erros comuns e como resolver</h2>
+            <ul class="error-list">
+                <li>**Erro: permission denied (publickey)**
+                    <ul>
+                        <li>Significa problema de autenticação SSH. Solução simples: usar HTTPS com token, ou configurar chave SSH no GitHub.</li>
+                    </ul>
+                </li>
+                <li>**Erro: failed to push some refs**
+                    <ul>
+                        <li>Normalmente porque remoto tem commits novos. Solução: `git pull --rebase` ou `git pull` e resolver conflitos, depois `git push`.</li>
+                    </ul>
+                </li>
+                <li>**Merge conflicts** — explicar como editar o arquivo e commitar.</li>
+                <li>**Arquivos que aparecem no git status mas deveriam ser ignorados** — ver `.gitignore`; se já foram adicionados antes, remover com `git rm --cached arquivo`.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section13">13) Pequeno glossário final</h2>
+            <ul class="concept-list">
+                <li>**Commit:** salvar um ponto no tempo do seu projeto.</li>
+                <li>**Push:** enviar seus commits para a internet (repositório remoto).</li>
+                <li>**Pull:** trazer as mudanças do remoto para você.</li>
+                <li>**Clone:** copiar um repositório da internet para o computador.</li>
+                <li>**Branch:** “linha paralela” de trabalho.</li>
+                <li>**Merge:** juntar duas linhas de trabalho.</li>
+                <li>**Stage (add):** preparar arquivos para o commit.</li>
+                <li>**Remote (origin):** repositório on-line associado.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="content-block">
+            <h2 id="section14">14) Folha de referência rápida (cheat-sheet)</h2>
+            <div class="cheatsheet-container">
+                <pre><code># inicializar repo local
+git init
+
+# clonar repo remoto
+git clone &lt;url&gt;
+
+# ver status
+git status
+
+# adicionar / preparar
+git add arquivo.txt
+git add .
+
+# gravar commit
+git commit -m "mensagem clara e curta"
+
+# ver histórico
+git log --oneline
+
+# enviar para remoto
+git push origin main
+
+# trazer do remoto
+git pull
+
+# criar e mudar para branch
+git checkout -b minha-branch
+# mudar para branch existente
+git checkout main
+
+# unir branch na branch atual
+git merge minha-branch
+
+# ver branches
+git branch
+
+# remover branch local
+git branch -d minha-branch
+</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleResolution(button) {
+            var currentResolution = button.nextElementSibling;
+            
+            // Alterna a exibição
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Explicações/Resolução';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Explicações/Resolução';
+            }
+        }
+    </script>
+
+</body>
+</html>

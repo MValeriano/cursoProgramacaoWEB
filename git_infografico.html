@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infográfico - Git Básico</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6f9;
+      padding: 20px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 900px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 6px solid #3498db;
+      transition: transform .2s;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+    }
+
+    code {
+      background: #ecf0f1;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #1e1e1e;
+      color: #ecf0f1;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .exercicio-box {
+      background: #fdfdfd;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .resolucao-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #3498db;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background .2s;
+    }
+
+    .resolucao-btn:hover {
+      background: #2177b8;
+    }
+
+    .resolucao-conteudo {
+      display: none;
+      margin-top: 15px;
+      background: #eef7ff;
+      border-left: 4px solid #3498db;
+      padding: 15px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📘 Aula Introdutória de Git</h1>
+<p style="text-align:center;">Um guia simples, visual e didático</p>
+
+<div class="card">
+  <h2>O que é um repositório?</h2>
+  <p>É como uma "pasta inteligente" onde o Git acompanha tudo o que muda. Assim você pode voltar no tempo, comparar versões e trabalhar com segurança.</p>
+
+  <h3>Tipos mais usados</h3>
+  <ul>
+    <li><strong>GitHub</strong> – mais popular do mundo</li>
+    <li><strong>GitLab</strong> – muito usado em empresas</li>
+    <li><strong>Bitbucket</strong> – integração com Jira</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Principais comandos Git</h2>
+
+  <p><strong>Iniciar um repositório local</strong></p>
+  <pre>git init</pre>
+
+  <p><strong>Clonar um repositório online</strong></p>
+  <pre>git clone URL_DO_REPOSITORIO</pre>
+
+  <p><strong>Enviar alterações para o repositório online</strong></p>
+  <pre>git push</pre>
+
+  <p><strong>Baixar atualizações do repositório online</strong></p>
+  <pre>git pull</pre>
+</div>
+
+<div class="card">
+  <h2>Configurando o Git em máquinas públicas</h2>
+  <p>Configuração deve ser <strong>apenas no repositório</strong>, nunca global.</p>
+
+  <pre>git config user.name "Seu Nome"
+git config user.email "seu.email@exemplo.com"</pre>
+</div>
+
+<div class="card">
+  <h2>O que é uma Branch?</h2>
+  <p>É como criar uma cópia paralela do seu projeto para trabalhar sem mexer na versão principal.</p>
+
+  <p><strong>Criar uma branch:</strong></p>
+  <pre>git branch nome-da-branch</pre>
+
+  <p><strong>Trocar de branch:</strong></p>
+  <pre>git checkout nome-da-branch</pre>
+</div>
+
+<div class="card exercicio-box">
+  <h2>Exercício Prático</h2>
+  <p>Crie um repositório local, adicione arquivos e envie para um repositório online.</p>
+
+  <a class="resolucao-btn" onclick="toggleResolucao()">Ver resolução</a>
+
+  <div id="resolucao" class="resolucao-conteudo">
+    <h3>Passo a Passo</h3>
+    <pre>
+mkdir meu-projeto
+git init
+git config user.name "Seu Nome"
+git config user.email "email@exemplo.com"
+
+echo "Hello Git" > readme.txt
+git add .
+git commit -m "primeiro commit"
+
+git remote add origin URL_DO_REPOSITORIO
+
+git push -u origin main
+    </pre>
+  </div>
+</div>
+
+<script>
+function toggleResolucao() {
+  const box = document.getElementById("resolucao");
+  box.style.display = box.style.display === "none" || box.style.display === "" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
