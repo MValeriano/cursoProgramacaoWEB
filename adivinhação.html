@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação - Aula JavaScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-box {
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .game-area {
+            margin-bottom: 30px;
+        }
+
+        .number-display {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff6b6b;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #e74c3c;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #e74c3c;
+        }
+
+        #resetBtn {
+            background-color: #4ecdc4;
+            box-shadow: 0 4px 0 #2bbbad;
+        }
+
+        #resetBtn:hover {
+            background-color: #26c6da;
+        }
+
+        #resetBtn:active {
+            box-shadow: 0 2px 0 #2bbbad;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .history {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .history h3 {
+            margin-bottom: 10px;
+        }
+
+        #attemptsList {
+            list-style-type: none;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        #attemptsList li {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .bounce {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            color: #333;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Adivinhe o Número! 🎮</h1>
+        
+        <div class="game-info">
+            <div class="info-box">
+                <div>Tentativas</div>
+                <div class="info-value" id="attempts">0</div>
+            </div>
+            <div class="info-box">
+                <div>Recorde</div>
+                <div class="info-value" id="record">-</div>
+            </div>
+            <div class="info-box">
+                <div>Dica</div>
+                <div class="info-value" id="hint">?</div>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div class="number-display" id="numberDisplay">?</div>
+            
+            <div class="controls">
+                <input type="number" id="guessInput" placeholder="Digite um número (1-100)" min="1" max="100">
+                <button id="guessBtn">Adivinhar</button>
+            </div>
+            
+            <button id="resetBtn">Novo Jogo</button>
+            
+            <div class="message" id="message">
+                Tente adivinhar o número entre 1 e 100!
+            </div>
+        </div>
+        
+        <div class="history">
+            <h3>Suas Tentativas:</h3>
+            <ul id="attemptsList"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Selecionando elementos do DOM
+        const guessInput = document.getElementById('guessInput');
+        const guessBtn = document.getElementById('guessBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const numberDisplay = document.getElementById('numberDisplay');
+        const message = document.getElementById('message');
+        const attemptsElement = document.getElementById('attempts');
+        const recordElement = document.getElementById('record');
+        const hintElement = document.getElementById('hint');
+        const attemptsList = document.getElementById('attemptsList');
+
+        // Variáveis do jogo
+        let secretNumber;
+        let attempts;
+        let record = localStorage.getItem('record') || '-';
+        let gameActive;
+
+        // Inicializar o jogo
+        function initGame() {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            gameActive = true;
+            
+            // Atualizar a interface
+            numberDisplay.textContent = '?';
+            numberDisplay.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            message.textContent = 'Tente adivinhar o número entre 1 e 100!';
+            message.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            attemptsElement.textContent = attempts;
+            recordElement.textContent = record;
+            hintElement.textContent = '?';
+            
+            // Limpar a lista de tentativas
+            attemptsList.innerHTML = '';
+            
+            // Adicionar animação ao display
+            numberDisplay.classList.add('pulse');
+            setTimeout(() => {
+                numberDisplay.classList.remove('pulse');
+            }, 500);
+            
+            // Focar no input
+            guessInput.focus();
+        }
+
+        // Verificar o palpite do jogador
+        function checkGuess() {
+            if (!gameActive) return;
+            
+            const guess = parseInt(guessInput.value);
+            
+            // Validar a entrada
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.textContent = 'Por favor, digite um número entre 1 e 100!';
+                message.style.backgroundColor = 'rgba(255, 193, 7, 0.7)';
+                guessInput.value = '';
+                guessInput.focus();
+                
+                // Adicionar animação de shake
+                message.classList.add('shake');
+                setTimeout(() => {
+                    message.classList.remove('shake');
+                }, 500);
+                return;
+            }
+            
+            // Incrementar tentativas
+            attempts++;
+            attemptsElement.textContent = attempts;
+            
+            // Adicionar à lista de tentativas
+            const listItem = document.createElement('li');
+            listItem.textContent = `Tentativa ${attempts}: ${guess}`;
+            
+            // Adicionar animação ao item da lista
+            listItem.classList.add('pulse');
+            setTimeout(() => {
+                listItem.classList.remove('pulse');
+            }, 300);
+            
+            attemptsList.appendChild(listItem);
+            attemptsList.scrollTop = attemptsList.scrollHeight;
+            
+            // Verificar o palpite
+            if (guess === secretNumber) {
+                // Jogador acertou!
+                gameActive = false;
+                numberDisplay.textContent = secretNumber;
+                numberDisplay.style.backgroundColor = 'rgba(76, 175, 80, 0.7)';
+                message.textContent = `🎉 Parabéns! Você acertou em ${attempts} tentativas! 🎉`;
+                message.style.backgroundColor = 'rgba(76, 175, 80, 0.7)';
+                
+                // Atualizar recorde
+                if (record === '-' || attempts < parseInt(record)) {
+                    record = attempts;
+                    recordElement.textContent = record;
+                    localStorage.setItem('record', record);
+                    message.textContent += ' 🏆 Novo recorde!';
+                }
+                
+                // Adicionar animação de celebração
+                numberDisplay.classList.add('bounce');
+                setTimeout(() => {
+                    numberDisplay.classList.remove('bounce');
+                }, 1000);
+                
+            } else {
+                // Jogador errou - dar dica
+                const difference = Math.abs(secretNumber - guess);
+                let hint = '';
+                
+                if (difference <= 5) {
+                    hint = '🔥 Muito quente!';
+                    message.style.backgroundColor = 'rgba(244, 67, 54, 0.7)';
+                } else if (difference <= 10) {
+                    hint = '♨️ Quente!';
+                    message.style.backgroundColor = 'rgba(255, 152, 0, 0.7)';
+                } else if (difference <= 20) {
+                    hint = '🌤️ Morno';
+                    message.style.backgroundColor = 'rgba(255, 193, 7, 0.7)';
+                } else if (difference <= 30) {
+                    hint = '💨 Frio';
+                    message.style.backgroundColor = 'rgba(33, 150, 243, 0.7)';
+                } else {
+                    hint = '🧊 Congelando!';
+                    message.style.backgroundColor = 'rgba(63, 81, 181, 0.7)';
+                }
+                
+                if (guess < secretNumber) {
+                    message.textContent = `${hint} Tente um número MAIOR!`;
+                } else {
+                    message.textContent = `${hint} Tente um número MENOR!`;
+                }
+                
+                // Atualizar a dica visual
+                hintElement.textContent = guess < secretNumber ? '↑' : '↓';
+                
+                // Adicionar animação ao hint
+                hintElement.classList.add('pulse');
+                setTimeout(() => {
+                    hintElement.classList.remove('pulse');
+                }, 300);
+            }
+            
+            // Limpar o input e focar nele novamente
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        // Adicionar event listeners
+        guessBtn.addEventListener('click', checkGuess);
+        
+        guessInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                checkGuess();
+            }
+        });
+        
+        resetBtn.addEventListener('click', initGame);
+        
+        // Inicializar o jogo quando a página carregar
+        window.addEventListener('load', () => {
+            initGame();
+            
+            // Demonstrar manipulação de classes
+            setTimeout(() => {
+                message.innerHTML = 'Use o <span class="highlight">Enter</span> para enviar seu palpite mais rápido!';
+            }, 3000);
+        });
+
+        // Evento de redimensionamento da janela (exemplo de outro evento)
+        window.addEventListener('resize', () => {
+            console.log(`Tamanho da tela: ${window.innerWidth} x ${window.innerHeight}`);
+        });
+    </script>
+</body>
+</html>
