@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../database/Connection.php';
 abstract class Model{
 
     protected $table;
-    protected $primary_key;
+    protected $primary_key = "id";
 
     protected $db;
 
@@ -38,10 +38,7 @@ abstract class Model{
     // READ ALL - Obter todos os registros
     public function readAll()
     {
-        $sql = "SELECT * FROM {$this->table}";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        
+        $stmt = $this->db->query("SELECT * FROM {$this->table}");
         return $stmt->fetchAll();
     }
 

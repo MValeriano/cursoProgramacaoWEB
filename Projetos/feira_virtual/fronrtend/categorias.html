@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Categorias</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #aaa;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+        }
+        button {
+            padding: 6px 12px;
+            margin-right: 6px;
+            cursor: pointer;
+        }
+        .btn-editar {
+            background: orange;
+            color: white;
+        }
+        .btn-excluir {
+            background: red;
+            color: white;
+        }
+        .btn-salvar {
+            background: green;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>CRUD de Categorias</h1>
+
+    <h2>Cadastro / Edição</h2>
+
+    <form id="categoriaForm">
+
+        <input type="hidden" id="categoria_id">
+
+        <label>Nome</label>
+        <input type="text" id="nome" required>
+
+        <label>Descrição</label>
+        <textarea id="descricao" rows="3"></textarea>
+
+        <button type="submit" class="btn-salvar">Salvar Categoria</button>
+    </form>
+
+
+    <h2>Lista de Categorias</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaCategorias"></tbody>
+    </table>
+
+
+    <script>
+        const API = "http://127.0.0.1:8080/categoria";
+
+        document.addEventListener("DOMContentLoaded", carregarCategorias);
+
+        document.querySelector("#categoriaForm").addEventListener("submit", salvarCategoria);
+
+
+        // ---------------------------------------------
+        // 🔹 CARREGAR LISTA
+        // ---------------------------------------------
+        async function carregarCategorias() {
+            const resp = await fetch(API);
+            const categorias = await resp.json();
+
+            const tbody = document.querySelector("#listaCategorias");
+            tbody.innerHTML = "";
+
+            categorias.forEach(cat => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${cat.id}</td>
+                        <td>${cat.nome}</td>
+                        <td>${cat.descricao ?? ""}</td>
+                        <td>
+                            <button class="btn-editar" onclick="editarCategoria(${cat.id})">Editar</button>
+                            <button class="btn-excluir" onclick="excluirCategoria(${cat.id})">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // ---------------------------------------------
+        // 🔹 CARREGAR UMA CATEGORIA PARA EDIÇÃO
+        // ---------------------------------------------
+        async function editarCategoria(id) {
+            const resp = await fetch(`${API}/${id}`);
+            const cat = await resp.json();
+
+            document.querySelector("#categoria_id").value = cat.id;
+            document.querySelector("#nome").value = cat.nome;
+            document.querySelector("#descricao").value = cat.descricao ?? "";
+        }
+
+        // ---------------------------------------------
+        // 🔹 SALVAR (CREATE ou UPDATE)
+        // ---------------------------------------------
+        async function salvarCategoria(e) {
+            e.preventDefault();
+
+            const id = document.querySelector("#categoria_id").value;
+
+            const dados = {
+                nome: document.querySelector("#nome").value,
+                descricao: document.querySelector("#descricao").value
+            };
+
+            let metodo = "POST";
+            let url = API;
+
+            if (id) {  // Update
+                metodo = "PUT";
+                url = `${API}/${id}`;
+            }
+
+            await fetch(url, {
+                method: metodo,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
+
+            e.target.reset();
+            document.querySelector("#categoria_id").value = "";
+
+            carregarCategorias();
+        }
+
+        // ---------------------------------------------
+        // 🔹 EXCLUIR
+        // ---------------------------------------------
+        async function excluirCategoria(id) {
+            if (!confirm("Excluir categoria?")) return;
+
+            await fetch(`${API}/${id}`, { method: "DELETE" });
+
+            carregarCategorias();
+        }
+
+    </script>
+
+</body>
+</html>

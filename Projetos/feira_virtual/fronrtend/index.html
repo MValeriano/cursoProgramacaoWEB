@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Usuários - Teste</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>CRUD de Usuários</h1>
+
+<section id="form-section">
+    <h2>Cadastrar Usuário</h2>
+
+    <form id="userForm">
+        <input type="hidden" id="id">
+
+        <label>Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label>Email:</label>
+        <input type="email" id="email" required>
+
+        <label>Telefone:</label>
+        <input type="text" id="telefone">
+
+        <label>Senha:</label>
+        <input type="password" id="senha" required>
+
+        <label>Bairro:</label>
+        <input type="text" id="bairro">
+
+        <button type="submit">Salvar</button>
+        <button type="button" id="cancelarEdicao" style="display:none;">Cancelar</button>
+    </form>
+</section>
+
+<hr>
+
+<section id="lista-section">
+    <h2>Lista de Usuários</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="usuariosTabela"></tbody>
+    </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

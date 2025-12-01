@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+:root {
+    --primary: #8A2BE2;
+    --primary-light: #9b45f0;
+    --secondary: #FF4081;
+    --dark: #2D2B35;
+    --light: #F8F9FA;
+    --gray: #6c757d;
+    --success: #28a745;
+}
+
+
+<!-- Header -->
+<!-- <i class="fas fa-store"></i> -->
+<!-- Cabeçalho ( LOGO )-->
+Feirinha Virtual
+<!-- links -->
+Produtos
+Adicionar Produto
+Sobre
+Entrar
+
+<!-- Section -->
+Feirinha Virtual de Talentos Locais
+Descubra e divulgue produtos e serviços feitos por mulheres talentosas da nossa comunidade</p>
+Quero divulgar meu talento
+
+<!-- Products Section -->
+Nossos Talentos
+Conheça os produtos e serviços oferecidos por mulheres da nossa comunidade
+<!-- <i class="fas fa-search"></i> -->
+<!-- Filtros-->
+Todos
+Artesanato
+Culinária
+Costura
+Serviços
+
+<!-- Product Section -->
+Divulgue seu Talento
+Cadastre seu produto ou serviço para aparecer em nossa feirinha virtual
+Nome do Produto/Serviço *
+Categoria *
+<!-- itens -->
+Selecione uma categoria
+Artesanato
+Culinária
+Costura
+Serviços
+Outros
+
+Descrição *
+Preço (opcional)
+Contato *
+Imagem (URL)
+Ou deixe em branco para usar uma imagem padrão
+Cadastrar Produto
+
+<!-- Footer -->
+Feirinha Virtual
+Conectando talentos femininos da comunidade com pessoas que valorizam produtos e serviços artesanais.
+<!-- Social Media Links -->
+<!--<i class="fab fa-facebook-f"></i>-->
+<!--<i class="fab fa-instagram"></i>-->
+<!--<i class="fab fa-whatsapp"></i>-->
+
+<!-- Footer Links -->
+Ver Produtos
+Divulgar Talento
+Sobre o Projeto
+Contato
+
+<!-- Categories -->
+Artesanato
+Culinária
+Costura
+Serviços
+
+<!-- Copyrigth -->
+2025 Feirinha Virtual - Todos os direitos reservados
+
+
+<!-- Product Detail Modal -->
+Nome do Produto
+Categoria:Artesanato
+Descrição:Descrição detalhada do produto
+Preço:R$ 50,00
+Contato:(11) 99999-9999
+Entrar em Contato

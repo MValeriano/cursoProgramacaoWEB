@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>CRUD Produtos</title>
+<style>
+    body {
+        font-family: Arial;
+        max-width: 900px;
+        margin: 20px auto;
+    }
+    form, table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+    }
+    button {
+        padding: 10px 15px;
+        margin-top: 10px;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<h2>CRUD de Produtos</h2>
+
+<h3>Adicionar / Editar Produto</h3>
+
+<form id="produtoForm">
+    <input type="hidden" id="id">
+
+    <label>Usuário ID</label>
+    <input type="number" id="usuario_id" required>
+
+    <label>Categoria ID</label>
+    <input type="number" id="categoria_id" required>
+
+    <label>Nome</label>
+    <input type="text" id="nome" required>
+
+    <label>Descrição</label>
+    <textarea id="descricao" required></textarea>
+
+    <label>Preço</label>
+    <input type="text" id="preco">
+
+    <label>Contato</label>
+    <input type="text" id="contato" required>
+
+    <label>URL da Imagem</label>
+    <input type="text" id="imagem">
+
+    <label>Ativo (1 = sim, 0 = não)</label>
+    <input type="number" id="ativo" value="1">
+
+    <button type="submit">Salvar</button>
+</form>
+
+<h3>Lista de Produtos</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Categoria</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Contato</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="listaProdutos"></tbody>
+</table>
+
+<script>
+const API = "http://127.0.0.1:8080/produto";
+
+// =====================
+// CARREGAR LISTA
+// =====================
+async function carregarProdutos() {
+    const res = await fetch(API);
+    const dados = await res.json();
+
+    const tbody = document.getElementById("listaProdutos");
+    tbody.innerHTML = "";
+
+    dados.forEach(produto => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${produto.id}</td>
+            <td>${produto.usuario_id}</td>
+            <td>${produto.categoria_id}</td>
+            <td>${produto.nome}</td>
+            <td>${produto.preco ?? "-"}</td>
+            <td>${produto.contato}</td>
+            <td>${produto.ativo}</td>
+            <td>
+                <button onclick="editar(${produto.id})">Editar</button>
+                <button onclick="remover(${produto.id})">Excluir</button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+// =====================
+// CARREGAR PRODUTO PARA EDIÇÃO
+// =====================
+async function editar(id) {
+    const res = await fetch(API + "/" + id);
+    const p = await res.json();
+
+    document.getElementById("id").value = p.id;
+    document.getElementById("usuario_id").value = p.usuario_id;
+    document.getElementById("categoria_id").value = p.categoria_id;
+    document.getElementById("nome").value = p.nome;
+    document.getElementById("descricao").value = p.descricao;
+    document.getElementById("preco").value = p.preco;
+    document.getElementById("contato").value = p.contato;
+    document.getElementById("imagem").value = p.imagem;
+    document.getElementById("ativo").value = p.ativo;
+}
+
+// =====================
+// REMOVER PRODUTO
+// =====================
+async function remover(id) {
+    if (!confirm("Excluir este produto?")) return;
+
+    await fetch(API + "/" + id, { method: "DELETE" });
+    carregarProdutos();
+}
+
+// =====================
+// SALVAR (CRIAR/EDITAR)
+// =====================
+document.getElementById("produtoForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const produto = {
+        usuario_id: document.getElementById("usuario_id").value,
+        categoria_id: document.getElementById("categoria_id").value,
+        nome: document.getElementById("nome").value,
+        descricao: document.getElementById("descricao").value,
+        preco: document.getElementById("preco").value,
+        contato: document.getElementById("contato").value,
+        imagem: document.getElementById("imagem").value,
+        ativo: document.getElementById("ativo").value
+    };
+
+    const id = document.getElementById("id").value;
+
+    if (id) {
+        // UPDATE
+        await fetch(API + "/" + id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(produto)
+        });
+    } else {
+        // CREATE
+        await fetch(API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(produto)
+        });
+    }
+
+    e.target.reset();
+    carregarProdutos();
+});
+
+// carregamento inicial
+carregarProdutos();
+</script>
+
+</body>
+</html>

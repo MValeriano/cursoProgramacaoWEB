@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Favoritos</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+        form, table {
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        th {
+            background: #f4f4f4;
+        }
+        input {
+            padding: 6px;
+            width: 200px;
+        }
+        button {
+            padding: 7px 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Favoritos – CRUD</h2>
+
+    <h3>Adicionar Favorito</h3>
+
+    <form id="formFavorito">
+        <label>Usuário ID:</label><br>
+        <input type="number" id="usuario_id" required><br><br>
+
+        <label>Produto ID:</label><br>
+        <input type="number" id="produto_id" required><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <h3>Lista de Favoritos</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Produto</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaFavoritos"></tbody>
+    </table>
+
+<script>
+const API = "http://127.0.0.1:8080/favorito";
+
+// -------------------------
+// LISTAR TODOS
+// -------------------------
+async function loadFavoritos() {
+    const req = await fetch(API);
+    const data = await req.json();
+
+    const tbody = document.getElementById("listaFavoritos");
+    tbody.innerHTML = "";
+
+    data.forEach(f => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${f.id}</td>
+            <td>${f.usuario_id}</td>
+            <td>${f.produto_id}</td>
+            <td>${f.data_cadastro ?? ""}</td>
+            <td>
+                <button onclick="deleteFavorito(${f.id})">Excluir</button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+// -------------------------
+// CADASTRAR
+// -------------------------
+document.getElementById("formFavorito").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const favorito = {
+        usuario_id: document.getElementById("usuario_id").value,
+        produto_id: document.getElementById("produto_id").value
+    };
+
+    const req = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(favorito)
+    });
+
+    const res = await req.json();
+    alert(res.message || JSON.stringify(res));
+
+    loadFavoritos();
+});
+
+// -------------------------
+// EXCLUIR
+// -------------------------
+async function deleteFavorito(id) {
+    if (!confirm("Excluir favorito?")) return;
+
+    const req = await fetch(`${API}/${id}`, {
+        method: "DELETE"
+    });
+
+    const res = await req.json();
+    alert(res.message || JSON.stringify(res));
+
+    loadFavoritos();
+}
+
+// inicializar
+loadFavoritos();
+
+</script>
+
+</body>
+</html>

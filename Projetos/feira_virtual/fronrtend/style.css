@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+button.editar {
+    background-color: #0275d8;
+    color: white;
+}
+
+button.excluir {
+    background-color: #d9534f;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
