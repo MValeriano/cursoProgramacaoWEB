@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Media Queries</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ecfeff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #1e3a8a;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #1e40af;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #eef2ff;
+            border-bottom: 1px solid #dbeafe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #1d4ed8;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0ea5e9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #0284c7;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+        
+        /* Variáveis CSS para temas */
+        .live-demo-area {
+            --primary-color: #007bff;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area * {
+            box-sizing: border-box;
+            /* Reset de margem/padding para o demo */
+            margin: 0; 
+            padding: 0;
+        }
+
+        .live-demo-area body { /* Aplicado ao .live-demo-area */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Container principal */
+        .live-demo-area .container {
+            width: 100%;
+            padding: 1rem;
+        }
+        
+        /* Header */
+        .live-demo-area .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .live-demo-area .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .live-demo-area .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Conteúdo principal */
+        .live-demo-area .main-content {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .live-demo-area .card {
+            background: white; /* Corrigido para ser visível no demo */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .live-demo-area .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== MEDIA QUERIES (ESCOLHIDAS DO EXEMPLO) ===== */
+        
+        /* Tablets (768px e acima) */
+        @media screen and (min-width: 768px) {
+            .live-demo-area .container {
+                max-width: 720px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+        
+            .live-demo-area .nav {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        
+            .live-demo-area .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        
+            /* Animações apenas se o usuário não as reduz */
+            @media (prefers-reduced-motion: no-preference) {
+                .live-demo-area .card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                }
+        
+                .live-demo-area .button:hover {
+                    background-color: #0056b3;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+        
+        /* Desktop (1024px e acima) */
+        @media screen and (min-width: 1024px) {
+            .live-demo-area .container {
+                max-width: 1140px;
+            }
+        
+            .live-demo-area .main-content {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        
+            .live-demo-area .sidebar {
+                display: block;
+            }
+        }
+        
+        /* Dispositivos com hover */
+        @media (hover: hover) {
+            .live-demo-area .nav a:hover {
+                background-color: rgba(255,255,255,0.2);
+            }
+        }
+        
+        /* Tema escuro */
+        @media (prefers-color-scheme: dark) {
+            .live-demo-area {
+                --bg-color: #1a1a1a;
+                --text-color: #ffffff;
+                --border-color: #444444;
+                --shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+        
+            .live-demo-area .card {
+                background-color: #2d2d2d;
+                border-color: #444444;
+            }
+        }
+        
+        /* Redução de movimento */
+        @media (prefers-reduced-motion: reduce) {
+            .live-demo-area * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        
+            .live-demo-area .card:hover,
+            .live-demo-area .button:hover {
+                transform: none !important;
+            }
+        }
+        
+        /* Impressão */
+        @media print {
+            .live-demo-area .header, .live-demo-area .button, .live-demo-area .sidebar {
+                display: none !important;
+            }
+        
+            .live-demo-area { /* Aplicado ao body do demo */
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+        
+            .live-demo-area .container {
+                max-width: none !important;
+                padding: 0 !important;
+            }
+        
+            .live-demo-area .card {
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+        
+            .live-demo-area a::after {
+                content: " (" attr(href) ")";
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Media Queries CSS</h1>
+            <p class="subtitle">As media queries são essenciais para criar experiências web modernas, responsivas e acessíveis em todos os dispositivos e situações.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@media</td>
+                                <td>screen and (min-width: 768px)</td>
+                                <td>Define blocos de media queries</td>
+                            </tr>
+                            <tr>
+                                <td>screen</td>
+                                <td>-</td>
+                                <td>Aplica apenas para telas</td>
+                            </tr>
+                            <tr>
+                                <td>print</td>
+                                <td>-</td>
+                                <td>Estilos para impressão</td>
+                            </tr>
+                            <tr>
+                                <td>speech</td>
+                                <td>-</td>
+                                <td>Leitores de tela</td>
+                            </tr>
+                            <tr>
+                                <td>min-width</td>
+                                <td>768px, 1024px</td>
+                                <td>Breakpoints para telas maiores</td>
+                            </tr>
+                            <tr>
+                                <td>max-width</td>
+                                <td>767px, 1023px</td>
+                                <td>Breakpoints para telas menores</td>
+                            </tr>
+                            <tr>
+                                <td>orientation</td>
+                                <td>portrait, landscape</td>
+                                <td>Orientação do dispositivo</td>
+                            </tr>
+                            <tr>
+                                <td>aspect-ratio</td>
+                                <td>16/9, 4/3</td>
+                                <td>Proporção da tela</td>
+                            </tr>
+                            <tr>
+                                <td>hover</td>
+                                <td>hover, none</td>
+                                <td>Suporte a hover</td>
+                            </tr>
+                            <tr>
+                                <td>prefers-color-scheme</td>
+                                <td>light, dark</td>
+                                <td>Preferência de tema</td>
+                            </tr>
+                            <tr>
+                                <td>prefers-reduced-motion</td>
+                                <td>reduce, no-preference</td>
+                                <td>Redução de animações</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Mobile First: Comece com estilos para mobile e use min-width</li>
+                        <li>Breakpoints comuns: 576px, 768px, 992px, 1200px</li>
+                        <li>Teste em dispositivos reais sempre que possível</li>
+                        <li>Use unidades relativas (rem, em, %) para melhor responsividade</li>
+                        <li>Considere acessibilidade com prefers-reduced-motion</li>
+                        <li>Implemente dark mode com prefers-color-scheme</li>
+                        <li>Otimize para impressão com @media print</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: @media -->
+            <div class="property-card">
+                <h3>@media</h3>
+                <div class="card-body">
+                    <p>A regra @media é usada para aplicar estilos CSS apenas quando determinadas condições são atendidas. É a base do design responsivo e da adaptação a diferentes dispositivos e preferências do usuário.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>@media [tipo-de-midia] and (condições) {
+  /* regras CSS */
+}</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Tipos de mídia: all, print, screen, speech</li>
+                        <li>Condições: diversas features como width, height, orientation, etc.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Para todos os tipos de mídia */
+@media all {
+  body { font-size: 16px; }
+}
+
+/* Apenas para telas */
+@media screen {
+  .menu { display: flex; }
+}
+
+/* Combinação de condições */
+@media screen and (min-width: 768px) {
+  .container { max-width: 1200px; }
+}
+
+/* Múltiplas condições */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .sidebar { width: 250px; }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Tipos de Mídia</h2>
+
+            <!-- Card: screen -->
+            <div class="property-card">
+                <h3>screen</h3>
+                <div class="card-body">
+                    <p>Aplica estilos apenas para dispositivos com telas (computadores, tablets, smartphones).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>@media screen {
+  body {
+    background-color: white;
+    color: black;
+  }
+}
+
+/* Para telas com largura mínima de 768px */
+@media screen and (min-width: 768px) {
+  .navigation {
+    display: flex;
+  }
+}
+
+/* Para telas com orientação paisagem */
+@media screen and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: print -->
+            <div class="property-card">
+                <h3>print</h3>
+                <div class="card-body">
+                    <p>Aplica estilos apenas quando a página é impressa.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>@media print {
+  /* Esconder elementos não essenciais para impressão */
+  .navigation, .sidebar, .ads {
+    display: none !important;
+  }
+ 
+  /* Garantir bom contraste para impressão */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+ 
+  /* Links visíveis no papel */
+  a::after {
+    content: " (" attr(href) ")";
+  }
+ 
+  /* Quebras de página adequadas */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+ 
+  .page-break {
+    page-break-before: always;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: speech -->
+            <div class="property-card">
+                <h3>speech</h3>
+                <div class="card-body">
+                    <p>Aplica estilos para leitores de tela e dispositivos de síntese de voz.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>@media speech {
+  /* Pausas na leitura para melhor compreensão */
+  h1 {
+    pause: 2s;
+  }
+ 
+  h2 {
+    pause: 1s;
+  }
+ 
+  /* Pronúncia especial para siglas */
+  .abbr {
+    speak: spell-out;
+  }
+ 
+  /* Silenciar elementos decorativos */
+  .decorative {
+    speak: none;
+  }
+ 
+  /* Ditar pontuação */
+  .code-block {
+    speak-punctuation: code;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: all -->
+            <div class="property-card">
+                <h3>all</h3>
+                <div class="card-body">
+                    <p>Aplica estilos para todos os dispositivos (valor padrão).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>@media all {
+  /* Estilos base que se aplicam a todos os dispositivos */
+  * {
+    box-sizing: border-box;
+  }
+ 
+  html {
+    font-family: sans-serif;
+  }
+}
+
+/* Equivalente a não especificar tipo de mídia */
+@media all and (min-width: 768px) {
+  .container {
+    margin: 0 auto;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Features de Mídia Comuns</h2>
+
+            <!-- Card: min-width e max-width -->
+            <div class="property-card">
+                <h3>min-width e max-width</h3>
+                <div class="card-body">
+                    <p>Define breakpoints baseados na largura da viewport.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Mobile First - Começa com estilos para mobile */
+
+/* Tablets (768px e acima) */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+ 
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Desktop (1024px e acima) */
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1140px;
+  }
+ 
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+ 
+  .sidebar {
+    display: block;
+  }
+}
+
+/* Desktop grande (1200px e acima) */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Dispositivos muito pequenos (até 375px) */
+@media screen and (max-width: 374px) {
+  body {
+    font-size: 14px;
+  }
+ 
+  .button {
+    padding: 0.5rem 1rem;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: orientation -->
+            <div class="property-card">
+                <h3>orientation</h3>
+                <div class="card-body">
+                    <p>Detecta a orientação do dispositivo (retrato ou paisagem).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Orientação retrato (altura maior que largura) */
+@media screen and (orientation: portrait) {
+  .header {
+    height: 60px;
+  }
+ 
+  .hero-section {
+    height: 50vh;
+  }
+}
+
+/* Orientação paisagem (largura maior que altura) */
+@media screen and (orientation: landscape) {
+  .header {
+    height: 80px;
+  }
+ 
+  .hero-section {
+    height: 80vh;
+  }
+ 
+  /* Para mobile landscape */
+  @media screen and (max-width: 896px) and (orientation: landscape) {
+    .navigation {
+      display: none;
+    }
+   
+    .mobile-menu {
+      display: block;
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: aspect-ratio -->
+            <div class="property-card">
+                <h3>aspect-ratio</h3>
+                <div class="card-body">
+                    <p>Define estilos baseados na proporção da viewport.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Proporção 16:9 (widescreen) */
+@media screen and (aspect-ratio: 16/9) {
+  .video-container {
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+}
+
+/* Proporção 4:3 (antigos monitores) */
+@media screen and (aspect-ratio: 4/3) {
+  .content {
+    max-width: 1024px;
+  }
+}
+
+/* Proporções mínimas e máximas */
+@media screen and (min-aspect-ratio: 16/9) {
+  .wide-screen-layout {
+    display: flex;
+  }
+}
+
+@media screen and (max-aspect-ratio: 3/4) {
+  .tall-screen-layout {
+    display: block;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: hover -->
+            <div class="property-card">
+                <h3>hover</h3>
+                <div class="card-body">
+                    <p>Detecta se o dispositivo suporta hover (como mouse).</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Dispositivos com hover (mouse) */
+@media (hover: hover) {
+  .button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+ 
+  .menu-item:hover .submenu {
+    display: block;
+  }
+ 
+  .card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+}
+
+/* Dispositivos sem hover (touch) */
+@media (hover: none) {
+  .button:active {
+    background-color: #0056b3;
+  }
+ 
+  .menu-item:focus .submenu {
+    display: block;
+  }
+ 
+  /* Melhorar área de toque */
+  .touch-element {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: prefers-color-scheme -->
+            <div class="property-card">
+                <h3>prefers-color-scheme</h3>
+                <div class="card-body">
+                    <p>Detecta a preferência do usuário por tema claro ou escuro.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent-color: #4dabf7;
+  }
+ 
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+ 
+  .card {
+    background-color: var(--bg-secondary);
+    border: 1px solid #444;
+  }
+ 
+  a {
+    color: var(--accent-color);
+  }
+}
+
+/* Tema claro (padrão) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --accent-color: #007bff;
+  }
+}
+
+/* Sistema automático com fallback */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: prefers-reduced-motion -->
+            <div class="property-card">
+                <h3>prefers-reduced-motion</h3>
+                <div class="card-body">
+                    <p>Respeita a preferência do usuário por reduzir animações.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Usuário prefere reduzir movimento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+ 
+  /* Alternativas para animações essenciais */
+  .fade-in {
+    opacity: 1;
+    animation: none;
+  }
+ 
+  .slide-in {
+    transform: translateX(0);
+    animation: none;
+  }
+}
+
+/* Animações normais (apenas se o usuário não as reduz) */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+ 
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+ 
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Sistema Responsivo</h3>
+                <div class="card-body live-demo-area">
+                    <header class="header">
+                        <nav class="nav">
+                            <a href="#home">Home</a>
+                            <a href="#sobre">Sobre</a>
+                            <a href="#servicos">Serviços</a>
+                            <a href="#contato">Contato</a>
+                        </nav>
+                    </header>
+                
+                    <main class="container">
+                        <section class="main-content">
+                            <article class="card">
+                                <h2>Artigo 1</h2>
+                                <p>Conteúdo do primeiro artigo.</p>
+                                <a href="#" class="button">Leia Mais</a>
+                            </article>
+                            
+                            <article class="card">
+                                <h2>Artigo 2</h2>
+                                <p>Conteúdo do segundo artigo.</p>
+                                <a href="#" class="button">Leia Mais</a>
+                            </article>
+                            
+                            <article class="card">
+                                <h2>Artigo 3</h2>
+                                <p>Conteúdo do terceiro artigo.</p>
+                                <a href="#" class="button">Leia Mais</a>
+                            </article>
+                        </section>
+                    </main>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Sistema Responsivo Completo&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;nav class="nav"&gt;
+            &lt;a href="#home"&gt;Home&lt;/a&gt;
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt;
+            &lt;a href="#servicos"&gt;Serviços&lt;/a&gt;
+            &lt;a href="#contato"&gt;Contato&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main class="container"&gt;
+        &lt;section class="main-content"&gt;
+            &lt;article class="card"&gt;
+                &lt;h2&gt;Artigo 1&lt;/h2&gt;
+                &lt;p&gt;Conteúdo do primeiro artigo.&lt;/p&gt;
+                &lt;a href="#" class="button"&gt;Leia Mais&lt;/a&gt;
+            &lt;/article&gt;
+            
+            &lt;article class="card"&gt;
+                &lt;h2&gt;Artigo 2&lt;/h2&gt;
+                &lt;p&gt;Conteúdo do segundo artigo.&lt;/p&gt;
+                &lt;a href="#" class="button"&gt;Leia Mais&lt;/a&gt;
+            &lt;/article&gt;
+            
+            &lt;article class="card"&gt;
+                &lt;h2&gt;Artigo 3&lt;/h2&gt;
+                &lt;p&gt;Conteúdo do terceiro artigo.&lt;/p&gt;
+                &lt;a href="#" class="button"&gt;Leia Mais&lt;/a&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* Variáveis CSS para temas */
+:root {
+    --primary-color: #007bff;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #dee2e6;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container principal */
+.container {
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Header */
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Conteúdo principal */
+.main-content {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablets (768px e acima) */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Animações apenas se o usuário não as reduz */
+    @media (prefers-reduced-motion: no-preference) {
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+/* Desktop (1024px e acima) */
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1140px;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Desktop grande (1200px e acima) */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* Dispositivos com hover */
+@media (hover: hover) {
+    .nav a:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+}
+
+/* Dispositivos sem hover (touch) */
+@media (hover: none) {
+    .nav a:active {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .button:active {
+        background-color: #0056b3;
+        transform: scale(0.98);
+    }
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #ffffff;
+        --border-color: #444444;
+        --shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .card {
+        background-color: #2d2d2d;
+        border-color: #444444;
+    }
+}
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .card:hover,
+    .button:hover {
+        transform: none !important;
+    }
+}
+
+/* Impressão */
+@media print {
+    .header, .button, .sidebar {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+
+    .container {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+    }
+}
+
+/* Orientação paisagem em dispositivos móveis */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .header {
+        position: static;
+    }
+
+    .main-content {
+        margin: 1rem 0;
+    }
+}
+
+/* Telas muito altas */
+@media screen and (min-height: 1000px) {
+    .hero-section {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Proporção de tela quadrada ou quase */
+@media screen and (max-aspect-ratio: 1/1) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

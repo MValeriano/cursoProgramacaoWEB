@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico: Seletores CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #e0e7ff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #4338ca;
+            margin: 20px 0 30px 0;
+            border-bottom: 3px solid #e0e7ff;
+            padding-bottom: 15px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: #4338ca;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f5f3ff;
+            border-bottom: 1px solid #e0e7ff;
+        }
+        
+        .property-card h3 code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: #6366f1;
+            background-color: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-body p strong {
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td code {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #4f46e5;
+            white-space: nowrap;
+            background-color: #eef2ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li {
+            font-family: 'Lato', sans-serif;
+            font-size: 17px;
+        }
+        .tip-box li code {
+            font-family: 'Fira Code', monospace;
+            color: #166534;
+            background-color: #dcfce7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #6366f1;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #4f46e5;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            border: 2px dashed #e0e7ff;
+            border-radius: 8px;
+        }
+
+        /* Reset básico */
+        .live-demo-area * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .live-demo-area h1, .live-demo-area h2, .live-demo-area h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Seletores de classe */
+        .live-demo-area .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .live-demo-area .btn.primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .live-demo-area .btn.primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .live-demo-area .btn.secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        /* Seletores de relacionamento */
+        .live-demo-area .card > .title {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .live-demo-area .card p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .live-demo-area h2 + p {
+            font-weight: bold;
+            background-color: #e9f7fe;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        /* Seletores de atributo */
+        .live-demo-area input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .live-demo-area input[required] {
+            border-left: 3px solid #ffc107;
+        }
+        
+        .live-demo-area input[type="email"] {
+             width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .live-demo-area input[type="email"]:valid {
+            border-color: #28a745;
+        }
+        
+        .live-demo-area input[type="email"]:invalid {
+            border-color: #dc3545;
+        }
+        
+        .live-demo-area a[href^="https"]::after {
+            content: " 🔒";
+            font-size: 0.8em;
+        }
+        
+        /* Pseudo-classes estruturais */
+        .live-demo-area .list {
+            list-style: none; /* Adicionado */
+            border: 1px solid #ddd; /* Adicionado */
+            border-radius: 4px; /* Adicionado */
+            overflow: hidden; /* Adicionado */
+        }
+        
+        .live-demo-area .list li {
+             padding: 10px; /* Adicionado */
+             border-bottom: 1px solid #eee; /* Adicionado */
+        }
+        
+        .live-demo-area .list li:first-child {
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .live-demo-area .list li:last-child {
+            border-bottom: none;
+        }
+        
+        .live-demo-area .list li:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .live-demo-area .list li:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Pseudo-elementos */
+        .live-demo-area .special::before {
+            content: "★ ";
+            color: gold;
+        }
+        
+        .live-demo-area .special::after {
+            content: " ★";
+            color: gold;
+        }
+        
+        /* Reset para first-letter/line para não afetar todos os p */
+        .live-demo-area .article-p p::first-letter {
+            font-size: 2em;
+            float: left;
+            line-height: 1;
+            margin-right: 5px;
+            color: #007bff;
+        }
+        
+        .live-demo-area .article-p p::first-line {
+            font-weight: bold;
+        }
+        
+        /* Estados de formulário */
+        .live-demo-area input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        }
+        
+        .live-demo-area input:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+        
+        /* Seletores avançados */
+        .live-demo-area .card:not(.featured) {
+            opacity: 0.8;
+        }
+        
+        .live-demo-area .card.featured {
+            border: 2px solid #007bff;
+            transform: scale(1.02);
+        }
+        
+        /* Grid de cards */
+        .live-demo-area .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        
+        .live-demo-area .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .live-demo-area .card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+        
+        .live-demo-area section {
+            margin-bottom: 20px; /* Adicionado */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Seletores CSS</h1>
+            <p class="subtitle">Este guia cobre a maioria dos seletores CSS que você usará no desenvolvimento web moderno!</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Seletores Principais</th>
+                                <th>Uso Comum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Básicos</strong></td>
+                                <td><code>.class</code>, <code>#id</code>, <code>element</code>, <code>*</code></td>
+                                <td>Estilos fundamentais</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Relacionamento</strong></td>
+                                <td><code> </code> (espaço), <code>&gt;</code>, <code>+</code>, <code>~</code></td>
+                                <td>Navegação no DOM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Atributo</strong></td>
+                                <td><code>[attr]</code>, <code>[attr=value]</code>, <code>[attr^=value]</code></td>
+                                <td>Seleção por características</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pseudo-classes</strong></td>
+                                <td><code>:hover</code>, <code>:focus</code>, <code>:nth-child()</code></td>
+                                <td>Interatividade e posição</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pseudo-elementos</strong></td>
+                                <td><code>::before</code>, <code>::after</code>, <code>::first-letter</code></td>
+                                <td>Conteúdo gerado e formatação</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Performance -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Performance</h3>
+                <div class="card-body">
+                    <ol>
+                        <li><strong>Evite seletores muito específicos</strong> - <code>.nav ul li a</code> é menos eficiente que <code>.nav-link</code></li>
+                        <li><strong>Prefira classes</strong> sobre seletores de elemento para reutilização</li>
+                        <li><strong>Use <code>&gt;</code></strong> quando possível para limitar o escopo de busca</li>
+                        <li><strong>Evite o seletor universal <code>*</code></strong> em regras complexas</li>
+                        <li><strong>Mantenha os seletores simples</strong> - navegadores os leem da direita para a esquerda</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Seletores Básicos</h2>
+
+            <!-- Card: Seletor de Classe -->
+            <div class="property-card">
+                <h3>Seletor de Classe (<code>.class</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona todos os elementos com <code>class="intro"</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>.intro {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;p class="intro"&gt;Este parágrafo será azul&lt;/p&gt;
+&lt;div class="intro"&gt;Esta div também será azul&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Múltiplas Classes -->
+            <div class="property-card">
+                <h3>Múltiplas Classes (<code>.class1.class2</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos que têm AMBAS as classes</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>.btn.primary {
+    background-color: #007bff;
+    color: white;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;button class="btn"&gt;Botão normal&lt;/button&gt;
+&lt;button class="btn primary"&gt;Botão primário (selecionado)&lt;/button&gt;
+&lt;button class="primary btn"&gt;Também selecionado&lt;/button&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Classe Descendente -->
+            <div class="property-card">
+                <h3>Classe Descendente (<code>.class1 .class2</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos com <code>.title</code> que estão dentro de elementos com <code>.card</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>.card .title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;div class="card"&gt;
+    &lt;h2 class="title"&gt;Título do card (selecionado)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;h2 class="title"&gt;Título normal (não selecionado)&lt;/h2&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Seletor de ID -->
+            <div class="property-card">
+                <h3>Seletor de ID (<code>#id</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona o elemento único com <code>id="header"</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>#header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;header id="header"&gt;Cabeçalho principal&lt;/header&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Seletor Universal -->
+            <div class="property-card">
+                <h3>Seletor Universal (<code>*</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona TODOS os elementos da página</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Seletor de Elemento -->
+            <div class="property-card">
+                <h3>Seletor de Elemento (<code>elemento</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona todos os elementos <code>&lt;p&gt;</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Elemento com Classe -->
+            <div class="property-card">
+                <h3>Elemento com Classe (<code>element.class</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona apenas elementos <code>&lt;p&gt;</code> com a classe <code>highlight</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>p.highlight {
+    background-color: yellow;
+    padding: 10px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;p class="highlight"&gt;Este parágrafo será amarelo&lt;/p&gt;
+&lt;div class="highlight"&gt;Esta div NÃO será amarela&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Seletores Múltiplos -->
+            <div class="property-card">
+                <h3>Seletores Múltiplos (<code>element,element</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona todos os elementos <code>h1</code>, <code>h2</code> e <code>h3</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplo</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Seletores de Relacionamento</h2>
+
+            <!-- Card: Descendente -->
+            <div class="property-card">
+                <h3>Descendente (<code>elemento elemento</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona todos os elementos <code>ul</code> dentro de <code>nav</code>, e todos os <code>p</code> dentro de <code>article</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+article p {
+    text-align: justify;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;nav&gt;
+    &lt;ul&gt; &lt;!-- Selecionado --&gt;
+        &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;ul&gt; &lt;!-- Não selecionado --&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Filho Direto -->
+            <div class="property-card">
+                <h3>Filho Direto (<code>elemento &gt; elemento</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona apenas elementos <code>p</code> que são filhos DIRETOS de <code>div</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>div > p {
+    border-left: 3px solid blue;
+    padding-left: 10px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;div&gt;
+    &lt;p&gt;Este parágrafo é selecionado (filho direto)&lt;/p&gt;
+    &lt;section&gt;
+        &lt;p&gt;Este NÃO é selecionado (neto)&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Irmão Adjacente -->
+            <div class="property-card">
+                <h3>Irmão Adjacente (<code>element + element</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona o primeiro <code>p</code> que vem IMEDIATAMENTE após um <code>h2</code></p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>h2 + p {
+    font-weight: bold;
+    margin-top: 0;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;h2&gt;Título&lt;/h2&gt;
+&lt;p&gt;Este parágrafo é selecionado&lt;/p&gt;
+&lt;p&gt;Este NÃO é selecionado&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Irmão Geral -->
+            <div class="property-card">
+                <h3>Irmão Geral (<code>element1 ~ element2</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona TODOS os elementos <code>p</code> que vêm após um <code>h2</code> (não necessariamente imediatamente)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>h2 ~ p {
+    color: #666;
+    font-style: italic;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;h2&gt;Título&lt;/h2&gt;
+&lt;div&gt;Outro conteúdo&lt;/div&gt;
+&lt;p&gt;Este parágrafo é selecionado&lt;/p&gt;
+&lt;p&gt;Este também é selecionado&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Seletores de Atributo</h2>
+
+            <!-- Card: Atributo Genérico -->
+            <div class="property-card">
+                <h3>Atributo Genérico (<code>[attribute]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos que possuem o atributo (independente do valor)</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>[target] {
+    border: 2px dashed orange;
+}
+
+[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;a href="#" target="_blank"&gt;Link com target&lt;/a&gt;
+&lt;button disabled&gt;Botão desabilitado&lt;/button&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo com Valor Exato -->
+            <div class="property-card">
+                <h3>Atributo com Valor Exato (<code>[attribute=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo tem exatamente o valor especificado</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>[type="submit"] {
+    background-color: green;
+    color: white;
+}
+
+[lang="en"] {
+    font-style: italic;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;input type="submit" value="Enviar"&gt;
+&lt;input type="button" value="Cancelar"&gt;
+&lt;p lang="en"&gt;English text&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo Contém Palavra -->
+            <div class="property-card">
+                <h3>Atributo Contém Palavra (<code>[attribute~=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo contém a palavra especificada</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>[title~="important"] {
+    border: 2px solid red;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;p title="very important text"&gt;Texto importante&lt;/p&gt;
+&lt;p title="important notice"&gt;Aviso importante&lt;/p&gt;
+&lt;p title="not-important"&gt;Não é importante&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo Começa Com | -->
+            <div class="property-card">
+                <h3>Atributo Começa Com (<code>[attribute|=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo começa com o valor ou valor seguido de hífen</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>[lang|="en"] {
+    quotes: '"' '"' "'" "'";
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;p lang="en"&gt;English&lt;/p&gt;
+&lt;p lang="en-US"&gt;American English&lt;/p&gt;
+&lt;p lang="en-GB"&gt;British English&lt;/p&gt;
+&lt;p lang="pt"&gt;Português (não selecionado)&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo Começa Com String -->
+            <div class="property-card">
+                <h3>Atributo Começa Com String (<code>[attribute^=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo começa com a string especificada</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>a[href^="https"] {
+    color: green;
+}
+
+a[href^="mailto:"] {
+    color: purple;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;a href="https://exemplo.com"&gt;Site seguro&lt;/a&gt;
+&lt;a href="http://exemplo.com"&gt;Site normal&lt;/a&gt;
+&lt;a href="mailto:email@exemplo.com"&gt;Enviar email&lt;/a&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo Termina Com -->
+            <div class="property-card">
+                <h3>Atributo Termina Com (<code>[attribute$=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo termina com a string especificada</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>a[href$=".pdf"] {
+    background: url('pdf-icon.png') no-repeat left center;
+    padding-left: 20px;
+}
+
+img[src$=".jpg"] {
+    border: 2px solid #ccc;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;a href="documento.pdf"&gt;Download PDF&lt;/a&gt;
+&lt;a href="planilha.xlsx"&gt;Download Excel&lt;/a&gt;
+&lt;img src="foto.jpg"&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Atributo Contém Substring -->
+            <div class="property-card">
+                <h3>Atributo Contém Substring (<code>[attribute*=value]</code>)</h3>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> Seleciona elementos onde o atributo contém a substring em qualquer posição</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>CSS:</h4>
+                        <pre><code>a[href*="google"] {
+    background-color: #f0f0f0;
+}
+
+div[class*="col-"] {
+    float: left;
+    padding: 10px;
+}</code></pre>
+                        <h4>Exemplo HTML:</h4>
+                        <pre><code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;
+&lt;a href="https://maps.google.com"&gt;Google Maps&lt;/a&gt;
+&lt;div class="col-6"&gt;Coluna 6&lt;/div&gt;
+&lt;div class="col-12"&gt;Coluna 12&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção -->
+            <h2 class="section-title">Pseudo-classes</h2>
+
+            <!-- Card: Interação do Usuário -->
+            <div class="property-card">
+                <h3>Interação do Usuário</h3>
+                <div class="card-body">
+                    <pre><code>/* Link ativo (enquanto clicado) */
+a:active {
+    color: red;
+}
+
+/* Checkbox/radio selecionado */
+input:checked {
+    border-color: blue;
+}
+
+/* Elemento desabilitado */
+input:disabled {
+    background-color: #f5f5f5;
+}
+
+/* Elemento vazio */
+div:empty {
+    display: none;
+}
+
+/* Elemento habilitado */
+input:enabled {
+    border: 1px solid #ccc;
+}
+
+/* Elemento em foco */
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+/* Mouse sobre o elemento */
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Link não visitado */
+a:link {
+    color: blue;
+}
+
+/* Link visitado */
+a:visited {
+    color: purple;
+}</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Seleção de Posição -->
+            <div class="property-card">
+                <h3>Seleção de Posição</h3>
+                <div class="card-body">
+                    <pre><code>/* Primeiro filho */
+li:first-child {
+    font-weight: bold;
+}
+
+/* Último filho */
+li:last-child {
+    border-bottom: none;
+}
+
+/* Primeiro do tipo */
+p:first-of-type {
+    font-size: 1.2em;
+}
+
+/* Último do tipo */
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Enésimo filho */
+li:nth-child(odd) {  /* Ímpares */
+    background-color: #f9f9f9;
+}
+
+li:nth-child(even) { /* Pares */
+    background-color: #fff;
+}
+
+tr:nth-child(3n) {   /* A cada 3 */
+    background-color: #f0f0f0;
+}
+
+/* Enésimo do tipo */
+p:nth-of-type(2) {
+    font-style: italic;
+}
+
+/* Único filho */
+div:only-child {
+    text-align: center;
+}
+
+/* Único do tipo */
+p:only-of-type {
+    color: #666;
+}</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Formulários -->
+            <div class="property-card">
+                <h3>Formulários</h3>
+                <div class="card-body">
+                    <pre><code>/* Entrada válida */
+input:valid {
+    border-color: green;
+}
+
+/* Entrada inválida */
+input:invalid {
+    border-color: red;
+}
+
+/* Entrada obrigatória */
+input:required {
+    border-left: 3px solid orange;
+}
+
+/* Entrada opcional */
+input:optional {
+    border-left: 3px solid #ccc;
+}
+
+/* Entrada somente leitura */
+input:read-only {
+    background-color: #f8f8f8;
+}
+
+/* Entrada editável */
+input:read-write {
+    background-color: white;
+}
+
+/* Dentro do range */
+input:in-range {
+    color: green;
+}
+
+/* Fora do range */
+input:out-of-range {
+    color: red;
+}
+
+/* Placeholder */
+input::placeholder {
+    color: #999;
+    font-style: italic;
+}</code></pre>
+                </div>
+            </div>
+            
+            <!-- Card: Outras Pseudo-classes -->
+            <div class="property-card">
+                <h3>Outras Pseudo-classes</h3>
+                <div class="card-body">
+                    <pre><code>/* Negação */
+div:not(.special) {
+    opacity: 0.8;
+}
+
+/* Elemento raiz */
+:root {
+    --cor-principal: #007bff;
+    --fonte-base: 16px;
+}
+
+/* Elemento alvo (âncora) */
+:target {
+    background-color: yellow;
+}
+
+/* Seleção do usuário */
+::selection {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Marcador de lista */
+::marker {
+    color: blue;
+    font-weight: bold;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo Prático</h3>
+                <div class="card-body live-demo-area">
+                    <div class="container">
+                        <h1>Seletores CSS - Demonstração Prática</h1>
+                        
+                        <section>
+                            <h2>Seletores de Classe e Relacionamento</h2>
+                            <p>Este parágrafo está logo após um h2, então tem estilo especial.</p>
+                            
+                            <div class="card">
+                                <h3 class="title">Card Normal</h3>
+                                <p>Conteúdo do card normal.</p>
+                                <button class="btn secondary">Ação Secundária</button>
+                            </div>
+                            
+                            <div class="card featured">
+                                <h3 class="title">Card <span class="special">Destacado</span></h3>
+                                <p>Este card é destacado e tem estilo diferente.</p>
+                                <button class="btn primary">Ação Primária</button>
+                            </div>
+                        </section>
+                
+                        <section>
+                            <h2>Formulário com Estados</h2>
+                            <form>
+                                <input type="text" placeholder="Nome (obrigatório)" required>
+                                <input type="email" placeholder="Email" required>
+                                <input type="text" placeholder="Telefone (opcional)">
+                                <input type="text" placeholder="Campo desabilitado" disabled>
+                                <button type="submit" class="btn primary">Enviar</button>
+                            </form>
+                        </section>
+                
+                        <section>
+                            <h2>Lista com Seletores Estruturais</h2>
+                            <ul class="list">
+                                <li>Primeiro item (estilo especial)</li>
+                                <li>Segundo item</li>
+                                <li>Terceiro item</li>
+                                <li>Quarto item</li>
+                                <li>Quinto item (último)</li>
+                            </ul>
+                        </section>
+                
+                        <section class="article-p"> <!-- Wrapper para ::first-letter/line -->
+                            <h2>Links com Seletores de Atributo</h2>
+                            <p>
+                                <a href="https://exemplo.com">Link Seguro</a> | 
+                                <a href="http://exemplo.com">Link Normal</a> | 
+                                <a href="mailto:email@exemplo.com">Email</a>
+                            </p>
+                        </section>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Seletores CSS - Exemplo Completo&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Seletores CSS - Demonstração Prática&lt;/h1&gt;
+        
+        &lt;section&gt;
+            &lt;h2&gt;Seletores de Classe e Relacionamento&lt;/h2&gt;
+            &lt;p&gt;Este parágrafo está logo após um h2, então tem estilo especial.&lt;/p&gt;
+            
+            &lt;div class="card"&gt;
+                &lt;h3 class="title"&gt;Card Normal&lt;/h3&gt;
+                &lt;p&gt;Conteúdo do card normal.&lt;/p&gt;
+                &lt;button class="btn secondary"&gt;Ação Secundária&lt;/button&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="card featured"&gt;
+                &lt;h3 class="title"&gt;Card &lt;span class="special"&gt;Destacado&lt;/span&gt;&lt;/h3&gt;
+                &lt;p&gt;Este card é destacado e tem estilo diferente.&lt;/p&gt;
+                &lt;button class="btn primary"&gt;Ação Primária&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Formulário com Estados&lt;/h2&gt;
+            &lt;form&gt;
+                &lt;input type="text" placeholder="Nome (obrigatório)" required&gt;
+                &lt;input type="email" placeholder="Email" required&gt;
+                &lt;input type="text" placeholder="Telefone (opcional)"&gt;
+                &lt;input type="text" placeholder="Campo desabilitado" disabled&gt;
+                &lt;button type="submit" class="btn primary"&gt;Enviar&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Lista com Seletores Estruturais&lt;/h2&gt;
+            &lt;ul class="list"&gt;
+                &lt;li&gt;Primeiro item (estilo especial)&lt;/li&gt;
+                &lt;li&gt;Segundo item&lt;/li&gt;
+                &lt;li&gt;Terceiro item&lt;/li&gt;
+                &lt;li&gt;Quarto item&lt;/li&gt;
+                &lt;li&gt;Quinto item (último)&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Links com Seletores de Atributo&lt;/h2&gt;
+            &lt;p&gt;
+                &lt;a href="https://exemplo.com"&gt;Link Seguro&lt;/a&gt; | 
+                &lt;a href="http://exemplo.com"&gt;Link Normal&lt;/a&gt; | 
+                &lt;a href="mailto:email@exemplo.com"&gt;Email&lt;/a&gt;
+            &lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Seletores de tipo */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Seletores de classe */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: #0056b3;
+}
+
+.btn.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Seletores de relacionamento */
+.card > .title {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+h2 + p {
+    font-weight: bold;
+    background-color: #e9f7fe;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Seletores de atributo */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+/* Adicionado para o exemplo de email */
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+input[required] {
+    border-left: 3px solid #ffc107;
+}
+
+input[type="email"]:valid {
+    border-color: #28a745;
+}
+
+input[type="email"]:invalid {
+    border-color: #dc3545;
+}
+
+a[href^="https"]::after {
+    content: " 🔒";
+    font-size: 0.8em;
+}
+
+/* Pseudo-classes estruturais */
+.list li:first-child {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.list li:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+/* Pseudo-elementos */
+.special::before {
+    content: "★ ";
+    color: gold;
+}
+
+.special::after {
+    content: " ★";
+    color: gold;
+}
+
+/* Corrigido para aplicar apenas no exemplo */
+section p::first-letter {
+    font-size: 2em;
+    float: left;
+    line-height: 1;
+    margin-right: 5px;
+    color: #007bff;
+}
+
+/* Corrigido para aplicar apenas no exemplo */
+section p::first-line {
+    font-weight: bold;
+}
+
+/* Estados de formulário */
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Seletores avançados */
+.card:not(.featured) {
+    opacity: 0.8;
+}
+
+.card.featured {
+    border: 2px solid #007bff;
+    transform: scale(1.02);
+}
+
+/* Grid de cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 2rem 0;
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+            
+            var isFullExample = button.classList.contains('full-example');
+            var buttonText = isFullExample ? 'Ver Código Completo' : 'Ver Exemplos';
+            var buttonTextHide = isFullExample ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = buttonTextHide;
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = buttonText;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Filtros e Efeitos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #f43f5e 0%, #d946ef 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #fce7f3;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #a21caf;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fdf2f8;
+            border-bottom: 1px solid #fbcfe8;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #be185d;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Caixa de Acessibilidade */
+        .accessibility-box {
+            background-color: #fefce8;
+            border-left: 5px solid #eab308;
+        }
+        .accessibility-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #a16207;
+            padding: 25px 30px 0 30px;
+        }
+        .accessibility-box .card-body {
+            padding-top: 15px;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #d946ef;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #c026d3;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        
+        .live-demo-area {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            border-radius: 8px; /* Adicionado para ficar contido no card */
+        }
+        
+        .live-demo-area * {
+            box-sizing: border-box;
+        }
+        
+        .live-demo-area .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Efeitos com filter */
+        .live-demo-area .filter-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .live-demo-area .filter-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .live-demo-area .filter-image {
+            width: 100%;
+            height: 200px;
+            background-image: url('https://picsum.photos/400/300');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .live-demo-area .blur-effect {
+            filter: blur(3px);
+        }
+        
+        .live-demo-area .grayscale-effect {
+            filter: grayscale(100%);
+        }
+        
+        .live-demo-area .sepia-effect {
+            filter: sepia(100%);
+        }
+        
+        .live-demo-area .hue-effect {
+            filter: hue-rotate(90deg);
+        }
+        
+        .live-demo-area .multiple-filters {
+            filter: contrast(1.5) brightness(1.2) saturate(1.5);
+        }
+        
+        /* Backdrop-filter examples */
+        .live-demo-area .glass-section {
+            position: relative;
+            height: 300px;
+            background-image: url('https://picsum.photos/1200/600');
+            background-size: cover;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        
+        .live-demo-area .glass-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        /* Mix-blend-mode examples */
+        .live-demo-area .blend-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .live-demo-area .blend-container {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .live-demo-area .blend-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+        }
+        
+        .live-demo-area .multiply-blend {
+            mix-blend-mode: multiply;
+            color: #ff6b6b;
+        }
+        
+        .live-demo-area .screen-blend {
+            mix-blend-mode: screen;
+            color: #4ecdc4;
+        }
+        
+        .live-demo-area .overlay-blend {
+            mix-blend-mode: overlay;
+            color: #45b7d1;
+        }
+        
+        /* Background-blend-mode examples */
+        .live-demo-area .bg-blend-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .live-demo-area .bg-blend-card {
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+            background-size: cover; /* Adicionado */
+            background-position: center; /* Adicionado */
+        }
+        
+        .live-demo-area .blend-overlay {
+            background-image: url('https://picsum.photos/400/300?grayscale');
+            background-color: #3498db;
+            background-blend-mode: overlay;
+        }
+        
+        .live-demo-area .blend-multiply {
+            background-image: url('https://picsum.photos/400/300');
+            background-color: #e74c3c;
+            background-blend-mode: multiply;
+        }
+        
+        /* Opacity and visibility examples */
+        .live-demo-area .state-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .live-demo-area .state-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: #334155; /* Cor de texto do infográfico */
+        }
+        
+        .live-demo-area .opacity-half {
+            opacity: 0.5;
+        }
+        
+        .live-demo-area .opacity-zero {
+            opacity: 0;
+        }
+        
+        .live-demo-area .visibility-hidden {
+            visibility: hidden;
+        }
+        
+        .live-demo-area .hover-effect {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .live-demo-area .hover-effect:hover {
+            opacity: 1;
+        }
+        
+        /* Utility classes */
+        .live-demo-area h1, .live-demo-area h2 {
+            color: white;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; /* Adicionado */
+        }
+        
+        .live-demo-area h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .live-demo-area h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+        
+        .live-demo-area .code {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #d946ef; /* Cor do tema */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Filtros e Efeitos CSS</h1>
+            <p class="subtitle">Essas propriedades são essenciais para criar interfaces modernas e visualmente atraentes!</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>filter</td>
+                                <td>blur(), grayscale(), brightness()</td>
+                                <td>Efeitos visuais em elementos</td>
+                            </tr>
+                            <tr>
+                                <td>backdrop-filter</td>
+                                <td>blur(), saturate()</td>
+                                <td>Efeitos no fundo atrás do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>mix-blend-mode</td>
+                                <td>multiply, screen, overlay</td>
+                                <td>Mistura entre elemento e fundo</td>
+                            </tr>
+                            <tr>
+                                <td>background-blend-mode</td>
+                                <td>overlay, multiply</td>
+                                <td>Mistura entre imagens de fundo</td>
+                            </tr>
+                            <tr>
+                                <td>opacity</td>
+                                <td>0.0 a 1.0</td>
+                                <td>Transparência do elemento</td>
+                            </tr>
+                            <tr>
+                                <td>visibility</td>
+                                <td>visible, hidden</td>
+                                <td>Controle de visibilidade</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Uso Prático -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Uso Prático</h3>
+                <div class="card-body">
+                    <h4>Performance:</h4>
+                    <ul>
+                        <li>Use backdrop-filter com moderação (pode ser pesado)</li>
+                        <li>Prefira opacity sobre visibility para animações</li>
+                        <li>Combine filtros para efeitos complexos</li>
+                    </ul>
+
+                    <h4>Compatibilidade:</h4>
+                    <ul>
+                        <li>Verifique suporte para backdrop-filter em navegadores antigos</li>
+                        <li>Use @supports para fallbacks:</li>
+                    </ul>
+                    <pre><code>@supports (backdrop-filter: blur(10px)) {
+    .glass-effect {
+        backdrop-filter: blur(10px);
+    }
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+    .glass-effect {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}</code></pre>
+
+                    <h4>Casos de Uso Comuns:</h4>
+                    <ul>
+                        <li>Glassmorphism: backdrop-filter: blur()</li>
+                        <li>Modo escuro: filter: invert() hue-rotate()</li>
+                        <li>Efeitos hover: filter com transition</li>
+                        <li>Overlays: opacity com visibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: filter -->
+            <div class="property-card">
+                <h3>filter</h3>
+                <div class="card-body">
+                    <p>A propriedade filter aplica efeitos gráficos como desfoque, mudança de cor e outros a um elemento. É comumente usada em imagens, mas funciona em qualquer elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Sem filtro (padrão)</li>
+                        <li>blur() - Desfoque gaussiano</li>
+                        <li>brightness() - Brilho</li>
+                        <li>contrast() - Contraste</li>
+                        <li>drop-shadow() - Sombra projetada</li>
+                        <li>grayscale() - Escala de cinza</li>
+                        <li>hue-rotate() - Rotação de matiz</li>
+                        <li>invert() - Inversão de cores</li>
+                        <li>opacity() - Opacidade</li>
+                        <li>saturate() - Saturação</li>
+                        <li>sepia() - Efeito sépia</li>
+                        <li>url() - Filtro SVG personalizado</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Múltiplos filtros */
+.image {
+    filter: brightness(1.2) contrast(0.8) saturate(1.5);
+}
+
+/* Desfoque */
+.blurred {
+    filter: blur(5px);
+}
+
+/* Escala de cinza */
+.grayscale {
+    filter: grayscale(100%);
+}
+
+/* Sombra projetada */
+.shadow-effect {
+    filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+}
+
+/* Efeito sépia */
+.vintage {
+    filter: sepia(80%);
+}
+
+/* Inversão de cores */
+.inverted {
+    filter: invert(100%);
+}
+
+/* Rotação de matiz */
+.hue-shift {
+    filter: hue-rotate(90deg);
+}
+
+/* Combinação complexa */
+.artistic {
+    filter: contrast(1.5) brightness(0.9) saturate(1.2) hue-rotate(-10deg);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: backdrop-filter -->
+            <div class="property-card">
+                <h3>backdrop-filter</h3>
+                <div class="card-body">
+                    <p>A propriedade backdrop-filter aplica efeitos de filtro à área behind de um elemento, criando efeitos de vidro fosco (glassmorphism).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Mesmos valores da propriedade filter</li>
+                        <li>Funciona apenas em elementos com fundo semi-transparente</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Efeito de desfoque no fundo */
+.glass-effect {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Múltiplos efeitos no fundo */
+.frosted-glass {
+    backdrop-filter: blur(20px) brightness(0.8) contrast(1.2);
+}
+
+/* Efeito de vidro colorido */
+.colored-glass {
+    background-color: rgba(100, 100, 255, 0.3);
+    backdrop-filter: blur(15px) saturate(180%);
+}
+
+/* Header com efeito glassmorphism */
+.header {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Modal com fundo desfocado */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: mix-blend-mode -->
+            <div class="property-card">
+                <h3>mix-blend-mode</h3>
+                <div class="card-body">
+                    <p>A propriedade mix-blend-mode especifica como o conteúdo de um elemento deve se misturar com o conteúdo do elemento pai e com seu plano de fundo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal, multiply, screen, overlay</li>
+                        <li>darken, lighten, color-dodge, color-burn</li>
+                        <li>hard-light, soft-light, difference, exclusion</li>
+                        <li>hue, saturation, color, luminosity</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Texto que se mistura com o fundo */
+.blend-text {
+    mix-blend-mode: multiply;
+    color: #ff0000;
+}
+
+/* Imagem com blend mode */
+.blend-image {
+    mix-blend-mode: screen;
+}
+
+/* Overlay colorido com blend */
+.overlay {
+    background-color: #00ff00;
+    mix-blend-mode: overlay;
+}
+
+/* Efeito de duotone */
+.duotone {
+    mix-blend-mode: multiply;
+    background-color: #ff6b6b;
+}
+
+/* Texto que corta através do fundo */
+.cutout-text {
+    color: white;
+    mix-blend-mode: difference;
+}
+
+/* Efeito de luz */
+.light-effect {
+    mix-blend-mode: color-dodge;
+    background: radial-gradient(circle, yellow, transparent);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: background-blend-mode -->
+            <div class="property-card">
+                <h3>background-blend-mode</h3>
+                <div class="card-body">
+                    <p>A propriedade background-blend-mode define como as imagens de fundo de um elemento e sua cor de fundo devem se misturar entre si.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Mesmos valores de mix-blend-mode</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Mistura entre cor e imagem de fundo */
+.blended-bg {
+    background-image: url('texture.jpg');
+    background-color: #3498db;
+    background-blend-mode: overlay;
+}
+
+/* Múltiplas imagens de fundo com blend */
+.multiple-blends {
+    background-image: url('pattern.png'), url('gradient.jpg');
+    background-blend-mode: multiply, screen;
+}
+
+/* Efeito de textura */
+.textured {
+    background-image: url('noise.png');
+    background-color: #2c3e50;
+    background-blend-mode: soft-light;
+}
+
+/* Gradiente com textura */
+.gradient-texture {
+    background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4), url('grain.jpg');
+    background-blend-mode: overlay;
+}
+
+/* Efeito vintage */
+.vintage-bg {
+    background-image: url('photo.jpg');
+    background-color: #8b4513;
+    background-blend-mode: luminosity;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: opacity -->
+            <div class="property-card">
+                <h3>opacity</h3>
+                <div class="card-body">
+                    <p>A propriedade opacity define a transparência de um elemento, incluindo seu conteúdo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>0.0 - Completamente transparente</li>
+                        <li>1.0 - Completamente opaco (padrão)</li>
+                        <li>Valores entre 0.0 e 1.0</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Totalmente transparente */
+.hidden {
+    opacity: 0;
+}
+
+/* Semi-transparente */
+.semi-transparent {
+    opacity: 0.5;
+}
+
+/* Quase invisível */
+.very-transparent {
+    opacity: 0.1;
+}
+
+/* Efeito de fade-in */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hover com transição de opacidade */
+.button {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+/* Overlay escuro */
+.overlay {
+    background-color: black;
+    opacity: 0.7;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: visibility -->
+            <div class="property-card">
+                <h3>visibility</h3>
+                <div class="card-body">
+                    <p>A propriedade visibility especifica se um elemento é visível ou não. Diferente de display: none, o espaço do elemento é preservado quando oculto.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>visible - Elemento é visível (padrão)</li>
+                        <li>hidden - Elemento é invisível, mas ocupa espaço</li>
+                        <li>collapse - Para elementos de tabela, remove linhas/colunas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Elemento invisível mas ocupando espaço */
+.hidden-element {
+    visibility: hidden;
+}
+
+/* Elemento visível */
+.visible-element {
+    visibility: visible;
+}
+
+/* Colapso de linha de tabela */
+tr.collapsed {
+    visibility: collapse;
+}
+
+/* Toggle de visibilidade com transição */
+.toggle-content {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
+}
+
+.toggle-content.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Menu dropdown */
+.dropdown {
+    visibility: hidden;
+    position: absolute;
+}
+
+.dropdown-trigger:hover + .dropdown {
+    visibility: visible;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body live-demo-area">
+                    <div class="container">
+                        <h1>Efeitos e Filtros CSS</h1>
+                
+                        <h2>Filtros de Imagem</h2>
+                        <div class="filter-section">
+                            <div class="filter-card">
+                                <div class="filter-image blur-effect"></div>
+                                <p><span class="code">filter: blur(3px);</span></p>
+                            </div>
+                            <div class="filter-card">
+                                <div class="filter-image grayscale-effect"></div>
+                                <p><span class="code">filter: grayscale(100%);</span></p>
+                            </div>
+                            <div class="filter-card">
+                                <div class="filter-image sepia-effect"></div>
+                                <p><span class="code">filter: sepia(100%);</span></p>
+                            </div>
+                            <div class="filter-card">
+                                <div class="filter-image hue-effect"></div>
+                                <p><span class="code">filter: hue-rotate(90deg);</span></p>
+                            </div>
+                            <div class="filter-card">
+                                <div class="filter-image multiple-filters"></div>
+                                <p><span class="code">filter: contrast(1.5) brightness(1.2) saturate(1.5);</span></p>
+                            </div>
+                        </div>
+                
+                        <h2>Efeito Glassmorphism</h2>
+                        <div class="glass-section">
+                            <div class="glass-card">
+                                <h3>Efeito Vidro Fosco</h3>
+                                <p><span class="code">backdrop-filter: blur(20px) saturate(180%);</span></p>
+                            </div>
+                        </div>
+                
+                        <h2>Modos de Mistura</h2>
+                        <div class="blend-section">
+                            <div class="blend-container">
+                                <div class="blend-text multiply-blend">Multiply Blend</div>
+                            </div>
+                            <div class="blend-container">
+                                <div class="blend-text screen-blend">Screen Blend</div>
+                            </div>
+                            <div class="blend-container">
+                                <div class="blend-text overlay-blend">Overlay Blend</div>
+                            </div>
+                        </div>
+                
+                        <h2>Mistura de Planos de Fundo</h2>
+                        <div class="bg-blend-section">
+                            <div class="bg-blend-card blend-overlay">
+                                Overlay Blend
+                            </div>
+                            <div class="bg-blend-card blend-multiply">
+                                Multiply Blend
+                            </div>
+                        </div>
+                
+                        <h2>Opacidade e Visibilidade</h2>
+                        <div class="state-section">
+                            <div class="state-card opacity-half">
+                                <p>Opacidade 50%</p>
+                                <p><span class="code">opacity: 0.5;</span></p>
+                            </div>
+                            <div class="state-card opacity-zero">
+                                <p>Opacidade 0%</p>
+                                <p><span class="code">opacity: 0;</span></p>
+                            </div>
+                            <div class="state-card visibility-hidden">
+                                <p>Visibilidade Oculto</p>
+                                <p><span class="code">visibility: hidden;</span></p>
+                            </div>
+                            <div class="state-card hover-effect">
+                                <p>Hover para 100%</p>
+                                <p><span class="code">opacity: 0.7;</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Efeitos e Filtros CSS&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Efeitos e Filtros CSS&lt;/h1&gt;
+
+        &lt;h2&gt;Filtros de Imagem&lt;/h2&gt;
+        &lt;div class="filter-section"&gt;
+            &lt;div class="filter-card"&gt;
+                &lt;div class="filter-image blur-effect"&gt;&lt;/div&gt;
+                &lt;p&gt;&lt;span class="code"&gt;filter: blur(3px);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="filter-card"&gt;
+                &lt;div class="filter-image grayscale-effect"&gt;&lt;/div&gt;
+                &lt;p&gt;&lt;span class="code"&gt;filter: grayscale(100%);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="filter-card"&gt;
+                &lt;div class="filter-image sepia-effect"&gt;&lt;/div&gt;
+                &lt;p&gt;&lt;span class="code"&gt;filter: sepia(100%);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="filter-card"&gt;
+                &lt;div class="filter-image hue-effect"&gt;&lt;/div&gt;
+                &lt;p&gt;&lt;span class="code"&gt;filter: hue-rotate(90deg);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="filter-card"&gt;
+                &lt;div class="filter-image multiple-filters"&gt;&lt;/div&gt;
+                &lt;p&gt;&lt;span class="code"&gt;filter: contrast(1.5) brightness(1.2) saturate(1.5);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;Efeito Glassmorphism&lt;/h2&gt;
+        &lt;div class="glass-section"&gt;
+            &lt;div class="glass-card"&gt;
+                &lt;h3&gt;Efeito Vidro Fosco&lt;/h3&gt;
+                &lt;p&gt;&lt;span class="code"&gt;backdrop-filter: blur(20px) saturate(180%);&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;Modos de Mistura&lt;/h2&gt;
+        &lt;div class="blend-section"&gt;
+            &lt;div class="blend-container"&gt;
+                &lt;div class="blend-text multiply-blend"&gt;Multiply Blend&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="blend-container"&gt;
+                &lt;div class="blend-text screen-blend"&gt;Screen Blend&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="blend-container"&gt;
+                &lt;div class="blend-text overlay-blend"&gt;Overlay Blend&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;Mistura de Planos de Fundo&lt;/h2&gt;
+        &lt;div class="bg-blend-section"&gt;
+            &lt;div class="bg-blend-card blend-overlay"&gt;
+                Overlay Blend
+            &lt;/div&gt;
+            &lt;div class="bg-blend-card blend-multiply"&gt;
+                Multiply Blend
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;Opacidade e Visibilidade&lt;/h2&gt;
+        &lt;div class="state-section"&gt;
+            &lt;div class="state-card opacity-half"&gt;
+                &lt;p&gt;Opacidade 50%&lt;/p&gt;
+                &lt;p&gt;&lt;span class="code"&gt;opacity: 0.5;&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="state-card opacity-zero"&gt;
+                &lt;p&gt;Opacidade 0%&lt;/p&gt;
+                &lt;p&gt;&lt;span class="code"&gt;opacity: 0;&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="state-card visibility-hidden"&gt;
+                &lt;p&gt;Visibilidade Oculto&lt;/p&gt;
+                &lt;p&gt;&lt;span class="code"&gt;visibility: hidden;&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="state-card hover-effect"&gt;
+                &lt;p&gt;Hover para 100%&lt;/p&gt;
+                &lt;p&gt;&lt;span class="code"&gt;opacity: 0.7;&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Efeitos com filter */
+.filter-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.filter-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.filter-image {
+    width: 100%;
+    height: 200px;
+    background-image: url('https://picsum.photos/400/300');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.blur-effect {
+    filter: blur(3px);
+}
+
+.grayscale-effect {
+    filter: grayscale(100%);
+}
+
+.sepia-effect {
+    filter: sepia(100%);
+}
+
+.hue-effect {
+    filter: hue-rotate(90deg);
+}
+
+.multiple-filters {
+    filter: contrast(1.5) brightness(1.2) saturate(1.5);
+}
+
+/* Backdrop-filter examples */
+.glass-section {
+    position: relative;
+    height: 300px;
+    background-image: url('https://picsum.photos/1200/600');
+    background-size: cover;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.glass-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Mix-blend-mode examples */
+.blend-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.blend-container {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.blend-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.multiply-blend {
+    mix-blend-mode: multiply;
+    color: #ff6b6b;
+}
+
+.screen-blend {
+    mix-blend-mode: screen;
+    color: #4ecdc4;
+}
+
+.overlay-blend {
+    mix-blend-mode: overlay;
+    color: #45b7d1;
+}
+
+/* Background-blend-mode examples */
+.bg-blend-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.bg-blend-card {
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.blend-overlay {
+    background-image: url('https://picsum.photos/400/300?grayscale');
+    background-color: #3498db;
+    background-blend-mode: overlay;
+}
+
+.blend-multiply {
+    background-image: url('https://picsum.photos/400/300');
+    background-color: #e74c3c;
+    background-blend-mode: multiply;
+}
+
+/* Opacity and visibility examples */
+.state-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.state-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.opacity-half {
+    opacity: 0.5;
+}
+
+.opacity-zero {
+    opacity: 0;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.hover-effect {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.hover-effect:hover {
+    opacity: 1;
+}
+
+/* Utility classes */
+h1, h2 {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+}
+
+.code {
+    font-family: 'Courier New', monospace;
+    background: #f4f4f4;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card: Acessibilidade -->
+            <div class="property-card accessibility-box">
+                <h3>Acessibilidade: Respeitar Preferências</h3>
+                <div class="card-body">
+                    <p>É uma boa prática desativar ou reduzir animações para usuários que solicitaram movimento reduzido em seus dispositivos.</p>
+                    <pre><code>@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Fonte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #d946ef, #86198f);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #f0abfc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #c026d3;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fdf4ff;
+            border-bottom: 1px solid #f5d0fe;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #d946ef; /* Magenta */
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #86198f;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #581c87;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Fonte CSS</h1>
+            <p class="subtitle">Essas propriedades são fundamentais para o controle tipográfico em CSS e são usadas em praticamente todos os projetos web.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>font</td>
+                                <td>italic bold 16px/1.5 Arial</td>
+                                <td>Shorthand para múltiplas propriedades</td>
+                            </tr>
+                            <tr>
+                                <td>font-family</td>
+                                <td>"Arial", sans-serif</td>
+                                <td>Especifica a família da fonte</td>
+                            </tr>
+                            <tr>
+                                <td>font-size</td>
+                                <td>16px, 1rem, 100%</td>
+                                <td>Define o tamanho da fonte</td>
+                            </tr>
+                            <tr>
+                                <td>font-style</td>
+                                <td>normal, italic, oblique</td>
+                                <td>Controla o estilo (itálico)</td>
+                            </tr>
+                            <tr>
+                                <td>font-weight</td>
+                                <td>400, bold, 700</td>
+                                <td>Controla a espessura (negrito)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Sempre forneça fallbacks na font-family</li>
+                        <li>Use unidades relativas (rem, em) para melhor responsividade</li>
+                        <li>Mantenha a hierarquia de pesos (100-900) consistente</li>
+                        <li>Use a shorthand font para código mais limpo</li>
+                        <li>Teste a legibilidade em diferentes tamanhos e pesos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: font -->
+            <div class="property-card">
+                <h3>font</h3>
+                <div class="card-body">
+                    <p>A propriedade font é uma propriedade abreviada (shorthand) que permite definir várias propriedades de fonte em uma única declaração.</p>
+                    
+                    <h4>Sintaxe:</h4>
+                    <pre><code>font: [font-style] [font-variant] [font-weight] [font-size]/[line-height] [font-family];</code></pre>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Combina valores das propriedades individuais de fonte</li>
+                        <li>Pode incluir: font-style, font-variant, font-weight, font-size, line-height, font-family</li>
+                        <li>Os valores font-size e font-family são obrigatórios</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Sintaxe completa */
+p {
+    font: italic small-caps bold 16px/1.5 "Arial", sans-serif;
+}
+
+/* Apenas tamanho e família */
+h1 {
+    font: 2rem "Georgia", serif;
+}
+
+/* Com line-height */
+div {
+    font: 14px/1.4 "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Com peso e tamanho */
+strong {
+    font: bold 1.2em "Arial";
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: font-family -->
+            <div class="property-card">
+                <h3>font-family</h3>
+                <div class="card-body">
+                    <p>A propriedade font-family especifica a família da fonte para um elemento. Pode ser uma lista de fontes ordenadas por preferência.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Nomes de fontes específicas: "Arial", "Times New Roman", "Helvetica"</li>
+                        <li>Famílias genéricas: serif, sans-serif, monospace, cursive, fantasy</li>
+                        <li>Múltiplos valores (fallback): "Fonte Primária", "Fonte Secundária", família-genérica</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Fonte específica */
+body {
+    font-family: "Arial";
+}
+
+/* Lista de fallback */
+p {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Famílias genéricas */
+.code {
+    font-family: "Courier New", monospace;
+}
+
+.creative {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+/* Fontes com espaços no nome */
+h1 {
+    font-family: "Times New Roman", Times, serif;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: font-size -->
+            <div class="property-card">
+                <h3>font-size</h3>
+                <div class="card-body">
+                    <p>A propriedade font-size define o tamanho da fonte. Pode ser especificado em várias unidades.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Unidades absolutas: px, pt, cm, mm, in</li>
+                        <li>Unidades relativas: em, rem, %</li>
+                        <li>Palavras-chave: xx-small, x-small, small, medium, large, x-large, xx-large</li>
+                        <li>Relativas ao viewport: vw, vh</li>
+                        <li>Valor relativo: smaller, larger</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Pixels (valor fixo) */
+.base {
+    font-size: 16px;
+}
+
+/* EM (relativo ao elemento pai) */
+.container {
+    font-size: 1.5em; /* 1.5 × tamanho do pai */
+}
+
+/* REM (relativo ao elemento raiz) */
+.title {
+    font-size: 2rem; /* 2 × tamanho do html */
+}
+
+/* Porcentagem */
+.large {
+    font-size: 150%; /* 150% do tamanho do pai */
+}
+
+/* Viewport units */
+.responsive {
+    font-size: 4vw; /* 4% da largura da viewport */
+}
+
+/* Palavras-chave */
+.small-text {
+    font-size: small;
+}
+
+.large-text {
+    font-size: x-large;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: font-style -->
+            <div class="property-card">
+                <h3>font-style</h3>
+                <div class="card-body">
+                    <p>A propriedade font-style especifica o estilo da fonte, principalmente para texto em itálico.</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Texto normal (padrão)</li>
+                        <li>italic - Texto em itálico</li>
+                        <li>oblique - Texto inclinado (similar ao itálico)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Normal (remove itálico) */
+.normal {
+    font-style: normal;
+}
+
+/* Itálico tradicional */
+.italic {
+    font-style: italic;
+}
+
+/* Texto inclinado */
+.oblique {
+    font-style: oblique;
+}
+
+/* Uso prático em elementos semânticos */
+em {
+    font-style: italic;
+}
+
+.citation {
+    font-style: italic;
+}
+
+.technical-term {
+    font-style: oblique 10deg; /* Inclinação específica */
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: font-weight -->
+            <div class="property-card">
+                <h3>font-weight</h3>
+                <div class="card-body">
+                    <p>A propriedade font-weight define a espessura ou "peso" da fonte (quão negrito o texto aparece).</p>
+                    
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Palavras-chave: normal, bold, lighter, bolder</li>
+                        <li>Valores numéricos: 100 (Thin), 200 (Extra Light), 300 (Light), 400 (Normal), 500 (Medium), 600 (Semi Bold), 700 (Bold), 800 (Extra Bold), 900 (Black)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Palavras-chave */
+.normal-text {
+    font-weight: normal;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.extra-bold {
+    font-weight: bolder;
+}
+
+/* Valores numéricos */
+.thin {
+    font-weight: 100;
+}
+
+.light {
+    font-weight: 300;
+}
+
+.regular {
+    font-weight: 400; /* Equivalente a normal */
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 700; /* Equivalente a bold */
+}
+
+.black {
+    font-weight: 900;
+}
+
+/* Uso semântico */
+strong {
+    font-weight: 700;
+}
+
+.heading {
+    font-weight: 600;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && btn.textContent === 'Ocultar Exemplos') {
+                    btn.textContent = 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

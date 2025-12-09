@@ -1,0 +1,700 @@
+/* ==========================
+ Variáveis globais (tema)
+ Para mais detalhes ver o documento Propriedades/variaveis.html
+========================== */
+:root {
+/* Cores semanticamente nomeadas: facilita manutenção e troca de temas */
+--primary: #8A2BE2; /* cor principal do projeto (violeta) */
+--primary-light: #9b45f0; /* variação para hover/gradientes */
+--secondary: #FF4081; /* cor de destaque secundária (rosa) */
+--dark: #2D2B35; /* cor para títulos e textos escuros */
+--light: #F8F9FA; /* fundo das áreas claras */
+--muted: #6c757d; /* para textos secundários */
+--success: #28a745; /* exemplos: sucesso/confirmacao */
+
+
+/* Espaçamentos e tipografia podem ficar aqui também */
+--radius: 10px; /* raio padrão para bordas arredondadas */
+--container-width: 1200px; /* largura máxima do container */
+}
+
+/* ==========================
+ Reset / global styles
+ para retirar as configurações padrão de CSS do navegador, 
+ Estas configurações atrapalham nosso estilo.
+========================== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* evita surpresas ao somar larguras/paddings 
+                                define como calcular a largura e a altura de um elemento: se o cálculo deve incluir preenchimento e bordas, ou não.
+                            */
+}
+
+/* ==========================
+ global styles
+ para as configurações que usaremos em grande parte da página html
+========================== */
+body{
+    color: var(--light);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* ==========================
+ Header styles 
+========================== */
+/* 1. Header */
+header {
+    background: linear-gradient(135deg, #8A2BE2 0%, #FF4081 100%);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Nav (container principal) */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 3. Logo (h1) */
+nav > div:first-child h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+/* 4. Ícone no logo */
+nav > div:first-child h1 i {
+    margin-right: 10px;
+}
+
+/* 5. Container dos links (segunda div) */
+nav > div:last-child {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* 6. Links de navegação */
+nav > div:last-child a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+nav > div:last-child a:hover {
+    opacity: 0.8;
+}
+
+/* 7. Botão "Entrar" */
+nav > div:last-child a:last-child {
+    background-color: #FF4081;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ==========================
+ Vitine styles 
+========================== */
+/* 1. Seção Vitrine */
+#vitrine {
+    padding: 80px 0;
+    background: linear-gradient(rgba(141, 43, 226, 0.05), rgba(255, 64, 129, 0.05));
+    text-align: center;
+    width: 100%;
+}
+
+/* Padrão de grade sutil (opcional) */
+#vitrine {
+    background-image: 
+        linear-gradient(rgba(141, 43, 226, 0.05), rgba(255, 64, 129, 0.05)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f8f9fa" width="100" height="100"/><path d="M0,50 L100,50" stroke="%23e9ecef" stroke-width="1"/><path d="M50,0 L50,100" stroke="%23e9ecef" stroke-width="1"/></svg>');
+    background-size: 30px 30px;
+    height: 90vh;
+}
+
+/* 3. Título */
+#vitrine h2 {
+    font-size: 2.8rem;
+    color: #8A2BE2;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* 4. Parágrafo */
+#vitrine p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* 5. Botão/Link */
+#vitrine a {
+    display: inline-block;
+    background-color: #FF4081;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+}
+
+/* Efeito hover do botão */
+#vitrine a:hover {
+    background-color: #8A2BE2;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+}
+
+/* ==========================
+ Produtos styles 
+========================== */
+
+/* 1. Seção Produtos */
+#produtos {
+    padding: 60px 0;
+    background-color: white;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 3. Título e subtítulo */
+#produtos > h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2D2B35;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#produtos > h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #8A2BE2;
+    border-radius: 2px;
+}
+
+#produtos > p {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 40px;
+}
+
+/* 4. Barra de pesquisa */
+.pesquisa-container {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.pesquisa-container input {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.pesquisa-container button {
+    background: #8A2BE2;
+    color: white;
+    border: none;
+    padding: 0 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pesquisa-container button:hover {
+    background: #9b45f0;
+}
+
+/* 5. Filtros */
+.filtros-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filtros-container button {
+    background: #F8F9FA;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filtros-container button.ativo {
+    background: #8A2BE2;
+    color: white;
+    border-color: #8A2BE2;
+}
+
+/* 6. Grade de produtos */
+#grid-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* 7. Card de produto */
+#card-produto {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+#card-produto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 8. Imagem do produto */
+#card-produto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+#card-produto:hover img {
+    transform: scale(1.1);
+}
+
+/* 9. Categoria */
+#card-produto .categoria {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #8A2BE2;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* 10. Container do conteúdo */
+#card-produto .compartilhar-detalhes {
+    padding: 20px;
+}
+
+/* 11. Título do produto */
+#card-produto h4 {
+    color: #2D2B35;
+    margin-bottom: 10px;
+}
+
+/* 12. Descrição */
+#card-produto p {
+    color: #6c757d;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* 13. Preço */
+#card-produto .price {
+    font-weight: 700;
+    color: #8A2BE2;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* 14. Container dos links */
+#card-produto .compartilhar-detalhes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 15. Links */
+#card-produto a {
+    color: #8A2BE2;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ==========================
+ Cadastro Produtos styles 
+========================== */
+
+/* Container (reutilizável) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Seção Cadastro */
+#cadastro {
+    padding: 60px 0;
+    background-color: white;
+}
+
+/* Cabeçalho do Formulário */
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-size: 2.2rem;
+    color: #2D2B35;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.form-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #8A2BE2;
+    border-radius: 2px;
+}
+
+.form-header p {
+    color: #6c757d;
+}
+
+/* Container do Formulário */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #F8F9FA;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Grupos de Campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2D2B35;
+}
+
+/* Campos de Entrada (Inputs, Selects, Textareas) */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #8A2BE2;
+    outline: none;
+}
+
+/* Select com seta personalizada */
+select.form-control {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Textarea */
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Texto de Ajuda */
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+/* Botão de Envio */
+.btn-submit {
+    display: block;
+    width: 100%;
+    background-color: #FF4081;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #8A2BE2;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+}
+
+/* ==========================
+ Footer styles 
+========================== */
+
+/* 1. Footer principal */
+footer {
+    background: #2D2B35;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+/* 2. Container (reutilizado) */
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 3. Conteúdo principal do footer */
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+/* 4. Colunas do footer */
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+/* 5. Títulos das colunas */
+.footer-column h3 {
+    color: white;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8A2BE2;
+    display: inline-block;
+}
+
+/* 6. Parágrafo da primeira coluna */
+.footer-column p {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* 7. Container dos links sociais */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* 8. Links sociais individuais */
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.social-links a:hover {
+    background: #8A2BE2;
+}
+
+/* 9. Listas de links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 10. Itens da lista */
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+/* 11. Links da lista */
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* 12. Área de copyright */
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* ==========================
+ Modal styles ( janela que aparece quando clica em ver detalhes)
+========================== */
+
+/* 1. Overlay do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Conteúdo do Modal */
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* 3. Botão Fechar */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+/* 4. Imagem do Produto */
+.modal-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* 5. Título do Produto */
+.modal-title {
+    color: #2D2B35;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+/* 6. Parágrafos de Informações */
+.modal-content p {
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.modal-content strong {
+    color: #2D2B35;
+}
+
+/* 7. Informações do Produto (spans) */
+.modal-category,
+.modal-description,
+.modal-price,
+.modal-contact {
+    color: #6c757d;
+    font-weight: normal;
+}
+
+/* Descrição específica */
+.modal-description {
+    display: inline-block;
+    line-height: 1.5;
+}
+
+/* 8. Container das Ações */
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 9. Botão "Entrar em Contato" */
+.btn-contact {
+    background-color: #8A2BE2;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+}
+
+.btn-contact:hover {
+    background-color: #FF4081;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

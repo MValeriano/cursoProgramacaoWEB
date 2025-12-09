@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <title>Feira virtual</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <h1>
+                    <i class="fas fa-store"></i>
+                    Feirinha Virtual
+                </h1>
+            </div>
+            <div>
+                <a href="#produtos">Produtos</a>
+                <a href="#cadastro">Adicionar Produto</a>
+                <a href="#">Sobre</a>
+                <a href="#">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="vitrine">
+
+            <h2>Feirinha Virtual de Talentos Locais</h2>
+            <p>Descubra e divulgue produtos e serviços feitos por mulheres
+                talentosas da nossa comunidade</p>
+
+            <a href="#cadastro">Quero divulgar meu talento</a>
+
+        </section>
+
+        <section id="produtos">
+
+            <h3> Nossos Talentos </h3>
+            <p>Conheça os produtos e serviços oferecidos por mulheres
+                da nossa comunidade</p>
+            <div class="pesquisa-container">
+                <input type="text" placeholder="Buscar produtos ou serviços...">
+                <button>
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="filtros-container">
+                <button>Todos</button>
+                <button>Artesanato</button>
+                <button>Culinária</button>
+                <button>Costura</button>
+                <button>Serviços</button>
+            </div>
+            <div id="grid-produtos">
+
+            </div>
+
+        </section>
+
+        <section id="cadastro">
+            <div class="container">
+                <!-- Cabeçalho -->
+                <div class="form-header">
+                    <h2>Divulgue seu Talento</h2>
+                    <p>Cadastre seu produto ou serviço para aparecer em nossa feirinha virtual</p>
+                </div>
+                
+                <!-- Formulário -->
+                <div class="form-container">
+                    <!-- Grupo 1: Nome -->
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto/Serviço *</label>
+                        <input type="text" id="product-name" class="form-control" placeholder="Ex: Bolsas artesanais em crochê">
+                    </div>
+                    
+                    <!-- Grupo 2: Categoria -->
+                    <div class="form-group">
+                        <label for="product-category">Categoria *</label>
+                        <select id="product-category" class="form-control">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="artesanato">Artesanato</option>
+                            <option value="culinaria">Culinária</option>
+                            <option value="costura">Costura</option>
+                            <option value="servicos">Serviços</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Grupo 3: Descrição -->
+                    <div class="form-group">
+                        <label for="product-description">Descrição *</label>
+                        <textarea id="product-description" class="form-control" placeholder="Descreva seu produto ou serviço..."></textarea>
+                    </div>
+                    
+                    <!-- Grupo 4: Preço -->
+                    <div class="form-group">
+                        <label for="product-price">Preço (opcional)</label>
+                        <input type="text" id="product-price" class="form-control" placeholder="Ex: R$ 50,00 ou A combinar">
+                    </div>
+                    
+                    <!-- Grupo 5: Contato -->
+                    <div class="form-group">
+                        <label for="product-contact">Contato *</label>
+                        <input type="text" id="product-contact" class="form-control" placeholder="WhatsApp, Instagram, telefone...">
+                    </div>
+                    
+                    <!-- Grupo 6: Imagem -->
+                    <div class="form-group">
+                        <label for="product-image">Imagem (URL)</label>
+                        <input type="text" id="product-image" class="form-control" placeholder="Cole o link de uma imagem do seu produto">
+                        <small>Ou deixe em branco para usar uma imagem padrão</small>
+                    </div>
+                    
+                    <!-- Botão -->
+                    <button class="btn-submit">Cadastrar Produto</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1 -->
+                <div class="footer-column">
+                    <h3>Feirinha Virtual</h3>
+                    <p>Conectando talentos femininos da comunidade...</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Coluna 2 -->
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#produtos">Ver Produtos</a></li>
+                        <li><a href="#adicionar">Divulgar Talento</a></li>
+                        <li><a href="#sobre">Sobre o Projeto</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Coluna 3 -->
+                <div class="footer-column">
+                    <h3>Categorias</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Artesanato</a></li>
+                        <li><a href="#">Culinária</a></li>
+                        <li><a href="#">Costura</a></li>
+                        <li><a href="#">Serviços</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Feirinha Virtual - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <img src="" alt="Produto" class="modal-image">
+            <h2 class="modal-title">Nome do Produto</h2>
+            
+            <p><strong>Categoria:</strong> <span class="modal-category">Artesanato</span></p>
+            <p><strong>Descrição:</strong> <span class="modal-description">Descrição detalhada do produto.</span></p>
+            <p><strong>Preço:</strong> <span class="modal-price">R$ 50,00</span></p>
+            <p><strong>Contato:</strong> <span class="modal-contact">(11) 99999-9999</span></p>
+            
+            <div class="modal-actions">
+                <button class="btn-contact">Entrar em Contato</button>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+	let dadosProdutos = [
+            {
+                id: 1,
+                name: "Bolsas de Crochê Personalizadas",
+                category: "artesanato",
+                description: "Bolsas artesanais feitas com fio de algodão e muito carinho. Vários modelos e cores disponíveis.",
+                price: "R$ 45,00 - R$ 80,00",
+                contact: "@artes.maria (Instagram)",
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvY2hldCUyMGJhZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 2,
+                name: "Doces Caseiros",
+                category: "culinaria",
+                description: "Doces caseiros variados: brigadeiros, beijinhos, cajuzinhos e bolos personalizados. Encomendas com 48h de antecedência.",
+                price: "R$ 3,50 (unidade)",
+                contact: "(11) 98888-7777 (WhatsApp)",
+                image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2FuZHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 3,
+                name: "Consertos de Roupas",
+                category: "costura",
+                description: "Serviço de conserto e ajuste de roupas. Barrado de calças, ajuste de blusas, conserto de zíperes e muito mais.",
+                price: "A partir de R$ 15,00",
+                contact: "(11) 97777-6666",
+                image: "conserto-de-roupas.jpg"
+            },
+            {
+                id: 4,
+                name: "Aulas de Culinária Vegana",
+                category: "servicos",
+                description: "Aulas particulares de culinária vegana para iniciantes. Aprenda a fazer pratos saborosos e nutritivos.",
+                price: "R$ 80,00 (aula de 2h)",
+                contact: "culinaria.vegana@gmail.com",
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmVnYW4lMjBjb29raW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 5,
+                name: "Bonecas de Pano Personalizadas",
+                category: "artesanato",
+                description: "Bonecas de pano feitas à mão com detalhes cuidadosamente costurados. Perfeitas para presentear crianças.",
+                price: "R$ 65,00",
+                contact: "@bonecas.artesanais (Instagram)",
+                image: "boneca.jpg"
+            },
+            {
+                id: 6,
+                name: "Salgados para Festas",
+                category: "culinaria",
+                description: "Salgados congelados para festas e eventos. Coxinhas, empadinhas, risoles e mais. Entrega gratuita na região.",
+                price: "R$ 0,90 (unidade) - mínimo 50 unidades",
+                contact: "(11) 95555-4444 (WhatsApp)",
+                image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c25hY2tzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            },
+        ];
+
+let gridProdutos = window.document.getElementById('grid-produtos');
+
+//for(let i = 0; i < dadosProdutos.length; i++){
+//function preencheGrid(produto){
+//let i = 0;
+//while(i < dadosProdutos.length){
+for(let produto of dadosProdutos ){
+    //gridProdutos.innerHTML +=
+    //`<div id="card-produto">
+    let novaDiv = document.createElement("div");
+    novaDiv.setAttribute("id","card-produto");
+    novaDiv.innerHTML = `<img src=${produto.image}
+            alt="imagem de ${produto.name}, ${produto.description}">
+        <div class="categoria"> ${produto.category} </div>
+
+        <h4> ${produto.name} </h4>
+        <p> ${produto.description}</p>
+
+        <div class="price"> ${produto.price} </div>
+        <div class="compartilhar-detalhes">
+            <a href="#">
+                <i class="fas fa-share-alt"></i>
+                Compartilhar
+            </a>
+            <a href="#">
+                <i class="fas fa-eye"></i>
+                Ver detalhes
+            </a>
+        </div>`;
+    //</div>
+    gridProdutos.appendChild(novaDiv);
+}
+
+//dadosProdutos.forEach(preencheGrid);
+
+//window.document.getElementByClassName('produtos');
+//window.document.getElementByTagName('div'); 
+//window.document.querySelector('#grid-produtos'); 
+//window.document.querySelector('.grid-produtos'); 
+	</script>
+
+</body>
+
+</html>
+

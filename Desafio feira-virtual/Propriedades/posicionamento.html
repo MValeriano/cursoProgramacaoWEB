@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Posicionamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ddd6fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #6d28d9;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f5f3ff;
+            border-bottom: 1px solid #ddd6fe;
+        }
+        
+        .badge-obsolete {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eab308;
+            color: #422006;
+            font-size: 14px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #7c3aed;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Caixa de Alerta (Obsoleto) */
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .warning-box p {
+            margin: 0;
+            font-weight: 700;
+            color: #b45309;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #6d28d9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #5b21b6;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Posicionamento CSS</h1>
+            <p class="subtitle">Estas propriedades são fundamentais para criar layouts complexos e interfaces de usuário interativas em CSS.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>position</td>
+                                <td>static, relative, absolute, fixed, sticky</td>
+                                <td>Método de posicionamento</td>
+                            </tr>
+                            <tr>
+                                <td>top</td>
+                                <td>auto, length, percentage</td>
+                                <td>Distância do topo do ancestral</td>
+                            </tr>
+                            <tr>
+                                <td>right</td>
+                                <td>auto, length, percentage</td>
+                                <td>Distância da direita do ancestral</td>
+                            </tr>
+                            <tr>
+                                <td>bottom</td>
+                                <td>auto, length, percentage</td>
+                                <td>Distância do fundo do ancestral</td>
+                            </tr>
+                            <tr>
+                                <td>left</td>
+                                <td>auto, length, percentage</td>
+                                <td>Distância da esquerda do ancestral</td>
+                            </tr>
+                            <tr>
+                                <td>z-index</td>
+                                <td>auto, number</td>
+                                <td>Ordem de empilhamento</td>
+                            </tr>
+                            <tr>
+                                <td>clip</td>
+                                <td>auto, rect()</td>
+                                <td>Recorte retangular (obsoleto)</td>
+                            </tr>
+                            <tr>
+                                <td>clip-path</td>
+                                <td>circle(), polygon(), ellipse(), url()</td>
+                                <td>Recorte em formas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use position: relative no contêiner para elementos absolute internos</li>
+                        <li>Prefira clip-path em vez de clip - é mais moderno e flexível</li>
+                        <li>Use z-index com moderação - crie um sistema consistente de camadas</li>
+                        <li>Teste position: sticky em diferentes navegadores (precisa de suporte)</li>
+                        <li>Combine top/left com transform para centralização precisa</li>
+                        <li>Use position: fixed para elementos que devem sempre estar visíveis</li>
+                        <li>Evite z-index muito altos - mantenha entre 0-1000 para maior controle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: bottom -->
+            <div class="property-card">
+                <h3>bottom</h3>
+                <div class="card-body">
+                    <p>A propriedade bottom afeta a posição vertical de um elemento posicionado.</p>
+                    <h4>Comportamento por tipo de posicionamento:</h4>
+                    <ul>
+                        <li><b>absolute/fixed:</b> Define a distância da borda inferior do elemento ancestral</li>
+                        <li><b>relative:</b> Move o elemento em relação à sua posição normal</li>
+                        <li><b>sticky:</b> Comporta-se como relative dentro da viewport e como fixed fora</li>
+                        <li><b>static:</b> Não tem efeito</li>
+                    </ul>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - O navegador calcula a posição (padrão)</li>
+                        <li>length - Valor em px, em, rem, etc. (valores negativos permitidos)</li>
+                        <li>percentage - Porcentagem do elemento contêiner (valores negativos permitidos)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento absoluto - 10px do fundo do ancestral */
+.absolute-bottom {
+    position: absolute;
+    bottom: 10px;
+    width: 50%;
+    border: 3px solid #8AC007;
+}
+
+/* Posicionamento fixo - sempre visível no fundo da tela */
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+
+/* Posicionamento relativo - move 20px para cima da posição normal */
+.relative-move {
+    position: relative;
+    bottom: 20px;
+    background: #f0f0f0;
+}
+
+/* Posicionamento sticky - gruda no fundo da viewport */
+.sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    background: #ffeb3b;
+    padding: 10px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: clip (Obsoleto) -->
+            <div class="property-card">
+                <h3>clip <span class="badge-obsolete">Obsoleto</span></h3>
+                <div class="card-body">
+                    <p>A propriedade clip especifica um retângulo para recortar um elemento posicionado absolutamente.</p>
+                    <div class="warning-box">
+                        <p>⚠️ OBSOLETO: Esta propriedade está obsoleta e deve ser substituída por clip-path</p>
+                    </div>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Sem recorte (padrão)</li>
+                        <li>shape - Apenas rect(top, right, bottom, left)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Recorte retangular - mostra apenas 100x100px do canto superior esquerdo */
+.clipped-image {
+    position: absolute;
+    clip: rect(0px, 100px, 100px, 0px);
+}
+
+/* Recorte mostrando apenas o centro da imagem */
+.center-clip {
+    position: absolute;
+    clip: rect(50px, 150px, 150px, 50px);
+}
+
+/* Múltiplos recortes em elementos diferentes */
+.clip-demo-1 { clip: rect(0px, 200px, 100px, 0px); }
+.clip-demo-2 { clip: rect(100px, 200px, 200px, 0px); }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: clip-path -->
+            <div class="property-card">
+                <h3>clip-path</h3>
+                <div class="card-body">
+                    <p>A propriedade clip-path substitui clip e permite recortar elementos em formas básicas ou SVG.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>clip-source - URL para um elemento SVG &lt;clipPath&gt;</li>
+                        <li>basic-shape - circle(), ellipse(), polygon(), inset()</li>
+                        <li>margin-box - Usa a caixa de margem como referência</li>
+                        <li>border-box - Usa a caixa de borda como referência</li>
+                        <li>padding-box - Usa a caixa de padding como referência</li>
+                        <li>content-box - Usa a caixa de conteúdo como referência</li>
+                        <li>none - Sem recorte (padrão)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Forma circular */
+.circle-clip {
+    clip-path: circle(50%);
+}
+
+/* Forma elíptica */
+.ellipse-clip {
+    clip-path: ellipse(25% 40% at 50% 50%);
+}
+
+/* Polígono personalizado */
+.polygon-clip {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Recorte de inserção */
+.inset-clip {
+    clip-path: inset(10% 20% 30% 40%);
+}
+
+/* Usando SVG clipPath */
+.svg-clip {
+    clip-path: url(#myClip);
+}
+
+/* Animação com clip-path */
+.animated-clip {
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 0.5s ease;
+}
+
+.animated-clip:hover {
+    clip-path: circle(75% at 50% 50%);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: left -->
+            <div class="property-card">
+                <h3>left</h3>
+                <div class="card-body">
+                    <p>A propriedade left afeta a posição horizontal de um elemento posicionado.</p>
+                    <h4>Comportamento por tipo de posicionamento:</h4>
+                    <ul>
+                        <li><b>absolute/fixed:</b> Define a distância da borda esquerda do elemento ancestral</li>
+                        <li><b>relative:</b> Move o elemento em relação à sua posição normal</li>
+                        <li><b>sticky:</b> Comporta-se como relative dentro da viewport e como fixed fora</li>
+                        <li><b>static:</b> Não tem efeito</li>
+                    </ul>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - O navegador calcula a posição (padrão)</li>
+                        <li>length - Valor em px, em, rem, etc. (valores negativos permitidos)</li>
+                        <li>percentage - Porcentagem do elemento contêiner (valores negativos permitidos)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento absoluto - 150px da esquerda do ancestral */
+.absolute-left {
+    position: absolute;
+    left: 150px;
+    width: 200px;
+    height: 120px;
+    border: 3px solid green;
+}
+
+/* Menu lateral fixo */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+}
+
+/* Movimento relativo - desloca 50px para direita */
+.relative-right {
+    position: relative;
+    left: 50px;
+    background: #e74c3c;
+}
+
+/* Centralização horizontal com left e transform */
+.center-horizontal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: position -->
+            <div class="property-card">
+                <h3>position</h3>
+                <div class="card-body">
+                    <p>A propriedade position especifica o método de posicionamento de um elemento.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>static - Posicionamento normal (padrão)</li>
+                        <li>relative - Posicionado em relação à sua posição normal</li>
+                        <li>absolute - Posicionado em relação ao ancestral posicionado mais próximo</li>
+                        <li>fixed - Posicionado em relação à viewport</li>
+                        <li>sticky - Alterna entre relative e fixed baseado no scroll</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento estático (comportamento normal) */
+.static-box {
+    position: static;
+    background: #ecf0f1;
+}
+
+/* Posicionamento relativo - pode usar top, right, bottom, left */
+.relative-box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    background: #3498db;
+}
+
+/* Posicionamento absoluto - removido do fluxo normal */
+.absolute-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e74c3c;
+    color: white;
+}
+
+/* Posicionamento fixo - sempre visível na viewport */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #34495e;
+    color: white;
+    z-index: 1000;
+}
+
+/* Posicionamento sticky - gruda durante o scroll */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    background: #2ecc71;
+    padding: 10px;
+    z-index: 100;
+}
+
+/* Container para posicionamento absoluto */
+.container {
+    position: relative;
+    height: 400px;
+    border: 2px dashed #bdc3c7;
+}
+
+.container .absolute-child {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: right -->
+            <div class="property-card">
+                <h3>right</h3>
+                <div class="card-body">
+                    <p>A propriedade right afeta a posição horizontal de um elemento posicionado.</p>
+                    <h4>Comportamento por tipo de posicionamento:</h4>
+                    <ul>
+                        <li><b>absolute/fixed:</b> Define a distância da borda direita do elemento ancestral</li>
+                        <li><b>relative:</b> Move o elemento em relação à sua posição normal</li>
+                        <li><b>sticky:</b> Comporta-se como relative dentro da viewport e como fixed fora</li>
+                        <li><b>static:</b> Não tem efeito</li>
+                    </ul>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - O navegador calcula a posição (padrão)</li>
+                        <li>length - Valor em px, em, rem, etc. (valores negativos permitidos)</li>
+                        <li>percentage - Porcentagem do elemento contêiner (valores negativos permitidos)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento absoluto - 150px da direita do ancestral */
+.absolute-right {
+    position: absolute;
+    right: 150px;
+    width: 200px;
+    height: 120px;
+    border: 3px solid green;
+}
+
+/* Botão de fechar no canto superior direito */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Menu de contexto à direita */
+.context-menu {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Movimento relativo para esquerda */
+.relative-left {
+    position: relative;
+    right: 25px;
+    background: #9b59b6;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: top -->
+            <div class="property-card">
+                <h3>top</h3>
+                <div class="card-body">
+                    <p>A propriedade top afeta a posição vertical de um elemento posicionado.</p>
+                    <h4>Comportamento por tipo de posicionamento:</h4>
+                    <ul>
+                        <li><b>absolute/fixed:</b> Define a distância da borda superior do elemento ancestral</li>
+                        <li><b>relative:</b> Move o elemento em relação à sua posição normal</li>
+                        <li><b>sticky:</b> Comporta-se como relative dentro da viewport e como fixed fora</li>
+                        <li><b>static:</b> Não tem efeito</li>
+                    </ul>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - O navegador calcula a posição (padrão)</li>
+                        <li>length - Valor em px, em, rem, etc. (valores negativos permitidos)</li>
+                        <li>percentage - Porcentagem do elemento contêiner (valores negativos permitidos)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Posicionamento absoluto - 50px do topo do ancestral */
+.absolute-top {
+    position: absolute;
+    top: 50px;
+    border: 3px solid green;
+}
+
+/* Cabeçalho fixo no topo */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #34495e;
+    color: white;
+    padding: 15px;
+    z-index: 1000;
+}
+
+/* Movimento relativo para baixo */
+.relative-down {
+    position: relative;
+    top: 40px;
+    background: #f39c12;
+}
+
+/* Centralização vertical com top e transform */
+.center-vertical {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Overlay modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: z-index -->
+            <div class="property-card">
+                <h3>z-index</h3>
+                <div class="card-body">
+                    <p>A propriedade z-index especifica a ordem de empilhamento (stack order) de um elemento.</p>
+                    <h4>Regras importantes:</h4>
+                    <ul>
+                        <li>Só funciona em elementos posicionados (absolute, relative, fixed, sticky)</li>
+                        <li>Também funciona em itens flex (filhos diretos de display: flex)</li>
+                        <li>Elementos com maior z-index ficam na frente</li>
+                        <li>Se não especificado, o último elemento no HTML fica na frente</li>
+                    </ul>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Ordem de empilhamento igual aos pais (padrão)</li>
+                        <li>number - Número inteiro (positivo ou negativo)</li>
+                        <li>initial - Valor padrão</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Elemento atrás do conteúdo */
+.background-element {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* Sistema de camadas para overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    z-index: 1001; /* Acima do overlay */
+}
+
+/* Navegação com dropdown */
+.navbar {
+    position: relative;
+    z-index: 100;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 101; /* Acima da navbar */
+}
+
+/* Cards sobrepostos com z-index diferente */
+.card-1 {
+    position: relative;
+    z-index: 1;
+    transform: rotate(-5deg);
+}
+
+.card-2 {
+    position: relative;
+    z-index: 2;
+    transform: rotate(0deg);
+    margin-top: -50px;
+}
+
+.card-3 {
+    position: relative;
+    z-index: 3;
+    transform: rotate(5deg);
+    margin-top: -50px;
+}
+
+/* Z-index negativo para elementos de fundo */
+.background-pattern {
+    position: absolute;
+    z-index: -10;
+    opacity: 0.1;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas propriedades de posicionamento para criar uma página visualmente rica e funcional, com elementos fixos, absolutos, relativos e sticky.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Exemplo Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Propriedades de Posicionamento CSS&lt;/title&gt;
+    &lt;!-- O CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Propriedades de Posicionamento CSS&lt;/h1&gt;
+
+        &lt;!-- Position Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;position&lt;/h2&gt;
+            &lt;p&gt;Define o método de posicionamento do elemento.&lt;/p&gt;
+            &lt;div class="demo-area"&gt;
+                &lt;div class="demo-box static-demo"&gt;Static&lt;/div&gt;
+                &lt;div class="demo-box relative-demo"&gt;Relative&lt;/div&gt;
+                &lt;div class="demo-box absolute-demo"&gt;Absolute&lt;/div&gt;
+                &lt;div class="demo-box fixed-demo"&gt;Fixed&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Bottom Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;bottom&lt;/h2&gt;
+            &lt;p&gt;Define a distância da borda inferior do elemento ancestral.&lt;/p&gt;
+            &lt;div class="demo-area"&gt;
+                &lt;div class="demo-box bottom-absolute"&gt;Absolute Bottom&lt;/div&gt;
+                &lt;div class="demo-box bottom-relative"&gt;Relative Bottom&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Clip Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;clip (Obsoleto)&lt;/h2&gt;
+            &lt;p&gt;Recorta um elemento posicionado absolutamente (substituído por clip-path).&lt;/p&gt;
+            &lt;div class="clip-container"&gt;
+                &lt;div class="clip-demo clip-1"&gt;&lt;/div&gt;
+                &lt;div class="clip-demo clip-2"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Clip-path Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;clip-path&lt;/h2&gt;
+            &lt;p&gt;Recorta elementos em formas básicas (substitui clip).&lt;/p&gt;
+            &lt;div&gt;
+                &lt;div class="clip-path-demo clip-circle"&gt;Circle&lt;/div&gt;
+                &lt;div class="clip-path-demo clip-polygon"&gt;Polygon&lt;/div&gt;
+                &lt;div class="clip-path-demo clip-ellipse"&gt;Ellipse&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Left/Right Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;left & right&lt;/h2&gt;
+            &lt;p&gt;Define a distância das bordas esquerda e direita.&lt;/p&gt;
+            &lt;div class="demo-area"&gt;
+                &lt;div class="left-demo demo-box"&gt;Left&lt;/div&gt;
+                &lt;div class="right-demo demo-box"&gt;Right&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Top Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;top&lt;/h2&gt;
+            &lt;p&gt;Define a distância da borda superior.&lt;/p&gt;
+            &lt;div class="demo-area"&gt;
+                &lt;div class="top-demo demo-box"&gt;Top Center&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Z-index Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;z-index&lt;/h2&gt;
+            &lt;p&gt;Controla a ordem de empilhamento dos elementos.&lt;/p&gt;
+            &lt;div class="z-index-demo"&gt;
+                &lt;div class="z-box z-1"&gt;z-index: 1&lt;/div&gt;
+                &lt;div class="z-box z-2"&gt;z-index: 2&lt;/div&gt;
+                &lt;div class="z-box z-3"&gt;z-index: 3&lt;/div&gt;
+                &lt;div class="z-box z-negative"&gt;z-index: -1&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Sticky Example --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2&gt;position: sticky&lt;/h2&gt;
+            &lt;p&gt;Elemento que gruda durante o scroll.&lt;/p&gt;
+            &lt;div class="sticky-demo"&gt;
+                Eu sou sticky! Role para baixo para me ver grudar no topo.
+            &lt;/div&gt;
+            &lt;div style="height: 800px; padding: 20px; background: #f8f9fa;"&gt;
+                &lt;p&gt;Conteúdo para scroll...&lt;/p&gt;
+                &lt;p&gt;Role para baixo para ver o elemento sticky em ação.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS:</h4>
+                        <pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 200vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.demo-area {
+    height: 300px;
+    border: 2px dashed #bdc3c7;
+    margin: 20px 0;
+    position: relative;
+    background: #ecf0f1;
+    overflow: hidden;
+}
+
+.demo-box {
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Position Examples */
+.static-demo { background: #3498db; }
+.relative-demo { 
+    position: relative;
+    background: #2ecc71;
+    top: 20px;
+    left: 30px;
+}
+.absolute-demo { 
+    position: absolute;
+    background: #e74c3c;
+    top: 50px;
+    right: 50px;
+    width: 150px;
+}
+.fixed-demo {
+    position: fixed;
+    background: #9b59b6;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bottom Examples */
+.bottom-absolute {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: #e67e22;
+    width: 120px;
+}
+
+.bottom-relative {
+    position: relative;
+    bottom: -30px;
+    background: #1abc9c;
+}
+
+/* Clip Examples */
+.clip-container {
+    position: relative;
+    height: 200px;
+    background: #34495e;
+}
+
+.clip-demo {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: url('https://via.placeholder.com/200') center/cover;
+}
+
+.clip-1 { clip: rect(0px, 100px, 100px, 0px); }
+.clip-2 { clip: rect(0px, 200px, 100px, 100px); left: 100px; }
+
+/* Clip-path Examples */
+.clip-path-demo {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    margin: 10px;
+    display: inline-block;
+}
+
+.clip-circle { clip-path: circle(50%); }
+.clip-polygon { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.clip-ellipse { clip-path: ellipse(25% 40% at 50% 50%); }
+
+/* Left/Right Examples */
+.left-demo {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    background: #3498db;
+    width: 100px;
+    height: 100px;
+}
+
+.right-demo {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    background: #e74c3c;
+    width: 100px;
+    height: 100px;
+}
+
+/* Top Examples */
+.top-demo {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2ecc71;
+    width: 150px;
+    height: 50px;
+}
+
+/* Z-index Examples */
+.z-index-demo {
+    position: relative;
+    height: 200px;
+    margin: 40px 0;
+}
+
+.z-box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.z-1 { 
+    background: #3498db; 
+    z-index: 1;
+    top: 20px;
+    left: 20px;
+}
+
+.z-2 { 
+    background: #2ecc71; 
+    z-index: 2;
+    top: 40px;
+    left: 40px;
+}
+
+.z-3 { 
+    background: #e74c3c; 
+    z-index: 3;
+    top: 60px;
+    left: 60px;
+}
+
+.z-negative {
+    background: #95a5a6;
+    z-index: -1;
+    top: 80px;
+    left: 80px;
+    opacity: 0.7;
+}
+
+/* Sticky Example */
+.sticky-demo {
+    position: sticky;
+    top: 0;
+    background: #f39c12;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    z-index: 100;
+}
+
+/* Code Examples */
+.code-block {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.property-name { color: #3498db; font-weight: bold; }
+.value { color: #2ecc71; }
+.comment { color: #95a5a6; font-style: italic; }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Exemplo Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Exemplo Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Exemplo Completo' : 'Ocultar Exemplo Completo';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Exemplo Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

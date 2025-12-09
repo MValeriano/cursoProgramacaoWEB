@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia: Feirinha Virtual - Talentos Locais</title>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #FF4081;
+            --bg-dark: #1a1a2e;
+            --bg-card: #252540;
+            --text-main: #ffffff;
+            --text-muted: #b0b0d0;
+            --success: #00e676;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 100px; /* Espaço para o footer */
+        }
+
+        /* --- Header / Hero --- */
+        header.hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            margin-bottom: 40px;
+        }
+
+        header.hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header.hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        /* --- Typography --- */
+        h2 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        /* --- Custom Lists with Checkboxes --- */
+        ul.sub-task-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        ul.sub-task-list li {
+            position: relative;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        /* Standard list for non-task items */
+        ul.std-list {
+            list-style: none;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        ul.std-list li {
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        ul.std-list li::before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        /* --- Links & Code --- */
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        a:hover { color: var(--primary); text-decoration: underline; }
+
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            font-size: 0.9em;
+        }
+
+        /* --- Checklist System --- */
+        .task-block {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .task-block:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .task-block.completed {
+            border-left-color: var(--success);
+            background: rgba(0, 230, 118, 0.05);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Header checkbox is visual only, interaction happens via sub-tasks */
+            pointer-events: none; 
+        }
+
+        /* Custom Checkbox Styles */
+        .check-container {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 3px; /* Align with text top */
+        }
+
+        /* Header checkbox specific style */
+        .header-check-container {
+            width: 28px;
+            height: 28px;
+        }
+
+        .check-container input {
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            position: absolute;
+        }
+
+        /* Allow pointer events on inputs inside sub-tasks so they can be clicked */
+        .sub-task-label .check-container {
+            pointer-events: auto;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: transparent;
+            border: 2px solid var(--text-muted);
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        /* Header checkbox style */
+        .header-check-container .checkmark {
+            border-color: var(--primary);
+            border-width: 3px;
+        }
+
+        .check-container input:checked ~ .checkmark {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .check-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Checkmark Icon */
+        .check-container .checkmark:after {
+            left: 35%;
+            top: 20%;
+            width: 30%;
+            height: 50%;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .task-block.completed .task-title {
+            color: var(--success);
+        }
+
+        .task-details {
+            margin-top: 15px;
+            padding-left: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+        }
+
+        .sub-task-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sub-task-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding-top: 2px;
+            transition: color 0.2s;
+        }
+
+        .check-container input:checked ~ .checkmark + .sub-task-text, /* logic sibling */
+        .sub-task-label input:checked ~ .sub-task-text { /* visual sibling via label */
+             text-decoration: line-through;
+             color: #666;
+        }
+        
+        /* Handling nested lists in sub-tasks */
+        .sub-task-text ul {
+            margin-top: 5px;
+            margin-bottom: 0;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* --- Sticky Footer Progress --- */
+        .progress-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 15px 0;
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        }
+
+        .progress-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .progress-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            min-width: 90px;
+        }
+        
+        .progress-text span {
+            color: var(--secondary);
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .status-msg {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: none;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .status-msg { display: block; }
+        }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Feirinha Virtual - Talentos Locais</h1>
+            <p>Guia interativo para estilização CSS</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- INTRODUÇÃO -->
+        <section id="intro">
+            <h2><i class="fa-solid fa-circle-info"></i> Instruções Iniciais</h2>
+            
+            <h3>Objetivo do Exercício</h3>
+            <p>Criar um arquivo CSS completo para estilizar uma página web de uma feirinha virtual de talentos locais, utilizando os conceitos aprendidos sobre CSS (seletores, propriedades).</p>
+
+            <h3>Arquivo base (HTML fornecido)</h3>
+            <p>Você deverá utilizar exatamente o HTML enviado, sem alterar a estrutura.</p>
+            <p>Adicionei IDs e Classes (Inclusive no HTML do arquivo Javascript) para facilitar a vida de vocês.</p>
+            <p>O trabalho de vocês é usar o arquivo <code>style.css</code> e adicionar ao arquivo HTML disponibilizado, contendo todas as regras de estilo necessárias para que a página fique com aparência da imagem enviada.</p>
+            <p>Use também o <code>script.js</code> pois temos os cards que deveram ser estilizados.</p>
+
+            <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+                <p><strong>Dicas:</strong></p>
+                <ul class="std-list">
+                    <li><strong>Organização:</strong> Comece estilizando do elemento pai para os filhos;</li>
+                    <li><strong>Flexbox:</strong> Lembre-se que o flexbox funciona no elemento pai para controlar os filhos;</li>
+                    <li><strong>Especificidade:</strong> Use seletores específicos para não afetar outros elementos;</li>
+                    <li><strong>Teste:</strong> Verifique constantemente no navegador as mudanças;</li>
+                    <li>Utilize o <a href="https://validator.w3.org/#validate_by_input" target="_blank">Validador HTML</a> para testar o código HTML;</li>
+                    <li>Da mesma forma utilize o <a href="https://jigsaw.w3.org/css-validator/#validate_by_input" target="_blank">Validador de CSS</a> para testar o código CSS.</li>
+                </ul>
+            </div>
+
+            <p><strong>Obs:</strong> As animações não serão necessárias, mas se quiser adicionar alguma, estão na documentação <code>Propriedades/transform.html</code>, <code>Propriedades/FilterEEfects.html</code> e <code>Propriedades/trnasicoesEanimacoes.html</code> (podendo usar somente uma ou combinar algumas delas);</p>
+            
+            <p><strong>As propriedades usadas estão nos arquivos abaixo, para consulta:</strong></p>
+            <ul class="std-list">
+                <li>Propriedades/box_model.html</li>
+                <li>Propriedades/background.html</li>
+                <li>Propriedades/gradiente.html</li>
+                <li>Propriedades/borda.html</li>
+                <li>Propriedades/fonte.html</li>
+                <li>Propriedades/texto.html</li>
+            </ul>
+        </section>
+
+        <!-- HEADER SECTION -->
+        <section id="header-tasks">
+            <h2><i class="fa-solid fa-heading"></i> Tarefas: Header</h2>
+            <p>Nesta parte, você deve estilizar apenas o header e seus elementos internos. O foco é revisar e aprender a combinar cores, espaçamento, tipografia, flexbox e pequenos detalhes visuais.</p>
+
+            <!-- Task 1 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Estilizar o elemento &lt;header&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: Usar gradiente linear de #8A2BE2 para #FF4081 (135 graus)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 15px no topo e baixo, 0 nas laterais</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor da fonte: Branco (white ou #FFFFFF)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Sombra: Sombra sutil na parte inferior (2px de deslocamento vertical, 10px de blur, cor preta com 10% de opacidade)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: Usar 100% da largura disponível</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 2 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Estilizar a tag &lt;nav&gt; como container:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 1200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Centralização: Margem automática nas laterais (margin: 0 auto)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 0 20px (20px nas laterais apenas)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flexbox: display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justificação: Espaço entre os itens (justify-content: space-between)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento vertical: Centralizar (align-items: center)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 3 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Estilizar o logo (&lt;h1&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 24px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: Negrito (700)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flexbox: display: flex para alinhar ícone e texto</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento: Alinhar itens verticalmente ao centro (align-items: center)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: Nenhum necessário (herdará do container)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem: Nenhuma necessária (usaremos flexbox no container pai)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 4 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Estilizar o ícone dentro do logo:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem à direita: 10px para separar do texto</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 5 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Configurar o container pai (para alinhar logo e nav):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flexbox: display: flex no elemento que envolve &lt;h1&gt; e &lt;nav&gt;</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justificação: Espaço entre os itens (justify-content: space-between)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento vertical: Centralizar (align-items: center)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 6 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">6. Estilizar os links de navegação (&lt;a&gt; dentro da segunda div):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: Branco</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Decoração de texto: Remover sublinhado (text-decoration: none)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: Médio (500)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: Adicionar transição suave de opacidade (0.3s) (opcional ver Propriedades/trnasicoesEanimacoes.html "transition")</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: Mudar opacidade para 0.8 ao passar o mouse (opcional ver Propriedades/seletores.html "Pseudo-classes")</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Task 7 -->
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">7. Estilizar o botão "Entrar" (último link na segunda div):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #FF4081 (rosa)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 30px (totalmente arredondado)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 10px vertical, 20px horizontal</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: Semi-negrito (600)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Fonte: Usar a fonte Poppins (importada)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VITRINE SECTION -->
+        <section id="vitrine-tasks">
+            <h2><i class="fa-solid fa-image"></i> Tarefas: Vitrine</h2>
+            <p>Nesta parte, você deve estilizar apenas a seção vitrine e seus elementos internos. O foco é revisar e estilizar a seção principal da página (vitrine) para ter um visual atraente e convidativo.</p>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Estilizar a seção #vitrine:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: Usar gradiente sutil com opacidade (combinação de rgba(141, 43, 226, 0.05) e rgba(255, 64, 129, 0.05))</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padrão de fundo: Adicionar um padrão de grade sutil (opcional)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 80px no topo e baixo</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento de texto: Centralizado</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 100% da largura disponível</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Container interno (será adicionado):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 1200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Centralização: Margem automática nas laterais</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 0 20px (20px nas laterais apenas)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Estilizar o título &lt;h2&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 2.8rem (aproximadamente 44.8px)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #8A2BE2 (roxo principal)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Família da fonte: 'Poppins', sans-serif</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: Negrito (700)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento: Centralizado</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Estilizar o parágrafo &lt;p&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 1.2rem (aproximadamente 19.2px)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 800px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem: 0 automático nas laterais, 40px na parte inferior</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura de linha: Aumentar para melhor legibilidade (1.6)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento: Centralizado</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Estilizar o link &lt;a&gt; (botão):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: inline-block (para permitir padding)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #FF4081 (rosa)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: Branco</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 12px vertical, 24px horizontal</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Decoração de texto: Nenhuma (text-decoration: none)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: 600 (semi-negrito)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Família da fonte: 'Poppins', sans-serif</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: Todas as propriedades por 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: <ul class="std-list"><li>Cor de fundo: #8A2BE2 (roxo)</li><li>Transformação: Mover para cima 3px (translateY(-3px))</li><li>Sombra: Adicionar sombra sutil</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUTOS SECTION -->
+        <section id="produtos-tasks">
+            <h2><i class="fa-solid fa-store"></i> Tarefas: Seção Produtos</h2>
+            <p>Estilizar a seção de produtos com filtros, busca e grade de produtos.</p>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Estilizar a seção #produtos:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 60px no topo e baixo</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 100% da largura disponível</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Fundo: Branco ou muito claro</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Container interno (será adicionado):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 1200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Centralização: Margem automática nas laterais</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento interno: 0 20px (20px nas laterais apenas)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Estilizar o título &lt;h3&gt; e parágrafo &lt;p&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento: Centralizado</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Título: <ul class="std-list"><li>Tamanho: 2.2rem</li><li>Cor: #2D2B35 (escuro)</li><li>Margem inferior: 15px</li><li>Linha decorativa: Adicionar pseudo-elemento ::after com linha de 80px x 4px</li></ul></span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Parágrafo: <ul class="std-list"><li>Cor: #6c757d (cinza)</li><li>Margem inferior: 40px</li><li>Alinhamento: Centralizado</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Estilizar a barra de pesquisa:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Container da pesquisa: <ul class="std-list"><li>Largura máxima: 500px</li><li>Margem: 0 automático, 40px na parte inferior</li><li>Display: flex</li><li>Sombra: Leve (0 5px 15px rgba(0,0,0,0.1))</li><li>Borda arredondada: 50px</li><li>Overflow: hidden</li></ul></span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Input de pesquisa: <ul class="std-list"><li>Flex: 1 (ocupa espaço disponível)</li><li>Padding: 15px 25px</li><li>Borda: nenhuma</li><li>Foco: outline none</li></ul></span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Botão de pesquisa: <ul class="std-list"><li>Cor de fundo: #8A2BE2 (roxo)</li><li>Cor do texto: Branco</li><li>Borda: nenhuma</li><li>Padding: 0 25px</li><li>Transição: cor de fundo 0.3s</li><li>Hover: cor de fundo #9b45f0 (roxo mais claro)</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Estilizar os botões de filtro:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Container dos filtros: <ul class="std-list"><li>Display: flex</li><li>Justify-content: center</li><li>Flex-wrap: wrap</li><li>Gap: 10px</li><li>Margem inferior: 40px</li></ul></span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Botões de filtro: <ul class="std-list"><li>Cor de fundo: Clara (#F8F9FA)</li><li>Borda: 1px sólida #ddd</li><li>Padding: 8px 20px</li><li>Borda arredondada: 20px</li><li>Transição: todas as propriedades 0.3s</li><li>Cursor: pointer</li></ul></span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Botão ativo: <ul class="std-list"><li>Cor de fundo: #8A2BE2 (roxo)</li><li>Cor do texto: Branco</li><li>Borda: mesma cor do fundo</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">6. Estilizar a grade de produtos #grid-produtos:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: grid</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Template columns: repeat(auto-fill, minmax(280px, 1fr))</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Gap: 30px entre os cards</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem: Automática conforme necessário</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">7. Estilizar os cards de produto #card-produto:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: Branco</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 10px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Overflow: hidden</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Sombra: Leve (0 5px 15px rgba(0,0,0,0.05))</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: transform 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Hover: <ul class="std-list"><li>Transformar: mover para cima 10px (translateY(-10px))</li><li>Sombra: Mais pronunciada</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">8. Estilizar a imagem dentro do card:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura: 200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Overflow: hidden</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: relative</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Imagem: <ul class="std-list"><li>Largura: 100%</li><li>Altura: 100%</li><li>Object-fit: cover</li><li>Transição: transform 0.5s</li><li>Hover na imagem: Escalar 1.1</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">9. Estilizar a categoria (primeira div dentro do card):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: absolute</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Topo: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Direita: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #8A2BE2 (roxo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: Branco</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 5px 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 0.8rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">10. Estilizar o conteúdo do card (container interno):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 20px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">11. Estilizar o título &lt;h4&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #2D2B35 (escuro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 10px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">12. Estilizar a descrição &lt;p&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 0.9rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">13. Estilizar o preço:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: 700 (negrito)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #8A2BE2 (roxo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 1.2rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">14. Estilizar o container dos links:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justify-content: space-between</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Align-items: center</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">15. Estilizar os links:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #8A2BE2 (roxo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Decoração de texto: none</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Align-items: center</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Gap: 5px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CADASTRO SECTION -->
+        <section id="cadastro-tasks">
+            <h2><i class="fa-solid fa-pen-to-square"></i> Tarefas: Cadastro de Produtos</h2>
+            <p>Estilizar o formulário de cadastro de produtos mantendo a estrutura HTML fornecida.</p>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Adicionar container principal:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Envolver todo o conteúdo de #cadastro em uma div com classe container</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Estilizar o container: <ul class="std-list"><li>max-width: 1200px</li><li>margin: 0 auto</li><li>padding: 0 20px</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Estilizar a seção #cadastro:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento: padding: 60px 0</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: Branco (white)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Estilizar o cabeçalho (primeira &lt;div&gt; dentro do container):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento: text-align: center</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 40px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Estilizar o título (&lt;h2&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho: 2.2rem</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #2D2B35 (escuro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: relative (para a linha decorativa)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: inline-block (para a linha ficar do tamanho do texto)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Linha decorativa (usando ::after) <br><code>.form-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: #8A2BE2; border-radius: 2px; }</code></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Estilizar a descrição (&lt;p&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">6. Estilizar o container do formulário (segunda &lt;div&gt; dentro do container):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 600px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem: 0 auto (centralizar)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #F8F9FA (cinza muito claro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 10px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Sombra: 0 5px 15px rgba(0, 0, 0, 0.05)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">7. Estilizar cada grupo de campo (&lt;div&gt; dentro do formulário que contém label + input):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Sugestão: Adicionar classe .form-group para facilitar</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">8. Estilizar as labels (&lt;label&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: block (ocupar linha inteira)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: 500 (medium)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 8px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #2D2B35 (escuro)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">9. Estilizar todos os inputs (&lt;input type="text"&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura: 100%</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 12px 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda: 1px solid #ddd</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 5px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 1rem</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: border-color 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito focus: <ul class="std-list"><li>border-color: #8A2BE2</li><li>outline: none</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">10. Estilizar o select (&lt;select&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Aplicar os mesmos estilos dos inputs</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cursor: pointer</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Aparência personalizada (opcional): <ul class="std-list"><li>appearance: none</li><li>Adicionar seta personalizada com background-image</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">11. Estilizar o textarea (&lt;textarea&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Aplicar os mesmos estilos dos inputs</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura mínima: 100px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Redimensionamento: Apenas vertical (resize: vertical)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">12. Estilizar o texto pequeno (&lt;small&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: block (ocupar linha inteira)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem superior: 5px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 0.85rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">13. Estilizar o botão "Cadastrar Produto":</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: block</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura: 100%</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #FF4081 (rosa)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 12px 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda: none</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cursor: pointer</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: 600</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Família da fonte: 'Poppins', sans-serif</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: all 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem superior: 10px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: <ul class="std-list"><li>background-color: #8A2BE2 (roxo)</li><li>transform: translateY(-3px) (levantar 3px)</li><li>box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4) (sombra roxa)</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER SECTION -->
+        <section id="footer-tasks">
+            <h2><i class="fa-brands fa-instagram"></i> Tarefas: Footer</h2>
+            <p>Estilizar o rodapé da página com três colunas de conteúdo e área de copyright.</p>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Estilizar o elemento &lt;footer&gt;:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #2D2B35 (escuro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Espaçamento: 60px 0 30px (60px topo, 0 laterais, 30px base)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Container principal (já temos a classe .container):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Reutilizar a classe .container das seções anteriores:</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">max-width: 1200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">margin: 0 auto</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">padding: 0 20px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Conteúdo principal do footer (.footer-content):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flex-wrap: wrap (para quebrar em telas menores)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justify-content: space-between</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 40px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Cada coluna (.footer-column):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flex: 1 (cresce igualmente)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura mínima: 250px (para responsividade)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 0 15px (espaçamento interno)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Títulos das colunas (&lt;h3&gt;):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding inferior: 10px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda inferior: 2px solid #8A2BE2 (linha decorativa)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: inline-block (para borda acompanhar texto)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">6. Parágrafo na primeira coluna:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #ccc (cinza claro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura de linha: 1.6 (para melhor legibilidade)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">7. Links das redes sociais (.social-links):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Gap: 15px (espaçamento entre ícones)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">8. Cada link social:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Align-items: center</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justify-content: center</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura: 40px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura: 40px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 50% (círculo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: rgba(255, 255, 255, 0.1) (branco com 10% opacidade)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: background 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: background: #8A2BE2 (roxo)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">9. Listas de links (.footer-links):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Estilo da lista: none (remover marcadores)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 0</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem: 0</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">10. Itens da lista (.footer-links li):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 10px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">11. Links dentro das listas (.footer-links a):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #ccc (cinza claro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Decoração: none</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: color 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: color: white</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">12. Área de copyright (.copyright):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Alinhamento de texto: center</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding superior: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda superior: 1px solid rgba(255, 255, 255, 0.1)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #ccc</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 0.9rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL SECTION -->
+        <section id="modal-tasks">
+            <h2><i class="fa-regular fa-window-maximize"></i> Tarefas: Modal de Detalhes</h2>
+            <p>Estilizar o modal que exibe detalhes completos de um produto quando o usuário clica em "Ver detalhes".</p>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">1. Estilizar o overlay do modal (.modal):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: none (inicialmente escondido, será mostrado via JS, então deixe esta propriedade por último, pois a tag desaparecerá.)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: fixed (fixo na tela)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Topo/Esquerda: 0</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura/Altura: 100% (cobrir toda a tela)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: rgba(0, 0, 0, 0.5) (preto com 50% de opacidade)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Z-index: 1000 (ficar acima de tudo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justify-content/Align-items: center (centralizar conteúdo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Flexbox: Usar flex para centralizar</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">2. Estilizar o conteúdo do modal (.modal-content):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 10px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura: 90% (largura responsiva)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura máxima: 500px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: relative</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura máxima: 90vh (90% da altura da tela)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Overflow-y: auto (rolagem se conteúdo for muito alto)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">3. Estilizar o botão fechar (.close-modal):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Posição: absolute</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Topo: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Direita: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: none (transparente)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda: none</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 1.5rem</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cursor: pointer</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">4. Estilizar a imagem do produto (.modal-image):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Largura: 100%</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Altura: 200px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Object-fit: cover (preencher mantendo proporção)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 8px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 20px</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">5. Estilizar o título (.modal-title):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #2D2B35 (escuro)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 15px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Tamanho da fonte: 1.8rem</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">6. Estilizar os parágrafos de informações:</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem inferior: 12px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: #333</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">7. Estilizar os spans com informações (.modal-category, .modal-description, etc.):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor: #6c757d (cinza)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: normal (não negrito)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">8. Estilizar o container das ações (.modal-actions):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Margem superior: 20px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Display: flex</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Justify-content: center (ou flex-start)</span></label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-block">
+                <div class="task-header">
+                    <div class="check-container header-check-container"><input type="checkbox" class="main-check" disabled><span class="checkmark"></span></div>
+                    <span class="task-title">9. Estilizar o botão "Entrar em Contato" (.btn-contact):</span>
+                </div>
+                <div class="task-details">
+                    <ul class="sub-task-list">
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor de fundo: #8A2BE2 (roxo)</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cor do texto: white</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Padding: 12px 24px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda arredondada: 30px</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Borda: none</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Cursor: pointer</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Peso da fonte: 600</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Família da fonte: 'Poppins', sans-serif</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Transição: all 0.3s</span></label></li>
+                        <li><label class="sub-task-label"><div class="check-container"><input type="checkbox" class="sub-check"><span class="checkmark"></span></div><span class="sub-task-text">Efeito hover: <ul class="std-list"><li>background-color: #FF4081 (rosa)</li><li>transform: translateY(-2px)</li><li>box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)</li></ul></span></label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="progress-footer">
+        <div class="progress-wrapper">
+            <div class="progress-text">
+                <span id="percent-display">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div class="status-msg">
+                <span id="tasks-count">0</span> subtarefas concluídas
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Logic for Granular Progress Calculation
+        const subCheckboxes = document.querySelectorAll('.sub-check');
+        const percentDisplay = document.getElementById('percent-display');
+        const progressFill = document.getElementById('progress-fill');
+        const tasksCountDisplay = document.getElementById('tasks-count');
+        
+        // Total sub-tasks available
+        const totalSubTasks = subCheckboxes.length;
+
+        function updateGlobalProgress() {
+            const checkedSubCount = document.querySelectorAll('.sub-check:checked').length;
+            const percentage = Math.round((checkedSubCount / totalSubTasks) * 100);
+
+            // Update Text
+            percentDisplay.textContent = percentage + '%';
+            tasksCountDisplay.textContent = checkedSubCount + ' / ' + totalSubTasks;
+
+            // Update Bar Width
+            progressFill.style.width = percentage + '%';
+        }
+
+        function updateBlockStatus(checkbox) {
+            // Find parent block
+            const block = checkbox.closest('.task-block');
+            if (!block) return;
+
+            // Find siblings
+            const allSubsInBlock = block.querySelectorAll('.sub-check');
+            const checkedSubsInBlock = block.querySelectorAll('.sub-check:checked');
+            const mainCheck = block.querySelector('.main-check');
+
+            // If all sub-tasks in this block are checked
+            if (allSubsInBlock.length > 0 && allSubsInBlock.length === checkedSubsInBlock.length) {
+                block.classList.add('completed');
+                if (mainCheck) mainCheck.checked = true;
+            } else {
+                block.classList.remove('completed');
+                if (mainCheck) mainCheck.checked = false;
+            }
+        }
+
+        subCheckboxes.forEach(box => {
+            box.addEventListener('change', function() {
+                updateBlockStatus(this);
+                updateGlobalProgress();
+            });
+        });
+
+        // Initialize on load (in case of browser caching checkboxes)
+        subCheckboxes.forEach(box => updateBlockStatus(box));
+        updateGlobalProgress();
+    </script>
+
+</body>
+</html>

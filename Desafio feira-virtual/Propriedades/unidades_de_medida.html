@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Unidades de Medida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #ddd6fe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: #6d28d9;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f5f3ff;
+            border-bottom: 1px solid #ddd6fe;
+        }
+
+        .property-card h4 {
+            font-family: 'Fira Code', monospace;
+            font-size: 20px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #7c3aed;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #6d28d9;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #5b21b6;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Fira Code', monospace;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Unidades de Medida CSS</h1>
+            <p class="subtitle">Essas unidades oferecem flexibilidade poderosa para criar designs responsivos, acessíveis e consistentes em CSS.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Unidade</th>
+                                <th>Tipo</th>
+                                <th>Relativo a</th>
+                                <th>Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>px</td>
+                                <td>Absoluta</td>
+                                <td>Pixel do dispositivo</td>
+                                <td>Bordas, sombras, elementos pequenos</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Relativa</td>
+                                <td>Elemento pai</td>
+                                <td>Layouts fluidos, grids</td>
+                            </tr>
+                            <tr>
+                                <td>em</td>
+                                <td>Relativa</td>
+                                <td>Tamanho da fonte do elemento</td>
+                                <td>Componentes escaláveis</td>
+                            </tr>
+                            <tr>
+                                <td>rem</td>
+                                <td>Relativa</td>
+                                <td>Tamanho da fonte do :root</td>
+                                <td>Sistema de design consistente</td>
+                            </tr>
+                            <tr>
+                                <td>vw/vh</td>
+                                <td>Relativa</td>
+                                <td>Viewport width/height</td>
+                                <td>Layouts de tela cheia</td>
+                            </tr>
+                            <tr>
+                                <td>vmin/vmax</td>
+                                <td>Relativa</td>
+                                <td>Viewport menor/maior dimensão</td>
+                                <td>Elementos responsivos</td>
+                            </tr>
+                            <tr>
+                                <td>ch</td>
+                                <td>Relativa</td>
+                                <td>Largura do caractere "0"</td>
+                                <td>Limitação de texto, inputs</td>
+                            </tr>
+                            <tr>
+                                <td>cm/in/mm</td>
+                                <td>Absoluta</td>
+                                <td>Unidades físicas</td>
+                                <td>Impressão, mídia física</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Estabeleça um sistema base no :root com font-size: 16px (ou 62.5% para cálculo mais fácil)</li>
+                        <li>Use REM para sistema de design - cria consistência em todo o projeto</li>
+                        <li>Combine unidades - use % para layout, rem para espaçamento, vw/vh para elementos de tela cheia</li>
+                        <li>Prefira unidades relativas para acessibilidade - usuários podem aumentar o tamanho da fonte</li>
+                        <li>Use clamp() para tipografia responsiva: font-size: clamp(1rem, 2.5vw, 2rem)</li>
+                        <li>Teste em diferentes viewports - especialmente unidades viewport em dispositivos móveis</li>
+                        <li>Considere acessibilidade - unidades relativas funcionam melhor com zoom do navegador</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: Unidades de Medida Absolutas -->
+            <div class="property-card">
+                <h3>Unidades de Medida Absolutas</h3>
+                <div class="card-body">
+                    <p>As unidades de comprimento absoluto são fixas e aparecem exatamente com o tamanho especificado. São mais indicadas para mídia impressa.</p>
+                    
+                    <h4>px (Pixel)</h4>
+                    <pre><code>.pixel-example {
+    width: 300px;
+    height: 200px;
+    font-size: 16px;
+    border: 1px solid #000;
+}</code></pre>
+
+                    <h4>cm (Centímetro)</h4>
+                    <pre><code>.centimeter-example {
+    width: 10cm;
+    height: 5cm;
+    margin: 1cm;
+    font-size: 0.5cm;
+}</code></pre>
+
+                    <h4>in (Polegada)</h4>
+                    <pre><code>.inch-example {
+    width: 4in;  /* ≈ 10.16cm */
+    height: 2in; /* ≈ 5.08cm */
+    padding: 0.5in;
+}</code></pre>
+
+                    <h4>mm (Milímetro)</h4>
+                    <pre><code>.millimeter-example {
+    width: 100mm;
+    height: 50mm;
+    border: 2mm solid red;
+}</code></pre>
+
+                    <h4>pt (Ponto) - 1pt = 1/72in</h4>
+                    <pre><code>.point-example {
+    font-size: 12pt; /* Comum em impressão */
+    line-height: 14pt;
+    margin: 10pt;
+}</code></pre>
+
+                    <h4>pc (Pica) - 1pc = 12pt</h4>
+                    <pre><code>.pica-example {
+    font-size: 1pc; /* 12pt */
+    width: 6pc;     /* 72pt */
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Card: Unidades de Medida Relativas -->
+            <div class="property-card">
+                <h3>Unidades de Medida Relativas</h3>
+                <div class="card-body">
+                    <p>As unidades de comprimento relativo especificam um comprimento relativo a outra propriedade.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>% (Porcentagem)</h4>
+                        <pre><code>.percentage-example {
+    width: 50%;         /* 50% da largura do elemento pai */
+    height: 25%;        /* 25% da altura do elemento pai */
+    font-size: 150%;    /* 150% do tamanho da fonte do elemento pai */
+    margin: 10% 5%;     /* 10% da largura do pai para top/bottom, 5% para left/right */
+}
+
+.container {
+    width: 800px;
+    height: 400px;
+}
+
+.container .child {
+    width: 50%;   /* 400px */
+    height: 25%;  /* 100px */
+}</code></pre>
+
+                        <h4>em</h4>
+                        <p>Relativo ao tamanho da fonte do elemento atual.</p>
+                        <pre><code>.em-example {
+    font-size: 16px;
+    padding: 1em;       /* 16px */
+    margin: 2em;        /* 32px */
+    line-height: 1.5em; /* 24px */
+}
+
+.nested-em {
+    font-size: 20px;
+}
+
+.nested-em .child {
+    font-size: 1.2em;   /* 24px (20px × 1.2) */
+    padding: 0.5em;     /* 12px (24px × 0.5) */
+}
+
+/* Problema com em aninhado */
+.problem-em {
+    font-size: 16px;
+}
+
+.problem-em .level1 {
+    font-size: 1.5em; /* 24px */
+}
+
+.problem-em .level1 .level2 {
+    font-size: 1.5em; /* 36px (24px × 1.5) - Pode ser indesejado! */
+}</code></pre>
+
+                        <h4>rem (Root EM)</h4>
+                        <p>Relativo ao tamanho da fonte do elemento raiz (html).</p>
+                        <pre><code>:root {
+    font-size: 16px; /* Padrão da maioria dos navegadores */
+}
+
+.rem-example {
+    font-size: 1rem;    /* 16px */
+    padding: 1rem;      /* 16px */
+    margin: 2rem;       /* 32px */
+    width: 20rem;       /* 320px */
+}
+
+/* Não sofre do problema de aninhamento */
+.consistent-rem .level1 {
+    font-size: 1.5rem; /* 24px */
+}
+
+.consistent-rem .level1 .level2 {
+    font-size: 1.5rem; /* 24px - Consistente! */
+}</code></pre>
+
+                        <h4>vh e vw (Viewport Height e Width)</h4>
+                        <pre><code>.viewport-example {
+    width: 50vw;        /* 50% da largura da viewport */
+    height: 75vh;       /* 75% da altura da viewport */
+    font-size: 5vw;     /* 5% da largura da viewport */
+    margin: 2vh 3vw;    /* 2% da altura e 3% da largura da viewport */
+}
+
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.half-viewport {
+    width: 50vw;  /* Metade da largura da tela */
+    height: 50vh; /* Metade da altura da tela */
+}</code></pre>
+
+                        <h4>vmin e vmax</h4>
+                        <pre><code>.vmin-vmax-example {
+    width: 50vmin;  /* 50% da menor dimensão da viewport */
+    height: 75vmax; /* 75% da maior dimensão da viewport */
+    font-size: 4vmin; /* Tamanho responsivo baseado na menor dimensão */
+}
+
+/* Quadrado que sempre se ajusta à viewport */
+.responsive-square {
+    width: 50vmin;
+    height: 50vmin;
+}
+
+/* Texto que se ajusta ao tamanho da tela */
+.responsive-text {
+    font-size: 5vmin; /* Bom para headings responsivos */
+}</code></pre>
+
+                        <h4>ch (Largura do caractere "0")</h4>
+                        <pre><code>.ch-example {
+    width: 20ch;    /* Largura de 20 caracteres "0" */
+    max-width: 60ch; /* Ideal para legibilidade de texto */
+    font-family: monospace;
+}
+
+/* Ótimo para inputs e textos com limite de caracteres */
+.input-field {
+    width: 20ch;    /* Espaço para ~20 caracteres */
+}
+
+.readable-text {
+    max-width: 60ch; /* Linhas com comprimento ideal para leitura */
+    line-height: 1.6;
+}</code></pre>
+
+                        <h4>ex (Altura x da fonte)</h4>
+                        <pre><code>.ex-example {
+    font-size: 16px;
+    line-height: 2ex;   /* Duas vezes a altura do caractere "x" */
+    margin: 1ex;
+}
+
+/* Útil para alinhamento vertical preciso */
+.vertical-align {
+    vertical-align: 0.5ex;
+    position: relative;
+    top: 0.3ex;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas unidades para criar um layout responsivo e visualmente atraente.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Unidades de Medida CSS&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Unidades de Medida CSS&lt;/h1&gt;
+
+        &lt;!-- Unidades Absolutas --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Unidades Absolutas&lt;/h2&gt;
+            &lt;p&gt;Unidades fixas que não mudam com o contexto.&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-box pixel-box"&gt;
+                    Pixel (200px × 100px)
+                &lt;/div&gt;
+                &lt;div class="demo-box centimeter-box"&gt;
+                    Centímetro (8cm × 3cm)
+                &lt;/div&gt;
+                &lt;div class="demo-box inch-box"&gt;
+                    Polegada (3in × 1.5in)
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Porcentagem --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Porcentagem (%)&lt;/h2&gt;
+            &lt;p&gt;Relativo ao elemento pai.&lt;/p&gt;
+            
+            &lt;div class="percentage-container"&gt;
+                &lt;div class="percentage-box"&gt;
+                    50% × 75% do container
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- EM --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;EM (em)&lt;/h2&gt;
+            &lt;p&gt;Relativo ao tamanho da fonte do elemento atual.&lt;/p&gt;
+            
+            &lt;div class="em-container"&gt;
+                Container (font-size: 20px)
+                &lt;div class="em-box"&gt;
+                    .em-box (font-size: 1.2em = 24px)
+                    &lt;div class="nested-em"&gt;
+                        .nested-em (font-size: 1.5em = 30px)
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- REM --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;REM (rem)&lt;/h2&gt;
+            &lt;p&gt;Relativo ao tamanho da fonte do elemento raiz (:root).&lt;/p&gt;
+            
+            &lt;div class="rem-box"&gt;
+                .rem-box (font-size: 1.5rem = 24px)
+                &lt;div class="nested-rem"&gt;
+                    .nested-rem (font-size: 1.2rem = 19.2px)
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Viewport Units --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Unidades Viewport&lt;/h2&gt;
+            &lt;p&gt;Relativo ao tamanho da janela do navegador.&lt;/p&gt;
+            
+            &lt;div class="viewport-demo"&gt;
+                30vh de altura, fonte responsiva (3vw)
+            &lt;/div&gt;
+
+            &lt;div class="vmin-box"&gt;
+                50vmin × 30vmin
+            &lt;/div&gt;
+
+            &lt;div class="vmax-box"&gt;
+                30vmax × 20vmax
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- CH Unit --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;CH (ch)&lt;/h2&gt;
+            &lt;p&gt;Largura do glifo "0" da fonte atual.&lt;/p&gt;
+            
+            &lt;div class="ch-example"&gt;
+                Este elemento tem 30ch de largura, perfeito para ~30 caracteres.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- EX Unit --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;EX (ex)&lt;/h2&gt;
+            &lt;p&gt;Altura x da fonte do elemento.&lt;/p&gt;
+            
+            &lt;div class="ex-example"&gt;
+                Este elemento usa line-height: 2ex para espaçamento vertical baseado na altura do caractere "x".
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Sistema de Tipografia --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Sistema de Tipografia com REM&lt;/h2&gt;
+            
+            &lt;div class="typography-scale"&gt;
+                &lt;div class="h1-rem"&gt;Heading 1 (3rem = 48px)&lt;/div&gt;
+                &lt;div class="h2-rem"&gt;Heading 2 (2.5rem = 40px)&lt;/div&gt;
+                &lt;div class="h3-rem"&gt;Heading 3 (2rem = 32px)&lt;/div&gt;
+                &lt;div class="body-rem"&gt;Texto corporal (1rem = 16px) - Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/div&gt;
+                &lt;div class="small-rem"&gt;Texto pequeno (0.875rem = 14px) - Texto secundário ou de apoio.&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Sistema de Espaçamento --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Sistema de Espaçamento com REM&lt;/h2&gt;
+            
+            &lt;div class="spacing-system"&gt;
+                &lt;div class="space-xs"&gt;XS (0.25rem)&lt;/div&gt;
+                &lt;div class="space-sm"&gt;SM (0.5rem)&lt;/div&gt;
+                &lt;div class="space-md"&gt;MD (1rem)&lt;/div&gt;
+                &lt;div class="space-lg"&gt;LG (2rem)&lt;/div&gt;
+                &lt;div class="space-xl"&gt;XL (4rem)&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Layout Responsivo --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Layout Responsivo com Unidades Mistas&lt;/h2&gt;
+            
+            &lt;div class="responsive-layout"&gt;
+                &lt;div class="sidebar"&gt;
+                    Sidebar (1fr)
+                    &lt;p&gt;Usando unidades flexíveis para layout responsivo.&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="main-content"&gt;
+                    Conteúdo Principal (2fr)
+                    &lt;p&gt;Combinação de fr, rem, e % para criar layouts adaptáveis.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Melhores Práticas --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Melhores Práticas&lt;/h2&gt;
+            
+            &lt;div class="code-block"&gt;
+<span class="comment">/* 
+MELHORES PRÁTICAS:
+
+1. Use REM para:
+   - Tamanhos de fonte
+   - Espaçamento (padding, margin)
+   - Layout geral
+
+2. Use EM para:
+   - Componentes que precisam escalar com seu contexto
+   - Margens/paddings relativos ao tamanho da fonte do elemento
+
+3. Use Viewport Units para:
+   - Elementos de layout de tela cheia
+   - Tipografia responsiva
+   - Componentes que devem preencher a viewport
+
+4. Use % para:
+   - Layouts de grade
+   - Elementos dentro de contêineres com tamanho definido
+
+5. Use CH para:
+   - Limitar largura de texto para melhor legibilidade
+   - Inputs com limite de caracteres
+
+EVITE:
+- Unidades absolutas (cm, in, mm, pt, pc) para telas
+- Muitas unidades diferentes no mesmo projeto
+*/</span>
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>:root {
+    font-size: 16px;
+    --spacing-unit: 1rem;
+    --container-width: 80vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    color: #2d3436;
+    margin-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #74b9ff;
+}
+
+.section-title {
+    color: #2d3436;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.demo-box {
+    padding: 1rem;
+    border: 2px solid;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+/* Unidades Absolutas */
+.pixel-box {
+    width: 200px;
+    height: 100px;
+    border-color: #e74c3c;
+    background: #ffeaa7;
+}
+
+.centimeter-box {
+    width: 8cm;
+    height: 3cm;
+    border-color: #3498db;
+    background: #a29bfe;
+}
+
+.inch-box {
+    width: 3in;
+    height: 1.5in;
+    border-color: #2ecc71;
+    background: #fd79a8;
+}
+
+/* Unidades Relativas - Porcentagem */
+.percentage-container {
+    width: 400px;
+    height: 200px;
+    border: 2px dashed #636e72;
+    margin: 1rem 0;
+}
+
+.percentage-box {
+    width: 50%;
+    height: 75%;
+    background: #74b9ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Unidades Relativas - EM */
+.em-container {
+    font-size: 20px;
+    padding: 1em;
+    border: 1px solid #ddd;
+    margin: 1rem 0;
+}
+
+.em-box {
+    font-size: 1.2em;     /* 24px */
+    padding: 0.5em;       /* 12px */
+    margin: 1em;          /* 24px */
+    background: #55efc4;
+}
+
+.nested-em {
+    font-size: 1.5em;     /* 30px (20px × 1.5) */
+    padding: 0.5em;       /* 15px */
+}
+
+/* Unidades Relativas - REM */
+.rem-box {
+    font-size: 1.5rem;     /* 24px (16px × 1.5) */
+    padding: 1rem;         /* 16px */
+    margin: 1rem;          /* 16px */
+    background: #ffeaa7;
+    border: 2px solid #fdcb6e;
+}
+
+.nested-rem {
+    font-size: 1.2rem;     /* 19.2px (16px × 1.2) */
+    padding: 0.5rem;       /* 8px */
+}
+
+/* Viewport Units */
+.viewport-demo {
+    height: 30vh;
+    background: linear-gradient(45deg, #ff7675, #fd79a8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: clamp(1rem, 3vw, 2rem);
+    margin: 1rem 0;
+}
+
+.vmin-box {
+    width: 50vmin;
+    height: 30vmin;
+    background: #00b894;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 1rem auto;
+}
+
+.vmax-box {
+    width: 30vmax;
+    height: 20vmax;
+    background: #6c5ce7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 1rem auto;
+}
+
+/* CH Unit */
+.ch-example {
+    width: 30ch;
+    font-family: monospace;
+    background: #dfe6e9;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-left: 4px solid #00cec9;
+}
+
+/* EX Unit */
+.ex-example {
+    font-size: 20px;
+    line-height: 2ex;
+    background: #fab1a0;
+    padding: 1ex;
+    margin: 1rem 0;
+}
+
+/* Layout Responsivo com Unidades Mistas */
+.responsive-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.sidebar {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+.main-content {
+    background: #ecf0f1;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+/* Typography Scale com REM */
+.typography-scale {
+    margin: 2rem 0;
+}
+
+.h1-rem { font-size: 3rem; margin-bottom: 1rem; }
+.h2-rem { font-size: 2.5rem; margin-bottom: 0.875rem; }
+.h3-rem { font-size: 2rem; margin-bottom: 0.75rem; }
+.body-rem { font-size: 1rem; line-height: 1.6rem; }
+.small-rem { font-size: 0.875rem; line-height: 1.4rem; }
+
+/* Spacing System com REM */
+.spacing-system {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.space-xs { padding: 0.25rem; background: #74b9ff; }
+.space-sm { padding: 0.5rem; background: #55efc4; }
+.space-md { padding: 1rem; background: #ffeaa7; }
+.space-lg { padding: 2rem; background: #fd79a8; }
+.space-xl { padding: 4rem; background: #a29bfe; }
+
+/* Code Examples */
+.code-block {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.property-name { color: #74b9ff; }
+.value { color: #55efc4; }
+.comment { color: #636e72; font-style: italic; }
+
+/* Print Styles (usando unidades absolutas) */
+@media print {
+    .print-cm {
+        width: 15cm;
+        margin: 1cm auto;
+        font-size: 12pt;
+        line-height: 14pt;
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

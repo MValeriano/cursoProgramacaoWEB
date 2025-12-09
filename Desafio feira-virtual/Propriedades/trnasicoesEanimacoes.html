@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Transições e Animações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #f3e8ff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #7e22ce;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #fbf6ff;
+            border-bottom: 1px solid #f3e8ff;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        .card-body ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .card-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #9333ea;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #9333ea;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #7e22ce;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+        /* ESTILOS PARA O EXEMPLO COMPLETO (EXTRAÍDO DO TEXTO DO USUÁRIO) */
+        .live-demo-area {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+        
+        .live-demo-area h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        /* TRANSIÇÕES */
+        .transition-box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            transition: all 0.3s ease;
+            margin: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .transition-box:hover {
+            background: #e74c3c;
+            transform: scale(1.1) rotate(5deg);
+            border-radius: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: 
+                background-color 0.3s ease,
+                transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                box-shadow 0.3s ease;
+            cursor: pointer;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .button:active {
+            transform: translateY(0);
+            transition-duration: 0.1s;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ELEMENTOS ANIMADOS */
+        .animated-element {
+            width: 100px;
+            height: 100px;
+            background: #9b59b6;
+            margin: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            color: white;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slide-in {
+            animation: slide-in 0.8s ease-out both;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .rotate {
+            animation: rotate 3s linear infinite;
+        }
+
+        .complex-animation {
+            animation: 
+                slide-in 0.8s ease-out,
+                bounce 2s ease-in-out 0.8s infinite,
+                pulse 3s ease-in-out 1s infinite;
+        }
+
+        /* CONTROLES DE ANIMAÇÃO */
+        .pausable {
+            animation: slide-in 2s ease-in-out infinite alternate;
+        }
+
+        .pausable:hover {
+            animation-play-state: paused;
+        }
+
+        /* LOADING SPINNER */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* STAGGERED ANIMATIONS */
+        .stagger-container {
+            display: flex;
+            gap: 10px;
+        }
+        .stagger-item {
+            width: 60px;
+            height: 60px;
+            background: #1abc9c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fade-in-up 0.6s ease forwards;
+        }
+
+        .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Respeitar preferências de movimento */
+        .code-block.reduce-motion {
+            background-color: #52525b;
+            border-left: 4px solid #f59e0b;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Transições e Animações CSS</h1>
+            <p class="subtitle">Essas propriedades são essenciais para criar interfaces modernas, dinâmicas e atraentes, mas devem ser usadas com moderação.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores Comuns</th>
+                                <th>Uso Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>transition</td>
+                                <td>all 0.3s ease</td>
+                                <td>Shorthand para transições</td>
+                            </tr>
+                            <tr>
+                                <td>transition-property</td>
+                                <td>opacity, transform</td>
+                                <td>Propriedades a animar</td>
+                            </tr>
+                            <tr>
+                                <td>transition-duration</td>
+                                <td>0.3s, 500ms</td>
+                                <td>Duração da transição</td>
+                            </tr>
+                            <tr>
+                                <td>transition-timing-function</td>
+                                <td>ease, cubic-bezier()</td>
+                                <td>Curva de aceleração</td>
+                            </tr>
+                            <tr>
+                                <td>transition-delay</td>
+                                <td>0.2s, 1s</td>
+                                <td>Atraso para iniciar</td>
+                            </tr>
+                            <tr>
+                                <td>animation</td>
+                                <td>slide 0.5s ease</td>
+                                <td>Shorthand para animações</td>
+                            </tr>
+                            <tr>
+                                <td>animation-name</td>
+                                <td>fade-in, bounce</td>
+                                <td>Nome da @keyframes</td>
+                            </tr>
+                            <tr>
+                                <td>animation-duration</td>
+                                <td>1s, 2s</td>
+                                <td>Duração do ciclo</td>
+                            </tr>
+                            <tr>
+                                <td>animation-timing-function</td>
+                                <td>ease-out, linear</td>
+                                <td>Curva de aceleração</td>
+                            </tr>
+                            <tr>
+                                <td>animation-delay</td>
+                                <td>0.5s, 1s</td>
+                                <td>Atraso para iniciar</td>
+                            </tr>
+                            <tr>
+                                <td>animation-iteration-count</td>
+                                <td>1, infinite</td>
+                                <td>Número de repetições</td>
+                            </tr>
+                            <tr>
+                                <td>animation-direction</td>
+                                <td>normal, alternate</td>
+                                <td>Direção da animação</td>
+                            </tr>
+                            <tr>
+                                <td>animation-fill-mode</td>
+                                <td>forwards, both</td>
+                                <td>Estilos antes/depois</td>
+                            </tr>
+                            <tr>
+                                <td>animation-play-state</td>
+                                <td>running, paused</td>
+                                <td>Estado de execução</td>
+                            </tr>
+                            <tr>
+                                <td>@keyframes</td>
+                                <td>0%, 50%, 100%</td>
+                                <td>Definição da animação</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Performance -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Performance</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Prefira transform e opacity - São otimizadas pela GPU</li>
+                        <li>Evite animar width e height - Use transform: scale() em vez disso</li>
+                        <li>Use will-change para propriedades que você planeja animar</li>
+                        <li>Teste em dispositivos móveis - Animações podem ser mais pesadas</li>
+                        <li>Considere prefers-reduced-motion para acessibilidade</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: transition -->
+            <div class="property-card">
+                <h3>transition</h3>
+                <div class="card-body">
+                    <p>A propriedade transition é uma shorthand que permite definir a transição entre dois estados de um elemento. É a maneira mais comum de criar animações suaves em CSS.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>transition: [property] [duration] [timing-function] [delay];</code></pre>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Combina até 4 propriedades: transition-property, transition-duration, transition-timing-function, transition-delay</li>
+                        <li>Pode definir múltiplas transições separadas por vírgulas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Transição básica - todas as propriedades, 0.3s, easing padrão */
+transition: all 0.3s;
+
+/* Transição específica para transform */
+transition: transform 0.5s ease-in-out;
+
+/* Múltiplas transições */
+transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+/* Com delay */
+transition: all 0.4s ease-out 0.1s;
+
+/* Transições diferentes para diferentes propriedades */
+transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transition-property -->
+            <div class="property-card">
+                <h3>transition-property</h3>
+                <div class="card-body">
+                    <p>Especifica quais propriedades CSS terão transições aplicadas.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>all - Todas as propriedades animáveis (padrão)</li>
+                        <li>none - Nenhuma propriedade</li>
+                        <li>Nomes de propriedades específicas: width, height, opacity, transform, etc.</li>
+                        <li>Múltiplas propriedades separadas por vírgulas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Apenas opacity */
+transition-property: opacity;
+
+/* Múltiplas propriedades */
+transition-property: width, height, background-color;
+
+/* Todas as propriedades */
+transition-property: all;
+
+/* Propriedades específicas com prefixo */
+transition-property: transform, opacity, box-shadow;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transition-duration -->
+            <div class="property-card">
+                <h3>transition-duration</h3>
+                <div class="card-body">
+                    <p>Define por quanto tempo a transição ocorre.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>&lt;time&gt; - Segundos (s) ou milissegundos (ms)</li>
+                        <li>0s - Sem duração (padrão)</li>
+                        <li>Valores separados por vírgulas para múltiplas propriedades</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* 0.3 segundos */
+transition-duration: 0.3s;
+
+/* 500 milissegundos */
+transition-duration: 500ms;
+
+/* Durações diferentes para diferentes propriedades */
+transition-property: opacity, transform;
+transition-duration: 0.2s, 0.5s;
+
+/* Transição rápida */
+transition-duration: 0.1s;
+
+/* Transição lenta */
+transition-duration: 2s;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transition-timing-function -->
+            <div class="property-card">
+                <h3>transition-timing-function</h3>
+                <div class="card-body">
+                    <p>Define a curva de aceleração da transição (como a animação progride ao longo do tempo).</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Palavras-chave: ease, linear, ease-in, ease-out, ease-in-out</li>
+                        <li>Funções cúbicas de Bézier: cubic-bezier(n,n,n,n)</li>
+                        <li>Steps: steps(int, start|end)</li>
+                        <li>Valores globais: inherit, initial, unset</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Palavras-chave comuns */
+transition-timing-function: ease; /* Padrão - começa devagar, acelera, termina devagar */
+transition-timing-function: linear; /* Velocidade constante */
+transition-timing-function: ease-in; /* Começa devagar */
+transition-timing-function: ease-out; /* Termina devagar */
+transition-timing-function: ease-in-out; /* Começa e termina devagar */
+
+/* Bézier personalizada */
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Material Design */
+transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce */
+
+/* Steps para animação frame a frame */
+transition-timing-function: steps(4, jump-start);
+transition-timing-function: steps(10, end);
+
+/* Diferentes funções para diferentes propriedades */
+transition-property: opacity, transform;
+transition-timing-function: ease-in, cubic-bezier(0.4, 0, 0.2, 1);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: transition-delay -->
+            <div class="property-card">
+                <h3>transition-delay</h3>
+                <div class="card-body">
+                    <p>Define quanto tempo esperar antes de iniciar a transição.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>&lt;time&gt; - Segundos (s) ou milissegundos (ms)</li>
+                        <li>0s - Sem delay (padrão)</li>
+                        <li>Valores negativos - Começa a transição imediatamente, mas parte do meio</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Delay de 0.2 segundos */
+transition-delay: 0.2s;
+
+/* Delay de 500ms */
+transition-delay: 500ms;
+
+/* Múltiplos delays */
+transition-property: opacity, transform;
+transition-delay: 0s, 0.1s;
+
+/* Delay negativo - começa do meio */
+transition-delay: -0.3s;
+
+/* Delay longo */
+transition-delay: 2s;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation -->
+            <div class="property-card">
+                <h3>animation</h3>
+                <div class="card-body">
+                    <p>Shorthand property para configurar todas as propriedades de animação de uma vez.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode] [play-state];</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Animação básica */
+animation: slide-in 0.5s ease;
+
+/* Com múltiplos parâmetros */
+animation: bounce 1s ease-in-out 0.5s infinite alternate;
+
+/* Múltiplas animações */
+animation: 
+    fade-in 0.8s ease-out,
+    slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+
+/* Todos os parâmetros */
+animation: pulse 2s ease-in-out 0s infinite normal both running;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-name -->
+            <div class="property-card">
+                <h3>animation-name</h3>
+                <div class="card-body">
+                    <p>Especifica o nome da animação definida com @keyframes.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Nenhuma animação (padrão)</li>
+                        <li>&lt;custom-ident&gt; - Nome personalizado da animação</li>
+                        <li>Múltiplos nomes separados por vírgulas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Nome único */
+animation-name: slide-in;
+
+/* Múltiplas animações */
+animation-name: fade-in, slide-up;
+
+/* Sem animação */
+animation-name: none;
+
+/* Nomes descritivos */
+animation-name: button-pulse, menu-expand;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-duration -->
+            <div class="property-card">
+                <h3>animation-duration</h3>
+                <div class="card-body">
+                    <p>Define por quanto tempo um ciclo de animação deve levar.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>&lt;time&gt; - Segundos (s) ou milissegundos (ms)</li>
+                        <li>0s - Duração zero (padrão)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* 0.3 segundos */
+animation-duration: 0.3s;
+
+/* 2 segundos */
+animation-duration: 2s;
+
+/* Durações diferentes para múltiplas animações */
+animation-name: fade-in, slide-up;
+animation-duration: 0.5s, 0.8s;
+
+/* Animação muito rápida */
+animation-duration: 0.1s;
+
+/* Animação muito lenta */
+animation-duration: 5s;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-timing-function -->
+            <div class="property-card">
+                <h3>animation-timing-function</h3>
+                <div class="card-body">
+                    <p>Define como a animação progride através de cada ciclo.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>Mesmos valores que transition-timing-function</li>
+                        <li>ease, linear, ease-in, ease-out, ease-in-out</li>
+                        <li>cubic-bezier(n,n,n,n)</li>
+                        <li>steps(int, start|end)</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Timing functions comuns */
+animation-timing-function: ease;
+animation-timing-function: linear;
+animation-timing-function: ease-in-out;
+
+/* Bézier personalizada */
+animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+/* Steps para animação frame a frame */
+animation-timing-function: steps(6, jump-end);
+
+/* Diferentes funções para múltiplas animações */
+animation-name: move, fade;
+animation-timing-function: ease-in, linear;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-delay -->
+            <div class="property-card">
+                <h3>animation-delay</h3>
+                <div class="card-body">
+                    <p>Define o atraso antes do início da animação.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>&lt;time&gt; - Segundos (s) ou milissegundos (ms)</li>
+                        <li>0s - Sem delay (padrão)</li>
+                        <li>Valores negativos - Começa imediatamente, mas parte do meio</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Delay de 1 segundo */
+animation-delay: 1s;
+
+/* Delay de 500ms */
+animation-delay: 500ms;
+
+/* Múltiplos delays */
+animation-name: first, second;
+animation-delay: 0s, 0.5s;
+
+/* Delay negativo */
+animation-delay: -0.5s; /* Começa no meio da animação */
+
+/* Delay em cascata */
+animation-delay: 0.1s, 0.3s, 0.5s;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-iteration-count -->
+            <div class="property-card">
+                <h3>animation-iteration-count</h3>
+                <div class="card-body">
+                    <p>Define quantas vezes a animação deve ser executada.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>&lt;number&gt; - Número de vezes (ex: 1, 2, 3.5)</li>
+                        <li>infinite - Repete infinitamente</li>
+                        <li>Múltiplos valores separados por vírgulas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Uma vez (padrão) */
+animation-iteration-count: 1;
+
+/* Infinitas vezes */
+animation-iteration-count: infinite;
+
+/* 3 vezes */
+animation-iteration-count: 3;
+
+/* 2.5 vezes (para no meio) */
+animation-iteration-count: 2.5;
+
+/* Diferentes contagens para múltiplas animações */
+animation-name: pulse, rotate;
+animation-iteration-count: infinite, 3;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-direction -->
+            <div class="property-card">
+                <h3>animation-direction</h3>
+                <div class="card-body">
+                    <p>Define se a animação deve ser reproduzida para frente, para trás ou em ciclos alternados.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>normal - Reproduz normally (padrão)</li>
+                        <li>reverse - Reproduz na direção reversa</li>
+                        <li>alternate - Alterna entre normal e reversa a cada ciclo</li>
+                        <li>alternate-reverse - Alterna começando com reversa</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Direção normal */
+animation-direction: normal;
+
+/* Reversa */
+animation-direction: reverse;
+
+/* Alterna a cada ciclo */
+animation-direction: alternate;
+
+/* Alterna começando reverso */
+animation-direction: alternate-reverse;
+
+/* Diferentes direções para múltiplas animações */
+animation-name: slide, fade;
+animation-direction: alternate, normal;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-fill-mode -->
+            <div class="property-card">
+                <h3>animation-fill-mode</h3>
+                <div class="card-body">
+                    <p>Define quais valores são aplicados antes e depois da execução da animação.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>none - Nenhum estilo aplicado (padrão)</li>
+                        <li>forwards - Mantém o estilo do último keyframe</li>
+                        <li>backwards - Aplica o estilo do primeiro keyframe durante o delay</li>
+                        <li>both - Aplica tanto forwards quanto backwards</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Mantém o estado final */
+animation-fill-mode: forwards;
+
+/* Aplica estado inicial durante delay */
+animation-fill-mode: backwards;
+
+/* Ambos - aplica estado inicial e mantém final */
+animation-fill-mode: both;
+
+/* Nenhum - volta ao estado original */
+animation-fill-mode: none;
+
+/* Diferentes modos para múltiplas animações */
+animation-name: enter, exit;
+animation-fill-mode: both, forwards;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: animation-play-state -->
+            <div class="property-card">
+                <h3>animation-play-state</h3>
+                <div class="card-body">
+                    <p>Define se a animação está rodando ou pausada.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>running - Animação rodando (padrão)</li>
+                        <li>paused - Animação pausada</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Rodando normalmente */
+animation-play-state: running;
+
+/* Pausada */
+animation-play-state: paused;
+
+/* Controlável via JavaScript */
+.element:hover {
+    animation-play-state: paused;
+}
+
+/* Diferentes estados para múltiplas animações */
+animation-name: move, blink;
+animation-play-state: running, paused;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: @keyframes -->
+            <div class="property-card">
+                <h3>@keyframes</h3>
+                <div class="card-body">
+                    <p>Define a sequência de estágios da animação.</p>
+                    <h4>Sintaxe:</h4>
+                    <pre><code>@keyframes animation-name {
+    from {
+        /* Estilos iniciais */
+    }
+    to {
+        /* Estilos finais */
+    }
+}
+
+/* Ou com porcentagens */
+@keyframes animation-name {
+    0% {
+        /* Estilo em 0% */
+    }
+    50% {
+        /* Estilo em 50% */
+    }
+    100% {
+        /* Estilo em 100% */
+    }
+}</code></pre>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Animação simples de fade */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animação com múltiplos estágios */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Animação complexa */
+@keyframes slide-and-fade {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Múltiplas propriedades */
+@keyframes complex-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso</h3>
+                <div class="card-body live-demo-area">
+                    <p>Este exemplo renderiza ao vivo o código HTML e CSS fornecido, demonstrando transições e animações em diferentes elementos.</p>
+                    
+                    <h2>Transições</h2>
+                    <div class="transition-box">Passe o mouse</div>
+                    <button class="button">Botão Interativo</button>
+
+                    <h2>Animações Básicas</h2>
+                    <div class="animated-element slide-in">Slide In</div>
+                    <div class="animated-element bounce">Bounce</div>
+                    <div class="animated-element pulse">Pulse</div>
+                    <div class="animated-element rotate">Rotate</div>
+
+                    <h2>Animação Complexa</h2>
+                    <div class="animated-element complex-animation">Múltiplas</div>
+
+                    <h2>Controle de Animação</h2>
+                    <div class="animated-element pausable">Pause on Hover</div>
+
+                    <h2>Loading Spinner</h2>
+                    <div class="spinner"></div>
+
+                    <h2>Animações em Sequência</h2>
+                    <div class="stagger-container">
+                        <div class="stagger-item">Item 1</div>
+                        <div class="stagger-item">Item 2</div>
+                        <div class="stagger-item">Item 3</div>
+                        <div class="stagger-item">Item 4</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Código Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Animações e Transições CSS&lt;/title&gt;
+    &lt;!-- CSS está no bloco abaixo --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Animações e Transições CSS&lt;/h1&gt;
+
+    &lt;h2&gt;Transições&lt;/h2&gt;
+    &lt;div class="transition-box"&gt;Passe o mouse&lt;/div&gt;
+    &lt;button class="button"&gt;Botão Interativo&lt;/button&gt;
+
+    &lt;h2&gt;Animações Básicas&lt;/h2&gt;
+    &lt;div class="animated-element slide-in"&gt;Slide In&lt;/div&gt;
+    &lt;div class="animated-element bounce"&gt;Bounce&lt;/div&gt;
+    &lt;div class="animated-element pulse"&gt;Pulse&lt;/div&gt;
+    &lt;div class="animated-element rotate"&gt;Rotate&lt;/div&gt;
+
+    &lt;h2&gt;Animação Complexa&lt;/h2&gt;
+    &lt;div class="animated-element complex-animation"&gt;Múltiplas&lt;/div&gt;
+
+    &lt;h2&gt;Controle de Animação&lt;/h2&gt;
+    &lt;div class="animated-element pausable"&gt;Pause on Hover&lt;/div&gt;
+
+    &lt;h2&gt;Loading Spinner&lt;/h2&gt;
+    &lt;div class="spinner"&gt;&lt;/div&gt;
+
+    &lt;h2&gt;Animações em Sequência&lt;/h2&gt;
+    &lt;div class="stagger-item"&gt;Item 1&lt;/div&gt;
+    &lt;div class="stagger-item"&gt;Item 2&lt;/div&gt;
+    &lt;div class="stagger-item"&gt;Item 3&lt;/div&gt;
+    &lt;div class="stagger-item"&gt;Item 4&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <h4>CSS (embutido no &lt;style&gt;):</h4>
+                        <pre><code>/* TRANSIÇÕES */
+.transition-box {
+    width: 100px;
+    height: 100px;
+    background: #3498db;
+    transition: all 0.3s ease;
+    margin: 20px;
+}
+
+.transition-box:hover {
+    background: #e74c3c;
+    transform: scale(1.1) rotate(5deg);
+    border-radius: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: 
+        background-color 0.3s ease,
+        transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.button:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+}
+
+/* ANIMAÇÕES */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ELEMENTOS ANIMADOS */
+.animated-element {
+    width: 100px;
+    height: 100px;
+    background: #9b59b6;
+    margin: 20px;
+}
+
+.slide-in {
+    animation: slide-in 0.8s ease-out both;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.rotate {
+    animation: rotate 3s linear infinite;
+}
+
+.complex-animation {
+    animation: 
+        slide-in 0.8s ease-out,
+        bounce 2s ease-in-out 0.8s infinite,
+        pulse 3s ease-in-out 1s infinite;
+}
+
+/* CONTROLES DE ANIMAÇÃO */
+.pausable {
+    animation: slide-in 2s ease-in-out infinite alternate;
+}
+
+.pausable:hover {
+    animation-play-state: paused;
+}
+
+/* LOADING SPINNER */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* STAGGERED ANIMATIONS */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 0.6s ease forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</code></pre>
+                        <h4>Acessibilidade:</h4>
+                        <pre><code class="code-block reduce-motion">/* Respeitar preferências de movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT PARA O BOTÃO -->
+    <script>
+        function toggleResolution(button) {
+            var allResolutions = document.querySelectorAll('.resolution-content');
+            var allButtons = document.querySelectorAll('.toggle-button');
+            var currentResolution = button.nextElementSibling;
+
+            // Fecha outros abertos
+            allResolutions.forEach(function(res) {
+                if (res !== currentResolution && res.style.display === 'block') {
+                    res.style.display = 'none';
+                }
+            });
+
+            // Reseta texto de outros botões
+            allButtons.forEach(function(btn) {
+                if (btn !== button && (btn.textContent === 'Ocultar Exemplos' || btn.textContent === 'Ocultar Código Completo')) {
+                    btn.textContent = btn.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+                }
+            });
+
+            // Abre ou fecha o atual
+            if (currentResolution.style.display === 'none' || currentResolution.style.display === '') {
+                currentResolution.style.display = 'block';
+                button.textContent = button.classList.contains('full-example') ? 'Ocultar Código Completo' : 'Ocultar Exemplos';
+            } else {
+                currentResolution.style.display = 'none';
+                button.textContent = button.classList.contains('full-example') ? 'Ver Código Completo' : 'Ver Exemplos';
+            }
+        }
+    </script>
+
+</body>
+</html>

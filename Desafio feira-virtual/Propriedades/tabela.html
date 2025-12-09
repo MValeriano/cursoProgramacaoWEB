@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Infográfico CSS: Propriedades de Tabela</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 1. CONFIGURAÇÃO GERAL */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* 2. CONTAINER PRINCIPAL DO INFOGRÁFICO */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        /* 3. CABEÇALHO */
+        .header {
+            padding: 50px 60px;
+            background: linear-gradient(90deg, #06b6d4, #0891b2);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .header p.subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 400;
+            color: #cffafe;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 4. SEÇÃO DE CONTEÚDO (PROPRIEDADES) */
+        .content-section {
+            padding: 40px 60px;
+        }
+
+        /* 5. CARD DE PROPRIEDADE */
+        .property-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fdfdff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+        
+        .property-card h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 26px;
+            color: #0e7490;
+            margin: 0;
+            padding: 25px 30px;
+            background-color: #f0f9ff;
+            border-bottom: 1px solid #bae6fd;
+        }
+        
+        .card-body {
+            padding: 30px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .card-body p {
+            margin: 0 0 15px 0;
+        }
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 15px 0;
+            color: #1e293b;
+        }
+        
+        /* Tabela de Valores/Referência */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        .styled-table th {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .styled-table td:first-child {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: #0891b2;
+            white-space: nowrap;
+        }
+        
+        /* Caixa de Dica */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+        }
+        .tip-box h3 {
+            background-color: transparent;
+            border-bottom: none;
+            color: #15803d;
+            padding: 25px 30px 0 30px;
+        }
+        .tip-box .card-body {
+            padding-top: 15px;
+        }
+        .tip-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        .tip-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Footer do Card (Botão) */
+        .card-footer {
+            padding: 0 30px 30px 30px;
+        }
+
+        .toggle-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0891b2;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #0e7490;
+        }
+        
+        /* Conteúdo da Resolução/Exemplo */
+        .resolution-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+        
+        .resolution-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #334155;
+            margin: 0 0 15px 0;
+        }
+        
+        .resolution-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0 20px 0;
+            font-size: 16px;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <h1>Propriedades de Tabela CSS</h1>
+            <p class="subtitle">Essas propriedades oferecem controle completo sobre a aparência e layout de tabelas HTML.</p>
+        </header>
+
+        <!-- SEÇÃO: CONTEÚDO -->
+        <section class="content-section">
+
+            <!-- Card: Tabela de Referência Rápida -->
+            <div class="property-card">
+                <h3>Tabela de Referência Rápida</h3>
+                <div class="card-body">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Valores</th>
+                                <th>Padrão</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>border-collapse</td>
+                                <td>separate, collapse</td>
+                                <td>separate</td>
+                                <td>Bordas separadas ou colapsadas</td>
+                            </tr>
+                            <tr>
+                                <td>border-spacing</td>
+                                <td>length, horizontal vertical</td>
+                                <td>0</td>
+                                <td>Espaço entre células (apenas separate)</td>
+                            </tr>
+                            <tr>
+                                <td>caption-side</td>
+                                <td>top, bottom, left, right</td>
+                                <td>top</td>
+                                <td>Posição da legenda</td>
+                            </tr>
+                            <tr>
+                                <td>empty-cells</td>
+                                <td>show, hide</td>
+                                <td>show</td>
+                                <td>Exibir células vazias (apenas separate)</td>
+                            </tr>
+                            <tr>
+                                <td>table-layout</td>
+                                <td>auto, fixed</td>
+                                <td>auto</td>
+                                <td>Algoritmo de layout</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card: Dicas de Boas Práticas -->
+            <div class="property-card tip-box">
+                <h3>Dicas de Boas Práticas</h3>
+                <div class="card-body">
+                    <ul>
+                        <li>Use border-collapse: collapse para a maioria das tabelas - é mais limpo</li>
+                        <li>Prefira table-layout: fixed para tabelas com dados consistentes</li>
+                        <li>Use caption-side: bottom para legendas explicativas</li>
+                        <li>Combine com empty-cells: hide para dados opcionais</li>
+                        <li>Defina larguras específicas em table-layout: fixed para melhor controle</li>
+                        <li>Use border-spacing criativamente para designs de cartão em tabelas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card: border-collapse -->
+            <div class="property-card">
+                <h3>border-collapse</h3>
+                <div class="card-body">
+                    <p>A propriedade border-collapse define se as bordas da tabela são separadas ou colapsadas em uma única borda.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>separate - Bordas separadas (padrão)</li>
+                        <li>collapse - Bordas colapsadas</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Quando collapse, as bordas adjacentes são mescladas</li>
+                        <li>O espaçamento entre células é removido</li>
+                        <li>border-spacing e empty-cells são ignorados</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Tabela com bordas separadas */
+.separated-table {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+/* Tabela com bordas colapsadas (mais comum) */
+.collapsed-table {
+    border-collapse: collapse;
+}
+
+/* Exemplo prático - tabela moderna */
+.modern-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.modern-table th,
+.modern-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.modern-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.modern-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modern-table tr:hover {
+    background-color: #f5f5f5;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: border-spacing -->
+            <div class="property-card">
+                <h3>border-spacing</h3>
+                <div class="card-body">
+                    <p>A propriedade border-spacing define a distância entre as bordas das células adjacentes. Só funciona quando border-collapse: separate.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>length - Um valor para todas as direções</li>
+                        <li>horizontal vertical - Dois valores para horizontal e vertical</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Espaçamento igual em todas as direções */
+.spaced-table-1 {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+/* Espaçamento diferente horizontal e vertical */
+.spaced-table-2 {
+    border-collapse: separate;
+    border-spacing: 15px 5px;
+}
+
+/* Sem espaçamento */
+.no-spacing {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Exemplo prático */
+.calendar {
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+}
+
+.calendar th,
+.calendar td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    background: white;
+}
+
+.calendar th {
+    background: #e0e0e0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: caption-side -->
+            <div class="property-card">
+                <h3>caption-side</h3>
+                <div class="card-body">
+                    <p>A propriedade caption-side define a posição da legenda (<caption>) da tabela.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>top - Acima da tabela (padrão)</li>
+                        <li>bottom - Abaixo da tabela</li>
+                        <li>left - À esquerda da tabela (experimental)</li>
+                        <li>right - À direita da tabela (experimental)</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Legenda acima (padrão) */
+.caption-top {
+    caption-side: top;
+}
+
+/* Legenda abaixo */
+.caption-bottom {
+    caption-side: bottom;
+}
+
+/* Legenda à esquerda (suporte limitado) */
+.caption-left {
+    caption-side: left;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* Exemplo prático */
+.data-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    caption-side: bottom;
+}
+
+.data-table caption {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+    caption-side: bottom;
+}
+
+.stats-table {
+    border-collapse: collapse;
+    caption-side: top;
+}
+
+.stats-table caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: left;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: empty-cells -->
+            <div class="property-card">
+                <h3>empty-cells</h3>
+                <div class="card-body">
+                    <p>A propriedade empty-cells define se devem ser exibidas bordas e fundo em células vazias. Só funciona quando border-collapse: separate.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>show - Exibe bordas em células vazias (padrão)</li>
+                        <li>hide - Oculta bordas em células vazias</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Mostrar células vazias (padrão) */
+.show-empty {
+    border-collapse: separate;
+    empty-cells: show;
+}
+
+/* Esconder células vazias */
+.hide-empty {
+    border-collapse: separate;
+    empty-cells: hide;
+}
+
+/* Exemplo prático */
+.invoice-table {
+    border-collapse: separate;
+    empty-cells: hide;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.invoice-table td {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+.invoice-table th {
+    border: 1px solid #000;
+    padding: 8px;
+    background: #f0f0f0;
+}
+
+/* Tabela de dados com células opcionais */
+.data-grid {
+    border-collapse: separate;
+    empty-cells: show;
+    border-spacing: 1px;
+}
+
+.data-grid td:empty {
+    background-color: #f9f9f9;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: table-layout -->
+            <div class="property-card">
+                <h3>table-layout</h3>
+                <div class="card-body">
+                    <p>A propriedade table-layout define o algoritmo usado para layout da tabela.</p>
+                    <h4>Valores possíveis:</h4>
+                    <ul>
+                        <li>auto - Layout automático (padrão)</li>
+                        <li>fixed - Layout fixo</li>
+                        <li>inherit - Herda do elemento pai</li>
+                    </ul>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>auto: Largura da tabela é determinada pelo conteúdo</li>
+                        <li>fixed: Largura da tabela é determinada pela largura da tabela e colunas</li>
+                        <li>fixed é mais rápido para renderização</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button" onclick="toggleResolution(this)">Ver Exemplos</button>
+                    <div class="resolution-content">
+                        <h4>Exemplos:</h4>
+                        <pre><code>/* Layout automático (padrão) */
+.auto-layout {
+    table-layout: auto;
+    width: 100%;
+}
+
+/* Layout fixo - mais previsível */
+.fixed-layout {
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* Layout fixo com colunas específicas */
+.fixed-columns {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.fixed-columns th:nth-child(1),
+.fixed-columns td:nth-child(1) {
+    width: 20%;
+}
+
+.fixed-columns th:nth-child(2),
+.fixed-columns td:nth-child(2) {
+    width: 30%;
+}
+
+.fixed-columns th:nth-child(3),
+.fixed-columns td:nth-child(3) {
+    width: 50%;
+}
+
+/* Exemplo prático para dados tabulares */
+.data-table-fixed {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table-fixed th,
+.data-table-fixed td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Para conteúdo de tamanho variável */
+.data-table-auto {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table-auto th,
+.data-table-auto td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Exemplo Completo -->
+            <div class="property-card">
+                <h3>Exemplo Completo de Uso Combinado</h3>
+                <div class="card-body">
+                    <p>Este bloco de código demonstra como um documento HTML inteiro pode usar essas propriedades de tabela para criar uma página visualmente rica e funcional.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-button full-example" onclick="toggleResolution(this)">Ver Exemplo Completo</button>
+                    <div class="resolution-content">
+                        <h4>HTML + CSS:</h4>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Propriedades de Tabela CSS&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #636e72;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .section-title {
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dfe6e9;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .demo-card h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Border Collapse Examples */
+        .separate-demo {
+            border-collapse: separate;
+            border-spacing: 8px;
+            width: 100%;
+        }
+
+        .collapse-demo {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .separate-demo th,
+        .separate-demo td {
+            border: 2px solid #74b9ff;
+            padding: 10px;
+            text-align: center;
+            background: white;
+        }
+
+        .collapse-demo th,
+        .collapse-demo td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .collapse-demo th {
+            background: #74b9ff;
+            color: white;
+        }
+
+        .collapse-demo tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Border Spacing Examples */
+        .spacing-small {
+            border-collapse: separate;
+            border-spacing: 2px;
+            width: 100%;
+        }
+
+        .spacing-large {
+            border-collapse: separate;
+            border-spacing: 15px 5px;
+            width: 100%;
+        }
+
+        .spacing-small th,
+        .spacing-small td,
+        .spacing-large th,
+        .spacing-large td {
+            border: 1px solid #e17055;
+            padding: 8px;
+            text-align: center;
+            background: white;
+        }
+
+        .spacing-small th,
+        .spacing-large th {
+            background: #e17055;
+            color: white;
+        }
+
+        /* Caption Side Examples */
+        .caption-top {
+            caption-side: top;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .caption-bottom {
+            caption-side: bottom;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .caption-top caption,
+        .caption-bottom caption {
+            font-weight: bold;
+            padding: 10px;
+            color: #2d3436;
+        }
+
+        .caption-top caption {
+            margin-bottom: 10px;
+        }
+
+        .caption-bottom caption {
+            margin-top: 10px;
+        }
+
+        .caption-top th,
+        .caption-top td,
+        .caption-bottom th,
+        .caption-bottom td {
+            border: 1px solid #00b894;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .caption-top th,
+        .caption-bottom th {
+            background: #00b894;
+            color: white;
+        }
+
+        /* Empty Cells Examples */
+        .empty-show {
+            border-collapse: separate;
+            empty-cells: show;
+            border-spacing: 4px;
+            width: 100%;
+        }
+
+        .empty-hide {
+            border-collapse: separate;
+            empty-cells: hide;
+            border-spacing: 4px;
+            width: 100%;
+        }
+
+        .empty-show th,
+        .empty-show td,
+        .empty-hide th,
+        .empty-hide td {
+            border: 1px solid #a29bfe;
+            padding: 10px;
+            text-align: center;
+            background: white;
+        }
+
+        .empty-show th,
+        .empty-hide th {
+            background: #a29bfe;
+            color: white;
+        }
+
+        /* Table Layout Examples */
+        .layout-auto {
+            table-layout: auto;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .layout-fixed {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .layout-auto th,
+        .layout-auto td,
+        .layout-fixed th,
+        .layout-fixed td {
+            border: 1px solid #fd79a8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .layout-auto th,
+        .layout-fixed th {
+            background: #fd79a8;
+            color: white;
+        }
+
+        .layout-auto tr:nth-child(even),
+        .layout-fixed tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Code Examples */
+        .code-block {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .property-name {
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .value {
+            color: #55efc4;
+        }
+
+        .comment {
+            color: #636e72;
+            font-style: italic;
+        }
+
+        /* Practical Example */
+        .practical-table {
+            table-layout: fixed;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .practical-table caption {
+            caption-side: top;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .practical-table th,
+        .practical-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .practical-table th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+        }
+
+        .practical-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .practical-table tr:hover {
+            background: #e8f4fc;
+        }
+
+        .practical-table td:empty {
+            background: #fff9e6;
+            color: #e67e22;
+            text-align: center;
+            font-style: italic;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Propriedades de Tabela CSS&lt;/h1&gt;
+        &lt;p class="subtitle"&gt;Controle completo sobre a aparência e layout de tabelas&lt;/p&gt;
+
+        &lt;!-- Border Collapse Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;border-collapse&lt;/h2&gt;
+            &lt;p&gt;Define se as bordas da tabela são separadas ou colapsadas.&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;separate (Padrão)&lt;/h3&gt;
+                    &lt;table class="separate-demo"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Nome&lt;/th&gt;
+                            &lt;th&gt;Idade&lt;/th&gt;
+                            &lt;th&gt;Cidade&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;João&lt;/td&gt;
+                            &lt;td&gt;25&lt;/td&gt;
+                            &lt;td&gt;São Paulo&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Maria&lt;/td&gt;
+                            &lt;td&gt;30&lt;/td&gt;
+                            &lt;td&gt;Rio de Janeiro&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;collapse (Recomendado)&lt;/h3&gt;
+                    &lt;table class="collapse-demo"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Nome&lt;/th&gt;
+                            &lt;th&gt;Idade&lt;/th&gt;
+                            &lt;th&gt;Cidade&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;João&lt;/td&gt;
+                            &lt;td&gt;25&lt;/td&gt;
+                            &lt;td&gt;São Paulo&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Maria&lt;/td&gt;
+                            &lt;td&gt;30&lt;/td&gt;
+                            &lt;td&gt;Rio de Janeiro&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="property-name"&gt;border-collapse&lt;/span&gt;: &lt;span class="value"&gt;separate&lt;/span&gt;; &lt;span class="comment"&gt;/* Bordas separadas com espaçamento */&lt;/span&gt;
+&lt;span class="property-name"&gt;border-spacing&lt;/span&gt;: &lt;span class="value"&gt;8px&lt;/span&gt;;
+
+&lt;span class="property-name"&gt;border-collapse&lt;/span&gt;: &lt;span class="value"&gt;collapse&lt;/span&gt;; &lt;span class="comment"&gt;/* Bordas mescladas, layout mais limpo */&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Border Spacing Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;border-spacing&lt;/h2&gt;
+            &lt;p&gt;Define o espaçamento entre células (só funciona com border-collapse: separate).&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Espaçamento Pequeno (2px)&lt;/h3&gt;
+                    &lt;table class="spacing-small"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Produto&lt;/th&gt;
+                            &lt;th&gt;Preço&lt;/th&gt;
+                            &lt;th&gt;Estoque&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Notebook&lt;/td&gt;
+                            &lt;td&gt;R$ 2.500&lt;/td&gt;
+                            &lt;td&gt;15&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Mouse&lt;/td&gt;
+                            &lt;td&gt;R$ 50&lt;/td&gt;
+                            &lt;td&gt;30&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Espaçamento Grande (15px horizontal, 5px vertical)&lt;/h3&gt;
+                    &lt;table class="spacing-large"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Produto&lt;/th&gt;
+                            &lt;th&gt;Preço&lt;/th&gt;
+                            &lt;th&gt;Estoque&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Notebook&lt;/td&gt;
+                            &lt;td&gt;R$ 2.500&lt;/td&gt;
+                            &lt;td&gt;15&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Mouse&lt;/td&gt;
+                            &lt;td&gt;R$ 50&lt;/td&gt;
+                            &lt;td&gt;30&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="property-name"&gt;border-collapse&lt;/span&gt;: &lt;span class="value"&gt;separate&lt;/span&gt;;
+&lt;span class="property-name"&gt;border-spacing&lt;/span&gt;: &lt;span class="value"&gt;2px&lt;/span&gt;; &lt;span class="comment"&gt;/* Todos os lados */&lt;/span&gt;
+
+&lt;span class="property-name"&gt;border-collapse&lt;/span&gt;: &lt;span class="value"&gt;separate&lt;/span&gt;;
+&lt;span class="property-name"&gt;border-spacing&lt;/span&gt;: &lt;span class="value"&gt;15px 5px&lt;/span&gt;; &lt;span class="comment"&gt;/* horizontal vertical */&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Caption Side Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;caption-side&lt;/h2&gt;
+            &lt;p&gt;Define a posição da legenda da tabela.&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Legenda no Topo (padrão)&lt;/h3&gt;
+                    &lt;table class="caption-top"&gt;
+                        &lt;caption&gt;Relatório de Vendas - 2024&lt;/caption&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Mês&lt;/th&gt;
+                            &lt;th&gt;Vendas&lt;/th&gt;
+                            &lt;th&gt;Meta&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Janeiro&lt;/td&gt;
+                            &lt;td&gt;R$ 50.000&lt;/td&gt;
+                            &lt;td&gt;R$ 45.000&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Fevereiro&lt;/td&gt;
+                            &lt;td&gt;R$ 55.000&lt;/td&gt;
+                            &lt;td&gt;R$ 50.000&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Legenda na Base&lt;/h3&gt;
+                    &lt;table class="caption-bottom"&gt;
+                        &lt;caption&gt;Dados atualizados em Março de 2024&lt;/caption&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Mês&lt;/th&gt;
+                            &lt;th&gt;Vendas&lt;/th&gt;
+                            &lt;th&gt;Meta&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Janeiro&lt;/td&gt;
+                            &lt;td&gt;R$ 50.000&lt;/td&gt;
+                            &lt;td&gt;R$ 45.000&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Fevereiro&lt;/td&gt;
+                            &lt;td&gt;R$ 55.000&lt;/td&gt;
+                            &lt;td&gt;R$ 50.000&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="property-name"&gt;caption-side&lt;/span&gt;: &lt;span class="value"&gt;top&lt;/span&gt;; &lt;span class="comment"&gt;/* Acima da tabela */&lt;/span&gt;
+&lt;span class="property-name"&gt;caption-side&lt;/span&gt;: &lt;span class="value"&gt;bottom&lt;/span&gt;; &lt;span class="comment"&gt;/* Abaixo da tabela */&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Empty Cells Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;empty-cells&lt;/h2&gt;
+            &lt;p&gt;Controla a exibição de bordas em células vazias (só funciona com border-collapse: separate).&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Mostrar Células Vazias&lt;/h3&gt;
+                    &lt;table class="empty-show"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Funcionário&lt;/th&gt;
+                            &lt;th&gt;Departamento&lt;/th&gt;
+                            &lt;th&gt;Projeto&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Carlos&lt;/td&gt;
+                            &lt;td&gt;TI&lt;/td&gt;
+                            &lt;td&gt;Sistema ERP&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Ana&lt;/td&gt;
+                            &lt;td&gt;Marketing&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Pedro&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;Site Corporativo&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Ocultar Células Vazias&lt;/h3&gt;
+                    &lt;table class="empty-hide"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Funcionário&lt;/th&gt;
+                            &lt;th&gt;Departamento&lt;/th&gt;
+                            &lt;th&gt;Projeto&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Carlos&lt;/td&gt;
+                            &lt;td&gt;TI&lt;/td&gt;
+                            &lt;td&gt;Sistema ERP&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Ana&lt;/td&gt;
+                            &lt;td&gt;Marketing&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Pedro&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;Site Corporativo&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="property-name"&gt;empty-cells&lt;/span&gt;: &lt;span class="value"&gt;show&lt;/span&gt;; &lt;span class="comment"&gt;/* Mostra bordas em células vazias */&lt;/span&gt;
+&lt;span class="property-name"&gt;empty-cells&lt;/span&gt;: &lt;span class="value"&gt;hide&lt;/span&gt;; &lt;span class="comment"&gt;/* Oculta bordas em células vazias */&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Table Layout Section --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;table-layout&lt;/h2&gt;
+            &lt;p&gt;Define o algoritmo de layout da tabela.&lt;/p&gt;
+            
+            &lt;div class="demo-grid"&gt;
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Auto (Conteúdo define largura)&lt;/h3&gt;
+                    &lt;table class="layout-auto"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Coluna 1&lt;/th&gt;
+                            &lt;th&gt;Coluna 2 com texto muito longo&lt;/th&gt;
+                            &lt;th&gt;Coluna 3&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Curto&lt;/td&gt;
+                            &lt;td&gt;Texto extremamente longo que vai quebrar o layout&lt;/td&gt;
+                            &lt;td&gt;Médio&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Médio texto&lt;/td&gt;
+                            &lt;td&gt;Curto&lt;/td&gt;
+                            &lt;td&gt;Texto bem longo aqui também&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="demo-card"&gt;
+                    &lt;h3&gt;Fixed (Largura fixa das colunas)&lt;/h3&gt;
+                    &lt;table class="layout-fixed"&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Coluna 1&lt;/th&gt;
+                            &lt;th&gt;Coluna 2 com texto muito longo&lt;/th&gt;
+                            &lt;th&gt;Coluna 3&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Curto&lt;/td&gt;
+                            &lt;td&gt;Texto extremamente longo que será truncado&lt;/td&gt;
+                            &lt;td&gt;Médio&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Médio texto&lt;/td&gt;
+                            &lt;td&gt;Curto&lt;/td&gt;
+                            &lt;td&gt;Texto bem longo aqui também&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="property-name"&gt;table-layout&lt;/span&gt;: &lt;span class="value"&gt;auto&lt;/span&gt;; &lt;span class="comment"&gt;/* Largura baseada no conteúdo */&lt;/span&gt;
+&lt;span class="property-name"&gt;table-layout&lt;/span&gt;: &lt;span class="value"&gt;fixed&lt;/span&gt;; &lt;span class="comment"&gt;/* Largura fixa, mais rápida */&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&G;
+
+        &lt;!-- Practical Example --&gt;
+        &lt;div class="section"&gt;
+            &lt;h2 class="section-title"&gt;Exemplo Prático Completo&lt;/h2&gt;
+            &lt;p&gt;Uma tabela moderna usando todas as propriedades combinadas.&lt;/p&gt;
+            
+            &lt;table class="practical-table"&gt;
+                &lt;caption&gt;Relatório de Funcionários - Departamento de TI&lt;/caption&gt;
+                &lt;tr&gt;
+                    &lt;th style="width: 20%"&gt;Nome&lt;/th&gt;
+                    &lt;th style="width: 15%"&gt;Cargo&lt;/th&gt;
+                    &lt;th style="width: 15%"&gt;Salário&lt;/th&gt;
+                    &lt;th style="width: 20%"&gt;Projeto Atual&lt;/th&gt;
+                    &lt;th style="width: 15%"&gt;Status&lt;/th&gt;
+                    &lt;th style="width: 15%"&gt;Ações&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;João Silva&lt;/td&gt;
+                    &lt;td&gt;Desenvolvedor Sênior&lt;/td&gt;
+                    &lt;td&gt;R$ 8.500,00&lt;/td&gt;
+                    &lt;td&gt;Sistema de Gestão&lt;/td&gt;
+                    &lt;td&gt;Ativo&lt;/td&gt;
+                    &lt;td&gt;Editar | Excluir&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Maria Santos&lt;/td&gt;
+                    &lt;td&gt;Analista de QA&lt;/td&gt;
+                    &lt;td&gt;R$ 6.200,00&lt;/td&gt;
+                    &lt;td&gt;Testes Automatizados&lt;/td&gt;
+                    &lt;td&gt;Ativo&lt;/td&gt;
+                    &lt;td&gt;Editar | Excluir&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Pedro Costa&lt;/td&gt;
+                    &lt;td&gt;DevOps Engineer&lt;/td&gt;
+                    &lt;td&gt;R$ 9.000,00&lt;/td&gt;
+                    &lt;td&gt;Infraestrutura Cloud&lt;/td&gt;
+                    &lt;td&gt;Férias&lt;/td&gt;
+                    &lt;td&gt;Editar | Excluir&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Ana Oliveira&lt;/td&gt;
+                    &lt;td&gt;Product Owner&lt;/td&gt;
+                    &lt;td&gt;R$ 7.800,00&lt;/td&gt;
+                    &lt;td&gt;&lt;/td&gt;
+                    &lt;td&gt;Ativo&lt;/td&gt;
+                    &lt;td&gt;Editar | Excluir&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Carlos Lima&lt;/td&gt;
+                    &lt;td&gt;Estagiário&lt;/td&gt;
+                    &lt;td&gt;R$ 1.500,00&lt;/td&gt;
+                    &lt;td&gt;Suporte Técnico&lt;/td&gt;
+                    &lt;td&gt;&lt;/td&gt;
+                    &lt;td&gt;Editar | Excluir&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+            &lt;div class="code-block"&gt;
+&lt;span class="comment"&gt;/* CSS da tabela prática */&lt;/span&gt;
+.&lt;span class="property-name"&gt;practical-table&lt;/span&gt; {
+    &lt;span class="property-name"&gt;table-layout&lt;/span&gt;: &lt;span class="value"&gt;fixed&lt;/span&gt;;
+    &lt;span class="property-name"&gt;border-collapse&lt;/span&gt;: &lt;span class="value"&gt;collapse&lt;/span&gt;;
+    &lt;span class="property-name"&gt;width&lt;/span&gt;: &lt;span class="value"&gt;100%&lt;/span&gt;;
+    &lt;span class="property-name"&gt;caption-side&lt;/span&gt;: &lt;span class="value"&gt;top&lt;/span&gt;;
+}
+
+.&lt;span class="property-name"&gt;practical-table&lt;/span&gt; &lt;span class="property-name"&gt;td:empty&lt;/span&gt; {
+    &lt;span class="property-name"&gt;background&lt;/span&gt;: &lt;span class="value"&gt;#fff9e6&lt;/span&gt;;
+    &lt;span class="property-name"&gt;color&lt;/span&gt;: &lt;span class="value"&gt;#e67e22&lt;/span&gt;;
+    &lt;span class="property-name"&gt;text-align&lt;/span&gt;: &lt;span class="value"&gt;center&lt;/span&gt;;
+    &lt;span class="property-name"&gt;font-style&lt;/span&gt;: &lt;span class="value"&gt;italic&lt;/span&gt;;
+}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
